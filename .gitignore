@@ -1,0 +1,14 @@
+# cypress artifacts
+cypress/screenshots/
+cypress/videos/
+
+# npm
+node_modules/
+
+# not ideal, but it's not a production deployment
+package-lock.json
+
+# files
+*.jpeg
+*.png
+*.mp4

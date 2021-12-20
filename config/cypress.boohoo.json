@@ -1,0 +1,11 @@
+{
+    "baseUrl": "https://uk-dwdev.boohoo.com/",
+    "env": {
+      "salesforce": {
+        "loginUrl": "https://www.salesforce.com",
+        "username": "<my_username>",
+        "password": "<my_password>",
+        "accessToken": "<access_token>"
+      }
+    }
+}

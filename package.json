@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:open:boohoo": "cypress open --config-file ./config/cypress.boohoo.json",
+    "cy:run:boohoo": "cypress run --config-file ./config/cypress.boohoo.json"
   },
   "dependencies": {
     "cypress": "^9.1.1"

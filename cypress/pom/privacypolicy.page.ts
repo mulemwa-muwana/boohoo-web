@@ -1,5 +1,6 @@
 import { GotoOptions } from '../support/types';
 import * as CommonActions from '../helpers/common';
+import AbstractPage from './abstract.page';
 
 /**
  * Page Objects should consist of:
@@ -9,7 +10,7 @@ import * as CommonActions from '../helpers/common';
  * @object 'assertions' object containing all cypress assertion methods.
  */
 
-class PrivacyPolicyPage {
+class PrivacyPolicyPage implements AbstractPage {
 
     goto(options: GotoOptions = null) {
         cy.visit('page/privacy-notice.html');

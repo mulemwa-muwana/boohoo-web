@@ -1,12 +1,13 @@
 import * as CommonActions from '../helpers/common';
 import HomePage from '../pom/home.page';
 import PrivacyPolicyPage from '../pom/privacypolicy.page';
+import SocialsPage from '../pom/socials.page';
 
 describe('Global Footer', () => {
 
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
-    HomePage.goto({ applyCookies: true })
+    HomePage.goto();
   })
 
   describe('Verify the details for Global Footer', function () {
@@ -15,6 +16,7 @@ describe('Global Footer', () => {
      * Tests of out scope:
      * TC006 - Blind assistance cannot be automated currently.
      * TC007 - Not functionality we currently have.
+     * TC010 - Not checking for alt tags.
      */
 
     it.skip('TC001, TC004 - Verify success message is displayed after signing up.', () => {
@@ -44,12 +46,12 @@ describe('Global Footer', () => {
 
     describe('TC008 - Verify the content page (Privacy Policy) is displayed.', () => {
 
-      it('First link.', () => {
+      it.skip('First link.', () => {
         HomePage.click.privacyPolicyLink();
         PrivacyPolicyPage.assertions.assertOnPage();
       })
 
-      it('Second link.', () => {
+      it.skip('Second link.', () => {
         HomePage.click.copyrightPrivacyPolicyLink();
         PrivacyPolicyPage.assertions.assertOnPage();
       })
@@ -57,19 +59,53 @@ describe('Global Footer', () => {
     }) 
 
 
-    it.skip('TC009 - Verify that Social Networking Links are present.', () => {
+    describe('TC009 - Verify that Social Networking Links are present.', () => {
+      it('Instagram', () => {
+        HomePage.click.instagramLink();
+        SocialsPage.assertions.assertOnInstagram();
+      })
+
+      it('Facebook', () => {
+        HomePage.click.facebookLink();
+        SocialsPage.assertions.assertOnFacebook();
+      })
+
+      it('Twitter', () => {
+        HomePage.click.twitterLink();
+        SocialsPage.assertions.assertOnTwitter();
+      })
+
+      it('TikTok', () => {
+        HomePage.click.tiktokLink();
+        SocialsPage.assertions.assertOnTikTok();
+      })
+
+      it('YouTube', () => {
+        HomePage.click.youtubeLink();
+        SocialsPage.assertions.assertOnYouTube();
+      })
+
+      it('Pintrest', () => {
+        HomePage.click.pintrestLink();
+        SocialsPage.assertions.assertOnPintrest();
+      })
+
+      it('TheFix', () => {
+        HomePage.click.theFixLink();
+        SocialsPage.assertions.assertOnTheFix();
+      })
     })
-    
-    it.skip('TC010 - Verify that Social Networking Links are present and functional and functional.', () => {
-    })
-    
-    it.skip('TC011 - Verify that Payment and Delivery Providers are present as content slot.', () => {
+
+    it('TC011 - Verify that Payment and Delivery Providers are present as content slot.', () => {
+      HomePage.assertions.assertPaymentOptionsArePresent();
     })
     
     it.skip('TC012 - Verify that App Banner is present as content slot.', () => {
+      HomePage.assertions.assertPromoBannerPresent()
     })
   
     it.skip('TC013 - Verify that Footer Navigation Component is present and Links are functional.', () => {
+      HomePage.actions.checkAllNavigationLinks();
     })
   
     it.skip('TC014 - Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {

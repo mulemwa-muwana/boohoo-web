@@ -1,5 +1,5 @@
 {
-    "baseUrl": "https://www.boohoo.com/",
+    "baseUrl": "https://storefront:Oreo2022@uk-dwdev.boohoo.com/",
     "env": {
       "salesforce": {
         "loginUrl": "https://www.salesforce.com",

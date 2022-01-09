@@ -18,3 +18,24 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// This will stop any random exceptions that happen in the site, like api endpoints throwing server errors that don't matter to the user journey.
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+})
+
+// Set anything we need to before all tests
+beforeEach(() => {
+    cy.viewport(1920, 1080);
+});
+  
+// Here we're just hiding the XHR requests from the Cypress GUI.
+const app = window.top;
+if (!app.document.head.querySelector('[data-hide-command-log-request]')) {
+const style = app.document.createElement('style');
+style.innerHTML = '.command-name-request, .command-name-xhr { display: none }';
+style.setAttribute('data-hide-command-log-request', '');
+app.document.head.appendChild(style);
+}

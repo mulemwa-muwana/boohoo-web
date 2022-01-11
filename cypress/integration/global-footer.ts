@@ -38,28 +38,20 @@ describe('Global Footer', () => {
       HomePage.assertions.asssertAlreadySubscribed();
     })
 
-    // it('TC007 - Verify that Footer Email Subscription is displayed and functional.', () => {
-    //   cy.goOffline();
-    //   const randomEmail = CommonActions.randomEmail();
-    //   HomePage.actions.subscribeToNewsletter(randomEmail);
-    // })
-
-    describe('TC008 - Verify the content page (Privacy Policy) is displayed.', () => {
-
-      it.skip('First link.', () => {
+    describe.skip('TC008 - Verify the content page (Privacy Policy) is displayed.', () => {
+      it('First link.', () => {
         HomePage.click.privacyPolicyLink();
         PrivacyPolicyPage.assertions.assertOnPage();
       })
 
-      it.skip('Second link.', () => {
+      it('Second link.', () => {
         HomePage.click.copyrightPrivacyPolicyLink();
         PrivacyPolicyPage.assertions.assertOnPage();
       })
-
     }) 
 
 
-    describe('TC009 - Verify that Social Networking Links are present.', () => {
+    describe.skip('TC009 - Verify that Social Networking Links are present.', () => {
       it('Instagram', () => {
         HomePage.click.instagramLink();
         SocialsPage.assertions.assertOnInstagram();
@@ -96,7 +88,7 @@ describe('Global Footer', () => {
       })
     })
 
-    it('TC011 - Verify that Payment and Delivery Providers are present as content slot.', () => {
+    it.skip('TC011 - Verify that Payment and Delivery Providers are present as content slot.', () => {
       HomePage.assertions.assertPaymentOptionsArePresent();
     })
     
@@ -105,19 +97,73 @@ describe('Global Footer', () => {
     })
   
     it.skip('TC013 - Verify that Footer Navigation Component is present and Links are functional.', () => {
-      HomePage.actions.checkAllNavigationLinks();
+      // Each of these will go back to the previous URL once the action has been completed.
+
+      // First column
+      HomePage.actions.checkFooterLinkByText('Help');
+      HomePage.actions.checkFooterLinkByText('Track My Order');
+      HomePage.actions.checkFooterLinkByText('boohoo Premier');
+      HomePage.actions.checkFooterLinkByText('Returns');
+      HomePage.actions.checkFooterLinkByText('Size Guide');
+      HomePage.actions.checkFooterLinkByText('Student Discount - Get Offers');
+      HomePage.actions.checkFooterLinkByText('Discount & Promo Codes');
+      HomePage.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
+
+      // Second column
+      HomePage.actions.checkFooterLinkByText('Delivery Information');
+      HomePage.actions.checkFooterLinkByText('Sustainability');
+      HomePage.actions.checkFooterLinkByText('Covid-19 Update');
+      HomePage.actions.checkFooterLinkByText('Recycling Options');
+      HomePage.actions.checkFooterLinkByText('T&C\'s');
+      HomePage.actions.checkFooterLinkByText('About Cookies');
+      HomePage.actions.checkFooterLinkByText('Refer a Friend');
+
+      // Third column
+      HomePage.actions.checkFooterLinkByText('About boohoo');
+      HomePage.actions.checkFooterLinkByText('Investor Relations');
+      HomePage.actions.checkFooterLinkByText('Environment & Social Responsibility');
+      HomePage.actions.checkFooterLinkByText('BCI Membership');
+      HomePage.actions.checkFooterLinkByText('Modern Slavery Statement', { url: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
+      HomePage.actions.checkFooterLinkByText('Careers');
+      HomePage.actions.checkFooterLinkByText('Become an Affiliate');
+      HomePage.actions.checkFooterLinkByText('Become a Partner');
+      HomePage.actions.checkFooterLinkByText('Sitemap');
+      HomePage.actions.checkFooterLinkByText('Klarna');
+      HomePage.actions.checkFooterLinkByText('Clearpay');
+      HomePage.actions.checkFooterLinkByText('Laybuy');
+      HomePage.actions.checkFooterLinkByText('Zip');
     })
   
-    it.skip('TC014 - Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
+    it.skip('TC014, TC015 - Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
+      const currentYear = new Date().getFullYear();
+      cy.contains(`Copyright © ${currentYear} boohoo.com.`).should('be.visible');
     })
   
-    it.skip('TC015 - Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
-    })
-  
-    it.skip('TC016 - Verify that the Country Selector displayed and functional.', () => {
+    describe.skip('TC016 - Verify that the Country Selector displayed and functional.', () => {
+      it('USA', () => {
+        HomePage.actions.changeCountry('USA');
+        HomePage.assertions.assertCurrencyByPageContext('USD');
+      })
+
+      it('AUD', () => {
+        HomePage.actions.changeCountry('AUD');
+        HomePage.assertions.assertCurrencyByPageContext('AUD');
+      })
+
+      it('FRA', () => {
+        HomePage.actions.changeCountry('FRA');
+        HomePage.assertions.assertCurrencyByPageContext('EUR');
+      })
+
+      it('KW', () => {
+        HomePage.actions.changeCountry('KW');
+        HomePage.assertions.assertCurrencyByPageContext('KWD');
+      })
     })
   
     it.skip('TC017 - Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
+      HomePage.assertions.assertFooterIsFixedAndPresent();
+      HomePage.click.footerPromo();
     })
   
     it.skip('TC018 - Verify that the Sticky Footer is displayed below Copyright and is clickable.', () => {

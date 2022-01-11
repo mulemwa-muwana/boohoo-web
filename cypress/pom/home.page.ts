@@ -1,4 +1,4 @@
-import { GotoOptions } from '../support/types';
+import { CountryCode, GotoOptions } from '../support/types';
 import * as CommonActions from '../helpers/common';
 import AbstractPage from './abstract.page';
 
@@ -28,25 +28,55 @@ class HomePage implements AbstractPage {
             cy.get('.footer-copyright [title="Privacy notice"]').click();
         },
         instagramLink() {
-            cy.get('a[href="https://www.instagram.com/boohoo/"]').click();
+            cy.get('a[href="https://www.instagram.com/boohoo/"] img').then(element => {
+                cy.wrap(element).invoke('width').should('be.gt', 10)
+                cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+            })
         },
         facebookLink() {
-            cy.get('a[href="https://www.facebook.com/boohoo.com"]').click();
+            cy.get('a[href="https://www.facebook.com/boohoo.com"] img').then(element => {
+                cy.wrap(element).invoke('width').should('be.gt', 10)
+                cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+            })
         },
         twitterLink() {
-            cy.get('a[href="https://www.twitter.com/boohoo"]').click();
+            cy.get('a[href="https://www.twitter.com/boohoo"] img').then(element => {
+                cy.wrap(element).invoke('width').should('be.gt', 10)
+                cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+            })
         },
         tiktokLink() {
-            cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"]').click();
+            cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"] img').then(element => {
+                cy.wrap(element).invoke('width').should('be.gt', 10)
+                cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+            })
         },
         youtubeLink() {
-            cy.get('a[href="https://www.youtube.com/c/boohoo"]').click();
+            cy.get('a[href="https://www.youtube.com/c/boohoo"] img').then(element => {
+                cy.wrap(element).invoke('width').should('be.gt', 10)
+                cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+            })
         },
         pintrestLink() {
-            cy.get('a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]').click();
+            cy.get('a[href="https://www.pinterest.co.uk/boohooofficial/_created/"] img').then(element => {
+                cy.wrap(element).invoke('width').should('be.gt', 10)
+                cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+            })
         },
         theFixLink() {
-            cy.get('a[href="https://thefix.boohoo.com/"]').click();
+            cy.get('a[href="https://thefix.boohoo.com/"] img').then(element => {
+                cy.wrap(element).invoke('width').should('be.gt', 10)
+                cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+            })
+        },
+        footerPromo() {
+            cy.get('.footer-promo a').then(element => {
+                const href = element.attr('href');
+                cy.wrap(element).click();
+                cy.url().then(url => {
+                    expect(url).to.contain(href);
+            })
+        })
         }
     }
 
@@ -55,18 +85,24 @@ class HomePage implements AbstractPage {
             cy.get('.newsletter-form-field[type="email"]').type(email);
             cy.get('button.newsletter-form-btn').click();
         },
-        checkAllNavigationLinks() {
-            const links = cy.get('.footer-navigation-wrapper > *:nth-child(-n+3) li a');
-            links.each((element) => {
-                const href = element.attr('href');
-                cy.wrap(element).click();
-                cy.url().then(url => {
-                    cy.log('URL: ' + url);
-                    cy.log('HREF: ' + href);
-                    expect(url).to.contain(href);
+        checkFooterLinkByText(text: string, options?: { url: string } ) {
+            cy.log(`searching for '${text}' in footer`);
+            cy.scrollTo('bottom');
+            cy.get('.footer-navigation-wrapper  > div:nth-child(-n+3) a[href]').contains(text)
+                .invoke('removeAttr', 'target')
+                .then(element => {
+                    const href = element.attr('href');
+                    cy.wrap(element).click();
+                    cy.url().then(url => {
+                        expect(url).to.contain(options?.url ?? href);
                 })
-                cy.go('back');
             })
+            cy.go('back');
+        },
+        changeCountry(country: CountryCode) {
+            cy.wait(2000);
+            cy.get('.hidden-on-mobile .current-country i').click();
+            cy.get('.hidden-on-mobile .country-link').contains(country).click();
         }
     }
 
@@ -89,10 +125,20 @@ class HomePage implements AbstractPage {
             })
         },
         assertPaymentOptionsArePresent() {
-            cy.get('[src*="PAYMENT_STRIP_UK_ZIPPAY-NEWLOGO.svg"]').should('be.visible');
+            cy.get('[alt="Payment Methods"]').scrollIntoView().should('be.visible');
         },
         assertPromoBannerPresent() {
             cy.get('#promo-banner.home-main').should('be.visible');
+        },
+        assertCurrencyByPageContext(currency: string) {
+            cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {
+                const json = JSON.parse(context);
+                expect(json.currencyCode).to.equal(currency);
+            })
+        },
+        assertFooterIsFixedAndPresent() {
+            cy.scrollTo('bottom');
+            cy.get('.footer-promo').should('have.css', 'position', 'fixed');
         }
     }
 

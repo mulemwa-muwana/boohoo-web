@@ -1,5 +1,6 @@
 {
     "baseUrl": "https://www.boohoo.com/",
+    "chromeWebSecurity": false,
     "env": {
       "salesforce": {
         "loginUrl": "https://www.salesforce.com",
@@ -8,4 +9,5 @@
         "accessToken": "<access_token>"
       }
     }
+    
 }

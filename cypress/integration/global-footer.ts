@@ -17,20 +17,22 @@ describe('Global Footer', () => {
      * TC006 - Blind assistance cannot be automated currently.
      * TC007 - Not functionality we currently have.
      * TC010 - Not checking for alt tags.
+     * TC021 - No language selector on site.
+     * TC022 - No language selector on site.
      */
 
-    it.skip('TC001, TC004 - Verify success message is displayed after signing up.', () => {
+    it('TC001, TC004 - Verify success message is displayed after signing up.', () => {
       const randomEmail = CommonActions.randomEmail();
       HomePage.actions.subscribeToNewsletter(randomEmail);
       HomePage.assertions.assertSuccessfulSubscription();
     })
 
-    it.skip('TC002, TC003 - Verify that Form validation error is displayed.', () => {
+    it('TC002, TC003 - Verify that Form validation error is displayed.', () => {
       HomePage.actions.subscribeToNewsletter('nonValidEmail.com');
       HomePage.assertions.assertUnsuccessfulSubscription();
     })
 
-    it.skip('TC005 - Verify correct error message is displayed.', () => {
+    it('TC005 - Verify correct error message is displayed.', () => {
       const randomEmail = CommonActions.randomEmail();
       HomePage.actions.subscribeToNewsletter(randomEmail);
       HomePage.goto();
@@ -38,7 +40,7 @@ describe('Global Footer', () => {
       HomePage.assertions.asssertAlreadySubscribed();
     })
 
-    describe.skip('TC008 - Verify the content page (Privacy Policy) is displayed.', () => {
+    describe('TC008 - Verify the content page (Privacy Policy) is displayed.', () => {
       it('First link.', () => {
         HomePage.click.privacyPolicyLink();
         PrivacyPolicyPage.assertions.assertOnPage();
@@ -51,7 +53,7 @@ describe('Global Footer', () => {
     }) 
 
 
-    describe.skip('TC009 - Verify that Social Networking Links are present.', () => {
+    describe('TC009 - Verify that Social Networking Links are present.', () => {
       it('Instagram', () => {
         HomePage.click.instagramLink();
         SocialsPage.assertions.assertOnInstagram();
@@ -88,15 +90,15 @@ describe('Global Footer', () => {
       })
     })
 
-    it.skip('TC011 - Verify that Payment and Delivery Providers are present as content slot.', () => {
+    it('TC011 - Verify that Payment and Delivery Providers are present as content slot.', () => {
       HomePage.assertions.assertPaymentOptionsArePresent();
     })
     
-    it.skip('TC012 - Verify that App Banner is present as content slot.', () => {
+    it('TC012 - Verify that App Banner is present as content slot.', () => {
       HomePage.assertions.assertPromoBannerPresent()
     })
   
-    it.skip('TC013 - Verify that Footer Navigation Component is present and Links are functional.', () => {
+    it('TC013 - Verify that Footer Navigation Component is present and Links are functional.', () => {
       // Each of these will go back to the previous URL once the action has been completed.
 
       // First column
@@ -123,7 +125,7 @@ describe('Global Footer', () => {
       HomePage.actions.checkFooterLinkByText('Investor Relations');
       HomePage.actions.checkFooterLinkByText('Environment & Social Responsibility');
       HomePage.actions.checkFooterLinkByText('BCI Membership');
-      HomePage.actions.checkFooterLinkByText('Modern Slavery Statement', { url: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
+      HomePage.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
       HomePage.actions.checkFooterLinkByText('Careers');
       HomePage.actions.checkFooterLinkByText('Become an Affiliate');
       HomePage.actions.checkFooterLinkByText('Become a Partner');
@@ -134,12 +136,12 @@ describe('Global Footer', () => {
       HomePage.actions.checkFooterLinkByText('Zip');
     })
   
-    it.skip('TC014, TC015 - Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
+    it('TC014, TC015 - Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
       const currentYear = new Date().getFullYear();
       cy.contains(`Copyright © ${currentYear} boohoo.com.`).should('be.visible');
     })
   
-    describe.skip('TC016 - Verify that the Country Selector displayed and functional.', () => {
+    describe('TC016 - Verify that the Country Selector displayed and functional.', () => {
       it('USA', () => {
         HomePage.actions.changeCountry('USA');
         HomePage.assertions.assertCurrencyByPageContext('USD');
@@ -161,24 +163,20 @@ describe('Global Footer', () => {
       })
     })
   
-    it.skip('TC017 - Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
+    it('TC017 - Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
       HomePage.assertions.assertFooterIsFixedAndPresent();
       HomePage.click.footerPromo();
     })
   
-    it.skip('TC018 - Verify that the Sticky Footer is displayed below Copyright and is clickable.', () => {
-    })
-  
-    it.skip('TC019 - Verify that the Sticky Footer is displayed below Copyright and is clickable.', () => {
-    })
-  
-    it.skip('TC020 - Verify that the Sticky Footer is functional', () => {
-    })
-  
-    it.skip('TC021 - Verify that the Language Selector is displayed and is functional.', () => {
-    })
-  
-    it.skip('TC022 - Verify that the Currency Selector is present next to Language selector and is functional', () => {
+    describe('TC018, TC019, TC020 - Verify that the global header is displayed.', () => {
+      it('Check global header hides when scrolling down.', () => {
+        cy.scrollTo('bottom');
+        HomePage.assertions.assertHeaderIsNotVisible();
+      })
+      it('Check global header displays.', () => {
+        cy.scrollTo('top');
+        HomePage.assertions.assertHeaderIsVisible();
+      })
     })
 
   })

@@ -85,7 +85,7 @@ class HomePage implements AbstractPage {
             cy.get('.newsletter-form-field[type="email"]').type(email);
             cy.get('button.newsletter-form-btn').click();
         },
-        checkFooterLinkByText(text: string, options?: { url: string } ) {
+        checkFooterLinkByText(text: string, options?: { assertionUrl: string } ) {
             cy.log(`searching for '${text}' in footer`);
             cy.scrollTo('bottom');
             cy.get('.footer-navigation-wrapper  > div:nth-child(-n+3) a[href]').contains(text)
@@ -94,7 +94,7 @@ class HomePage implements AbstractPage {
                     const href = element.attr('href');
                     cy.wrap(element).click();
                     cy.url().then(url => {
-                        expect(url).to.contain(options?.url ?? href);
+                        expect(url).to.contain(options?.assertionUrl ?? href);
                 })
             })
             cy.go('back');
@@ -139,6 +139,12 @@ class HomePage implements AbstractPage {
         assertFooterIsFixedAndPresent() {
             cy.scrollTo('bottom');
             cy.get('.footer-promo').should('have.css', 'position', 'fixed');
+        },
+        assertHeaderIsVisible() {
+            cy.get('.sticky-header').should('be.visible');
+        },
+        assertHeaderIsNotVisible() {
+            cy.get('.sticky-header').should('not.be.visible');
         }
     }
 

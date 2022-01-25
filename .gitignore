@@ -12,3 +12,4 @@ package-lock.json
 *.jpeg
 *.png
 *.mp4
+.DS_Store

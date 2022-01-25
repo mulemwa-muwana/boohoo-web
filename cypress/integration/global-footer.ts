@@ -1,4 +1,5 @@
 import * as CommonActions from '../helpers/common';
+import GlobalFooter from '../pom/globalfooter.page';
 import HomePage from '../pom/home.page';
 import PrivacyPolicyPage from '../pom/privacypolicy.page';
 import SocialsPage from '../pom/socials.page';
@@ -23,31 +24,31 @@ describe('Global Footer', () => {
 
     it('TC001, TC004 - Verify success message is displayed after signing up.', () => {
       const randomEmail = CommonActions.randomEmail();
-      HomePage.actions.subscribeToNewsletter(randomEmail);
-      HomePage.assertions.assertSuccessfulSubscription();
+      GlobalFooter.actions.subscribeToNewsletter(randomEmail);
+      GlobalFooter.assertions.assertSuccessfulSubscription();
     })
 
     it('TC002, TC003 - Verify that Form validation error is displayed.', () => {
-      HomePage.actions.subscribeToNewsletter('nonValidEmail.com');
-      HomePage.assertions.assertUnsuccessfulSubscription();
+      GlobalFooter.actions.subscribeToNewsletter('nonValidEmail.com');
+      GlobalFooter.assertions.assertUnsuccessfulSubscription();
     })
 
     it('TC005 - Verify correct error message is displayed.', () => {
       const randomEmail = CommonActions.randomEmail();
-      HomePage.actions.subscribeToNewsletter(randomEmail);
+      GlobalFooter.actions.subscribeToNewsletter(randomEmail);
       HomePage.goto();
-      HomePage.actions.subscribeToNewsletter(randomEmail);
-      HomePage.assertions.asssertAlreadySubscribed();
+      GlobalFooter.actions.subscribeToNewsletter(randomEmail);
+      GlobalFooter.assertions.asssertAlreadySubscribed();
     })
 
     describe('TC008 - Verify the content page (Privacy Policy) is displayed.', () => {
       it('First link.', () => {
-        HomePage.click.privacyPolicyLink();
+        GlobalFooter.click.privacyPolicyLink();
         PrivacyPolicyPage.assertions.assertOnPage();
       })
 
       it('Second link.', () => {
-        HomePage.click.copyrightPrivacyPolicyLink();
+        GlobalFooter.click.copyrightPrivacyPolicyLink();
         PrivacyPolicyPage.assertions.assertOnPage();
       })
     }) 
@@ -55,85 +56,85 @@ describe('Global Footer', () => {
 
     describe('TC009 - Verify that Social Networking Links are present.', () => {
       it('Instagram', () => {
-        HomePage.click.instagramLink();
+        GlobalFooter.click.instagramLink();
         SocialsPage.assertions.assertOnInstagram();
       })
 
       it('Facebook', () => {
-        HomePage.click.facebookLink();
+        GlobalFooter.click.facebookLink();
         SocialsPage.assertions.assertOnFacebook();
       })
 
       it('Twitter', () => {
-        HomePage.click.twitterLink();
+        GlobalFooter.click.twitterLink();
         SocialsPage.assertions.assertOnTwitter();
       })
 
       it('TikTok', () => {
-        HomePage.click.tiktokLink();
+        GlobalFooter.click.tiktokLink();
         SocialsPage.assertions.assertOnTikTok();
       })
 
       it('YouTube', () => {
-        HomePage.click.youtubeLink();
+        GlobalFooter.click.youtubeLink();
         SocialsPage.assertions.assertOnYouTube();
       })
 
       it('Pintrest', () => {
-        HomePage.click.pintrestLink();
+        GlobalFooter.click.pintrestLink();
         SocialsPage.assertions.assertOnPintrest();
       })
 
       it('TheFix', () => {
-        HomePage.click.theFixLink();
+        GlobalFooter.click.theFixLink();
         SocialsPage.assertions.assertOnTheFix();
       })
     })
 
     it('TC011 - Verify that Payment and Delivery Providers are present as content slot.', () => {
-      HomePage.assertions.assertPaymentOptionsArePresent();
+      GlobalFooter.assertions.assertPaymentOptionsArePresent();
     })
     
     it('TC012 - Verify that App Banner is present as content slot.', () => {
-      HomePage.assertions.assertPromoBannerPresent()
+      GlobalFooter.assertions.assertPromoBannerPresent()
     })
   
     it('TC013 - Verify that Footer Navigation Component is present and Links are functional.', () => {
       // Each of these will go back to the previous URL once the action has been completed.
 
       // First column
-      HomePage.actions.checkFooterLinkByText('Help');
-      HomePage.actions.checkFooterLinkByText('Track My Order');
-      HomePage.actions.checkFooterLinkByText('boohoo Premier');
-      HomePage.actions.checkFooterLinkByText('Returns');
-      HomePage.actions.checkFooterLinkByText('Size Guide');
-      HomePage.actions.checkFooterLinkByText('Student Discount - Get Offers');
-      HomePage.actions.checkFooterLinkByText('Discount & Promo Codes');
-      HomePage.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
+      GlobalFooter.actions.checkFooterLinkByText('Help');
+      GlobalFooter.actions.checkFooterLinkByText('Track My Order');
+      GlobalFooter.actions.checkFooterLinkByText('boohoo Premier');
+      GlobalFooter.actions.checkFooterLinkByText('Returns');
+      GlobalFooter.actions.checkFooterLinkByText('Size Guide');
+      GlobalFooter.actions.checkFooterLinkByText('Student Discount - Get Offers');
+      GlobalFooter.actions.checkFooterLinkByText('Discount & Promo Codes');
+      GlobalFooter.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
 
       // Second column
-      HomePage.actions.checkFooterLinkByText('Delivery Information');
-      HomePage.actions.checkFooterLinkByText('Sustainability');
-      HomePage.actions.checkFooterLinkByText('Covid-19 Update');
-      HomePage.actions.checkFooterLinkByText('Recycling Options');
-      HomePage.actions.checkFooterLinkByText('T&C\'s');
-      HomePage.actions.checkFooterLinkByText('About Cookies');
-      HomePage.actions.checkFooterLinkByText('Refer a Friend');
+      GlobalFooter.actions.checkFooterLinkByText('Delivery Information');
+      GlobalFooter.actions.checkFooterLinkByText('Sustainability');
+      GlobalFooter.actions.checkFooterLinkByText('Covid-19 Update');
+      GlobalFooter.actions.checkFooterLinkByText('Recycling Options');
+      GlobalFooter.actions.checkFooterLinkByText('T&C\'s');
+      GlobalFooter.actions.checkFooterLinkByText('About Cookies');
+      GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');
 
       // Third column
-      HomePage.actions.checkFooterLinkByText('About boohoo');
-      HomePage.actions.checkFooterLinkByText('Investor Relations');
-      HomePage.actions.checkFooterLinkByText('Environment & Social Responsibility');
-      HomePage.actions.checkFooterLinkByText('BCI Membership');
-      HomePage.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
-      HomePage.actions.checkFooterLinkByText('Careers');
-      HomePage.actions.checkFooterLinkByText('Become an Affiliate');
-      HomePage.actions.checkFooterLinkByText('Become a Partner');
-      HomePage.actions.checkFooterLinkByText('Sitemap');
-      HomePage.actions.checkFooterLinkByText('Klarna');
-      HomePage.actions.checkFooterLinkByText('Clearpay');
-      HomePage.actions.checkFooterLinkByText('Laybuy');
-      HomePage.actions.checkFooterLinkByText('Zip');
+      GlobalFooter.actions.checkFooterLinkByText('About boohoo');
+      GlobalFooter.actions.checkFooterLinkByText('Investor Relations');
+      GlobalFooter.actions.checkFooterLinkByText('Environment & Social Responsibility');
+      GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
+      GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
+      GlobalFooter.actions.checkFooterLinkByText('Careers');
+      GlobalFooter.actions.checkFooterLinkByText('Become an Affiliate');
+      GlobalFooter.actions.checkFooterLinkByText('Become a Partner');
+      GlobalFooter.actions.checkFooterLinkByText('Sitemap');
+      GlobalFooter.actions.checkFooterLinkByText('Klarna');
+      GlobalFooter.actions.checkFooterLinkByText('Clearpay');
+      GlobalFooter.actions.checkFooterLinkByText('Laybuy');
+      GlobalFooter.actions.checkFooterLinkByText('Zip');
     })
   
     it('TC014, TC015 - Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
@@ -143,39 +144,39 @@ describe('Global Footer', () => {
   
     describe('TC016 - Verify that the Country Selector displayed and functional.', () => {
       it('USA', () => {
-        HomePage.actions.changeCountry('USA');
-        HomePage.assertions.assertCurrencyByPageContext('USD');
+        GlobalFooter.actions.changeCountry('USA');
+        GlobalFooter.assertions.assertCurrencyByPageContext('USD');
       })
 
       it('AUD', () => {
-        HomePage.actions.changeCountry('AUD');
-        HomePage.assertions.assertCurrencyByPageContext('AUD');
+        GlobalFooter.actions.changeCountry('AUD');
+        GlobalFooter.assertions.assertCurrencyByPageContext('AUD');
       })
 
       it('FRA', () => {
-        HomePage.actions.changeCountry('FRA');
-        HomePage.assertions.assertCurrencyByPageContext('EUR');
+        GlobalFooter.actions.changeCountry('FRA');
+        GlobalFooter.assertions.assertCurrencyByPageContext('EUR');
       })
 
       it('KW', () => {
-        HomePage.actions.changeCountry('KW');
-        HomePage.assertions.assertCurrencyByPageContext('KWD');
+        GlobalFooter.actions.changeCountry('KW');
+        GlobalFooter.assertions.assertCurrencyByPageContext('KWD');
       })
     })
   
     it('TC017 - Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
-      HomePage.assertions.assertFooterIsFixedAndPresent();
-      HomePage.click.footerPromo();
+      GlobalFooter.assertions.assertFooterIsFixedAndPresent();
+      GlobalFooter.click.footerPromo();
     })
   
     describe('TC018, TC019, TC020 - Verify that the global header is displayed.', () => {
       it('Check global header hides when scrolling down.', () => {
         cy.scrollTo('bottom');
-        HomePage.assertions.assertHeaderIsNotVisible();
+        GlobalFooter.assertions.assertHeaderIsNotVisible();
       })
       it('Check global header displays.', () => {
         cy.scrollTo('top');
-        HomePage.assertions.assertHeaderIsVisible();
+        GlobalFooter.assertions.assertHeaderIsVisible();
       })
     })
 

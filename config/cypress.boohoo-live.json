@@ -1,5 +1,5 @@
 {
-    "baseUrl": "https://storefront:Oreo2022@uk-dwdev.boohoo.com/",
+    "baseUrl": "https://www.boohoo.com/",
     "chromeWebSecurity": false,
     "env": {
       "salesforce": {
@@ -9,4 +9,5 @@
         "accessToken": "<access_token>"
       }
     }
+    
 }

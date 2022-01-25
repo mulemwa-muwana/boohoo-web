@@ -1,14 +1,6 @@
 import { GotoOptions } from '../support/types';
 import * as CommonActions from '../helpers/common';
-import AbstractPage from './abstract.page';
-
-/**
- * Page Objects should consist of:
- * @method goto should navigate to the page in context.
- * @object 'click' object containg all singular cypress click methods.
- * @object 'actions' object containing all cypress complex page methods.
- * @object 'assertions' object containing all cypress assertion methods.
- */
+import AbstractPage from './abstract/abstract.page';
 
 class PrivacyPolicyPage implements AbstractPage {
 

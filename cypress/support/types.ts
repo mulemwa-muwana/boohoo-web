@@ -9,3 +9,9 @@ type MiddleEastCountryCode = 'AE' | 'BH' | 'JO' | 'KW' | 'OM' | 'QA' | 'SA';
 type FarEastCountryCode = 'HK' | 'TW' | 'JP' | 'SG' | 'KR';
 
 export type CountryCode = AustralasiaCountryCode | NorthAmericaCountryCode | EuropeCountryCode | MiddleEastCountryCode | FarEastCountryCode;
+
+export type LoginCredentials = {
+    username: string;
+    password: string;
+    name: string;
+}

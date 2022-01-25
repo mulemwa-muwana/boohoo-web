@@ -1,6 +1,11 @@
 # Code Review
 This page will detail what code reviews are being made.
 
+**Test Design**
+
+* We should be creating all our tests based off a test plan, we have been using the following link to create/design/plan test automation. https://docs.google.com/spreadsheets/d/1aACipr0OiGFNq1KF3hbZ4EuP8664OU7cBf4LScJBz1k/edit#gid=1492768424
+* When creating a test file, if we are takin tests out of scope, please have a comment at the top of your test file detailing the test TC number and why it's been removed.
+
 **Push Process**
 
 * New code must be placed in it's own branch until all tests are passing

@@ -44,6 +44,6 @@ This page will detail what code reviews are being made.
 
 **Test Data**
 
-* Test data must be stored in the fixtures folder, try to avoid cypress.env files as they get messy.  
+* Test data must be stored in the fixtures folder, any environment dependent test data such as logins must be stored in the "env" property in config files.
 
 If you need any help with automation, automation guidelines or planning, please contact jordan.benyon@boohoo.com or Jordan Benyon on slack or teams.

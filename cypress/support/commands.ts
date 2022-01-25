@@ -5,7 +5,7 @@ declare namespace Cypress {
   }
 }
 
-// Login and preserve tokens.
+// Login and preserve tokens. (EXPERIMENTAL, NOT CURRENTLY IN USE).
 Cypress.Commands.add('goOffline', () => {
   return cy.log('Disabling internet connectivity').then(() => {
     Cypress.automation('remote:debugger:protocol', {

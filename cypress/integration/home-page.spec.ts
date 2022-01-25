@@ -1,5 +1,4 @@
 import { LoginCredentials } from '../support/types';
-import GlobalFooterPage from '../pom/globalfooter.page';
 import HomePage from '../pom/home.page';
 import LoginPage from '../pom/login.page';
 

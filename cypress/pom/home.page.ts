@@ -12,12 +12,17 @@ class HomePage implements AbstractPage {
         }
     }
 
-    click: {
-
+    click = {
+        // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
+        logInButton(opts = { force: false }) {
+            cy.get('a.user-link-item[href*="/login"]').click({ force: opts.force });
+        }
     }
-    actions: {
+
+    actions = {
         
     }
+
     assertions = {
         assertUserPanelTitle(name: string) {
             // We have to manually show these elements by adding the display: unset style, as the on hover doesn't work in cypress.

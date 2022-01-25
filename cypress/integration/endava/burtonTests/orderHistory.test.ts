@@ -1,22 +1,19 @@
-import { AccountPage } from "../../page-objects/accountPage"
-import { HomePage } from "../../page-objects/homePage"
-import { validatePageTitle, validateUrl, validatePageContent } from "../../page-objects/commonFunctions"
-import { ReturnsPage } from "../../page-objects/returnsPage"
-
-
 describe('My Account - order information', () => {
-
-    const homePage = new HomePage()
-    const accPage = new AccountPage()
-    const returnsPage = new ReturnsPage()
-
+    
     beforeEach(() => {
+        /*
         homePage.navigate()
-        homePage.acceptCookies()
         homePage.login(Cypress.env('validUsername'), Cypress.env('validPassword'))
+        */
+
+        /*
+        Home Page Navigate
+        Login Valid Credentials
+        */
     })
 
     it('Should be able to view order and start return', () => {
+        /*
         accPage.goToOrderHistory()
         validatePageTitle('Order History')
         accPage.openNewestOrder()
@@ -24,6 +21,17 @@ describe('My Account - order information', () => {
         accPage.startReturn()
         validateUrl('delivery-and-returns')
         validatePageContent(returnsPage.reuturnsAndRefundsTitle(), 'Returns & Refunds')
+        */
+
+        /*
+        Account Page Go To Order History
+        Validate on the correct page
+        Account Page, Open Latest Order
+        Validate Page Title
+        Account Page, start a return
+        Validate URL is correct
+        Validate Page Content says Returns and Refunds
+        */
     })
 })
 

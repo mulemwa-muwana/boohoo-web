@@ -19,6 +19,7 @@ This page will detail what code reviews are being made.
 
 **TypeScript**
 
+* Use the .ts file extention even if you're just going to be using vanilla javascript.
 * All custom types created must be placed in support/types.ts and be imported from there.  
 * Not all objects need to use custom types but it is highly appriciate and advised.  
 

@@ -3,6 +3,7 @@
     "cy:open:boohoo": "cypress open --config-file ./config/cypress.boohoo.json",
     "cy:run:boohoo": "cypress run --config-file ./config/cypress.boohoo.json"
   },
+  "testCasesUrl": "https://docs.google.com/spreadsheets/d/1aACipr0OiGFNq1KF3hbZ4EuP8664OU7cBf4LScJBz1k/",
   "dependencies": {
     "cypress": "^9.1.1"
   },

@@ -2,6 +2,7 @@ import HomePage from '../pom/home.page';
 
 describe('Login functionality', () => {
 
+    // We might wanna change this to a fixture.
     const validUsername = Cypress.env('validUsername')
     const validPassword = Cypress.env('validPassword')
     const invalidPassword = Cypress.env('invalidPassword')

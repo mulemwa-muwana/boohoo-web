@@ -1,4 +1,4 @@
-import HomePage from '../pom/home.page';
+import HomePage from '../../../pom/home.page';
 
 describe('Login functionality', () => {
 

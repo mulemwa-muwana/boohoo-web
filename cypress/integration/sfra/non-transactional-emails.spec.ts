@@ -2,7 +2,7 @@ describe('Non-Transactional Emails', function () {
 
     // This will execute before every single test, we're just going to the baseURL.
     beforeEach(() => {
-
+        
     })
 
     /**

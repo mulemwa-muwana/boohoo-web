@@ -1,8 +1,12 @@
+import { LoginCredentials } from '../../support/types';
+import HomePage from '../../pom/home.page';
+
+
 describe('Search Subsystem', function () {
 
     // This will execute before every single test, we're just going to the baseURL.
     beforeEach(() => {
-
+        HomePage.goto();
     })
 
     /**
@@ -10,19 +14,25 @@ describe('Search Subsystem', function () {
      */
 
     it('TC001 - Verify the presence of Search Icon', function () {
-
+        HomePage.click.searchIcon();
+        HomePage.assertions.assertSearchIconPresent();
     })
     it('TC002 - Verify the presence of Serach input field', function () {
-
+        HomePage.assertions.assertSearchFiledPresent();
     })
     it('TC003 - Verify that Serach input field is  represented as an input field with placeholder "What are you looking for?"', function () {
-
+       HomePage.assertions.assertSearchFieldContains('What are you looking for?');
     })
-    it('TC004 - Verify that placeholder is hidden when 1st symbol entered', function () {
-
+    it.only('TC004 - Verify that placeholder is hidden when 1st symbol entered', function () {
+       HomePage.click.searchIcon();
+       HomePage.actions.findItemUsingSKU('aAZZ06403-105-35{enter}');
+     //  HomePage.assertions.assertTextRemoved('What are you looking for?');
+       HomePage.assertions.assertSearchResultPageTitle('AZZ06403')
     })
     it('TC005 - Verify that query based suggestions shall appear the in search fly-out', function () {
-
+        HomePage.click.searchIcon();
+        HomePage.actions.findItemUsingSKU('aAZZ06403-105-35{enter}');
+        
     })
     it('TC006 - Verify that when user clicks/taps on Search button, the user will be redirected to search result page', function () {
 

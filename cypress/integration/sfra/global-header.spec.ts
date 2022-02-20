@@ -1,3 +1,5 @@
+import HomePage from '../../pom/home.page';
+
 describe('Global Header', function () {
 
     // This will execute before every single test, we're just going to the baseURL.
@@ -54,8 +56,9 @@ describe('Global Header', function () {
 
     })
 
-    it('TC013 - Verify that Search icon is present in the Global Header and functional', function () {
-
+    it('TC013 - Verify that Search icon is present in the Global Header and functional', function () 
+    {
+        HomePage.assertions.assertSearchIconPresent();
     })
     it('TC014 - Verify that Wish list icon is present and that it navigates to Login page', function () {
 

@@ -15,3 +15,7 @@ export type LoginCredentials = {
     password: string;
     name: string;
 }
+
+export type SKU = {
+    SKU: string; 
+}

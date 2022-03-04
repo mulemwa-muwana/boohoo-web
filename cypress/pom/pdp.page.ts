@@ -5,13 +5,16 @@ import { GotoOptions } from '../support/types';
 class PdpPage implements AbstractPage
 {
     goto(): void {
-        cy.visit('/');
+        homePage.goto();
     }
 
     click =
     {
         addToCart(){
             cy.get('.b-product_addtocard-availability').click();
+        },
+        addToWishList(){
+            cy.get('.m-outline ').click();
         }
     }
 

@@ -1,9 +1,10 @@
 import AbstractPage from "./abstract/abstract.page";
+import homePage from "./home.page";
 
 class PlpPage implements AbstractPage
 {
     goto(): void {
-        cy.visit('/new-season');
+        homePage.goto();
     }
 
     click = {

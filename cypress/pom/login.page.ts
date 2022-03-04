@@ -1,17 +1,20 @@
 import AbstractPage from './abstract/abstract.page';
+import homePage from './home.page';
 
 class LoginPage implements AbstractPage {
 
     goto(): void {
-        cy.visit('/login');
+        homePage.goto();
     }
 
     click = {}
+
     actions = {
-        login(user: string, pass: string) {
-            cy.get('.username[type="email"]').type(user);
-            cy.get('.password[type="password"]').type(pass);
-            cy.get('.login-page-form button').click();
+    login(user: string, pass: string) {
+        cy.get('a[data-tau="header_signIn"]').click()
+        cy.get('#dwfrm_login_email').type(user); 
+        cy.get('#dwfrm_login_password').type(pass);
+        cy.get('button[data-tau="login_submit"]').click();
         }
     }
     assertions = {}

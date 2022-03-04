@@ -11,9 +11,9 @@ type FarEastCountryCode = 'HK' | 'TW' | 'JP' | 'SG' | 'KR';
 export type CountryCode = AustralasiaCountryCode | NorthAmericaCountryCode | EuropeCountryCode | MiddleEastCountryCode | FarEastCountryCode;
 
 export type LoginCredentials = {
-    username: string;
-    password: string;
-    name: string;
+    username: 'euboohoo@gmail.com';
+    password: 'boohoo123';
+    name: 'BOOHOO';
 }
 
 export type SKU = {

@@ -1,13 +1,14 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
-class PlpPage implements AbstractPage {
+class MyAccount implements AbstractPage{
+
   goto (): void {
     homePage.goto();
   }
 
   click = {
-
+        
   };
 
   actions = {
@@ -17,6 +18,7 @@ class PlpPage implements AbstractPage {
   assertions = {
 
   };
+
 }
 
-export default new PlpPage();
+export default new MyAccount();

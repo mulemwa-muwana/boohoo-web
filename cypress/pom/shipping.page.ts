@@ -1,22 +1,22 @@
-import AbstractPage from "./abstract/abstract.page";
+import AbstractPage from './abstract/abstract.page';
 
-class ShippingPage {
+class ShippingPage implements AbstractPage {
 
-    goto(): void {
-        cy.visit('/shipping');
-    }
+  goto (): void {
+    cy.visit('/shipping');
+  }
 
-    click = {
+  click = {
 
-    }
+  };
 
-    actions = {
+  actions = {
 
-    }
+  };
 
-    assertions = {
+  assertions = {
         
-    }
+  };
 
 }
 

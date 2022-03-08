@@ -10,6 +10,7 @@ describe('Making order as an user', () => {
   */
 
   before(() => {
+
     /*
     HomePage.goto() 
     HomePage.login(Cypress.env('validUsername'), Cypress.env('validPassword'))
@@ -19,11 +20,12 @@ describe('Making order as an user', () => {
     Home Page Navigate To
     Login Sequence
     */
-  })
+  });
 
   it('Should make an order as a user', () => {
+
     /*
-    homePage.searchForItem('ABB01243{enter}')
+    HomePage.searchForItem('ABB01243{enter}')
     pdp.selectSize()
     validatePageContent(pdp.availabalityStatus(), 'Currently in stock')
     pdp.addToCart()
@@ -51,5 +53,5 @@ describe('Making order as an user', () => {
     Validate Content Has Order Number
     Validate Content Has Shipping Info Correct
     */
-  })
-})
+  });
+});

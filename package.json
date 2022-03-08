@@ -1,13 +1,15 @@
 {
   "scripts": {
     "cy:open:boohoo": "cypress open --config-file ./config/cypress.boohoo.json",
-    "cy:run:boohoo": "cypress run --config-file ./config/cypress.boohoo.json"
+    "cy:run:boohoo": "cypress run --config-file ./config/cypress.boohoo.json",
+    "lint": "eslint . --ext .ts"
   },
   "testCasesUrl": "https://docs.google.com/spreadsheets/d/1aACipr0OiGFNq1KF3hbZ4EuP8664OU7cBf4LScJBz1k/",
   "dependencies": {
-    "cypress": "^9.1.1"
-  },
-  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "cypress": "^9.1.1",
+    "eslint": "^8.10.0",
     "typescript": "^4.5.4"
   }
 }

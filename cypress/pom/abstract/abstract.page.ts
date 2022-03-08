@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 abstract class AbstractPage {
     abstract goto(): void; // Goto method to navigate directly to that page.
     abstract click: Record<string, Function> // Object containing all the click methods.

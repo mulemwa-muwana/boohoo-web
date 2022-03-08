@@ -9,7 +9,7 @@ describe('Global Footer', () => {
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
     HomePage.goto();
-  })
+  });
 
   /**
    * Tests of out scope:
@@ -24,12 +24,12 @@ describe('Global Footer', () => {
     const randomEmail = CommonActions.randomEmail();
     GlobalFooter.actions.subscribeToNewsletter(randomEmail);
     GlobalFooter.assertions.assertSuccessfulSubscription();
-  })
+  });
 
   it('TC002, TC003 - Verify that Form validation error is displayed.', () => {
     GlobalFooter.actions.subscribeToNewsletter('nonValidEmail.com');
     GlobalFooter.assertions.assertUnsuccessfulSubscription();
-  })
+  });
 
   it('TC005 - Verify correct error message is displayed.', () => {
     const randomEmail = CommonActions.randomEmail();
@@ -37,67 +37,67 @@ describe('Global Footer', () => {
     HomePage.goto();
     GlobalFooter.actions.subscribeToNewsletter(randomEmail);
     GlobalFooter.assertions.asssertAlreadySubscribed();
-  })
+  });
 
   describe('TC008 - Verify the content page (Privacy Policy) is displayed.', () => {
     it('First link.', () => {
       GlobalFooter.click.privacyPolicyLink();
       PrivacyPolicyPage.assertions.assertOnPage();
-    })
+    });
 
     it('Second link.', () => {
       GlobalFooter.click.copyrightPrivacyPolicyLink();
       PrivacyPolicyPage.assertions.assertOnPage();
-    })
-  }) 
-
+    });
+  }); 
 
   describe('TC009 - Verify that Social Networking Links are present.', () => {
     it('Instagram', () => {
       GlobalFooter.click.instagramLink();
       SocialsPage.assertions.assertOnInstagram();
-    })
+    });
 
     it('Facebook', () => {
       GlobalFooter.click.facebookLink();
       SocialsPage.assertions.assertOnFacebook();
-    })
+    });
 
     it('Twitter', () => {
       GlobalFooter.click.twitterLink();
       SocialsPage.assertions.assertOnTwitter();
-    })
+    });
 
     it('TikTok', () => {
       GlobalFooter.click.tiktokLink();
       SocialsPage.assertions.assertOnTikTok();
-    })
+    });
 
     it('YouTube', () => {
       GlobalFooter.click.youtubeLink();
       SocialsPage.assertions.assertOnYouTube();
-    })
+    });
 
     it('Pintrest', () => {
       GlobalFooter.click.pintrestLink();
       SocialsPage.assertions.assertOnPintrest();
-    })
+    });
 
     it('TheFix', () => {
       GlobalFooter.click.theFixLink();
       SocialsPage.assertions.assertOnTheFix();
-    })
-  })
+    });
+  });
 
   it('TC011 - Verify that Payment and Delivery Providers are present as content slot.', () => {
     GlobalFooter.assertions.assertPaymentOptionsArePresent();
-  })
+  });
   
   it('TC012 - Verify that App Banner is present as content slot.', () => {
-    GlobalFooter.assertions.assertPromoBannerPresent()
-  })
+    GlobalFooter.assertions.assertPromoBannerPresent();
+  });
 
   it('TC013 - Verify that Footer Navigation Component is present and Links are functional.', () => {
+
     // Each of these will go back to the previous URL once the action has been completed.
 
     // First column
@@ -133,49 +133,49 @@ describe('Global Footer', () => {
     GlobalFooter.actions.checkFooterLinkByText('Clearpay');
     GlobalFooter.actions.checkFooterLinkByText('Laybuy');
     GlobalFooter.actions.checkFooterLinkByText('Zip');
-  })
+  });
 
   it('TC014, TC015 - Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
     const currentYear = new Date().getFullYear();
     cy.contains(`Copyright © ${currentYear} boohoo.com.`).should('be.visible');
-  })
+  });
 
   describe('TC016 - Verify that the Country Selector displayed and functional.', () => {
     it('USA', () => {
       GlobalFooter.actions.changeCountry('USA');
       GlobalFooter.assertions.assertCurrencyByPageContext('USD');
-    })
+    });
 
     it('AUD', () => {
       GlobalFooter.actions.changeCountry('AUD');
       GlobalFooter.assertions.assertCurrencyByPageContext('AUD');
-    })
+    });
 
     it('FRA', () => {
       GlobalFooter.actions.changeCountry('FRA');
       GlobalFooter.assertions.assertCurrencyByPageContext('EUR');
-    })
+    });
 
     it('KW', () => {
       GlobalFooter.actions.changeCountry('KW');
       GlobalFooter.assertions.assertCurrencyByPageContext('KWD');
-    })
-  })
+    });
+  });
 
   it('TC017 - Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
     GlobalFooter.assertions.assertFooterIsFixedAndPresent();
     GlobalFooter.click.footerPromo();
-  })
+  });
 
   describe('TC018, TC019, TC020 - Verify that the global header is displayed.', () => {
     it('Check global header hides when scrolling down.', () => {
       cy.scrollTo('bottom');
       GlobalFooter.assertions.assertHeaderIsNotVisible();
-    })
+    });
     it('Check global header displays.', () => {
       cy.scrollTo('top');
       GlobalFooter.assertions.assertHeaderIsVisible();
-    })
-  })
+    });
+  });
   
-})
+});

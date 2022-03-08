@@ -1,22 +1,21 @@
-import AbstractPage from "./abstract/abstract.page";
+import AbstractPage from './abstract/abstract.page';
 
-class CartPage implements AbstractPage 
-{
-    goto(): void {
-        cy.visit('/cart');
-    }
+class CartPage implements AbstractPage {
+  goto (): void {
+    cy.visit('/cart');
+  }
 
-    click = {
+  click = {
 
-    }
+  };
 
-    actions = {
+  actions = {
 
-    }
+  };
 
-    assertions = {
+  assertions = {
         
-    }
+  };
 }
 
 export default new CartPage();

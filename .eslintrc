@@ -11,6 +11,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
     "keyword-spacing": "error",
     "no-multi-spaces": ["error"],
     "semi": [2, "always"],                                                  // Warns when missing a semi colon at the end.
@@ -35,7 +36,8 @@
         "beforeLineComment": true,                                          // We want lines before comments to make it clear what the comment is for.
         "ignorePattern": "await|retracted|lintignore"                       // Ignores statements that start with these words.
       }
-    ],                                      
+    ],
+    "@typescript-eslint/no-empty-function": "off",              
     "space-before-function-paren": ["error", "always"],                     // Functions to have spaces after function name and before paranthesis.
     "quotes": ["error", "single", "avoid-escape"],                          // Quotes to be sinlge quotes where possible.
     "indent": ["error", 2],                                                 // Indented in amounts of 2's or 4's.
@@ -44,14 +46,12 @@
     "@typescript-eslint/array-type": [                                      // Requires using either T[] or Array<T> for arrays
       "error",
       { "default": "generic" }
-    ],       
+    ],
+    "@typescript-eslint/no-namespace": [2, {"allowDeclarations": true}],
     "@typescript-eslint/ban-ts-comment": "error",                           // Bans @ts-<directive> comments from being used or requires descriptions after directive
     "@typescript-eslint/consistent-type-assertions": "error",               // Enforces consistent usage of type assertions.
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],    // Consistent with type definition either interface or type
-    "@typescript-eslint/explicit-function-return-type": "error",            // Require explicit return types on functions and class methods 		
     "@typescript-eslint/explicit-module-boundary-types": "error",           // Require explicit return and argument types on exported functions' and classes' public class methods
     "@typescript-eslint/member-delimiter-style": "error",                   // Require a specific member delimiter style for interfaces and type literals 	
-    "@typescript-eslint/member-ordering": "error",                          // Require a consistent member declaration order
     "@typescript-eslint/method-signature-style": "error",                   // Enforces using a particular method signature syntax.
     "@typescript-eslint/naming-convention": [                               // Enforces naames not to be set as complete random things.
       "error", 

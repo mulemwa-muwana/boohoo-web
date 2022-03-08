@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/method-signature-style */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Any methods created need to be added to the Cypress namespace, this is typescript feature.
+
 declare namespace Cypress {
-  interface Chainable<Subject = any> {
+  interface Chainable<Subject> {
     goOffline(): Chainable<null>;
   }
 }
@@ -19,6 +22,6 @@ Cypress.Commands.add('goOffline', () => {
         downloadThroughput: -1,
         uploadThroughput: -1,
       }
-    })
+    });
   });
 });

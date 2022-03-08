@@ -1,32 +1,27 @@
-import AbstractPage from "./abstract/abstract.page";
-import homePage from "./home.page";
-import { GotoOptions } from '../support/types';
+import AbstractPage from './abstract/abstract.page';
+import homePage from './home.page';
 
-class PdpPage implements AbstractPage
-{
-    goto(): void {
-        homePage.goto();
+class PdpPage implements AbstractPage {
+  goto (): void {
+    homePage.goto();
+  }
+
+  click = {
+    addToCart (){
+      cy.get('.b-product_addtocard-availability').click();
+    },
+    addToWishList (){
+      cy.get('.m-outline ').click();
     }
+  };
 
-    click =
-    {
-        addToCart(){
-            cy.get('.b-product_addtocard-availability').click();
-        },
-        addToWishList(){
-            cy.get('.m-outline ').click();
-        }
-    }
+  actions = {
 
-    actions =
-    {
+  };
 
-    }
+  assertions = {
 
-    assertions =
-    {
-
-    }
+  };
 }
 
 export default new PdpPage();

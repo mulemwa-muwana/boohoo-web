@@ -1,20 +1,22 @@
 describe('My Account - order information', () => {
     
-    beforeEach(() => {
-        /*
-        homePage.navigate()
+  beforeEach(() => {
+
+    /*
+        HomePage.navigate()
         homePage.login(Cypress.env('validUsername'), Cypress.env('validPassword'))
         */
 
-        /*
+    /*
         Home Page Navigate
         Login Valid Credentials
         */
-    })
+  });
 
-    it('Should be able to view order and start return', () => {
-        /*
-        accPage.goToOrderHistory()
+  it('Should be able to view order and start return', () => {
+
+    /*
+        AccPage.goToOrderHistory()
         validatePageTitle('Order History')
         accPage.openNewestOrder()
         validatePageTitle('My Account: Order details page')
@@ -23,7 +25,7 @@ describe('My Account - order information', () => {
         validatePageContent(returnsPage.reuturnsAndRefundsTitle(), 'Returns & Refunds')
         */
 
-        /*
+    /*
         Account Page Go To Order History
         Validate on the correct page
         Account Page, Open Latest Order
@@ -32,6 +34,6 @@ describe('My Account - order information', () => {
         Validate URL is correct
         Validate Page Content says Returns and Refunds
         */
-    })
-})
+  });
+});
 

@@ -1,23 +1,22 @@
-import AbstractPage from "./abstract/abstract.page";
-import homePage from "./home.page";
+import AbstractPage from './abstract/abstract.page';
+import homePage from './home.page';
 
-class PlpPage implements AbstractPage
-{
-    goto(): void {
-        homePage.goto();
-    }
+class PlpPage implements AbstractPage {
+  goto (): void {
+    homePage.goto();
+  }
 
-    click = {
+  click = {
 
-    }
+  };
 
-    actions = {
+  actions = {
 
-    }
+  };
 
-    assertions = {
+  assertions = {
 
-    }
+  };
 }
 
 export default new PlpPage();

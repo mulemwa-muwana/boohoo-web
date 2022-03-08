@@ -1,27 +1,23 @@
-import AbstractPage from "./abstract/abstract.page";
-import homePage from "./home.page";
-import { GotoOptions } from '../support/types';
+import AbstractPage from './abstract/abstract.page';
+import homePage from './home.page';
 
 class MyAccount implements AbstractPage{
 
-    goto(): void {
-        homePage.goto();
-    }
+  goto (): void {
+    homePage.goto();
+  }
 
-    click =
-    {
+  click = {
         
-    }
+  };
 
-    actions =
-    {
+  actions = {
 
-    }
+  };
 
-    assertions =
-    {
+  assertions = {
 
-    }
+  };
 
 }
 

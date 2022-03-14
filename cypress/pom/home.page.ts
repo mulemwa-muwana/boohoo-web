@@ -33,8 +33,19 @@ class HomePage implements AbstractPage {
     },
     cartIcon (){
       cy.get('.b-minicart_icon-link').click();
-    }
+    },
+    
+    // MEGA MENU
 
+    newInLink (){
+      cy.get('a[data-tau="menu_item_level2_new-in"]').click();
+    },
+    clothingsLink (opts = { force: true }){
+      cy.get('a[data-tau="menu_item_level2_all-clothing"]').click({ force: opts.force });
+    },
+    backInStockLink (opts = { force: true }){
+      cy.get('#womens > div > ul > li:nth-child(3) > div > div.b-menu_bar-flyout_inner.m-tab_womens > div:nth-child(1) > div > div > div:nth-child(2) > a').click({ force: opts.force });
+    }
   };
 
   actions = {       

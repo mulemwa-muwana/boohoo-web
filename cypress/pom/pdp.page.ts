@@ -1,5 +1,6 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
+import { GotoOptions } from '../support/types';
 
 class PdpPage implements AbstractPage {
   goto (): void {
@@ -7,12 +8,12 @@ class PdpPage implements AbstractPage {
   }
 
   click = {
-    addToCart (){
-      cy.get('.b-product_addtocard-availability').click();
+    addToCart () { 
+      cy.get('.b-product_addtocard-availability').click(); 
     },
-    addToWishList (){
+    addToWishList () {
       cy.get('.m-outline ').click();
-    }
+    } 
   };
 
   actions = {
@@ -22,6 +23,7 @@ class PdpPage implements AbstractPage {
   assertions = {
 
   };
+
 }
 
 export default new PdpPage();

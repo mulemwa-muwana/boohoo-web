@@ -16,6 +16,21 @@ export type LoginCredentials = {
     name: 'BOOHOO';
 }
 
+export type AddressData = {
+    firstName: 'Test';
+    lastName: 'Test';
+    phone: '02071548965';
+    line1: 'oxford';
+    addressName: 'Po Box 11041';
+}
+
+export type CardDetails = {
+    cardNo: '4111111111111111';
+    end: '1111';
+    owner: 'Test';
+    date: '3/2030' ;
+}
+
 export type SKU = {
-    SKU: string; 
+    SKU: string;
 }

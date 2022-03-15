@@ -113,10 +113,10 @@ describe('Account page', function () {
   });
   
   // My account Track my order
-  it('TC13 Verify that is possible to search for an order by its number', function () {
+  it('TC13 Verify that is possible to search for an order from My account', function () {
     MyAccountPage.click.orderHistoryLink();
     MyAccountPage.actions.trackNewestOrder();
-    MyAccountPage.assertions.assertOrderCanBeTracked();
+    MyAccountPage.assertions.assertOrderCantBeTracked();
   });
 
 });

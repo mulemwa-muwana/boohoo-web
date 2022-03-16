@@ -1,4 +1,4 @@
-import { AddressData, CardDetails, LoginCredentials } from '../../support/types';
+import { AddressData, CardDetailsVisa, LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
@@ -15,7 +15,7 @@ describe('Account page', function () {
 
       HomePage.goto();
 
-      HomePage.click.logInButton();
+      HomePage.click.logInIcon();
 
       LoginPage.actions.login(credentials.username, credentials.password);
 
@@ -89,7 +89,7 @@ describe('Account page', function () {
 
   it('TC10 Verify that new card can be saved', function () {
     MyAccountPage.click.paymentOptionsLink();
-    cy.fixture('card').then((cardDetails: CardDetails) => {
+    cy.fixture('card').then((cardDetails: CardDetailsVisa) => {
       MyAccountPage.actions.addCard(cardDetails.cardNo, cardDetails.owner);
       MyAccountPage.assertions.assertCardDetails(cardDetails.end, cardDetails.owner, cardDetails.date);
     });
@@ -98,14 +98,14 @@ describe('Account page', function () {
 
   it('TC11 Verify that payment details show correct saved card details', function () {
     MyAccountPage.click.paymentOptionsLink();
-    cy.fixture('card').then((cardDetails: CardDetails) => {
+    cy.fixture('card').then((cardDetails: CardDetailsVisa) => {
       MyAccountPage.assertions.assertCardDetails(cardDetails.end, cardDetails.owner, cardDetails.date);
     });
   });
 
   it('TC12 Verify that card can be deleted', function () {
     MyAccountPage.click.paymentOptionsLink();
-    cy.fixture('card').then((cardDetails: CardDetails) => {
+    cy.fixture('card').then((cardDetails: CardDetailsVisa) => {
       MyAccountPage.actions.deleteCard(cardDetails.end, 'button=[data-card="************1111"]');
       MyAccountPage.assertions.assertCardNotPresent(cardDetails.end);
     });

@@ -24,13 +24,27 @@ export type AddressData = {
     addressName: 'Po Box 11041';
 }
 
-export type CardDetails = {
+export type CardDetailsVisa = {
     cardNo: '4111111111111111';
     end: '1111';
     owner: 'Test';
     date: '3/2030' ;
 }
 
+export type CardDetailsMaster = {
+    cardNo: '5454545454545454';
+    end: '5454';
+    owner: 'Test';
+    date: '3/2030' ;
+}
+
+export type CardDetailsAmex = {
+    cardNo: '370000000000002';
+    end: '0002';
+    owner: 'Test';
+    date: '3/2030' ;
+}
+
 export type SKU = {
-    SKU: string;
+    SKU: 'AZZ06403-105-35';
 }

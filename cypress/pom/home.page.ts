@@ -82,7 +82,7 @@ class HomePage implements AbstractPage {
 
     // Counter (header) assertion
     counterOnHeaderPresent (){
-      cy.get('#promotion_slide-2 > .b-hero_carousel-item_inner > .b-promotion_header-wrapper > a > .b-promotion_header').then(element => {
+      cy.get('#promotion_slide-0 > div > div > a').invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },

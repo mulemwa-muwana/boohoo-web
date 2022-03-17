@@ -111,7 +111,7 @@ class MyAccountPage implements AbstractPage {
       assertAccountDetails (email: string) {
         cy.get('#account-email-input').should('have.value', email);
       },
-      assertUpdatedName (newName: string) {
+      assertNameGreetingMessage (newName: string) {
         cy.get('p[data-tau="greeting_message"]').should('be.visible').then(element => {
           expect(element.text().trim().toUpperCase()).to.contain(newName);
         });
@@ -141,7 +141,7 @@ class MyAccountPage implements AbstractPage {
       },
       assertOrderCanBeTracked (){
         cy.get('.b-form-message').should('include', 'We found your order');
-      }
+      },
 
     };
 }

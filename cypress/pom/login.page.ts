@@ -9,7 +9,12 @@ class LoginPage implements AbstractPage {
   }
 
   click = {};
-  assertions = {};
+  assertions = {
+    assertLoginFormIsPresent (){
+      cy.get('b-form_box m-login').should('be.visible');
+    }
+  };
+
   actions = {
     login (user: string, pass: string) {
       cy.get('a[data-tau="header_signIn"]').click();

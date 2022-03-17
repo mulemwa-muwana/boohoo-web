@@ -32,5 +32,5 @@ export type CardDetails = {
 }
 
 export type SKU = {
-    SKU: string;
+    SKU: 'DZZ02796-265-56';
 }

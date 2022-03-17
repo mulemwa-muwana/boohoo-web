@@ -20,6 +20,9 @@ class HomePage implements AbstractPage {
     logInIcon (opts = { force: false }) {
       cy.get('.b-header_login-icon > .i-icon').click({ force: opts.force });
     },
+    forgotPasswordLink (){
+      cy.get('button[data-tau="login_password_reset"]').click();
+    },
 
     // Objects for search subsystem tests
     searchIcon (opts = { force: false }) {
@@ -51,8 +54,13 @@ class HomePage implements AbstractPage {
     findItemUsingSKU (SKU: string){
       cy.get('.b-search_input-close').click().type(SKU);
       cy.get('button[data-tau="search_dialog_input_submit"]').click();
+    },
+    forgotPassword (email: string){
+      cy.get('button[data-tau="login_password_reset"]').click();
+      cy.get('.b-dialog-window').should('be.visible');
+      cy.get('#dwfrm_profile_resetPassword_email').type(email);
+      cy.get('button[data-tau="forgot_password_submit"]').click();
     }
-
   };
 
   assertions = {
@@ -107,6 +115,14 @@ class HomePage implements AbstractPage {
     },
     assertAccountIconPresent (){
       cy.get('.b-header_login-icon > .i-icon').should('be.visible');
+    },
+
+    //  Login Attempts
+    assertErrorLoginMessageIsPresent (text: string){
+      cy.get('.b-message m-error m-login').should('be.visible').and('include', text);
+    },
+    assertForgotPasswordMessageisDisplayed (email: string){
+      cy.get('.b-dialog-window').should('be.visible').and('contain', email);
     }
   };
     

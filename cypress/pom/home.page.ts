@@ -61,7 +61,6 @@ class HomePage implements AbstractPage {
       cy.get('#dwfrm_profile_resetPassword_email').type(email);
       cy.get('button[data-tau="forgot_password_submit"]').click();
     }
-
   };
 
   assertions = {

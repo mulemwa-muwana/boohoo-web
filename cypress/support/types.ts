@@ -31,6 +31,10 @@ export type CardDetailsVisa = {
     date: '3/2030' ;
 }
 
+<<<<<<< HEAD
+export type SKU = {
+    SKU: 'DZZ02796-265-56';
+=======
 export type CardDetailsMaster = {
     cardNo: '5454545454545454';
     end: '5454';
@@ -47,4 +51,5 @@ export type CardDetailsAmex = {
 
 export type SKU = {
     SKU: 'AZZ06403-105-35';
+>>>>>>> master
 }

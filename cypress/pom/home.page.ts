@@ -48,8 +48,14 @@ class HomePage implements AbstractPage {
   };
 
   actions = {       
+<<<<<<< HEAD
+    findItemUsingSKU (SKU: string){
+      cy.get('.b-search_input-close').click().type(SKU);
+      cy.get('button[data-tau="search_dialog_input_submit"]').click();
+=======
     findItemUsingSKU (SKU){
       cy.get('#header-search-input').type(SKU);
+>>>>>>> master
     }
 
   };

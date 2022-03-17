@@ -1,6 +1,5 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { GotoOptions } from '../support/types';
 
 class PdpPage implements AbstractPage {
   goto (): void {
@@ -12,16 +11,101 @@ class PdpPage implements AbstractPage {
       cy.get('.b-product_addtocard-availability').click(); 
     },
     addToWishList () {
-      cy.get('.m-outline ').click();
-    } 
+      cy.get('.m-outline > span').click();
+    },
+    shippingInfoButton (){
+      cy.get('#product-details-btn-shipping').click();
+    },
+    returnLink (){
+      cy.get('a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]').invoke('removeAttr', 'target').click();
+    },
+    shopNowLinkNL (){
+      cy.get(':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link').invoke('removeAttr', 'target').click();
+    },
+    shopNowLinkSA (){
+      cy.get(':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link').invoke('removeAttr', 'target').click();
+    }
+  
   };
 
   actions = {
-
+    selectColor (index: number) {
+      cy.get('.b-variation_swatch-color_value').eq(index).click({force: true});
+    },
+    selectSize (index: number) {
+      cy.get('.b-variation_swatch  ').find('.b-variation_swatch-value_text').eq(index).click({force: true});
+    },
+    addToCart (){
+      cy.wait(1000);
+      cy.get('button[data-widget-event-click="addToCart"]').click();
+    }
+  
   };
 
   assertions = {
-
+    assertProductNameIsDisplayed (productName: string){
+      cy.get('.b-product_details-name').should('be.visible').and('have.text', productName);
+    },
+    assertProductCodeIsDisplayed (SKU: string){
+      cy.get('span[data-tau="b-product_details-id"]').should('be.visible').and('have.text', SKU);
+    },
+    assertProductPriceIsDisplayed (){
+      cy.get('.b-product_details-price').should('be.visible').and('not.have.text', '0.00');
+    },
+    assertImageIsDisplayed (pictureId: string){
+      cy.get(pictureId).then(element => {
+        cy.wrap(element).invoke('width').should('be.gt', 10); 
+      });
+    },
+    assertColorSwatchesAreVisible (){
+      cy.get('div[role="radiogroup"]').should('be.visible');
+    },
+    assertColorIsDisplayed (color: string){
+      cy.get('#product-image-0').should('have.attr', 'src').and('include',color);
+    },
+    assertSizeIsAvailable (){
+      cy.get('.b-availability-status').should('contain',"YAY! It's in stock");
+    },
+    assertSizeIsNotAvailable (){
+      cy.get ('.b-product_addtocard-availability').should('have.text', 'Out of Stock');
+    },
+    assertProductIsAddedToCart (){
+      cy.get('.b-minicart-inner > :nth-child(1) > .b-minicart-title').should('be.visible').and('have.text', '\nAdded to your cart\n');
+    },
+    assertErrorMsgForSizeIsDisplayed (){
+      cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', 'Oops please select a size');
+    },
+    assertMiniCartIsDisplayed (){
+      cy.get('.b-minicart-inner > :nth-child(1) > .b-minicart-title').should('be.visible');
+      cy.get('.b-minicart_product-inner').should('be.visible');
+    },
+    assertProductIsAddedToWishlist (){
+      cy.get('.m-outline').should('have.text', '\n\nSaved\n');
+    },
+    assertStyleNotesArePresent (){
+      cy.get('.m-description').should('be.visible').and('not.be.null');
+    },
+    assertDeliveryInfoIsDisplayed (){
+      cy.get('.b-product_delivery').should('be.visible');
+      cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
+      cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n');
+    },
+    assertReturnInfoIsDisplayed (){
+      cy.get('.b-product_shipping-returns').should('be.visible'); 
+    },
+    assertStartReturnPageIsDisplayed () {
+      cy.url().should('include', '/page/returns-information.html');
+    },
+    assertCompleteLookDisplayed (){
+      cy.get('.b-product_section').should('be.visible');
+    },
+    assertLinkNewSeasonIsLinked (){
+      cy.url().should('include', '/new-season');
+    },
+    assertLinkShoesAndAccIsLinked (){
+      cy.url().should('include', '/shoes-accessories');
+    }
+    
   };
 
 }

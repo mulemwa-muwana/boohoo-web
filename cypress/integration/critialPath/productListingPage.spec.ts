@@ -1,6 +1,5 @@
 import plpPage from '../../pom/plp.page';
 import HomePage from '../../pom/home.page';
-import homePage from '../../pom/home.page';
 
 describe('Home Page', function () {
   
@@ -30,7 +29,7 @@ describe('Home Page', function () {
       plpPage.assertions.assertProductImageIsDisplayed();
     });
 
-    it.only('Verify product name is displayed', () => {
+    it('Verify product name is displayed', () => {
       plpPage.assertions.assertProductNameIsDisplayed();
     });
 
@@ -38,8 +37,9 @@ describe('Home Page', function () {
       plpPage.assertions.assertProductPriceIsDispayed();
     });
 
-    it.only('Verify new product price is displayed', () => {
-      plpPage.assertions.assertNewProductPriceIsDispayed();
+    it('Verify new product price is displayed', () => {
+        
+      // To be discussed is it needed
     });
 
     it('Verify add to wishlist is displayed', () => {
@@ -47,8 +47,8 @@ describe('Home Page', function () {
       plpPage.assertions.assertItemIsAddedToWishlist();
     });
 
-    it.only('Verify that product color is dispayed', () => {
-      plpPage.assertions.assertProductColorIsDisplayed();
+    it('Verify that product color is dispayed', () => {
+      plpPage.assertions.assertProductColorIsDisplayedOnPLP();
     });
 
   });
@@ -57,38 +57,43 @@ describe('Home Page', function () {
 
     it('Verify category refinement is applied', () => {
       plpPage.click.categoryRefinement();  
-      plpPage.click.colorBlue();
+      plpPage.click.selectRefinementVariant('Denim');
+      plpPage.assertions.assertProductVariantIsApplied('denim');
     });
 
     it('Verify size refinement is applied', () => {
       plpPage.click.sizeRefinement();
-
+      plpPage.click.selectRefinementVariant('12');
+      plpPage.assertions.assertProductVariantIsApplied('12');
     });
 
     it('Verify style refinement is applied', () => {
       plpPage.click.styleRefinement();
+      plpPage.click.selectRefinementVariant('Tops');
+      plpPage.assertions.assertProductVariantIsApplied('tops');
     });
 
     it('Verify colour  refinement is applied', () => {
       plpPage.click.colorRefinements();
+      plpPage.click.selectRefinementVariant('Black');
+      plpPage.assertions.assertProductVariantIsApplied('black');
     });
 
     it('Verify price refinement is applied', () => {
       plpPage.click.priceRefinements();
+      plpPage.click.priceVariant(); // This TC needs to be expanded
     });
 
     it('Verify shop by fit refinement is applied', () => {
       plpPage.click.shopByFitRefinements();
+      plpPage.click.selectRefinementVariant('boohoo Tall');
+      plpPage.assertions.assertProductVariantIsApplied('boohoo%20Tall');
     });
 
     it('Verify occasion refinement is applied', () => {
-      plpPage.click.occassionRefinement();     
-    });
-
-    it('Verify clear filters can be applied', () => {
-      plpPage.click.occassionRefinement();
-      plpPage.click.shopByFitRefinements();
-      plpPage.click.clearAllFilters();
+      plpPage.click.occassionRefinement();  
+      plpPage.click.selectRefinementVariant('Casual');
+      plpPage.assertions.assertProductVariantIsApplied('casual');   
     });
 
   });

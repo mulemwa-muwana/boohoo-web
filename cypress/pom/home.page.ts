@@ -17,7 +17,7 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
-    logInButton (opts = { force: false }) {
+    logInIcon (opts = { force: false }) {
       cy.get('.b-header_login-icon > .i-icon').click({ force: opts.force });
     },
 
@@ -35,23 +35,27 @@ class HomePage implements AbstractPage {
       cy.get('.b-minicart_icon-link').click();
     },
     
-    // MEGA MENU
+    // MEGA MENU - MAIN NAV
 
-    newInLink (){
-      cy.get('a[data-tau="menu_item_level2_new-in"]').click();
+    selectLinkFromMegaMenu (text: string){
+      cy.contains(text).click({force: true});
     },
-    clothingsLink (opts = { force: true }){
-      cy.get('a[data-tau="menu_item_level2_all-clothing"]').click({ force: opts.force });
-    },
+
+    //  SUB-LINKS FROM MEGA MENU
     backInStockLink (opts = { force: true }){
       cy.get('#womens > div > ul > li:nth-child(3) > div > div.b-menu_bar-flyout_inner.m-tab_womens > div:nth-child(1) > div > div > div:nth-child(2) > a').click({ force: opts.force });
-    }
+    },
   };
 
   actions = {       
+<<<<<<< HEAD
     findItemUsingSKU (SKU: string){
       cy.get('.b-search_input-close').click().type(SKU);
       cy.get('button[data-tau="search_dialog_input_submit"]').click();
+=======
+    findItemUsingSKU (SKU){
+      cy.get('#header-search-input').type(SKU);
+>>>>>>> master
     }
 
   };
@@ -59,10 +63,9 @@ class HomePage implements AbstractPage {
   assertions = {
     assertUserPanelTitle (name: string) {
       console.log(name);
-
-      // We have to manually show these elements by adding the display: unset style, as the on hover doesn't work in cypress.
-      //  Cy.get('.user-panel').invoke('attr', 'style', 'display: unset!important;');
-      //  Cy.get('.user-panel .user-title:nth-child(2)').should('contain.text', name)
+      cy.get('.b-header_login-icon > .i-icon').click();
+      cy.get(':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label').click();
+      cy.get('.b-user_greeting-message').should('contain.text', '\nHi'+name+'\n');
     },
 
     // Search assertions
@@ -75,14 +78,41 @@ class HomePage implements AbstractPage {
     assertSearchFieldContains (text: string) {
       cy.get('#header-search-input').contains(text);
     },
-    assertSearchResultPageTitle (text: string) {
+    assertSearchResultPage (text: string) {
       cy.url().should('include', text);
     },
     assertAutosearchSuggestionsDispayed () {
 
       // TODO.
-    }
+    },
 
+    // Counter (header) assertion
+    counterOnHeaderPresent (){
+      cy.get('#promotion_slide-0 > div > div > a').invoke('show').then(element => {
+        cy.wrap(element).invoke('show').should('be.visible');
+      });
+    },
+
+    // Links assertions
+    assertMegaMenuLinkIsOpeningCorrectPage (text: string) {
+      cy.url().should('include', text);
+    },
+
+    // Logo
+    assertLogoPresent (){
+      cy.get('.b-logo').should('be.visible').should('have.attr', 'href');
+    },
+
+    // Header icons
+    assertWishListIconPresent (){
+      cy.get('.b-header_wishlist-icon > .i-icon').should('be.visible');
+    },
+    assertCartIconPresent (){
+      cy.get('.b-minicart_icon-link').should('be.visible');
+    },
+    assertAccountIconPresent (){
+      cy.get('.b-header_login-icon > .i-icon').should('be.visible');
+    }
   };
     
 }

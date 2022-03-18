@@ -203,39 +203,41 @@ describe('Home Page', function () {
 
       // Each of these will go back to the previous URL once the action has been completed.
     
-      // First column
-      GlobalFooter.actions.checkFooterLinkByText('Help');
+      // First column (Quick Links)      
       GlobalFooter.actions.checkFooterLinkByText('Track My Order');
-      GlobalFooter.actions.checkFooterLinkByText('boohoo Premier');
+      GlobalFooter.actions.checkFooterLinkByText('Help');      
       GlobalFooter.actions.checkFooterLinkByText('Returns');
+      GlobalFooter.actions.checkFooterLinkByText('Delivery Info');
+      
+      // Second column (About Us & More)
+      GlobalFooter.actions.checkFooterLinkByText('About boohoo');
       GlobalFooter.actions.checkFooterLinkByText('Size Guide');
-      GlobalFooter.actions.checkFooterLinkByText('Student Discount - Get Offers');
+      GlobalFooter.actions.checkFooterLinkByText('The boohoo App');
+      GlobalFooter.actions.checkFooterLinkByText('boohoo Premier');
+      GlobalFooter.actions.checkFooterLinkByText('Student Discount');
       GlobalFooter.actions.checkFooterLinkByText('Discount & Promo Codes');
       GlobalFooter.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
-    
-      // Second column
-      GlobalFooter.actions.checkFooterLinkByText('Delivery Information');
-      GlobalFooter.actions.checkFooterLinkByText('Sustainability');
-      GlobalFooter.actions.checkFooterLinkByText('Covid-19 Update');
-      GlobalFooter.actions.checkFooterLinkByText('Recycling Options');
-      GlobalFooter.actions.checkFooterLinkByText('T&C\'s');
-      GlobalFooter.actions.checkFooterLinkByText('About Cookies');
+      GlobalFooter.actions.checkFooterLinkByText('Gift Cards');
       GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');
-    
-      // Third column
-      GlobalFooter.actions.checkFooterLinkByText('About boohoo');
-      GlobalFooter.actions.checkFooterLinkByText('Investor Relations');
-      GlobalFooter.actions.checkFooterLinkByText('Environment & Social Responsibility');
-      GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
-      GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
-      GlobalFooter.actions.checkFooterLinkByText('Careers');
       GlobalFooter.actions.checkFooterLinkByText('Become an Affiliate');
       GlobalFooter.actions.checkFooterLinkByText('Become a Partner');
-      GlobalFooter.actions.checkFooterLinkByText('Sitemap');
+    
+      // Third column (Information)
+      GlobalFooter.actions.checkFooterLinkByText('Sustainability');
       GlobalFooter.actions.checkFooterLinkByText('Klarna');
       GlobalFooter.actions.checkFooterLinkByText('Clearpay');
       GlobalFooter.actions.checkFooterLinkByText('Laybuy');
       GlobalFooter.actions.checkFooterLinkByText('Zip');
+      GlobalFooter.actions.checkFooterLinkByText('Investor Relations');
+      GlobalFooter.actions.checkFooterLinkByText('Environmental & Social Responsibility');
+      GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
+      GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
+      GlobalFooter.actions.checkFooterLinkByText('Careers');
+      GlobalFooter.actions.checkFooterLinkByText('T&Cs');
+      GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2021');
+      GlobalFooter.actions.checkFooterLinkByText('About Cookies');
+      GlobalFooter.actions.checkFooterLinkByText('Sitemap');
+     
     });
     
     it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {

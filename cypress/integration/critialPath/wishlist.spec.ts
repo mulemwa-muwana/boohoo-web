@@ -11,7 +11,7 @@ describe('Home Page', function () {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       HomePage.goto();
-      HomePage.click.logInButton();
+      HomePage.click.logInIcon();
       LoginPage.actions.login(credentials.username, credentials.password);
       HomePage.goto(); // This is added because user is redirected to MyAccount page after login
     });

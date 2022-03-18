@@ -3,60 +3,60 @@ import AbstractPage from './abstract/abstract.page';
 
 class GlobalFooter implements AbstractPage {
 
-  goto () {
+  goto() {
     throw new Error('No goto href for the global footer, try HomePage.goto()');
   }
 
   click = {
-    privacyPolicyLink () {
+    privacyPolicyLink() {
       cy.get('[title="Privacy Notice"]').click();
     },
-    copyrightPrivacyPolicyLink () {
+    copyrightPrivacyPolicyLink() {
       cy.get('.footer-copyright [title="Privacy notice"]').click();
     },
-    instagramLink () {
+    instagramLink() {
       cy.get('a[href="https://www.instagram.com/boohoo/"] img').then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
         cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
       });
     },
-    facebookLink () {
+    facebookLink() {
       cy.get('a[href="https://www.facebook.com/boohoo.com"] img').then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
         cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
       });
     },
-    twitterLink () {
+    twitterLink() {
       cy.get('a[href="https://www.twitter.com/boohoo"] img').then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
         cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
       });
     },
-    tiktokLink () {
+    tiktokLink() {
       cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"] img').then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
         cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
       });
     },
-    youtubeLink () {
+    youtubeLink() {
       cy.get('a[href="https://www.youtube.com/c/boohoo"] img').then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
         cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
       });
     },
-    pintrestLink () {
+    pintrestLink() {
       cy.get('a[href="https://www.pinterest.co.uk/boohooofficial/_created/"] img').then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
         cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
       });
     },
-    theFixLink () {
+    theFixLink() {
       cy.get('a[href="https://thefix.boohoo.com/"] img').then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
         cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
       });
     },
-    footerPromo () {
+    footerPromo() {
       cy.get('.footer-promo a').then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
@@ -68,11 +68,11 @@ class GlobalFooter implements AbstractPage {
   };
 
   actions = {
-    subscribeToNewsletter (email: string) {
+    subscribeToNewsletter(email: string) {
       cy.get('.newsletter-form-field[type="email"]').type(email);
       cy.get('button.newsletter-form-btn').click();
     },
-    checkFooterLinkByText (text: string, options?: { assertionUrl: string } ) {
+    checkFooterLinkByText(text: string, options?: { assertionUrl: string }) {
       cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       cy.get('.footer-navigation-wrapper  > div:nth-child(-n+3) a[href]').contains(text)
@@ -86,7 +86,7 @@ class GlobalFooter implements AbstractPage {
         });
       cy.go('back');
     },
-    changeCountry (country: CountryCode) {
+    changeCountry(country: CountryCode) {
       cy.wait(2000);
       cy.get('.hidden-on-mobile .current-country i').click();
       cy.get('.hidden-on-mobile .country-link').contains(country).click();
@@ -94,43 +94,43 @@ class GlobalFooter implements AbstractPage {
   };
 
   assertions = {
-    assertSuccessfulSubscription () {
+    assertSuccessfulSubscription() {
       cy.get('.footer-newsletter-info').then(element => {
         expect(element.text().trim().toLowerCase()).to.contain('thanks');
       });
     },
-    assertUnsuccessfulSubscription () {
+    assertUnsuccessfulSubscription() {
       cy.get('span[id*="footer_newsletter_email"].error').then(element => {
         expect(element.text().trim().toLowerCase()).to.contain('please');
         expect(element.text().trim().toLowerCase()).to.contain('valid');
         expect(element.text().trim().toLowerCase()).to.contain('email');
       });
     },
-    asssertAlreadySubscribed () {
+    asssertAlreadySubscribed() {
       cy.get('span[id*="footer_newsletter_email"].error').then(element => {
         expect(element.text().trim().toLowerCase()).to.contain('already signed up');
       });
     },
-    assertPaymentOptionsArePresent () {
+    assertPaymentOptionsArePresent() {
       cy.get('[alt="Payment Methods"]').scrollIntoView().should('be.visible');
     },
-    assertPromoBannerPresent () {
+    assertPromoBannerPresent() {
       cy.get('#promo-banner.home-main').should('be.visible');
     },
-    assertCurrencyByPageContext (currency: string) {
+    assertCurrencyByPageContext(currency: string) {
       cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {
         const json = JSON.parse(context);
         expect(json.currencyCode).to.equal(currency);
       });
     },
-    assertFooterIsFixedAndPresent () {
+    assertFooterIsFixedAndPresent() {
       cy.scrollTo('bottom');
       cy.get('.footer-promo').should('have.css', 'position', 'fixed');
     },
-    assertHeaderIsVisible () {
+    assertHeaderIsVisible() {
       cy.get('.sticky-header').should('be.visible');
     },
-    assertHeaderIsNotVisible () {
+    assertHeaderIsNotVisible() {
       cy.get('.sticky-header').should('not.be.visible');
     }
   };

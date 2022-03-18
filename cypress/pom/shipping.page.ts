@@ -7,11 +7,15 @@ class ShippingPage implements AbstractPage {
   }
 
   click = {
-
+    submitPromoCode (){
+      cy.get('button[data-tau="coupon_submit"]').click();
+    }
   };
 
   actions = {
-
+    promoCodeField (promoCode: string){
+      cy.get('dwfrm_coupon_couponCode').type(promoCode);
+    }
   };
 
   assertions = {

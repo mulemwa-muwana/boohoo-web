@@ -23,6 +23,9 @@ class HomePage implements AbstractPage {
     forgotPasswordLink (){
       cy.get('button[data-tau="login_password_reset"]').click();
     },
+    registrationButton (){
+      cy.get('.b-registration_benefits-button').should('be.visible').click();
+    },
 
     // Objects for search subsystem tests
     searchIcon (opts = { force: false }) {
@@ -123,7 +126,8 @@ class HomePage implements AbstractPage {
     },
     assertForgotPasswordMessageisDisplayed (email: string){
       cy.get('.b-dialog-window').should('be.visible').and('contain', email);
-    }
+    },
+
   };
     
 }

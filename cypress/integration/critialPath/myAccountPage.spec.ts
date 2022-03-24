@@ -52,7 +52,7 @@ describe('Account page', function () {
   it('TC05 Verify that account details are editable', function () {
     MyAccountPage.click.accountDetailsLink();
     MyAccountPage.actions.updateAccountName('BOOHOO');
-    MyAccountPage.assertions.assertUpdatedName('BOOHOO');
+    MyAccountPage.assertions.assertNameGreetingMessage('BOOHOO');
   });
 
   it('TC06 Verify that addresses show correct default address information', function () {

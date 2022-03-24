@@ -92,7 +92,7 @@ class MyAccountPage implements AbstractPage {
         cy.get('button[data-tau="track_order_submit"]').click();
       }
     };
-
+    
   assertions =
     {
       assertOrderHistoryPageTitle (text: string) {

@@ -14,7 +14,14 @@ class CartPage implements AbstractPage {
   };
 
   assertions = {
-        
+    assertTableWithProductIsVisible (){
+      cy.get('.b-cart_products').should('be.visible');
+    },
+    assertProductImageIsDisplayed (pictureId: string){
+      cy.get(pictureId).then(element => {
+        cy.wrap(element).invoke('width').should('be.gt', 10); 
+      });
+    },    
   };
 }
 

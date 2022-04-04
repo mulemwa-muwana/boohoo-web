@@ -11,7 +11,7 @@ class LoginPage implements AbstractPage {
   click = {};
   assertions = {
     assertLoginFormIsPresent (){
-      cy.get('b-form_box m-login').should('be.visible');
+      cy.get('.l-checkout_login-forms').should('be.visible');
     }
   };
 

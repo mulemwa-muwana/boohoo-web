@@ -32,5 +32,5 @@ export type CardDetails = {
 }
 
 export type SKU = {
-    SKU: string;
+    sku: string;
 }

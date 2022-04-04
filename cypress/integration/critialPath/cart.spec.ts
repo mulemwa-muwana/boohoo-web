@@ -1,11 +1,15 @@
 import CartPage from '../../pom/cart.page';
 import HomePage from '../../pom/home.page';
+import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
+import { SKU } from '../../support/types';
 
 describe('Cart basic functionality', function (){
   beforeEach (()=>{
     HomePage.goto();
-    HomePage.actions.findItemUsingSKU('aDZZ02796-256-56');
+    cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
+      HomePage.actions.findItemUsingSKU(itemSKU.sku);
+    });
     PdpPage.actions.selectSize(1);
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();
@@ -17,44 +21,28 @@ describe('Cart basic functionality', function (){
     CartPage.assertions.assertProductImageIsDisplayed('.l-cart_product-image');
   });
   it('Verify that Product name is visible', function (){
-
-    // Fill in later
+    CartPage.assertions.assertProductTitleIsVisible();
   });
-  it('Verify that Product Color is visible', function (){
- 
-    // Fill in later
-  });
-  it('Verify that Product Quantity is visible', function (){
-
-    // Fill in later
+  it('Verify that Product Color, size and quantity are visible', function (){
+    CartPage.assertions.assertProductDetailsAreVisible();
   });
   it('Verify that Price (plus total) is visible', function (){
-    
-    // Fill in later
+    CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
   it('Verify that user can update quantity of products', function (){
 
     // Fill in later
   });
   it('Verify that user can remove product from cart', function (){
- 
-    // Fill in later
-  });
-  it('Verify that Content slot with delivery information (if configured) is displayed', function (){
-
-    // Fill in later
-  });
-  it('Verify that Content slot with delivery information (if configured) is displayed', function (){
-
-    // Fill in later
+    CartPage.actions.removeFromCart(0);
+    CartPage.assertions.assertCartIsEmpty();
   });
   it('Verify that Get Premier slots are visible if Premier is not in the bag', function (){
-
-    // Fill in later
+    CartPage.assertions.assertPremierSlotsAreVisible();
   });
-  it('Verify that guest users are redirected to login page after clicking Checkout CTA', function (){
-
-    // Fill in later
+  it.only('Verify that guest users are redirected to login page after clicking Checkout CTA', function (){
+    CartPage.click.proceedToCheckout();
+    LoginPage.assertions.assertLoginFormIsPresent();
   });
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function (){
 

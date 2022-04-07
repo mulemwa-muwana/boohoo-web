@@ -19,6 +19,9 @@ class ShippingPage implements AbstractPage {
   };
 
   assertions = {
+    AssertShippingPageUrl (){
+      cy.url().should('include', 'https://uk-dwdev.boohoo.com/checkout?step=shipping');
+    }
         
   };
 

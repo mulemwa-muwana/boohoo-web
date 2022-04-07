@@ -51,12 +51,15 @@ class HomePage implements AbstractPage {
     backInStockLink (opts = { force: true }){
       cy.get('#womens > div > ul > li:nth-child(3) > div > div.b-menu_bar-flyout_inner.m-tab_womens > div:nth-child(1) > div > div > div:nth-child(2) > a').click({ force: opts.force });
     },
+    allShoesLink (opts = { force: true }){
+      cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
+    }
+    
   };
 
   actions = {       
     findItemUsingSKU (SKU: string){
       cy.get('.b-search_input-close').click().type(SKU);
-      cy.get('button[data-tau="search_dialog_input_submit"]').click();
     },
     forgotPassword (email: string){
       cy.get('button[data-tau="login_password_reset"]').click();
@@ -127,6 +130,12 @@ class HomePage implements AbstractPage {
     assertForgotPasswordMessageisDisplayed (email: string){
       cy.get('.b-dialog-window').should('be.visible').and('contain', email);
     },
+    assertCountryURL (country: string){
+      cy.url().should('include', country);
+    },
+    assertPromoLinkHeaderIsVisible (){
+      cy.get('div[class="b-hero_carousel-item m-promotion m-current"]').should('be.visible').click();
+    }
 
   };
     

@@ -2,9 +2,9 @@ export type GotoOptions = {
     applyCookies: boolean;
 }
 
-type AustralasiaCountryCode = 'AUD' | 'NZD';
-type NorthAmericaCountryCode = 'USA' | 'CAD';
-type EuropeCountryCode = 'GBP' | 'FRA' | 'IE' | 'EUR' | 'NL' | 'DE' | 'ES' | 'SEK' | 'IT' | 'DKK' | 'FI' | 'NOK' | 'RU' | 'IL';
+type AustralasiaCountryCode = 'AU' | 'NZ';
+type NorthAmericaCountryCode = 'US' | 'CA';
+type EuropeCountryCode = 'GB' | 'FR' | 'IE' | 'EUR' | 'NL' | 'DE' | 'ES' | 'SK' | 'IT' | 'DK' | 'FI' | 'NO' | 'RU' | 'IL';
 type MiddleEastCountryCode = 'AE' | 'BH' | 'JO' | 'KW' | 'OM' | 'QA' | 'SA';
 type FarEastCountryCode = 'HK' | 'TW' | 'JP' | 'SG' | 'KR';
 

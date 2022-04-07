@@ -44,7 +44,7 @@ describe('Home Page', function () {
       });
       it('Verify search results page opens', () => {
         HomePage.click.searchIcon();
-        HomePage.actions.findItemUsingSKU('AZZ06403-105-35{enter}');
+        HomePage.actions.findItemUsingSKU('aAZZ06403-105-35{enter}');
         HomePage.assertions.assertSearchResultPage('AZZ06403');
       });  
     
@@ -65,7 +65,7 @@ describe('Home Page', function () {
       });
 
       it('Verify Header - WOMENS page opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('WOMENS');
+        HomePage.click.selectLinkFromMegaMenu('NEW IN');
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('womens');
       });
 
@@ -100,13 +100,13 @@ describe('Home Page', function () {
       });
 
       it('Verify Mega Menu - Shoes&Accessories link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('SHOES & ACCESSORIES');
+        HomePage.click.allShoesLink();
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('shoes');
       });
 
       it('Verify Mega Menu - Ocasion wear link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('OCCASSION WEAR');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('occassion');
+        HomePage.click.selectLinkFromMegaMenu(' OCCASION WEAR');
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('occasion-wear');
       });
 
       it('Verify Mega Menu - Beauty link opens', () => {
@@ -114,7 +114,8 @@ describe('Home Page', function () {
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('beauty');
       });
 
-      it('Promo content slots are displayed (if configured)', () => {
+      it('Verify that promo content slots are displayed (if configured)', () => {
+        HomePage.assertions.assertPromoLinkHeaderIsVisible();
 
       }); 
     });
@@ -158,6 +159,7 @@ describe('Home Page', function () {
       it('Instagram', () => {
         GlobalFooter.click.instagramLink();
         SocialsPage.assertions.assertOnInstagram();
+        
       });
     
       it('Facebook', () => {
@@ -246,19 +248,20 @@ describe('Home Page', function () {
     });
     
     describe('Verify that the Country Selector displayed and functional.', () => {
-      it('USA', () => {
-        GlobalFooter.actions.changeCountry('USA');
-        GlobalFooter.assertions.assertCurrencyByPageContext('USD');
+      it('US', () => {
+        GlobalFooter.actions.changeCountry('US');
+        HomePage.assertions.assertCountryURL('us-dwdev.boohoo.com');
       });
     
-      it('AUD', () => {
-        GlobalFooter.actions.changeCountry('AUD');
-        GlobalFooter.assertions.assertCurrencyByPageContext('AUD');
+      it('AU', () => {
+        GlobalFooter.actions.changeCountry('AU');
+        HomePage.assertions.assertCountryURL('au-dwdev.boohoo.com');
       });
     
-      it('FRA', () => {
-        GlobalFooter.actions.changeCountry('FRA');
-        GlobalFooter.assertions.assertCurrencyByPageContext('EUR');
+      it('FR', () => {
+        GlobalFooter.actions.changeCountry('FR');
+        HomePage.assertions.assertCountryURL('fr-dwdev.boohoo.com');
+        
       });
     
       it('KW', () => {

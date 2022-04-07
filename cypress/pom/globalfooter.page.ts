@@ -15,7 +15,7 @@ class GlobalFooter implements AbstractPage {
       cy.get('.footer-copyright [title="Privacy notice"]').click();
     },
     instagramLink () {
-      cy.get('a[href="https://www.instagram.com/boohoo/"] img').then(element => {
+      cy.get('a[href="https://www.instagram.com/boohoo/"]').then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
         cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
       });
@@ -57,7 +57,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     footerPromo () {
-      cy.get('.footer-promo a').then(element => {
+      cy.get('div[class="b-footer_sticky"]').then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
         cy.url().then(url => {
@@ -88,8 +88,7 @@ class GlobalFooter implements AbstractPage {
     },
     changeCountry (country: CountryCode) {
       cy.wait(2000);
-      cy.get('.hidden-on-mobile .current-country i').click();
-      cy.get('.hidden-on-mobile .country-link').contains(country).click();
+      cy.get('.b-country-select').select(country);
     }
   };
 
@@ -125,13 +124,14 @@ class GlobalFooter implements AbstractPage {
     },
     assertFooterIsFixedAndPresent () {
       cy.scrollTo('bottom');
-      cy.get('.footer-promo').should('have.css', 'position', 'fixed');
+      cy.get('.b-promo_info_box-caption > .b-promo_caption-subtitle').should('have.css', 'position', 'fixed');
     },
     assertHeaderIsVisible () {
-      cy.get('.sticky-header').should('be.visible');
+      cy.get('.l-header-inner').should('be.visible');
     },
     assertHeaderIsNotVisible () {
-      cy.get('.sticky-header').should('not.be.visible');
+      cy.get('.l-header-inner').should('not.be.visible');
+
     }
   };
 

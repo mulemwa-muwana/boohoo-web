@@ -2,9 +2,10 @@ import CartPage from '../../pom/cart.page';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
-import { SKU } from '../../support/types';
+import ShippingPage from '../../pom/shipping.page';
+import { SKU, LoginCredentials } from '../../support/types';
 
-describe('Cart basic functionality', function (){
+describe('Cart basic functionality for guest user', function (){
   beforeEach (()=>{
     HomePage.goto();
     cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
@@ -29,9 +30,10 @@ describe('Cart basic functionality', function (){
   it('Verify that Price (plus total) is visible', function (){
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
-  it('Verify that user can update quantity of products', function (){
+  it.only('Verify that user can update quantity of products', function (){
+    CartPage.actions.editCartQuantity('3');
+    CartPage.assertions.assertQuantityIsDisplayed('3');
 
-    // Fill in later
   });
   it('Verify that user can remove product from cart', function (){
     CartPage.actions.removeFromCart(0);
@@ -40,25 +42,46 @@ describe('Cart basic functionality', function (){
   it('Verify that Get Premier slots are visible if Premier is not in the bag', function (){
     CartPage.assertions.assertPremierSlotsAreVisible();
   });
-  it.only('Verify that guest users are redirected to login page after clicking Checkout CTA', function (){
+  it('Verify that guest users are redirected to login page after clicking Checkout CTA', function (){
     CartPage.click.proceedToCheckout();
     LoginPage.assertions.assertLoginFormIsPresent();
   });
-  it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function (){
-
-    // Fill in later
-  });
   it('Verify that PayPal CTA is displayed and functional', function (){
+    CartPage.assertions.assertPayPalCTAisVisible();
+    CartPage.actions.openPayPalSandbox(); 
 
-    // Fill in later
+    //  Nothing happens?
   });
   it('Verify that Klarna CTA is displayed and functional', function (){
-
-    // Fill in later
+    CartPage.assertions.assertKlarnaCTAisVisible();
+    CartPage.actions.openKlarnaSandbox();
   });
   it('Verify that AmazonPay CTA is displayed and functional', function (){
-
-    // Fill in later
+    CartPage.assertions.assertAmazonPazCTAisVisible();
+    CartPage.actions.openAmazonSandbox();
   });
 
+});
+
+describe('Cart page for Registered user', function (){
+  beforeEach (()=>{
+    HomePage.goto();
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      HomePage.goto();
+      HomePage.click.logInIcon();
+      LoginPage.actions.login(credentials.username, credentials.password);
+    });
+    HomePage.goto();
+    cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
+      HomePage.actions.findItemUsingSKU(itemSKU.sku);
+    });
+    PdpPage.actions.selectSize(1);
+    PdpPage.actions.addToCart();
+    HomePage.click.cartIcon();
+  }); 
+  it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function (){
+    CartPage.click.proceedToCheckout();
+    ShippingPage.assertions.AssertShippingPageUrl();
+
+  });
 });

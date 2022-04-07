@@ -131,6 +131,7 @@ class GlobalFooter implements AbstractPage {
     },
     assertHeaderIsNotVisible () {
       cy.get('.l-header-inner').should('not.be.visible');
+
     }
   };
 

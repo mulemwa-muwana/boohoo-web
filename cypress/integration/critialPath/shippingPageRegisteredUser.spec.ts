@@ -3,6 +3,8 @@ import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import loginPage from '../../pom/login.page';
 import { LoginCredentials } from '../../support/types';
+import shippingPage from '../../pom/shipping.page';
+import checkoutPage from '../../pom/checkout.page';
 
 describe('Home Page', function () {
   
@@ -10,13 +12,14 @@ describe('Home Page', function () {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       HomePage.goto();
-      HomePage.click.logInIcon();
-      loginPage.actions.login(credentials.username, credentials.password);
       HomePage.click.searchField();
       HomePage.actions.findItemUsingSKU('aDZZ65279{enter}');
       pdpPage.click.addToCart();
       HomePage.click.cartIcon();
       cartPage.click.proceedToCheckout();
+      checkoutPage.actions.userEmailField(credentials.username);
+      checkoutPage.actions.passwordField(credentials.password);
+      checkoutPage.click.continueAsRegisteredUser();
     });
   });
 
@@ -25,11 +28,15 @@ describe('Home Page', function () {
   });
 
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
-    
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertFirstNameIsMandatory();
+    shippingPage.assertions.assertCityIsMandatory();
+    shippingPage.assertions.assertPostCodeIsMandatory();
   });
 
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
-    
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertUserProceededToBillinPage();
   });
 
   it('Verify that user can edit saved shipping address', () => {

@@ -14,6 +14,7 @@ export type LoginCredentials = {
     username: string;
     password: string;
     name: string;
+    guest: string;
 }
 
 export type AddressData = {

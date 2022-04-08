@@ -20,12 +20,15 @@ class ShippingPage implements AbstractPage {
     proceedToBilling (){
       cy.get('button[data-tau="proceed_to_payment"]').eq(1).click();
     },
+    editSavedAddress (){
+      cy.get(':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button').click();
+    }
   
   };
 
   actions = {
     promoCodeField (promoCode: string){
-      cy.get('dwfrm_coupon_couponCode').type(promoCode);
+      cy.get('#dwfrm_coupon_couponCode').type(promoCode);
     },
     addressLookupField (address: string){
       cy.get('#LoqateAutocomplete').type(address);
@@ -37,7 +40,7 @@ class ShippingPage implements AbstractPage {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_lastName').type(lname);
     },
     countrySelector (){
-
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_country'); 
     },
     phoneNumberField (phone: string){
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_phone').type(phone);
@@ -46,11 +49,24 @@ class ShippingPage implements AbstractPage {
 
   assertions = {
     assertPromoCodeFieldIsDispayed (){
-      cy.get('button[data-tau="coupon_submit"]').should('be.visible');
+      cy.get('#dwfrm_coupon_couponCode').should('be.visible');
     },
     assertSavedShippingAddressIsDispayed (){
       cy.get('b-address-name').eq(1).should('be.visible').should('not.be.empty');
-    } 
+    }, 
+    assertFirstNameIsMandatory (){
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', 'DONT FORGET ABOUT ME!');
+    },
+    assertCityIsMandatory (){
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', 'DONT FORGET ABOUT ME!');
+    },
+    assertPostCodeIsMandatory (){
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', 'DONT FORGET ABOUT ME!');
+    },
+    assertUserProceededToBillinPage (){
+      cy.url().should('include', 'billing');
+    }
+    
   };
 
 }

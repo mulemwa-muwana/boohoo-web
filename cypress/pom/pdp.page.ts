@@ -24,6 +24,9 @@ class PdpPage implements AbstractPage {
     },
     shopNowLinkSA (){
       cy.get(':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link').invoke('removeAttr', 'target').click();
+    },
+    minicartCloseBtn (){
+      cy.get('#minicart-dialog-close > .b-close_button').click();
     }
   
   };

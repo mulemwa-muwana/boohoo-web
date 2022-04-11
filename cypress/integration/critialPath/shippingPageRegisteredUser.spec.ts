@@ -4,7 +4,7 @@ import cartPage from '../../pom/cart.page';
 import loginPage from '../../pom/login.page';
 import { LoginCredentials } from '../../support/types';
 import shippingPage from '../../pom/shipping.page';
-import checkoutPage from '../../pom/checkout.page';
+import checkoutPage from '../../pom/checkoutLogin.page';
 
 describe('Home Page', function () {
   

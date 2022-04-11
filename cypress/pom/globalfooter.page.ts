@@ -9,10 +9,10 @@ class GlobalFooter implements AbstractPage {
 
   click = {
     privacyPolicyLink () {
-      cy.get('[title="Privacy Notice"]').click();
+      cy.get('a[href="https://uk-dwdev.boohoo.com/page/privacy-notice.html"]').click();
     },
     copyrightPrivacyPolicyLink () {
-      cy.get('.footer-copyright [title="Privacy notice"]').click();
+      cy.get('#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a').click();
     },
     instagramLink () {
       cy.get('a[href="https://www.instagram.com/boohoo/"]').then(element => {
@@ -69,13 +69,13 @@ class GlobalFooter implements AbstractPage {
 
   actions = {
     subscribeToNewsletter (email: string) {
-      cy.get('.newsletter-form-field[type="email"]').type(email);
-      cy.get('button.newsletter-form-btn').click();
+      cy.get('input[id="dwfrm_newslettersubscribe_email"]').type(email);
+      cy.get('button[data-id="submitButton"]').click();
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) {
       cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
-      cy.get('.footer-navigation-wrapper  > div:nth-child(-n+3) a[href]').contains(text)
+      cy.get('footer[class="l-page-footer l-footer"]').contains(text)
         .invoke('removeAttr', 'target')
         .then(element => {
           const href = element.attr('href');
@@ -94,27 +94,27 @@ class GlobalFooter implements AbstractPage {
 
   assertions = {
     assertSuccessfulSubscription () {
-      cy.get('.footer-newsletter-info').then(element => {
+      cy.get('div[class="b-newsletters-message_success"]').then(element => {
         expect(element.text().trim().toLowerCase()).to.contain('thanks');
       });
     },
     assertUnsuccessfulSubscription () {
-      cy.get('span[id*="footer_newsletter_email"].error').then(element => {
+      cy.get('div[id="dwfrm_newslettersubscribe_email-error"]').then(element => {
         expect(element.text().trim().toLowerCase()).to.contain('please');
         expect(element.text().trim().toLowerCase()).to.contain('valid');
         expect(element.text().trim().toLowerCase()).to.contain('email');
       });
     },
     asssertAlreadySubscribed () {
-      cy.get('span[id*="footer_newsletter_email"].error').then(element => {
+      cy.get('div[id="dwfrm_newslettersubscribe_email-error"]').then(element => {
         expect(element.text().trim().toLowerCase()).to.contain('already signed up');
       });
     },
     assertPaymentOptionsArePresent () {
-      cy.get('[alt="Payment Methods"]').scrollIntoView().should('be.visible');
+      cy.get('.m-hide-md').scrollIntoView().should('be.visible');
     },
     assertPromoBannerPresent () {
-      cy.get('#promo-banner.home-main').should('be.visible');
+      cy.get('div[class="b-app_banner"]').should('be.visible');
     },
     assertCurrencyByPageContext (currency: string) {
       cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {

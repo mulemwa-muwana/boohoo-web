@@ -28,7 +28,11 @@ class WishListPage implements AbstractPage {
     },
     removeItemFromWishlist () {
       cy.get('a[data-tau="wishlist_product_delete"]').eq(0).click();
+    },
+    wishlistLoginBtn (){
+      cy.get('#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a').click();
     }
+
   };
 
   actions = {

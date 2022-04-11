@@ -1,6 +1,5 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import wishlistPage from './wishlist.page';
 
 class CheckoutPage implements AbstractPage {
 

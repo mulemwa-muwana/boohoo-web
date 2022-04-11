@@ -201,7 +201,7 @@ describe('Home Page', function () {
       GlobalFooter.assertions.assertPromoBannerPresent();
     });
     
-    it('Verify that Footer Navigation Component is present and Links are functional.', () => {
+    it.only('Verify that Footer Navigation Component is present and Links are functional.', () => {
 
       // Each of these will go back to the previous URL once the action has been completed.
     
@@ -219,7 +219,8 @@ describe('Home Page', function () {
       GlobalFooter.actions.checkFooterLinkByText('Student Discount');
       GlobalFooter.actions.checkFooterLinkByText('Discount & Promo Codes');
       GlobalFooter.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
-      GlobalFooter.actions.checkFooterLinkByText('Gift Cards');
+
+      //  GlobalFooter.actions.checkFooterLinkByText('Gift Cards'); <- Links to boohoo.com (prod env)
       GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');
       GlobalFooter.actions.checkFooterLinkByText('Become an Affiliate');
       GlobalFooter.actions.checkFooterLinkByText('Become a Partner');

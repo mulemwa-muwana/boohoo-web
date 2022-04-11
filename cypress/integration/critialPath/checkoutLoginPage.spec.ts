@@ -16,11 +16,13 @@ describe('Home Page', function () {
   });
 
   it('Verify is checkout login / guest displayed', () => {
-
+    checkoutLoginPage.assertions.assertEmailnFieldForGuestUserIsVisible();
+    checkoutLoginPage.assertions.assertLoginFieldForRegisteredUserIsVisible();
+    checkoutLoginPage.assertions.assertPasswordFieldForRegisteredUserIsVisible();
   });
 
   it('Verify Premier is displayed and can be added to the cart', () => {
-
+    checkoutLoginPage.assertions.assertPremierIsDisplayed();
   });
 
   it('Verify that registered user is able to login', () => {

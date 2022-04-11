@@ -1,3 +1,4 @@
+import assertionText from '../helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -43,10 +44,10 @@ class WishListPage implements AbstractPage {
 
   assertions = {
     assertItemIsAddedToWishlist () {
-      cy.get('div.b-product_actions.m-auxiliary.b-product_wishlist > button > span').should('have.text', 'Saved');
+      cy.get('div.b-product_actions.m-auxiliary.b-product_wishlist > button > span').should('have.text', assertionText.WishlistItemsAdded['UK']);
     },
     assertWishListIsEmpty () {
-      cy.get('.b-wishlist-empty > :nth-child(2)').should('have.text', 'You dont have any items saved for later (yet)');
+      cy.get('.b-wishlist-empty > :nth-child(2)').should('have.text', assertionText.WishListIsEmpty['UK']);
     }
   };
 }

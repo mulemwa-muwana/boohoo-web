@@ -1,3 +1,4 @@
+import assertionText from '../helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -55,13 +56,13 @@ class ShippingPage implements AbstractPage {
       cy.get('b-address-name').eq(1).should('be.visible').should('not.be.empty');
     }, 
     assertFirstNameIsMandatory (){
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', 'DONT FORGET ABOUT ME!');
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode['UK']);
     },
     assertCityIsMandatory (){
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', 'DONT FORGET ABOUT ME!');
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode['UK']);
     },
     assertPostCodeIsMandatory (){
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', 'DONT FORGET ABOUT ME!');
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode['UK']);
     },
     assertUserProceededToBillinPage (){
       cy.url().should('include', 'billing');

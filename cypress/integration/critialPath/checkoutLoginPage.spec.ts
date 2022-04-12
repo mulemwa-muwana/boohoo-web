@@ -2,7 +2,7 @@ import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import { LoginCredentials } from '../../support/types';
-import checkoutLoginPage from '../../pom/checkoutLogin.page';
+import CheckoutPage from '../../pom/checkoutLogin.page';
 
 describe('Home Page', function () {
   
@@ -16,26 +16,28 @@ describe('Home Page', function () {
   });
 
   it('Verify is checkout login / guest displayed', () => {
-
+    CheckoutPage.assertions.assertEmailnFieldForGuestUserIsVisible();
+    CheckoutPage.assertions.assertLoginFieldForRegisteredUserIsVisible();
+    CheckoutPage.assertions.assertPasswordFieldForRegisteredUserIsVisible();
   });
 
   it('Verify Premier is displayed and can be added to the cart', () => {
-
+    CheckoutPage.assertions.assertPremierIsDisplayed();
   });
 
   it('Verify that registered user is able to login', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      checkoutLoginPage.actions.userEmailField(credentials.username);
-      checkoutLoginPage.actions.passwordField(credentials.password);
-      checkoutLoginPage.click.continueAsRegisteredUser();
+      CheckoutPage.actions.userEmailField(credentials.username);
+      CheckoutPage.actions.passwordField(credentials.password);
+      CheckoutPage.click.continueAsRegisteredUser();
     });
   });
 
   it('Verify that user is able to proceed as guest', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      checkoutLoginPage.actions.guestCheckoutEmail(credentials.guest);
-      checkoutLoginPage.click.continueAsGuestBtn();
-      checkoutLoginPage.click.continueAsRegisteredUser();
+      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+      CheckoutPage.click.continueAsGuestBtn();
+      CheckoutPage.click.continueAsRegisteredUser();
     });
   });
 

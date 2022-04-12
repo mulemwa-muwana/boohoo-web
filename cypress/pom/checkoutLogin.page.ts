@@ -1,13 +1,10 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import wishlistPage from './wishlist.page';
 
 class CheckoutPage implements AbstractPage {
 
   goto (): void {
     homePage.goto();
-    homePage.click.wishListIcon();
-    wishlistPage.click.wishlistLoginBtn();
   }
 
   click = {
@@ -20,6 +17,9 @@ class CheckoutPage implements AbstractPage {
       cy.get(':nth-child(9) > .b-login_form-group_cta > .b-button').then(element => {
         cy.wrap(element).click();
       });
+    },
+    premierAddToCart (){
+      cy.get('product_addToCart').click();
     }
   };
 
@@ -38,8 +38,20 @@ class CheckoutPage implements AbstractPage {
   assertions = {
     assertUserProceededToShippingPage (){
       cy.url().should('include', 'shipping');
+    },
+    assertLoginFieldForRegisteredUserIsVisible (){
+      cy.get('#dwfrm_login_email').should('be.visible');
+    },
+    assertPasswordFieldForRegisteredUserIsVisible (){
+      cy.get('#dwfrm_login_password').should('be.visible');
+    },
+    assertEmailnFieldForGuestUserIsVisible (){
+      cy.get('#dwfrm_login_guestEmail').should('be.visible');
+    },
+    assertPremierIsDisplayed (){
+      cy.get('b-ngvip-title').should('have.text', 'PREMIER');
+      cy.get('b-ngvip-subtitle').should('have.text', 'FREE NEXT DAY DELIVERY FOR 1 YEAR!');
     }
-        
   };
 }
 

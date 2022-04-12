@@ -36,6 +36,9 @@ class CheckoutPage implements AbstractPage {
   };
 
   assertions = {
+    assertUserProceededToShippingPage (){
+      cy.url().should('include', 'shipping');
+    },
     assertLoginFieldForRegisteredUserIsVisible (){
       cy.get('#dwfrm_login_email').should('be.visible');
     },

@@ -59,7 +59,7 @@ class HomePage implements AbstractPage {
 
   actions = {       
     findItemUsingSKU (SKU: string){
-      cy.get('.b-search_input-close').click().type(SKU);
+      cy.get('.b-search_input-close').click().type(SKU+'{enter}');
     },
     forgotPassword (email: string){
       cy.get('button[data-tau="login_password_reset"]').click();

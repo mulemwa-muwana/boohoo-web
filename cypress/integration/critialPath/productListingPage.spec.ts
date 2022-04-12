@@ -6,7 +6,7 @@ describe('Home Page', function () {
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
     HomePage.goto();
-    HomePage.click.clothingsLink();
+    HomePage.click.clothingsLink(); // TODO: Miona could you look at this one please.
     HomePage.click.backInStockLink(); 
   });
 
@@ -33,7 +33,7 @@ describe('Home Page', function () {
       plpPage.assertions.assertProductNameIsDisplayed();
     });
 
-    it.only('Verify product price is displayed', () => {
+    it('Verify product price is displayed', () => {
       plpPage.assertions.assertProductPriceIsDispayed();
     });
 

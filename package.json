@@ -2,6 +2,7 @@
   "scripts": {
     "cy:open:boohoo": "cypress open --config-file ./config/cypress.boohoo.json",
     "cy:run:boohoo": "cypress run --config-file ./config/cypress.boohoo.json",
+    "cy:run:boohoo:dashboard": "cypress run --config-file ./config/cypress.boohoo.json --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
     "lint": "eslint . --ext .ts"
   },
   "testCasesUrl": "https://docs.google.com/spreadsheets/d/1aACipr0OiGFNq1KF3hbZ4EuP8664OU7cBf4LScJBz1k/",

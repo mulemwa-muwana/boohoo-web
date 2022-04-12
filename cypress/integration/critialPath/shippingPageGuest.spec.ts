@@ -1,7 +1,7 @@
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
-import checkoutPage from '../../pom/checkout.page';
+import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
 
 describe('Home Page', function () {
@@ -17,7 +17,7 @@ describe('Home Page', function () {
     checkoutPage.click.continueAsGuestBtn();
   });
 
-  it.only('Verify that promo code field is dispayed', () => {
+  it('Verify that promo code field is dispayed', () => {
     shippingPage.assertions.assertPromoCodeFieldIsDispayed();
   });
 

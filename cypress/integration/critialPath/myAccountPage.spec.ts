@@ -57,7 +57,7 @@ describe('Account page', function () {
     MyAccountPage.actions.editDefaultAddress('Old Bond St');
     MyAccountPage.assertions.assertDefaultAddressData('wefwf fewefwf', 'Old Bond St');
   });
-  it.only('TC08 Verify that new address can be created', function () {
+  it('TC08 Verify that new address can be created', function () {
     MyAccountPage.click.addressesLink();
     cy.fixture('address').then((addressData: AddressData) => {
       MyAccountPage.actions.createAddress(addressData.firstName, addressData.lastName, addressData.phone, addressData.line1);

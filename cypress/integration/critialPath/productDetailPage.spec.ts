@@ -12,7 +12,7 @@ describe('Product Details Page tests', function () {
   it('TC01 Verify that Product name is showing',function (){
     PdpPage.assertions.assertProductNameIsDisplayed ('\nGrey Oversized Hoodie\n');
   });
-  it.only('TC02 Verify that Product price is showing',function (){
+  it('TC02 Verify that Product price is showing',function (){
     PdpPage.assertions.assertProductPriceIsDisplayed();
   });
   it('TC03 Verify that Product code is showing',function (){

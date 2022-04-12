@@ -6,7 +6,7 @@ import PdpPage from '../../pom/pdp.page';
 import { SKU, LoginCredentials } from '../../support/types';
 
 describe('Cart basic functionality for guest user', function (){
-  beforeEach (()=>{
+  beforeEach (() =>{
     HomePage.goto();
     cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
       HomePage.actions.findItemUsingSKU(itemSKU.sku);
@@ -30,7 +30,7 @@ describe('Cart basic functionality for guest user', function (){
   it('Verify that Price (plus total) is visible', function (){
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
-  it.only('Verify that user can update quantity of products', function (){
+  it('Verify that user can update quantity of products', function (){
     CartPage.actions.editCartQuantity('3');
     CartPage.assertions.assertQuantityIsDisplayed('3');
 

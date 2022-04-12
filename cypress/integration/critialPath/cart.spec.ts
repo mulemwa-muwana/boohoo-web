@@ -1,8 +1,8 @@
 import CartPage from '../../pom/cart.page';
+import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
-import ShippingPage from '../../pom/shipping.page';
 import { SKU, LoginCredentials } from '../../support/types';
 
 describe('Cart basic functionality for guest user', function (){
@@ -81,7 +81,6 @@ describe('Cart page for Registered user', function (){
   }); 
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function (){
     CartPage.click.proceedToCheckout();
-    ShippingPage.assertions.AssertShippingPageUrl();
-
+    CheckoutPage.assertions.assertUserProceededToShippingPage();
   });
 });

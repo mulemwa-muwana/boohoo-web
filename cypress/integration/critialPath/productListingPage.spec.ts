@@ -1,13 +1,14 @@
 import plpPage from '../../pom/plp.page';
 import HomePage from '../../pom/home.page';
+import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 
 describe('Home Page', function () {
   
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
     HomePage.goto();
-    HomePage.click.clothingsLink();
-    HomePage.click.backInStockLink(); 
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing['EN']);
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
   });
 
   it('Verify that plp page opens', () => {
@@ -15,7 +16,7 @@ describe('Home Page', function () {
     plpPage.assertions.assertOnPage();
   });
 
-  it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
+  it.only('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
     plpPage.click.loadMoreProducts();
     plpPage.assertions.assertNumberOfItemsTextISVisible();
@@ -33,7 +34,7 @@ describe('Home Page', function () {
       plpPage.assertions.assertProductNameIsDisplayed();
     });
 
-    it.only('Verify product price is displayed', () => {
+    it('Verify product price is displayed', () => {
       plpPage.assertions.assertProductPriceIsDispayed();
     });
 

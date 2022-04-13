@@ -1,12 +1,13 @@
 {
-    "baseUrl": "https://storefront:Oreo2022@uk-dwdev.boohoo.com/');",
-    "chromeWebSecurity": false,
-    "env": {
-      "salesforce": {
-        "loginUrl": "https://www.salesforce.com",
-        "username": "<my_username>",
-        "password": "<my_password>",
-        "accessToken": "<access_token>"
-      }
+  "projectId": "i6d3n8",
+  "baseUrl": "https://storefront:Oreo2022@uk-dwdev.boohoo.com/');",
+  "chromeWebSecurity": false,
+  "env": {
+    "salesforce": {
+      "loginUrl": "https://www.salesforce.com",
+      "username": "<my_username>",
+      "password": "<my_password>",
+      "accessToken": "<access_token>"
     }
+  }
 }

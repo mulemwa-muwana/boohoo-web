@@ -35,3 +35,8 @@ export type CardDetails = {
 export type SKU = {
     sku: string;
 }
+
+export type Locale = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
+
+export type TranslationMap = { [key in Locale]: string };
+

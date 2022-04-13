@@ -1,4 +1,4 @@
-class assertionText {
+class AssertionText {
   WishlistItemsAdded = {
     'UK': 'Saved',
     'US': 'Saved',
@@ -31,4 +31,4 @@ class assertionText {
   };
 }
 
-export default new assertionText();
+export default new AssertionText();

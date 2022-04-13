@@ -165,7 +165,7 @@ describe('Home Page', function () {
       GlobalFooter.assertions.assertPromoBannerPresent();
     });
     
-    it.only('Verify that Footer Navigation Component is present and Links are functional.', () => {
+    it('Verify that Footer Navigation Component is present and Links are functional.', () => {
 
       // Each of these will go back to the previous URL once the action has been completed.
     

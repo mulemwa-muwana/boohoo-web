@@ -1,12 +1,12 @@
 import CartPage from '../../pom/cart.page';
+import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
-import ShippingPage from '../../pom/shipping.page';
 import { SKU, LoginCredentials } from '../../support/types';
 
 describe('Cart basic functionality for guest user', function (){
-  beforeEach (()=>{
+  beforeEach (() =>{
     HomePage.goto();
     cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
       HomePage.actions.findItemUsingSKU(itemSKU.sku);
@@ -30,7 +30,7 @@ describe('Cart basic functionality for guest user', function (){
   it('Verify that Price (plus total) is visible', function (){
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
-  it.only('Verify that user can update quantity of products', function (){
+  it('Verify that user can update quantity of products', function (){
     CartPage.actions.editCartQuantity('3');
     CartPage.assertions.assertQuantityIsDisplayed('3');
 
@@ -81,7 +81,6 @@ describe('Cart page for Registered user', function (){
   }); 
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function (){
     CartPage.click.proceedToCheckout();
-    ShippingPage.assertions.AssertShippingPageUrl();
-
+    CheckoutPage.assertions.assertUserProceededToShippingPage();
   });
 });

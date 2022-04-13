@@ -1,4 +1,4 @@
-import assertionText from '../helpers/assertionText';
+import AssertionText from '../helpers/AssertionText';
 import AbstractPage from './abstract/abstract.page';
 
 class RegistrationPage implements AbstractPage {
@@ -59,7 +59,7 @@ class RegistrationPage implements AbstractPage {
     },
     assertErrorMessageExistingEmail (){
       cy.get('#dwfrm_profile_customer_email-error > span').should('be.visible').then(element => {
-        expect(element.text().trim().toUpperCase()).to.contain(assertionText.RegistrationPageExistingEmail['UK']);
+        expect(element.text().trim().toUpperCase()).to.contain(AssertionText.RegistrationPageExistingEmail['UK']);
       });
     }
 

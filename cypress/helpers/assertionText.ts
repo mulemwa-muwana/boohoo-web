@@ -1,34 +1,103 @@
-class AssertionText {
-  WishlistItemsAdded = {
-    'UK': 'Saved',
-    'US': 'Saved',
-    'FR': ''
+import { TranslationMap } from '../support/types';
+
+class assertionText {
+  WishlistItemsAdded: TranslationMap = {
+    EN: 'Saved',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
-  WishListIsEmpty = {
-    'UK': 'You dont have any items saved for later (yet)',
-    'US': 'You dont have any items saved for later (yet)',
+  WishListIsEmpty: TranslationMap = {
+    EN: 'You dont have any items saved for later (yet)',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
-  ShippingMandatoryFieldsFnameLnamePostcode = {
-    'UK': 'DONT FORGET ABOUT ME!',  
+  ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
+    EN: 'DONT FORGET ABOUT ME!',  
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
-  RegistrationPageExistingEmail = {
-    'UK': 'LOOKS LIKE YOU ALREADY HAVE AN ACCOUNT',
+  RegistrationPageExistingEmail: TranslationMap = {
+    EN: 'LOOKS LIKE YOU ALREADY HAVE AN ACCOUNT',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
-  PrivacyPolicyURL = {
-    'UK': 'privacy-notice',
+  PrivacyPolicyURL: TranslationMap = {
+    EN: 'privacy-notice',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
-  Premier = {
-    'UK': 'PREMIER',   
+  Premier: TranslationMap = {
+    EN: 'PREMIER',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
-  PremierText = {
-    'UK': 'FREE NEXT DAY DELIVERY FOR 1 YEAR!',
+  PremierText: TranslationMap = {
+    EN: 'FREE NEXT DAY DELIVERY FOR 1 YEAR!',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 }
 
-export default new AssertionText();
+export default new assertionText();

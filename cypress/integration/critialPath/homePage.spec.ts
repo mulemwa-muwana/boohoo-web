@@ -6,6 +6,7 @@ import HomePage from '../../pom/home.page';
 import PrivacyPolicyPage from '../../pom/privacypolicy.page';
 import SocialsPage from '../../pom/socials.page';
 import homePage from '../../pom/home.page';
+import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 
 describe('Home Page', function () {
     
@@ -64,60 +65,23 @@ describe('Home Page', function () {
         homePage.assertions.counterOnHeaderPresent();
       });
 
-      it('Verify Header - WOMENS page opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('NEW IN');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('womens');
-      });
-
-      it('Verify Header - MENS page opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('MENS');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('mens');
-      });
-
-      it('Verify Mega Menu - Sale link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('SALE');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('sale');
+      it.only('Verify Mega Menu - Sale link opens', () => {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink['EN']);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale['EN']);
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavAllSale['EN'].toLowerCase());
       });
  
       it('Verify Mega Menu - NewIn link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('NEW IN');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('new-in');
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing['EN']);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
       });
 
       it('Verify Mega Menu - Clothing link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('CLOTHING');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('womens');
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing['EN']);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
       });
-
-      it('Verify Mega Menu - Dresses link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('DRESSES');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('dress');
-      });
-
-      it('Verify Mega Menu - Tops link opens link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('TOPS');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('tops');
-      });
-
-      it('Verify Mega Menu - Shoes&Accessories link opens', () => {
-        HomePage.click.allShoesLink();
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('shoes');
-      });
-
-      it('Verify Mega Menu - Ocasion wear link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu(' OCCASION WEAR');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('occasion-wear');
-      });
-
-      it('Verify Mega Menu - Beauty link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu('BEAUTY');
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('beauty');
-      });
-
-      it('Verify that promo content slots are displayed (if configured)', () => {
-        HomePage.assertions.assertPromoLinkHeaderIsVisible();
-
-      }); 
     });
 
   });

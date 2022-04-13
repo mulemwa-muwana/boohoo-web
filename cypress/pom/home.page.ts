@@ -38,7 +38,10 @@ class HomePage implements AbstractPage {
       cy.get('.b-header_wishlist-icon > .i-icon').click();
     },
     cartIcon (){
-      cy.get('.b-minicart_icon-link').click();
+      cy.get('.b-minicart_icon-link').should('be.visible');
+      cy.get('.b-minicart-actions > .m-outline').then(element =>{
+        cy.wrap(element).invoke('show').click();
+      });
     },
     
     // MEGA MENU - MAIN NAV

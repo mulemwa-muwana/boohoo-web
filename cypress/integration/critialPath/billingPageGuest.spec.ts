@@ -1,4 +1,4 @@
-import BillingPage from '../../pom/billigGuest.page';
+import BillingPage from '../../pom/billingGuest.page';
 import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
@@ -30,22 +30,26 @@ describe('Billing page functionality for guest user', function (){
     BillingPage.assertions.assertShippingMethodPresent('standard');
   });
   it('Verify that guest user can change shipping address', function (){
-   
+    BillingPage.click.changeShippingAddress();
   });
   it('Verify that guest user can change shipping method', function (){
-   
+    BillingPage.click.changeShippingMethod();
   });
   it('Verify that email field is filled with correct email address', function (){
-   
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      BillingPage.assertions.assertEmailIsCorrect(credentials.guest);
+    });
   });
   it('Verify that subscription block is displayed', function (){
-   
+    BillingPage.assertions.assertSubscriptionBlockPresent();
   });
   it('Verify that date of birth form is present', function (){
-   
+    BillingPage.assertions.assertDateFormIsPresent();
   });
   it('Verify that guest user can select date of birth', function (){
-   
+    BillingPage.actions.selectDate('23', 'May', '2001');
+    BillingPage.assertions.assertDateIsSelected('23', 'May', '2001');
+
   });
   it('Verify that guest user cannot place order if email field is empty', function (){
    

@@ -30,7 +30,7 @@ class assertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
-    EN: 'DONT FORGET ABOUT ME!',  
+    EN: 'Don’t forget about me!',  
     FR: '',
     NL: '',
     DE: '',

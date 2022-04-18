@@ -30,6 +30,9 @@ export type CardDetails = {
     end: string;
     owner: string;
     date: string;
+    month: string;
+    year: string;
+    code: string;
 }
 
 export type SKU = {

@@ -30,6 +30,9 @@ export type CardDetails = {
     end: string;
     owner: string;
     date: string;
+    month: string;
+    year: string;
+    code: string;
 }
 
 export type SKU = {
@@ -40,6 +43,18 @@ export type Locale = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL
 
 export type TranslationMap = { [key in Locale]: string };
 
+<<<<<<< HEAD
+export type PaymentMethodSelector = {
+    card: string;
+    payPal: string;
+    klarna: string;
+    clearPay: string;
+    amazonPay: string;
+    layBuy: string;
+    zipPay: string;
+}
+
+=======
 export type Sizes = 'UK' | 'US';
 
 export type SizesMap = { [key in Sizes]: string };
@@ -47,3 +62,4 @@ export type SizesMap = { [key in Sizes]: string };
 export type Currencies = 'GBP' | 'EUR' | 'USD' ;
 
 export type PriceMap = { [key in Currencies]: string };
+>>>>>>> master

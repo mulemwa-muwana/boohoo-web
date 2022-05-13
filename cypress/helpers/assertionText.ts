@@ -30,7 +30,7 @@ class assertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
-    EN: 'DONT FORGET ABOUT ME!',  
+    EN: 'Don’t forget about me!',  
     FR: '',
     NL: '',
     DE: '',
@@ -87,6 +87,20 @@ class assertionText {
 
   PremierText: TranslationMap = {
     EN: 'FREE NEXT DAY DELIVERY FOR 1 YEAR!',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  GiftCard: TranslationMap = {
+    EN: 'GIFT CARD APPLIED',
     FR: '',
     NL: '',
     DE: '',

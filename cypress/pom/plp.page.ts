@@ -18,7 +18,7 @@ class PlpPage implements AbstractPage {
     styleRefinement (){
       cy.get('#searchRefineBarAccordionItemBtn-style > span').click();
     },
-    colorRefinements (){
+    colorRefinement (){
       cy.get('#searchRefineBarAccordionItemBtn-colour > span').click();
     },
     priceRefinements (){
@@ -34,12 +34,42 @@ class PlpPage implements AbstractPage {
       cy.get('#plp-sort-desktop').click();
     },
     priceVariant (){
-      cy.get(':nth-child(2) > .b-refinement_radio > .b-refinement_radio-label').click();
+      cy.get('#searchRefineBarAccordionItemBtn-price').click();
+    },
+
+    selectRefinementVariantShopByFit (text: string){
+      cy.get('#refinementAttributesList-shop-by-fit').contains(text).click({force: true});
+      cy.wait(5000);
     },
     
-    // Refinement variants: Colours, Sizes, occassions
-    selectRefinementVariant (text: string){
-      cy.contains(text).click({force: true});
+    selectRefinementVariantColour (text: string){
+      cy.get('#refinementAttributesList-colour').contains(text).click({force: true});
+      cy.wait(5000);
+    },
+
+    selectRefinementVariantStyle (text: string){
+      cy.get('#refinementAttributesList-style').contains(text).click({force: true});
+      cy.wait(5000);
+    },
+
+    selectRefinementVariantSize (text: string){
+      cy.get('#refinementAttributesList-size').contains(text).click({force: true});
+      cy.wait(5000);
+    },
+
+    selectRefinementVariantCategory (text: string){
+      cy.get('#searchRefineBarAccordionItemInner-category').contains(text).click({force: true});
+      cy.wait(5000);
+    },
+
+    selectRefinementVariantOccassion (text: string){
+      cy.get('#searchRefineBarAccordionItemInner-occasion').contains(text).click({force: true});
+      cy.wait(5000);
+    },
+
+    selectRefinementVariantShopByPrice (text: string){
+      cy.get('#searchRefineBarAccordionItemInner-price').contains(text).click({force: true});
+      cy.wait(5000);
     },
 
     // Load more products
@@ -61,9 +91,9 @@ class PlpPage implements AbstractPage {
   };
 
   assertions = {
-    assertOnPage (){
+    assertOnPage (text: string){
       cy.url().then(currentUrl => {
-        expect(currentUrl).to.contain('back-in-stock');
+        expect(currentUrl).to.contain(text);
       }); 
     },
     assertNumberOfItemsTextISVisible (){
@@ -95,7 +125,7 @@ class PlpPage implements AbstractPage {
     assertProductVariantIsApplied (text: string) {
       cy.url().should('include', text);
     },
-    
+       
   };
 }
 

@@ -15,7 +15,7 @@ class megaMenuLinksLanguages {
     IT: 'TUTTO L’ABBIGLIAMENTO',
     ES: 'TODA LA ROPA',
 
-  }
+  };
 
   subnavClothingNewIn: TranslationMap = {
     EN: 'New In',
@@ -47,7 +47,7 @@ class megaMenuLinksLanguages {
   };
 
   subnavAllSale = {
-    EN: 'SALE',
+    EN: 'All Sale',
 
   };
 

@@ -20,7 +20,7 @@ class BillingPage implements AbstractPage {
 
   actions = {
     selectDate (day: string, month: string, year: string){
-      cy.get('select[id="dwfrm_profile_customer_dayofbirth"]').select(day);
+      cy.get('select[id="dwfrm_profile_customer_dayofbirth"]').should('be.visible').select(day);
       cy.get('select[id="dwfrm_profile_customer_monthofbirth"]').select(month);
       cy.get('select[id="dwfrm_profile_customer_yearOfBirth"]').select(year);
     },
@@ -37,11 +37,19 @@ class BillingPage implements AbstractPage {
       cy.get('#dwfrm_billing_contactInfoFields_email').clear();
     },
     addBillingAddress (address: string){
+      cy.wait(3000);
       cy.get('#LoqateAutocompleteBilling').type(address);
-      cy.get('#LoqateAutocomplete').clear();
-      cy.get('#LoqateAutocomplete').type(address);
-      cy.get('.pcaitem').eq(1).invoke('show');
-
+      cy.wait(6000);
+      cy.get('.pcaitem').eq(1).invoke('show').click();
+    },
+    addPromoCode (promo: string){
+      cy.get('#dwfrm_coupon_couponCode').type(promo);
+      cy.get('#dwfrm_coupon_couponCode').click();
+    },
+    addGiftCard (giftCard: string){
+      cy.get('.b-gift_certificate-add').click();
+      cy.get('#dwfrm_billing_giftCertCode').should('be.visible').type(giftCard);
+      cy.get('#add-giftcert').click();
     }
   
   };
@@ -77,10 +85,23 @@ class BillingPage implements AbstractPage {
       cy.get('#dwfrm_billing_addressFields_useShipping').should('be.checked');
     },
     assertBillingAddressFormIsPresent (){
-      cy.get('.b-billing_address-form').should('be.visible').and('be.empty');
+      cy.get('.b-billing_address-form').should('be.visible');
     },
     assertNewBillingAddress (address: string){
-      cy.get('div[data-ref="summarizedAddressBlock"]').should('be.visible').and('contain', address);
+      cy.get('div[data-ref="summarizedAddressBlock"]').should('be.visible').and('include.text', address);
+    },
+    assertPaymentMethodIsDisplayed (method: string){
+      cy.get(method).should('be.visible');
+    },
+    assertPromoCodeIsApplied (promoName: string){
+      cy.get('.success coupon-item-name').should('be.visible');
+      cy.get('.order-discount-wrapper').should('be.visible');
+      cy.get('.order-discount-message').should('include.text', promoName);
+    },
+    assertGiftCardIsApplied (giftValue: string){
+      cy.get('.b-gift_certificate-info_label').should('be.visible').and('include.text','Gift card applied');
+      cy.get('.b-summary_table-name').should('be.visible').and('include.text', 'Gift card');
+      cy.get('.b-summary_table-value').should('be.visible').and('include.text', giftValue);
     }
   };
 }

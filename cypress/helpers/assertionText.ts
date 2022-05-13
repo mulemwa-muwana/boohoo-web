@@ -98,6 +98,20 @@ class assertionText {
     IT: '',
     ES: ''
   };
+
+  GiftCard: TranslationMap = {
+    EN: 'GIFT CARD APPLIED',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 }
 
 export default new assertionText();

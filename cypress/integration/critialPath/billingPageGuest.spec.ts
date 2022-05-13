@@ -4,7 +4,7 @@ import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
-import { SKU, LoginCredentials, CardDetails } from '../../support/types';
+import { SKU, LoginCredentials, CardDetails, PaymentMethodSelector } from '../../support/types';
 
 describe('Billing page functionality for guest user', function (){
   beforeEach (()=>{
@@ -76,33 +76,54 @@ describe('Billing page functionality for guest user', function (){
     });
     BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode['EN']);
   });
-  it.only('Verify that billing address can be same as shipping address', function (){
+  it('Verify that billing address can be same as shipping address', function (){
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that guest user can submit new billing address', function (){
     BillingPage.click.shippingCheckbox();
     BillingPage.assertions.assertBillingAddressFormIsPresent();
-    BillingPage.actions.addBillingAddress('12');
-    BillingPage.assertions.assertNewBillingAddress('12');
+    BillingPage.actions.addBillingAddress('@1 Web');
+    BillingPage.assertions.assertNewBillingAddress('1 Grange Close');
   });
   it('Verify that guest user can enter promo code and that is applied to order summary', function (){
-    
+    BillingPage.actions.selectDate('23', 'May', '2001');
+    BillingPage.actions.addPromoCode('EXTRA');
+    BillingPage.assertions.assertPromoCodeIsApplied('EXTRA 5% OFF EVERYTHING');
   });
   it('Verify that guest user can enter gift card and that is applied to order summary', function (){
-   
+    BillingPage.actions.selectDate('23', 'May', '2001');
+    BillingPage.actions.addGiftCard('CALRYTIZDOROMYOW');
+    BillingPage.assertions.assertGiftCardIsApplied('-£10.00');
   });
-  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function (){
-   
+  it.only('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function (){
+    cy.fixture('paymentMethods').then((method: PaymentMethodSelector)=>{
+      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.card);
+      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
+      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.klarna);
+      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.clearPay);
+      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
+      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
+      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay);
+    });
   });
   describe('Verify that guest user can place orders with available payment methods', function (){
     it('Verify that guest user can place order using Credit Card - Visa)', function (){
-   
+      BillingPage.actions.selectDate('23', 'May', '2001');
+      cy.fixture('visa').then((card: CardDetails) => {
+        BillingPage.actions.selectCreditCard(card.cardNo, card.owner, card.month, card.year, card.code);
+      });
     });
     it('Verify that guest user can place order using Credit Card - Master)', function (){
-   
+      BillingPage.actions.selectDate('23', 'May', '2001');
+      cy.fixture('master').then((card: CardDetails) => {
+        BillingPage.actions.selectCreditCard(card.cardNo, card.owner, card.month, card.year, card.code);
+      });
     });
     it('Verify that guest user can place order using Credit Card - Amex)', function (){
-   
+      BillingPage.actions.selectDate('23', 'May', '2001');
+      cy.fixture('amex').then((card: CardDetails) => {
+        BillingPage.actions.selectCreditCard(card.cardNo, card.owner, card.month, card.year, card.code);
+      });
     });
     it('Verify that guest user can place order using PayPal', function (){
    
@@ -114,5 +135,4 @@ describe('Billing page functionality for guest user', function (){
    
     });
   });
-  
 });

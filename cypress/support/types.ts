@@ -43,3 +43,13 @@ export type Locale = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL
 
 export type TranslationMap = { [key in Locale]: string };
 
+export type PaymentMethodSelector = {
+    card: string;
+    payPal: string;
+    klarna: string;
+    clearPay: string;
+    amazonPay: string;
+    layBuy: string;
+    zipPay: string;
+}
+

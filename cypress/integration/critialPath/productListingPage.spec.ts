@@ -11,7 +11,7 @@ describe('Home Page', function (){
     HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale['EN']);
   });
   it('Verify that plp page opens', () => {
-    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.saleLink['EN']);
+    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.saleLink['EN'].toLowerCase());
   });
   it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
@@ -63,7 +63,7 @@ describe('Home Page', function (){
       plpPage.click.selectRefinementVariantColour(productVariations.ColorBlack['EN']);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.ColorBlack['EN']);
     });
-    it.only('Verify price refinement is applied', () => {
+    it('Verify price refinement is applied', () => {
       plpPage.click.priceRefinements();
       plpPage.click.selectRefinementVariantShopByPrice(productVariations.priceRangePLPrefinements.range0to5); 
     });

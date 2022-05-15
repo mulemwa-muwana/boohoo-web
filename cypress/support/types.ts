@@ -43,7 +43,14 @@ export type Locale = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL
 
 export type TranslationMap = { [key in Locale]: string };
 
-<<<<<<< HEAD
+export type Sizes = 'UK' | 'US';
+
+export type SizesMap = { [key in Sizes]: string };
+
+export type Currencies = 'GBP' | 'EUR' | 'USD' ;
+
+export type PriceMap = { [key in Currencies]: string };
+
 export type PaymentMethodSelector = {
     card: string;
     payPal: string;
@@ -53,13 +60,3 @@ export type PaymentMethodSelector = {
     layBuy: string;
     zipPay: string;
 }
-
-=======
-export type Sizes = 'UK' | 'US';
-
-export type SizesMap = { [key in Sizes]: string };
-
-export type Currencies = 'GBP' | 'EUR' | 'USD' ;
-
-export type PriceMap = { [key in Currencies]: string };
->>>>>>> master

@@ -81,7 +81,7 @@ class PlpPage implements AbstractPage {
 
     // Product details (image, name, price, wishlist, quickview)
     wishlistOnPlpImage (){
-      cy.get('.b-wishlist_button-icon').eq(0).click();
+      cy.get('.b-wishlist_button-icon').eq(1).click();
     }
     
   };
@@ -105,7 +105,7 @@ class PlpPage implements AbstractPage {
       cy.get('div.b-load_more > a').should('be.visible');
     },
     assertProductImageIsDisplayed (){
-      cy.get('.b-product_tile-image_image').eq(0).should('be.visible').should('have.attr', 'src');
+      cy.get('.b-product_tile-image_image').eq(1).should('be.visible').should('have.attr', 'src');
     },
     assertItemIsAddedToWishlist (){
       cy.get('.b-header_wishlist-count').should('contain','01');
@@ -114,10 +114,10 @@ class PlpPage implements AbstractPage {
       cy.get('.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link').eq(0).should('have.css', 'font-family');
     },
     assertProductPriceIsDispayed (){
-      cy.get('span.b-price-item.m-new').eq(0).should('have.css', 'color').should('be.visible');
+      cy.get('span.b-price-item.m-new').eq(1).should('have.css', 'color').should('be.visible');
     },
     assertNewProductPriceIsDispayed (){
-      cy.get('.b-price-item m-new').eq(0).should('be.visible').should('have.css', 'font-family');
+      cy.get('.b-price-item m-new').eq(1).should('be.visible').should('have.css', 'font-family');
     },
     assertProductColorIsDisplayedOnPLP () {
       cy.get('.b-product_tile_swatches-swatch_image').eq(1).should('have.attr', 'src');

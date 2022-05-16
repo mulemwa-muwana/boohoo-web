@@ -2,6 +2,7 @@ import { GotoOptions } from '../support/types';
 import * as CommonActions from '../helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import AssertionText from '../helpers/AssertionText';
+import assertionText from '../helpers/AssertionText';
 
 class PrivacyPolicyPage implements AbstractPage {
 
@@ -21,9 +22,10 @@ class PrivacyPolicyPage implements AbstractPage {
 
   assertions = {
     assertOnPage () {
-      cy.url().then(currentUrl => {
-        expect(currentUrl).to.contain(AssertionText.PrivacyPolicyURL['UK']);
-      }); 
+      cy.url().should('include', assertionText.PrivacyPolicyURL.EN);
+    },
+    assertPrivacyNoticyPageOpens (){
+      cy.get('span.b-page_title').should('contain.text', assertionText.PrivacyPolicyH1.EN);
     }
   };
 }

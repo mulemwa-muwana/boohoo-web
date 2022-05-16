@@ -65,10 +65,10 @@ describe('Home Page', function () {
         homePage.assertions.counterOnHeaderPresent();
       });
 
-      it.only('Verify Mega Menu - Sale link opens', () => {
+      it('Verify Mega Menu - Sale link opens', () => {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink['EN']);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale['EN']);
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavAllSale['EN'].toLowerCase());
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.saleLink['EN'].toLowerCase());
       });
  
       it('Verify Mega Menu - NewIn link opens', () => {
@@ -110,6 +110,7 @@ describe('Home Page', function () {
     describe('Verify the content page (Privacy Policy) is displayed.', () => {
       it('First link.', () => {
         GlobalFooter.click.privacyPolicyLink();
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
         PrivacyPolicyPage.assertions.assertOnPage();
       });
     

@@ -30,7 +30,7 @@ class assertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
-    EN: 'Don’t forget about me!',  
+    EN: 'Dont forget about me!',  
     FR: '',
     NL: '',
     DE: '',
@@ -59,6 +59,20 @@ class assertionText {
 
   PrivacyPolicyURL: TranslationMap = {
     EN: 'privacy-notice',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  PrivacyPolicyH1: TranslationMap = {
+    EN: '\nPrivacy Notice\n',
     FR: '',
     NL: '',
     DE: '',

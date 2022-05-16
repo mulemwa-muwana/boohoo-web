@@ -95,7 +95,7 @@ describe('Billing page functionality for guest user', function (){
     BillingPage.actions.addGiftCard('CALRYTIZDOROMYOW');
     BillingPage.assertions.assertGiftCardIsApplied('-£10.00');
   });
-  it.only('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function (){
+  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function (){
     cy.fixture('paymentMethods').then((method: PaymentMethodSelector)=>{
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.card);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
@@ -126,7 +126,7 @@ describe('Billing page functionality for guest user', function (){
       });
     });
     it('Verify that guest user can place order using PayPal', function (){
-   
+      BillingPage.actions.selectDate('23', 'May', '2001');
     });
     it('Verify that guest user can place order using Klarna', function (){
    

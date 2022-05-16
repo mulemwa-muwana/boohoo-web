@@ -112,6 +112,35 @@ class assertionText {
     IT: '',
     ES: ''
   };
+
+  inStock: TranslationMap = {
+    EN: "YAY! It's in stock",
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  selectSize: TranslationMap = {
+    EN: 'Oops please select a size',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
 }
 
 export default new assertionText();

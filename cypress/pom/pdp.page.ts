@@ -47,10 +47,10 @@ class PdpPage implements AbstractPage {
 
   assertions = {
     assertProductNameIsDisplayed (productName: string){
-      cy.get('.b-product_details-name').should('be.visible').and('have.text', productName);
+      cy.get('.b-product_details-name').should('be.visible').and('include.text', productName);
     },
     assertProductCodeIsDisplayed (SKU: string){
-      cy.get('span[data-tau="b-product_details-id"]').should('be.visible').and('have.text', SKU);
+      cy.get('span[data-tau="b-product_details-id"]').should('be.visible').and('include.text', SKU);
     },
     assertProductPriceIsDisplayed (){
       cy.get('.b-product_details-price').should('be.visible').and('not.have.text', '0.00');
@@ -66,8 +66,8 @@ class PdpPage implements AbstractPage {
     assertColorIsDisplayed (color: string){
       cy.get('#product-image-0').should('have.attr', 'src').and('include',color);
     },
-    assertSizeIsAvailable (){
-      cy.get('.b-availability-status').should('contain',"YAY! It's in stock");
+    assertSizeIsAvailable (stock: string){
+      cy.get('.b-availability-status').should('contain', stock);
     },
     assertSizeIsNotAvailable (){
       cy.get ('.b-product_addtocard-availability').should('have.text', 'Out of Stock');

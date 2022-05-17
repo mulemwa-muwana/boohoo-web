@@ -105,7 +105,7 @@ class PlpPage implements AbstractPage {
       cy.get('div.b-load_more > a').should('be.visible');
     },
     assertProductImageIsDisplayed (){
-      cy.get('.b-product_tile-image_image').eq(1).should('be.visible').should('have.attr', 'src');
+      cy.get('.b-product_tile-image > .null').eq(1).should('be.visible').should('have.attr', 'src');
     },
     assertItemIsAddedToWishlist (){
       cy.get('.b-header_wishlist-count').should('contain','01');
@@ -114,7 +114,7 @@ class PlpPage implements AbstractPage {
       cy.get('.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link').eq(0).should('have.css', 'font-family');
     },
     assertProductPriceIsDispayed (){
-      cy.get('span.b-price-item.m-new').eq(1).should('have.css', 'color').should('be.visible');
+      cy.get('.b-price-item').eq(1).should('be.visible').should('not.be.empty');
     },
     assertNewProductPriceIsDispayed (){
       cy.get('.b-price-item m-new').eq(1).should('be.visible').should('have.css', 'font-family');

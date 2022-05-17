@@ -1,5 +1,5 @@
 // Common actions.
-/// <reference types="cypress" />
+// / <reference types="cypress" />
 
 export function randomEmail (): string {
   const randomEmail = 'email<RANDOM>@boohoo.com'.replace('<RANDOM>', String(Date.now()));

@@ -6,38 +6,31 @@ import {LoginCredentials } from '../../support/types';
 describe('Login Functionality tests', function (){
 
   beforeEach(() => {
-
     HomePage.goto();      
     HomePage.click.logInIcon();
   });
     
   it('Verify that user can login with valid credentials', function () {
 
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      
+    cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
     });
   });
 
-  it('Verify that user can not login with invalid credentials', function () {
-    
+  it('Verify that user can not login with invalid credentials', function () {  
     LoginPage.actions.login('euboohoo@gmail.com', 'boohoo12345');    
     HomePage.assertions.assertErrorLoginMessageIsPresent("You have 4 more login attempts until your account's locked");
-
   });
     
-  it('Verify that user can not login with non-registered mail address', function () {
-    
+  it('Verify that user can not login with non-registered mail address', function () {   
     LoginPage.actions.login('unknown@mail.com', 'boohoo123');
     HomePage.assertions.assertErrorLoginMessageIsPresent("Sorry, your email or password doesn't match our records.");
- 
   });
     
   it('Verify that user can log out', function () {
 
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      
+    cy.fixture('users').then((credentials: LoginCredentials) => {   
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
     });

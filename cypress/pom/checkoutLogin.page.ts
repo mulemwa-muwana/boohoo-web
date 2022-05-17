@@ -1,3 +1,4 @@
+import assertionText from '../helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -14,7 +15,7 @@ class CheckoutPage implements AbstractPage {
       });    
     },
     continueAsRegisteredUser (){
-      cy.get(':nth-child(9) > .b-login_form-group_cta > .b-button').then(element => {
+      cy.get(':nth-child(7) > .b-login_form-group_cta > .b-button').then(element => {
         cy.wrap(element).click();
       });
     },
@@ -49,8 +50,8 @@ class CheckoutPage implements AbstractPage {
       cy.get('#dwfrm_login_guestEmail').should('be.visible');
     },
     assertPremierIsDisplayed (){
-      cy.get('b-ngvip-title').should('have.text', 'PREMIER');
-      cy.get('b-ngvip-subtitle').should('have.text', 'FREE NEXT DAY DELIVERY FOR 1 YEAR!');
+      cy.get('.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title').should('have.text', assertionText.Premier.EN);
+      cy.get('.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle').should('have.text', assertionText.PremierText.EN);
     }
   };
 }

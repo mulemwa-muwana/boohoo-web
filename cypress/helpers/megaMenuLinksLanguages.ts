@@ -32,6 +32,21 @@ class megaMenuLinksLanguages {
 
   };
 
+  subnavClothingNewInURL: TranslationMap = {
+    EN: 'new-in',
+    NL: 'nieuw-binnen',
+    DE: 'neu-eingetroffen',
+    FR: 'nouveautés',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'nyheter',
+    IL: '',
+    IT: 'nuovi-arrivi',
+    ES: 'novedades',
+
+  };
+
   saleLink: TranslationMap = {
     EN: 'SALE',
     FR: '',

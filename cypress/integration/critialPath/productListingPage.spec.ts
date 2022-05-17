@@ -29,7 +29,7 @@ describe('Home Page', function (){
     it('Verify product price is displayed', () => {
       plpPage.assertions.assertProductPriceIsDispayed();
     });
-    it('Verify new product price is displayed', () => {
+    it.skip('Verify new product price is displayed', () => {
         
       // To be discussed is it needed because many products dont have it (maybe looping)
     });
@@ -45,23 +45,23 @@ describe('Home Page', function (){
   describe('Product refinements', () => {
     it('Verify category refinement is applied', () => {
       plpPage.click.categoryRefinement();  
-      plpPage.click.selectRefinementVariantCategory(productVariations.productTops['EN']);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productTops['EN']);
+      plpPage.click.selectRefinementVariantCategory(productVariations.productTops.EN);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productTops.EN);
     });
     it('Verify size refinement is applied', () => {
       plpPage.click.sizeRefinement();
-      plpPage.click.selectRefinementVariantSize(productVariations.Size['UK']);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.Size['UK']);
+      plpPage.click.selectRefinementVariantSize(productVariations.Size.UK);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.Size.UK);
     });
     it('Verify style refinement is applied', () => {
       plpPage.click.styleRefinement();
-      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle['EN']);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle['EN']);
+      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle.EN);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle.EN);
     });
     it('Verify colour refinement is applied', () => {
       plpPage.click.colorRefinement();
-      plpPage.click.selectRefinementVariantColour(productVariations.ColorBlack['EN']);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.ColorBlack['EN']);
+      plpPage.click.selectRefinementVariantColour(productVariations.ColorBlack.EN);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.ColorBlack.EN);
     });
     it('Verify price refinement is applied', () => {
       plpPage.click.priceRefinements();
@@ -69,13 +69,13 @@ describe('Home Page', function (){
     });
     it('Verify shop by fit refinement is applied', () => {
       plpPage.click.shopByFitRefinements();
-      plpPage.click.selectRefinementVariantShopByFit(productVariations.productShopByFitRefinementTall['EN']);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByFitRefinementTall['EN']);
+      plpPage.click.selectRefinementVariantShopByFit(productVariations.productShopByFitRefinementTall.EN);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByFitRefinementTall.EN);
     });
     it('Verify occasion refinement is applied', () => {
       plpPage.click.occassionRefinement();  
-      plpPage.click.selectRefinementVariantOccassion(productVariations.productShopByOccassionRefinementCasual['EN']);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByOccassionRefinementCasual['EN']);   
+      plpPage.click.selectRefinementVariantOccassion(productVariations.productShopByOccassionRefinementCasual.EN);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByOccassionRefinementCasual.EN);   
     });
   });
 }); 

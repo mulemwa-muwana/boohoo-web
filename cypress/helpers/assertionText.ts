@@ -86,7 +86,7 @@ class assertionText {
   };
 
   Premier: TranslationMap = {
-    EN: 'PREMIER',
+    EN: '\nPREMIER\n',
     FR: '',
     NL: '',
     DE: '',
@@ -100,7 +100,7 @@ class assertionText {
   };
 
   PremierText: TranslationMap = {
-    EN: 'FREE NEXT DAY DELIVERY FOR 1 YEAR!',
+    EN: '\nFREE NEXT DAY DELIVERY FOR 1 YEAR!\n',
     FR: '',
     NL: '',
     DE: '',

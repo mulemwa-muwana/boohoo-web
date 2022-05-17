@@ -69,7 +69,7 @@ describe('Product Details Page tests', function () {
     PdpPage.click.returnLink();
     PdpPage.assertions.assertStartReturnPageIsDisplayed();
   });
-  it.only('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function (){
+  it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function (){
     PdpPage.assertions.assertCompleteLookDisplayed();
     PdpPage.click.shopNowLinkNL();
     PdpPage.assertions.assertLinkNewSeasonIsLinked();

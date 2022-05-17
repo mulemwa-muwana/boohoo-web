@@ -154,7 +154,35 @@ class assertionText {
     IT: '',
     ES: ''
   };
+  
+  loginAttempts: TranslationMap = {
+    EN: 'You have 4 more login attempts',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 
+  unknownEmail: TranslationMap = {
+    EN: " Sorry, your email or password doesn't match our records",
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+ 
 }
 
 export default new assertionText();

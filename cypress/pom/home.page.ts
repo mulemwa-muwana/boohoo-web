@@ -128,7 +128,7 @@ class HomePage implements AbstractPage {
 
     //  Login Attempts
     assertErrorLoginMessageIsPresent (text: string){
-      cy.get('.b-message m-error m-login').should('be.visible').and('include', text);
+      cy.get('.b-message-copy').should('be.visible').and('contain', text);
     },
     assertForgotPasswordMessageisDisplayed (email: string){
       cy.get('.b-dialog-window').should('be.visible').and('contain', email);

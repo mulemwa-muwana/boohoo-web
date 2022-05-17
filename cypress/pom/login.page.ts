@@ -11,13 +11,13 @@ class LoginPage implements AbstractPage {
   click = {};
   assertions = {
     assertLoginFormIsPresent (){
-      cy.get('.l-checkout_login-forms').should('be.visible');
+      cy.get(':nth-child(1) > .l-service-section_inner > .b-form_box').should('be.visible');
     }
   };
 
   actions = {
     login (user: string, pass: string) {
-      cy.get('a[data-tau="header_signIn"]').click();
+      cy.get('.b-header_login-icon > .i-icon').click();
       cy.get('#dwfrm_login_email').type(user); 
       cy.get('#dwfrm_login_password').type(pass);
       cy.get('button[data-tau="login_submit"]').click();

@@ -1,3 +1,4 @@
+import assertionText from '../../helpers/assertionText';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
@@ -6,8 +7,8 @@ import {LoginCredentials } from '../../support/types';
 describe('Login Functionality tests', function (){
 
   beforeEach(() => {
-    HomePage.goto();      
-    HomePage.click.logInIcon();
+
+    HomePage.goto();  
   });
     
   it('Verify that user can login with valid credentials', function () {
@@ -20,12 +21,14 @@ describe('Login Functionality tests', function (){
 
   it('Verify that user can not login with invalid credentials', function () {  
     LoginPage.actions.login('euboohoo@gmail.com', 'boohoo12345');    
-    HomePage.assertions.assertErrorLoginMessageIsPresent("You have 4 more login attempts until your account's locked");
+    HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts['EN']);
+
   });
     
   it('Verify that user can not login with non-registered mail address', function () {   
     LoginPage.actions.login('unknown@mail.com', 'boohoo123');
-    HomePage.assertions.assertErrorLoginMessageIsPresent("Sorry, your email or password doesn't match our records.");
+    HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail['EN']);
+ 
   });
     
   it('Verify that user can log out', function () {
@@ -39,6 +42,7 @@ describe('Login Functionality tests', function (){
   });
 
   it('Verify that user can start process of reseting password using the "Forgot your password?" link', function () {
+    HomePage.click.logInIcon(); 
     HomePage.actions.forgotPassword('jelenaboohoo@gmail.com');
     HomePage.assertions.assertForgotPasswordMessageisDisplayed('jelenaboohoo@gmail.com');
 

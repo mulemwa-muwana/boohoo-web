@@ -1,8 +1,7 @@
 import { GotoOptions } from '../support/types';
 import * as CommonActions from '../helpers/common';
 import AbstractPage from './abstract/abstract.page';
-import AssertionText from '../helpers/AssertionText';
-import assertionText from '../helpers/AssertionText';
+import assertionText from '../helpers/assertionText';
 
 class PrivacyPolicyPage implements AbstractPage {
 

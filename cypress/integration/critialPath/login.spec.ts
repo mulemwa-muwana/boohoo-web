@@ -13,22 +13,19 @@ describe('Login Functionality tests', function (){
     
   it('Verify that user can login with valid credentials', function () {
 
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      
+    cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
     });
   });
 
-  it('Verify that user can not login with invalid credentials', function () {
-    
+  it('Verify that user can not login with invalid credentials', function () {  
     LoginPage.actions.login('euboohoo@gmail.com', 'boohoo12345');    
     HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts['EN']);
 
   });
     
-  it('Verify that user can not login with non-registered mail address', function () {
-    
+  it('Verify that user can not login with non-registered mail address', function () {   
     LoginPage.actions.login('unknown@mail.com', 'boohoo123');
     HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail['EN']);
  
@@ -36,8 +33,7 @@ describe('Login Functionality tests', function (){
     
   it('Verify that user can log out', function () {
 
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      
+    cy.fixture('users').then((credentials: LoginCredentials) => {   
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
     });

@@ -66,22 +66,17 @@ describe('Home Page', function () {
       });
 
       it('Verify Mega Menu - Sale link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink['EN']);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale['EN']);
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.saleLink['EN'].toLowerCase());
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink.EN);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale.EN);
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.saleLink.EN.toLowerCase());
       });
  
       it('Verify Mega Menu - NewIn link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing['EN']);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing.EN);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn.EN);
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewInURL.EN);
       });
 
-      it('Verify Mega Menu - Clothing link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing['EN']);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewIn['EN']);
-      });
     });
 
   });

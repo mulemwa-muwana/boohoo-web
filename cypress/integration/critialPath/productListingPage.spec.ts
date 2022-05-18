@@ -7,11 +7,11 @@ describe('Home Page', function (){
   
   beforeEach(() => {
     HomePage.goto();
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink['EN']);
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale['EN']);
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink.EN);
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale.EN);
   });
   it('Verify that plp page opens', () => {
-    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.saleLink['EN'].toLowerCase());
+    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.saleLink.EN.toLowerCase());
   });
   it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();

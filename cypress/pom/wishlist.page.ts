@@ -44,10 +44,13 @@ class WishListPage implements AbstractPage {
 
   assertions = {
     assertItemIsAddedToWishlist () {
-      cy.get('div.b-product_actions.m-auxiliary.b-product_wishlist > button > span').should('have.text', assertionText.WishlistItemsAdded['UK']);
+      cy.get('.b-header_wishlist-count').should('not.be.empty');
     },
     assertWishListIsEmpty () {
       cy.get('.b-wishlist-empty > :nth-child(2)').should('have.text', assertionText.WishListIsEmpty['UK']);
+    },
+    assertItemIsAddedtoWishlistAlertText (msg: string){
+      cy.get('.b-global_alerts-item').should('have.text', msg);
     }
   };
 }

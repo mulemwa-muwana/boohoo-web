@@ -15,6 +15,20 @@ class assertionText {
     ES: ''
   };
 
+  WishlistItemsAddedAlert: TranslationMap = {
+    EN: 'Product added to wish list',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   WishListIsEmpty: TranslationMap = {
     EN: 'You dont have any items saved for later (yet)',
     FR: '',

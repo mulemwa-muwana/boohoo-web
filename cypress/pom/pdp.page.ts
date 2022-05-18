@@ -75,15 +75,15 @@ class PdpPage implements AbstractPage {
     assertProductIsAddedToCart (){
       cy.get('.b-minicart-inner > :nth-child(1) > .b-minicart-title').should('be.visible').and('have.text', '\nAdded to your cart\n');
     },
-    assertErrorMsgForSizeIsDisplayed (){
-      cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', 'Oops please select a size');
+    assertErrorMsgForSizeIsDisplayed (msg: string){
+      cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', msg);
     },
     assertMiniCartIsDisplayed (){
       cy.get('.b-minicart-inner > :nth-child(1) > .b-minicart-title').should('be.visible');
       cy.get('.b-minicart_product-inner').should('be.visible');
     },
-    assertProductIsAddedToWishlist (){
-      cy.get('.m-outline').should('have.text', '\n\nSaved\n');
+    assertProductIsAddedToWishlist (msg: string){
+      cy.get('.m-outline').should('have.text', msg);
     },
     assertStyleNotesArePresent (){
       cy.get('.m-description').should('be.visible').and('not.be.null');

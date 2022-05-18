@@ -4,7 +4,6 @@ import HomePage from '../../pom/home.page';
 import WishListPage from '../../pom/wishlist.page';
 import pdpPage from '../../pom/pdp.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
-import homePage from '../../pom/home.page';
 import assertionText from '../../helpers/assertionText';
 
 describe('Home Page', function () {

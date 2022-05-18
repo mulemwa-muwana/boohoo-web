@@ -141,7 +141,7 @@ class assertionText {
     ES: ''
   };
 
-  selectSize: TranslationMap = {
+  sizeErrorMsg: TranslationMap = {
     EN: 'Oops please select a size',
     FR: '',
     NL: '',

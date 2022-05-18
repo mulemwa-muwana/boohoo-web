@@ -44,7 +44,7 @@ describe('Product Details Page tests', function () {
   });
   it('TC07 Verify if size is not selected, and user tries to add product to a bag, error message is displayed', function (){
     PdpPage.actions.addToCart();
-    PdpPage.assertions.assertErrorMsgForSizeIsDisplayed(assertionText.selectSize['EN']);
+    PdpPage.assertions.assertErrorMsgForSizeIsDisplayed(assertionText.sizeErrorMsg.EN);
   });   
   it('TC08 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function (){
     PdpPage.actions.selectColor(0);
@@ -54,7 +54,7 @@ describe('Product Details Page tests', function () {
   }); 
   it('TC09 Verify that save for later (heart icon) is functional when selected', function (){
     PdpPage.click.addToWishList();
-    PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded['EN']);
+    PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded.EN);
   });
   it('TC10 Verify that Style Notes and Details & Care are displayed when configured', function (){
     PdpPage.assertions.assertStyleNotesArePresent();

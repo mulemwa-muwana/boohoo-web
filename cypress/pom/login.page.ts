@@ -1,4 +1,3 @@
-
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -17,12 +16,7 @@ class LoginPage implements AbstractPage {
 
   actions = {
     login (user: string, pass: string) {
-<<<<<<< HEAD
       cy.get('.b-header_login-icon > .i-icon').click();
-=======
-
-      cy.get('a[data-tau="header_signIn"]').click();
->>>>>>> master
       cy.get('#dwfrm_login_email').type(user); 
       cy.get('#dwfrm_login_password').type(pass);
       cy.get('button[data-tau="login_submit"]').click();

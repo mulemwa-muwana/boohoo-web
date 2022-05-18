@@ -16,6 +16,7 @@ class LoginPage implements AbstractPage {
 
   actions = {
     login (user: string, pass: string) {
+      cy.get('.b-header_login-icon > .i-icon').click();
       cy.get('#dwfrm_login_email').type(user); 
       cy.get('#dwfrm_login_password').type(pass);
       cy.get('button[data-tau="login_submit"]').click();

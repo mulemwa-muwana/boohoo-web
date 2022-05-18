@@ -11,7 +11,7 @@ class PdpPage implements AbstractPage {
       cy.get('.b-product_addtocard-availability').click(); 
     },
     addToWishList () {
-      cy.get('.m-outline > span').click();
+      cy.get('.b-wishlist_button-icon').eq(1).click();
     },
     shippingInfoButton (){
       cy.get('#product-details-btn-shipping').click();

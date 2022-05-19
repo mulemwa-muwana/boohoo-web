@@ -7,6 +7,7 @@ import PrivacyPolicyPage from '../../pom/privacypolicy.page';
 import SocialsPage from '../../pom/socials.page';
 import homePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
+import assertionText from '../../helpers/assertionText';
 
 describe('Home Page', function () {
     
@@ -17,15 +18,15 @@ describe('Home Page', function () {
 
   describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
     it('No login', () => {
-      HomePage.goto();
-      HomePage.assertions.assertUserPanelTitle('Login / Register');
+      HomePage.click.logInIcon();
+      HomePage.assertions.assertUserIsNotLoggedIn(assertionText.assertUserIsNotLoggedIn.EN);
     });
     it('After login', () => {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         LoginPage.goto();
         LoginPage.actions.login(credentials.username, credentials.password);
         HomePage.goto();
-        HomePage.assertions.assertUserPanelTitle(credentials.name);
+        HomePage.assertions.assertUserPanelTitle(assertionText.assertUsername.EN);
       });
     });
        

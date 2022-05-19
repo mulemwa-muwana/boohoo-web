@@ -39,7 +39,7 @@ class HomePage implements AbstractPage {
     },
     cartIcon (){
       cy.get('.b-minicart_icon-link').should('be.visible');
-      cy.get('.b-minicart-actions > .m-outline').then(element =>{
+      cy.get('.b-minicart_icon-link').then(element =>{
         cy.wrap(element).invoke('show').click();
       });
     },
@@ -77,7 +77,7 @@ class HomePage implements AbstractPage {
       console.log(name);
       cy.get('.b-header_login-icon > .i-icon').click();
       cy.get(':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label').click();
-      cy.get('.b-user_greeting-message').should('contain.text', '\nHi'+name+'\n');
+      cy.get('.b-user_greeting-message').should('contain.text', name);
     },
 
     // Search assertions
@@ -96,6 +96,9 @@ class HomePage implements AbstractPage {
     assertAutosearchSuggestionsDispayed () {
 
       // TODO.
+    },
+    assertUserIsNotLoggedIn (msg: string){
+      cy.get('.b-miniaccount-title').should('contain.text', msg);
     },
 
     // Counter (header) assertion

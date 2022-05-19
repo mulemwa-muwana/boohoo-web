@@ -43,8 +43,9 @@ describe('Cart basic functionality for guest user', function (){
     CartPage.assertions.assertPremierSlotsAreVisible();
   });
   it('Verify that guest users are redirected to login page after clicking Checkout CTA', function (){
+    cy.wait(5000);
     CartPage.click.proceedToCheckout();
-    LoginPage.assertions.assertLoginFormIsPresent();
+    CheckoutPage.assertions.assertEmailnFieldForGuestUserIsVisible();
   });
   it('Verify that PayPal CTA is displayed and functional', function (){
     CartPage.assertions.assertPayPalCTAisVisible();
@@ -67,9 +68,11 @@ describe('Cart page for Registered user', function (){
   beforeEach (()=>{
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      HomePage.goto();
-      HomePage.click.logInIcon();
-      LoginPage.actions.login(credentials.username, credentials.password);
+      LoginPage.actions.login(credentials.username, credentials.password); 
+      cy.wait(5000);
+
+      // HomePage.click.cartIcon();  
+      // CartPage.click.clearCart();
     });
     HomePage.goto();
     cy.fixture('momJeansSku').then((itemSKU: SKU)=>{

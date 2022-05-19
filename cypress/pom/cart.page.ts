@@ -8,6 +8,11 @@ class CartPage implements AbstractPage {
   click = {
     proceedToCheckout (){
       cy.get('.b-summary_section > :nth-child(1) > .b-cart_actions-button').should('be.visible').click();
+    },
+    clearCart (){
+      cy.get('.b-cart_product-remove').each(($el) => {
+        $el.click();
+      });
     }
   };
 
@@ -32,7 +37,6 @@ class CartPage implements AbstractPage {
       cy.get('#quantity-74ac3e217d2adbf01f8d1b2e86').select(quantity);
       cy.get('.b-product_update-button_update').click();
     }
-
   };
 
   assertions = {

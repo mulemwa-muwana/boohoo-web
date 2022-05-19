@@ -142,7 +142,7 @@ class assertionText {
   };
 
   inStock: TranslationMap = {
-    EN: "YAY! It's in stock",
+    EN: 'YAY! Its in stock',
     FR: '',
     NL: '',
     DE: '',
@@ -185,6 +185,34 @@ class assertionText {
 
   unknownEmail: TranslationMap = {
     EN: " Sorry, your email or password doesn't match our records",
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  assertUserIsNotLoggedIn: TranslationMap = {
+    EN: 'Login',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  assertUsername: TranslationMap = {
+    EN: '\nHi BOOHOO\n',
     FR: '',
     NL: '',
     DE: '',

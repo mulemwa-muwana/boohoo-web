@@ -44,9 +44,10 @@ export type SKU = {
     sku: string;
 }
 
-export type Locale = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
+export type Language = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
+export type Locale = 'UK' | 'US' |'CA' |'EU' |'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
 
-export type TranslationMap = { [key in Locale]: string };
+export type TranslationMap = { [key in Language]: string };
 
 export type PaymentMethodSelector = {
     card: string;

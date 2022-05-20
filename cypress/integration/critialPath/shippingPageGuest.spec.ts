@@ -4,6 +4,7 @@ import cartPage from '../../pom/cart.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
+import { add } from 'cypress/types/lodash';
 
 describe('Home Page', function () {
   
@@ -31,10 +32,12 @@ describe('Home Page', function () {
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
     shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
+    shippingPage.assertions.assertFirstNameFieldIsPopulated(addresses.AddressLineUK.firstName);
   });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
-  
+  it.only('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.assertions.assertFirstNameFieldIsPopulated(addresses.AddressLineUK.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
@@ -42,11 +45,11 @@ describe('Home Page', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
-  
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
-  
+    shippingPage.actions.addressLookupField(addresses.AddressLineUK.postcode);
   });
 
   it('Verify that "Enter manually" button allows guest to enter address details', () => {

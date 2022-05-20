@@ -19,7 +19,7 @@ class ShippingPage implements AbstractPage {
       cy.get('.b-button m-link b-address_form-back');
     },
     proceedToBilling (){
-      cy.get('button[data-tau="proceed_to_payment"]').eq(1).click();
+      cy.get('.b-checkout_step-controls > .b-button').click();
     },
     editSavedAddress (){
       cy.get(':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button').click();
@@ -56,18 +56,23 @@ class ShippingPage implements AbstractPage {
       cy.get('b-address-name').eq(1).should('be.visible').should('not.be.empty');
     }, 
     assertFirstNameIsMandatory (){
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode['UK']);
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
     },
     assertCityIsMandatory (){
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode['UK']);
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
     },
     assertPostCodeIsMandatory (){
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode['UK']);
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
     },
     assertUserProceededToBillinPage (){
       cy.url().should('include', 'billing');
-    }
-    
+    },
+    assertFirstNameFieldIsPopulated (text: string){
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_firstName').should('contain.value', text);
+    },
+    assertLastNameFieldIsPopulated (text: string){
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_lastName').should('contain.value', text);
+    },
   };
 
 }

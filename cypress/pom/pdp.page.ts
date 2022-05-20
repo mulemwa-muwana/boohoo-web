@@ -27,6 +27,9 @@ class PdpPage implements AbstractPage {
     },
     minicartCloseBtn (){
       cy.get('#minicart-dialog-close > .b-close_button').click();
+    },
+    miniCartViewCartBtn (){
+      cy.get('.b-minicart-actions > .m-outline').click();
     }
   
   };

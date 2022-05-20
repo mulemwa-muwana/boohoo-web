@@ -74,7 +74,6 @@ class HomePage implements AbstractPage {
 
   assertions = {
     assertUserPanelTitle (name: string) {
-      console.log(name);
       cy.get('.b-header_login-icon > .i-icon').click();
       cy.get(':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label').click();
       cy.get('.b-user_greeting-message').should('contain.text', name);

@@ -14,6 +14,7 @@ describe('Billing page functionality for guest user', function (){
     });
     PdpPage.actions.selectSize(1);
     PdpPage.actions.addToCart();
+    cy.wait(5000);
     HomePage.click.cartIcon();
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {

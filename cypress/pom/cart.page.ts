@@ -6,13 +6,16 @@ class CartPage implements AbstractPage {
   }
 
   click = {
-    proceedToCheckout (){
-      cy.get('.b-summary_section > :nth-child(1) > .b-cart_actions-button').should('be.visible').click();
+    proceedToCheckoutHeaderLink (){
+      cy.get('.b-minicart_icon-link').should('be.visible').click();
     },
     clearCart (){
       cy.get('.b-cart_product-remove').each(($el) => {
         $el.click();
       });
+    },
+    proceedToCheckout (){
+      cy.get('.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button').click();
     }
   };
 

@@ -1,3 +1,5 @@
+import { StringLiteralLike } from 'typescript';
+
 export type GotoOptions = {
     applyCookies: boolean;
 }
@@ -21,8 +23,11 @@ export type AddressData = {
     firstName: string;
     lastName: string;
     phone: string;
-    line1: string;
+    addrline1: string;
+    addrline2: string;
+    postcode: string;
     addressName: string;
+    county: string;
 }
 
 export type CardDetails = {
@@ -60,3 +65,8 @@ export type SizesMap = { [key in Sizes]: string };
 export type Currencies = 'GBP' | 'EUR' | 'USD' ;
 
 export type PriceMap = { [key in Currencies]: string };
+
+export type AddressMapAddressLine1 = {[key in Locale]: string}
+export type AddressMapAddressLine2 = {[key in Locale]: string}
+export type AddressMapPostcode = {[key in Locale]: string}
+export type AddressMapPhoneNumber = {[key in Locale]: string}

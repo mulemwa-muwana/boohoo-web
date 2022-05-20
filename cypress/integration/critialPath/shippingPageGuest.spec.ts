@@ -3,6 +3,7 @@ import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
+import addresses from '../../helpers/addresses';
 
 describe('Home Page', function () {
   
@@ -11,7 +12,7 @@ describe('Home Page', function () {
     HomePage.click.searchField();
     HomePage.actions.findItemUsingSKU('aDZZ65279{enter}');
     pdpPage.click.addToCart();
-    HomePage.click.cartIcon();
+    pdpPage.click.miniCartViewCartBtn();  
     cartPage.click.proceedToCheckout();
     checkoutPage.actions.guestCheckoutEmail('euboohoo+guest@gmail.com');
     checkoutPage.click.continueAsGuestBtn();
@@ -29,7 +30,7 @@ describe('Home Page', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
-    
+    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {

@@ -45,6 +45,12 @@ class ShippingPage implements AbstractPage {
     },
     phoneNumberField (phone: string){
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_phone').type(phone);
+    },
+    selectCountry (country: string){
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_country').click().invoke('show').select(country);
+    },
+    enterManuallyAddressDetailsBtn (){
+
     }
   };
 
@@ -73,6 +79,9 @@ class ShippingPage implements AbstractPage {
     assertLastNameFieldIsPopulated (text: string){
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_lastName').should('contain.value', text);
     },
+    assertCountryIsSelected (text: string){
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_country').should('contain.value', text);
+    }
   };
 
 }

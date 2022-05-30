@@ -4,7 +4,7 @@ import cartPage from '../../pom/cart.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
-import { add } from 'cypress/types/lodash';
+import homePage from '../../pom/home.page';
 
 describe('Home Page', function () {
   
@@ -13,7 +13,8 @@ describe('Home Page', function () {
     HomePage.click.searchField();
     HomePage.actions.findItemUsingSKU('aDZZ65279{enter}');
     pdpPage.click.addToCart();
-    pdpPage.click.miniCartViewCartBtn();  
+    homePage.click.cartIcon();  
+    pdpPage.click.miniCartViewCartBtn();
     cartPage.click.proceedToCheckout();
     checkoutPage.actions.guestCheckoutEmail('euboohoo+guest@gmail.com');
     checkoutPage.click.continueAsGuestBtn();
@@ -35,13 +36,14 @@ describe('Home Page', function () {
     shippingPage.assertions.assertFirstNameFieldIsPopulated(addresses.AddressLineUK.firstName);
   });
 
-  it.only('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
     shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
-    shippingPage.assertions.assertFirstNameFieldIsPopulated(addresses.AddressLineUK.lastName);
+    shippingPage.assertions.assertLastNameFieldIsPopulated(addresses.AddressLineUK.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
-    
+    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    shippingPage.assertions.assertCountryIsSelected(addresses.AddressLineUK.country);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
@@ -56,7 +58,7 @@ describe('Home Page', function () {
   
   });
 
-  it('Veriry that user is able to add address details manually', () => {
+  it('Verify that user is able to add address details manually', () => {
   
   });
 

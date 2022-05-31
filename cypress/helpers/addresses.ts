@@ -1,4 +1,4 @@
-import { AddressData, TranslationMap } from '../support/types';
+import { AddressData } from '../support/types';
 
 class addresses {
     

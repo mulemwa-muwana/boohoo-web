@@ -28,6 +28,7 @@ export type AddressData = {
     postcode: string;
     addressName: string;
     county: string;
+    city: string;
 }
 
 export type CardDetails = {

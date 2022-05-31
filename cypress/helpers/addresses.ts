@@ -1,4 +1,4 @@
-import { AddressData, TranslationMap } from '../support/types';
+import { AddressData } from '../support/types';
 
 class addresses {
     
@@ -8,9 +8,10 @@ class addresses {
     phone: '+44 843 837 0041',
     addrline1: '49-51 Dale St',
     addrline2: '',
+    city: 'London',
     postcode: 'M1 2HG',
     addressName: 'Boohoo',
-    county: '',
+    county: 'London',
     country: 'United Kingdom'
   };
 
@@ -20,6 +21,7 @@ class addresses {
     phone: 'Test',
     addrline1: 'Test',
     addrline2: 'Test',
+    city: 'Test',
     postcode: 'Test',
     addressName: 'Test',
     county: 'Test',
@@ -32,6 +34,7 @@ class addresses {
     phone: 'Test',
     addrline1: 'Test',
     addrline2: 'Test',
+    city: 'Test',
     postcode: 'Test',
     addressName: 'Test',
     county: 'Test',

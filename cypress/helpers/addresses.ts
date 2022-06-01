@@ -11,7 +11,9 @@ class addresses {
     postcode: 'M1 2HG',
     addressName: 'Boohoo',
     county: '',
-    country: 'United Kingdom'
+    country: 'United Kingdom',
+    city: 'Manchester',
+    countryCode: 'UK'
   };
 
   AddressLineUS: AddressData = {
@@ -23,7 +25,9 @@ class addresses {
     postcode: 'Test',
     addressName: 'Test',
     county: 'Test',
-    country: 'United States'
+    country: 'United States',
+    city: '',
+    countryCode: 'US'
   };
 
   AddressLineDE: AddressData = {
@@ -35,7 +39,9 @@ class addresses {
     postcode: 'Test',
     addressName: 'Test',
     county: 'Test',
-    country: ''
+    country: '',
+    city: '',
+    countryCode: ''
   };
 }
 

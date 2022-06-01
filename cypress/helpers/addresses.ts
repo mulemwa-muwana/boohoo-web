@@ -8,11 +8,12 @@ class addresses {
     phone: '+44 843 837 0041',
     addrline1: '49-51 Dale St',
     addrline2: '',
-    city: 'London',
     postcode: 'M1 2HG',
     addressName: 'Boohoo',
+    country: 'United Kingdom',
+    city: 'Manchester',
+    countryCode: 'UK',
     county: 'London',
-    country: 'United Kingdom'
   };
 
   AddressLineUS: AddressData = {
@@ -25,7 +26,8 @@ class addresses {
     postcode: 'Test',
     addressName: 'Test',
     county: 'Test',
-    country: 'United States'
+    country: 'United States',
+    countryCode: 'US'
   };
 
   AddressLineDE: AddressData = {
@@ -38,7 +40,8 @@ class addresses {
     postcode: 'Test',
     addressName: 'Test',
     county: 'Test',
-    country: ''
+    country: '',
+    countryCode: ''
   };
 }
 

@@ -5,6 +5,7 @@ import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
 import homePage from '../../pom/home.page';
+import assertionText from '../../helpers/assertionText';
 
 describe('Home Page', function () {
   
@@ -42,50 +43,73 @@ describe('Home Page', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
-    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
-    shippingPage.assertions.assertCountryIsSelected(addresses.AddressLineUK.country);
+    shippingPage.actions.selectCountry(addresses.AddressLineUS.country);
+    shippingPage.assertions.assertCountryIsSelected(addresses.AddressLineUS.countryCode);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
     shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.assertions.assertPhoneNumberFieldIsPopulated(addresses.AddressLineUK.phone);
   });
 
-  it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
-    shippingPage.actions.addressLookupField(addresses.AddressLineUK.postcode);
+  it.only('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory.EN);
   });
 
   it('Verify that "Enter manually" button allows guest to enter address details', () => {
-  
+    shippingPage.click.addAddressManually();
+    shippingPage.assertions.assertManualAddressFieldsAreDispayed();
   });
 
   it('Verify that user is able to add address details manually', () => {
-  
+    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    shippingPage.click.addAddressManually();
+    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
+    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
+    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertGuestEmailFiledDispayes();
   });
 
   it('Verify that user is able to select standard shipping method', () => {
-  
+   
+    // Need to create file with list of shipping methods for each country
   });
 
   it('Verify that user is able to select express shipping method', () => {
-  
+     
+    // Need to create file with list of shipping methods for each country
   });
 
   it('Verify that PUDO locations are dispayed', () => {
-  
+     
+    // Need to create file with list of shipping methods for each country
   });
 
   it('Verify that order total is dispayed', () => {
-  
+    shippingPage.assertions.assertOrderTotalIsDsipayed();
   });
 
   it('Verify that guest user can Edit cart from shipping page', () => {
-  
+    shippingPage.click.editCart();
+    cartPage.assertions.assertTableWithProductIsVisible();
   });
 
   it('Verify that user is able to proceed to billing page after adding fname, lname, country, phone number and select shipping method', () => {
-    
-    // Add steps
+    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    shippingPage.click.addAddressManually();
+    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
+    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
+    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
     shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertGuestEmailFiledDispayes();
     shippingPage.assertions.assertUserProceededToBillinPage();
   });
 

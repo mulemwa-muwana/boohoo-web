@@ -224,6 +224,20 @@ class assertionText {
     IT: '',
     ES: ''
   };
+
+  assertShippingAddressIsMandatory: TranslationMap = {
+    EN: 'Ooops, something went wrong and we couldn’t save your shipping address. Please try again',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
  
 }
 

@@ -27,9 +27,10 @@ export type AddressData = {
     addrline2: string;
     postcode: string;
     addressName: string;
-    county: string;
     city: string;
+    county: string;
     country: string;
+    countryCode: string;
 }
 
 export type CardDetails = {

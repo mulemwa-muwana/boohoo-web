@@ -4,6 +4,9 @@ import cartPage from '../../pom/cart.page';
 import { LoginCredentials } from '../../support/types';
 import shippingPage from '../../pom/shipping.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
+import addresses from '../../helpers/addresses';
+import assertionText from '../../helpers/assertionText';
+import homePage from '../../pom/home.page';
 
 describe('Home Page', function () {
   
@@ -14,7 +17,9 @@ describe('Home Page', function () {
       HomePage.click.searchField();
       HomePage.actions.findItemUsingSKU('aDZZ65279{enter}');
       pdpPage.click.addToCart();
-      HomePage.click.cartIcon();
+      cy.wait(7000);
+      homePage.click.cartIcon();  
+      pdpPage.click.miniCartViewCartBtn();
       cartPage.click.proceedToCheckout();
       checkoutPage.actions.userEmailField(credentials.username);
       checkoutPage.actions.passwordField(credentials.password);
@@ -26,7 +31,7 @@ describe('Home Page', function () {
     shippingPage.assertions.assertPromoCodeFieldIsDispayed();
   });
 
-  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+  it.only('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertFirstNameIsMandatory();
     shippingPage.assertions.assertCityIsMandatory();
@@ -55,31 +60,45 @@ describe('Home Page', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
-  
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.assertions.assertLastNameFieldIsPopulated(addresses.AddressLineUK.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
-  
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.assertions.assertLastNameFieldIsPopulated(addresses.AddressLineUK.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
-  
+    shippingPage.actions.selectCountry(addresses.AddressLineUS.country);
+    shippingPage.assertions.assertCountryIsSelected(addresses.AddressLineUS.countryCode);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
-  
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.assertions.assertPhoneNumberFieldIsPopulated(addresses.AddressLineUK.phone);
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
-  
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory.EN);
   });
 
-  it('Verify that "Enter manually" button allows guest to enter address details', () => {
-  
+  it('Verify that "Enter manually" button allows user to enter address details', () => {
+    shippingPage.click.addAddressManually();
+    shippingPage.assertions.assertManualAddressFieldsAreDispayed();
   });
 
-  it('Veriry that user is able to add address details manually', () => {
-  
+  it('Verify that user is able to add address details manually', () => {
+    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    shippingPage.click.addAddressManually();
+    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
+    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
+    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.click.proceedToBilling();
   });
 
   it('Verify that user can save address using save address checkbox', () => {
@@ -99,15 +118,26 @@ describe('Home Page', function () {
   });
 
   it('Verify that order total is dispayed', () => {
-  
+    shippingPage.assertions.assertOrderTotalIsDsipayed();
   });
 
   it('Verify that user can Edit cart from shipping page', () => {
-  
+    shippingPage.click.editCart();
+    cartPage.assertions.assertTableWithProductIsVisible();
   });
 
   it('Verify that user is able to proceed to billing page', () => {
-  
+    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    shippingPage.click.addAddressManually();
+    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
+    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
+    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertGuestEmailFiledDispayes();
+    shippingPage.assertions.assertUserProceededToBillinPage();
   });
 
 });

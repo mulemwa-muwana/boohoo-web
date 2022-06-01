@@ -14,6 +14,7 @@ describe('Home Page', function () {
     HomePage.click.searchField();
     HomePage.actions.findItemUsingSKU('aDZZ65279{enter}');
     pdpPage.click.addToCart();
+    cy.wait(7000);
     homePage.click.cartIcon();  
     pdpPage.click.miniCartViewCartBtn();
     cartPage.click.proceedToCheckout();

@@ -1,7 +1,9 @@
-import { AddressData, CardDetails, LoginCredentials } from '../../support/types';
+import {LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
+import Cards from '../../helpers/cards';
+import Addresses from '../../helpers/addresses';
 
 describe('Account page', function () {
 
@@ -10,10 +12,8 @@ describe('Account page', function () {
   beforeEach(() => {
 
     HomePage.goto();
-
     cy.fixture('users').then((credentials: LoginCredentials) => {
       HomePage.goto();
-      HomePage.click.logInIcon();
       LoginPage.actions.login(credentials.username, credentials.password);
     });
   });
@@ -46,50 +46,40 @@ describe('Account page', function () {
     MyAccountPage.actions.updateAccountName('BOOHOO');
     MyAccountPage.assertions.assertNameGreetingMessage('BOOHOO');
   });
-  it('TC06 Verify that addresses show correct default address information', function () {
+  it('TC06 Verify that new address can be created', function () {
+    MyAccountPage.click.addressesLink();
+    MyAccountPage.actions.createAddress(Addresses.AddressLineUK.firstName, Addresses.AddressLineUK.lastName, Addresses.AddressLineUK.phone, Addresses.AddressLineUK.addrline1, Addresses.AddressLineUK.city, Addresses.AddressLineUK.county, Addresses.AddressLineUK.postcode);
+    MyAccountPage.assertions.assertNewAddressData(Addresses.AddressLineUK.firstName);
+  });
+  it('TC07 Verify that addresses show correct default address information', function () {
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
-    MyAccountPage.assertions.assertDefaultAddressData('wefwf fewefwf', 'OxfordStreet Dale House');
+    MyAccountPage.assertions.assertDefaultAddressData(Addresses.AddressLineUK.firstName, Addresses.AddressLineUK.addrline1);
   });
-  it('TC07 Verify that addresses are editable', function () {
+  it('TC08 Verify that addresses are editable', function () {
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
     MyAccountPage.actions.editDefaultAddress('Old Bond St');
-    MyAccountPage.assertions.assertDefaultAddressData('wefwf fewefwf', 'Old Bond St');
-  });
-  it('TC08 Verify that new address can be created', function () {
-    MyAccountPage.click.addressesLink();
-    cy.fixture('address').then((addressData: AddressData) => {
-      MyAccountPage.actions.createAddress(addressData.firstName, addressData.lastName, addressData.phone, addressData.line1);
-      MyAccountPage.assertions.assertNewAddressData(addressData.addressName);
-    });
+    MyAccountPage.assertions.assertDefaultAddressData(Addresses.AddressLineUK.firstName, 'Old Bond St');
   });
   it('TC09 Verify that address can be deleted', function () {
     MyAccountPage.click.addressesLink();
-    cy.fixture('address').then((addressData: AddressData) => {
-      MyAccountPage.actions.deleteAddress(addressData.addressName);
-      MyAccountPage.assertions.assertAddressNotPresent(addressData.addressName);
-    });
+    MyAccountPage.actions.deleteAddress();
+    MyAccountPage.assertions.assertAddressNotPresent(Addresses.AddressLineUK.firstName);
   });
   it('TC10 Verify that new card can be saved', function () {
     MyAccountPage.click.paymentOptionsLink();
-    cy.fixture('visa').then((cardDetails: CardDetails) => {
-      MyAccountPage.actions.addCard(cardDetails.cardNo, cardDetails.owner);
-      MyAccountPage.assertions.assertCardDetails(cardDetails.end, cardDetails.owner, cardDetails.date);
-    });
+    MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner);
+    MyAccountPage.assertions.assertCardDetails(Cards.visa.end, Cards.visa.owner);  
   });
   it('TC11 Verify that payment details show correct saved card details', function () {
     MyAccountPage.click.paymentOptionsLink();
-    cy.fixture('card').then((cardDetails: CardDetails) => {
-      MyAccountPage.assertions.assertCardDetails(cardDetails.end, cardDetails.owner, cardDetails.date);
-    });
+    MyAccountPage.assertions.assertCardDetails(Cards.visa.end, Cards.visa.owner);
   });
   it('TC12 Verify that card can be deleted', function () {
     MyAccountPage.click.paymentOptionsLink();
-    cy.fixture('card').then((cardDetails: CardDetails) => {
-      MyAccountPage.actions.deleteCard(cardDetails.end, 'button=[data-card="************1111"]');
-      MyAccountPage.assertions.assertCardNotPresent(cardDetails.end);
-    });
+    MyAccountPage.actions.deleteCard(Cards.visa.end, );
+    MyAccountPage.assertions.assertCardNotPresent(Cards.visa.end);
   });
   
   // My account Track my order

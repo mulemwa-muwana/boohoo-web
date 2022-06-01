@@ -1,4 +1,4 @@
-import { AddressData, TranslationMap } from '../support/types';
+import { AddressData } from '../support/types';
 
 class addresses {
     
@@ -10,10 +10,10 @@ class addresses {
     addrline2: '',
     postcode: 'M1 2HG',
     addressName: 'Boohoo',
-    county: '',
     country: 'United Kingdom',
     city: 'Manchester',
-    countryCode: 'UK'
+    countryCode: 'UK',
+    county: 'London',
   };
 
   AddressLineUS: AddressData = {
@@ -22,11 +22,11 @@ class addresses {
     phone: 'Test',
     addrline1: 'Test',
     addrline2: 'Test',
+    city: 'Test',
     postcode: 'Test',
     addressName: 'Test',
     county: 'Test',
     country: 'United States',
-    city: '',
     countryCode: 'US'
   };
 
@@ -36,11 +36,11 @@ class addresses {
     phone: 'Test',
     addrline1: 'Test',
     addrline2: 'Test',
+    city: 'Test',
     postcode: 'Test',
     addressName: 'Test',
     county: 'Test',
     country: '',
-    city: '',
     countryCode: ''
   };
 }

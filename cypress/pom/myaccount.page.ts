@@ -54,31 +54,37 @@ class MyAccountPage implements AbstractPage {
         cy.get('#dwfrm_address_address1').clear().type(line1);
         cy.get('button[data-tau="address_submit"]').click();
       },
-      createAddress (firstName: string, lastName: string, phone: string, line1: string) {
+      createAddress (firstName: string, lastName: string, phone: string, line1: string, city: string, county: string, code: string) {
         cy.get('a[data-tau="address_book_addNewAddress"]').click();
         cy.get('#dwfrm_address_firstName').should('be.visible').type(firstName);
         cy.get('#dwfrm_address_lastName').type(lastName);
         cy.get('#dwfrm_address_phone').type(phone);
-        cy.get('#LoqateAutocompleteBilling').type(line1);
-        cy.get('.pcaitem').eq(1).invoke('show').click();
+        cy.get('.m-secondary').click();
+        cy.get('#dwfrm_address_address1').should('be.visible').type(line1);
+        cy.get('#dwfrm_address_city').type(city);
+        cy.get('#dwfrm_address_states_stateCode').type(county);
+        cy.get('#dwfrm_address_postalCode').type(code);
         cy.get('button[data-tau="address_submit"]').click();
       },
-      deleteAddress (addressName: string) {
-        cy.contains(addressName).find('button[data-tau="address_book_delete"]');
+      deleteAddress () {
+        cy.get('.b-cards_grid-footer > .b-button').click();
+        cy.get('[data-tau="dialog_delete_address_confirm"]').click();
       },
       addCard (cardNumber: string, cardOwner: string) {
         cy.get('a[data-tau="address_book_addNewAddress"]').click();
         cy.get('.l-account_main-section').should('be.visible');
         cy.get('#dwfrm_creditCard_cardNumber').type(cardNumber);
         cy.get('#dwfrm_creditCard_cardOwner').type(cardOwner);
-        cy.get('#dwfrm_creditCard_expirationMonth').select('03').should('have.value', '03');
+        cy.get('#dwfrm_creditCard_expirationMonth').select('03').should('have.value', '3');
         cy.get('#dwfrm_creditCard_expirationYear').select('2030').should('have.value', '2030');
-        cy.get('button[data-id="submitButton"]').click();
+        cy.get('.m-mobile_column > .b-button').click();
 
       },
-      deleteCard (cardEnd: string, deleteBtn: string){
+      deleteCard (cardEnd: string){
         cy.contains(cardEnd).should('be.visible');
-        cy.get(deleteBtn).click();
+        cy.get('.b-cards_grid-footer > .b-button').eq(0).click();
+        cy.get('#maincontent > div > div.l-account.b-account.m-account_subpage > main > div.l-account_main > div > div > div > div:nth-child(3) > div > div > div.b-dialog-footer.m-actions > button:nth-child(1)').click();
+        
       },
       trackNewestOrder (){
         cy.get('.b-order_item-button b-button m-small m-outline m-view_order').eq(1).click();
@@ -120,21 +126,21 @@ class MyAccountPage implements AbstractPage {
         cy.get('section[data-tau="address_book_item_default"]').should('be.visible');
       },
       assertDefaultAddressData (addressName: string, addressSummary: string) {
-        cy.get('section[data-tau="address_book_item_default"]').find('.b-address-name').should('have.text', addressName);
+        cy.get('section[data-tau="address_book_item_default"]').find('.b-address-name').should('contain.text', addressName);
         cy.get('section[data-tau="address_book_item_default"]').find('.b-address-summary').should('contain', addressSummary);
       },
       assertNewAddressData (addressName: string) {
         cy.contains(addressName).should('be.visible');
       },
       assertAddressNotPresent (addressName: string) {
-        cy.contains(addressName).should('not.be.visible');
+        cy.get('.b-cards_grid > div').should('not.contain', addressName);
       },
-      assertCardDetails (cardEnd: string, owner: string, date: string) {
-        cy.contains(cardEnd).should('be.visible').find('.b-cards_grid-name').should('include', owner);
-        cy.contains('Expiry date' + date).should('be.visible');
+      assertCardDetails (cardEnd: string, owner: string) {
+        cy.contains(cardEnd).should('be.visible');
+        cy.contains(owner).should('be.visible');
       },
       assertCardNotPresent (cardEnd: string){
-        cy.contains(cardEnd).should('not.be.visible');
+        cy.get('.b-cards_grid').should('not.contain', cardEnd);
       },
       assertOrderCantBeTracked (){
         cy.get('.b-form-message').should('include', 'Sorry, this order number does not match our records.');

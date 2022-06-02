@@ -36,11 +36,13 @@ class BillingPage implements AbstractPage {
     emptyEmailField (){
       cy.get('#dwfrm_billing_contactInfoFields_email').clear();
     },
-    addBillingAddress (address: string){
-      cy.wait(3000);
-      cy.get('#LoqateAutocompleteBilling').type(address);
-      cy.wait(6000);
-      cy.get('.pcaitem').eq(1).invoke('show').click();
+    addBillingAddress (line1: string, city: string, county: string, postcode: string){
+      cy.get('[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button').click();
+      cy.get('#dwfrm_billing_addressFields_address1').should('be.visible').type(line1);
+      cy.get('#dwfrm_billing_addressFields_city').type(city);
+      cy.get('#dwfrm_billing_addressFields_states_stateCode').type(county);
+      cy.get('#dwfrm_billing_addressFields_postalCode').type(postcode);
+
     },
     addPromoCode (promo: string){
       cy.get('#dwfrm_coupon_couponCode').type(promo);
@@ -102,6 +104,12 @@ class BillingPage implements AbstractPage {
       cy.get('.b-gift_certificate-info_label').should('be.visible').and('include.text','Gift card applied');
       cy.get('.b-summary_table-name').should('be.visible').and('include.text', 'Gift card');
       cy.get('.b-summary_table-value').should('be.visible').and('include.text', giftValue);
+    },
+    assertShippingPageIsOpened (){
+      cy.url().should('include', 'shipping');
+    },
+    assertOrderConfirmationPAgeIsDisplayed (){
+      cy.url().should('include', 'order-confirmation');
     }
   };
 }

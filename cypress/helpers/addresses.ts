@@ -16,6 +16,20 @@ class addresses {
     county: 'London',
   };
 
+  AddressLineUK2: AddressData = {
+    firstName: 'New',
+    lastName: 'Test',
+    phone: '+44 843 837 0041',
+    addrline1: '1 Imperial House, 12-14 Exchange Street',
+    addrline2: '',
+    postcode: 'AB11 6PH',
+    addressName: 'SecondAddress',
+    country: 'United Kingdom',
+    city: 'Aberdeen',
+    countryCode: 'UK',
+    county: 'Aberdeenshire',
+  };
+
   AddressLineUS: AddressData = {
     firstName: 'Test',
     lastName: 'Test',

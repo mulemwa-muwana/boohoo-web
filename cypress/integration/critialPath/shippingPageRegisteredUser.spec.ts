@@ -31,7 +31,7 @@ describe('Home Page', function () {
     shippingPage.assertions.assertPromoCodeFieldIsDispayed();
   });
 
-  it.only('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertFirstNameIsMandatory();
     shippingPage.assertions.assertCityIsMandatory();
@@ -43,8 +43,17 @@ describe('Home Page', function () {
     shippingPage.assertions.assertUserProceededToBillinPage();
   });
 
-  it('Verify that user can edit saved shipping address', () => {
-  
+  it.only('Verify that user can edit saved shipping address', () => {
+    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    shippingPage.click.addAddressManually();
+    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
+    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
+    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.click.proceedToBilling();
+    shippingPage.click.editAddress();
   });
 
   it('Verify that user can cancel editing shipping address', () => {
@@ -106,7 +115,7 @@ describe('Home Page', function () {
   });
 
   it('Verify that PREMIER can be added to the cart', () => {
-  
+    
   });
 
   it('Verify that user is able to select standard shipping method', () => {

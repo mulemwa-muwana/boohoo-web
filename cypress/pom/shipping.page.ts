@@ -29,6 +29,9 @@ class ShippingPage implements AbstractPage {
     },
     editCart (){
       cy.get('.b-summary_order-header > .b-link').should('be.visible').click();
+    },
+    editAddress (){
+      cy.get(':nth-child(1) > .b-summary_group-subtitle > .b-button').should('be.visible').click();
     }
   
   };

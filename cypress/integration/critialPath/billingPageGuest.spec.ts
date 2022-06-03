@@ -1,6 +1,6 @@
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
-import BillingPage from '../../pom/billingGuest.page';
+import BillingPage from '../../pom/billing.page';
 import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
@@ -17,9 +17,11 @@ describe('Billing page functionality for guest user', function (){
       HomePage.actions.findItemUsingSKU(itemSKU.sku);
     });
     PdpPage.actions.selectSize(1);
-    PdpPage.actions.addToCart();
-    cy.wait(5000);
-    HomePage.click.cartIcon();
+    cy.wait(2000);
+    PdpPage.click.addToCart();
+    cy.wait(7000);
+    HomePage.click.cartIcon();  
+    PdpPage.click.miniCartViewCartBtn();
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);

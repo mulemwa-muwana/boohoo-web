@@ -53,7 +53,7 @@ describe('Home Page', function () {
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(addresses.AddressLineUK.phone);
   });
 
-  it.only('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
+  it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory.EN);
   });

@@ -7,6 +7,7 @@ import checkoutPage from '../../pom/checkoutLogin.page';
 import addresses from '../../helpers/addresses';
 import assertionText from '../../helpers/assertionText';
 import homePage from '../../pom/home.page';
+import shippingMethods from '../../helpers/shippingMethods';
 
 describe('Home Page', function () {
   
@@ -62,7 +63,8 @@ describe('Home Page', function () {
   });
 
   it('Verify that user can view all saved addresses', () => {
-  
+    shippingPage.click.viewAllAddressesLink();
+    shippingPage.assertions.assertOtherAddressesAreVisible();
   });
 
   it('Verify that Add new address button allows user to add address details', () => {
@@ -114,15 +116,17 @@ describe('Home Page', function () {
   });
 
   it('Verify that PREMIER can be added to the cart', () => {
-    
+    shippingPage.click.addPremierToCartFromShippingPage();
+    shippingPage.assertions.assertCartShippingPageContainsContainsProduct(assertionText.Premier.EN);
   });
 
   it('Verify that user is able to select standard shipping method', () => {
-  
+    shippingPage.actions.selectShippingMethod(shippingMethods.UKshippingMethods.Standard);
+    shippingPage.click.proceedToBilling();
   });
 
   it('Verify that PUDO locations are dispayed', () => {
-  
+    shippingPage.click.OpenPUDOlocations();
   });
 
   it('Verify that order total is dispayed', () => {
@@ -144,7 +148,6 @@ describe('Home Page', function () {
     shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
     shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertGuestEmailFiledDispayes();
     shippingPage.assertions.assertUserProceededToBillinPage();
   });
 

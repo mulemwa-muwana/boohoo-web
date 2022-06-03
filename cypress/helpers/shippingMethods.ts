@@ -1,4 +1,4 @@
-import { TranslationMap } from '../support/types';
+import { Locale, ShippingMethodsUK, TranslationMap } from '../support/types';
 
 class ShippingMethods {
   Standard: TranslationMap = {
@@ -13,6 +13,12 @@ class ShippingMethods {
     IL: '',
     IT: '',
     ES: ''
+  };
+
+  UKshippingMethods: ShippingMethodsUK = {
+    Standard: 'Standard',
+    NextDay: 'Next',
+    DPD: 'DPD',
   };
  
 }

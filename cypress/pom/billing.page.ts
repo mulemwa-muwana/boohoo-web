@@ -52,6 +52,10 @@ class BillingPage implements AbstractPage {
       cy.get('.b-gift_certificate-add').click();
       cy.get('#dwfrm_billing_giftCertCode').should('be.visible').type(giftCard);
       cy.get('#add-giftcert').click();
+    },
+    selectAddressFromBook (){
+      cy.get('.b-form_section > .b-address_selector-actions > .m-link').click();
+      cy.get('.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label').click();
     }
   
   };
@@ -110,6 +114,9 @@ class BillingPage implements AbstractPage {
     },
     assertOrderConfirmationPAgeIsDisplayed (){
       cy.url().should('include', 'order-confirmation');
+    },
+    assertEmailFieldCantBeChanged (){
+      cy.get('#dwfrm_billing_contactInfoFields_email').should('have.attr', 'disabled');
     }
   };
 }

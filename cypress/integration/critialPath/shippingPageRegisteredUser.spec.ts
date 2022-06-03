@@ -43,7 +43,7 @@ describe('Home Page', function () {
     shippingPage.assertions.assertUserProceededToBillinPage();
   });
 
-  it.only('Verify that user can edit saved shipping address', () => {
+  it('Verify that user can edit saved shipping address', () => {
     shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
     shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
     shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
@@ -57,7 +57,8 @@ describe('Home Page', function () {
   });
 
   it('Verify that user can cancel editing shipping address', () => {
-    
+    shippingPage.click.addNewAddressButton();
+    shippingPage.click.cancelAddingNewAddressForRegisteredUser();
   });
 
   it('Verify that user can view all saved addresses', () => {
@@ -65,7 +66,9 @@ describe('Home Page', function () {
   });
 
   it('Verify that Add new address button allows user to add address details', () => {
-  
+    shippingPage.click.addNewAddressButton();
+    shippingPage.assertions.assertFirstNameFieldIsPopulated(addresses.AddressLineUK.firstName);
+    shippingPage.assertions.assertLastNameFieldIsPopulated(addresses.AddressLineUK.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
@@ -108,10 +111,6 @@ describe('Home Page', function () {
     shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
     shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
     shippingPage.click.proceedToBilling();
-  });
-
-  it('Verify that user can save address using save address checkbox', () => {
-  
   });
 
   it('Verify that PREMIER can be added to the cart', () => {

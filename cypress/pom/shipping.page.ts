@@ -32,6 +32,15 @@ class ShippingPage implements AbstractPage {
     },
     editAddress (){
       cy.get(':nth-child(1) > .b-summary_group-subtitle > .b-button').should('be.visible').click();
+    },
+    addNewAddressButton (){
+      cy.get('.b-address_selector-button').click();
+    },
+    editExistingAddressButton (){
+      cy.get('.b-option_switch-label_surface > .b-button').click();
+    },
+    cancelAddingNewAddressForRegisteredUser (){
+      cy.get('.b-address_form-header > .b-button').should('be.visible').click();
     }
   
   };

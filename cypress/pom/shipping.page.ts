@@ -41,7 +41,16 @@ class ShippingPage implements AbstractPage {
     },
     cancelAddingNewAddressForRegisteredUser (){
       cy.get('.b-address_form-header > .b-button').should('be.visible').click();
-    }
+    },
+    viewAllAddressesLink (){
+      cy.get('.b-address_selector-actions > .m-link').should('be.visible').click();
+    },
+    addPremierToCartFromShippingPage (){
+      cy.get('#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button').should('be.visible').click();
+    },
+    OpenPUDOlocations (){
+      cy.get('#deliveryTabs > div.b-tab_list > button:nth-child(2)').click();
+    },
   
   };
 
@@ -82,6 +91,11 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string){
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode').type(postcode);
     },
+    selectShippingMethod (shippingMethod: string){
+      cy.get('.b-option_switch-label').each(() => {
+        cy.contains(shippingMethod).click({force: true});
+      });
+    }
 
   };
 
@@ -129,6 +143,17 @@ class ShippingPage implements AbstractPage {
     },
     assertAddressDetailsAreMandatory (text: string){
       cy.get('[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message').should('contain.text', text);
+    },
+    assertPostcodeLookupIsVisible (){
+      cy.get('#LoqateAutocomplete').should('be.visible');
+    },
+    assertOtherAddressesAreVisible (){
+      cy.get('.m-list > :nth-child(3) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface').should('be.visible');
+    },
+    assertCartShippingPageContainsContainsProduct (product: string){
+      cy.get('.b-minicart_product-inner').each(() => {
+        cy.contains(product.trim());
+      });
     }
   };
 

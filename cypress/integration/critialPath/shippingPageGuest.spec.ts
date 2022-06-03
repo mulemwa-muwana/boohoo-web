@@ -6,6 +6,7 @@ import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
 import homePage from '../../pom/home.page';
 import assertionText from '../../helpers/assertionText';
+import shippingMethods from '../../helpers/shippingMethods';
 
 describe('Home Page', function () {
   
@@ -77,18 +78,47 @@ describe('Home Page', function () {
   });
 
   it('Verify that user is able to select standard shipping method', () => {
-   
-    // Need to create file with list of shipping methods for each country
+    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
+    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
+    shippingPage.actions.selectCountry(addresses.AddressLineUK2.country);
+    shippingPage.click.addAddressManually();
+    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
+    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
+    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.actions.selectShippingMethod(shippingMethods.UKshippingMethods.Standard);
+    shippingPage.click.proceedToBilling();
   });
 
-  it('Verify that user is able to select express shipping method', () => {
+  it('Verify that user is able to select DPD shipping method', () => {
      
-    // Need to create file with list of shipping methods for each country
+    // Address needs to be in LONDON
+    shippingPage.actions.firstNameField(addresses.AddressLineUK1.firstName);
+    shippingPage.actions.lastNameField(addresses.AddressLineUK1.lastName);
+    shippingPage.actions.selectCountry(addresses.AddressLineUK1.country);
+    shippingPage.click.addAddressManually();
+    shippingPage.actions.adressLine1(addresses.AddressLineUK1.addrline1);
+    shippingPage.actions.adressLine2(addresses.AddressLineUK1.addrline2);
+    shippingPage.actions.cityFiled(addresses.AddressLineUK1.city);
+    shippingPage.actions.postcodeField(addresses.AddressLineUK1.postcode);
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK1.phone);
+    shippingPage.actions.selectShippingMethod(shippingMethods.UKshippingMethods.DPD);
+    shippingPage.click.proceedToBilling();
   });
 
   it('Verify that PUDO locations are dispayed', () => {
-     
-    // Need to create file with list of shipping methods for each country
+    shippingPage.actions.firstNameField(addresses.AddressLineUK1.firstName);
+    shippingPage.actions.lastNameField(addresses.AddressLineUK1.lastName);
+    shippingPage.actions.selectCountry(addresses.AddressLineUK1.country);
+    shippingPage.click.addAddressManually();
+    shippingPage.actions.adressLine1(addresses.AddressLineUK1.addrline1);
+    shippingPage.actions.adressLine2(addresses.AddressLineUK1.addrline2);
+    shippingPage.actions.cityFiled(addresses.AddressLineUK1.city);
+    shippingPage.actions.postcodeField(addresses.AddressLineUK1.postcode);
+    shippingPage.actions.phoneNumberField(addresses.AddressLineUK1.phone);
+    shippingPage.click.OpenPUDOlocations();
+
+    // PUDO OPTIONS ARE MISSING FOR GUEST, need to check with Trupti
   });
 
   it('Verify that order total is dispayed', () => {

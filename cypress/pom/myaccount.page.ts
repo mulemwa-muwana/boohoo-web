@@ -36,7 +36,7 @@ class MyAccountPage implements AbstractPage {
         cy.get('a[data-tau="navigation_orderHistory"]').should('be.visible').click();
         cy
           .get('a[data-tau="orders_viewOrder"]')
-          .eq(1)
+          .eq(0)
           .click();
       },
       loadMoreOrders () {

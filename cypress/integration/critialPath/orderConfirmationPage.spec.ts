@@ -8,6 +8,7 @@ import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
 import { SKU, LoginCredentials } from '../../support/types';
 import cards from '../../helpers/cards';
+import orderConfirmationPage from '../../pom/orderConfirmation.page';
 
 describe('Order confirmation page for guest user', function (){
   beforeEach (()=>{
@@ -37,11 +38,15 @@ describe('Order confirmation page for guest user', function (){
     shippingPage.click.proceedToBilling();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
-    BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+
+    // BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+    // OrderConfirmationPage.click.continueBtn();
   });
 
-  it('Verify that email is visible', function (){
+  it('Verify that email is visible for guest user', function (){
+    orderConfirmationPage.assertions.assertEmailIsDispplayed('euboohoo+guest@gmail.com'); 
   });
+
   it('Verify that order number is visible with adequate prefix', function (){
   }); 
   it('Verify that total amount paid is visible', function (){

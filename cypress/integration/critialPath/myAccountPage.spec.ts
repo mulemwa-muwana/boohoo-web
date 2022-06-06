@@ -43,8 +43,8 @@ describe('Account page', function () {
   });
   it('TC05 Verify that account details are editable', function () {
     MyAccountPage.click.accountDetailsLink();
-    MyAccountPage.actions.updateAccountName('BOOHOO');
-    MyAccountPage.assertions.assertNameGreetingMessage('BOOHOO');
+    MyAccountPage.actions.updateAccountName('Test');
+    MyAccountPage.assertions.assertNameGreetingMessage('TEST');
   });
   it('TC06 Verify that new address can be created', function () {
     MyAccountPage.click.addressesLink();

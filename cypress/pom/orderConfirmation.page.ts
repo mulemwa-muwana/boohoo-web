@@ -7,8 +7,8 @@ class OrderConfirmation implements AbstractPage {
   }
 
   click = {
-    continueBtn (){
-      cy.get('#WLbanner_2112171003 > a")', { timeout: 15000 }).click();
+    closePopUp (){
+      cy.get('#WLbanner_2112171003 > a', {timeout: 10000}).click();
     }
   };
 

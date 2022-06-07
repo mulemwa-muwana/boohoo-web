@@ -38,13 +38,15 @@ describe('Order confirmation page for guest user', function (){
     shippingPage.click.proceedToBilling();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
+    orderConfirmationPage.click.closePopUp();
 
     // BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     // OrderConfirmationPage.click.continueBtn();
   });
 
-  it('Verify that email is visible for guest user', function (){
+  it.only('Verify that email is visible for guest user', function (){
     orderConfirmationPage.assertions.assertEmailIsDispplayed('euboohoo+guest@gmail.com'); 
+    
   });
 
   it('Verify that order number is visible with adequate prefix', function (){

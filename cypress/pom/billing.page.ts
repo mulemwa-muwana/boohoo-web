@@ -13,7 +13,7 @@ class BillingPage implements AbstractPage {
       cy.get('.m-bordered > .b-summary_group-subtitle > .b-button').click();
     },
     shippingCheckbox (){
-      cy.get('#dwfrm_billing_addressFields_useShipping').uncheck();
+      cy.get('#dwfrm_billing_addressFields_useShipping').should('be.checked').uncheck();
     }
    
   };
@@ -25,7 +25,7 @@ class BillingPage implements AbstractPage {
       cy.get('select[id="dwfrm_profile_customer_yearOfBirth"]').select(year);
     },
     selectCreditCard (cardNo: string, cardOwner: string, month: string, year: string, code: string){
-      cy.get('span[class="b-payment_accordion-icon"]').eq(1).click();
+      cy.get('#payment-button-CREDIT_CARD').click();
       cy.get('#dwfrm_billing_creditCardFields_cardNumber').type(cardNo);
       cy.get('#dwfrm_billing_creditCardFields_cardOwner').type(cardOwner);
       cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select(month);
@@ -35,6 +35,9 @@ class BillingPage implements AbstractPage {
     },
     emptyEmailField (){
       cy.get('#dwfrm_billing_contactInfoFields_email').clear();
+    },
+    addNewAddress (){
+      cy.get('.b-form_section > .b-address_selector-actions > .b-address_selector-button').click();
     },
     addBillingAddress (line1: string, city: string, county: string, postcode: string){
       cy.get('[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button').click();

@@ -59,7 +59,7 @@ describe('Billing page functionality for registered user', function (){
   });
   it('Verify that registered user can submit new billing address', function (){
     BillingPage.click.shippingCheckbox();
-    BillingPage.assertions.assertBillingAddressFormIsPresent();
+    BillingPage.actions.addNewAddress();
     BillingPage.actions.addBillingAddress(addresses.AddressLineUK2.addrline1, addresses.AddressLineUK2.city, addresses.AddressLineUK2.county, addresses.AddressLineUK2.postcode);
   });
 

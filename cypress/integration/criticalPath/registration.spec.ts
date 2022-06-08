@@ -19,7 +19,8 @@ describe('Verify Registration feature', function (){
   it('Verify that user can register new account using valid credentials', function (){
     HomePage.click.registrationButton();
     cy.fixture('newuser').then((credentials) =>{
-      RegistrationPage.actions.startRegistration(credentials.username);
+      const randomEmail = CommonActions.randomEmail();
+      RegistrationPage.actions.startRegistration(randomEmail);
       RegistrationPage.actions.confirmationCheckbox();
       RegistrationPage.assertions.assertCheckboxIsChecked();
       RegistrationPage.actions.enterNewUserData(credentials.password, credentials.password, credentials.firstname, credentials.lastname);

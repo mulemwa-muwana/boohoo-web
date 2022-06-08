@@ -58,9 +58,7 @@ class RegistrationPage implements AbstractPage {
       cy.url().should('include', '/myaccount?registration=submitted');
     },
     assertErrorMessageExistingEmail (){
-      cy.get('#dwfrm_profile_customer_email-error > span').should('be.visible').then(element => {
-        expect(element.text().trim().toUpperCase()).to.contain(assertionText.RegistrationPageExistingEmail['UK']);
-      });
+      cy.get('#dwfrm_profile_customer_email-error > span').should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail.EN);
     }
 
   };

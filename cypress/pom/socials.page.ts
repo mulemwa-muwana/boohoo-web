@@ -16,9 +16,30 @@ class SocialsPage implements AbstractPage {
         expect(url).to.contain('instagram.com/boohoo');
       });
     },
+    assertInstagramIconIsPresent (){
+      cy.get('a[href="https://www.instagram.com/boohoo/"] > svg > path').should('be.visible');
+    },
+    assertFacebookIconIsPresent (){
+      cy.get('a[href="https://www.facebook.com/boohoo.com"] > svg').should('be.visible');
+    },
+    assertTheFixIconIsPresent (){
+      cy.get('[href="https://thefix.boohoo.com/"] > svg').should('be.visible');
+    },
+    assertPinterestIconIsPresent (){
+      cy.get('[href="https://www.pinterest.co.uk/boohooofficial/_created/"] > svg').should('be.visible');
+    },
+    assertTikTokIconIsPresent (){
+      cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"] > svg').should('be.visible');
+    },
+    assertTwitterIconIsPresent (){
+      cy.get('a[href="https://twitter.com/boohoo"] > svg > path').should('be.visible');
+    },
+    assertYouTubeIconIsPresent (){
+      cy.get('a[href="https://www.youtube.com/c/boohoo"] > svg > path').should('be.visible');
+    },
     assertOnFacebook () {
       cy.url().then(url => {
-        expect(url).to.contain('facebook.com/boohoo.com');
+        expect(url).to.include('facebook.com/boohoo.com');
       });
     },
     assertOnTwitter () {

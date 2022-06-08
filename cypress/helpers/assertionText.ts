@@ -251,7 +251,7 @@ class assertionText {
     IL: '',
     IT: '',
     ES: ''
-  }
+  };
  
 }
 

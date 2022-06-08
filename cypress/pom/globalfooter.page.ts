@@ -9,51 +9,65 @@ class GlobalFooter implements AbstractPage {
 
   click = {
     privacyPolicyLink () {
-      cy.get('a[href="https://uk-dwdev.boohoo.com/page/privacy-notice.html"]').click();
+      cy.contains('a[href="https://uk-dwdev.boohoo.com/page/privacy-notice.html"]').click();
     },
     copyrightPrivacyPolicyLink () {
       cy.get('#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a').click();
     },
     instagramLink () {
-      cy.get('a[href="https://www.instagram.com/boohoo/"]').then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10);
-        cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+      cy.get('a[href="https://www.instagram.com/boohoo/"]').then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
       });
     },
     facebookLink () {
-      cy.get('a[href="https://www.facebook.com/boohoo.com"] img').then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10);
-        cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+      cy.get('a[href="https://www.facebook.com/boohoo.com"]').then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
       });
     },
     twitterLink () {
-      cy.get('a[href="https://www.twitter.com/boohoo"] img').then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10);
-        cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+      cy.get('a[href="https://twitter.com/boohoo"]').then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
       });
     },
     tiktokLink () {
-      cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"] img').then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10);
-        cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+      cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"]').then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
       });
     },
     youtubeLink () {
-      cy.get('a[href="https://www.youtube.com/c/boohoo"] img').then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10);
-        cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+      cy.get('a[href="https://www.youtube.com/c/boohoo"]').then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
       });
     },
     pintrestLink () {
-      cy.get('a[href="https://www.pinterest.co.uk/boohooofficial/_created/"] img').then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10);
-        cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+      cy.get('a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]').then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
       });
     },
     theFixLink () {
-      cy.get('a[href="https://thefix.boohoo.com/"] img').then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10);
-        cy.wrap(element).parent().invoke('removeAttr', 'target').click({ force: true });
+      cy.get('a[href="https://thefix.boohoo.com/"]').then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
       });
     },
     footerPromo () {

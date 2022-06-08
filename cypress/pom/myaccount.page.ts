@@ -67,8 +67,7 @@ class MyAccountPage implements AbstractPage {
         cy.get('button[data-tau="address_submit"]').click();
       },
       deleteAddress () {
-        cy.get('.b-cards_grid-footer > .b-button').click();
-        cy.get('[data-tau="dialog_delete_address_confirm"]').click();
+        cy.get('.b-cards_grid-footer > .b-button').eq(3).click();
       },
       addCard (cardNumber: string, cardOwner: string) {
         cy.get('a[data-tau="address_book_addNewAddress"]').click();

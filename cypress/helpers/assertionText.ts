@@ -2,7 +2,7 @@ import { TranslationMap } from '../support/types';
 
 class assertionText {
   WishlistItemsAdded: TranslationMap = {
-    EN: 'Saved',
+    EN: '\n\nSaved\n',
     FR: '',
     NL: '',
     DE: '',
@@ -58,7 +58,7 @@ class assertionText {
   };
 
   RegistrationPageExistingEmail: TranslationMap = {
-    EN: 'LOOKS LIKE YOU ALREADY HAVE AN ACCOUNT',
+    EN: 'Looks like you already have an account with us. Please try logging in or use a different email address  Log in',
     FR: '',
     NL: '',
     DE: '',
@@ -251,7 +251,7 @@ class assertionText {
     IL: '',
     IT: '',
     ES: ''
-  }
+  };
  
 }
 

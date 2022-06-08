@@ -68,7 +68,7 @@ class HomePage implements AbstractPage {
       cy.get('button[data-tau="login_password_reset"]').click();
       cy.get('.b-dialog-window').should('be.visible');
       cy.get('#dwfrm_profile_resetPassword_email').type(email);
-      cy.get('button[data-tau="forgot_password_submit"]').click();
+      cy.get('button[data-tau="forgot_password_submit"]', {timeout: 6000}).click();
     }
   };
 
@@ -147,3 +147,4 @@ class HomePage implements AbstractPage {
 }
 
 export default new HomePage();
+

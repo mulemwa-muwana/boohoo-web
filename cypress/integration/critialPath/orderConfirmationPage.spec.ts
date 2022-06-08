@@ -9,6 +9,7 @@ import addresses from '../../helpers/addresses';
 import { SKU, LoginCredentials } from '../../support/types';
 import cards from '../../helpers/cards';
 import orderConfirmationPage from '../../pom/orderConfirmation.page';
+import assertionText from '../../helpers/assertionText';
 
 describe('Order confirmation page for guest user', function (){
   beforeEach (()=>{
@@ -16,7 +17,7 @@ describe('Order confirmation page for guest user', function (){
     cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
       HomePage.actions.findItemUsingSKU(itemSKU.sku);
     });
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize(0);
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
@@ -39,33 +40,33 @@ describe('Order confirmation page for guest user', function (){
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
-
-    // BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
-    // OrderConfirmationPage.click.continueBtn();
   });
 
-  it.only('Verify that email is visible for guest user', function (){
-    orderConfirmationPage.assertions.assertEmailIsDispplayed('euboohoo+guest@gmail.com'); 
-    
+  it('Verify that email is visible for guest user', function (){
+    orderConfirmationPage.assertions.assertEmailIsDispplayed('euboohoo+guest@gmail.com');    
   });
 
-  it('Verify that order number is visible with adequate prefix', function (){
+  it('Verify that order number', function (){
+    orderConfirmationPage.assertions.assertOrderNumberIsDispayed();
   }); 
   it('Verify that total amount paid is visible', function (){
+    orderConfirmationPage.assertions.assertOrderValueIsDispayed();
   });
   it('Verify that shipping address is present with valid data', function (){
+    orderConfirmationPage.assertions.assertShippingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
   });
   it('Verify that shipping method is present', function (){
+    orderConfirmationPage.assertions.assertShippingMethodIsDispayed();
   });
   it('Verify that billing address is present with valid data', function (){
+    orderConfirmationPage.assertions.assertBillingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
   });
   it('Verify that payment method is present', function (){
-  });
-  it('Verify that ordered items are visible', function (){
+    orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod.EN);
   });
   it('Verify that for guest users password fields are present on order confirmation page', function (){
-  });
-  it('Verify that guest users can create account on order confiramtion page', function (){
+    orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDispayed();
+    orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDispayed();
   });
 });
 describe('Order confirmation page for registered user', function (){
@@ -91,19 +92,24 @@ describe('Order confirmation page for registered user', function (){
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
   });
   it('Verify that email is visible', function (){
+    orderConfirmationPage.assertions.assertEmailIsDispplayed('euboohoo+cypress789@gmail.com');  
   });
-  it('Verify that order number is visible with adequate prefix', function (){
+  it('Verify that order number is visible', function (){
+    orderConfirmationPage.assertions.assertOrderNumberIsDispayed();
   }); 
   it('Verify that total amount paid is visible', function (){
+    orderConfirmationPage.assertions.assertOrderTotalIsVisible();
   });
   it('Verify that shipping address is present with valid data', function (){
+    orderConfirmationPage.assertions.assertShippingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
   });
   it('Verify that shipping method is present', function (){
+    orderConfirmationPage.assertions.assertShippingMethodIsDispayed();
   });
   it('Verify that billing address is present with valid data', function (){
+    orderConfirmationPage.assertions.assertBillingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
   });
   it('Verify that payment method is present', function (){
-  });
-  it('Verify that ordered items are visible', function (){
+    orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod.EN);
   });
 });

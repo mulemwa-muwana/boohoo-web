@@ -238,6 +238,20 @@ class assertionText {
     IT: '',
     ES: ''
   };
+
+  assertPaymentMethod: TranslationMap = {
+    EN: 'Credit / Debit card',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  }
  
 }
 

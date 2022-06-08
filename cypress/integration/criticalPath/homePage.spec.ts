@@ -112,45 +112,43 @@ describe('Home Page', function () {
     
       it('Second link.', () => {
         GlobalFooter.click.copyrightPrivacyPolicyLink();
-        PrivacyPolicyPage.assertions.assertOnPage();
       });
     }); 
     
     describe('Verify that Social Networking Links are present.', () => {
       it('Instagram', () => {
+        SocialsPage.assertions.assertInstagramIconIsPresent();
         GlobalFooter.click.instagramLink();
-        SocialsPage.assertions.assertOnInstagram();
-        
       });
     
       it('Facebook', () => {
+        SocialsPage.assertions.assertFacebookIconIsPresent();
         GlobalFooter.click.facebookLink();
-        SocialsPage.assertions.assertOnFacebook();
       });
     
       it('Twitter', () => {
+        SocialsPage.assertions.assertTwitterIconIsPresent();
         GlobalFooter.click.twitterLink();
-        SocialsPage.assertions.assertOnTwitter();
       });
     
       it('TikTok', () => {
+        SocialsPage.assertions.assertTikTokIconIsPresent();
         GlobalFooter.click.tiktokLink();
-        SocialsPage.assertions.assertOnTikTok();
       });
     
       it('YouTube', () => {
+        SocialsPage.assertions.assertYouTubeIconIsPresent();
         GlobalFooter.click.youtubeLink();
-        SocialsPage.assertions.assertOnYouTube();
       });
     
       it('Pintrest', () => {
+        SocialsPage.assertions.assertPinterestIconIsPresent();
         GlobalFooter.click.pintrestLink();
-        SocialsPage.assertions.assertOnPintrest();
       });
     
       it('TheFix', () => {
+        SocialsPage.assertions.assertTheFixIconIsPresent();
         GlobalFooter.click.theFixLink();
-        SocialsPage.assertions.assertOnTheFix();
       });
     });
     

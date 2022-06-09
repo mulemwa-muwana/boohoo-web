@@ -104,7 +104,7 @@ describe('Home Page', function () {
     });
     
     describe('Verify the content page (Privacy Policy) is displayed.', () => {
-      it.only('Privacy policy', () => {
+      it('Privacy policy', () => {
         GlobalFooter.click.privacyPolicyLink();
         PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
         PrivacyPolicyPage.assertions.assertOnPage();
@@ -127,7 +127,7 @@ describe('Home Page', function () {
         GlobalFooter.click.twitterLink();
       });
     
-      it.only('TikTok', () => {
+      it('TikTok', () => {
         SocialsPage.assertions.assertTikTokIconIsPresent();
         GlobalFooter.click.tiktokLink();
       });

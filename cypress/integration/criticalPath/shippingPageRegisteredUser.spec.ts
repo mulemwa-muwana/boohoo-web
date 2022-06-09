@@ -13,6 +13,9 @@ describe('Home Page', function () {
   
   beforeEach(() => {
     HomePage.goto();
+    homePage.click.cartIcon();
+    cartPage.click.clearCart();
+    HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       HomePage.goto();
       HomePage.click.searchField();
@@ -32,7 +35,7 @@ describe('Home Page', function () {
     shippingPage.assertions.assertPromoCodeFieldIsDispayed();
   });
 
-  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+  it.only('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertFirstNameIsMandatory();
     shippingPage.assertions.assertCityIsMandatory();

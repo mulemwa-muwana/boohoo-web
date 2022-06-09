@@ -71,6 +71,160 @@ class addresses {
     country: '',
     countryCode: ''
   };
+
+  AddressLineCA: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineIE: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineNO: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineSE: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineEU: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineNL: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineFI: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineES: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineIT: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineFRA: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
+
+  AddressLineNZ: AddressData = {
+    firstName: 'Test',
+    lastName: 'Test',
+    phone: 'Test',
+    addrline1: 'Test',
+    addrline2: 'Test',
+    city: 'Test',
+    postcode: 'Test',
+    addressName: 'Test',
+    county: 'Test',
+    country: '',
+    countryCode: ''
+  };
 }
 
 export default new addresses();

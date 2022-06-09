@@ -6,11 +6,11 @@ class HomePage implements AbstractPage {
 
   goto (options: GotoOptions = null) {
        
-    cy.visit('https://storefront:Oreo2022@uk-dwdev.boohoo.com/');
+    cy.visit('https://storefront:Oreo2022@uk-dwstg.boohoo.com/');
        
     if (options?.applyCookies) {
       CommonActions.applyMarketingCookies();
-      cy.visit('https://storefront:Oreo2022@uk-dwdev.boohoo.com/');
+      cy.visit('https://storefront:Oreo2022@uk-dwstg.boohoo.com/');
     }
   }
 

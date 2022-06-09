@@ -1,3 +1,4 @@
+import assertionText from '../helpers/assertionText';
 import { CountryCode } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 
@@ -9,7 +10,7 @@ class GlobalFooter implements AbstractPage {
 
   click = {
     privacyPolicyLink () {
-      cy.contains('a[href="https://uk-dwdev.boohoo.com/page/privacy-notice.html"]').click();
+      cy.contains('Privacy Notice - Updated March 2021').click();
     },
     copyrightPrivacyPolicyLink () {
       cy.get('#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a').click();

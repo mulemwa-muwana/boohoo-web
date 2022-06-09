@@ -104,14 +104,10 @@ describe('Home Page', function () {
     });
     
     describe('Verify the content page (Privacy Policy) is displayed.', () => {
-      it('First link.', () => {
+      it.only('Privacy policy', () => {
         GlobalFooter.click.privacyPolicyLink();
         PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
         PrivacyPolicyPage.assertions.assertOnPage();
-      });
-    
-      it('Second link.', () => {
-        GlobalFooter.click.copyrightPrivacyPolicyLink();
       });
     }); 
     
@@ -131,7 +127,7 @@ describe('Home Page', function () {
         GlobalFooter.click.twitterLink();
       });
     
-      it('TikTok', () => {
+      it.only('TikTok', () => {
         SocialsPage.assertions.assertTikTokIconIsPresent();
         GlobalFooter.click.tiktokLink();
       });

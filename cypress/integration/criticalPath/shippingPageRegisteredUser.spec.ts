@@ -13,9 +13,6 @@ describe('Home Page', function () {
   
   beforeEach(() => {
     HomePage.goto();
-    homePage.click.cartIcon();
-    cartPage.click.clearCart();
-    HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       HomePage.goto();
       HomePage.click.searchField();

@@ -86,7 +86,7 @@ class assertionText {
   };
 
   PrivacyPolicyH1: TranslationMap = {
-    EN: '\nPrivacy Notice\n',
+    EN: '\n                Privacy Notice\n            ',
     FR: '',
     NL: '',
     DE: '',

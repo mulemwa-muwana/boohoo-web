@@ -40,6 +40,8 @@ describe('Home Page', function () {
       it('Verify search icon is present', () => {
         HomePage.click.searchIcon();
         HomePage.assertions.assertSearchIconPresent();
+
+        // Just trying to show PR
       });
       it('Verify search field is present', () => {
         HomePage.click.searchIcon();

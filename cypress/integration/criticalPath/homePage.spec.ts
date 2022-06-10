@@ -34,6 +34,7 @@ describe('Home Page', function () {
     describe('Header verifications', () => {
       it('Header Logo', () => {
         homePage.assertions.assertLogoPresent();
+        // showing team how to create PR
       });
     
       it('Verify search icon is present', () => {

@@ -17,6 +17,8 @@ describe('Login Functionality tests', function (){
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
     });
+
+    // Just a comment added 
   });
 
   it('Verify that user can not login with invalid credentials', function () {  

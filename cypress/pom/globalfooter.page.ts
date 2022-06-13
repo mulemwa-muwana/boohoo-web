@@ -72,7 +72,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     footerPromo () {
-      cy.get('div[class="b-footer_sticky"]').then(element => {
+      cy.get('#footer-sticky-promo > a').then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
         cy.url().then(url => {
@@ -94,7 +94,7 @@ class GlobalFooter implements AbstractPage {
         .invoke('removeAttr', 'target')
         .then(element => {
           const href = element.attr('href');
-          cy.wrap(element).click();
+          cy.wrap(element).click({force: true});
           cy.url().then(url => {
             expect(url).to.contain(options?.assertionUrl ?? href);
           });
@@ -139,13 +139,13 @@ class GlobalFooter implements AbstractPage {
     },
     assertFooterIsFixedAndPresent () {
       cy.scrollTo('bottom');
-      cy.get('.b-promo_info_box-caption > .b-promo_caption-subtitle').should('have.css', 'position', 'fixed');
+      cy.get('#footer-sticky-promo').should('have.css', 'position', 'fixed');
     },
     assertHeaderIsVisible () {
-      cy.get('.l-header-inner').should('be.visible');
+      cy.get('.b-header_utility-inner').should('be.visible');
     },
     assertHeaderIsNotVisible () {
-      cy.get('.l-header-inner').should('not.be.visible');
+      cy.get('.b-header_utility-inner').should('not.be.visible');
 
     }
   };

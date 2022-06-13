@@ -56,6 +56,12 @@ class HomePage implements AbstractPage {
     },
     allShoesLink (opts = { force: true }){
       cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
+    },
+    investorRelationsAcceptBtn (){
+      cy.get('cc-saveAll-startBtn').click();
+    },
+    acceptCookies (){
+      cy.get('.b-notification_panel-controls > [data-event-click="accept"]').click();
     }
     
   };

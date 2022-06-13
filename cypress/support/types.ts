@@ -1,5 +1,3 @@
-import { StringLiteralLike } from 'typescript';
-
 export type GotoOptions = {
     applyCookies: boolean;
 }
@@ -9,6 +7,35 @@ type NorthAmericaCountryCode = 'US' | 'CA';
 type EuropeCountryCode = 'GB' | 'FR' | 'IE' | 'EUR' | 'NL' | 'DE' | 'ES' | 'SK' | 'IT' | 'DK' | 'FI' | 'NO' | 'RU' | 'IL';
 type MiddleEastCountryCode = 'AE' | 'BH' | 'JO' | 'KW' | 'OM' | 'QA' | 'SA';
 type FarEastCountryCode = 'HK' | 'TW' | 'JP' | 'SG' | 'KR';
+
+export enum GroupBrands {
+    Boohoo = 'boohoo.com',
+    BoohooMAN = 'boohooman.com',
+    NastyGal = 'nastygal.com',
+    KarenMillen = 'karenmillen.com',
+    Coast = 'coastfashion.com',
+    Warehouse = 'warehousefashion.com',
+    Oasis = 'oasis-stores.com',
+    DorothyPerkins = 'dorothyperkins.com',
+    Burton = 'burton.co.uk',
+    Wallis = 'wallis.co.uk',
+    MissPap = 'misspap.com'
+}
+
+export type TCustomerJSONResponse = {
+    email: string;
+    customer_id: string;
+    customer_no: string;
+}
+
+/** Type for mapping brands to a string. */
+export type BrandMap = { [key in GroupBrands]: string };
+
+/** Lowercase locale of the country you want, used in the API managers. */
+export type TLocale = 'uk' | 'us';
+
+/** Types for the API manager to limit input types, can be expandeed with | */
+export type APIKeyType = 'Customer';
 
 export type CountryCode = AustralasiaCountryCode | NorthAmericaCountryCode | EuropeCountryCode | MiddleEastCountryCode | FarEastCountryCode;
 

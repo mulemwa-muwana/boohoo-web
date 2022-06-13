@@ -1,4 +1,5 @@
 {
+  "baseUrl": "https://storefront:Oreo2022@uk-dwdev.boohoo.com/",
   "viewportHeight": 1080,
   "viewportWidth": 1920,
   "experimentalSessionAndOrigin": true

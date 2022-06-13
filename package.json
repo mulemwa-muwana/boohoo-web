@@ -5,11 +5,12 @@
     "cy:run:boohoo:dashboard": "cypress run --config-file ./config/cypress.boohoo.json --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
     "lint": "eslint . --ext .ts"
   },
-  "testCasesUrl": "https://docs.google.com/spreadsheets/d/1aACipr0OiGFNq1KF3hbZ4EuP8664OU7cBf4LScJBz1k/",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
+    "axios": "^0.27.2",
     "cypress": "^9.1.1",
+    "dotenv": "^16.0.1",
     "eslint": "^8.10.0",
     "typescript": "^4.5.4"
   }

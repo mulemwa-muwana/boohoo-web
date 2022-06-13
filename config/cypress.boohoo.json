@@ -1,6 +1,6 @@
 {
   "projectId": "i6d3n8",
-  "baseUrl": "https://storefront:Oreo2022@uk-dwdev.boohoo.com/');",
+  "baseUrl": "https://storefront:Oreo2022@uk-dwdev.boohoo.com/",
   "chromeWebSecurity": false,
   "env": {
     "salesforce": {
@@ -9,5 +9,8 @@
       "password": "<my_password>",
       "accessToken": "<access_token>"
     }
-  }
+  },
+  "viewportHeight": 1080,
+  "viewportWidth": 1920,
+  "experimentalSessionAndOrigin": true
 }

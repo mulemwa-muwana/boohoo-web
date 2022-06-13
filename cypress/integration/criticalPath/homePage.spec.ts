@@ -34,14 +34,11 @@ describe('Home Page', function () {
     describe('Header verifications', () => {
       it('Header Logo', () => {
         homePage.assertions.assertLogoPresent();
-        // something else
       });
     
       it('Verify search icon is present', () => {
         HomePage.click.searchIcon();
         HomePage.assertions.assertSearchIconPresent();
-
-        // Just trying to show PR
       });
       it('Verify search field is present', () => {
         HomePage.click.searchIcon();
@@ -107,7 +104,12 @@ describe('Home Page', function () {
     });
     
     describe('Verify the content page (Privacy Policy) is displayed.', () => {
-      it('Privacy policy', () => {
+      it('Privacy policy - first link', () => {
+        GlobalFooter.click.privacyPolicyLink();
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
+        PrivacyPolicyPage.assertions.assertOnPage();
+      });
+      it('Privacy policy - second link', () => {
         GlobalFooter.click.privacyPolicyLink();
         PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
         PrivacyPolicyPage.assertions.assertOnPage();
@@ -158,49 +160,94 @@ describe('Home Page', function () {
     it('Verify that App Banner is present as content slot.', () => {
       GlobalFooter.assertions.assertPromoBannerPresent();
     });
-    
-    it('Verify that Footer Navigation Component is present and Links are functional.', () => {
 
-      // Each of these will go back to the previous URL once the action has been completed.
-    
-      // First column (Quick Links)      
+    // Each of these will go back to the previous URL once the action has been completed.      
+
+    it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
       GlobalFooter.actions.checkFooterLinkByText('Track My Order');
-      GlobalFooter.actions.checkFooterLinkByText('Help');      
-      GlobalFooter.actions.checkFooterLinkByText('Returns');
-      GlobalFooter.actions.checkFooterLinkByText('Delivery Info');
-      
-      // Second column (About Us & More)
-      GlobalFooter.actions.checkFooterLinkByText('About boohoo');
-      GlobalFooter.actions.checkFooterLinkByText('Size Guide');
-      GlobalFooter.actions.checkFooterLinkByText('The boohoo App');
-      GlobalFooter.actions.checkFooterLinkByText('boohoo Premier');
-      GlobalFooter.actions.checkFooterLinkByText('Student Discount');
-      GlobalFooter.actions.checkFooterLinkByText('Discount & Promo Codes');
-      GlobalFooter.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
-
-      //  GlobalFooter.actions.checkFooterLinkByText('Gift Cards'); <- Links to boohoo.com (prod env)
-      GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');
-      GlobalFooter.actions.checkFooterLinkByText('Become an Affiliate');
-      GlobalFooter.actions.checkFooterLinkByText('Become a Partner');
-    
-      // Third column (Information)
-      GlobalFooter.actions.checkFooterLinkByText('Sustainability');
-      GlobalFooter.actions.checkFooterLinkByText('Klarna');
-      GlobalFooter.actions.checkFooterLinkByText('Clearpay');
-      GlobalFooter.actions.checkFooterLinkByText('Laybuy');
-      GlobalFooter.actions.checkFooterLinkByText('Zip');
-      GlobalFooter.actions.checkFooterLinkByText('Investor Relations');
-      GlobalFooter.actions.checkFooterLinkByText('Environmental & Social Responsibility');
-      GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
-      GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
-      GlobalFooter.actions.checkFooterLinkByText('Careers');
-      GlobalFooter.actions.checkFooterLinkByText('T&Cs');
-      GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2021');
-      GlobalFooter.actions.checkFooterLinkByText('About Cookies');
-      GlobalFooter.actions.checkFooterLinkByText('Sitemap');
-     
     });
-    
+    it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Help');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Returns');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Delivery Info');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - About boohoo', () => {
+      GlobalFooter.actions.checkFooterLinkByText('About boohoo');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Size Guide');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - The boohoo App', () => {
+      GlobalFooter.actions.checkFooterLinkByText('The boohoo App');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - boohoo Premier', () => {
+      GlobalFooter.actions.checkFooterLinkByText('boohoo Premier');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Student Discount');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Discount & Promo Codes', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Discount & Promo Codes');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Refer a Friend', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Become an Affiliate');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Become a Partner', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Become a Partner');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Sustainability', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Sustainability');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Klarna', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Klarna');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Clearpay', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Clearpay');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Laybuy');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Zip', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Zip');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Investor Relations');
+      homePage.click.investorRelationsAcceptBtn();
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
+      GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Modern Slavery Statement', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Careers', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Careers');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {
+      GlobalFooter.actions.checkFooterLinkByText('T&Cs'); 
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated March 2021', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2021');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - About Cookies', () => {
+      GlobalFooter.actions.checkFooterLinkByText('About Cookies');
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Sitemap'); 
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Sitemap'); 
+    });  
     it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
       const currentYear = new Date().getFullYear();
       cy.contains(`Copyright © ${currentYear} boohoo.com.`).should('be.visible');
@@ -209,12 +256,12 @@ describe('Home Page', function () {
     describe('Verify that the Country Selector displayed and functional.', () => {
       it('US', () => {
         GlobalFooter.actions.changeCountry('US');
-        HomePage.assertions.assertCountryURL('us-dwdev.boohoo.com');
+        HomePage.assertions.assertCountryURL('us-dwstg.boohoo.com');
       });
     
       it('AU', () => {
         GlobalFooter.actions.changeCountry('AU');
-        HomePage.assertions.assertCountryURL('au-dwdev.boohoo.com');
+        HomePage.assertions.assertCountryURL('au-dwstg.boohoo.com');
       });
     
       it('FR', () => {
@@ -235,12 +282,11 @@ describe('Home Page', function () {
     });
     
     describe('Verify that the global header is displayed.', () => {
-      it('Check global header hides when scrolling down.', () => {
+      it('Check global header is visible when scrolling down.', () => {
         cy.scrollTo('bottom');
-        GlobalFooter.assertions.assertHeaderIsNotVisible();
+        GlobalFooter.assertions.assertHeaderIsVisible();
       });
       it('Check global header displays.', () => {
-        cy.scrollTo('top');
         GlobalFooter.assertions.assertHeaderIsVisible();
       });
     

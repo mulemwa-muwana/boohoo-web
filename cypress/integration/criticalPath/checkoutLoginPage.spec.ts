@@ -37,7 +37,6 @@ describe('Home Page', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
       CheckoutPage.click.continueAsGuestBtn();
-      CheckoutPage.click.continueAsRegisteredUser();
     });
   });
 

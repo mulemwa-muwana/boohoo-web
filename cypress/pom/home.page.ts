@@ -18,7 +18,7 @@ class HomePage implements AbstractPage {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
     logInIcon (opts = { force: false }) {
-      cy.get('.b-header_login-icon > .i-icon').click({ force: opts.force });
+      cy.get('#page-head > div.l-header-inner > div > div.l-header-left > div:nth-child(2) > a > div > svg').click({ force: opts.force });
     },
     forgotPasswordLink (){
       cy.get('button[data-tau="login_password_reset"]').click();
@@ -32,10 +32,10 @@ class HomePage implements AbstractPage {
       cy.get('.b-search_input-close').click({ force: opts.force });            
     },
     searchField (){
-      cy.get('#header-search-input').click();
+      cy.get('#header-search-input').click({force: true});
     },
     wishListIcon () {
-      cy.get('.b-header_wishlist-icon > .i-icon').click();
+      cy.get('.b-header_wishlist-icon > .i-icon').click({force: true});
     },
     cartIcon (){
       cy.get('.b-minicart_icon-link').should('be.visible');
@@ -125,13 +125,17 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent (){
-      cy.get('.b-header_wishlist-icon > .i-icon').should('be.visible');
+      cy.get('.b-header_wishlist-icon > .i-icon').invoke('show').then(element => {
+        cy.wrap(element).invoke('show').should('be.visible');
+      });
     },
     assertCartIconPresent (){
       cy.get('.b-minicart_icon-link').should('be.visible');
     },
     assertAccountIconPresent (){
-      cy.get('.b-header_login-icon > .i-icon').should('be.visible');
+      cy.get('.b-header_login-icon').invoke('show').then(element => {
+        cy.wrap(element).invoke('show').should('be.visible');
+      });
     },
 
     //  Login Attempts

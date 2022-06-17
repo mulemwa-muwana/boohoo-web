@@ -95,7 +95,7 @@ describe('Home Page', function () {
       GlobalFooter.assertions.assertUnsuccessfulSubscription();
     });
     
-    it.only('Verify correct error message is displayed - newsletter subscription footer', () => {
+    it('Verify correct error message is displayed - newsletter subscription footer', () => {
       const randomEmail = CommonActions.randomEmail();
       GlobalFooter.actions.subscribeToNewsletter(randomEmail);
       HomePage.goto();
@@ -196,9 +196,12 @@ describe('Home Page', function () {
     it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
       GlobalFooter.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
     });
-    it('Verify that Footer Navigation Component is present and Links are functional - Refer a Friend', () => {
+
+    /*
+      It('Verify that Footer Navigation Component is present and Links are functional - Refer a Friend', () => {
       GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');
     });
+    */
     it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', () => {
       GlobalFooter.actions.checkFooterLinkByText('Become an Affiliate');
     });
@@ -222,7 +225,9 @@ describe('Home Page', function () {
     });
     it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {
       GlobalFooter.actions.checkFooterLinkByText('Investor Relations');
-      homePage.click.investorRelationsAcceptBtn();
+    });
+    it('Verify that Footer Navigation Component is present and Links are functional - Environmental & Social Responsibility', () => {
+      GlobalFooter.actions.checkFooterLinkByText('Environmental & Social Responsibility');
     });
     it('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
       GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
@@ -244,9 +249,6 @@ describe('Home Page', function () {
     });
     it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
       GlobalFooter.actions.checkFooterLinkByText('Sitemap'); 
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
-      GlobalFooter.actions.checkFooterLinkByText('Sitemap'); 
     });  
     it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
       const currentYear = new Date().getFullYear();
@@ -254,7 +256,7 @@ describe('Home Page', function () {
     });
     
     describe('Verify that the Country Selector displayed and functional.', () => {
-      it('US', () => {
+      it.only('US', () => {
         GlobalFooter.actions.changeCountry('US');
         HomePage.assertions.assertCountryURL('us-dwstg.boohoo.com');
       });

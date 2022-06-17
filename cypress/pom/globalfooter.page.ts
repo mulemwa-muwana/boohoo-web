@@ -1,4 +1,3 @@
-import assertionText from '../helpers/assertionText';
 import { CountryCode } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 
@@ -118,7 +117,7 @@ class GlobalFooter implements AbstractPage {
       cy.get('#dwfrm_newslettersubscribe_email-error').should('contain.text', 'already signed up');
     },
     assertPaymentOptionsArePresent () {
-      cy.get('.m-hide-md').scrollIntoView().should('be.visible');
+      cy.get('p > .m-hide-md').scrollIntoView().should('be.visible');
     },
     assertPromoBannerPresent () {
       cy.get('div[class="b-app_banner"]').should('be.visible');

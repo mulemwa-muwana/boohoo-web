@@ -10,31 +10,31 @@ class PlpPage implements AbstractPage {
 
     // Refinements
     categoryRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-category > span').click();
+      cy.get('#searchRefineBarAccordionItemBtn-category > span').click({force: true});
     },
     sizeRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-size > span').click();
+      cy.get('#searchRefineBarAccordionItemBtn-size > span').click({force: true});
     },
     styleRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-style > span').click();
+      cy.get('#searchRefineBarAccordionItemBtn-style > span').click({force: true});
     },
     colorRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-colour > span').click();
+      cy.get('#searchRefineBarAccordionItemBtn-colour > span').click({force: true});
     },
     priceRefinements (){
-      cy.get('#searchRefineBarAccordionItemBtn-price > span').click();
+      cy.get('#searchRefineBarAccordionItemBtn-price > span').click({force: true});
     },
     shopByFitRefinements (){
-      cy.get('#searchRefineBarAccordionItemBtn-shop-by-fit > span').click();
+      cy.get('#searchRefineBarAccordionItemBtn-shop-by-fit > span').click({force: true});
     },
     occassionRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-occasion > span').click();
+      cy.get('#searchRefineBarAccordionItemBtn-occasion > span').click({force: true});
     },
     sortProducts (){
-      cy.get('#plp-sort-desktop').click();
+      cy.get('#plp-sort-desktop').click({force: true});
     },
     priceVariant (){
-      cy.get('#searchRefineBarAccordionItemBtn-price').click();
+      cy.get('#searchRefineBarAccordionItemBtn-price').click({force: true});
     },
 
     selectRefinementVariantShopByFit (text: string){
@@ -75,13 +75,13 @@ class PlpPage implements AbstractPage {
     // Load more products
     loadMoreProducts (){
       cy.scrollTo('bottom');
-      cy.get('div.b-load_more > a').click();
+      cy.get('div.b-load_more > a').click({force: true});
       cy.wait(10000);
     },
 
     // Product details (image, name, price, wishlist, quickview)
     wishlistOnPlpImage (){
-      cy.get('.b-wishlist_button-icon').eq(1).click();
+      cy.get('.b-wishlist_button-icon').eq(1).click({force: true});
     }
     
   };

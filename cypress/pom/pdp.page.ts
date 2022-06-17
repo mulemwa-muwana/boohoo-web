@@ -45,7 +45,7 @@ class PdpPage implements AbstractPage {
       cy.get('.b-variation_swatch  ').find('.b-variation_swatch-value_text').eq(index).click({force: true});
     },
     addToCart (){
-      cy.wait(1000);
+      cy.wait(15000);
       cy.get('button[data-widget-event-click="addToCart"]').click();
     }
   

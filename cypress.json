@@ -3,5 +3,6 @@
   "viewportHeight": 1080,
   "viewportWidth": 1920,
   "experimentalSessionAndOrigin": true,
-  "defaultCommandTimeout": 10000
+  "defaultCommandTimeout": 10000,
+  "chromeWebSecurity": false
 }

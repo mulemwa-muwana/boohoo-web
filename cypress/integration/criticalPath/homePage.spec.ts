@@ -95,7 +95,7 @@ describe('Home Page', function () {
       GlobalFooter.assertions.assertUnsuccessfulSubscription();
     });
     
-    it.only('Verify correct error message is displayed - newsletter subscription footer', () => {
+    it('Verify correct error message is displayed - newsletter subscription footer', () => {
       const randomEmail = CommonActions.randomEmail();
       GlobalFooter.actions.subscribeToNewsletter(randomEmail);
       HomePage.goto();

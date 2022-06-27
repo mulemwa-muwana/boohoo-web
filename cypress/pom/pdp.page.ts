@@ -78,8 +78,8 @@ class PdpPage implements AbstractPage {
     assertSizeIsNotAvailable (){
       cy.get ('.b-product_addtocard-availability').should('have.text', 'Out of Stock');
     },
-    assertProductIsAddedToCart (){
-      cy.get('.b-minicart-inner > :nth-child(1) > .b-minicart-title').should('be.visible').and('have.text', '\nAdded to your cart\n');
+    assertProductIsAddedToCart (text: string){
+      cy.get('.b-minicart-inner > :nth-child(1) > .b-minicart-title').should('be.visible').and('contain.text', text);
     },
     assertErrorMsgForSizeIsDisplayed (msg: string){
       cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', msg);
@@ -108,11 +108,11 @@ class PdpPage implements AbstractPage {
     assertCompleteLookDisplayed (){
       cy.get('.b-product_section').should('be.visible');
     },
-    assertLinkNewSeasonIsLinked (){
-      cy.url().should('include', '/new-season');
+    assertLinkNewSeasonIsLinked (text: string){
+      cy.url().should('include', text);
     },
-    assertLinkShoesAndAccIsLinked (){
-      cy.url().should('include', '/shoes-accessories');
+    assertLinkShoesAndAccIsLinked (text: string){
+      cy.url().should('include', text);
     }
     
   };

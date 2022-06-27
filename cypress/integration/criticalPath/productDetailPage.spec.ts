@@ -3,6 +3,7 @@ import HomePage from '../../pom/home.page';
 import { SKU } from '../../support/types';
 import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
+import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 
 describe('Product Details Page tests', function () {
 
@@ -40,7 +41,7 @@ describe('Product Details Page tests', function () {
     PdpPage.actions.selectSize(1);
     PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock['EN']);
     PdpPage.actions.addToCart();
-    PdpPage.assertions.assertProductIsAddedToCart();
+    PdpPage.assertions.assertProductIsAddedToCart(assertionText.addedToCard.EN);
   });
   it('TC07 Verify if size is not selected, and user tries to add product to a bag, error message is displayed', function (){
     PdpPage.actions.addToCart();
@@ -72,10 +73,10 @@ describe('Product Details Page tests', function () {
   it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function (){
     PdpPage.assertions.assertCompleteLookDisplayed();
     PdpPage.click.shopNowLinkNL();
-    PdpPage.assertions.assertLinkNewSeasonIsLinked();
+    PdpPage.assertions.assertLinkNewSeasonIsLinked(megaMenuLinksLanguages.newSeason.EN);
     cy.go('back');
     PdpPage.click.shopNowLinkSA();
-    PdpPage.assertions.assertLinkShoesAndAccIsLinked();
+    PdpPage.assertions.assertLinkShoesAndAccIsLinked(megaMenuLinksLanguages.shoesAndAcc.EN);
   });
  
 });  

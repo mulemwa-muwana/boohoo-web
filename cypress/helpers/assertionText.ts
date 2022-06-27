@@ -252,6 +252,20 @@ class assertionText {
     IT: '',
     ES: ''
   };
+
+  addedToCard: TranslationMap = {
+    EN: '\nAdded to your cart\n',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
  
 }
 

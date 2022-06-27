@@ -66,6 +66,16 @@ class megaMenuLinksLanguages {
 
   };
 
+  newSeason = {
+    EN: 'new-season',
+
+  };
+
+  shoesAndAcc = {
+    EN: 'shoes-accessories',
+
+  };
+
 }
 
 export default new megaMenuLinksLanguages();

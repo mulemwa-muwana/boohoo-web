@@ -52,7 +52,6 @@
     "@typescript-eslint/consistent-type-assertions": "error",               // Enforces consistent usage of type assertions.
     "@typescript-eslint/explicit-module-boundary-types": "error",           // Require explicit return and argument types on exported functions' and classes' public class methods
     "@typescript-eslint/member-delimiter-style": "error",                   // Require a specific member delimiter style for interfaces and type literals 	
-    "@typescript-eslint/method-signature-style": "error",                   // Enforces using a particular method signature syntax.
     "@typescript-eslint/naming-convention": [                               // Enforces naames not to be set as complete random things.
       "error", 
       { "selector": "default", "format": ["PascalCase", "camelCase", "UPPER_CASE", "snake_case"]},

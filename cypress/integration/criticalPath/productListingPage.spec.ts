@@ -2,10 +2,18 @@ import plpPage from '../../pom/plp.page';
 import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
+import { NewCustomerCredentials } from '../../support/types';
 
 describe('Home Page', function (){
   
   beforeEach(() => {
+
+    // This is how to create a brand new customer based on the environment brands.
+    cy.createUser(Cypress.env('brand')).then((user: NewCustomerCredentials) => {
+      cy.log(user.email);
+      cy.log(user.email);
+    });
+
     HomePage.goto();
     HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink.EN);
     HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale.EN);

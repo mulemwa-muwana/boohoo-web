@@ -55,8 +55,9 @@ describe('Home Page', function () {
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
+    const language = Cypress.env('language');
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory.EN);
+    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[language]);
   });
 
   it('Verify that "Enter manually" button allows guest to enter address details', () => {

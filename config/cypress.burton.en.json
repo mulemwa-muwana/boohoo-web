@@ -3,7 +3,9 @@
     "baseUrl": "https://storefront:Oreo2022@dwstg.burton.co.uk",
     "env": {
       "SKU": "#ABB01243",
-      "brand": "burton.co.uk"
+      "brand": "burton.co.uk",
+      "locale": "GB",
+      "language": "EN"
     },
     "viewportHeight": 1080,
     "viewportWidth": 1920,

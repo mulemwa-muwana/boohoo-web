@@ -3,7 +3,9 @@
   "baseUrl": "https://storefront:Oreo2022@uk-dwstg.boohoo.com/",
   "env": {
     "SKU": "#DZZ79497",
-    "brand": "boohoo.com"
+    "brand": "boohoo.com",
+    "locale": "UK",
+    "language": "EN"
   },
   "viewportHeight": 1080,
   "viewportWidth": 1920,

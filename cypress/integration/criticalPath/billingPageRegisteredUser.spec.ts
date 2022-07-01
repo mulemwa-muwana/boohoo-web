@@ -6,15 +6,14 @@ import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
 import addresses from '../../helpers/addresses';
 import shippingPage from '../../pom/shipping.page';
-import { SKU, LoginCredentials, PaymentMethodSelector } from '../../support/types';
+import { LoginCredentials, PaymentMethodSelector } from '../../support/types';
 import cards from '../../helpers/cards';
 
 describe('Billing page functionality for registered user', function (){
   beforeEach (()=>{
     HomePage.goto();
-    cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
-      HomePage.actions.findItemUsingSKU(itemSKU.sku);
-    });
+    const itemSKU = Cypress.env('SKU');
+    HomePage.actions.findItemUsingSKU(itemSKU);
     PdpPage.actions.selectSize(1);
     cy.wait(2000);
     PdpPage.click.addToCart();

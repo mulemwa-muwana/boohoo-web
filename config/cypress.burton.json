@@ -1,0 +1,13 @@
+{
+    "projectId": "i6d3n8",
+    "baseUrl": "https://storefront:Oreo2022@dwstg.burton.co.uk",
+    "env": {
+      "SKU": "#ABB01243",
+      "brand": "burton.co.uk"
+    },
+    "viewportHeight": 1080,
+    "viewportWidth": 1920,
+    "defaultCommandTimeout": 10000,
+    "experimentalSessionAndOrigin": true,
+    "chromeWebSecurity": false
+  }

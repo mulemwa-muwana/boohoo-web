@@ -3,14 +3,13 @@ import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
-import { SKU, LoginCredentials } from '../../support/types';
+import { LoginCredentials } from '../../support/types';
 
 describe('Cart basic functionality for guest user', function (){
   beforeEach (() =>{
     HomePage.goto();
-    cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
-      HomePage.actions.findItemUsingSKU(itemSKU.sku);
-    });
+    const itemSKU = Cypress.env('SKU');
+    HomePage.actions.findItemUsingSKU(itemSKU);
     PdpPage.actions.selectSize(1);
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();
@@ -75,9 +74,8 @@ describe('Cart page for Registered user', function (){
       // CartPage.click.clearCart();
     });
     HomePage.goto();
-    cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
-      HomePage.actions.findItemUsingSKU(itemSKU.sku);
-    });
+    const itemSKU = Cypress.env('SKU');
+    HomePage.actions.findItemUsingSKU(itemSKU);
     PdpPage.actions.selectSize(1);
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();

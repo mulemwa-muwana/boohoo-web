@@ -7,15 +7,14 @@ import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
-import { SKU, LoginCredentials, PaymentMethodSelector } from '../../support/types';
+import { LoginCredentials, NewCustomerCredentials, PaymentMethodSelector } from '../../support/types';
 import cards from '../../helpers/cards';
 
 describe('Billing page functionality for guest user', function (){
   beforeEach (()=>{
     HomePage.goto();
-    cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
-      HomePage.actions.findItemUsingSKU(itemSKU.sku);
-    });
+    const itemSKU = Cypress.env('SKU');
+    HomePage.actions.findItemUsingSKU(itemSKU);
     PdpPage.actions.selectSize(1);
     cy.wait(2000);
     PdpPage.click.addToCart();
@@ -23,10 +22,13 @@ describe('Billing page functionality for guest user', function (){
     HomePage.click.cartIcon();  
     PdpPage.click.miniCartViewCartBtn();
     CartPage.click.proceedToCheckout();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+
+    // Needs adapting. 
+    cy.task('createUser', Cypress.env('brand')).then((account: NewCustomerCredentials) => {
+      CheckoutPage.actions.guestCheckoutEmail(account.email);
       CheckoutPage.click.continueAsGuestBtn();
-    }); 
+    });
+
     shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
     shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
     shippingPage.actions.selectCountry(addresses.AddressLineUK.country);

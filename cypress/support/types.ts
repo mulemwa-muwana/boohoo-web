@@ -28,6 +28,13 @@ export type TCustomerJSONResponse = {
     customer_no: string;
 }
 
+export type NewCustomerCredentials = {
+    email: string;
+    password: string;
+};
+
+export type SelectorBrandMap = { [key in GroupBrands]: Record<string, string> };
+
 /** Type for mapping brands to a string. */
 export type BrandMap = { [key in GroupBrands]: string };
 

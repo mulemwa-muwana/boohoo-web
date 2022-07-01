@@ -1,6 +1,5 @@
 import PdpPage from '../../pom/pdp.page';
 import HomePage from '../../pom/home.page';
-import { SKU } from '../../support/types';
 import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
@@ -9,9 +8,8 @@ describe('Product Details Page tests', function () {
 
   beforeEach (()=>{
     HomePage.goto();
-    cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
-      HomePage.actions.findItemUsingSKU(itemSKU.sku);
-    });
+    const itemSKU = Cypress.env('SKU');
+    HomePage.actions.findItemUsingSKU(itemSKU);
   });
     
   it('TC01 Verify that Product name is showing',function (){
@@ -21,9 +19,8 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertProductPriceIsDisplayed();
   });
   it('TC03 Verify that Product code is showing',function (){
-    cy.fixture('momJeansSku').then((itemSKU: SKU)=>{
-      PdpPage.assertions.assertProductCodeIsDisplayed (itemSKU.sku);
-    });
+    const itemSKU = Cypress.env('SKU');
+    PdpPage.assertions.assertProductCodeIsDisplayed(itemSKU);
   });
   it('TC04 Verify that images are displayed',function (){
     PdpPage.assertions.assertImageIsDisplayed('#product-image-0');

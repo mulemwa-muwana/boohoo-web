@@ -1,16 +1,62 @@
-import { GotoOptions } from '../support/types';
+import { BrandMap, GotoOptions, GroupBrands, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
 
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'boohooman.com':{
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'nastygal.com':{
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'karenmillen.com': {
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'coastfashion.com':{
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'warehousefashion.com':{
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'oasis-stores.com': {
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'dorothyperkins.com': {
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'burton.co.uk': {
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'wallis.co.uk':{
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+  'misspap.com': {
+    searchIcon: '#selectorHEre',
+    anotherSelector: '#another',
+  },
+};
 class HomePage implements AbstractPage {
 
   goto (options: GotoOptions = null) {
        
-    cy.visit('https://storefront:Oreo2022@uk-dwstg.boohoo.com/');
+    cy.visit('/');
        
     if (options?.applyCookies) {
       CommonActions.applyMarketingCookies();
-      cy.visit('https://storefront:Oreo2022@uk-dwstg.boohoo.com/');
+      cy.visit('/');
     }
   }
 
@@ -18,6 +64,7 @@ class HomePage implements AbstractPage {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
     logInIcon (opts = { force: false }) {
+      const searchIcon = selectors[GroupBrands.Boohoo].searchIcon;
       cy.get('#page-head > div.l-header-inner > div > div.l-header-left > div:nth-child(2) > a > div > svg').click({ force: opts.force });
     },
     forgotPasswordLink (){

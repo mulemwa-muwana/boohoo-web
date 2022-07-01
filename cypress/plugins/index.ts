@@ -1,9 +1,9 @@
-import { GroupBrands } from '../support/types';
+import { GroupBrands, NewCustomerCredentials } from '../support/types';
 import createCustomer from './TestDataManager/index';
 
 module.exports = async (on, config) => {
   on('task', {
-    async createUser (brand: GroupBrands) {
+    async createUser (brand: GroupBrands): Promise<NewCustomerCredentials> {
       const customer = await createCustomer(brand, 'uk');
       return {
         email: customer.email,

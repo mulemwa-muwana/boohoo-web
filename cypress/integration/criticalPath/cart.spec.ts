@@ -3,13 +3,14 @@ import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
-import { LoginCredentials } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 
 describe('Cart basic functionality for guest user', function (){
   beforeEach (() =>{
+    const variables = Cypress.env() as EnvironmentVariables;
+
     HomePage.goto();
-    const itemSKU = Cypress.env('SKU');
-    HomePage.actions.findItemUsingSKU(itemSKU);
+    HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(1);
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();
@@ -65,6 +66,8 @@ describe('Cart basic functionality for guest user', function (){
 
 describe('Cart page for Registered user', function (){
   beforeEach (()=>{
+    const variables = Cypress.env() as EnvironmentVariables;
+
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, credentials.password); 
@@ -74,8 +77,7 @@ describe('Cart page for Registered user', function (){
       // CartPage.click.clearCart();
     });
     HomePage.goto();
-    const itemSKU = Cypress.env('SKU');
-    HomePage.actions.findItemUsingSKU(itemSKU);
+    HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(1);
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();

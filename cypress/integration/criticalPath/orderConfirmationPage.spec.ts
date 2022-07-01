@@ -6,16 +6,17 @@ import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
-import { LoginCredentials } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import cards from '../../helpers/cards';
 import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import assertionText from '../../helpers/assertionText';
 
 describe('Order confirmation page for guest user', function (){
   beforeEach (()=>{
+    const variables = Cypress.env() as EnvironmentVariables;
+    
     HomePage.goto();
-    const itemSKU = Cypress.env('SKU');
-    HomePage.actions.findItemUsingSKU(itemSKU);
+    HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(0);
     cy.wait(2000);
     PdpPage.click.addToCart();
@@ -70,9 +71,9 @@ describe('Order confirmation page for guest user', function (){
 });
 describe('Order confirmation page for registered user', function (){
   beforeEach (()=>{
+    const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
-    const itemSKU = Cypress.env('SKU');
-    HomePage.actions.findItemUsingSKU(itemSKU);
+    HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(1);
     cy.wait(2000);
     PdpPage.click.addToCart();

@@ -2,7 +2,7 @@
     "projectId": "i6d3n8",
     "baseUrl": "https://storefront:Oreo2022@dwstg.burton.co.uk",
     "env": {
-      "SKU": "#ABB01243",
+      "sku": "#ABB01243",
       "brand": "burton.co.uk",
       "locale": "UK",
       "language": "EN"

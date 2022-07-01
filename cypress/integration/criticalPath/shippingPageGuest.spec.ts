@@ -7,6 +7,7 @@ import addresses from '../../helpers/addresses';
 import homePage from '../../pom/home.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
+import { EnvironmentVariables } from '../../support/types';
 
 describe('Home Page', function () {
   
@@ -55,9 +56,9 @@ describe('Home Page', function () {
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
-    const language = Cypress.env('language');
+    const variables = Cypress.env() as EnvironmentVariables;
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[language]);
+    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.sku]);
   });
 
   it('Verify that "Enter manually" button allows guest to enter address details', () => {

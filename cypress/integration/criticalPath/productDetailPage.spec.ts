@@ -3,13 +3,15 @@ import HomePage from '../../pom/home.page';
 import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
+import { EnvironmentVariables } from '../../support/types';
 
 describe('Product Details Page tests', function () {
 
   beforeEach (()=>{
+    const variables = Cypress.env() as EnvironmentVariables;
+    
     HomePage.goto();
-    const itemSKU = Cypress.env('SKU');
-    HomePage.actions.findItemUsingSKU(itemSKU);
+    HomePage.actions.findItemUsingSKU(variables.sku);
   });
     
   it('TC01 Verify that Product name is showing',function (){
@@ -19,8 +21,8 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertProductPriceIsDisplayed();
   });
   it('TC03 Verify that Product code is showing',function (){
-    const itemSKU = Cypress.env('SKU');
-    PdpPage.assertions.assertProductCodeIsDisplayed(itemSKU);
+    const variables = Cypress.env() as EnvironmentVariables;
+    PdpPage.assertions.assertProductCodeIsDisplayed(variables.sku);
   });
   it('TC04 Verify that images are displayed',function (){
     PdpPage.assertions.assertImageIsDisplayed('#product-image-0');

@@ -7,14 +7,15 @@ import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
-import { LoginCredentials, NewCustomerCredentials, PaymentMethodSelector } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials, NewCustomerCredentials, PaymentMethodSelector } from '../../support/types';
 import cards from '../../helpers/cards';
 
 describe('Billing page functionality for guest user', function (){
   beforeEach (()=>{
+    const variables = Cypress.env() as EnvironmentVariables;
+
     HomePage.goto();
-    const itemSKU = Cypress.env('SKU');
-    HomePage.actions.findItemUsingSKU(itemSKU);
+    HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(1);
     cy.wait(2000);
     PdpPage.click.addToCart();
@@ -24,7 +25,7 @@ describe('Billing page functionality for guest user', function (){
     CartPage.click.proceedToCheckout();
 
     // Needs adapting. 
-    cy.task('createUser', Cypress.env('brand')).then((account: NewCustomerCredentials) => {
+    cy.task('createUser', variables.language).then((account: NewCustomerCredentials) => {
       CheckoutPage.actions.guestCheckoutEmail(account.email);
       CheckoutPage.click.continueAsGuestBtn();
     });

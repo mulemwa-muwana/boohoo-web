@@ -6,13 +6,14 @@ import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
 import addresses from '../../helpers/addresses';
 import shippingPage from '../../pom/shipping.page';
-import { LoginCredentials, PaymentMethodSelector } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials, PaymentMethodSelector } from '../../support/types';
 import cards from '../../helpers/cards';
 
 describe('Billing page functionality for registered user', function (){
   beforeEach (()=>{
+    const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
-    const itemSKU = Cypress.env('SKU');
+    const itemSKU = variables.sku;
     HomePage.actions.findItemUsingSKU(itemSKU);
     PdpPage.actions.selectSize(1);
     cy.wait(2000);

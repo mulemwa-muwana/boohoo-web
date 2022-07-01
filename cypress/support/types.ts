@@ -8,6 +8,13 @@ type EuropeCountryCode = 'GB' | 'FR' | 'IE' | 'EUR' | 'NL' | 'DE' | 'ES' | 'SK' 
 type MiddleEastCountryCode = 'AE' | 'BH' | 'JO' | 'KW' | 'OM' | 'QA' | 'SA';
 type FarEastCountryCode = 'HK' | 'TW' | 'JP' | 'SG' | 'KR';
 
+export type EnvironmentVariables = {
+    sku: string;
+    brand: GroupBrands;
+    locale: AustralasiaCountryCode | NorthAmericaCountryCode | EuropeCountryCode | MiddleEastCountryCode | FarEastCountryCode; 
+    language: 'EN' | 'FR' | 'IT' | 'fill the rest in';
+}
+
 export enum GroupBrands {
     Boohoo = 'boohoo.com',
     BoohooMAN = 'boohooman.com',

@@ -1,0 +1,15 @@
+{
+    "projectId": "i6d3n8",
+    "baseUrl": "https://storefront:Oreo2022@dwstg.dorothyperkins.com",
+    "env": {
+      "sku": "#BQQ00474",
+      "brand": "dorothyperkins.co.uk",
+      "locale": "UK",
+      "language": "EN"
+    },
+    "viewportHeight": 1080,
+    "viewportWidth": 1920,
+    "defaultCommandTimeout": 10000,
+    "experimentalSessionAndOrigin": true,
+    "chromeWebSecurity": false
+  }

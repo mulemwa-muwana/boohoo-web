@@ -1,7 +1,7 @@
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
-import { LoginCredentials } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import shippingPage from '../../pom/shipping.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import addresses from '../../helpers/addresses';
@@ -14,9 +14,10 @@ describe('Home Page', function () {
   beforeEach(() => {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
+      const variables = Cypress.env() as EnvironmentVariables;
       HomePage.goto();
       HomePage.click.searchField();
-      HomePage.actions.findItemUsingSKU('aDZZ65279{enter}');
+      HomePage.actions.findItemUsingSKU(variables.sku);
       pdpPage.click.addToCart();
       cy.wait(7000);
       homePage.click.cartIcon();  
@@ -45,6 +46,7 @@ describe('Home Page', function () {
   });
 
   it('Verify that user can edit saved shipping address', () => {
+    const variables = Cypress.env() as EnvironmentVariables;
     shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
     shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
     shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
@@ -94,8 +96,9 @@ describe('Home Page', function () {
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
+    const variables = Cypress.env() as EnvironmentVariables;
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory.EN);
+    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
   });
 
   it('Verify that "Enter manually" button allows user to enter address details', () => {
@@ -116,8 +119,9 @@ describe('Home Page', function () {
   });
 
   it('Verify that PREMIER can be added to the cart', () => {
+    const variables = Cypress.env() as EnvironmentVariables;
     shippingPage.click.addPremierToCartFromShippingPage();
-    shippingPage.assertions.assertCartShippingPageContainsContainsProduct(assertionText.Premier.EN);
+    shippingPage.assertions.assertCartShippingPageContainsContainsProduct(assertionText.Premier[variables.language]);
   });
 
   it('Verify that user is able to select standard shipping method', () => {

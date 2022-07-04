@@ -1,4 +1,4 @@
-import {LoginCredentials } from '../../support/types';
+import {EnvironmentVariables, LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
@@ -47,9 +47,11 @@ describe('Account page', function () {
     MyAccountPage.assertions.assertNameGreetingMessage('TEST');
   });
   it('TC06 Verify that new address can be created', function () {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale);
     MyAccountPage.click.addressesLink();
-    MyAccountPage.actions.createAddress(Addresses.AddressLineUK.firstName, Addresses.AddressLineUK.lastName, Addresses.AddressLineUK.phone, Addresses.AddressLineUK.addrline1, Addresses.AddressLineUK.city, Addresses.AddressLineUK.county, Addresses.AddressLineUK.postcode);
-    MyAccountPage.assertions.assertNewAddressData(Addresses.AddressLineUK.firstName);
+    MyAccountPage.actions.createAddress(localeAddress);
+    MyAccountPage.assertions.assertNewAddressData(localeAddress.firstName);
   });
   it('TC07 Verify that addresses show correct default address information', function () {
     MyAccountPage.click.addressesLink();

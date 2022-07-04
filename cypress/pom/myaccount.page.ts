@@ -1,3 +1,4 @@
+import { AddressData } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 
 class MyAccountPage implements AbstractPage {
@@ -54,16 +55,16 @@ class MyAccountPage implements AbstractPage {
         cy.get('#dwfrm_address_address1').clear().type(line1);
         cy.get('button[data-tau="address_submit"]').click();
       },
-      createAddress (firstName: string, lastName: string, phone: string, line1: string, city: string, county: string, code: string) {
+      createAddress (address: AddressData) {
         cy.get('a[data-tau="address_book_addNewAddress"]').click();
-        cy.get('#dwfrm_address_firstName').should('be.visible').type(firstName);
-        cy.get('#dwfrm_address_lastName').type(lastName);
-        cy.get('#dwfrm_address_phone').type(phone);
+        cy.get('#dwfrm_address_firstName').should('be.visible').type(address.firstName);
+        cy.get('#dwfrm_address_lastName').type(address.lastName);
+        cy.get('#dwfrm_address_phone').type(address.phone);
         cy.get('.m-secondary').click();
-        cy.get('#dwfrm_address_address1').should('be.visible').type(line1);
-        cy.get('#dwfrm_address_city').type(city);
-        cy.get('#dwfrm_address_states_stateCode').type(county);
-        cy.get('#dwfrm_address_postalCode').type(code);
+        cy.get('#dwfrm_address_address1').should('be.visible').type(address.addrline1);
+        cy.get('#dwfrm_address_city').type(address.city);
+        cy.get('#dwfrm_address_states_stateCode').type(address.county);
+        cy.get('#dwfrm_address_postalCode').type(address.postcode);
         cy.get('button[data-tau="address_submit"]').click();
       },
       deleteAddress () {

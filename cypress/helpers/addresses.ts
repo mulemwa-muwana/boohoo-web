@@ -1,8 +1,7 @@
 import { AddressData } from '../support/types';
 
-class addresses {
-    
-  AddressLineUK: AddressData = {
+const addresses: Record<string, AddressData> = {
+  UK: {
     firstName: 'Test',
     lastName: 'Test',
     phone: '+44 843 837 0041',
@@ -14,9 +13,8 @@ class addresses {
     city: 'Manchester',
     countryCode: 'UK',
     county: 'London',
-  };
-
-  AddressLineUK1: AddressData = {
+  },
+  UK1: {
     firstName: 'Test',
     lastName: 'Test',
     phone: '+44 843 837 0041',
@@ -28,7 +26,15 @@ class addresses {
     city: 'London',
     countryCode: 'UK',
     county: 'London',
-  };
+  }
+};
+
+class Addresses {
+  
+  getAddressByLocale (locale: string): AddressData {
+    if (typeof addresses[locale] === 'undefined') throw new Error('Address could not be found with locale ' + locale);
+    return addresses[locale];
+  }
 
   AddressLineUK2: AddressData = {
     firstName: 'New',
@@ -227,4 +233,4 @@ class addresses {
   };
 }
 
-export default new addresses();
+export default new Addresses();

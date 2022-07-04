@@ -22,14 +22,16 @@ describe('Login Functionality tests', function (){
   });
 
   it('Verify that user can not login with invalid credentials', function () {  
+    const variables = Cypress.env() as EnvironmentVariables;
     LoginPage.actions.login('euboohoo@gmail.com', 'boohoo12345');    
-    HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts['EN']);
+    HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
 
   });
     
   it('Verify that user can not login with non-registered mail address', function () {   
+    const variables = Cypress.env() as EnvironmentVariables;
     LoginPage.actions.login('unknown@mail.com', 'boohoo123');
-    HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail['EN']);
+    HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
  
   });
     

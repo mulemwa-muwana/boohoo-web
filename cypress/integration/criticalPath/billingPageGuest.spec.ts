@@ -45,7 +45,8 @@ describe('Billing page functionality for guest user', function (){
     BillingPage.assertions.assertShippingAddressPresent();
   });
   it('Verify that shipping method is displayed', function (){
-    BillingPage.assertions.assertShippingMethodPresent(shippingMethods.Standard.EN);
+    const variables = Cypress.env() as EnvironmentVariables;
+    BillingPage.assertions.assertShippingMethodPresent(shippingMethods.Standard[variables.language]);
   });
   it('Verify that guest user can change shipping address', function (){
     BillingPage.click.changeShippingAddress();
@@ -72,15 +73,17 @@ describe('Billing page functionality for guest user', function (){
 
   });
   it('Verify that guest user cannot place order if email field is empty', function (){
+    const variables = Cypress.env() as EnvironmentVariables;
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
-    BillingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
+    BillingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
   });
   it('Verify that guest user cannot place order if date of birth is not selected', function (){
+    const variables = Cypress.env() as EnvironmentVariables;
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
-    BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
+    BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
   });
   it('Verify that billing address can be same as shipping address', function (){
     BillingPage.assertions.assertSameAsShippingIsChecked();

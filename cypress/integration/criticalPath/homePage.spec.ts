@@ -18,15 +18,17 @@ describe('Home Page', function () {
 
   describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
     it('No login', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       HomePage.click.logInIcon();
-      HomePage.assertions.assertUserIsNotLoggedIn(assertionText.assertUserIsNotLoggedIn.EN);
+      HomePage.assertions.assertUserIsNotLoggedIn(assertionText.assertUserIsNotLoggedIn[variables.language]);
     });
     it('After login', () => {
       cy.fixture('users').then((credentials: LoginCredentials) => {
+        const variables = Cypress.env() as EnvironmentVariables;
         LoginPage.goto();
         LoginPage.actions.login(credentials.username, credentials.password);
         HomePage.goto();
-        HomePage.assertions.assertUserPanelTitle(assertionText.assertUsername.EN);
+        HomePage.assertions.assertUserPanelTitle(assertionText.assertUsername[variables.language]);
       });
     });
        
@@ -45,9 +47,10 @@ describe('Home Page', function () {
         HomePage.assertions.assertSearchFiledPresent();
       });
       it('Verify search results page opens', () => {
+        const variables = Cypress.env() as EnvironmentVariables;
         HomePage.click.searchIcon();
-        HomePage.actions.findItemUsingSKU('aAZZ06403-105-35{enter}');
-        HomePage.assertions.assertSearchResultPage('AZZ06403');
+        HomePage.actions.findItemUsingSKU[variables.sku];
+        HomePage.assertions.assertSearchResultPage(variables.sku);
       });  
     
       it('Verify header icon Account present', () => {
@@ -67,15 +70,17 @@ describe('Home Page', function () {
       });
 
       it('Verify Mega Menu - Sale link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink.EN);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale.EN);
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.saleLink.EN.toLowerCase());
+        const variables = Cypress.env() as EnvironmentVariables;
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]});
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.saleLink[variables.language].toLowerCase());
       });
  
       it('Verify Mega Menu - NewIn link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing.EN);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn.EN);
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewInURL.EN);
+        const variables = Cypress.env() as EnvironmentVariables;
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewInURL[variables.language]);
       });
 
     });

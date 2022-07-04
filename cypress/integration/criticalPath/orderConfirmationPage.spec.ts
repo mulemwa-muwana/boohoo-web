@@ -62,7 +62,8 @@ describe('Order confirmation page for guest user', function (){
     orderConfirmationPage.assertions.assertBillingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
   });
   it('Verify that payment method is present', function (){
-    orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod.EN);
+    const variables = Cypress.env() as EnvironmentVariables;
+    orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
   });
   it('Verify that for guest users password fields are present on order confirmation page', function (){
     orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDispayed();
@@ -109,6 +110,7 @@ describe('Order confirmation page for registered user', function (){
     orderConfirmationPage.assertions.assertBillingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
   });
   it('Verify that payment method is present', function (){
-    orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod.EN);
+    const variables = Cypress.env() as EnvironmentVariables;
+    orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
   });
 });

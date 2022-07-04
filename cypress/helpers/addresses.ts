@@ -32,6 +32,7 @@ const addresses: Record<string, AddressData> = {
 class Addresses {
   
   getAddressByLocale (locale: string): AddressData {
+    if (typeof addresses[locale] === 'undefined') throw new Error('Address could not be found with locale ' + locale);
     return addresses[locale];
   }
 

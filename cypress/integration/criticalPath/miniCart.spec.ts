@@ -1,4 +1,4 @@
-import { LoginCredentials } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';

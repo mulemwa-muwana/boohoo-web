@@ -1,4 +1,4 @@
-import { LoginCredentials } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import * as CommonActions from '../../helpers/common';
 import GlobalFooter from '../../pom/globalfooter.page';
@@ -71,7 +71,7 @@ describe('Home Page', function () {
 
       it('Verify Mega Menu - Sale link opens', () => {
         const variables = Cypress.env() as EnvironmentVariables;
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]});
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.saleLink[variables.language].toLowerCase());
       });

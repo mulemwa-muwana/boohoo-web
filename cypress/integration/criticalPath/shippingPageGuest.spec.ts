@@ -12,9 +12,10 @@ import { EnvironmentVariables } from '../../support/types';
 describe('Home Page', function () {
   
   beforeEach(() => {
+    const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
     HomePage.click.searchField();
-    HomePage.actions.findItemUsingSKU('aDZZ65279{enter}');
+    HomePage.actions.findItemUsingSKU[variables.sku];
     pdpPage.click.addToCart();
     cy.wait(7000);
     homePage.click.cartIcon();  

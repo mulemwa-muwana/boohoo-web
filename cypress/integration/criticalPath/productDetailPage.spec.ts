@@ -11,7 +11,7 @@ describe('Product Details Page tests', function () {
     const variables = Cypress.env() as EnvironmentVariables;
 
     HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku); // {enter} might be missing
+    HomePage.actions.findItemUsingSKU[variables.sku]; // {enter} might be missing
   });
     
   it('TC01 Verify that Product name is showing',function (){
@@ -22,8 +22,8 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertProductPriceIsDisplayed();
   });
   it('TC03 Verify that Product code is showing',function (){
-    const variables = Cypress.env() as EnvironmentVariables;
-    PdpPage.assertions.assertProductCodeIsDisplayed(variables.sku);
+    const sku = Cypress.env('sku');
+    PdpPage.assertions.assertProductCodeIsDisplayed[sku]; 
   });
   it('TC04 Verify that images are displayed',function (){
     PdpPage.assertions.assertImageIsDisplayed('#product-image-0');
@@ -38,12 +38,12 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertColorIsDisplayed(skuAssertions.mainSkuColor[variables.language]);
   });
   it('TC06 Verify that it is possible to select a size when available', function (){
-    const variables = Cypress.env() as EnvironmentVariables;
+    const language = Cypress.env('language');
     PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize(1);
-    PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[variables.language]);
+    PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[language]);
     PdpPage.actions.addToCart();
-    PdpPage.assertions.assertProductIsAddedToCart(assertionText.addedToCard[variables.language]);
+    PdpPage.assertions.assertProductIsAddedToCart(assertionText.addedToCard[language]);
   });
   it('TC07 Verify if size is not selected, and user tries to add product to a bag, error message is displayed', function (){
     const variables = Cypress.env() as EnvironmentVariables;

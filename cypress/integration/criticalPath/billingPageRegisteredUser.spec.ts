@@ -34,7 +34,8 @@ describe('Billing page functionality for registered user', function (){
     BillingPage.assertions.assertShippingAddressPresent();
   });
   it('Verify that shipping method is displayed', function (){
-    BillingPage.assertions.assertShippingMethodPresent(shippingMethods.Standard.EN);
+    const variables = Cypress.env() as EnvironmentVariables;
+    BillingPage.assertions.assertShippingMethodPresent(shippingMethods.Standard[variables.language]);
   });
   it('Verify that guest user can change shipping address', function (){
     BillingPage.click.changeShippingAddress();

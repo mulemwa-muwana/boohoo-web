@@ -1,15 +1,16 @@
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
-import { LoginCredentials } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 
 describe('Home Page', function () {
   
   beforeEach(() => {
+    const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
     HomePage.click.searchField();
-    HomePage.actions.findItemUsingSKU('aDZZ65279{enter}');
+    HomePage.actions.findItemUsingSKU(variables.sku);
     pdpPage.click.addToCart();
     HomePage.click.cartIcon();
     cartPage.click.proceedToCheckout();

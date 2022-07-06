@@ -6,12 +6,14 @@ import productVariations from '../../helpers/productVariations';
 describe('Home Page', function (){
   
   beforeEach(() => {
+    const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink.EN);
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale.EN);
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
   });
   it('Verify that plp page opens', () => {
-    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.saleLink.EN.toLowerCase());
+    const variables = Cypress.env() as EnvironmentVariables;
+    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.saleLink[variables.language].toLowerCase());
   });
   it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
@@ -44,38 +46,44 @@ describe('Home Page', function (){
 
   describe('Product refinements', () => {
     it('Verify category refinement is applied', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       plpPage.click.categoryRefinement();  
-      plpPage.click.selectRefinementVariantCategory(productVariations.productTops.EN);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productTops.EN);
+      plpPage.click.selectRefinementVariantCategory(productVariations.productTops[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productTops[variables.language]);
     });
     it('Verify size refinement is applied', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       plpPage.click.sizeRefinement();
-      plpPage.click.selectRefinementVariantSize(productVariations.Size.UK);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.Size.UK);
+      plpPage.click.selectRefinementVariantSize(productVariations.Size[variables.locale]);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.Size[variables.locale]);
     });
     it('Verify style refinement is applied', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       plpPage.click.styleRefinement();
-      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle.EN);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle.EN);
+      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStylevariables[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle[variables.language]);
     });
     it('Verify colour refinement is applied', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       plpPage.click.colorRefinement();
-      plpPage.click.selectRefinementVariantColour(productVariations.ColorBlack.EN);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.ColorBlack.EN);
+      plpPage.click.selectRefinementVariantColour(productVariations.ColorBlack[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.ColorBlack[variables.language]);
     });
     it('Verify price refinement is applied', () => {
       plpPage.click.priceRefinements();
       plpPage.click.selectRefinementVariantShopByPrice(productVariations.priceRangePLPrefinements.range0to5); 
     });
     it('Verify shop by fit refinement is applied', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       plpPage.click.shopByFitRefinements();
-      plpPage.click.selectRefinementVariantShopByFit(productVariations.productShopByFitRefinementTall.EN);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByFitRefinementTall.EN);
+      plpPage.click.selectRefinementVariantShopByFit(productVariations.productShopByFitRefinementTall[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByFitRefinementTall[variables.language]);
     });
     it('Verify occasion refinement is applied', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       plpPage.click.occassionRefinement();  
-      plpPage.click.selectRefinementVariantOccassion(productVariations.productShopByOccassionRefinementCasual.EN);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByOccassionRefinementCasual.EN);   
+      plpPage.click.selectRefinementVariantOccassion(productVariations.productShopByOccassionRefinementCasual[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByOccassionRefinementCasual[variables.language]);   
     });
   });
 }); 

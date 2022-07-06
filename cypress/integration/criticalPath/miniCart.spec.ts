@@ -1,4 +1,4 @@
-import { LoginCredentials } from '../../support/types';
+import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
@@ -16,9 +16,10 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
     });
   });
   {
-    it('Verify that the Mini Cart is displayed', () => {           
+    it('Verify that the Mini Cart is displayed', () => {   
+      const variables = Cypress.env() as EnvironmentVariables;    
       HomePage.click.searchIcon();
-      HomePage.actions.findItemUsingSKU('aAZZ06403-105-35{enter}');
+      HomePage.actions.findItemUsingSKU[variables.sku];
       pdpPage.click.addToCart();
           
     });

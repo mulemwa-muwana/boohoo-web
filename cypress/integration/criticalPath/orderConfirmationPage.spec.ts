@@ -14,7 +14,6 @@ import assertionText from '../../helpers/assertionText';
 describe('Order confirmation page for guest user', function (){
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
-    
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(0);
@@ -87,6 +86,7 @@ describe('Order confirmation page for registered user', function (){
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
+    shippingPage.actions.clickPreferedShippingMethod(variables);
     shippingPage.click.proceedToBilling(); 
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();

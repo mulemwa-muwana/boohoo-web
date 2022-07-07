@@ -1,4 +1,5 @@
 import assertionText from '../helpers/assertionText';
+import { EnvironmentVariables } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -55,6 +56,9 @@ class ShippingPage implements AbstractPage {
   };
 
   actions = {
+    clickPreferedShippingMethod (variables: EnvironmentVariables) {
+      cy.get('span').contains(variables.shippingMethod).click();
+    },
     promoCodeField (promoCode: string){
       cy.get('#dwfrm_coupon_couponCode').type(promoCode);
     },

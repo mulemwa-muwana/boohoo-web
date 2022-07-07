@@ -13,6 +13,7 @@ export type EnvironmentVariables = {
     brand: GroupBrands;
     locale: AustralasiaCountryCode | NorthAmericaCountryCode | EuropeCountryCode | MiddleEastCountryCode | FarEastCountryCode; 
     language: 'EN' | 'FR' | 'IT' | 'fill the rest in';
+    shippingMethod: string;
 }
 
 export enum GroupBrands {

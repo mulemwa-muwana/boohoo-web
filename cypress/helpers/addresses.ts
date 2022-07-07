@@ -26,17 +26,8 @@ const addresses: Record<string, AddressData> = {
     city: 'London',
     countryCode: 'UK',
     county: 'London',
-  }
-};
-
-class Addresses {
-  
-  getAddressByLocale (locale: string): AddressData {
-    if (typeof addresses[locale] === 'undefined') throw new Error('Address could not be found with locale ' + locale);
-    return addresses[locale];
-  }
-
-  AddressLineUK2: AddressData = {
+  },
+  UK2: {
     firstName: 'New',
     lastName: 'Test',
     phone: '+44 843 837 0041',
@@ -48,9 +39,9 @@ class Addresses {
     city: 'Aberdeen',
     countryCode: 'UK',
     county: 'Aberdeenshire',
-  };
+  },
 
-  AddressLineUS: AddressData = {
+  US: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -62,9 +53,9 @@ class Addresses {
     county: 'Test',
     country: 'United States',
     countryCode: 'US'
-  };
+  },
 
-  AddressLineDE: AddressData = {
+  DE: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -76,9 +67,9 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
-  AddressLineCA: AddressData = {
+  CA: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -90,9 +81,9 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
-  AddressLineIE: AddressData = {
+  IE: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -104,9 +95,9 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
-  AddressLineNO: AddressData = {
+  NO: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -118,9 +109,9 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
-  AddressLineSE: AddressData = {
+  SE: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -132,9 +123,9 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
-  AddressLineEU: AddressData = {
+  EU: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -146,9 +137,9 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
-  AddressLineNL: AddressData = {
+  NL: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -160,9 +151,9 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
-  AddressLineFI: AddressData = {
+  FI: {
     firstName: 'Test',
     lastName: 'Test',
     phone: 'Test',
@@ -174,7 +165,7 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
   AddressLineES: AddressData = {
     firstName: 'Test',
@@ -202,7 +193,7 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
   AddressLineFRA: AddressData = {
     firstName: 'Test',
@@ -216,7 +207,7 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  },
 
   AddressLineNZ: AddressData = {
     firstName: 'Test',
@@ -230,7 +221,15 @@ class Addresses {
     county: 'Test',
     country: '',
     countryCode: ''
-  };
+  }
+};
+
+class Addresses {
+  
+  getAddressByLocale (locale: string): AddressData {
+    if (typeof addresses[locale] === 'undefined') throw new Error('Address could not be found with locale ' + locale);
+    return addresses[locale];
+  }
 }
 
 export default new Addresses();

@@ -5,7 +5,10 @@
     "sku": "#DZZ79497",
     "brand": "boohoo.com",
     "locale": "UK",
-    "language": "EN"
+    "language": "EN",
+    "UKstandardShippingMehod": "ukstandard",
+    "UKNextDay": "nextday",
+    "UkDPD": "dpd"
   },
   "viewportHeight": 1080,
   "viewportWidth": 1920,

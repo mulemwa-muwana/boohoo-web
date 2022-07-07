@@ -1,26 +1,18 @@
-import { Locale, ShippingMethodsUK, TranslationMap } from '../support/types';
+import { Locale, ShippingMethods } from '../support/types';
+
+const shippingMethod: Record<string, ShippingMethods> = {
+  UK: {
+    
+  },
+};
 
 class ShippingMethods {
-  Standard: TranslationMap = {
-    EN: '\n                            UK Standard Delivery\n                        ',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
-  UKshippingMethods: ShippingMethodsUK = {
-    Standard: 'Standard',
-    NextDay: 'Next',
-    DPD: 'DPD',
-  };
- 
+  
+  getShippingMethodByLocale (locale: string): ShippingMethods {
+    if (typeof shippingMethod[locale] === 'undefined') throw new Error('Shipping method cannot be found with locale ' + locale);
+    return shippingMethod[locale];
+  }
+  
 }
 
 export default new ShippingMethods();

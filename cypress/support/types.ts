@@ -75,7 +75,12 @@ export type AddressData = {
     countryCode: string;
 }
 
-export type ShippingMethods = 'Standard' | 'NextDay' | 'DPD' ;
+export type ShippingMethods = {
+    UKNextDay: string;
+    UkDPD: string;
+    AustraliaStandardShipping: string;
+    AustraliaSaverShipping: string;
+}
 
 export type CardDetails = {
     cardNo: string;
@@ -119,4 +124,3 @@ export type AddressMapAddressLine2 = {[key in Locale]: string}
 export type AddressMapPostcode = {[key in Locale]: string}
 export type AddressMapPhoneNumber = {[key in Locale]: string}
 
-export type ShippingMethodsUK = {[key in ShippingMethods]: string}

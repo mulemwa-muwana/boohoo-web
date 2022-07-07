@@ -6,7 +6,9 @@
     "brand": "boohoo.com",
     "locale": "UK",
     "language": "EN",
-    "shippingMethod": "UK Next Day Delivery"
+    "UKstandardShippingMehod": "ukstandard",
+    "UKNextDay": "nextday",
+    "UkDPD": "dpd"
   },
   "viewportHeight": 1080,
   "viewportWidth": 1920,

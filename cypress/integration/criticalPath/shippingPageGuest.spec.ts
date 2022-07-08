@@ -3,7 +3,6 @@ import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
-import addresses from '../../helpers/addresses';
 import homePage from '../../pom/home.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';

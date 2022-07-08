@@ -266,21 +266,6 @@ describe('Home Page', function () {
         HomePage.assertions.assertCountryURL('us-dwstg.boohoo.com');
       });
     
-      it('AU', () => {
-        GlobalFooter.actions.changeCountry('AU');
-        HomePage.assertions.assertCountryURL('au-dwstg.boohoo.com');
-      });
-    
-      it('FR', () => {
-        GlobalFooter.actions.changeCountry('FR');
-        HomePage.assertions.assertCountryURL('fr-dwdev.boohoo.com');
-        
-      });
-    
-      it('KW', () => {
-        GlobalFooter.actions.changeCountry('KW');
-        GlobalFooter.assertions.assertCurrencyByPageContext('KWD');
-      });
     });
     
     it('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {

@@ -4,10 +4,10 @@ import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
-import addresses from '../../helpers/addresses';
 import shippingPage from '../../pom/shipping.page';
 import { EnvironmentVariables, LoginCredentials, PaymentMethodSelector } from '../../support/types';
 import cards from '../../helpers/cards';
+import Addresses from '../../helpers/addresses';
 
 describe('Billing page functionality for registered user', function (){
   beforeEach (()=>{
@@ -35,7 +35,8 @@ describe('Billing page functionality for registered user', function (){
   });
   it('Verify that shipping method is displayed', function (){
     const variables = Cypress.env() as EnvironmentVariables;
-    BillingPage.assertions.assertShippingMethodPresent(shippingMethods.Standard[variables.language]);
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
+    BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
   it('Verify that guest user can change shipping address', function (){
     BillingPage.click.changeShippingAddress();
@@ -59,9 +60,11 @@ describe('Billing page functionality for registered user', function (){
     BillingPage.actions.selectAddressFromBook();
   });
   it('Verify that registered user can submit new billing address', function (){
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     BillingPage.click.shippingCheckbox();
     BillingPage.actions.addNewAddress();
-    BillingPage.actions.addBillingAddress(addresses.AddressLineUK2.addrline1, addresses.AddressLineUK2.city, addresses.AddressLineUK2.county, addresses.AddressLineUK2.postcode);
+    BillingPage.actions.addBillingAddress(localeAddress.addrline1, localeAddress.city, localeAddress.county, localeAddress.postcode);
   });
 
   /* This can be tested only if Promo code is available and Gift card 

@@ -9,11 +9,12 @@ import shippingPage from '../../pom/shipping.page';
 import addresses from '../../helpers/addresses';
 import { EnvironmentVariables, LoginCredentials, NewCustomerCredentials, PaymentMethodSelector } from '../../support/types';
 import cards from '../../helpers/cards';
+import Addresses from '../../helpers/addresses';
 
 describe('Billing page functionality for guest user', function (){
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
-
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(1);
@@ -30,14 +31,14 @@ describe('Billing page functionality for guest user', function (){
       CheckoutPage.click.continueAsGuestBtn();
     });
 
-    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
-    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
-    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
-    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
-    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
-    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.postcodeField(localeAddress.postcode);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
   });
 
@@ -46,7 +47,8 @@ describe('Billing page functionality for guest user', function (){
   });
   it('Verify that shipping method is displayed', function (){
     const variables = Cypress.env() as EnvironmentVariables;
-    BillingPage.assertions.assertShippingMethodPresent(shippingMethods.Standard[variables.language]);
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
+    BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
   it('Verify that guest user can change shipping address', function (){
     BillingPage.click.changeShippingAddress();
@@ -89,9 +91,11 @@ describe('Billing page functionality for guest user', function (){
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that guest user can submit new billing address', function (){
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     BillingPage.click.shippingCheckbox();
     BillingPage.assertions.assertBillingAddressFormIsPresent();
-    BillingPage.actions.addBillingAddress(addresses.AddressLineUK2.addrline1, addresses.AddressLineUK2.city, addresses.AddressLineUK2.county, addresses.AddressLineUK2.postcode);
+    BillingPage.actions.addBillingAddress(localeAddress.addrline1, localeAddress.city, localeAddress.county, localeAddress.postcode);
   });
 
   /* This can be tested only if Promo code is available and Gift card 

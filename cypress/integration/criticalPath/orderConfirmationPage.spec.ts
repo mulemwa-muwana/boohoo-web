@@ -5,15 +5,16 @@ import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
-import addresses from '../../helpers/addresses';
 import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import cards from '../../helpers/cards';
 import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import assertionText from '../../helpers/assertionText';
+import Addresses from '../../helpers/addresses';
 
 describe('Order confirmation page for guest user', function (){
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(0);
@@ -27,14 +28,14 @@ describe('Order confirmation page for guest user', function (){
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
       CheckoutPage.click.continueAsGuestBtn();
     }); 
-    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
-    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
-    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
-    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
-    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
-    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.postcodeField(localeAddress.postcode);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
@@ -52,13 +53,17 @@ describe('Order confirmation page for guest user', function (){
     orderConfirmationPage.assertions.assertOrderValueIsDispayed();
   });
   it('Verify that shipping address is present with valid data', function (){
-    orderConfirmationPage.assertions.assertShippingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1, localeAddress.phone);
   });
   it('Verify that shipping method is present', function (){
     orderConfirmationPage.assertions.assertShippingMethodIsDispayed();
   });
   it('Verify that billing address is present with valid data', function (){
-    orderConfirmationPage.assertions.assertBillingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1, localeAddress.phone);
   });
   it('Verify that payment method is present', function (){
     const variables = Cypress.env() as EnvironmentVariables;
@@ -101,13 +106,17 @@ describe('Order confirmation page for registered user', function (){
     orderConfirmationPage.assertions.assertOrderTotalIsVisible();
   });
   it('Verify that shipping address is present with valid data', function (){
-    orderConfirmationPage.assertions.assertShippingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1, localeAddress.phone);
   });
   it('Verify that shipping method is present', function (){
     orderConfirmationPage.assertions.assertShippingMethodIsDispayed();
   });
   it('Verify that billing address is present with valid data', function (){
-    orderConfirmationPage.assertions.assertBillingAddressDetails(addresses.AddressLineUK.firstName, addresses.AddressLineUK.lastName, addresses.AddressLineUK.addrline1, addresses.AddressLineUK.phone);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1, localeAddress.phone);
   });
   it('Verify that payment method is present', function (){
     const variables = Cypress.env() as EnvironmentVariables;

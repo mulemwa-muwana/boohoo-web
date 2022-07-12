@@ -48,26 +48,32 @@ describe('Account page', function () {
   });
   it('TC06 Verify that new address can be created', function () {
     const variables = Cypress.env() as EnvironmentVariables;
-    const localeAddress = Addresses.getAddressByLocale(variables.locale);
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     MyAccountPage.click.addressesLink();
     MyAccountPage.actions.createAddress(localeAddress);
     MyAccountPage.assertions.assertNewAddressData(localeAddress.firstName);
   });
   it('TC07 Verify that addresses show correct default address information', function () {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
-    MyAccountPage.assertions.assertDefaultAddressData(Addresses.AddressLineUK.firstName, Addresses.AddressLineUK.addrline1);
+    MyAccountPage.assertions.assertDefaultAddressData(localeAddress.firstName, localeAddress.addrline1);
   });
   it('TC08 Verify that addresses are editable', function () {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
     MyAccountPage.actions.editDefaultAddress('Old Bond St');
-    MyAccountPage.assertions.assertDefaultAddressData(Addresses.AddressLineUK.firstName, 'Old Bond St');
+    MyAccountPage.assertions.assertDefaultAddressData(localeAddress.firstName, 'Old Bond St');
   });
   it('TC09 Verify that address can be deleted', function () {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     MyAccountPage.click.addressesLink();
     MyAccountPage.actions.deleteAddress();
-    MyAccountPage.assertions.assertAddressNotPresent(Addresses.AddressLineUK.firstName);
+    MyAccountPage.assertions.assertAddressNotPresent(localeAddress.firstName);
   });
   it('TC10 Verify that new card can be saved', function () {
     MyAccountPage.click.paymentOptionsLink();

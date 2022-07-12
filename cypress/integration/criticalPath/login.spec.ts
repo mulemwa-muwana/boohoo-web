@@ -2,7 +2,7 @@ import assertionText from '../../helpers/assertionText';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
-import {LoginCredentials } from '../../support/types';
+import {EnvironmentVariables, LoginCredentials } from '../../support/types';
 
 describe('Login Functionality tests', function (){
 

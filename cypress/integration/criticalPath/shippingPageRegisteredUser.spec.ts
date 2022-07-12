@@ -4,10 +4,10 @@ import cartPage from '../../pom/cart.page';
 import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import shippingPage from '../../pom/shipping.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
-import addresses from '../../helpers/addresses';
 import assertionText from '../../helpers/assertionText';
 import homePage from '../../pom/home.page';
 import shippingMethods from '../../helpers/shippingMethods';
+import Addresses from '../../helpers/addresses';
 
 describe('Home Page', function () {
   
@@ -47,14 +47,15 @@ describe('Home Page', function () {
 
   it('Verify that user can edit saved shipping address', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
-    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
-    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
-    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
-    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
-    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.postcodeField(localeAddress.postcode);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     shippingPage.click.editAddress();
   });
@@ -70,29 +71,39 @@ describe('Home Page', function () {
   });
 
   it('Verify that Add new address button allows user to add address details', () => {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
-    shippingPage.assertions.assertFirstNameFieldIsPopulated(addresses.AddressLineUK.firstName);
-    shippingPage.assertions.assertLastNameFieldIsPopulated(addresses.AddressLineUK.lastName);
+    shippingPage.assertions.assertFirstNameFieldIsPopulated(localeAddress.firstName);
+    shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
-    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
-    shippingPage.assertions.assertLastNameFieldIsPopulated(addresses.AddressLineUK.lastName);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
-    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
-    shippingPage.assertions.assertLastNameFieldIsPopulated(addresses.AddressLineUK.lastName);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
-    shippingPage.actions.selectCountry(addresses.AddressLineUS.country);
-    shippingPage.assertions.assertCountryIsSelected(addresses.AddressLineUS.countryCode);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.actions.selectCountry(localeAddress.country);
+    shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
-    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
-    shippingPage.assertions.assertPhoneNumberFieldIsPopulated(addresses.AddressLineUK.phone);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
+    shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
@@ -107,14 +118,16 @@ describe('Home Page', function () {
   });
 
   it('Verify that user is able to add address details manually', () => {
-    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
-    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
-    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
-    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
-    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
-    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.postcodeField(localeAddress.postcode);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
   });
 
@@ -125,7 +138,10 @@ describe('Home Page', function () {
   });
 
   it('Verify that user is able to select standard shipping method', () => {
-    shippingPage.actions.selectShippingMethod(shippingMethods.UKshippingMethods.Standard);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
+    shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
   });
 
@@ -143,14 +159,16 @@ describe('Home Page', function () {
   });
 
   it('Verify that user is able to proceed to billing page', () => {
-    shippingPage.actions.firstNameField(addresses.AddressLineUK.firstName);
-    shippingPage.actions.lastNameField(addresses.AddressLineUK.lastName);
-    shippingPage.actions.selectCountry(addresses.AddressLineUK.country);
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(addresses.AddressLineUK.addrline1);
-    shippingPage.actions.cityFiled(addresses.AddressLineUK.city);
-    shippingPage.actions.postcodeField(addresses.AddressLineUK.postcode);
-    shippingPage.actions.phoneNumberField(addresses.AddressLineUK.phone);
+    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.postcodeField(localeAddress.postcode);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertUserProceededToBillinPage();
   });

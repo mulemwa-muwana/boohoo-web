@@ -76,10 +76,7 @@ export type AddressData = {
 }
 
 export type ShippingMethods = {
-    UKNextDay: string;
-    UkDPD: string;
-    AustraliaStandardShipping: string;
-    AustraliaSaverShipping: string;
+    shippingMethodName: string;
 }
 
 export type CardDetails = {

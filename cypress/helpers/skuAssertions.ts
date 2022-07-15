@@ -17,16 +17,16 @@ class skuAssertions {
 
   mainSkuColor: TranslationMap = {
     EN: 'blue',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'bleue',
+    NL: 'blauw',
+    DE: 'blau',
+    DK: 'blå',
+    FI: 'sininen',
+    NO: 'blå',
+    SE: 'blå',
+    IL: 'כָּחוֹל',
+    IT: 'blu',
+    ES: 'azul'
   };
 }
 

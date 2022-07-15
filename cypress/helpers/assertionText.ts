@@ -3,212 +3,212 @@ import { TranslationMap } from '../support/types';
 class assertionText {
   WishlistItemsAdded: TranslationMap = {
     EN: '\n\nSaved\n',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: '\n\nEnregistré\n',
+    NL: '\n\nOpgeslagen\n',
+    DE: '\n\nGerettet\n',
+    DK: '\n\nGemt\n',
+    FI: '\n\nTallennettu\n',
+    NO: '\n\nLagret\n',
+    SE: '\n\nSparad\n',
+    IL: '\n\nשמור\n',
+    IT: '\n\nSalvato\n',
+    ES: '\n\nSalvado\n'
   };
 
   WishlistItemsAddedAlert: TranslationMap = {
     EN: 'Product added to wish list',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'Produit ajouté à la liste de souhaits',
+    NL: 'Product toegevoegd aan verlanglijst',
+    DE: 'Produkt zur Wunschliste hinzugefügt',
+    DK: 'Produkt tilføjet til ønskeliste',
+    FI: 'Tuote lisätty toivelistaan',
+    NO: 'Produkt lagt til ønskeliste',
+    SE: 'Produkten har lagts till på önskelistan',
+    IL: 'מוצר נוסף לרשימת המשאלות',
+    IT: 'Prodotto aggiunto alla lista dei desideri',
+    ES: 'Producto añadido a la lista de deseos'
   };
 
   WishListIsEmpty: TranslationMap = {
     EN: 'You dont have any items saved for later (yet)',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'Vous n’avez pas (encore) enregistré d`éléments pour plus tard',
+    NL: 'Je hebt (nog) geen items opgeslagen voor later',
+    DE: 'Sie haben (noch) keine Artikel für später gespeichert',
+    DK: 'Je hebt (nog) geen items opgeslagen voor later',
+    FI: 'Sinulla ei ole yhtään kohdetta tallennettuna myöhempää käyttöä varten (vielä)',
+    NO: 'Du har ingen elementer lagret for senere (ennå)',
+    SE: 'Du har inga objekt sparade för senare (ännu)',
+    IL: 'אין לך פריטים שנשמרו למועד מאוחר יותר (עדיין)',
+    IT: 'Non hai elementi salvati per dopo (ancora)',
+    ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don’t forget about me!',  
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'Ne m’oublie pas!',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
+    DK: 'Glem ikke mig!',
+    FI: 'Älä unohda minua!',
+    NO: 'Ikke glem meg!',
+    SE: 'Glöm inte bort mig!',
+    IL: 'אל תשכח ממני!',
+    IT: 'Non dimenticarti di me!',
+    ES: '¡No te olvides de mí!'
   };
 
   RegistrationPageExistingEmail: TranslationMap = {
     EN: 'Looks like you already have an account with us. Please try logging in or use a different email address  Log in',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'Il semble que vous ayez déjà un compte chez nous. Veuillez essayer de vous connecter ou utiliser une autre adresse e-mail',
+    NL: 'Het lijkt erop dat u al een account bij ons heeft. Probeer in te loggen of gebruik een ander e-mailadres Log in',
+    DE: 'Anscheinend haben Sie bereits ein Konto bei uns. Bitte versuchen Sie sich anzumelden oder verwenden Sie eine andere E-Mail-Adresse',
+    DK: 'Det ser ud til, at du allerede har en konto hos os. Prøv venligst at logge ind eller brug en anden e-mailadresse Log ind',
+    FI: 'Näyttää siltä, ​​että sinulla on jo tili meillä. Yritä kirjautua sisään tai käytä toista sähköpostiosoitetta Kirjaudu sisään',
+    NO: 'Det ser ut til at du allerede har en konto hos oss. Prøv å logge på eller bruk en annen e-postadresse Logg på',
+    SE: 'Det verkar som att du redan har ett konto hos oss. Försök att logga in eller använd en annan e-postadress Logga in',
+    IL: 'נראה שכבר יש לך חשבון איתנו. אנא נסה להתחבר או השתמש בכתובת דוא"ל אחרת התחבר',
+    IT: 'Sembra che tu abbia già un account con noi. Prova ad accedere o usa un indirizzo email diverso Accedi',
+    ES: 'Parece que ya tienes una cuenta con nosotros. Intente iniciar sesión o use una dirección de correo electrónico diferente Iniciar sesión'
   };
 
   PrivacyPolicyURL: TranslationMap = {
     EN: 'privacy-notice',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'avis-de-confidentialité',
+    NL: 'privacyverklaring',
+    DE: 'datenschutzerklärung',
+    DK: 'fortrolighedserklæring',
+    FI: 'tietosuojailmoitus',
+    NO: 'personvernerklæring',
+    SE: 'integritetsmeddelande',
+    IL: 'הודעת פרטיות',
+    IT: 'informativa-sulla-privacy',
+    ES: 'aviso-de-privacidad'
   };
 
   PrivacyPolicyH1: TranslationMap = {
     EN: '\n                Privacy Notice\n            ',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: '\n                Avis de confidentialité\n            ',
+    NL: '\n                Privacyverklaring\n            ',
+    DE: '\n                Datenschutzerklärung\n            ',
+    DK: '\n                Bekendtgørelse om beskyttelse af personlige oplysninger\n            ',
+    FI: '\n                Tietosuojailmoitus\n            ',
+    NO: '\n                Personvernerklæring\n            ',
+    SE: '\n                Sekretessmeddelande\n            ',
+    IL: '\n                הודעת פרטיות\n            ',
+    IT: '\n                Informativa sulla Privacy\n            ',
+    ES: '\n                Aviso de Privacidad\n            '
   };
 
   Premier: TranslationMap = {
     EN: '\nPREMIER\n',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: '\nENSIMMÄINEN\n',
+    NL: '\nEERST\n',
+    DE: '\nERSTE\n',
+    DK: '\nFØRST\n',
+    FI: '\nJOHTAVA\n',
+    NO: '\nFØRST\n',
+    SE: '\nFÖRST\n',
+    IL: '\nראשון\n',
+    IT: '\nPRIMO\n',
+    ES: '\nPRIMERO\n'
   };
 
   PremierText: TranslationMap = {
     EN: '\nFREE NEXT DAY DELIVERY FOR 1 YEAR!\n',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: '\nLIVRAISON GRATUITE LE LENDEMAIN PENDANT 1 AN !\n',
+    NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
+    DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',
+    DK: '\nGRATIS NÆSTE DAG LEVERING I 1 ÅR!\n',
+    FI: '\nILMAINEN TOIMITUS SEURAAVANA PÄIVÄNÄ 1 VUODEN!\n',
+    NO: '\nGRATIS NESTE DAG LEVERING I 1 ÅR!\n',
+    SE: '\nGRATIS LEVERANS NÄSTA DAG I 1 ÅR!\n',
+    IL: '\nמשלוח חינם ליום הבא למשך שנה!\n',
+    IT: '\nCONSEGNA GRATUITA IL GIORNO SUCCESSIVO PER 1 ANNO!\n',
+    ES: '\nENTREGA GRATUITA AL DÍA SIGUIENTE DURANTE 1 AÑO!\n'
   };
 
   GiftCard: TranslationMap = {
     EN: 'GIFT CARD APPLIED',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'CARTE CADEAU APPLIQUÉE',
+    NL: 'CADEAUBON TOEGEPAST',
+    DE: 'GESCHENKKARTE ANGEWENDET',
+    DK: 'GAVEKORT ANVENDT',
+    FI: 'LAHJAKORTTI KÄYTETTY',
+    NO: 'GAVEKORT PÅSATT',
+    SE: 'PRESENTKORT TILLÄMPAT',
+    IL: 'כרטיס מתנה הוחל',
+    IT: 'CARTA REGALO APPLICATA',
+    ES: 'TARJETA DE REGALO APLICADA'
   };
 
   inStock: TranslationMap = {
     EN: 'YAY! Its in stock',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'YAY! C’est en stock',
+    NL: 'JAAAAA! Het is op voorraad',
+    DE: 'YAY! Es ist auf Lager',
+    DK: 'YAY! Den er på lager',
+    FI: 'JEE! Se on varastossa',
+    NO: 'JIPPI! Den er på lager',
+    SE: 'JIPPIE! Den finns i lager',
+    IL: 'יש! זה במלאי',
+    IT: 'SÌÌ! È in magazzino',
+    ES: '¡HURRA! esta en stock' 
   };
 
   sizeErrorMsg: TranslationMap = {
     EN: 'Oops please select a size',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'Oups, veuillez sélectionner une taille',
+    NL: 'Oeps, selecteer een maat',
+    DE: 'Hoppla, bitte wählen Sie eine Größe aus',
+    DK: 'Ups vælg venligst en størrelse',
+    FI: 'Hups, valitse koko',
+    NO: 'Beklager, velg en størrelse',
+    SE: 'Hoppsan, välj en storlek',
+    IL: 'אופס בבקשה בחר מידה',
+    IT: 'Ops, seleziona una taglia',
+    ES: 'Oops por favor seleccione un tamaño'
   };
   
   loginAttempts: TranslationMap = {
     EN: 'You have 4 more login attempts',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'Vous avez encore 4 tentatives de connexion',
+    NL: 'U heeft nog 4 inlogpogingen',
+    DE: 'Sie haben noch 4 Anmeldeversuche',
+    DK: 'Du har 4 flere loginforsøg',
+    FI: 'Sinulla on vielä 4 kirjautumisyritystä',
+    NO: 'Du har 4 flere påloggingsforsøk',
+    SE: 'Du har 4 inloggningsförsök till',
+    IL: 'יש לך עוד 4 ניסיונות כניסה',
+    IT: 'Hai altri 4 tentativi di accesso',
+    ES: 'Tienes 4 intentos más de inicio de sesión'
   };
 
   unknownEmail: TranslationMap = {
-    EN: " Sorry, your email or password doesn't match our records",
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    EN: ' Sorry, your email or password doesn’t match our records',
+    FR: ' Désolé, votre adresse e-mail ou votre mot de passe ne correspondent pas à nos enregistrements',
+    NL: ' Sorry, uw e-mailadres of wachtwoord komt niet overeen met onze gegevens',
+    DE: ' Entschuldigung, Ihre E-Mail-Adresse oder Ihr Passwort stimmen nicht mit unseren Aufzeichnungen überein',
+    DK: ' Beklager, din e-mail eller adgangskode stemmer ikke overens med vores optegnelser',
+    FI: ' Valitettavasti sähköpostiosoitteesi tai salasanasi ei vastaa tietojamme',
+    NO: ' Beklager, e-postadressen eller passordet ditt samsvarer ikke med opplysningene våre',
+    SE: ' Tyvärr, din e-postadress eller ditt lösenord stämmer inte överens med våra uppgifter',
+    IL: ' מצטערים, האימייל או הסיסמה שלך אינם תואמים לרישומים שלנו',
+    IT: ' Siamo spiacenti, la tua email o password non corrispondono ai nostri record',
+    ES: ' Lo sentimos, su correo electrónico o contraseña no coincide con nuestros registros'
   };
 
   assertUserIsNotLoggedIn: TranslationMap = {
     EN: 'Login',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    FR: 'Connexion',
+    NL: 'Log in',
+    DE: 'Anmeldung',
+    DK: 'Log på',
+    FI: 'Kirjaudu sisään',
+    NO: 'Logg Inn',
+    SE: 'Logga in',
+    IL: 'התחברות',
+    IT: 'Login',
+    ES: 'Acceso'
   };
 
   assertUsername: TranslationMap = {
@@ -227,44 +227,44 @@ class assertionText {
 
   assertShippingAddressIsMandatory: TranslationMap = {
     EN: 'Ooops, something went wrong and we couldn’t save your shipping address. Please try again',
-    NL: '',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    NL: 'Oeps, er is iets misgegaan en we konden je verzendadres niet opslaan. Probeer het opnieuw',
+    DE: 'Hoppla, etwas ist schief gelaufen und wir konnten Ihre Lieferadresse nicht speichern. Bitte versuche es erneut',
+    FR: 'Oups, quelque chose s’est mal passé et nous n’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
+    DK: 'Ups, noget gik galt, og vi kunne ikke gemme din leveringsadresse. Prøv igen',
+    FI: 'Hups, jotain meni pieleen, emmekä voineet tallentaa toimitusosoitettasi. Yritä uudelleen',
+    NO: 'Beklager, noe gikk galt, og vi kunne ikke lagre leveringsadressen din. Vær så snill, prøv på nytt',
+    SE: 'Oj, något gick fel och vi kunde inte spara din leveransadress. Var god försök igen',
+    IL: 'אופס, משהו השתבש ולא הצלחנו לשמור את כתובת המשלוח שלך. בבקשה נסה שוב',
+    IT: 'Spiacenti, qualcosa è andato storto e non siamo riusciti a salvare il tuo indirizzo di spedizione. Per favore riprova',
+    ES: 'Ups, algo salió mal y no pudimos guardar tu dirección de envío. Inténtalo de nuevo'
   };
 
   assertPaymentMethod: TranslationMap = {
     EN: 'Credit / Debit card',
-    NL: '',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    NL: 'Creditcard / betaalkaart',
+    DK: 'Kredit-/betalingskort',
+    FR: 'Carte de crédit / débit',
+    FI: 'Luotto/pankkikortti',
+    NO: 'Kreditt-/debetkort',
+    SE: 'Kredit / Betalkort',
+    IL: 'כרטיס אשראי / חיוב',
+    IT: 'Carta di credito / debito',
+    ES: 'Tarjeta de crédito / débito',
+    DE: 'Kredit-/Debitkarte'
   };
 
   addedToCard: TranslationMap = {
     EN: '\nAdded to your cart\n',
-    NL: '',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    NL: '\nToegevoegd aan uw winkelwagen\n',
+    DE: '\nZu Ihrem Warenkorb hinzugefügt\n',
+    FR: '\nAjouté à votre panier\n',
+    DK: '\nTilføjet til din indkøbskurv\n',
+    FI: '\nLisätty ostoskoriin\n',
+    NO: '\nLagt til i handlekurven din\n',
+    SE: '\nLagt till i din varukorg\n',
+    IL: '\nנוסף לעגלת הקניות שלך\n',
+    IT: '\nAggiunto al tuo carrello\n',
+    ES: '\nAgregado a tu carrito\n'
   };
  
 }

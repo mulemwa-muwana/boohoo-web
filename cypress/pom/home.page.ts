@@ -4,49 +4,47 @@ import * as CommonActions from '../helpers/common';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    searchIcon: '#selectorHEre',
-    anotherSelector: '#another',
-  },
-  'boohooman.com':{
-    searchIcon: '#selectorHEre',
-    anotherSelector: '#another',
+    searchField: '#header-search-input',
+    searchIcon: 'button.b-search_toggle',
+    resetPassword: '',
+    wishListIcon: '.b-header_wishlist-icon',
+    registrationButton: 'i-icon i-icon-user',
+    headerSearchInputField: '#header-search-input',
+    minicartIcon: '.b-minicart_icon-link',
+    acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]'
   },
   'nastygal.com':{
-    searchIcon: '#selectorHEre',
-    anotherSelector: '#another',
-  },
-  'karenmillen.com': {
-    searchIcon: '#selectorHEre',
-    anotherSelector: '#another',
-  },
-  'coastfashion.com':{
-    searchIcon: '#selectorHEre',
-    anotherSelector: '#another',
-  },
-  'warehousefashion.com':{
-    searchIcon: '#selectorHEre',
-    anotherSelector: '#another',
-  },
-  'oasis-stores.com': {
-    searchIcon: '#selectorHEre',
+    wishListIcon: 'b-header_actions b-header_actions_sticky.b-header_actions-item m-wishlist',
+    minicartIcon: '.b-minicart_icon-link',
+    registrationButton: 'i-icon i-icon-user',
+    searchField: '#header-search-input',
+    searchIcon: 'button.b-search_toggle',
     anotherSelector: '#another',
   },
   'dorothyperkins.com': {
-    searchIcon: '#selectorHEre',
+    minicartIcon: '.b-minicart_icon-link',
+    registrationButton: 'i-icon i-icon-user',
+    wishListIcon: 'b-header_actions b-header_actions_sticky.b-header_actions-item m-wishlist',
+    searchField: '#header-search-input',
+    searchIcon: 'button.b-search_toggle',
     anotherSelector: '#another',
   },
   'burton.co.uk': {
-    searchIcon: '#selectorHEre',
+    minicartIcon: '.b-minicart_icon-link',
+    registrationButton: 'i-icon i-icon-user',
+    wishListIcon: 'b-header_actions b-header_actions_sticky.b-header_actions-item m-wishlist',
+    searchField: '#header-search-input',
+    searchIcon: 'button.b-search_toggle',
     anotherSelector: '#another',
   },
   'wallis.co.uk':{
-    searchIcon: '#selectorHEre',
+    minicartIcon: '.b-minicart_icon-link',
+    registrationButton: 'i-icon i-icon-user',
+    wishListIcon: 'b-header_actions b-header_actions_sticky.b-header_actions-item m-wishlist', 
+    searchField: '#header-search-input',
+    searchIcon: 'button.b-search_toggle',
     anotherSelector: '#another',
-  },
-  'misspap.com': {
-    searchIcon: '#selectorHEre',
-    anotherSelector: '#another',
-  },
+  }
 };
 class HomePage implements AbstractPage {
 
@@ -65,30 +63,33 @@ class HomePage implements AbstractPage {
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
     logInIcon (opts = { force: false }) {
       const searchIcon = selectors[GroupBrands.Boohoo].searchIcon;
-      cy.get('#page-head > div.l-header-inner > div > div.l-header-left > div:nth-child(2) > a > div > svg').click({ force: opts.force });
+      cy.get(searchIcon).click({ force: opts.force });
     },
     forgotPasswordLink (){
+      const resetPassword = selectors[GroupBrands.Boohoo].resetPassword;
       cy.get('button[data-tau="login_password_reset"]').click();
     },
     registrationButton (){
-      cy.get('.b-registration_benefits-button').should('be.visible').click();
+      const registrationButton = selectors[GroupBrands.Boohoo].registrationButton;
+      cy.get(registrationButton).should('be.visible').click();
     },
 
     // Objects for search subsystem tests
     searchIcon (opts = { force: false }) {
-      cy.get('.b-search_input-close').click({ force: opts.force });            
+      const searchField = selectors[GroupBrands.Boohoo].searchField;
+      cy.get(searchField).click({ force: opts.force });            
     },
     searchField (){
-      cy.get('#header-search-input').click({force: true});
+      const headerSearchInputField = selectors[GroupBrands.Boohoo].headerSearchInputField;
+      cy.get(headerSearchInputField).click({force: true});
     },
     wishListIcon () {
-      cy.get('.b-header_wishlist-icon > .i-icon').click({force: true});
+      const wishListIcon = selectors[GroupBrands.Boohoo].wishListIcon;
+      cy.get(wishListIcon).click({force: true});
     },
     cartIcon (){
-      cy.get('.b-minicart_icon-link').should('be.visible');
-      cy.get('.b-minicart_icon-link').then(element =>{
-        cy.wrap(element).invoke('show').click();
-      });
+      const minicartIcon = selectors[GroupBrands.Boohoo].minicartIcon;
+      cy.get(minicartIcon).click({force: true});
     },
     
     // MEGA MENU - MAIN NAV
@@ -108,9 +109,9 @@ class HomePage implements AbstractPage {
       cy.get('cc-saveAll-startBtn').click();
     },
     acceptCookies (){
-      cy.get('.b-notification_panel-controls > [data-event-click="accept"]').click();
-    }
-    
+      const acceptCookies = selectors[GroupBrands.Boohoo].acceptCookies;      
+      cy.get(acceptCookies).click();
+    }   
   };
 
   actions = {       

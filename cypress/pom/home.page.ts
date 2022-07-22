@@ -8,43 +8,49 @@ const selectors: SelectorBrandMap = {
     searchIcon: 'button.b-search_toggle',
     resetPassword: '',
     wishListIcon: '.b-header_wishlist-icon',
-    registrationButton: 'i-icon i-icon-user',
+    registrationButton: '.i-icon i-icon-user',
     headerSearchInputField: '#header-search-input',
     minicartIcon: '.b-minicart_icon-link',
     acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]'
   },
-  'nastygal.com':{
-    wishListIcon: 'b-header_actions b-header_actions_sticky.b-header_actions-item m-wishlist',
+  'nastygal.com': {
+    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: 'i-icon i-icon-user',
+    registrationButton: '.i-icon i-icon-user',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     anotherSelector: '#another',
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: 'i-icon i-icon-user',
-    wishListIcon: 'b-header_actions b-header_actions_sticky.b-header_actions-item m-wishlist',
+    registrationButton: '.i-icon i-icon-user',
+    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     anotherSelector: '#another',
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: 'i-icon i-icon-user',
-    wishListIcon: 'b-header_actions b-header_actions_sticky.b-header_actions-item m-wishlist',
+    registrationButton: '.i-icon i-icon-user',
+    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     anotherSelector: '#another',
   },
-  'wallis.co.uk':{
+  'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: 'i-icon i-icon-user',
-    wishListIcon: 'b-header_actions b-header_actions_sticky.b-header_actions-item m-wishlist', 
+    registrationButton: '.i-icon i-icon-user',
+    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     anotherSelector: '#another',
-  }
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
 };
 class HomePage implements AbstractPage {
 

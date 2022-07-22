@@ -17,17 +17,17 @@ export type EnvironmentVariables = {
 }
 
 export enum GroupBrands {
-    Boohoo = 'boohoo.com',
-    BoohooMAN = 'boohooman.com',
-    NastyGal = 'nastygal.com',
-    KarenMillen = 'karenmillen.com',
-    Coast = 'coastfashion.com',
-    Warehouse = 'warehousefashion.com',
-    Oasis = 'oasis-stores.com',
-    DorothyPerkins = 'dorothyperkins.com',
-    Burton = 'burton.co.uk',
-    Wallis = 'wallis.co.uk',
-    MissPap = 'misspap.com'
+Boohoo = 'boohoo.com',
+BoohooMAN = 'boohooman.com',
+NastyGal = 'nastygal.com',
+KarenMillen = 'karenmillen.com',
+Coast = 'coastfashion.com',
+Warehouse = 'warehousefashion.com',
+Oasis = 'oasis-stores.com',
+DorothyPerkins = 'dorothyperkins.com',
+Burton = 'burton.co.uk',
+Wallis = 'wallis.co.uk',
+MissPap = 'misspap.com'
 }
 
 export type TCustomerJSONResponse = {

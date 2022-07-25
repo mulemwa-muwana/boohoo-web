@@ -38,7 +38,7 @@ describe('Home Page', function () {
         homePage.assertions.assertLogoPresent();
       });
     
-      it('Verify search icon is present', () => {
+      it.only('Verify search icon is present', () => {
         HomePage.click.searchIcon();
         HomePage.assertions.assertSearchIconPresent();
       });
@@ -261,7 +261,7 @@ describe('Home Page', function () {
     });
     
     describe('Verify that the Country Selector displayed and functional.', () => {
-      it.only('US', () => {
+      it('US', () => {
         GlobalFooter.actions.changeCountry('US');
         HomePage.assertions.assertCountryURL('us-dwstg.boohoo.com');
       });

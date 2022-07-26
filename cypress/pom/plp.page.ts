@@ -1,5 +1,90 @@
+import { GroupBrands, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
+
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    priceRefinements: '#searchRefineBarAccordionItemBtn-price > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    occassionRefinement: '#searchRefineBarAccordionItemBtn-occasion > span',
+    sortProducts: '',
+    priceVariant: '',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantColour: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    selectRefinementVariantOccassion: '#searchRefineBarAccordionItemInner-occasion',
+    selectRefinementVariantShopByPrice: '#searchRefineBarAccordionItemInner-price',
+
+  },
+  'nastygal.com': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    occassionRefinement: '#searchRefineBarAccordionItemBtn-occasion > span',
+    sortProducts: '',
+    priceVariant: '',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantColour: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    selectRefinementVariantOccassion: '#searchRefineBarAccordionItemInner-occasion',
+  },
+  'dorothyperkins.com': {
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    lengthRefinement: '#searchRefineBarAccordionItemBtn-length > span',
+    sortProducts: '',
+    priceVariant: '',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
+  },
+  'burton.co.uk': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    patternRefinement: '#searchRefineBarAccordionItemBtn-pattern > span',
+    fitRefinement: '#searchRefineBarAccordionItemBtn-fit > span',
+    sortProducts: '',
+    priceVariant: '',
+    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantPattern: '#searchRefineBarAccordionItemInner-pattern',
+    selectRefinementVariantFit: '#searchRefineBarAccordionItemInner-fit',
+  },
+  'wallis.co.uk': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    sortProducts: '',
+    priceVariant: '',
+    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
 
 class PlpPage implements AbstractPage {
   goto (): void {
@@ -10,66 +95,84 @@ class PlpPage implements AbstractPage {
 
     // Refinements
     categoryRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-category > span').click({force: true});
+      const categoryRefinement = selectors[GroupBrands.Boohoo].categoryRefinement;
+      cy.get(categoryRefinement).click({force: true});
     },
     sizeRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-size > span').click({force: true});
+      const sizeRefinement = selectors[GroupBrands.Boohoo].sizeRefinement;
+      cy.get(sizeRefinement).click({force: true});
     },
     styleRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-style > span').click({force: true});
+      const styleRefinement = selectors[GroupBrands.Boohoo].styleRefinement;
+      cy.get(styleRefinement).click({force: true});
     },
     colorRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-colour > span').click({force: true});
+      const colorRefinement = selectors[GroupBrands.Boohoo].colorRefinement;
+      cy.get(colorRefinement).click({force: true});
     },
     priceRefinements (){
-      cy.get('#searchRefineBarAccordionItemBtn-price > span').click({force: true});
+      const priceRefinements = selectors[GroupBrands.Boohoo].priceRefinements;
+      cy.get(priceRefinements).click({force: true});
     },
     shopByFitRefinements (){
-      cy.get('#searchRefineBarAccordionItemBtn-shop-by-fit > span').click({force: true});
+      const shopByFitRefinements = selectors[GroupBrands.Boohoo].shopByFitRefinements;
+      cy.get(shopByFitRefinements).click({force: true});
+    },
+    fitRefinements (){
+      const fitRefinements = selectors[GroupBrands.Boohoo].fitRefinements;
+      cy.get(fitRefinements).click({force: true});
     },
     occassionRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-occasion > span').click({force: true});
+      const occassionRefinement = selectors[GroupBrands.Boohoo].occassionRefinement;
+      cy.get(occassionRefinement).click({force: true}); 
     },
     sortProducts (){
-      cy.get('#plp-sort-desktop').click({force: true});
+      const sortProducts = selectors[GroupBrands.Boohoo].sortProducts;
+      cy.get(sortProducts).click({force: true});
     },
     priceVariant (){
-      cy.get('#searchRefineBarAccordionItemBtn-price').click({force: true});
+      const priceVariant = selectors[GroupBrands.Boohoo].priceVariant;
+      cy.get(priceVariant).click({force: true});
     },
 
     selectRefinementVariantShopByFit (text: string){
-      cy.get('#refinementAttributesList-shop-by-fit').contains(text).click({force: true});
-      cy.wait(5000);
+      const selectRefinementVariantShopByFit = selectors[GroupBrands.Boohoo].selectRefinementVariantShopByFit;
+      cy.get(selectRefinementVariantShopByFit).click({force: true});
+    },
+
+    selectRefinementVariantFit (text: string){
+      const selectRefinementVariantFit = selectors[GroupBrands.Boohoo].selectRefinementVariantFit;
+      cy.get(selectRefinementVariantFit).click({force: true});
     },
     
     selectRefinementVariantColour (text: string){
-      cy.get('#refinementAttributesList-colour').contains(text).click({force: true});
-      cy.wait(5000);
+      const selectRefinementVariantColour = selectors[GroupBrands.Boohoo].selectRefinementVariantColour;
+      cy.get(selectRefinementVariantColour).click({force: true});
     },
 
     selectRefinementVariantStyle (text: string){
-      cy.get('#refinementAttributesList-style').contains(text).click({force: true});
-      cy.wait(5000);
+      const selectRefinementVariantStyle = selectors[GroupBrands.Boohoo].selectRefinementVariantStyle;
+      cy.get(selectRefinementVariantStyle).click({force: true});
     },
 
     selectRefinementVariantSize (text: string){
-      cy.get('#refinementAttributesList-size').contains(text).click({force: true});
-      cy.wait(5000);
+      const selectRefinementVariantSize = selectors[GroupBrands.Boohoo].selectRefinementVariantSize;
+      cy.get(selectRefinementVariantSize).click({force: true});
     },
 
     selectRefinementVariantCategory (text: string){
-      cy.get('#searchRefineBarAccordionItemInner-category').contains(text).click({force: true});
-      cy.wait(5000);
+      const selectRefinementVariantCategory = selectors[GroupBrands.Boohoo].selectRefinementVariantCategory;
+      cy.get(selectRefinementVariantCategory).click({force: true});
     },
 
     selectRefinementVariantOccassion (text: string){
-      cy.get('#searchRefineBarAccordionItemInner-occasion').contains(text).click({force: true});
-      cy.wait(5000);
+      const selectRefinementVariantOccassion = selectors[GroupBrands.Boohoo].selectRefinementVariantOccassion;
+      cy.get(selectRefinementVariantOccassion).click({force: true});
     },
 
     selectRefinementVariantShopByPrice (text: string){
-      cy.get('#searchRefineBarAccordionItemInner-price').contains(text).click({force: true});
-      cy.wait(5000);
+      const selectRefinementVariantShopByPrice = selectors[GroupBrands.Boohoo].selectRefinementVariantShopByPrice;
+      cy.get(selectRefinementVariantShopByPrice).click({force: true});
     },
 
     // Load more products
@@ -81,6 +184,7 @@ class PlpPage implements AbstractPage {
 
     // Product details (image, name, price, wishlist, quickview)
     wishlistOnPlpImage (){
+      const wishlistPlpIcon = 
       cy.get('.b-wishlist_button-icon').eq(1).click({force: true});
     }
     
@@ -98,6 +202,7 @@ class PlpPage implements AbstractPage {
     },
     assertNumberOfItemsTextISVisible (){
       cy.scrollTo('bottom');
+      const NumberOfItemsTextISVisible = 
       cy.get('div.b-load_progress > span').should('be.visible');
     },
     assertLoadMoreBtnIsVisible (){

@@ -1,4 +1,4 @@
-import { BrandMap, GotoOptions, GroupBrands, SelectorBrandMap } from '../support/types';
+import { BrandMap, EnvironmentVariables, GotoOptions, GroupBrands, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
 
@@ -52,15 +52,17 @@ const selectors: SelectorBrandMap = {
   'oasis-stores.com': undefined,
   'misspap.com': undefined
 };
+
+const variables = Cypress.env() as EnvironmentVariables;
 class HomePage implements AbstractPage {
 
   goto (options: GotoOptions = null) {
        
-    cy.visit('/');
+    cy.visit(variables.url);
        
     if (options?.applyCookies) {
       CommonActions.applyMarketingCookies();
-      cy.visit('/');
+      cy.visit(variables.url);
     }
   }
 
@@ -121,8 +123,8 @@ class HomePage implements AbstractPage {
   };
 
   actions = {       
-    findItemUsingSKU (SKU: string){
-      cy.get('.b-search_input-close').click().type(SKU+'{enter}');
+    findItemUsingSKU (sku: string){
+      cy.get('.b-search_input-close').click().type(sku+'{enter}');
     },
     forgotPassword (email: string){
       cy.get('button[data-tau="login_password_reset"]').click();

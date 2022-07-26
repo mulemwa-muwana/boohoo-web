@@ -1,4 +1,4 @@
-import { BrandMap, EnvironmentVariables, GotoOptions, GroupBrands, SelectorBrandMap } from '../support/types';
+import {EnvironmentVariables, GotoOptions, GroupBrands, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
 
@@ -70,33 +70,33 @@ class HomePage implements AbstractPage {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
     logInIcon (opts = { force: false }) {
-      const searchIcon = selectors[GroupBrands.Boohoo].searchIcon;
+      const searchIcon = selectors[variables.brand].searchIcon;
       cy.get(searchIcon).click({ force: opts.force });
     },
     forgotPasswordLink (){
-      const resetPassword = selectors[GroupBrands.Boohoo].resetPassword;
-      cy.get('button[data-tau="login_password_reset"]').click();
+      const resetPassword = selectors[variables.brand].resetPassword;
+      cy.get(resetPassword).click();
     },
     registrationButton (){
-      const registrationButton = selectors[GroupBrands.Boohoo].registrationButton;
+      const registrationButton = selectors[variables.brand].registrationButton;
       cy.get(registrationButton).should('be.visible').click();
     },
 
     // Objects for search subsystem tests
     searchIcon (opts = { force: false }) {
-      const searchField = selectors[GroupBrands.Boohoo].searchField;
+      const searchField = selectors[variables.brand].searchField;
       cy.get(searchField).click({ force: opts.force });            
     },
     searchField (){
-      const headerSearchInputField = selectors[GroupBrands.Boohoo].headerSearchInputField;
+      const headerSearchInputField = selectors[variables.brand].headerSearchInputField;
       cy.get(headerSearchInputField).click({force: true});
     },
     wishListIcon () {
-      const wishListIcon = selectors[GroupBrands.Boohoo].wishListIcon;
+      const wishListIcon = selectors[variables.brand].wishListIcon;
       cy.get(wishListIcon).click({force: true});
     },
     cartIcon (){
-      const minicartIcon = selectors[GroupBrands.Boohoo].minicartIcon;
+      const minicartIcon = selectors[variables.brand].minicartIcon;
       cy.get(minicartIcon).click({force: true});
     },
     
@@ -117,7 +117,7 @@ class HomePage implements AbstractPage {
       cy.get('cc-saveAll-startBtn').click();
     },
     acceptCookies (){
-      const acceptCookies = selectors[GroupBrands.Boohoo].acceptCookies;      
+      const acceptCookies = selectors[variables.brand].acceptCookies;      
       cy.get(acceptCookies).click();
     }   
   };
@@ -143,13 +143,16 @@ class HomePage implements AbstractPage {
 
     // Search assertions
     assertSearchIconPresent () {
-      cy.get('.b-search_input-close').should('be.visible');
+      const searchIcon = selectors[variables.brand].searchField;
+      cy.get(searchIcon).should('be.visible');
     },
     assertSearchFiledPresent () {
-      cy.get('#header-search-input').should('be.visible');
+      const searchField = selectors[variables.brand].searchField;
+      cy.get(searchField).should('be.visible');
     },
     assertSearchFieldContains (text: string) {
-      cy.get('#header-search-input').contains(text);
+      const searchField = selectors[variables.brand].searchField;
+      cy.get(searchField).contains(text);
     },
     assertSearchResultPage (text: string) {
       cy.url().should('include', text);

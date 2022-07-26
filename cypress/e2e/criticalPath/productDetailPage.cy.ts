@@ -5,17 +5,16 @@ import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Product Details Page tests', function () {
 
   beforeEach (()=>{
-    const variables = Cypress.env() as EnvironmentVariables;
-
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU[variables.sku]; // {enter} might be missing
-  });
     
+    HomePage.goto();
+    HomePage.actions.findItemUsingSKU(variables.sku);
+  });  
   it('TC01 Verify that Product name is showing',function (){
-    const variables = Cypress.env() as EnvironmentVariables;
     PdpPage.assertions.assertProductNameIsDisplayed (skuAssertions.skuTitle[variables.language]);
   });
   it('TC02 Verify that Product price is showing',function (){
@@ -32,21 +31,19 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertImageIsDisplayed('#product-image-3');
   });
   it('TC05 Verify that colour swatches are shown and selecting one will change the main image',function (){
-    const variables = Cypress.env() as EnvironmentVariables;
     PdpPage.assertions.assertColorSwatchesAreVisible();
     PdpPage.actions.selectColor(0); //  Color is selected by its index number(trying to find better solution)
     PdpPage.assertions.assertColorIsDisplayed(skuAssertions.mainSkuColor[variables.language]);
   });
-  it('TC06 Verify that it is possible to select a size when available', function (){
+  it.only('TC06 Verify that it is possible to select a size when available', function (){
     const language = Cypress.env('language');
     PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize(1);
-    PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[language]);
+    PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[variables.language]);
     PdpPage.actions.addToCart();
-    PdpPage.assertions.assertProductIsAddedToCart(assertionText.addedToCard[language]);
+    PdpPage.assertions.assertProductIsAddedToCart(assertionText.addedToCard[variables.language]);
   });
   it('TC07 Verify if size is not selected, and user tries to add product to a bag, error message is displayed', function (){
-    const variables = Cypress.env() as EnvironmentVariables;
     PdpPage.actions.addToCart();
     PdpPage.assertions.assertErrorMsgForSizeIsDisplayed(assertionText.sizeErrorMsg[variables.language]);
   });   
@@ -57,7 +54,6 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
   it('TC09 Verify that save for later (heart icon) is functional when selected', function (){
-    const variables = Cypress.env() as EnvironmentVariables;
     PdpPage.click.addToWishList();
     PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
   });
@@ -75,7 +71,6 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertStartReturnPageIsDisplayed();
   });
   it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function (){
-    const variables = Cypress.env() as EnvironmentVariables;
     PdpPage.assertions.assertCompleteLookDisplayed();
     PdpPage.click.shopNowLinkNL();
     PdpPage.assertions.assertLinkNewSeasonIsLinked(megaMenuLinksLanguages.newSeason[variables.language]);
@@ -84,4 +79,4 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertLinkShoesAndAccIsLinked(megaMenuLinksLanguages.shoesAndAcc[variables.language]);
   });
  
-});  
+}); 

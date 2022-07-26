@@ -9,6 +9,7 @@ type MiddleEastCountryCode = 'AE' | 'BH' | 'JO' | 'KW' | 'OM' | 'QA' | 'SA';
 type FarEastCountryCode = 'HK' | 'TW' | 'JP' | 'SG' | 'KR';
 
 export type EnvironmentVariables = {
+    url: string;
     sku: string;
     brand: GroupBrands;
     locale: AustralasiaCountryCode | NorthAmericaCountryCode | EuropeCountryCode | MiddleEastCountryCode | FarEastCountryCode; 

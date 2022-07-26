@@ -54,7 +54,6 @@ const selectors: SelectorBrandMap = {
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
-
 class HomePage implements AbstractPage {
 
   goto (options: GotoOptions = null) {
@@ -124,8 +123,8 @@ class HomePage implements AbstractPage {
   };
 
   actions = {       
-    findItemUsingSKU (SKU: string){
-      cy.get('.b-search_input-close').click().type(SKU+'{enter}');
+    findItemUsingSKU (sku: string){
+      cy.get('.b-search_input-close').click().type(sku+'{enter}');
     },
     forgotPassword (email: string){
       cy.get('button[data-tau="login_password_reset"]').click();

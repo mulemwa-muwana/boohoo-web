@@ -3,7 +3,7 @@ import { TranslationMap } from '../support/types';
 class megaMenuLinksLanguages {
 
   AllClothing: TranslationMap = { 
-    EN: 'ALL CLOTHING',
+    EN: 'CLOTHING',
     NL: 'KLEDING',
     DE: 'BEKLEIDUNG',
     FR: 'VÊTEMENTS',

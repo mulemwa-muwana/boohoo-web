@@ -9,7 +9,7 @@ class GlobalFooter implements AbstractPage {
 
   click = {
     privacyPolicyLink () {
-      cy.contains('Privacy Notice - Updated March 2021').click();
+      cy.contains('Privacy').click();
     },
     copyrightPrivacyPolicyLink () {
       cy.get('#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a').click();
@@ -84,6 +84,7 @@ class GlobalFooter implements AbstractPage {
   actions = {
     subscribeToNewsletter (email: string) {
       cy.get('input[id="dwfrm_newslettersubscribe_email"]').type(email);
+      cy.get('#dwfrm_newslettersubscribe_agreeToPrivacy').check();
       cy.get('button[data-id="submitButton"]').click();
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) {
@@ -108,7 +109,7 @@ class GlobalFooter implements AbstractPage {
 
   assertions = {
     assertSuccessfulSubscription () {
-      cy.get('.b-newsletters-message_success').contains('Thanks for signing up!');
+      cy.get('.b-newsletters-message_success').contains('Thanks for ');
     },
     assertUnsuccessfulSubscription () {
       cy.get('#dwfrm_newslettersubscribe_email-error').should('contain.text', 'Hold up! That doesn’t seem right.');

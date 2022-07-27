@@ -142,7 +142,7 @@ class assertionText {
   };
 
   inStock: TranslationMap = {
-    EN: 'YAY! Its in stock',
+    EN: '\n                YAY! It’s in stock\n            \n                YAY! It’s in stock\n            ',
     FR: 'YAY! C’est en stock',
     NL: 'JAAAAA! Het is op voorraad',
     DE: 'YAY! Es ist auf Lager',

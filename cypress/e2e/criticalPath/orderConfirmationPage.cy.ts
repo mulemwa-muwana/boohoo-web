@@ -17,7 +17,7 @@ describe('Order confirmation page for guest user', function (){
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(0);
+    PdpPage.actions.selectSize(1);
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
@@ -42,15 +42,15 @@ describe('Order confirmation page for guest user', function (){
     orderConfirmationPage.click.closePopUp();
   });
 
-  it('Verify that email is visible for guest user', function (){
-    orderConfirmationPage.assertions.assertEmailIsDispplayed('euboohoo+guest@gmail.com');    
+  it.only('Verify that email is visible for guest user', function (){
+    orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+guest@gmail.com');    
   });
 
   it('Verify that order number', function (){
-    orderConfirmationPage.assertions.assertOrderNumberIsDispayed();
+    orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
   }); 
   it('Verify that total amount paid is visible', function (){
-    orderConfirmationPage.assertions.assertOrderValueIsDispayed();
+    orderConfirmationPage.assertions.assertOrderValueIsDisplayed();
   });
   it('Verify that shipping address is present with valid data', function (){
     const variables = Cypress.env() as EnvironmentVariables;
@@ -58,7 +58,7 @@ describe('Order confirmation page for guest user', function (){
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1, localeAddress.phone);
   });
   it('Verify that shipping method is present', function (){
-    orderConfirmationPage.assertions.assertShippingMethodIsDispayed();
+    orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
   it('Verify that billing address is present with valid data', function (){
     const variables = Cypress.env() as EnvironmentVariables;
@@ -70,8 +70,8 @@ describe('Order confirmation page for guest user', function (){
     orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
   });
   it('Verify that for guest users password fields are present on order confirmation page', function (){
-    orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDispayed();
-    orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDispayed();
+    orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
+    orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
   });
 });
 describe('Order confirmation page for registered user', function (){
@@ -97,10 +97,10 @@ describe('Order confirmation page for registered user', function (){
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
   });
   it('Verify that email is visible', function (){
-    orderConfirmationPage.assertions.assertEmailIsDispplayed('euboohoo+cypress789@gmail.com');  
+    orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+cypress789@gmail.com');  
   });
   it('Verify that order number is visible', function (){
-    orderConfirmationPage.assertions.assertOrderNumberIsDispayed();
+    orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
   }); 
   it('Verify that total amount paid is visible', function (){
     orderConfirmationPage.assertions.assertOrderTotalIsVisible();
@@ -111,7 +111,7 @@ describe('Order confirmation page for registered user', function (){
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1, localeAddress.phone);
   });
   it('Verify that shipping method is present', function (){
-    orderConfirmationPage.assertions.assertShippingMethodIsDispayed();
+    orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
   it('Verify that billing address is present with valid data', function (){
     const variables = Cypress.env() as EnvironmentVariables;

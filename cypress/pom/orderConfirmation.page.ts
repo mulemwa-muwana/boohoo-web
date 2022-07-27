@@ -18,10 +18,10 @@ class OrderConfirmation implements AbstractPage {
   };
 
   assertions = {
-    assertEmailIsDispplayed (email: string){
+    assertEmailIsDisplayed (email: string){
       cy.get('.b-confirmation_header-email').should('contain.text', email);
     },
-    assertOrderValueIsDispayed (){
+    assertOrderValueIsDisplayed (){
       cy.get('.b-summary_shipping-cost').should('not.be.empty');
     },
     assertShippingAddressDetails (fname: string, lname: string, addressLine1: string, phone: string){
@@ -29,7 +29,7 @@ class OrderConfirmation implements AbstractPage {
       cy.get('.b-address-name').should('contain', lname);
       cy.get('.b-address-summary').should('contain', addressLine1);
     },
-    assertOrderNumberIsDispayed (){
+    assertOrderNumberIsDisplayed (){
       cy.get(':nth-child(1) > .b-summary_group-details').eq(0).should('not.be.empty');
     },
     assertBillingAddressDetails (fname: string, lname: string, addressLine1: string, phone: string){
@@ -37,7 +37,7 @@ class OrderConfirmation implements AbstractPage {
       cy.get('.b-address-name').eq(1).should('contain', lname);
       cy.get('.b-address-summary').eq(1).should('contain', addressLine1);
     },
-    assertShippingMethodIsDispayed (){
+    assertShippingMethodIsDisplayed (){
       cy.get('b-summary_shipping-name').should('not.be.empty');
     },
     assertPaymentMethod (method: string){
@@ -46,10 +46,10 @@ class OrderConfirmation implements AbstractPage {
     assertOrderTotalIsVisible (){
       cy.get('.b-summary_shipping-cost').should('not.be.empty');
     },
-    assertThatPasswordFieldForGuestUserIsDispayed (){
+    assertThatPasswordFieldForGuestUserIsDisplayed (){
       cy.get('#dwfrm_newPasswords_newpassword').should('be.visible');
     },
-    assertThatConfirmPasswordFieldForGuestUserIsDispayed (){
+    assertThatConfirmPasswordFieldForGuestUserIsDisplayed (){
       cy.get('#dwfrm_newPasswords_newpasswordconfirm').should('be.visible');
     }
   };

@@ -2,20 +2,16 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   projectId: 'i6d3n8',
-
   env: {
-    url: 'https://storefront:Oreo2022@uk-dwstg.boohoo.com/',
-    sku: '#DZZ79497',
-    brand: 'boohoo.com',
-    locale: 'UK',
+    url: 'https://storefront:Oreo2022@dwdev.burton-menswear.com/ie',
+    sku: '#ABB01243',
+    brand: 'burton.co.uk',
+    locale: 'IE',
     language: 'EN',
-    UKstandardShippingMehod: 'ukstandard',
-    UKNextDay: 'nextday',
-    UkDPD: 'dpd',
   },
-
   viewportHeight: 1080,
   viewportWidth: 1920,
+  defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
 
   e2e: {

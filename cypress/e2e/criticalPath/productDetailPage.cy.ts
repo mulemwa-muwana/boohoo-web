@@ -1,6 +1,6 @@
 import PdpPage from '../../pom/pdp.page';
 import HomePage from '../../pom/home.page';
-import { EnvironmentVariables, SKU } from '../../support/types';
+import { EnvironmentVariables } from '../../support/types';
 import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';

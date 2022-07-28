@@ -33,3 +33,10 @@ Cypress.Commands.add('createUser', (brand: BrandURLS) => {
   });
   return cy.get(`@UserCreatedAt${timestamp}`);
 });
+
+/**
+ * Create an artefact file in Cypress, this file is used to fuel back end tests.
+ */
+Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, name: string) => {
+  cy.writeFile(`cypress/artefacts/${name}.json`, JSON.stringify(testArtefact, null, 4));
+});

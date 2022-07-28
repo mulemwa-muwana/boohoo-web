@@ -1,4 +1,3 @@
-import { eq } from 'cypress/types/lodash';
 import assertionText from '../helpers/assertionText';
 import { EnvironmentVariables, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';

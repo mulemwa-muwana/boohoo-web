@@ -1,7 +1,5 @@
-import addresses from '../helpers/addresses';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-
 class OrderConfirmation implements AbstractPage {
   goto (): void {
     homePage.goto();

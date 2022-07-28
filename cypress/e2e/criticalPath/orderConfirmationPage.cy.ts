@@ -42,7 +42,7 @@ describe('Order confirmation page for guest user', function (){
     orderConfirmationPage.click.closePopUp();
   });
 
-  it.only('Verify that email is visible for guest user', function (){
+  it('Verify that email is visible for guest user', function (){
     orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+guest@gmail.com');    
   });
 

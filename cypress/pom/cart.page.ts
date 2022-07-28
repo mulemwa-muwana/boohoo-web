@@ -16,7 +16,6 @@ class CartPage implements AbstractPage {
     },
     proceedToCheckout (){
       cy.get('.b-minicart-button').contains('Checkout').should('be.visible').click();
-      cy.pause()
     }
   };
 

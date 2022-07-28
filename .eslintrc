@@ -69,5 +69,13 @@
     "@typescript-eslint/restrict-template-expressions": "error",            // Enforce template literal expressions to be of string type.
     "@typescript-eslint/typedef": "error",                                  // Requires type annotations to exist.
     "@typescript-eslint/type-annotation-spacing": "error"                   // Require consistent spacing around type annotations.
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.config.ts"],                                             // Ignore lint rules for all configuration files
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    }
+  ],
 }

@@ -15,7 +15,7 @@ class CartPage implements AbstractPage {
       });
     },
     proceedToCheckout (){
-      cy.get('.b-minicart-button').contains('Checkout').should('be.visible').click();
+      cy.get('a[data-tau="minicart_start_checkout_bottom"]').should('be.visible').click();
     }
   };
 

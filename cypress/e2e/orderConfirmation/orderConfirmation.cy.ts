@@ -47,6 +47,7 @@ describe('Order confirmation page for guest user', function (){
     cy.get(':nth-child(1) > .b-summary_group-details').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get(':nth-child(2) > .b-summary_group-details').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
     cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail')
+    cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku')
       .then(function () {
         cy.createArtefact({
           orderNumber: this.orderNumber,
@@ -56,12 +57,13 @@ describe('Order confirmation page for guest user', function (){
           groupBrand: variables.brand,
           deliveryMethod: shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1').shippingMethodName,
           items: [{
-            sku: variables.sku,
+            sku: this.fullSku,
             quantity: 1
           }],
           testScenario: 'CompleteOrder',
           locale: variables.locale
-        }, 'creditcard');
+        },`${variables.locale}_creditcard`.toLowerCase());
+        
       });
   });
 

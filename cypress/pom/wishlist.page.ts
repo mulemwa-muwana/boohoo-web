@@ -1,4 +1,3 @@
-import assertionText from '../helpers/assertionText';
 import { EnvironmentVariables, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
@@ -12,7 +11,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
     removeItemFromWishlist: 'a[data-tau="wishlist_product_delete"]',
-    wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a'
+    wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
   },
   'nastygal.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -21,7 +23,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
-    wishlistLoginBtn: '.b-button'
+    wishlistLoginBtn: '.b-button',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
   },
   'dorothyperkins.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -30,7 +35,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
-    wishlistLoginBtn: '.b-button'
+    wishlistLoginBtn: '.b-button',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
   },
   'burton.co.uk': {
     sortItems: 'div.b-wishlist-sorting',
@@ -39,7 +47,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
-    wishlistLoginBtn: '.b-button'
+    wishlistLoginBtn: '.b-button',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
   },
   'wallis.co.uk': {
     sortItems: 'div.b-wishlist-sorting',
@@ -48,7 +59,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
-    wishlistLoginBtn: '.b-button'
+    wishlistLoginBtn: '.b-button',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -108,13 +122,16 @@ class WishListPage implements AbstractPage {
 
   assertions = {
     assertItemIsAddedToWishlist () {
-      cy.get('.b-header_wishlist-count').should('not.be.empty');
+      const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
+      cy.get(itemIsAddedToWishlist).should('not.be.empty');
     },
-    assertWishListIsEmpty () {
-      cy.get('.b-wishlist-empty > :nth-child(2)').should('have.text', assertionText.WishListIsEmpty['UK']);
+    assertWishListIsEmpty (msg: string) {
+      const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
+      cy.get(wishListIsEmpty).should('have.text', msg);
     },
     assertItemIsAddedtoWishlistAlertText (msg: string){
-      cy.get('.b-global_alerts-item').should('have.text', msg);
+      const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;
+      cy.get(itemIsAddedtoWishlistAlertText).should('have.text', msg);
     }
   };
 }

@@ -1,7 +1,98 @@
 import assertionText from '../helpers/assertionText';
-import { EnvironmentVariables } from '../support/types';
+import { EnvironmentVariables, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
+
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: '.b-address_selector-button',
+    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editCart: '.b-summary_order-header > .b-link',
+    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '.b-checkout_step-controls > .b-button',
+    addNewAddress: 'button[data-tau="add_new_address"]',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+  },
+  'nastygal.com': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: '.b-address_selector-button',
+    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editCart: '.b-summary_order-header > .b-link',
+    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '.b-checkout_step-controls > .b-button',
+    addNewAddress: 'button[data-tau="add_new_address"]',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+  },
+  'dorothyperkins.com': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: '.b-address_selector-button',
+    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editCart: '.b-summary_order-header > .b-link',
+    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '.b-checkout_step-controls > .b-button',
+    addNewAddress: 'button[data-tau="add_new_address"]',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+  },
+  'burton.co.uk': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: '.b-address_selector-button',
+    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editCart: '.b-summary_order-header > .b-link',
+    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '.b-checkout_step-controls > .b-button',
+    addNewAddress: 'button[data-tau="add_new_address"]',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+  },
+  'wallis.co.uk': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: '.b-address_selector-button',
+    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editCart: '.b-summary_order-header > .b-link',
+    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '.b-checkout_step-controls > .b-button',
+    addNewAddress: 'button[data-tau="add_new_address"]',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
+
+const variables = Cypress.env() as EnvironmentVariables;
 
 class ShippingPage implements AbstractPage {
 
@@ -11,46 +102,60 @@ class ShippingPage implements AbstractPage {
 
   click = {
     submitPromoCode (){
-      cy.get('button[data-tau="coupon_submit"]').click();
+      const promoCodeBtn = selectors[variables.brand].promoCodeBtn;
+      cy.get(promoCodeBtn).click();
     },
     addNewAddress (){
-      cy.get('button[data-tau="add_new_address"]').eq(1).click();
+      const addNewAddress = selectors[variables.brand].addNewAddress;
+      cy.get(addNewAddress).eq(1).click();
     },
     cancelAddingNewAddress (){
-      cy.get('.b-button m-link b-address_form-back');
+      const cancelAddingNewAddress = selectors[variables.brand].cancelAddingNewAddress;
+      cy.get(cancelAddingNewAddress);
     },
     proceedToBilling (){
-      cy.get('.b-checkout_step-controls > .b-button').click();
+      const proceedToBilling = selectors[variables.brand].proceedToBilling;
+      cy.get(proceedToBilling).click();
     },
     editSavedAddress (){
-      cy.get(':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button').click();
+      const editSavedAddress = selectors[variables.brand].editSavedAddress;
+      cy.get(editSavedAddress).click();
     },
     addAddressManually (){
-      cy.get('#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button').click().should('be.visible');
+      const addAddressManually = selectors[variables.brand].addAddressManually;
+      cy.get(addAddressManually).click().should('be.visible');
     },
     editCart (){
-      cy.get('.b-summary_order-header > .b-link').should('be.visible').click();
+      const editCart = selectors[variables.brand].editCart;
+      cy.get(editCart).should('be.visible').click();
     },
     editAddress (){
-      cy.get(':nth-child(1) > .b-summary_group-subtitle > .b-button').should('be.visible').click();
+      const editAddress = selectors[variables.brand].editAddress;
+      cy.get(editAddress).should('be.visible').click();
     },
     addNewAddressButton (){
-      cy.get('.b-address_selector-button').click();
+      const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
+      cy.get(addNewAddressButton).click();
     },
     editExistingAddressButton (){
-      cy.get('.b-option_switch-label_surface > .b-button').click();
+      const editExistingAddressButton = selectors[variables.brand].editExistingAddressButton;
+      cy.get(editExistingAddressButton).click();
     },
     cancelAddingNewAddressForRegisteredUser (){
-      cy.get('.b-address_form-header > .b-button').should('be.visible').click();
+      const cancelAddingNewAddressForRegisteredUser = selectors[variables.brand].cancelAddingNewAddressForRegisteredUser;
+      cy.get(cancelAddingNewAddressForRegisteredUser).should('be.visible').click();
     },
     viewAllAddressesLink (){
-      cy.get('.b-address_selector-actions > .m-link').should('be.visible').click();
+      const viewAllAddressesLink = selectors[variables.brand].viewAllAddressesLink;
+      cy.get(viewAllAddressesLink).should('be.visible').click();
     },
     addPremierToCartFromShippingPage (){
-      cy.get('#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button').should('be.visible').click();
+      const addPremierToCartFromShippingPage = selectors[variables.brand].addPremierToCartFromShippingPage;
+      cy.get(addPremierToCartFromShippingPage).should('be.visible').click();
     },
     OpenPUDOlocations (){
-      cy.get('#deliveryTabs > div.b-tab_list > button:nth-child(2)').click();
+      const PUDOlocations = selectors[variables.brand].PUDOlocations;
+      cy.get(PUDOlocations).click();
     },
   
   };

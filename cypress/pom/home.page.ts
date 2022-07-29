@@ -1,4 +1,3 @@
-import {EnvironmentVariables, GotoOptions, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
 

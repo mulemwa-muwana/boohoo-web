@@ -2,8 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Any methods created need to be added to the Cypress namespace, this is typescript feature.
 
-import { GroupBrands, NewCustomerCredentials } from './types';
-
 // Login and preserve tokens. (EXPERIMENTAL, NOT CURRENTLY IN USE).
 Cypress.Commands.add('goOffline', () => {
   return cy.log('Disabling internet connectivity').then(() => {
@@ -26,7 +24,7 @@ Cypress.Commands.add('goOffline', () => {
  * Command that takes in a brand as a brand url, this will be a host url like boohoo.com, this will create an account for that url
  * and return you an object with
  */
-Cypress.Commands.add('createUser', (brand: BrandURLS) => {
+Cypress.Commands.add('createUser', (brand: GroupBrands) => {
   const timestamp = Date.now();
   cy.task('createUser', brand).then((result: NewCustomerCredentials) => {
     cy.wrap(result).as(`UserCreatedAt${timestamp}`);

@@ -1,7 +1,6 @@
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
-import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import shippingPage from '../../pom/shipping.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import assertionText from '../../helpers/assertionText';

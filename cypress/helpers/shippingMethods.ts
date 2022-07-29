@@ -1,5 +1,3 @@
-import { ShippingMethods } from '../support/types';
-
 type shippingMap = Record<string, Record<'shippingMethod1' | 'shippingMethod2' | 'shippingMethod3', ShippingMethods>>
 
 class shippingMethod {

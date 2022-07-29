@@ -6,7 +6,6 @@ import shippingPage from '../../pom/shipping.page';
 import homePage from '../../pom/home.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
-import { EnvironmentVariables } from '../../support/types';
 import Addresses from '../../helpers/addresses';
 
 describe('Home Page', function () {

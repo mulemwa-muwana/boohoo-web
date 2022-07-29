@@ -1,4 +1,3 @@
-import { AddressData } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 
 class MyAccountPage implements AbstractPage {

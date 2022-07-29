@@ -2,7 +2,6 @@ import plpPage from '../../pom/plp.page';
 import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
-import { EnvironmentVariables } from '../../support/types';
 
 describe('Home Page', function (){
   

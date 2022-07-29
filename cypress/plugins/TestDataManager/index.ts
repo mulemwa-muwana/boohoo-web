@@ -1,4 +1,3 @@
-import { APIKeyType, BrandMap, GroupBrands, TCustomerJSONResponse, TLocale } from '../../support/types';
 import axios from 'axios';
 import * as dotenv from 'dotenv';
 dotenv.config();

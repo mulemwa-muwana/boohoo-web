@@ -4,10 +4,10 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.burton.co.uk/',
-    sku: 'ABB01243',
-    brand: 'burton.co.uk',
-    locale: 'UK',
+    url: 'https://storefront:Oreo2022@cs-dwstg.boohoo.com/',
+    sku: '#DZZ79497',
+    brand: 'boohoo.com',
+    locale: 'CA',
     language: 'EN',
   },
 

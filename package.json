@@ -4,14 +4,14 @@
     "cy:open:burton": "cypress open --config-file ./config/cypress.burton.json",
     "cy:run:boohoo": "cypress run --config-file ./config/cypress.boohoo.json",
     "cy:run:burton": "cypress run --config-file ./config/cypress.burton.json",
-    "cy:run:boohoo:dashboard": "cypress run --config-file ./config/cypress.boohoo.json --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
+    "cy:run:e2e:uk": "cypress run --config-file ./config/cypress.boohoo.uk.config.ts"
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "axios": "^0.27.2",
-    "cypress": "^10.3.0",
+    "cypress": "^10.3.1",
     "dotenv": "^16.0.1",
     "eslint": "^8.10.0",
     "typescript": "^4.5.4"

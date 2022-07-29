@@ -109,13 +109,13 @@ describe('Home Page', function () {
     describe('Verify the content page (Privacy Policy) is displayed.', () => {
       it('Privacy policy - first link', () => {
         GlobalFooter.click.privacyPolicyLink();
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
-        PrivacyPolicyPage.assertions.assertOnPage();
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
+        PrivacyPolicyPage.assertions.assertOnPage(assertionText.PrivacyPolicyH1[variables.language]);
       });
       it('Privacy policy - second link', () => {
         GlobalFooter.click.privacyPolicyLink();
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
-        PrivacyPolicyPage.assertions.assertOnPage();
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
+        PrivacyPolicyPage.assertions.assertOnPage(assertionText.PrivacyPolicyH1[variables.language]);
       });
     }); 
     

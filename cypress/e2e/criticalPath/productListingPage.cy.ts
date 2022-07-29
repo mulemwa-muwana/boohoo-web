@@ -61,7 +61,7 @@ describe('Home Page', function (){
     it('Verify style refinement is applied', () => {
       const variables = Cypress.env() as EnvironmentVariables;
       plpPage.click.styleRefinement();
-      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStylevariables[variables.language]);
+      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle[variables.language]);
     });
     it('Verify colour refinement is applied', () => {

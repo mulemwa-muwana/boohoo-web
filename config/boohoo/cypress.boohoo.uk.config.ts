@@ -16,6 +16,7 @@ export default defineConfig({
 
   viewportHeight: 1080,
   viewportWidth: 1920,
+  defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
 
   e2e: {

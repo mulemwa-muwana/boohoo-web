@@ -1,6 +1,5 @@
-import { TranslationMap } from '../support/types';
-
-class assertionText {
+class AssertionText {
+  
   WishlistItemsAdded: TranslationMap = {
     EN: '\n\nSaved\n',
     FR: '\n\nEnregistré\n',
@@ -269,4 +268,4 @@ class assertionText {
  
 }
 
-export default new assertionText();
+export default new AssertionText();

@@ -1,5 +1,4 @@
 import assertionText from '../helpers/assertionText';
-import { EnvironmentVariables, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 

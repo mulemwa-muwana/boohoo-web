@@ -1,5 +1,3 @@
-import { TranslationMap } from '../support/types';
-
 class megaMenuLinksLanguages {
 
   AllClothing: TranslationMap = { 

@@ -1,4 +1,3 @@
-import { CountryCode } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 
 class GlobalFooter implements AbstractPage {

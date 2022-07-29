@@ -1,4 +1,3 @@
-import { GroupBrands, NewCustomerCredentials } from '../support/types';
 import createCustomer from './TestDataManager/index';
 
 module.exports = async (on, config) => {

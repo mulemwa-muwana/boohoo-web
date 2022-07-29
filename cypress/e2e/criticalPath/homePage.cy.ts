@@ -1,4 +1,3 @@
-import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import * as CommonActions from '../../helpers/common';
 import GlobalFooter from '../../pom/globalfooter.page';

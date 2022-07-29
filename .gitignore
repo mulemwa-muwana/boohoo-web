@@ -15,3 +15,5 @@ package-lock.json
 *.mp4
 .DS_Store
 .env
+
+**/artefacts

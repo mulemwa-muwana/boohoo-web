@@ -1,4 +1,3 @@
-import { EnvironmentVariables, GroupBrands, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -224,14 +223,16 @@ class PlpPage implements AbstractPage {
     // Load more products
     loadMoreProducts (){
       cy.scrollTo('bottom');
-      const loadMoreProducts = selectors[GroupBrands.Boohoo].loadMoreProducts;
+      const brand: GroupBrands = 'boohoo.com';
+      const loadMoreProducts = selectors[brand].loadMoreProducts;
       cy.get(loadMoreProducts).click({force: true});
       cy.wait(10000);
     },
 
     // Product details (image, name, price, wishlist, quickview)
     wishlistOnPlpImage (){
-      const wishlistPlpIcon = selectors[GroupBrands.Boohoo].wishlistPlpIcon;
+      const brand: GroupBrands = 'boohoo.com';
+      const wishlistPlpIcon = selectors[brand].wishlistPlpIcon;
       cy.get(wishlistPlpIcon).eq(1).click({force: true});
     }
     

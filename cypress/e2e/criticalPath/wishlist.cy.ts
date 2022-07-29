@@ -1,4 +1,3 @@
-import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import HomePage from '../../pom/home.page';
 import WishListPage from '../../pom/wishlist.page';

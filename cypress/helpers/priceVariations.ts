@@ -1,5 +1,3 @@
-import { PriceMap } from '../support/types';
-
 class priceVariations {
 
   plpPriceRange: PriceMap = {

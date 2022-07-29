@@ -8,6 +8,7 @@ import cards from '../../helpers/cards';
 import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import Addresses from '../../helpers/addresses';
 import shippingMethods from '../../helpers/shippingMethods';
+import { getCardProviderByBrand } from '../../helpers/common';
 
 describe('Order confirmation page for guest user', function (){
   beforeEach (()=>{
@@ -52,7 +53,7 @@ describe('Order confirmation page for guest user', function (){
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
           orderEmail: this.orderEmail,
-          paymentMethod: 'WorldPay',
+          paymentMethod: getCardProviderByBrand(variables.brand, variables.locale),
           groupBrand: variables.brand,
           deliveryMethod: shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1').shippingMethodName,
           items: [{

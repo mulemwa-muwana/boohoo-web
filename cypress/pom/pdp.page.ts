@@ -136,7 +136,7 @@ class PdpPage implements AbstractPage {
     },
     shippingInfoButton (){
       const shippingInfoButton = selectors[variables.brand].shippingInfoButton;
-      cy.get(shippingInfoButton).click(); //  Only boohoo
+      cy.get(shippingInfoButton).click(); // Only boohoo
     },
     returnLink (){
       const returnLink = selectors[variables.brand].returnLink;
@@ -177,7 +177,7 @@ class PdpPage implements AbstractPage {
     addToCart (){
       cy.wait(15000);
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).click(); //  Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
+      cy.get(addToCart).click(); // Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
     }
   };
 
@@ -201,25 +201,25 @@ class PdpPage implements AbstractPage {
     },
     assertColorSwatchesAreVisible (){
       const colorSwatches = selectors[variables.brand].colorSwatches;
-      cy.get(colorSwatches).should('be.visible'); //  Check how it works with single color 
+      cy.get(colorSwatches).should('be.visible'); // Check how it works with single color 
     },
     assertColorIsDisplayed (color: string){
       const productImage = selectors[variables.brand].productImage;
       cy.get(productImage).should('have.attr', 'src').and('include',color);
     },
     assertSizeIsAvailable (msg: string){
-      cy.get('.b-availability-status').should('contain.text', msg); //  N/a need check
+      cy.get('.b-availability-status').should('contain.text', msg); // N/a need check
     },
     assertSizeIsNotAvailable (){
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get (addToCart).should('have.text', 'Out of Stock'); //  Double selektor
+      cy.get (addToCart).should('have.text', 'Out of Stock'); // Double selektor
     },
     assertProductIsAddedToCart (text: string){
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       cy.get(addToCartTitle).should('be.visible').and('contain.text', text);
     },
     assertErrorMsgForSizeIsDisplayed (msg: string){
-      cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', msg); //  Should be tested
+      cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', msg); // Should be tested
     },
     assertMiniCartIsDisplayed (){
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
@@ -228,7 +228,7 @@ class PdpPage implements AbstractPage {
       cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string){
-      cy.get('.m-outline').should('have.text', msg); //  Check how to switch between brands
+      cy.get('.m-outline').should('have.text', msg); // Check how to switch between brands
     },
     assertStyleNotesArePresent (){
       const productDescription = selectors[variables.brand].productDescription;
@@ -238,7 +238,7 @@ class PdpPage implements AbstractPage {
       const productDelivery = selectors[variables.brand].productDelivery; 
       cy.get(productDelivery).should('be.visible');
       cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
-      cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); //  Work only boohoo, other brands redirect to new tab
+      cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); // Work only boohoo, other brands redirect to new tab
     },
     assertReturnInfoIsDisplayed (){
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
@@ -250,15 +250,15 @@ class PdpPage implements AbstractPage {
     },
     assertCompleteLookDisplayed (){
       const completeLookBox = selectors[variables.brand].completeLookBox;
-      cy.get(completeLookBox).should('be.visible'); //  Only boohoo
+      cy.get(completeLookBox).should('be.visible'); // Only boohoo
     },
     assertLinkNewSeasonIsLinked (text: string){
       const shopNowLinkNL = selectors[variables.brand].shopNowLinkNL;
-      cy.get(shopNowLinkNL).should('include', text); //  Only boohoo brand
+      cy.get(shopNowLinkNL).should('include', text); // Only boohoo brand
     },
     assertLinkShoesAndAccIsLinked (text: string){
       const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
-      cy.get(shopNowLinkSA).should('include', text); //  Only boohoo brand
+      cy.get(shopNowLinkSA).should('include', text); // Only boohoo brand
     }
     
   };

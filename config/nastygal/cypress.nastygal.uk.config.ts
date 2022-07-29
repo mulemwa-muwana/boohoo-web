@@ -4,10 +4,10 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.burton-menswear.com/eu',
-    sku: 'ABB01243',
-    brand: 'burton.co.uk',
-    locale: 'EU',
+    url: 'https://storefront:Oreo2022@us1-dev.nastygal.com/gb/',
+    sku: '#AGG78799',
+    brand: 'nastygal.com',
+    locale: 'UK',
     language: 'EN',
   },
 
@@ -15,6 +15,7 @@ export default defineConfig({
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
+
   e2e: {
     setupNodeEvents (on, config) {
 

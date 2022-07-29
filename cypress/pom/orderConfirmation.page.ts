@@ -22,7 +22,7 @@ class OrderConfirmation implements AbstractPage {
     assertOrderValueIsDisplayed (){
       cy.get('.b-summary_shipping-cost').should('not.be.empty');
     },
-    assertShippingAddressDetails (fname: string, lname: string, addressLine1: string, phone: string){
+    assertShippingAddressDetails (fname: string, lname: string, addressLine1: string){
       cy.get('.b-address-name').should('contain', fname);
       cy.get('.b-address-name').should('contain', lname);
       cy.get('.b-address-summary').should('contain', addressLine1);
@@ -30,7 +30,7 @@ class OrderConfirmation implements AbstractPage {
     assertOrderNumberIsDisplayed (){
       cy.get(':nth-child(1) > .b-summary_group-details').eq(0).should('not.be.empty');
     },
-    assertBillingAddressDetails (fname: string, lname: string, addressLine1: string, phone: string){
+    assertBillingAddressDetails (fname: string, lname: string, addressLine1: string){
       cy.get('.b-address-name').eq(1).should('contain', fname);
       cy.get('.b-address-name').eq(1).should('contain', lname);
       cy.get('.b-address-summary').eq(1).should('contain', addressLine1);

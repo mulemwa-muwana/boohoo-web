@@ -1,14 +1,14 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress';
 
 export default defineConfig({
-  projectId: "i6d3n8",
+  projectId: 'i6d3n8',
 
   env: {
-    url: "https://storefront:Oreo2022@es-dwstg.boohoo.com/",
-    sku: "#DZZ79497",
-    brand: "boohoo.com",
-    locale: "ES",
-    language: "ES",
+    url: 'https://storefront:Oreo2022@es-dwstg.boohoo.com/',
+    sku: '#DZZ79497',
+    brand: 'boohoo.com',
+    locale: 'ES',
+    language: 'ES',
   },
 
   viewportHeight: 1080,
@@ -17,8 +17,9 @@ export default defineConfig({
   chromeWebSecurity: false,
 
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
+    setupNodeEvents (on, config) {
+
+      // Implement node event listeners here
     },
   },
 });

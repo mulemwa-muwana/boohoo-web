@@ -1,6 +1,7 @@
-import { EnvironmentVariables, GroupBrands, SelectorBrandMap } from '../support/types';
+import { EnvironmentVariables, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
+
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     searchField: '#header-search-input',
@@ -160,8 +161,7 @@ class PdpPage implements AbstractPage {
     miniCartViewCartBtn (){
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
       cy.get(miniCartViewCartBtn).click({ force: true });
-    }
-  
+    } 
   };
 
   actions = {
@@ -179,7 +179,6 @@ class PdpPage implements AbstractPage {
       const addToCart = selectors[variables.brand].addToCart;
       cy.get(addToCart).click(); // Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
     }
-  
   };
 
   assertions = {

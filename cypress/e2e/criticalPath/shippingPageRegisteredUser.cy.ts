@@ -139,8 +139,7 @@ describe('Home Page', function () {
 
   it('Verify that user is able to select standard shipping method', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.shippingMethod, 'shippingMethod1');
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
   });

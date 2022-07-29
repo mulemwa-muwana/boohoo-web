@@ -1,5 +1,3 @@
-import { TranslationMap } from '../support/enums';
-
 class skuAssertions {
   skuTitle: TranslationMap = {
     EN: 'High Waist Light Wash Distressed Mom Jeans',

@@ -4,10 +4,8 @@ import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
-import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import cards from '../../helpers/cards';
 import orderConfirmationPage from '../../pom/orderConfirmation.page';
-import assertionText from '../../helpers/assertionText';
 import Addresses from '../../helpers/addresses';
 import shippingMethods from '../../helpers/shippingMethods';
 
@@ -49,11 +47,12 @@ describe('Order confirmation page for guest user', function (){
     cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail');
     cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku')
       .then(function () {
-        cy.createArtefact({
+        
+        const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
           orderEmail: this.orderEmail,
-          paymentMethod: assertionText.assertPaymentMethod[variables.language],
+          paymentMethod: 'WorldPay',
           groupBrand: variables.brand,
           deliveryMethod: shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1').shippingMethodName,
           items: [{
@@ -62,7 +61,9 @@ describe('Order confirmation page for guest user', function (){
           }],
           testScenario: 'CompleteOrder',
           locale: variables.locale
-        },`${variables.locale}_creditcard`.toLowerCase());
+        };
+
+        cy.createArtefact(testArtefactObject,`${variables.locale}_creditcard`.toLowerCase());
         
       });
   });

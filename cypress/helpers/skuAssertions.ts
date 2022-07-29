@@ -1,4 +1,4 @@
-import { TranslationMap } from '../support/types';
+import { TranslationMap } from '../support/enums';
 
 class skuAssertions {
   skuTitle: TranslationMap = {

@@ -2,7 +2,6 @@ import plpPage from '../../pom/plp.page';
 import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
-import { EnvironmentVariables } from '../../support/types';
 
 describe('Home Page', function (){
   
@@ -61,7 +60,13 @@ describe('Home Page', function (){
     it('Verify style refinement is applied', () => {
       const variables = Cypress.env() as EnvironmentVariables;
       plpPage.click.styleRefinement();
+      
+      throw new Error('productShopByStylevariables doesn\'t exist on productVariations');
+
+      /** Miona can you have a look at this following code 
       plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStylevariables[variables.language]);
+      */
+
       plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle[variables.language]);
     });
     it('Verify colour refinement is applied', () => {

@@ -1,4 +1,3 @@
-import { GotoOptions } from '../support/types';
 import * as CommonActions from '../helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import assertionText from '../helpers/assertionText';

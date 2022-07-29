@@ -1,4 +1,3 @@
-import { SizesMap, TranslationMap } from '../support/types';
 import priceVariations from './priceVariations';
 
 class productVariations {

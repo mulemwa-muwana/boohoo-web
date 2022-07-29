@@ -1,5 +1,3 @@
-import { AddressData } from '../support/types';
-
 type AddressMap = Record<string, Record<'primaryAddress' | 'secondaryAddress', AddressData>>
 
 class Addresses {

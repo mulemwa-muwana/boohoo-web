@@ -1,7 +1,6 @@
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
-import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 
 describe('Home Page', function () {

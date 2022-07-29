@@ -1,4 +1,3 @@
-import { EnvironmentVariables, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {

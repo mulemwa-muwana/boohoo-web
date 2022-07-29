@@ -1,5 +1,10 @@
 {
   "scripts": {
+    "cy:open:boohoo": "cypress open --config-file ./config/boohoo/cypress.boohoo.json",
+    "cy:open:burton": "cypress open --config-file ./config/cypress.burton.json",
+    "cy:run:boohoo": "cypress run --config-file ./config/cypress.boohoo.json",
+    "cy:run:burton": "cypress run --config-file ./config/cypress.burton.json",
+    "cy:run:e2e:uk": "cypress run --config-file ./config/cypress.boohoo.uk.config.ts",
     "cy:run:boohoo:uk:e2e": "cypress run --config-file ./config/boohoo/cypress.boohoo.uk.config.ts --spec \"cypress/e2e/orderConfirmation/orderConfirmation.cy.ts\"",
     "lint": "eslint . --ext .ts"
   },

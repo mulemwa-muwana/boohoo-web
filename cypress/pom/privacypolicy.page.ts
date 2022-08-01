@@ -1,7 +1,31 @@
-import { GotoOptions } from '../support/types';
 import * as CommonActions from '../helpers/common';
 import AbstractPage from './abstract/abstract.page';
-import assertionText from '../helpers/assertionText';
+
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    privacyNoticyPageTitle: 'span.b-page_title',
+  },
+  'nastygal.com': {
+    privacyNoticyPageTitle: 'span.b-page_title',
+  },
+  'dorothyperkins.com': {
+    privacyNoticyPageTitle: 'span.b-page_title',
+  },
+  'burton.co.uk': {
+    privacyNoticyPageTitle: 'span.b-page_title',
+  },
+  'wallis.co.uk': {
+    privacyNoticyPageTitle: 'span.b-page_title',
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
+
+const variables = Cypress.env() as EnvironmentVariables;
 
 class PrivacyPolicyPage implements AbstractPage {
 
@@ -20,11 +44,12 @@ class PrivacyPolicyPage implements AbstractPage {
   };
 
   assertions = {
-    assertOnPage () {
-      cy.url().should('include', assertionText.PrivacyPolicyURL.EN);
+    assertOnPage (text: string) {
+      cy.url().should('include', text);
     },
-    assertPrivacyNoticyPageOpens (){
-      cy.get('span.b-page_title').should('contain.text', assertionText.PrivacyPolicyH1.EN);
+    assertPrivacyNoticyPageOpens (text: string){
+      const privacyNoticyPageTitle = selectors[variables.brand].privacyNoticyPageTitle;
+      cy.get(privacyNoticyPageTitle).should('contain.text', text);
     }
   };
 }

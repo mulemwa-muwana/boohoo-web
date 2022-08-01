@@ -1,6 +1,5 @@
 import PdpPage from '../../pom/pdp.page';
 import HomePage from '../../pom/home.page';
-import { EnvironmentVariables, SKU } from '../../support/types';
 import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
@@ -9,8 +8,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Product Details Page tests', function () {
 
-  beforeEach (()=>{
-    
+  beforeEach (()=>{   
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
   });  
@@ -22,7 +20,7 @@ describe('Product Details Page tests', function () {
   });
   it('TC03 Verify that Product code is showing',function (){
     const sku = Cypress.env('sku');
-    PdpPage.assertions.assertProductCodeIsDisplayed[sku]; 
+    PdpPage.assertions.assertProductCodeIsDisplayed[sku];
   });
   it('TC04 Verify that images are displayed',function (){
     PdpPage.assertions.assertImageIsDisplayed('#product-image-0');
@@ -36,7 +34,6 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertColorIsDisplayed(skuAssertions.mainSkuColor[variables.language]);
   });
   it.only('TC06 Verify that it is possible to select a size when available', function (){
-    const language = Cypress.env('language');
     PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize(1);
     PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[variables.language]);

@@ -1,6 +1,4 @@
-import { CardDetails} from '../support/types';
-
-class Cards{
+class Cards {
 
   visa: CardDetails ={
     cardNo: '4111111111111111',

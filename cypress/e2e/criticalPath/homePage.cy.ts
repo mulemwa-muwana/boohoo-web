@@ -1,4 +1,3 @@
-import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import LoginPage from '../../pom/login.page';
 import * as CommonActions from '../../helpers/common';
 import GlobalFooter from '../../pom/globalfooter.page';
@@ -9,6 +8,8 @@ import homePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import assertionText from '../../helpers/assertionText';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Home Page', function () {
     
   // This will execute before every single test, we're just going to the baseURL.
@@ -18,13 +19,11 @@ describe('Home Page', function () {
 
   describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
     it('No login', () => {
-      const variables = Cypress.env() as EnvironmentVariables;
       HomePage.click.logInIcon();
       HomePage.assertions.assertUserIsNotLoggedIn(assertionText.assertUserIsNotLoggedIn[variables.language]);
     });
     it('After login', () => {
       cy.fixture('users').then((credentials: LoginCredentials) => {
-        const variables = Cypress.env() as EnvironmentVariables;
         LoginPage.goto();
         LoginPage.actions.login(credentials.username, credentials.password);
         HomePage.goto();
@@ -38,7 +37,7 @@ describe('Home Page', function () {
         homePage.assertions.assertLogoPresent();
       });
     
-      it.only('Verify search icon is present', () => {
+      it('Verify search icon is present', () => {
         HomePage.click.searchIcon();
         HomePage.assertions.assertSearchIconPresent();
       });
@@ -47,9 +46,8 @@ describe('Home Page', function () {
         HomePage.assertions.assertSearchFiledPresent();
       });
       it('Verify search results page opens', () => {
-        const variables = Cypress.env() as EnvironmentVariables;
         HomePage.click.searchIcon();
-        HomePage.actions.findItemUsingSKU[variables.sku];
+        HomePage.actions.findItemUsingSKU(variables.sku);
         HomePage.assertions.assertSearchResultPage(variables.sku);
       });  
     
@@ -70,14 +68,12 @@ describe('Home Page', function () {
       });
 
       it('Verify Mega Menu - Sale link opens', () => {
-        const variables = Cypress.env() as EnvironmentVariables;
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.saleLink[variables.language].toLowerCase());
       });
  
       it('Verify Mega Menu - NewIn link opens', () => {
-        const variables = Cypress.env() as EnvironmentVariables;
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewInURL[variables.language]);
@@ -107,22 +103,24 @@ describe('Home Page', function () {
       GlobalFooter.actions.subscribeToNewsletter(randomEmail);
       GlobalFooter.assertions.asssertAlreadySubscribed();
     });
+
+    // Needs updating global footer, privacy and social pages
     
     describe('Verify the content page (Privacy Policy) is displayed.', () => {
       it('Privacy policy - first link', () => {
         GlobalFooter.click.privacyPolicyLink();
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
-        PrivacyPolicyPage.assertions.assertOnPage();
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
+        PrivacyPolicyPage.assertions.assertOnPage(assertionText.PrivacyPolicyH1[variables.language]);
       });
       it('Privacy policy - second link', () => {
         GlobalFooter.click.privacyPolicyLink();
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens();
-        PrivacyPolicyPage.assertions.assertOnPage();
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
+        PrivacyPolicyPage.assertions.assertOnPage(assertionText.PrivacyPolicyH1[variables.language]);
       });
     }); 
     
     describe('Verify that Social Networking Links are present.', () => {
-      it('Instagram', () => {
+      it.only('Instagram', () => {
         SocialsPage.assertions.assertInstagramIconIsPresent();
         GlobalFooter.click.instagramLink();
       });

@@ -1,7 +1,6 @@
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
-import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 import shippingPage from '../../pom/shipping.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import assertionText from '../../helpers/assertionText';
@@ -139,8 +138,7 @@ describe('Home Page', function () {
 
   it('Verify that user is able to select standard shipping method', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.shippingMethod, 'shippingMethod1');
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
   });

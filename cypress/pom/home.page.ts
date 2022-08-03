@@ -7,46 +7,47 @@ const selectors: SelectorBrandMap = {
     searchIcon: 'button.b-search_toggle',
     resetPassword: '',
     wishListIcon: '.b-header_wishlist-icon',
-    registrationButton: '.i-icon i-icon-user',
+    registrationButton: '.b-registration_benefits > .b-button',
     minicartIcon: '.b-minicart_icon-link',
     acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
-    promotion: '#promotion_slide-0 > div > div > a'
+    promotion: '#promotion_slide-0 > div > div > a',
+    loginIcon: '.b-header_login-icon > .i-icon'
   },
   'nastygal.com': {
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: '.i-icon i-icon-user',
+    registrationButton: '.b-registration_benefits > .b-button',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
-    anotherSelector: '#another',
+    loginIcon: '.b-header_login-icon > .i-icon'
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: '.i-icon i-icon-user',
+    loginIcon: '.b-header_login-icon > .i-icon',
+    registrationButton: '.b-registration_benefits > .b-button',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
-    anotherSelector: '#another',
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: '.i-icon i-icon-user',
+    registrationButton: '.b-registration_benefits > .b-button',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
-    anotherSelector: '#another',
+    loginIcon: '.b-header_login-icon > .i-icon'
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: '.i-icon i-icon-user',
+    loginIcon: '.b-header_login-icon > .i-icon',
+    registrationButton: '.b-registration_benefits > .b-button',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
-    anotherSelector: '#another',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -72,9 +73,10 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
+    // Not working for DP an WL error:  Cannot read properties of undefined (reading 'loginIcon')
     logInIcon (opts = { force: false }) {
-      const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({ force: opts.force });
+      const loginIcon = selectors[variables.brand].loginIcon;
+      cy.get(loginIcon).click({ force: opts.force });
     },
     forgotPasswordLink (){
       const resetPassword = selectors[variables.brand].resetPassword;

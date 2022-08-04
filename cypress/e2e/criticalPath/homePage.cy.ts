@@ -120,7 +120,7 @@ describe('Home Page', function () {
     }); 
     
     describe('Verify that Social Networking Links are present.', () => {
-      it.only('Instagram', () => {
+      it('Instagram', () => {
         SocialsPage.assertions.assertInstagramIconIsPresent();
         GlobalFooter.click.instagramLink();
       });

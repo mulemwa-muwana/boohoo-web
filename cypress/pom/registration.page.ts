@@ -1,6 +1,37 @@
 import assertionText from '../helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    submitButton: ':nth-child(9) > .b-button',
+    emailError: '#dwfrm_profile_customer_email-error > span'
+  },
+  'nastygal.com': {
+    submitButton: ':nth-child(12) > .b-button',
+    emailError: '#dwfrm_profile_customer_email-error'
+  },
+  'dorothyperkins.com': {
+    submitButton: ':nth-child(12) > .b-button',
+    emailError: '#dwfrm_profile_customer_email-error'
+  },
+  'burton.co.uk': {
+    submitButton: ':nth-child(12) > .b-button',
+    emailError: '#dwfrm_profile_customer_email-error'
+  },
+  'wallis.co.uk': {
+    submitButton: ':nth-child(12) > .b-button',
+    emailError: '#dwfrm_profile_customer_email-error'
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
+
+const variables = Cypress.env() as EnvironmentVariables;
+
 class RegistrationPage implements AbstractPage {
 
   goto (): void {
@@ -21,14 +52,18 @@ class RegistrationPage implements AbstractPage {
       cy.get('#dwfrm_profile_customer_subscription_is3rdPartySubscribed').click();
     },
     submitButton (){
-      cy.get(':nth-child(9) > .b-button').click();
+      const submitButton = selectors[variables.brand].submitButton;
+      cy.get(submitButton).click();
     }
   };
 
   actions = {
     startRegistration (randomEmail: string){
       cy.get('#dwfrm_profile_customer_email').type(randomEmail);
-      cy.get('button[data-id="continueButton"]').click();
+      if (variables.brand == 'boohoo.com'){
+        cy.get('button[data-id="continueButton"]').click();
+      }
+      
     },
     confirmationCheckbox (){
       cy.get('#dwfrm_profile_customer_emailregistationconfirm').check();
@@ -55,10 +90,11 @@ class RegistrationPage implements AbstractPage {
       cy.get('#dwfrm_profile_customer_emailregistationconfirm').should('be.checked');
     },
     assertMyAcountPageIsOpened (){
-      cy.url().should('include', '/myaccount?registration=submitted');
+      cy.url().should('include', '?registration=submitted');
     },
     assertErrorMessageExistingEmail (){
-      cy.get('#dwfrm_profile_customer_email-error > span').should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail.EN);
+      const emailError = selectors[variables.brand].emailError;
+      cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail[variables.language]);
     }
 
   };

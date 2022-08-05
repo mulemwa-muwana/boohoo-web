@@ -1,5 +1,225 @@
-import { AddressData } from '../support/types';
+import { AddressData, EnvironmentVariables, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
+
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    accountLogout: 'a[data-tau="account_signout"]',
+    myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
+    orderHistory: 'a[data-tau="navigation_orderHistory"]',
+    wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
+    accountDetails: 'a[data-tau="navigation_editProfile"]',
+    changePassword: 'a[data-tau="navigation_passwordChange"]',
+    contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
+    accountAddresses: 'a[data-tau="navigation_addressList"]',
+    paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
+    viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
+    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    myPremier: 'a[data-tau="navigation_accountPremier"]',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
+    addressDefaultBox: 'section[data-tau="address_book_item_default"]',
+    addressEditBtn: 'a[data-tau="address_book_edit"]',
+    addressEditForm: '.l-account_main-section',
+    addressField: '#dwfrm_address_address1',
+    addressSubmitBtn: 'button[data-tau="address_submit"]',
+    addAddressBtn: 'a[data-tau="address_book_addNewAddress"]',
+    addressFirstNameField: '#dwfrm_address_firstName',
+    addressLastNameField: '#dwfrm_address_lastName',
+    addressPhoneNumberField: '#dwfrm_address_phone',
+    addressCityField: '#dwfrm_address_city',
+    addressStateCodeField: '#dwfrm_address_states_stateCode',
+    addressPostalCodeField: '#dwfrm_address_postalCode',
+    addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
+    addressDeleteBtn: '.b-cards_grid-footer > .b-button',
+    addCreditCardNumber: '#dwfrm_creditCard_cardNumber',
+    addCreditCardOwner: '#dwfrm_creditCard_cardOwner',
+    addCreditCardExpMonth: 'dwfrm_creditCard_expirationMonth',
+    addCreditCardExpYear: '#dwfrm_creditCard_expirationYear',
+    addCreditCardSaveBtn: '.m-mobile_column > .b-button',
+    cardDeleteConfirmationBtn: '#maincontent > div > div.l-account.b-account.m-account_subpage > main > div.l-account_main > div > div > div > div:nth-child(3) > div > div > div.b-dialog-footer.m-actions > button:nth-child(1)',
+    orderID: '.b-account-title',
+    shippingInfo: '.b-summary_group',
+    accountDetailsEmailField: '#account-email-input',
+    nameGreeting: 'p[data-tau="greeting_message"]',
+    addressNameLine: '.b-address-name',
+    addressSummaryLine: '.b-address-summary',
+    orderHistoryLoadMoreBtn: 'a[data-tau="orders_load_more',
+  },
+  'nastygal.com': {
+    accountLogout: 'a[data-tau="account_signout"]',
+    myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
+    orderHistory: 'a[data-tau="navigation_orderHistory"]',
+    wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
+    accountDetails: 'a[data-tau="navigation_editProfile"]',
+    changePassword: 'a[data-tau="navigation_passwordChange"]',
+    contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
+    accountAddresses: 'a[data-tau="navigation_addressList"]',
+    paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
+    viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
+    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
+    addressDefaultBox: 'section[data-tau="address_book_item_default"]',
+    addressEditBtn: 'a[data-tau="address_book_edit"]',
+    addressEditForm: '.l-account_main-section',
+    addressField: '#dwfrm_address_address1',
+    addressSubmitBtn: 'button[data-tau="address_submit"]',
+    addAddressBtn: 'a[data-tau="address_book_addNewAddress"]',
+    addressFirstNameField: '#dwfrm_address_firstName',
+    addressLastNameField: '#dwfrm_address_lastName',
+    addressPhoneNumberField: '#dwfrm_address_phone',
+    addressCityField: '#dwfrm_address_city',
+    addressStateCodeField: '#dwfrm_address_states_stateCode',
+    addressPostalCodeField: '#dwfrm_address_postalCode',
+    addressDeleteBtn: '.b-cards_grid-footer > .b-button',
+    addCreditCardNumber: 'input#encryptedCardNumber',
+    addCreditCardOwner: '.adyen-checkout__input adyen-checkout__input--text adyen-checkout__card__holderName__input _3JmldYKADXTctIE9oP8lcu adyen-checkout__input--large', 
+    addCreditCardExpMonth: 'input#encryptedExpiryDate', //  Exp month and year in a same field',
+    addCreditCardExpYear: '#dwfrm_creditCard_expirationYear',
+    addCreditCardSaveBtn: '.m-mobile_column > .b-button',
+    cardDeleteConfirmationBtn: 'button[data-event-click.prevent="confirm"]',
+    orderID: '.b-account-title',
+    shippingInfo: '.b-summary_group',
+    accountDetailsEmailField: '#account-email-input',
+    nameGreeting: 'p[data-tau="greeting_message"]',
+    addressNameLine: '.b-address-name',
+    addressSummaryLine: '.b-address-summary',
+    orderHistoryLoadMoreBtn: 'a[data-tau="orders_load_more',
+  },
+  'dorothyperkins.com': {
+    accountLogout: 'a[data-tau="account_signout"]',
+    myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
+    orderHistory: 'a[data-tau="navigation_orderHistory"]',
+    wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
+    accountDetails: 'a[data-tau="navigation_editProfile"]',
+    changePassword: 'a[data-tau="navigation_passwordChange"]',
+    contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
+    accountAddresses: 'a[data-tau="navigation_addressList"]',
+    paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
+    viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
+    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
+    addressDefaultBox: 'section[data-tau="address_book_item_default"]',
+    addressEditBtn: 'a[data-tau="address_book_edit"]',
+    addressEditForm: '.l-account_main-section',
+    addressField: '#dwfrm_address_address1',
+    addressSubmitBtn: 'button[data-tau="address_submit"]',
+    addAddressBtn: 'a[data-tau="address_book_addNewAddress"]',
+    addressFirstNameField: '#dwfrm_address_firstName',
+    addressLastNameField: '#dwfrm_address_lastName',
+    addressPhoneNumberField: '#dwfrm_address_phone',
+    addressCityField: '#dwfrm_address_city',
+    addressStateCodeField: '#dwfrm_address_states_stateCode',
+    addressPostalCodeField: '#dwfrm_address_postalCode',
+    addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
+    addressDeleteBtn: '.b-cards_grid-footer > .b-button',
+    addCreditCardNumber: '#dwfrm_creditCard_cardNumber',
+    addCreditCardOwner: '#dwfrm_creditCard_cardOwner',
+    addCreditCardExpMonth: 'dwfrm_creditCard_expirationMonth',
+    addCreditCardExpYear: '#dwfrm_creditCard_expirationYear',
+    addCreditCardSaveBtn: '.m-mobile_column > .b-button',
+    cardDeleteConfirmationBtn: 'button[data-event-click.prevent="confirm"]',
+    orderID: '.b-account-title',
+    shippingInfo: '.b-summary_group',
+    accountDetailsEmailField: '#account-email-input',
+    nameGreeting: 'p[data-tau="greeting_message"]',
+    addressNameLine: '.b-address-name',
+    addressSummaryLine: '.b-address-summary',
+    orderHistoryLoadMoreBtn: 'a[data-tau="orders_load_more',
+  },
+  'burton.co.uk': {
+    accountLogout: 'a[data-tau="account_signout"]',
+    myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
+    orderHistory: 'a[data-tau="navigation_orderHistory"]',
+    wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
+    accountDetails: 'a[data-tau="navigation_editProfile"]',
+    changePassword: 'a[data-tau="navigation_passwordChange"]',
+    contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
+    accountAddresses: 'a[data-tau="navigation_addressList"]',
+    paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
+    viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
+    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
+    addressDefaultBox: 'section[data-tau="address_book_item_default"]',
+    addressEditBtn: 'a[data-tau="address_book_edit"]',
+    addressEditForm: '.l-account_main-section',
+    addressField: '#dwfrm_address_address1',
+    addressSubmitBtn: 'button[data-tau="address_submit"]',
+    addAddressBtn: 'a[data-tau="address_book_addNewAddress"]',
+    addressFirstNameField: '#dwfrm_address_firstName',
+    addressLastNameField: '#dwfrm_address_lastName',
+    addressPhoneNumberField: '#dwfrm_address_phone',
+    addressCityField: '#dwfrm_address_city',
+    addressStateCodeField: '#dwfrm_address_states_stateCode',
+    addressPostalCodeField: '#dwfrm_address_postalCode',
+    addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
+    addressDeleteBtn: '.b-cards_grid-footer > .b-button',
+    addCreditCardNumber: '#dwfrm_creditCard_cardNumber',
+    addCreditCardOwner: '#dwfrm_creditCard_cardOwner',
+    addCreditCardExpMonth: 'dwfrm_creditCard_expirationMonth',
+    addCreditCardExpYear: '#dwfrm_creditCard_expirationYear',
+    addCreditCardSaveBtn: '.m-mobile_column > .b-button',
+    cardDeleteConfirmationBtn: 'button[data-event-click.prevent="confirm"]',
+    orderID: '.b-account-title',
+    shippingInfo: '.b-summary_group',
+    accountDetailsEmailField: '#account-email-input',
+    nameGreeting: 'p[data-tau="greeting_message"]',
+    addressNameLine: '.b-address-name',
+    addressSummaryLine: '.b-address-summary',
+    orderHistoryLoadMoreBtn: 'a[data-tau="orders_load_more',
+  },
+  'wallis.co.uk': {
+    accountLogout: 'a[data-tau="account_signout"]',
+    myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
+    orderHistory: 'a[data-tau="navigation_orderHistory"]',
+    wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
+    accountDetails: 'a[data-tau="navigation_editProfile"]',
+    changePassword: 'a[data-tau="navigation_passwordChange"]',
+    contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
+    accountAddresses: 'a[data-tau="navigation_addressList"]',
+    paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
+    viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
+    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
+    addressDefaultBox: 'section[data-tau="address_book_item_default"]',
+    addressEditBtn: 'a[data-tau="address_book_edit"]',
+    addressEditForm: '.l-account_main-section',
+    addressField: '#dwfrm_address_address1',
+    addressSubmitBtn: 'button[data-tau="address_submit"]',
+    addAddressBtn: 'a[data-tau="address_book_addNewAddress"]',
+    addressFirstNameField: '#dwfrm_address_firstName',
+    addressLastNameField: '#dwfrm_address_lastName',
+    addressPhoneNumberField: '#dwfrm_address_phone',
+    addressCityField: '#dwfrm_address_city',
+    addressStateCodeField: '#dwfrm_address_states_stateCode',
+    addressPostalCodeField: '#dwfrm_address_postalCode',
+    addressDeleteBtn: '.b-cards_grid-footer > .b-button',
+    addCreditCardNumber: '#dwfrm_creditCard_cardNumber',
+    addCreditCardOwner: '#dwfrm_creditCard_cardOwner',
+    addCreditCardExpMonth: 'dwfrm_creditCard_expirationMonth',
+    addCreditCardExpYear: '#dwfrm_creditCard_expirationYear',
+    addCreditCardSaveBtn: '.m-mobile_column > .b-button',
+    cardDeleteConfirmationBtn: 'button[data-event-click.prevent="confirm"]',
+    orderID: '.b-account-title',
+    shippingInfo: '.b-summary_group',
+    accountDetailsEmailField: '#account-email-input',
+    nameGreeting: 'p[data-tau="greeting_message"]',
+    addressNameLine: '.b-address-name',
+    addressSummaryLine: '.b-address-summary',
+    orderHistoryLoadMoreBtn: 'a[data-tau="orders_load_more',
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
+
+const variables = Cypress.env() as EnvironmentVariables;
 
 class MyAccountPage implements AbstractPage {
   goto (): void {
@@ -9,125 +229,192 @@ class MyAccountPage implements AbstractPage {
   click =
     {
       logOutLink () {
-        cy.get('a[data-tau="account_signout"]').click();
+        const accountLogout = selectors[variables.brand].accountLogout;
+        cy.get(accountLogout).should('be.visible').click();
+      },
+      myAccountLink (){
+        const myAccountBtn = selectors[variables.brand].myAccountBtn;
+        cy.get(myAccountBtn).should('be.visible').click();
+      },
+      accountMyPremierLink () {
+        const myPremier = selectors[variables.brand].myPremier;
+        cy.get(myPremier).should('be.visible').click();
       },
       orderHistoryLink () {
-        cy.get('a[data-tau="navigation_orderHistory"]').click();
+        const orderHistory = selectors[variables.brand].orderHistory;
+        cy.get(orderHistory).should('be.visible').click();
       },
       loadMoreButton () {
-        cy.get('a[data-tau="orders_load_more"]').click();
+        const orderHistoryLoadMoreBtn = selectors[variables.brand].orderHistoryLoadMoreBtn;
+        cy.get(orderHistoryLoadMoreBtn).click();
       },
       startReturnButton () {
-        cy.get('a[class="b-order_details_general-button b-button m-outline m-small"]').invoke('removeAttr', 'target').click();
+        cy.get('a[class="b-order_details_general-button b-button m-outline m-small"]').invoke('removeAttr', 'target').click(); //  N/a
+      },
+      wishListLink () {
+        const wishListBtn = selectors[variables.brand].wishListBtn;
+        cy.get(wishListBtn).should('be.visible').click();
+      },
+      changePasswordLink () {
+        const changePassword = selectors[variables.brand].changePassword;
+        cy.get(changePassword).should('be.visible').click();
+      },
+      contactPreferencesLink () {
+        const contactPreferences = selectors[variables.brand].contactPreferences;
+        cy.get(contactPreferences).should('be.visible').click();
       },
       accountDetailsLink () {
-        cy.get('a[data-tau="navigation_editProfile"]').click();
+        const accountDetails = selectors[variables.brand].accountDetails;
+        cy.get(accountDetails).should('be.visible').click();
       },
       addressesLink () {
-        cy.get('a[data-tau="navigation_addressList"]').click();
+        const accountAddresses = selectors[variables.brand].accountAddresses;
+        cy.get(accountAddresses).should('be.visible').click();
       },
       paymentOptionsLink () {
-        cy.get('a[data-tau="navigation_paymentDetails"]').click();
+        const paymentDetails = selectors[variables.brand].paymentDetails;
+        cy.get(paymentDetails).should('be.visible').click();
+      },
+      socialAccountsLink () {
+        const socialAccounts = selectors[variables.brand].socialAccounts;
+        cy.get(socialAccounts).should('be.visible').click();
       }
     };
 
   actions =
     {
       viewNewestOrderHistory () {
-        cy.get('a[data-tau="navigation_orderHistory"]').should('be.visible').click();
+        const orderHistory = selectors[variables.brand].orderHistory;
+        const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
+        cy.get(orderHistory).should('be.visible').click();
         cy
-          .get('a[data-tau="orders_viewOrder"]')
+          .get(viewOrderBtn)
           .eq(0)
           .click();
       },
       loadMoreOrders () {
-        if (cy.get('a[data-tau="orders_load_more"]').should('be.visible')) {
-          cy.get('a[data-tau="orders_load_more"]').click();
+        const orderHistoryLoadMoreBtn = selectors[variables.brand].orderHistoryLoadMoreBtn;
+        if (cy.get(orderHistoryLoadMoreBtn).should('be.visible')) {
+          cy.get(orderHistoryLoadMoreBtn).click();
         }
       },
       updateAccountName (newName: string) {
-        cy.get('#dwfrm_profile_customer_firstname').clear().type(newName);
-        cy.get('button[data-tau="profile_customer_save"]').click();
+        const firstNameField = selectors[variables.brand].firstNameField;
+        const profileUpdateBtn = selectors[variables.brand].profileUpdateBtn;
+        cy.get(firstNameField).clear().type(newName);
+        cy.get(profileUpdateBtn).click();
       },
       editDefaultAddress (line1: string) {
-        cy.get('section[data-tau="address_book_item_default"]').find('a[data-tau="address_book_edit"]').click();
-        cy.get('.l-account_main-section').should('be.visible');
-        cy.get('#dwfrm_address_address1').clear().type(line1);
-        cy.get('button[data-tau="address_submit"]').click();
+        const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
+        const addressEditBtn = selectors[variables.brand].addressEditBtn;
+        const addressEditForm = selectors[variables.brand].addressEditForm;
+        const addressField = selectors[variables.brand].addressField;
+        const addressSubmitBtn = selectors[variables.brand].addressSubmitBtn;
+        cy.get(addressDefaultBox).find(addressEditBtn).click();
+        cy.get(addressEditForm).should('be.visible');
+        cy.get(addressField).clear().type(line1);
+        cy.get(addressSubmitBtn).click();
       },
       createAddress (address: AddressData) {
-        cy.get('a[data-tau="address_book_addNewAddress"]').click();
-        cy.get('#dwfrm_address_firstName').should('be.visible').type(address.firstName);
-        cy.get('#dwfrm_address_lastName').type(address.lastName);
-        cy.get('#dwfrm_address_phone').type(address.phone);
-        cy.get('.m-secondary').click();
-        cy.get('#dwfrm_address_address1').should('be.visible').type(address.addrline1);
-        cy.get('#dwfrm_address_city').type(address.city);
-        cy.get('#dwfrm_address_states_stateCode').type(address.county);
-        cy.get('#dwfrm_address_postalCode').type(address.postcode);
-        cy.get('button[data-tau="address_submit"]').click();
+        const addAddressBtn = selectors[variables.brand].addAddressBtn;
+        const addressFirstNameField = selectors[variables.brand].addressFirstNameField;
+        const addressLastNameField = selectors[variables.brand].addressLastNameField;
+        const addressPhoneNumberField = selectors[variables.brand].addressPhoneNumberField;
+        const addressField = selectors[variables.brand].addressField;
+        const addressCityField = selectors[variables.brand].addressCityField;
+        const addressEnterManualyBtn = selectors[variables.brand].addressEnterManualyBtn;
+        const addressStateCodeField = selectors[variables.brand].addressStateCodeField;
+        const addressPostalCodeField = selectors[variables.brand].addressPostalCodeField;
+        const addressSubmitBtn = selectors[variables.brand].addressSubmitBtn;
+        cy.get(addAddressBtn).should('be.visible').click();
+        cy.get(addressFirstNameField).should('be.visible').type(address.firstName);
+        cy.get(addressLastNameField).should('be.visible').type(address.lastName);
+        cy.get(addressPhoneNumberField).type(address.phone);
+        cy.get(addressEnterManualyBtn).click(); //  Only boohoo, dp, burton
+        cy.get(addressField).should('be.visible').type(address.addrline1);
+        cy.get(addressCityField).type(address.city);
+        cy.get(addressStateCodeField).type(address.county);
+        cy.get(addressPostalCodeField).type(address.postcode);
+        cy.get(addressSubmitBtn).click();
       },
       deleteAddress () {
-        cy.get('.b-cards_grid-footer > .b-button').eq(3).click();
+        const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
+        cy.get(addressDeleteBtn).eq(1).click(); //  it was eq(3)
       },
       addCard (cardNumber: string, cardOwner: string) {
-        cy.get('a[data-tau="address_book_addNewAddress"]').click();
-        cy.get('.l-account_main-section').should('be.visible');
-        cy.get('#dwfrm_creditCard_cardNumber').type(cardNumber);
-        cy.get('#dwfrm_creditCard_cardOwner').type(cardOwner);
-        cy.get('#dwfrm_creditCard_expirationMonth').select('03').should('have.value', '3');
-        cy.get('#dwfrm_creditCard_expirationYear').select('2030').should('have.value', '2030');
-        cy.get('.m-mobile_column > .b-button').click();
-
+        const addCardBtn = selectors[variables.brand].addAddressBtn;
+        const addCardEditForm = selectors[variables.brand].addressEditForm;
+        const addCreditCardNumber = selectors[variables.brand].addCreditCardNumber;
+        const addCreditCardOwner = selectors[variables.brand].addCreditCardOwner;
+        const addCreditCardExpMonth = selectors[variables.brand].addCreditCardExpMonth;
+        const addCreditCardExpYear = selectors[variables.brand].addCreditCardExpYear;
+        const addCreditCardSaveBtn = selectors[variables.brand].addCreditCardSaveBtn;
+        cy.get(addCardBtn).click(); //  Is this correct??
+        cy.get(addCardEditForm).should('be.visible'); //  Same
+        cy.get(addCreditCardNumber).type(cardNumber); //  Ng'input#encryptedCardNumber'
+        cy.get(addCreditCardOwner).type(cardOwner); //  Ng '.adyen-checkout__input adyen-checkout__input--text adyen-checkout__card__holderName__input _3JmldYKADXTctIE9oP8lcu adyen-checkout__input--large'
+        cy.get(addCreditCardExpMonth).select('03').should('have.value', '3'); //  Ng 'input#encryptedExpiryDate' exp month and year in same field
+        cy.get(addCreditCardExpYear).select('2030').should('have.value', '2030'); //  Ng  has CVC Field ??
+        cy.get(addCreditCardSaveBtn).click();
       },
       deleteCard (cardEnd: string){
+        const cardDeleteBtn = selectors[variables.brand].addressDeleteBtn;
+        const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
         cy.contains(cardEnd).should('be.visible');
-        cy.get('.b-cards_grid-footer > .b-button').eq(0).click();
-        cy.get('#maincontent > div > div.l-account.b-account.m-account_subpage > main > div.l-account_main > div > div > div > div:nth-child(3) > div > div > div.b-dialog-footer.m-actions > button:nth-child(1)').click();
-        
+        cy.get(cardDeleteBtn).eq(0).click();
+        cy.get(cardDeleteConfirmationBtn).click();
       },
       trackNewestOrder (){
-        cy.get('.b-order_item-button b-button m-small m-outline m-view_order').eq(1).click();
-        cy.url().should('include', 'order-trackform?orderID=');
+        cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click();  //  Should be checked
+        cy.url().should('include', 'order-details?orderID=');
         cy.get('button[data-tau="track_order_submit"]').click();
       },
       trackOrderByNumber (){
-        cy.get('.b-order_item-button b-button m-small m-outline m-view_order').eq(1).click();
-        cy.url().should('include', 'order-trackform?orderID=');
+        cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click();   //  Should be checked
         cy.get('#dwfrm_trackOrder_orderNumber').clear().type('UK300151163');
         cy.get('button[data-tau="track_order_submit"]').click();
       }
     };
     
-  assertions =
+  assertions = 
     {
       assertOrderHistoryPageTitle (text: string) {
-        cy.url().should('include', text);
+        cy.url().should('include', text);  
       },
       assertStartReturnPageIsDisplayed () {
         cy.url().should('include', '/page/returns-and-refunds.html');
       },
       assertOrderDetailsContent () {
-        cy.get('.b-account-title').should('be.visible');
-        cy.get('.b-summary_group').should('be.visible');
+        const orderID = selectors[variables.brand].orderID;
+        const shippingInfo = selectors[variables.brand].shippingInfo;
+        const billingAndPaymentInfo = selectors[variables.brand].shippingInfo; // check
+        cy.get(orderID).should('be.visible');
+        cy.get(shippingInfo).eq(0).should('be.visible');
+        cy.get(billingAndPaymentInfo).eq(1).should('be.visible');
       },
       assertLoadedOrders () {
-        cy.get('.b-load_progress-value').eq(1).should('be.greaterThan', '10');
+        cy.get('.b-load_progress-value').eq(1).should('be.greaterThan', '10'); // check (2 parametars)
       },
       assertAccountDetails (email: string) {
-        cy.get('#account-email-input').should('have.value', email);
+        const accountDetailsEmailField = selectors[variables.brand].accountDetailsEmailField;
+        cy.get(accountDetailsEmailField).should('have.value', email);
       },
       assertNameGreetingMessage (newName: string) {
-        cy.get('p[data-tau="greeting_message"]').should('be.visible').then(element => {
+        const nameGreeting = selectors[variables.brand].nameGreeting;
+        cy.get(nameGreeting).should('be.visible').then(element => {
           expect(element.text().trim().toUpperCase()).to.contain(newName);
         });
       },
       assertDefaultAddressPresence () {
-        cy.get('section[data-tau="address_book_item_default"]').should('be.visible');
+        const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
+        cy.get(addressDefaultBox).should('be.visible');
       },
       assertDefaultAddressData (addressName: string, addressSummary: string) {
-        cy.get('section[data-tau="address_book_item_default"]').find('.b-address-name').should('contain.text', addressName);
-        cy.get('section[data-tau="address_book_item_default"]').find('.b-address-summary').should('contain', addressSummary);
+        const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
+        const addressNameLine = selectors[variables.brand].addressNameLine;
+        const addressSummaryLine = selectors[variables.brand].addressSummaryLine;
+        cy.get(addressDefaultBox).find(addressNameLine).should('contain.text', addressName);
+        cy.get(addressDefaultBox).find(addressSummaryLine).should('contain', addressSummary);
       },
       assertNewAddressData (addressName: string) {
         cy.contains(addressName).should('be.visible');

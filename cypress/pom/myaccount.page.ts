@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { AddressData, EnvironmentVariables, SelectorBrandMap } from '../support/types';
-=======
->>>>>>> master
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -342,7 +338,7 @@ class MyAccountPage implements AbstractPage {
       },
       deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
-        cy.get(addressDeleteBtn).eq(1).click(); //  it was eq(3)
+        cy.get(addressDeleteBtn).eq(1).click(); //  It was eq(3)
       },
       addCard (cardNumber: string, cardOwner: string) {
         const addCardBtn = selectors[variables.brand].addAddressBtn;
@@ -368,12 +364,12 @@ class MyAccountPage implements AbstractPage {
         cy.get(cardDeleteConfirmationBtn).click();
       },
       trackNewestOrder (){
-        cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click();  //  Should be checked
+        cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked
         cy.url().should('include', 'order-details?orderID=');
         cy.get('button[data-tau="track_order_submit"]').click();
       },
       trackOrderByNumber (){
-        cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click();   //  Should be checked
+        cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked
         cy.get('#dwfrm_trackOrder_orderNumber').clear().type('UK300151163');
         cy.get('button[data-tau="track_order_submit"]').click();
       }
@@ -390,13 +386,13 @@ class MyAccountPage implements AbstractPage {
       assertOrderDetailsContent () {
         const orderID = selectors[variables.brand].orderID;
         const shippingInfo = selectors[variables.brand].shippingInfo;
-        const billingAndPaymentInfo = selectors[variables.brand].shippingInfo; // check
+        const billingAndPaymentInfo = selectors[variables.brand].shippingInfo; //  Check
         cy.get(orderID).should('be.visible');
         cy.get(shippingInfo).eq(0).should('be.visible');
         cy.get(billingAndPaymentInfo).eq(1).should('be.visible');
       },
       assertLoadedOrders () {
-        cy.get('.b-load_progress-value').eq(1).should('be.greaterThan', '10'); // check (2 parametars)
+        cy.get('.b-load_progress-value').eq(1).should('be.greaterThan', '10'); //  Check (2 parametars)
       },
       assertAccountDetails (email: string) {
         const accountDetailsEmailField = selectors[variables.brand].accountDetailsEmailField;

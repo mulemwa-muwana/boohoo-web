@@ -245,7 +245,7 @@ class PdpPage implements AbstractPage {
     },
     assertStartReturnPageIsDisplayed () {
       const returnLink = selectors[variables.brand].returnLink;
-      cy.url().should('include', 'returns'); //need to be change
+      cy.url().should('include', 'returns'); //  Need to be change
     },
     assertCompleteLookDisplayed (){
       const completeLookBox = selectors[variables.brand].completeLookBox;

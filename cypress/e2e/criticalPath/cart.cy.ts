@@ -3,7 +3,6 @@ import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
-import { EnvironmentVariables, LoginCredentials } from '../../support/types';
 
 describe('Cart basic functionality for guest user', function (){
   beforeEach (() =>{

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { AddressData, EnvironmentVariables, SelectorBrandMap } from '../support/types';
+=======
+>>>>>>> master
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {

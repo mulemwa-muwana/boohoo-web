@@ -3,10 +3,15 @@ import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import RegistrationPage from '../../pom/registration.page';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Verify Registration feature', function (){
   beforeEach(() => {
 
     HomePage.goto();
+    if (variables.brand == 'nastygal.com'){
+      cy.get('#page-body > div.b-dialog.m-welcome_popup.welcome-popup-container.js-welcome-popup-wrapper.popup-template-5.popup-close-position-right.m-opened > div.b-dialog-window.m-top_dialog.m-welcome_popup.welcome-popup.welcome-popup-wrapper > div.b-dialog-header > button').should('be.visible').click();
+    }
     HomePage.click.logInIcon();
     
   });

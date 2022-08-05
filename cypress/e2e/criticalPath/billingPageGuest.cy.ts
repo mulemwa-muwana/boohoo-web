@@ -6,8 +6,6 @@ import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
-import addresses from '../../helpers/addresses';
-import { EnvironmentVariables, LoginCredentials, NewCustomerCredentials, PaymentMethodSelector } from '../../support/types';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 

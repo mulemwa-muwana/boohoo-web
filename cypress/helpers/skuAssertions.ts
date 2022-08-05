@@ -1,5 +1,3 @@
-import { TranslationMap } from '../support/types';
-
 class skuAssertions {
   skuTitle: TranslationMap = {
     EN: 'High Waist Light Wash Distressed Mom Jeans',

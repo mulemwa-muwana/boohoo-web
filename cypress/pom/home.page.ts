@@ -1,4 +1,3 @@
-import {EnvironmentVariables, GotoOptions, GroupBrands, SelectorBrandMap } from '../support/types';
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
 
@@ -8,42 +7,47 @@ const selectors: SelectorBrandMap = {
     searchIcon: 'button.b-search_toggle',
     resetPassword: '',
     wishListIcon: '.b-header_wishlist-icon',
-    registrationButton: '.i-icon i-icon-user',
-    headerSearchInputField: '#header-search-input',
+    registrationButton: '.b-registration_benefits > .b-button',
     minicartIcon: '.b-minicart_icon-link',
-    acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]'
+    acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
+    promotion: '#promotion_slide-0 > div > div > a',
+    loginIcon: '.b-header_login-icon > .i-icon'
   },
   'nastygal.com': {
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: '.i-icon i-icon-user',
+    registrationButton: '.b-registration_benefits > .b-button',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
-    anotherSelector: '#another',
+    promotion: 'div[class="b-hero_carousel-track"]',
+    loginIcon: '.b-header_login-icon > .i-icon'
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: '.i-icon i-icon-user',
+    loginIcon: '.b-header_login-icon > .i-icon',
+    registrationButton: '.b-registration_benefits > .b-button',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
-    anotherSelector: '#another',
+    promotion: 'div[class="b-hero_carousel-track"]',
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: '.i-icon i-icon-user',
+    registrationButton: '.b-registration_benefits > .b-button',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
-    anotherSelector: '#another',
+    promotion: 'div[class="b-hero_carousel-track"]',
+    loginIcon: '.b-header_login-icon > .i-icon'
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
-    registrationButton: '.i-icon i-icon-user',
+    loginIcon: '.b-header_login-icon > .i-icon',
+    registrationButton: '.b-registration_benefits > .b-button',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
-    anotherSelector: '#another',
+    promotion: 'div[class="b-hero_carousel-track"]',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -69,9 +73,10 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
+    // Not working for DP an WL error:  Cannot read properties of undefined (reading 'loginIcon')
     logInIcon (opts = { force: false }) {
-      const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({ force: opts.force });
+      const loginIcon = selectors[variables.brand].loginIcon;
+      cy.get(loginIcon).click({ force: opts.force });
     },
     forgotPasswordLink (){
       const resetPassword = selectors[variables.brand].resetPassword;
@@ -84,12 +89,12 @@ class HomePage implements AbstractPage {
 
     // Objects for search subsystem tests
     searchIcon (opts = { force: false }) {
-      const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).click({ force: opts.force });            
+      const searchIcon = selectors[variables.brand].searchIcon;
+      cy.get(searchIcon).click({ force: opts.force });            
     },
     searchField (){
-      const headerSearchInputField = selectors[variables.brand].headerSearchInputField;
-      cy.get(headerSearchInputField).click({force: true});
+      const searchField = selectors[variables.brand].searchField;
+      cy.get(searchField).click({force: true});
     },
     wishListIcon () {
       const wishListIcon = selectors[variables.brand].wishListIcon;
@@ -123,8 +128,9 @@ class HomePage implements AbstractPage {
   };
 
   actions = {       
-    findItemUsingSKU (sku: string){
-      cy.get('.b-search_input-close').click().type(sku+'{enter}');
+    findItemUsingSKU (SKU: string){
+      const searchField = selectors[variables.brand].searchField;
+      cy.get(searchField).click().type(SKU+'{enter}');
     },
     forgotPassword (email: string){
       cy.get('button[data-tau="login_password_reset"]').click();
@@ -167,7 +173,8 @@ class HomePage implements AbstractPage {
 
     // Counter (header) assertion
     counterOnHeaderPresent (){
-      cy.get('#promotion_slide-0 > div > div > a').invoke('show').then(element => {
+      const promotion = selectors[variables.brand].promotion;
+      cy.get(promotion).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },

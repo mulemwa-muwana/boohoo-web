@@ -1,37 +1,114 @@
-import assertionText from '../helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    sortItems: 'div.b-wishlist-sorting',
+    sortByDateAddedFromNew: '//*[@id="wishlist-sort"]/option[1]',
+    sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
+    sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
+    sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
+    addToCart: 'div.b-wishlist_tile-actions > button > span',
+    removeItemFromWishlist: 'a[data-tau="wishlist_product_delete"]',
+    wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+  },
+  'nastygal.com': {
+    sortItems: 'div.b-wishlist-sorting',
+    sortByDateAddedFromNew: '//*[@id="wishlist-sort"]/option[1]',
+    sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
+    sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
+    sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
+    addToCart: 'div.b-wishlist_tile-actions > button > span',
+    wishlistLoginBtn: '.b-button',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+  },
+  'dorothyperkins.com': {
+    sortItems: 'div.b-wishlist-sorting',
+    sortByDateAddedFromNew: '//*[@id="wishlist-sort"]/option[1]',
+    sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
+    sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
+    sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
+    addToCart: 'div.b-wishlist_tile-actions > button > span',
+    wishlistLoginBtn: '.b-button',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+  },
+  'burton.co.uk': {
+    sortItems: 'div.b-wishlist-sorting',
+    sortByDateAddedFromNew: '//*[@id="wishlist-sort"]/option[1]',
+    sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
+    sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
+    sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
+    addToCart: 'div.b-wishlist_tile-actions > button > span',
+    wishlistLoginBtn: '.b-button',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+  },
+  'wallis.co.uk': {
+    sortItems: 'div.b-wishlist-sorting',
+    sortByDateAddedFromNew: '//*[@id="wishlist-sort"]/option[1]',
+    sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
+    sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
+    sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
+    addToCart: 'div.b-wishlist_tile-actions > button > span',
+    wishlistLoginBtn: '.b-button',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
+
+const variables = Cypress.env() as EnvironmentVariables;
 class WishListPage implements AbstractPage {
   goto (): void {
     homePage.goto();
-    homePage.click.wishListIcon();
   }
 
   click = {
     sortItems (){
-      cy.get('div.b-wishlist-sorting');
+      const sortItems = selectors[variables.brand].sortItems;
+      cy.get(sortItems);
     },
     sortByDateAddedFromNew () {
-      cy.get('//*[@id="wishlist-sort"]/option[1]');
+      const sortByDateAddedFromNew = selectors[variables.brand].sortByDateAddedFromNew;
+      cy.get(sortByDateAddedFromNew);
     },
     sortByDateAddedFromOld () {
-      cy.get('//*[@id="wishlist-sort"]/option[2]');
+      const sortByDateAddedFromOld = selectors[variables.brand].sortByDateAddedFromOld;
+      cy.get(sortByDateAddedFromOld);
     },
     sortByPriceFromLowToHigh () {
-      cy.get('//*[@id="wishlist-sort"]/option[3]');
+      const sortByPriceFromLowToHigh = selectors[variables.brand].sortByPriceFromLowToHigh;
+      cy.get(sortByPriceFromLowToHigh);
     },
     sortByPriceFromHighToLow () {
-      cy.get('//*[@id="wishlist-sort"]/option[4]');
+      const sortByPriceFromHighToLow = selectors[variables.brand].sortByPriceFromHighToLow;
+      cy.get(sortByPriceFromHighToLow);
     },
     addToCart () {
-      cy.get('div.b-wishlist_tile-actions > button > span').click;
+      const addToCart = selectors[variables.brand].addToCart;
+      cy.get(addToCart).eq(0).click;
     },
     removeItemFromWishlist () {
-      cy.get('a[data-tau="wishlist_product_delete"]').eq(0).click();
+      const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
+      cy.get(removeItemFromWishlist).eq(0).click();
     },
     wishlistLoginBtn (){
-      cy.get('#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a').click();
+      const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;
+      cy.get(wishlistLoginBtn).eq(0).click();
     }
 
   };
@@ -44,13 +121,16 @@ class WishListPage implements AbstractPage {
 
   assertions = {
     assertItemIsAddedToWishlist () {
-      cy.get('.b-header_wishlist-count').should('not.be.empty');
+      const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
+      cy.get(itemIsAddedToWishlist).should('not.be.empty');
     },
-    assertWishListIsEmpty () {
-      cy.get('.b-wishlist-empty > :nth-child(2)').should('have.text', assertionText.WishListIsEmpty['UK']);
+    assertWishListIsEmpty (msg: string) {
+      const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
+      cy.get(wishListIsEmpty).should('have.text', msg);
     },
     assertItemIsAddedtoWishlistAlertText (msg: string){
-      cy.get('.b-global_alerts-item').should('have.text', msg);
+      const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;
+      cy.get(itemIsAddedtoWishlistAlertText).should('have.text', msg);
     }
   };
 }

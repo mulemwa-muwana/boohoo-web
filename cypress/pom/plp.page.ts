@@ -1,6 +1,136 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    priceRefinements: '#searchRefineBarAccordionItemBtn-price > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    occassionRefinement: '#searchRefineBarAccordionItemBtn-occasion > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantColour: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    selectRefinementVariantOccassion: '#searchRefineBarAccordionItemInner-occasion',
+    selectRefinementVariantShopByPrice: '#searchRefineBarAccordionItemInner-price',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: 'div.b-load_more > a',
+    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
+    newProductPriceIsDispayed: '.m-new',
+    productPriceIsDispayed: '.b-price-item',
+    productImageIsDisplayed: '.b-product_tile-image > .null',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+  },
+  'nastygal.com': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    occassionRefinement: '#searchRefineBarAccordionItemBtn-occasion > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantColour: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    selectRefinementVariantOccassion: '#searchRefineBarAccordionItemInner-occasion',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: 'div.b-load_more > a',
+    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
+    newProductPriceIsDispayed: '.m-new',
+    productPriceIsDispayed: '.b-price-item',
+    productImageIsDisplayed: '.b-product_tile-image',
+    itemIsAddedToWishlist: '.b-header_wishlist-count', //  Does not exist for NG 
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+  },
+  'dorothyperkins.com': {
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    lengthRefinement: '#searchRefineBarAccordionItemBtn-length > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: 'div.b-load_more > a',
+    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
+    newProductPriceIsDispayed: '.m-new',
+    productPriceIsDispayed: '.b-price-item',
+    productImageIsDisplayed: '.b-product_tile-image',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+  },
+  'burton.co.uk': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    patternRefinement: '#searchRefineBarAccordionItemBtn-pattern > span',
+    fitRefinement: '#searchRefineBarAccordionItemBtn-fit > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantPattern: '#searchRefineBarAccordionItemInner-pattern',
+    selectRefinementVariantFit: '#searchRefineBarAccordionItemInner-fit',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: 'div.b-load_more > a',
+    numberOfItemsTextISVisible: 'div.b-load_progress',
+    productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
+    newProductPriceIsDispayed: '.m-new',
+    productPriceIsDispayed: '.b-price-item',
+    productImageIsDisplayed: '.b-product_tile-image > .null',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+  },
+  'wallis.co.uk': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: 'div.b-load_more > a',
+    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
+    newProductPriceIsDispayed: '.m-new',
+    productPriceIsDispayed: '.b-price-item',
+    productImageIsDisplayed: '.b-product_tile-image',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
+
+const variables = Cypress.env() as EnvironmentVariables;
+
 class PlpPage implements AbstractPage {
   goto (): void {
     homePage.goto();
@@ -10,78 +140,100 @@ class PlpPage implements AbstractPage {
 
     // Refinements
     categoryRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-category > span').click({force: true});
+      const categoryRefinement = selectors[variables.brand].categoryRefinement;
+      cy.get(categoryRefinement).click({force: true});
     },
     sizeRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-size > span').click({force: true});
+      const sizeRefinement = selectors[variables.brand].sizeRefinement;
+      cy.get(sizeRefinement).click({force: true});
     },
     styleRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-style > span').click({force: true});
+      const styleRefinement = selectors[variables.brand].styleRefinement;
+      cy.get(styleRefinement).click({force: true});
     },
     colorRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-colour > span').click({force: true});
+      const colorRefinement = selectors[variables.brand].colorRefinement;
+      cy.get(colorRefinement).click({force: true});
     },
     priceRefinements (){
-      cy.get('#searchRefineBarAccordionItemBtn-price > span').click({force: true});
+      const priceRefinements = selectors[variables.brand].priceRefinements;
+      cy.get(priceRefinements).click({force: true});
     },
     shopByFitRefinements (){
-      cy.get('#searchRefineBarAccordionItemBtn-shop-by-fit > span').click({force: true});
+      const shopByFitRefinements = selectors[variables.brand].shopByFitRefinements;
+      cy.get(shopByFitRefinements).click({force: true});
+    },
+    fitRefinements (){
+      const fitRefinements = selectors[variables.brand].fitRefinements;
+      cy.get(fitRefinements).click({force: true});
     },
     occassionRefinement (){
-      cy.get('#searchRefineBarAccordionItemBtn-occasion > span').click({force: true});
+      const occassionRefinement = selectors[variables.brand].occassionRefinement;
+      cy.get(occassionRefinement).click({force: true}); 
     },
     sortProducts (){
-      cy.get('#plp-sort-desktop').click({force: true});
+      const sortProducts = selectors[variables.brand].sortProducts;
+      cy.get(sortProducts).click({force: true});
     },
     priceVariant (){
-      cy.get('#searchRefineBarAccordionItemBtn-price').click({force: true});
+      const priceVariant = selectors[variables.brand].priceVariant;
+      cy.get(priceVariant).click({force: true});
     },
 
-    selectRefinementVariantShopByFit (text: string){
-      cy.get('#refinementAttributesList-shop-by-fit').contains(text).click({force: true});
-      cy.wait(5000);
+    selectRefinementVariantShopByFit (shopByFit: string){
+      const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
+      cy.get(selectRefinementVariantShopByFit).click({force: true});
+    },
+
+    selectRefinementVariantFit (fit: string){
+      const selectRefinementVariantFit = selectors[variables.brand].selectRefinementVariantFit;
+      cy.get(selectRefinementVariantFit).click({force: true});
     },
     
-    selectRefinementVariantColour (text: string){
-      cy.get('#refinementAttributesList-colour').contains(text).click({force: true});
-      cy.wait(5000);
+    selectRefinementVariantColour (colour: string){
+      const selectRefinementVariantColour = selectors[variables.brand].selectRefinementVariantColour;
+      cy.get(selectRefinementVariantColour).click({force: true});
     },
 
-    selectRefinementVariantStyle (text: string){
-      cy.get('#refinementAttributesList-style').contains(text).click({force: true});
-      cy.wait(5000);
+    selectRefinementVariantStyle (style: string){
+      const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
+      cy.get(selectRefinementVariantStyle).click({force: true});
     },
 
-    selectRefinementVariantSize (text: string){
-      cy.get('#refinementAttributesList-size').contains(text).click({force: true});
-      cy.wait(5000);
+    selectRefinementVariantSize (size: string){
+      const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
+      cy.get(selectRefinementVariantSize).click({force: true});
     },
 
-    selectRefinementVariantCategory (text: string){
-      cy.get('#searchRefineBarAccordionItemInner-category').contains(text).click({force: true});
-      cy.wait(5000);
+    selectRefinementVariantCategory (category: string){
+      const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
+      cy.get(selectRefinementVariantCategory).click({force: true});
     },
 
-    selectRefinementVariantOccassion (text: string){
-      cy.get('#searchRefineBarAccordionItemInner-occasion').contains(text).click({force: true});
-      cy.wait(5000);
+    selectRefinementVariantOccassion (occasion: string){
+      const selectRefinementVariantOccassion = selectors[variables.brand].selectRefinementVariantOccassion;
+      cy.get(selectRefinementVariantOccassion).click({force: true});
     },
 
-    selectRefinementVariantShopByPrice (text: string){
-      cy.get('#searchRefineBarAccordionItemInner-price').contains(text).click({force: true});
-      cy.wait(5000);
+    selectRefinementVariantShopByPrice (price: string){
+      const selectRefinementVariantShopByPrice = selectors[variables.brand].selectRefinementVariantShopByPrice;
+      cy.get(selectRefinementVariantShopByPrice).click({force: true});
     },
 
     // Load more products
     loadMoreProducts (){
       cy.scrollTo('bottom');
-      cy.get('div.b-load_more > a').click({force: true});
+      const brand: GroupBrands = 'boohoo.com';
+      const loadMoreProducts = selectors[brand].loadMoreProducts;
+      cy.get(loadMoreProducts).click({force: true});
       cy.wait(10000);
     },
 
     // Product details (image, name, price, wishlist, quickview)
     wishlistOnPlpImage (){
-      cy.get('.b-wishlist_button-icon').eq(1).click({force: true});
+      const brand: GroupBrands = 'boohoo.com';
+      const wishlistPlpIcon = selectors[brand].wishlistPlpIcon;
+      cy.get(wishlistPlpIcon).eq(1).click({force: true});
     }
     
   };
@@ -98,29 +250,37 @@ class PlpPage implements AbstractPage {
     },
     assertNumberOfItemsTextISVisible (){
       cy.scrollTo('bottom');
-      cy.get('div.b-load_progress > span').should('be.visible');
+      const numberOfItemsTextISVisible = selectors[variables.brand].numberOfItemsTextISVisible;
+      cy.get(numberOfItemsTextISVisible).should('be.visible');
     },
     assertLoadMoreBtnIsVisible (){
       cy.scrollTo('bottom');
-      cy.get('div.b-load_more > a').should('be.visible');
+      const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
+      cy.get(loadMoreProducts).should('be.visible');
     },
     assertProductImageIsDisplayed (){
-      cy.get('.b-product_tile-image > .null').eq(1).should('be.visible').should('have.attr', 'src');
+      const productImageIsDisplayed = selectors[variables.brand].productImageIsDisplayed;
+      cy.get(productImageIsDisplayed).eq(1).should('be.visible').should('have.attr', 'src');
     },
     assertItemIsAddedToWishlist (){
-      cy.get('.b-header_wishlist-count').should('contain','01');
+      const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
+      cy.get(itemIsAddedToWishlist).should('contain','01');
     },
     assertProductNameIsDisplayed (){
-      cy.get('.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link').eq(0).should('have.css', 'font-family');
+      const productNameIsDisplayed = selectors[variables.brand].productNameIsDisplayed;
+      cy.get(productNameIsDisplayed).eq(0).should('have.css', 'font-family');
     },
     assertProductPriceIsDispayed (){
-      cy.get('.b-price-item').eq(1).should('be.visible').should('not.be.empty');
+      const productPriceIsDispayed = selectors[variables.brand].productPriceIsDispayed;
+      cy.get(productPriceIsDispayed).eq(1).should('be.visible').should('not.be.empty');
     },
     assertNewProductPriceIsDispayed (){
-      cy.get('.b-price-item m-new').eq(1).should('be.visible').should('have.css', 'font-family');
+      const newProductPriceIsDispayed = selectors[variables.brand].newProductPriceIsDispayed;
+      cy.get(newProductPriceIsDispayed).eq(1).should('be.visible').should('have.css', 'font-family');
     },
     assertProductColorIsDisplayedOnPLP () {
-      cy.get('.b-product_tile_swatches-swatch_image').eq(1).should('have.attr', 'src');
+      const productColorIsDisplayedOnPLP = selectors[variables.brand].productColorIsDisplayedOnPLP;
+      cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'src');
     },
     assertProductVariantIsApplied (text: string) {
       cy.url().should('include', text);

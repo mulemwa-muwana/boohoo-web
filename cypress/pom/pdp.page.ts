@@ -176,7 +176,7 @@ class PdpPage implements AbstractPage {
     addToCart (){
       cy.wait(15000);
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).click(); // Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
+      cy.get(addToCart).click(); //  Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
     }
   };
 
@@ -218,7 +218,7 @@ class PdpPage implements AbstractPage {
       cy.get(addToCartTitle).should('be.visible').and('contain.text', text);
     },
     assertErrorMsgForSizeIsDisplayed (msg: string){
-      cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', msg); // Should be tested
+      cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', msg); //  Should be tested
     },
     assertMiniCartIsDisplayed (){
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
@@ -227,7 +227,7 @@ class PdpPage implements AbstractPage {
       cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string){
-      cy.get('.m-outline').should('have.text', msg); // Check how to switch between brands
+      cy.get('.m-outline').should('have.text', msg); //  Check how to switch between brands
     },
     assertStyleNotesArePresent (){
       const productDescription = selectors[variables.brand].productDescription;
@@ -237,7 +237,7 @@ class PdpPage implements AbstractPage {
       const productDelivery = selectors[variables.brand].productDelivery; 
       cy.get(productDelivery).should('be.visible');
       cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
-      cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); // Work only boohoo, other brands redirect to new tab
+      cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); //  Work only boohoo, other brands redirect to new tab
     },
     assertReturnInfoIsDisplayed (){
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
@@ -245,19 +245,19 @@ class PdpPage implements AbstractPage {
     },
     assertStartReturnPageIsDisplayed () {
       const returnLink = selectors[variables.brand].returnLink;
-      cy.get(returnLink).should('include', 'returns');
+      cy.url().should('include', 'returns'); //  Need to be change
     },
     assertCompleteLookDisplayed (){
       const completeLookBox = selectors[variables.brand].completeLookBox;
-      cy.get(completeLookBox).should('be.visible'); // Only boohoo
+      cy.get(completeLookBox).should('be.visible'); //  Only boohoo
     },
     assertLinkNewSeasonIsLinked (text: string){
       const shopNowLinkNL = selectors[variables.brand].shopNowLinkNL;
-      cy.get(shopNowLinkNL).should('include', text); // Only boohoo brand
+      cy.url().should('include', text); //  Only boohoo brand // need to be change
     },
     assertLinkShoesAndAccIsLinked (text: string){
       const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
-      cy.get(shopNowLinkSA).should('include', text); // Only boohoo brand
+      cy.url().should('include', text); //  Only boohoo brand //need to be change
     }
     
   };

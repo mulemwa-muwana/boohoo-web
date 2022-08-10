@@ -6,13 +6,15 @@
     "cy:run:burton": "cypress run --config-file ./config/cypress.burton.json",
     "cy:run:e2e:uk": "cypress run --config-file ./config/cypress.boohoo.uk.config.ts",
     "cy:run:boohoo:uk:e2e": "cypress run --config-file ./config/boohoo/cypress.boohoo.uk.config.ts --spec \"cypress/e2e/orderConfirmation/orderConfirmation.cy.ts\"",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "axios": "^0.27.2",
     "cypress": "^10.3.1",
+    "cypress-iframe": "^1.0.1",
     "dotenv": "^16.0.1",
     "eslint": "^8.10.0",
     "typescript": "^4.5.4"

@@ -15,7 +15,7 @@ describe('Home Page', function () {
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
     HomePage.goto();
-    if (variables.brand == 'nastygal.com'){
+    if (variables.brand == 'nastygal.com') {
       HomePage.actions.closeNastygalPopup();
     }
   });
@@ -112,7 +112,7 @@ describe('Home Page', function () {
     describe('Verify the content page (Privacy Policy) is displayed.', () => {
       it('Privacy policy', () => {
         GlobalFooter.click.privacyPolicyLink();
-        if (variables.brand == 'boohoo.com'){
+        if (variables.brand == 'boohoo.com') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
         } else {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);

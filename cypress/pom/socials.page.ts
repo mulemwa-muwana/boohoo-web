@@ -64,28 +64,28 @@ class SocialsPage implements AbstractPage {
     },
 
     // Not working for Dorothy Perkins and Wallis 
-    assertInstagramIconIsPresent (){
+    assertInstagramIconIsPresent () {
       const instagram = selectors[variables.brand].instagram;
       cy.get(instagram).should('be.visible');
     },
-    assertFacebookIconIsPresent (){
+    assertFacebookIconIsPresent () {
       const facebook = selectors[variables.brand].facebook;
       cy.get(facebook).should('be.visible');
     },
-    assertTheFixIconIsPresent (){
+    assertTheFixIconIsPresent () {
       cy.get('[href="https://thefix.boohoo.com/"] > svg').should('be.visible');
     },
-    assertPinterestIconIsPresent (){
+    assertPinterestIconIsPresent () {
       cy.get('[href="https://www.pinterest.co.uk/boohooofficial/_created/"] > svg').should('be.visible');
     },
-    assertTikTokIconIsPresent (){
+    assertTikTokIconIsPresent () {
       cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"] > svg').should('be.visible');
     },
-    assertTwitterIconIsPresent (){
+    assertTwitterIconIsPresent () {
       const twitter = selectors[variables.brand].twitter;
       cy.get(twitter).should('be.visible');
     },
-    assertYouTubeIconIsPresent (){
+    assertYouTubeIconIsPresent () {
       cy.get('a[href="https://www.youtube.com/c/boohoo"] > svg > path').should('be.visible');
     },
     assertOnFacebook () {

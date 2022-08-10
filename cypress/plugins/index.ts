@@ -1,6 +1,6 @@
 import createCustomer from './TestDataManager/index';
 
-module.exports = async (on, config) => {
+export default async function (on: Cypress.PluginEvents): Promise<void> {
   on('task', {
     async createUser (brand: GroupBrands): Promise<NewCustomerCredentials> {
       const customer = await createCustomer(brand, 'uk');
@@ -10,4 +10,4 @@ module.exports = async (on, config) => {
       };
     }
   });
-};
+}

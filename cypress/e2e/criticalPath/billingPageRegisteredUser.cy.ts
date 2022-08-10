@@ -8,7 +8,7 @@ import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 
-describe('Billing page functionality for registered user', function (){
+describe('Billing page functionality for registered user', function () {
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
@@ -29,36 +29,36 @@ describe('Billing page functionality for registered user', function (){
     shippingPage.click.proceedToBilling(); 
   });
 
-  it('Verify that shipping address block is filled with data', function (){
+  it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
-  it('Verify that shipping method is displayed', function (){
+  it('Verify that shipping method is displayed', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
-  it('Verify that guest user can change shipping address', function (){
+  it('Verify that guest user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('Verify that guest user can change shipping method', function (){
+  it('Verify that guest user can change shipping method', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('Verify that email address is displayed and it cannot be changed', function (){
+  it('Verify that email address is displayed and it cannot be changed', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       BillingPage.assertions.assertEmailIsCorrect(credentials.username);
     });
     BillingPage.assertions.assertEmailFieldCantBeChanged();
   });
-  it('Verify that billing address can be same as shipping address', function (){
+  it('Verify that billing address can be same as shipping address', function () {
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
-  it('Verify that registered user can submit new billing address from address book', function (){
+  it('Verify that registered user can submit new billing address from address book', function () {
     BillingPage.click.shippingCheckbox();
     BillingPage.actions.selectAddressFromBook();
   });
-  it('Verify that registered user can submit new billing address', function (){
+  it('Verify that registered user can submit new billing address', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     BillingPage.click.shippingCheckbox();
@@ -79,7 +79,7 @@ describe('Billing page functionality for registered user', function (){
     BillingPage.assertions.assertGiftCardIsApplied('-£10.00');
   }); */
 
-  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function (){
+  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     cy.fixture('paymentMethods').then((method: PaymentMethodSelector)=>{
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.card);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
@@ -90,20 +90,20 @@ describe('Billing page functionality for registered user', function (){
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay);
     });
   });
-  describe('Verify that registered user can place orders with available payment methods', function (){
-    it('Verify that registered user can place order using Credit Card - Visa)', function (){
+  describe('Verify that registered user can place orders with available payment methods', function () {
+    it('Verify that registered user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that registered user can place order using Credit Card - Master)', function (){
+    it('Verify that registered user can place order using Credit Card - Master)', function () {
       BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.month, cards.master.year, cards.master.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that registered user can place order using Credit Card - Amex)', function (){
+    it('Verify that registered user can place order using Credit Card - Amex)', function () {
       BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.month, cards.amex.year, cards.amex.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that registered user can place order using PayPal', function (){
+    it('Verify that registered user can place order using PayPal', function () {
 
       // Need to try with origin
     });

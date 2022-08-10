@@ -1,13 +1,13 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress';
 
 export default defineConfig({
-  projectId: "i6d3n8",
+  projectId: 'i6d3n8',
 
   env: {
-    sku: "#AYY00464",
-    brand: "wallisfashion.co.uk",
-    locale: "IE",
-    language: "EN",
+    sku: '#AYY00464',
+    brand: 'wallisfashion.co.uk',
+    locale: 'IE',
+    language: 'EN',
   },
 
   viewportHeight: 1080,
@@ -16,8 +16,9 @@ export default defineConfig({
   chromeWebSecurity: false,
 
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
+    setupNodeEvents (on, config) {
+
+      // Implement node event listeners here
     },
   },
 });

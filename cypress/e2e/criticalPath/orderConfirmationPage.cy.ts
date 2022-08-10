@@ -10,7 +10,7 @@ import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import assertionText from '../../helpers/assertionText';
 import Addresses from '../../helpers/addresses';
 
-describe('Order confirmation page for guest user', function (){
+describe('Order confirmation page for guest user', function () {
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
@@ -41,39 +41,39 @@ describe('Order confirmation page for guest user', function (){
     orderConfirmationPage.click.closePopUp();
   });
 
-  it('Verify that email is visible for guest user', function (){
+  it('Verify that email is visible for guest user', function () {
     orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+guest@gmail.com');    
   });
 
-  it('Verify that order number', function (){
+  it('Verify that order number', function () {
     orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
   }); 
-  it('Verify that total amount paid is visible', function (){
+  it('Verify that total amount paid is visible', function () {
     orderConfirmationPage.assertions.assertOrderValueIsDisplayed();
   });
-  it('Verify that shipping address is present with valid data', function (){
+  it('Verify that shipping address is present with valid data', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
-  it('Verify that shipping method is present', function (){
+  it('Verify that shipping method is present', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
-  it('Verify that billing address is present with valid data', function (){
+  it('Verify that billing address is present with valid data', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
-  it('Verify that payment method is present', function (){
+  it('Verify that payment method is present', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
   });
-  it('Verify that for guest users password fields are present on order confirmation page', function (){
+  it('Verify that for guest users password fields are present on order confirmation page', function () {
     orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
     orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
   });
 });
-describe('Order confirmation page for registered user', function (){
+describe('Order confirmation page for registered user', function () {
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
@@ -95,29 +95,29 @@ describe('Order confirmation page for registered user', function (){
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
   });
-  it('Verify that email is visible', function (){
+  it('Verify that email is visible', function () {
     orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+cypress789@gmail.com');  
   });
-  it('Verify that order number is visible', function (){
+  it('Verify that order number is visible', function () {
     orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
   }); 
-  it('Verify that total amount paid is visible', function (){
+  it('Verify that total amount paid is visible', function () {
     orderConfirmationPage.assertions.assertOrderTotalIsVisible();
   });
-  it('Verify that shipping address is present with valid data', function (){
+  it('Verify that shipping address is present with valid data', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
-  it('Verify that shipping method is present', function (){
+  it('Verify that shipping method is present', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
-  it('Verify that billing address is present with valid data', function (){
+  it('Verify that billing address is present with valid data', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
-  it('Verify that payment method is present', function (){
+  it('Verify that payment method is present', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
   });

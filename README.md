@@ -43,7 +43,7 @@ This page will detail what code reviews are being made.
 * If you want to create some kind of manager, like a test data manager, make sure its in helpers/managers  
 
 
-**Test Data Plan**
+**Test Data**
 
 * Test data must be stored in the fixtures folder, any environment dependent test data such as logins must be stored in the "env" property in config files.
 

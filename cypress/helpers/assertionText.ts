@@ -70,6 +70,20 @@ class AssertionText {
     ES: 'Parece que ya tienes una cuenta con nosotros. Intente iniciar sesión o use una dirección de correo electrónico diferente Iniciar sesión'
   };
 
+  RegistrationPageExistingEmailArcadia: TranslationMap = {
+    EN: 'Email address already taken. Please use a different email address or try to log in with the current one',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PrivacyPolicyURL: TranslationMap = {
     EN: 'privacy-notice',
     FR: 'avis-de-confidentialité',
@@ -96,6 +110,20 @@ class AssertionText {
     IL: '\n                הודעת פרטיות\n            ',
     IT: '\n                Informativa sulla Privacy\n            ',
     ES: '\n                Aviso de Privacidad\n            '
+  };
+
+  PrivacyPolicyH1Arcadia: TranslationMap = {
+    EN: '\nPrivacy Notice\n',
+    FR: '\nAvis de confidentialité\n',
+    NL: '\nPrivacyverklaring\n',
+    DE: '\nDatenschutzerklärung\n',
+    DK: '\nBekendtgørelse om beskyttelse af personlige oplysninger\n',
+    FI: '\nTietosuojailmoitus\n',
+    NO: '\nPersonvernerklæring\n',
+    SE: '\nSekretessmeddelande\n',
+    IL: '\nהודעת פרטיות\n',
+    IT: '\nInformativa sulla Privacy\n',
+    ES: '\nAviso de Privacidad\n'
   };
 
   Premier: TranslationMap = {
@@ -183,8 +211,8 @@ class AssertionText {
   };
 
   unknownEmail: TranslationMap = {
-    EN: ' Sorry, your email or password doesn’t match our records',
-    FR: ' Désolé, votre adresse e-mail ou votre mot de passe ne correspondent pas à nos enregistrements',
+    EN: "\n                    Sorry, your email or password doesn't match our records. Please check that you have entered them correctly, or \n                ",
+    FR: '\n Désolé, votre adresse e-mail ou votre mot de passe ne correspondent pas à nos enregistrements \n                ',
     NL: ' Sorry, uw e-mailadres of wachtwoord komt niet overeen met onze gegevens',
     DE: ' Entschuldigung, Ihre E-Mail-Adresse oder Ihr Passwort stimmen nicht mit unseren Aufzeichnungen überein',
     DK: ' Beklager, din e-mail eller adgangskode stemmer ikke overens med vores optegnelser',

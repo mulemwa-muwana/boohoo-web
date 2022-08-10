@@ -14,6 +14,7 @@ describe('Billing page functionality for guest user', function (){
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
+  
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(1);
     cy.wait(2000);
@@ -23,11 +24,10 @@ describe('Billing page functionality for guest user', function (){
     PdpPage.click.miniCartViewCartBtn();
     CartPage.click.proceedToCheckout();
 
-    // Needs adapting. 
-    cy.task('createUser', variables.language).then((account: NewCustomerCredentials) => {
-      CheckoutPage.actions.guestCheckoutEmail(account.email);
-      CheckoutPage.click.continueAsGuestBtn();
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
     });
+    CheckoutPage.click.continueAsGuestBtn();
 
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -136,9 +136,9 @@ describe('Billing page functionality for guest user', function (){
       BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.month, cards.amex.year, cards.amex.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that guest user can place order using PayPal', function (){
-
-      // Need to try with origin
+    it('Verify that guest user can place order using Klarna', function (){
+      BillingPage.actions.selectDate('23', 'May', '2001');
+      BillingPage.actions.selectKlarna();
     });
   });
 });

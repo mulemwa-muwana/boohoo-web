@@ -15,6 +15,9 @@ describe('Home Page', function () {
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
     HomePage.goto();
+    if (variables.brand == 'nastygal.com'){
+      HomePage.actions.closeNastygalPopup();
+    }
   });
 
   describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
@@ -107,15 +110,14 @@ describe('Home Page', function () {
     // Needs updating global footer, privacy and social pages
     
     describe('Verify the content page (Privacy Policy) is displayed.', () => {
-      it('Privacy policy - first link', () => {
+      it('Privacy policy', () => {
         GlobalFooter.click.privacyPolicyLink();
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
-        PrivacyPolicyPage.assertions.assertOnPage(assertionText.PrivacyPolicyH1[variables.language]);
-      });
-      it('Privacy policy - second link', () => {
-        GlobalFooter.click.privacyPolicyLink();
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
-        PrivacyPolicyPage.assertions.assertOnPage(assertionText.PrivacyPolicyH1[variables.language]);
+        if (variables.brand == 'boohoo.com'){
+          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
+        } else {
+          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
+        }
+        PrivacyPolicyPage.assertions.assertOnPage(assertionText.PrivacyPolicyURL[variables.language]);
       });
     }); 
     

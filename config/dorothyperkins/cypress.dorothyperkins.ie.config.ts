@@ -4,9 +4,9 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.dorothyperkins.com/',
+    url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/ie',
     sku: '#BQQ00474',
-    brand: 'dorothyperkins.co.uk',
+    brand: 'dorothyperkins.com',
     locale: 'IE',
     language: 'EN',
   },

@@ -6,7 +6,7 @@ const selectors: SelectorBrandMap = {
     privacyNoticyPageTitle: 'span.b-page_title',
   },
   'nastygal.com': {
-    privacyNoticyPageTitle: 'span.b-page_title',
+    privacyNoticyPageTitle: 'h1',
   },
   'dorothyperkins.com': {
     privacyNoticyPageTitle: 'span.b-page_title',

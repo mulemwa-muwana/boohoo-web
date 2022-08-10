@@ -68,12 +68,12 @@ class HomePage implements AbstractPage {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }
+
   }
 
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
-    // Not working for DP an WL error:  Cannot read properties of undefined (reading 'loginIcon')
     logInIcon (opts = { force: false }) {
       const loginIcon = selectors[variables.brand].loginIcon;
       cy.get(loginIcon).click({ force: opts.force });
@@ -137,6 +137,9 @@ class HomePage implements AbstractPage {
       cy.get('.b-dialog-window').should('be.visible');
       cy.get('#dwfrm_profile_resetPassword_email').type(email);
       cy.get('button[data-tau="forgot_password_submit"]', {timeout: 6000}).click();
+    },
+    closeNastygalPopup (){
+      cy.get('#page-body > div.b-dialog.m-welcome_popup.welcome-popup-container.js-welcome-popup-wrapper.popup-template-5.popup-close-position-right.m-opened > div.b-dialog-window.m-top_dialog.m-welcome_popup.welcome-popup.welcome-popup-wrapper > div.b-dialog-header > button').should('be.visible').click();
     }
   };
 
@@ -206,7 +209,7 @@ class HomePage implements AbstractPage {
 
     //  Login Attempts
     assertErrorLoginMessageIsPresent (text: string){
-      cy.get('.b-message-copy').should('be.visible').and('contain', text);
+      cy.get('.b-message-copy').should('be.visible').and('contain.text', text);
     },
     assertForgotPasswordMessageisDisplayed (email: string){
       cy.get('.b-dialog-window').should('be.visible').and('contain', email);

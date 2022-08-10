@@ -59,6 +59,14 @@ class BillingPage implements AbstractPage {
     selectAddressFromBook (){
       cy.get('.b-form_section > .b-address_selector-actions > .m-link').click();
       cy.get('.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label').click();
+    },
+    selectKlarna (){
+      cy.get('#payment-button-KlarnaUK').click();
+      cy.get('#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button').click();
+      cy.origin('https://js.playground.klarna.com/apf/beta/app/index.html#mode=window', ()=>{
+        cy.get('#root > div:nth-child(1) > div:nth-child(3) > div > div:nth-child(2) > button > div > div:nth-child(1)').click();
+      });
+    
     }
   
   };

@@ -209,10 +209,6 @@ class PdpPage implements AbstractPage {
     assertSizeIsAvailable (msg: string){
       cy.get('.b-availability-status').should('contain.text', msg); // N/a need check
     },
-    assertSizeIsNotAvailable (){
-      const addToCart = selectors[variables.brand].addToCart;
-      cy.get (addToCart).should('have.text', 'Out of Stock'); // Double selektor
-    },
     assertProductIsAddedToCart (text: string){
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       cy.get(addToCartTitle).should('be.visible').and('contain.text', text);

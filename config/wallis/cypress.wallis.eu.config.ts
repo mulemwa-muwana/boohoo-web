@@ -4,9 +4,9 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/eu',
-    sku: 'BQQ00474',
-    brand: 'dorothyperkins.com',
+    url: 'https://storefront:Oreo2022@dwstg.wallisfashion.com/eu',
+    sku: '#AYY00464',
+    brand: 'wallis.co.uk',
     locale: 'EU',
     language: 'EN',
   },

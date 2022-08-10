@@ -18,11 +18,14 @@ export default defineConfig({
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
-
+  
   e2e: {
+    experimentalSessionAndOrigin: true,
     setupNodeEvents (on, config) {
 
-      // Implement node event listeners here
+      // Implement node event listeners her},
     },
   },
+
 });
+

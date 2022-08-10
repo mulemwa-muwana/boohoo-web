@@ -61,7 +61,8 @@ describe('Order confirmation page for guest user', function (){
             quantity: 1
           }],
           testScenario: 'CompleteOrder',
-          locale: variables.locale
+          locale: variables.locale,
+          url: variables.url
         };
 
         cy.createArtefact(testArtefactObject,`${variables.locale}_creditcard`.toLowerCase());

@@ -74,6 +74,7 @@ declare type TestArtefact = {
         groupBrand: GroupBrands;
         testScenario: TestScenario;
         locale: Locale | CountryCode;
+        url: string;
     };
     
 declare type TCustomerJSONResponse = {

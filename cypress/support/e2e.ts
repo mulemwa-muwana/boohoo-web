@@ -3,7 +3,6 @@
 import HomePage from '../pom/home.page';
 import './commands';
 import 'cypress-iframe';
-import 'cypress-wait-until';
 
 // Preserve these cookies.
 Cypress.Cookies.defaults({

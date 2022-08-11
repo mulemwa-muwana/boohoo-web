@@ -231,7 +231,7 @@ class MyAccountPage implements AbstractPage {
         const accountLogout = selectors[variables.brand].accountLogout;
         cy.get(accountLogout).should('be.visible').click();
       },
-      myAccountLink (){
+      myAccountLink () {
         const myAccountBtn = selectors[variables.brand].myAccountBtn;
         cy.get(myAccountBtn).should('be.visible').click();
       },
@@ -356,19 +356,19 @@ class MyAccountPage implements AbstractPage {
         cy.get(addCreditCardExpYear).select('2030').should('have.value', '2030'); //  Ng  has CVC Field ??
         cy.get(addCreditCardSaveBtn).click();
       },
-      deleteCard (cardEnd: string){
+      deleteCard (cardEnd: string) {
         const cardDeleteBtn = selectors[variables.brand].addressDeleteBtn;
         const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
         cy.contains(cardEnd).should('be.visible');
         cy.get(cardDeleteBtn).eq(0).click();
         cy.get(cardDeleteConfirmationBtn).click();
       },
-      trackNewestOrder (){
+      trackNewestOrder () {
         cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked
         cy.url().should('include', 'order-details?orderID=');
         cy.get('button[data-tau="track_order_submit"]').click();
       },
-      trackOrderByNumber (){
+      trackOrderByNumber () {
         cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked
         cy.get('#dwfrm_trackOrder_orderNumber').clear().type('UK300151163');
         cy.get('button[data-tau="track_order_submit"]').click();
@@ -425,13 +425,13 @@ class MyAccountPage implements AbstractPage {
         cy.contains(cardEnd).should('be.visible');
         cy.contains(owner).should('be.visible');
       },
-      assertCardNotPresent (cardEnd: string){
+      assertCardNotPresent (cardEnd: string) {
         cy.get('.b-cards_grid').should('not.contain', cardEnd);
       },
-      assertOrderCantBeTracked (){
+      assertOrderCantBeTracked () {
         cy.get('.b-form-message').should('include', 'Sorry, this order number does not match our records.');
       },
-      assertOrderCanBeTracked (){
+      assertOrderCanBeTracked () {
         cy.get('.b-form-message').should('include', 'We found your order');
       },
 

@@ -6,7 +6,7 @@ class OrderConfirmation implements AbstractPage {
   }
 
   click = {
-    closePopUp (){
+    closePopUp () {
       cy.get('#WLbanner_2112171003 > a', {timeout: 10000}).click();
     }
   };
@@ -16,38 +16,38 @@ class OrderConfirmation implements AbstractPage {
   };
 
   assertions = {
-    assertEmailIsDisplayed (email: string){
+    assertEmailIsDisplayed (email: string) {
       cy.get('.b-confirmation_header-email').should('contain.text', email);
     },
-    assertOrderValueIsDisplayed (){
+    assertOrderValueIsDisplayed () {
       cy.get('.b-summary_shipping-cost').should('not.be.empty');
     },
-    assertShippingAddressDetails (fname: string, lname: string, addressLine1: string){
+    assertShippingAddressDetails (fname: string, lname: string, addressLine1: string) {
       cy.get('.b-address-name').should('contain', fname);
       cy.get('.b-address-name').should('contain', lname);
       cy.get('.b-address-summary').should('contain', addressLine1);
     },
-    assertOrderNumberIsDisplayed (){
+    assertOrderNumberIsDisplayed () {
       cy.get(':nth-child(1) > .b-summary_group-details').eq(0).should('not.be.empty');
     },
-    assertBillingAddressDetails (fname: string, lname: string, addressLine1: string){
+    assertBillingAddressDetails (fname: string, lname: string, addressLine1: string) {
       cy.get('.b-address-name').eq(1).should('contain', fname);
       cy.get('.b-address-name').eq(1).should('contain', lname);
       cy.get('.b-address-summary').eq(1).should('contain', addressLine1);
     },
-    assertShippingMethodIsDisplayed (){
+    assertShippingMethodIsDisplayed () {
       cy.get('b-summary_shipping-name').should('not.be.empty');
     },
-    assertPaymentMethod (method: string){
+    assertPaymentMethod (method: string) {
       cy.get('.b-summary_payment-name').should('contain.text', method);
     },
-    assertOrderTotalIsVisible (){
+    assertOrderTotalIsVisible () {
       cy.get('.b-summary_shipping-cost').should('not.be.empty');
     },
-    assertThatPasswordFieldForGuestUserIsDisplayed (){
+    assertThatPasswordFieldForGuestUserIsDisplayed () {
       cy.get('#dwfrm_newPasswords_newpassword').should('be.visible');
     },
-    assertThatConfirmPasswordFieldForGuestUserIsDisplayed (){
+    assertThatConfirmPasswordFieldForGuestUserIsDisplayed () {
       cy.get('#dwfrm_newPasswords_newpasswordconfirm').should('be.visible');
     }
   };

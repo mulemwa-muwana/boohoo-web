@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
@@ -21,9 +22,8 @@ export default defineConfig({
   
   e2e: {
     experimentalSessionAndOrigin: true,
-    setupNodeEvents (on, config) {
-
-      // Implement node event listeners her},
+    setupNodeEvents (on) {
+      plugins(on);
     },
   },
 

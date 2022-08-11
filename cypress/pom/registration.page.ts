@@ -39,42 +39,42 @@ class RegistrationPage implements AbstractPage {
   }
 
   click = {
-    chooseEmailConsent (){
+    chooseEmailConsent () {
       cy.get('#dwfrm_profile_customer_subscription_isemailsubscribed').click();
     },
-    choosePostConsent (){
+    choosePostConsent () {
       cy.get('#dwfrm_profile_customer_subscription_ispostalsubscribed').click();
     },
-    chooseSmsConsent (){
+    chooseSmsConsent () {
       cy.get('#dwfrm_profile_customer_subscription_issmssubscribed').click();
     },
-    chooseThirdPartyConsent (){
+    chooseThirdPartyConsent () {
       cy.get('#dwfrm_profile_customer_subscription_is3rdPartySubscribed').click();
     },
-    submitButton (){
+    submitButton () {
       const submitButton = selectors[variables.brand].submitButton;
       cy.get(submitButton).click();
     }
   };
 
   actions = {
-    startRegistration (randomEmail: string){
+    startRegistration (randomEmail: string) {
       cy.get('#dwfrm_profile_customer_email').type(randomEmail);
-      if (variables.brand == 'boohoo.com'){
+      if (variables.brand == 'boohoo.com') {
         cy.get('button[data-id="continueButton"]').click();
       }
       
     },
-    confirmationCheckbox (){
+    confirmationCheckbox () {
       cy.get('#dwfrm_profile_customer_emailregistationconfirm').check();
     },
-    enterNewUserData (password: string, confirmPassword: string, firstName: string, lastName: string){
+    enterNewUserData (password: string, confirmPassword: string, firstName: string, lastName: string) {
       cy.get('#dwfrm_profile_login_password').type(password);
       cy.get('#dwfrm_profile_login_passwordconfirm').type(confirmPassword);
       cy.get('#dwfrm_profile_customer_firstname').type(firstName);
       cy.get('#dwfrm_profile_customer_lastname').type(lastName);
     },
-    chooseDate (date: string, month: string, year: string){
+    chooseDate (date: string, month: string, year: string) {
       cy.get('#dwfrm_profile_customer_dayofbirth').select(date);
       cy.get('#dwfrm_profile_customer_monthofbirth').select(month);
       cy.get('#dwfrm_profile_customer_yearOfBirth').select(year);
@@ -83,18 +83,18 @@ class RegistrationPage implements AbstractPage {
   };
 
   assertions = {
-    assertRegistrarionFormIsPresent (){
+    assertRegistrarionFormIsPresent () {
       cy.get('.l-service-section').should('be.visible');
     },
-    assertCheckboxIsChecked (){
+    assertCheckboxIsChecked () {
       cy.get('#dwfrm_profile_customer_emailregistationconfirm').should('be.checked');
     },
-    assertMyAcountPageIsOpened (){
+    assertMyAcountPageIsOpened () {
       cy.url().should('include', '?registration=submitted');
     },
-    assertErrorMessageExistingEmail (){
+    assertErrorMessageExistingEmail () {
       const emailError = selectors[variables.brand].emailError;
-      if (variables.brand == 'boohoo.com'){
+      if (variables.brand == 'boohoo.com') {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail[variables.language]);
       } else {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailArcadia[variables.language]);

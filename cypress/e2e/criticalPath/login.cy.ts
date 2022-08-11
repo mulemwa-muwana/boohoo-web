@@ -3,7 +3,7 @@ import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
 
-describe('Login Functionality tests', function (){
+describe('Login Functionality tests', function () {
 
   beforeEach(() => {
 

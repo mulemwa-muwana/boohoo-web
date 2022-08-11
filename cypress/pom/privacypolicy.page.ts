@@ -47,7 +47,7 @@ class PrivacyPolicyPage implements AbstractPage {
     assertOnPage (text: string) {
       cy.url().should('include', text);
     },
-    assertPrivacyNoticyPageOpens (text: string){
+    assertPrivacyNoticyPageOpens (text: string) {
       const privacyNoticyPageTitle = selectors[variables.brand].privacyNoticyPageTitle;
       cy.get(privacyNoticyPageTitle).should('contain.text', text);
     }

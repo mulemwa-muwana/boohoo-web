@@ -3,7 +3,7 @@ import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
 
-describe('Home Page', function (){
+describe('Home Page', function () {
   
   beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;

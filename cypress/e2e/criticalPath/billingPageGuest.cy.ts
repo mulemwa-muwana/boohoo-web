@@ -136,9 +136,14 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.month, cards.amex.year, cards.amex.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it.only('Verify that guest user can place order using Klarna', function () {
+    it('Verify that guest user can place order using Klarna', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectKlarna();
+      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+    });
+    it('Verify that guest user can place order using PayPal', function () {
+      BillingPage.actions.selectDate('23', 'May', '2001');
+      BillingPage.actions.selectPayPal();
     });
   });
 });

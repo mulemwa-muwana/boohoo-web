@@ -89,22 +89,25 @@ describe('Home Page', function () {
   // FOOTER
   describe('Footer verification', () => {
     it('Verify success message is displayed after signing up - newsletter subscription footer', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       const randomEmail = CommonActions.randomEmail();
       GlobalFooter.actions.subscribeToNewsletter(randomEmail);
-      GlobalFooter.assertions.assertSuccessfulSubscription();
+      GlobalFooter.assertions.assertSuccessfulSubscription(assertionText.successfulSubscription[variables.language]);
     });
     
     it('Verify that Form validation error is displayed - newsletter subscription footer', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       GlobalFooter.actions.subscribeToNewsletter('nonValidEmail.com');
-      GlobalFooter.assertions.assertUnsuccessfulSubscription();
+      GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscription[variables.language]);
     });
     
     it('Verify correct error message is displayed - newsletter subscription footer', () => {
+      const variables = Cypress.env() as EnvironmentVariables;
       const randomEmail = CommonActions.randomEmail();
       GlobalFooter.actions.subscribeToNewsletter(randomEmail);
       HomePage.goto();
       GlobalFooter.actions.subscribeToNewsletter(randomEmail);
-      GlobalFooter.assertions.asssertAlreadySubscribed();
+      GlobalFooter.assertions.asssertAlreadySubscribed(assertionText.alreadySubscribed[variables.language]);
     });
 
     // Needs updating global footer, privacy and social pages

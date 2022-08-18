@@ -107,5 +107,9 @@ describe('Billing page functionality for registered user', function () {
 
       // Need to try with origin
     });
+    it.only('Verify that registered user can place order using Klarna', function () {
+      BillingPage.actions.selectKlarna();
+      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+    });
   });
 });

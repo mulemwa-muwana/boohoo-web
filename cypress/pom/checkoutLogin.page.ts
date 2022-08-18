@@ -15,7 +15,7 @@ class CheckoutPage implements AbstractPage {
       });    
     },
     continueAsRegisteredUser () {
-      cy.get(':nth-child(8) > .b-login_form-group_cta > .b-button').then(element => {
+      cy.get(':nth-child(9) > .b-login_form-group_cta > .b-button').then(element => {
         cy.wrap(element).click();
       });
     },

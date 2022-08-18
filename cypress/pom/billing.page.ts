@@ -70,7 +70,7 @@ class BillingPage implements AbstractPage {
         });
       });
 
-      // Choose Klarna.
+      // Click on PayNow.
       cy.get('#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button').click();
 
       // Click the Continue button.
@@ -87,9 +87,26 @@ class BillingPage implements AbstractPage {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
         body().find('[data-testid="pick-plan"]').should('be.visible').click();
-
-        // Continue the rest of the journey here...
+        body().find('[testid="confirm-and-pay"]').should('be.visible').click();
+        body().find('[data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
+        cy.wait(5000);
       });
+    },
+
+    selectPayPal () {
+      cy.get('#payment-button-PayPal').click();
+
+      cy.window().then((window: Cypress.AUTWindow) => {
+        cy.stub(window, 'open').callsFake(() => {
+          console.log('stop this button click');
+        });
+      });
+      cy.get('.zoid-component-frame').click();
+      cy.get('.zoid-component-frame').click();
+      cy.frameLoaded('#ppfniframe');    
+
+      // Can't find locator for iframe
+      cy.wait(10000);
     }
   
   };

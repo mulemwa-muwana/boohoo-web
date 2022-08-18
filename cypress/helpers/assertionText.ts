@@ -293,6 +293,48 @@ class AssertionText {
     IT: '\nAggiunto al tuo carrello\n',
     ES: '\nAgregado a tu carrito\n'
   };
+  
+  successfulSubscription: TranslationMap = {
+    EN: 'Thanks for ',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  unsuccessfulSubscription: TranslationMap = {
+    EN: 'Hold up! That doesn’t seem right.',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  alreadySubscribed: TranslationMap = {
+    EN: 'already signed up',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
  
 }
 

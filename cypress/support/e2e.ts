@@ -2,6 +2,7 @@
 // Import commands.js using ES2015 syntax:
 import HomePage from '../pom/home.page';
 import './commands';
+import 'cypress-iframe';
 
 // Preserve these cookies.
 Cypress.Cookies.defaults({

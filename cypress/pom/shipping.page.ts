@@ -100,59 +100,59 @@ class ShippingPage implements AbstractPage {
   }
 
   click = {
-    submitPromoCode (){
+    submitPromoCode () {
       const promoCodeBtn = selectors[variables.brand].promoCodeBtn;
       cy.get(promoCodeBtn).click();
     },
-    addNewAddress (){
+    addNewAddress () {
       const addNewAddress = selectors[variables.brand].addNewAddress;
       cy.get(addNewAddress).eq(1).click();
     },
-    cancelAddingNewAddress (){
+    cancelAddingNewAddress () {
       const cancelAddingNewAddress = selectors[variables.brand].cancelAddingNewAddress;
       cy.get(cancelAddingNewAddress);
     },
-    proceedToBilling (){
+    proceedToBilling () {
       const proceedToBilling = selectors[variables.brand].proceedToBilling;
       cy.get(proceedToBilling).click();
     },
-    editSavedAddress (){
+    editSavedAddress () {
       const editSavedAddress = selectors[variables.brand].editSavedAddress;
       cy.get(editSavedAddress).click();
     },
-    addAddressManually (){
+    addAddressManually () {
       const addAddressManually = selectors[variables.brand].addAddressManually;
       cy.get(addAddressManually).click().should('be.visible');
     },
-    editCart (){
+    editCart () {
       const editCart = selectors[variables.brand].editCart;
       cy.get(editCart).should('be.visible').click();
     },
-    editAddress (){
+    editAddress () {
       const editAddress = selectors[variables.brand].editAddress;
       cy.get(editAddress).should('be.visible').click();
     },
-    addNewAddressButton (){
+    addNewAddressButton () {
       const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
       cy.get(addNewAddressButton).click();
     },
-    editExistingAddressButton (){
+    editExistingAddressButton () {
       const editExistingAddressButton = selectors[variables.brand].editExistingAddressButton;
       cy.get(editExistingAddressButton).click();
     },
-    cancelAddingNewAddressForRegisteredUser (){
+    cancelAddingNewAddressForRegisteredUser () {
       const cancelAddingNewAddressForRegisteredUser = selectors[variables.brand].cancelAddingNewAddressForRegisteredUser;
       cy.get(cancelAddingNewAddressForRegisteredUser).should('be.visible').click();
     },
-    viewAllAddressesLink (){
+    viewAllAddressesLink () {
       const viewAllAddressesLink = selectors[variables.brand].viewAllAddressesLink;
       cy.get(viewAllAddressesLink).should('be.visible').click();
     },
-    addPremierToCartFromShippingPage (){
+    addPremierToCartFromShippingPage () {
       const addPremierToCartFromShippingPage = selectors[variables.brand].addPremierToCartFromShippingPage;
       cy.get(addPremierToCartFromShippingPage).should('be.visible').click();
     },
-    OpenPUDOlocations (){
+    OpenPUDOlocations () {
       const PUDOlocations = selectors[variables.brand].PUDOlocations;
       cy.get(PUDOlocations).click();
     },
@@ -163,43 +163,43 @@ class ShippingPage implements AbstractPage {
     clickPreferedShippingMethod (variables: EnvironmentVariables) {
       cy.get('span').contains(variables.shippingMethod).click();
     },
-    promoCodeField (promoCode: string){
+    promoCodeField (promoCode: string) {
       cy.get('#dwfrm_coupon_couponCode').type(promoCode);
     },
-    addressLookupField (address: string){
+    addressLookupField (address: string) {
       cy.get('#LoqateAutocomplete').type(address).should('be.visible');
     },
-    firstNameField (fname: string){
+    firstNameField (fname: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_firstName').type(fname);
     },
-    lastNameField (lname: string){
+    lastNameField (lname: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_lastName').type(lname);
     },
-    countrySelector (){
+    countrySelector () {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_country'); 
     },
-    phoneNumberField (phone: string){
+    phoneNumberField (phone: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_phone').type(phone);
     },
-    selectCountry (country: string){
+    selectCountry (country: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_country').select(country).invoke('show');
     },
-    adressLine1 (address1: string){
+    adressLine1 (address1: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1').type(address1);
     },
-    adressLine2 (address2: string){
+    adressLine2 (address2: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_address2').type(address2);
     },
-    cityFiled (city: string){
+    cityFiled (city: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_city').type(city);
     },
-    countyField (county: string){
+    countyField (county: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').type(county);
     },
-    postcodeField (postcode: string){
+    postcodeField (postcode: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode').type(postcode);
     },
-    selectShippingMethod (shippingMethod: string){
+    selectShippingMethod (shippingMethod: string) {
       cy.get('.b-option_switch-label').each(() => {
         cy.contains(shippingMethod).click({force: true});
       });
@@ -208,57 +208,57 @@ class ShippingPage implements AbstractPage {
   };
 
   assertions = {
-    assertPromoCodeFieldIsDispayed (){
+    assertPromoCodeFieldIsDispayed () {
       cy.get('#dwfrm_coupon_couponCode').should('be.visible');
     },
-    assertSavedShippingAddressIsDispayed (){
+    assertSavedShippingAddressIsDispayed () {
       cy.get('b-address-name').eq(1).should('be.visible').should('not.be.empty');
     }, 
-    assertFirstNameIsMandatory (){
+    assertFirstNameIsMandatory () {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
     },
-    assertCityIsMandatory (){
+    assertCityIsMandatory () {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
     },
-    assertPostCodeIsMandatory (){
+    assertPostCodeIsMandatory () {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
     },
-    assertUserProceededToBillinPage (){
+    assertUserProceededToBillinPage () {
       cy.url().should('include', 'billing');
     },
-    assertFirstNameFieldIsPopulated (text: string){
+    assertFirstNameFieldIsPopulated (text: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_firstName').should('contain.value', text);
     },
-    assertLastNameFieldIsPopulated (text: string){
+    assertLastNameFieldIsPopulated (text: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_lastName').should('contain.value', text);
     },
-    assertCountryIsSelected (text: string){
+    assertCountryIsSelected (text: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_country').should('contain.value', text);
     },
-    assertPhoneNumberFieldIsPopulated (text: string){
+    assertPhoneNumberFieldIsPopulated (text: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_phone').should('contain.value', text);
     },
-    assertGuestEmailFiledDispayes (){
+    assertGuestEmailFiledDispayes () {
       cy.get('#dwfrm_billing_contactInfoFields_email').should('be.visible');
     },
-    assertManualAddressFieldsAreDispayed (){
+    assertManualAddressFieldsAreDispayed () {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1').should('be.visible');
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_address2').should('be.visible');
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_city').should('be.visible');
     },
-    assertOrderTotalIsDsipayed (){
+    assertOrderTotalIsDsipayed () {
       cy.get('.m-total > .b-summary_table-value').should('not.be.empty');
     },
-    assertAddressDetailsAreMandatory (text: string){
+    assertAddressDetailsAreMandatory (text: string) {
       cy.get('[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message').should('contain.text', text);
     },
-    assertPostcodeLookupIsVisible (){
+    assertPostcodeLookupIsVisible () {
       cy.get('#LoqateAutocomplete').should('be.visible');
     },
-    assertOtherAddressesAreVisible (){
+    assertOtherAddressesAreVisible () {
       cy.get('.m-list > :nth-child(3) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface').should('be.visible');
     },
-    assertCartShippingPageContainsContainsProduct (product: string){
+    assertCartShippingPageContainsContainsProduct (product: string) {
       cy.get('.b-minicart_product-inner').each(() => {
         cy.contains(product.trim());
       });

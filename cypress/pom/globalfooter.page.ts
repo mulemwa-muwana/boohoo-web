@@ -107,14 +107,14 @@ class GlobalFooter implements AbstractPage {
   };
 
   assertions = {
-    assertSuccessfulSubscription () {
-      cy.get('.b-newsletters-message_success').contains('Thanks for ');
+    assertSuccessfulSubscription (text: string) {
+      cy.get('.b-newsletters-message_success').contains(text);
     },
-    assertUnsuccessfulSubscription () {
-      cy.get('#dwfrm_newslettersubscribe_email-error').should('contain.text', 'Hold up! That doesn’t seem right.');
+    assertUnsuccessfulSubscription (text: string) {
+      cy.get('#dwfrm_newslettersubscribe_email-error').should('contain.text', text);
     },
-    asssertAlreadySubscribed () {
-      cy.get('#dwfrm_newslettersubscribe_email-error').should('contain.text', 'already signed up');
+    asssertAlreadySubscribed (text: string) {
+      cy.get('#dwfrm_newslettersubscribe_email-error').should('contain.text', text);
     },
     assertPaymentOptionsArePresent () {
       cy.get('p > .m-hide-md').scrollIntoView().should('be.visible');

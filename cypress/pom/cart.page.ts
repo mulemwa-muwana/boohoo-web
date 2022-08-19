@@ -6,36 +6,36 @@ class CartPage implements AbstractPage {
   }
 
   click = {
-    proceedToCheckoutHeaderLink (){
+    proceedToCheckoutHeaderLink () {
       cy.get('.b-minicart_icon-link').should('be.visible').click();
     },
-    clearCart (){
+    clearCart () {
       cy.get('.b-cart_product-remove').each(($el) => {
         $el.click();
       });
     },
-    proceedToCheckout (){
+    proceedToCheckout () {
       cy.get('a[data-tau="minicart_start_checkout_bottom"]').should('be.visible').click();
     }
   };
 
   actions = {
-    updateQuantity (){
+    updateQuantity () {
       cy.get('.b-cart_product-edit').should('be.visible').click();
     },
-    removeFromCart (index: number){
+    removeFromCart (index: number) {
       cy.get('.b-cart_product-remove').eq(index).click();
     },
-    openPayPalSandbox (){
+    openPayPalSandbox () {
       cy.get('.zoid-component-frame').invoke('removeAttr', 'target').click();
     },
-    openKlarnaSandbox (){
+    openKlarnaSandbox () {
       cy.get('#klarna-express-button-0').invoke('removeAttr', 'target').click();
     },
-    openAmazonSandbox (){
+    openAmazonSandbox () {
       cy.get('#OffAmazonPaymentsWidgets0').invoke('removeAttr', 'target').click();
     },
-    editCartQuantity (quantity: string){
+    editCartQuantity (quantity: string) {
       cy.get('button[data-tau="cart_product_edit"]').click();
       cy.get('#quantity-74ac3e217d2adbf01f8d1b2e86').select(quantity);
       cy.get('.b-product_update-button_update').click();
@@ -43,41 +43,41 @@ class CartPage implements AbstractPage {
   };
 
   assertions = {
-    assertTableWithProductIsVisible (){
+    assertTableWithProductIsVisible () {
       cy.get('.b-cart_products').should('be.visible');
     },
-    assertProductImageIsDisplayed (pictureId: string){
+    assertProductImageIsDisplayed (pictureId: string) {
       cy.get(pictureId).then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10); 
       });
     },
-    assertProductTitleIsVisible (){
+    assertProductTitleIsVisible () {
       cy.get('a[class="b-cart_product-name"]').should('be.visible');
     },
-    assertProductDetailsAreVisible (){
+    assertProductDetailsAreVisible () {
       cy.get('.l-cart_product-details').should('be.visible');
     },
-    assertPriceAndSubtotalAreVisible (){
+    assertPriceAndSubtotalAreVisible () {
       cy.get('div[class="b-price-item "]').should('be.visible').and('not.null');
       cy.get('tr[class="b-summary_table-item m-total"]').should('be.visible').and('not.null');
     },
-    assertQuantityIsDisplayed (quantity: string){
+    assertQuantityIsDisplayed (quantity: string) {
       cy.get('.b-cart_product-qty').should('contain', quantity);
     },
-    assertCartIsEmpty (){
+    assertCartIsEmpty () {
       cy.get('.b-cart_empty-title').should('be.visible');
     },
-    assertPremierSlotsAreVisible (){
+    assertPremierSlotsAreVisible () {
       cy.get('.m-with_actions').should('be.visible');
       cy.get('button[data-tau="product_addToCart"]').should('be.visible');
     },
-    assertPayPalCTAisVisible (){
+    assertPayPalCTAisVisible () {
       cy.get('.zoid-component-frame').should('be.visible');
     },
-    assertKlarnaCTAisVisible (){
+    assertKlarnaCTAisVisible () {
       cy.get('#klarna-express-button-0').should('be.visible');
     },
-    assertAmazonPazCTAisVisible (){
+    assertAmazonPazCTAisVisible () {
       cy.get('#OffAmazonPaymentsWidgets0').should('be.visible');
     }
   };

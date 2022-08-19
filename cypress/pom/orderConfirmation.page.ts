@@ -104,45 +104,45 @@ class OrderConfirmation implements AbstractPage {
     },
     assertOrderValueIsDisplayed (){
       const orderValueIsDisplayed = selectors[variables.brand].orderValueIsDisplayed;
-      cy.get(orderValueIsDisplayed).should('not.be.empty');
+      cy.get('.b-summary_shipping-cost').should('not.be.empty');
     },
     assertShippingAddressDetails (fname: string, lname: string, addressLine1: string){
       const shippingAddressDetailsName = selectors[variables.brand].shippingAddressDetailsName;
-      cy.get(shippingAddressDetailsName).should('contain', fname);
-      cy.get(shippingAddressDetailsName).should('contain', lname);
+      cy.get('.b-address-name').should('contain', fname);
+      cy.get('.b-address-name').should('contain', lname);
       const shippingAddressDetailsSummary = selectors[variables.brand].shippingAddressDetailsSummary;
-      cy.get(shippingAddressDetailsSummary).should('contain', addressLine1);
+      cy.get('.b-address-summary').should('contain', addressLine1);
     },
     assertOrderNumberIsDisplayed (){
       const orderNumberIsDisplayed = selectors[variables.brand].orderNumberIsDisplayed;
-      cy.get(orderNumberIsDisplayed).eq(0).should('not.be.empty');
+      cy.get(':nth-child(1) > .b-summary_group-details').eq(0).should('not.be.empty');
     },
     assertBillingAddressDetails (fname: string, lname: string, addressLine1: string){
       const billingAddressDetailsName = selectors[variables.brand].billingAddressDetailsName;
-      cy.get(billingAddressDetailsName).eq(1).should('contain', fname);
-      cy.get(billingAddressDetailsName).eq(1).should('contain', lname);
+      cy.get('.b-address-name').eq(1).should('contain', fname);
+      cy.get('.b-address-name').eq(1).should('contain', lname);
       const billingAddressDetailsSummary = selectors[variables.brand].billingAddressDetailsSummary;
-      cy.get(billingAddressDetailsSummary).eq(1).should('contain', addressLine1);
+      cy.get('.b-address-summary').eq(1).should('contain', addressLine1);
     },
     assertShippingMethodIsDisplayed (){
       const shippingMethodIsDisplayed = selectors[variables.brand].shippingMethodIsDisplayed;
-      cy.get(shippingMethodIsDisplayed).should('not.be.empty');
+      cy.get('b-summary_shipping-name').should('not.be.empty');
     },
     assertPaymentMethod (method: string){
       const paymentMethod = selectors[variables.brand].paymentMethod;
-      cy.get(paymentMethod).should('contain.text', method);
+      cy.get('.b-summary_payment').should('contain.text', method);
     },
     assertOrderTotalIsVisible (){
       const orderTotalIsVisible = selectors[variables.brand].orderTotalIsVisible;
-      cy.get(orderTotalIsVisible).should('not.be.empty');
+      cy.get('.b-summary_shipping-cost').should('not.be.empty');
     },
     assertThatPasswordFieldForGuestUserIsDisplayed (){
       const thatPasswordFieldForGuestUserIsDisplayed = selectors[variables.brand].thatPasswordFieldForGuestUserIsDisplayed;
-      cy.get(thatPasswordFieldForGuestUserIsDisplayed).should('be.visible');
+      cy.get('#dwfrm_newPasswords_newpassword').should('be.visible');
     },
     assertThatConfirmPasswordFieldForGuestUserIsDisplayed (){
       const thatConfirmPasswordFieldForGuestUserIsDisplayed = selectors[variables.brand].thatConfirmPasswordFieldForGuestUserIsDisplayed;
-      cy.get(thatConfirmPasswordFieldForGuestUserIsDisplayed).should('be.visible');
+      cy.get('#dwfrm_newPasswords_newpasswordconfirm').should('be.visible');
     }
   };
 

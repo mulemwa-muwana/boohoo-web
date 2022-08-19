@@ -12,7 +12,20 @@ class megaMenuLinksLanguages {
     IL: 'כל הבגדים',
     IT: 'TUTTO L’ABBIGLIAMENTO',
     ES: 'TODA LA ROPA',
+  };
 
+  ArkadiaNew: TranslationMap = { 
+    EN: 'New',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
   };
 
   subnavClothingNewIn: TranslationMap = {
@@ -31,7 +44,7 @@ class megaMenuLinksLanguages {
   };
 
   subnavClothingNewInURL: TranslationMap = {
-    EN: 'new-in',
+    EN: 'new',
     NL: 'nieuw-binnen',
     DE: 'neu-eingetroffen',
     FR: 'nouveautés',

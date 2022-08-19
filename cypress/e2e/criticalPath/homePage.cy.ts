@@ -178,11 +178,11 @@ describe('Footer verification', () => {
 
   it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    GlobalFooter.actions.checkFooterLinkByText('Track My Order');
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    GlobalFooter.actions.checkFooterLinkByText('Help');
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
     const variables = Cypress.env() as EnvironmentVariables;
@@ -288,15 +288,9 @@ describe('Footer verification', () => {
   });
     
   /* It('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
-<<<<<<< HEAD
-     GlobalFooter.assertions.assertFooterIsFixedAndPresent();
-     GlobalFooter.click.footerPromo();
-+  });*/
-=======
     GlobalFooter.assertions.assertFooterIsFixedAndPresent();
     GlobalFooter.click.footerPromo();
   });*/
->>>>>>> remotes/origin/master
     
   describe('Verify that the global header is displayed.', () => {
     it('Check global header is visible when scrolling down.', () => {

@@ -1,5 +1,99 @@
 import AbstractPage from './abstract/abstract.page';
 
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    privacyPolicyLink: '.l-static_page-title > strong',
+    copyrightPrivacyPolicyLink: '#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a',
+    instagramLink: 'a[href="https://www.instagram.com/boohoo/"]',
+    facebookLink: 'a[href="https://www.facebook.com/boohoo.com"]',
+    twitterLink: 'a[href="https://twitter.com/boohoo"]',
+    tiktokLink: 'a[href="https://www.tiktok.com/@boohoo?lang=en"]',
+    youtubeLink: 'a[href="https://www.youtube.com/c/boohoo"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]',
+    theFixLinkL: 'a[href="https://thefix.boohoo.com/"]',
+    footerPromoLink: '#footer-sticky-promo > a',
+    newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: 'button[data-id="submitButton"]',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.b-newsletters-message_success',
+    unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
+    paymentOptions: '.b-footer_top',
+    promoBanner: 'l-footer-app',
+    footerStickyPromo: '#footer-sticky-promo',
+    headerInner: '.b-header_utility-inner',
+  },
+  'nastygal.com': {
+    privacyPolicyLink: '.l-static_page-title > strong',
+    instagramLink: 'a[href="https://www.instagram.com/nastygal/"]',
+    facebookLink: 'a[href="https://www.facebook.com/nastygal"]',
+    twitterLink: 'a[href="https://twitter.com/nastygal"]',
+    newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: 'button[data-id="submitButton"]',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.b-newsletters-message_success',
+    unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
+    paymentOptions: '.b-footer_top',
+    promoBanner: 'l-footer-app',
+    headerInner: '.b-header_utility-inner',
+  },
+  'dorothyperkins.com': {
+    privacyPolicyLink: '.l-static_page-title > strong',
+    instagramLink: 'a[href="https://www.instagram.com/dorothyperkins/"]',
+    facebookLink: 'a[href="https://www.facebook.com/dorothyperkins"]',
+    twitterLink: 'a[href="https://twitter.com/Dorothy_Perkins"]',
+    newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: 'button[data-id="submitButton"]',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.b-newsletters-message_success',
+    unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
+    paymentOptions: '.b-footer_top',
+    promoBanner: 'l-footer-app',
+    footerStickyPromo: '#footer-sticky-promo',
+    headerInner: '.b-header_utility-inner',
+  },
+  'burton.co.uk': {
+    privacyPolicyLink: '.l-static_page-title > strong',
+    instagramLink: 'a[href="https://www.instagram.com/burton_menswear/"]',
+    facebookLink: 'a[href="https://m.me/burtonmenswear "]', //  Messenger
+    twitterLink: 'a[href="https://twitter.com/messages/1326555588-978546536232685568"]',
+    newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: 'button[data-id="submitButton"]',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.b-newsletters-message_success',
+    unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
+    paymentOptions: '.b-footer_top',
+    promoBanner: 'l-footer-app',
+    footerStickyPromo: '#footer-sticky-promo',
+    headerInner: '.b-header_utility-inner',
+  },
+  'wallis.co.uk': {
+    privacyPolicyLink: '.l-static_page-title > strong',
+    instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
+    facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
+    twitterLink: 'a[href="https://twitter.com/wallisfashion?lang=en"]',
+    newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: 'button[data-id="submitButton"]',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.b-newsletters-message_success',
+    unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
+    promoBanner: 'l-footer-app',
+    footerStickyPromo: '#footer-sticky-promo',
+    headerInner: '.b-header_utility-inner',
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
+
+const variables = Cypress.env() as EnvironmentVariables;
 class GlobalFooter implements AbstractPage {
 
   goto () {
@@ -8,13 +102,16 @@ class GlobalFooter implements AbstractPage {
 
   click = {
     privacyPolicyLink () {
-      cy.contains('Privacy').click();
+      const privacyPolicyLink = selectors[variables.brand].privacyPolicyLink;
+      cy.get(privacyPolicyLink).click();
     },
     copyrightPrivacyPolicyLink () {
-      cy.get('#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a').click();
+      const copyrightPrivacyPolicyLink = selectors[variables.brand].copyrightPrivacyPolicyLink;
+      cy.get(copyrightPrivacyPolicyLink).click();
     },
     instagramLink () {
-      cy.get('a[href="https://www.instagram.com/boohoo/"]').then(link => {
+      const instagramLink = selectors[variables.brand].instagramLink;
+      cy.get(instagramLink).then(link => {
         cy
           .request(link.prop('href'))
           .its('status')
@@ -22,7 +119,8 @@ class GlobalFooter implements AbstractPage {
       });
     },
     facebookLink () {
-      cy.get('a[href="https://www.facebook.com/boohoo.com"]').then(link => {
+      const facebookLink = selectors[variables.brand].facebookLink;
+      cy.get(facebookLink).then(link => {
         cy
           .request(link.prop('href'))
           .its('status')
@@ -30,7 +128,8 @@ class GlobalFooter implements AbstractPage {
       });
     },
     twitterLink () {
-      cy.get('a[href="https://twitter.com/boohoo"]').then(link => {
+      const twitterLink = selectors[variables.brand].twitterLink;
+      cy.get(twitterLink).then(link => {
         cy
           .request(link.prop('href'))
           .its('status')
@@ -38,7 +137,8 @@ class GlobalFooter implements AbstractPage {
       });
     },
     tiktokLink () {
-      cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"]').then(link => {
+      const tiktokLink = selectors[variables.brand].tiktokLink; //  Only boohoo
+      cy.get(tiktokLink).then(link => {
         cy
           .request(link.prop('href'))
           .its('status')
@@ -46,7 +146,8 @@ class GlobalFooter implements AbstractPage {
       });
     },
     youtubeLink () {
-      cy.get('a[href="https://www.youtube.com/c/boohoo"]').then(link => {
+      const youtubeLink = selectors[variables.brand].youtubeLink; //  Only boohoo
+      cy.get(youtubeLink).then(link => {
         cy
           .request(link.prop('href'))
           .its('status')
@@ -54,7 +155,8 @@ class GlobalFooter implements AbstractPage {
       });
     },
     pintrestLink () {
-      cy.get('a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]').then(link => {
+      const pintrestLink = selectors[variables.brand].pintrestLink; //  Only boohoo
+      cy.get(pintrestLink).then(link => {
         cy
           .request(link.prop('href'))
           .its('status')
@@ -62,7 +164,8 @@ class GlobalFooter implements AbstractPage {
       });
     },
     theFixLink () {
-      cy.get('a[href="https://thefix.boohoo.com/"]').then(link => {
+      const theFixLink = selectors[variables.brand].theFixLink; //  Only boohoo
+      cy.get(theFixLink).then(link => {
         cy
           .request(link.prop('href'))
           .its('status')
@@ -70,7 +173,8 @@ class GlobalFooter implements AbstractPage {
       });
     },
     footerPromo () {
-      cy.get('#footer-sticky-promo > a').then(element => {
+      const footerPromoLink = selectors[variables.brand].footerPromoLink; //  Only boohoo
+      cy.get(footerPromoLink).then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
         cy.url().then(url => {
@@ -82,11 +186,14 @@ class GlobalFooter implements AbstractPage {
 
   actions = {
     subscribeToNewsletter (email: string) {
-      cy.get('input[id="dwfrm_newslettersubscribe_email"]').type(email);
-      cy.get('#dwfrm_newslettersubscribe_agreeToPrivacy').check();
-      cy.get('button[data-id="submitButton"]').click();
+      const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
+      const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
+      const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
+      cy.get(newsletterInputMail).type(email);
+      cy.get(agreeToPrivacyCheckbox).check();
+      cy.get(subscribeSubmitBtn).click();
     },
-    checkFooterLinkByText (text: string, options?: { assertionUrl: string }) {
+    checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
       cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       cy.get('footer[class="l-page-footer l-footer"]').contains(text)
@@ -101,42 +208,52 @@ class GlobalFooter implements AbstractPage {
       cy.go('back');
     },
     changeCountry (country: CountryCode) {
+      const changeCountryDropdown = selectors[variables.brand].changeCountryDropdown;
       cy.wait(2000);
-      cy.get('.b-country-select').select(country);
+      cy.get(changeCountryDropdown).select(country);
     }
   };
 
   assertions = {
     assertSuccessfulSubscription (text: string) {
-      cy.get('.b-newsletters-message_success').contains(text);
+      const successfulSubscriptionMsg = selectors[variables.brand].successfulSubscriptionMsg;
+      cy.get(successfulSubscriptionMsg).contains(text);
     },
     assertUnsuccessfulSubscription (text: string) {
-      cy.get('#dwfrm_newslettersubscribe_email-error').should('contain.text', text);
+      const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+      cy.get(unsuccessfulSubscriptionMsg).should('contain.text', text);
     },
     asssertAlreadySubscribed (text: string) {
-      cy.get('#dwfrm_newslettersubscribe_email-error').should('contain.text', text);
+      const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+      cy.get(unsuccessfulSubscriptionMsg).should('contain.text', text);
     },
     assertPaymentOptionsArePresent () {
-      cy.get('p > .m-hide-md').scrollIntoView().should('be.visible');
+      const paymentOptions = selectors[variables.brand].paymentOptions;
+      cy.get(paymentOptions).scrollIntoView().should('be.visible'); //  Only Wallis doesnt have
     },
     assertPromoBannerPresent () {
-      cy.get('div[class="b-app_banner"]').should('be.visible');
+      const promoBanner = selectors[variables.brand].promoBanner;
+      cy.get(promoBanner).should('be.visible'); //  It was div[class="b-app_banner"], only visible on BH and NG
     },
-    assertCurrencyByPageContext (currency: string) {
+    assertCurrencyByPageContext (currency: string) { //  N/A
       cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {
         const json = JSON.parse(context);
         expect(json.currencyCode).to.equal(currency);
       });
     },
-    assertFooterIsFixedAndPresent () {
+
+    /* AssertFooterIsFixedAndPresent () {
+      const footerStickyPromo = selectors[variables.brand].footerStickyPromo;
       cy.scrollTo('bottom');
-      cy.get('#footer-sticky-promo').should('have.css', 'position', 'fixed');
-    },
+      cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');  //  Onlu NG doesnt have. Should be checked
+    },*/ // This is removed because its config
     assertHeaderIsVisible () {
-      cy.get('.b-header_utility-inner').should('be.visible');
+      const headerInner = selectors[variables.brand].headerInner;
+      cy.get(headerInner).should('be.visible');
     },
     assertHeaderIsNotVisible () {
-      cy.get('.b-header_utility-inner').should('not.be.visible');
+      const headerInner = selectors[variables.brand].headerInner;
+      cy.get(headerInner).should('not.be.visible');
 
     }
   };

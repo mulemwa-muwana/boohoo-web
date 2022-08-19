@@ -296,44 +296,44 @@ class AssertionText {
   
   successfulSubscription: TranslationMap = {
     EN: 'Thanks for ',
-    NL: '',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    NL: 'Bedankt voor ',
+    DE: 'Danke für ',
+    FR: 'Merci pour ',
+    DK: 'Tak for',
+    FI: 'Kiitos ',
+    NO: 'Takk for ',
+    SE: 'Tack för ',
+    IL: 'תודה על ',
+    IT: 'Grazie per ',
+    ES: 'Gracias por '
   };
 
   unsuccessfulSubscription: TranslationMap = {
     EN: 'Hold up! That doesn’t seem right.',
-    NL: '',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    NL: 'Vertraging! Dat lijkt niet juist.',
+    DE: 'Halten! Das scheint nicht richtig zu sein.',
+    FR: 'Tenir bon! Cela ne semble pas juste.',
+    DK: 'Hold op! Det virker ikke rigtigt.',
+    FI: 'Kestä! Se ei vaikuta oikealta.',
+    NO: 'Vent! Det virker ikke riktig.',
+    SE: 'Vänta! Det verkar inte rätt.',
+    IL: 'המתן! זה לא נראה נכון.',
+    IT: 'Sostenere! Non sembra giusto.',
+    ES: '¡Sostener! Eso no parece correcto.'
   };
 
   alreadySubscribed: TranslationMap = {
     EN: 'already signed up',
-    NL: '',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    NL: 'al aangemeld',
+    DE: 'bereits angemeldet',
+    FR: 'déjà inscrit',
+    DK: 'allerede tilmeldt',
+    FI: 'jo ilmoittautunut',
+    NO: 'allerede registrert',
+    SE: 'redan anmält sig',
+    IL: 'כבר נרשמת',
+    IT: 'già iscritto',
+    ES: 'ya registrado'
   };
 
   footerLinkTrackMyOrder: TranslationMap = {

@@ -6,5 +6,5 @@
     "types": ["cypress", "node", "cypress-iframe"]
   },
   "include": ["**/*.ts"],
-  "files": ["./cypress/support/index.d.ts", "./cypress/e2e/criticalPath/newFile.ts"]
+  "files": ["./cypress/support/index.d.ts"]
 }

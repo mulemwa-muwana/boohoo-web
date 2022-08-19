@@ -14,9 +14,10 @@ describe('Home Page', function () {
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
     HomePage.goto();
-    if (variables.brand == 'nastygal.com') {
+
+    /* If (variables.brand == 'nastygal.com') {
       HomePage.actions.closeNastygalPopup();
-    }
+    }*/
   });
 
   /* Describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
@@ -76,8 +77,13 @@ describe('Home Page', function () {
     });
  
     it('Verify Mega Menu - NewIn link opens', () => {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
+      if (variables.brand == 'boohoo.com') {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
+      } else {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.ArkadiaNew[variables.language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
+      }
       homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.subnavClothingNewInURL[variables.language]);
     });
 
@@ -124,7 +130,7 @@ describe('Footer verification', () => {
   }); 
     
   describe('Verify that Social Networking Links are present.', () => {
-    it.only('Instagram', () => {
+    it('Instagram', () => {
       SocialsPage.assertions.assertInstagramIconIsPresent();
       GlobalFooter.click.instagramLink();
     });
@@ -160,7 +166,7 @@ describe('Footer verification', () => {
     });
   });
     
-  it('Verify that Payment and Delivery Providers are present as content slot.', () => {
+  it.only('Verify that Payment and Delivery Providers are present as content slot.', () => {
     GlobalFooter.assertions.assertPaymentOptionsArePresent();
   });
       

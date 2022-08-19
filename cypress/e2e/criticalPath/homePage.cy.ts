@@ -124,7 +124,7 @@ describe('Footer verification', () => {
   }); 
     
   describe('Verify that Social Networking Links are present.', () => {
-    it('Instagram', () => {
+    it.only('Instagram', () => {
       SocialsPage.assertions.assertInstagramIconIsPresent();
       GlobalFooter.click.instagramLink();
     });

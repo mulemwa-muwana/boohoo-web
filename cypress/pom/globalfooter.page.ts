@@ -2,26 +2,26 @@ import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-   privacyPolicyLink: '.l-static_page-title > strong',
-   copyrightPrivacyPolicyLink: '#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a',
-   instagramLink: 'a[href="https://www.instagram.com/boohoo/"]',
-   facebookLink: 'a[href="https://www.facebook.com/boohoo.com"]',
-   twitterLink: 'a[href="https://twitter.com/boohoo"]',
-   tiktokLink: 'a[href="https://www.tiktok.com/@boohoo?lang=en"]',
-   youtubeLink: 'a[href="https://www.youtube.com/c/boohoo"]',
-   pintrestLink: 'a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]',
-   theFixLinkL: 'a[href="https://thefix.boohoo.com/"]',
-   footerPromoLink: '#footer-sticky-promo > a',
-   newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
-   agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
-   subscribeSubmitBtn: 'button[data-id="submitButton"]',
-   changeCountryDropdown: '.b-country-select',
-   successfulSubscriptionMsg: '.b-newsletters-message_success',
-   unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
-   paymentOptions: '.b-footer_top',
-   promoBanner: 'l-footer-app',
-   footerStickyPromo: '#footer-sticky-promo',
-   headerInner: '.b-header_utility-inner',
+    privacyPolicyLink: '.l-static_page-title > strong',
+    copyrightPrivacyPolicyLink: '#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a',
+    instagramLink: 'a[href="https://www.instagram.com/boohoo/"]',
+    facebookLink: 'a[href="https://www.facebook.com/boohoo.com"]',
+    twitterLink: 'a[href="https://twitter.com/boohoo"]',
+    tiktokLink: 'a[href="https://www.tiktok.com/@boohoo?lang=en"]',
+    youtubeLink: 'a[href="https://www.youtube.com/c/boohoo"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]',
+    theFixLinkL: 'a[href="https://thefix.boohoo.com/"]',
+    footerPromoLink: '#footer-sticky-promo > a',
+    newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: 'button[data-id="submitButton"]',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.b-newsletters-message_success',
+    unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
+    paymentOptions: '.b-footer_top',
+    promoBanner: 'l-footer-app',
+    footerStickyPromo: '#footer-sticky-promo',
+    headerInner: '.b-header_utility-inner',
   },
   'nastygal.com': {
     privacyPolicyLink: '.l-static_page-title > strong',
@@ -57,7 +57,7 @@ const selectors: SelectorBrandMap = {
   'burton.co.uk': {
     privacyPolicyLink: '.l-static_page-title > strong',
     instagramLink: 'a[href="https://www.instagram.com/burton_menswear/"]',
-    facebookLink: 'a[href="https://m.me/burtonmenswear "]',  //  Messenger
+    facebookLink: 'a[href="https://m.me/burtonmenswear "]', //  Messenger
     twitterLink: 'a[href="https://twitter.com/messages/1326555588-978546536232685568"]',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
@@ -137,7 +137,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     tiktokLink () {
-      const tiktokLink = selectors[variables.brand].tiktokLink;  //  Only boohoo
+      const tiktokLink = selectors[variables.brand].tiktokLink; //  Only boohoo
       cy.get(tiktokLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -146,7 +146,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     youtubeLink () {
-      const youtubeLink = selectors[variables.brand].youtubeLink;  //  Only boohoo
+      const youtubeLink = selectors[variables.brand].youtubeLink; //  Only boohoo
       cy.get(youtubeLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -155,7 +155,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     pintrestLink () {
-      const pintrestLink = selectors[variables.brand].pintrestLink;  //  Only boohoo
+      const pintrestLink = selectors[variables.brand].pintrestLink; //  Only boohoo
       cy.get(pintrestLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -164,7 +164,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     theFixLink () {
-      const theFixLink = selectors[variables.brand].theFixLink;  //  Only boohoo
+      const theFixLink = selectors[variables.brand].theFixLink; //  Only boohoo
       cy.get(theFixLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -173,7 +173,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     footerPromo () {
-      const footerPromoLink = selectors[variables.brand].footerPromoLink;  //  Only boohoo
+      const footerPromoLink = selectors[variables.brand].footerPromoLink; //  Only boohoo
       cy.get(footerPromoLink).then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
@@ -193,7 +193,7 @@ class GlobalFooter implements AbstractPage {
       cy.get(agreeToPrivacyCheckbox).check();
       cy.get(subscribeSubmitBtn).click();
     },
-    checkFooterLinkByText (text: string, options?: { assertionUrl: string }) {  //  Not sure
+    checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
       cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       cy.get('footer[class="l-page-footer l-footer"]').contains(text)
@@ -229,23 +229,24 @@ class GlobalFooter implements AbstractPage {
     },
     assertPaymentOptionsArePresent () {
       const paymentOptions = selectors[variables.brand].paymentOptions;
-      cy.get(paymentOptions).scrollIntoView().should('be.visible');  //  Only Wallis doesnt have
+      cy.get(paymentOptions).scrollIntoView().should('be.visible'); //  Only Wallis doesnt have
     },
     assertPromoBannerPresent () {
       const promoBanner = selectors[variables.brand].promoBanner;
-      cy.get(promoBanner).should('be.visible');  //  It was div[class="b-app_banner"], only visible on BH and NG
+      cy.get(promoBanner).should('be.visible'); //  It was div[class="b-app_banner"], only visible on BH and NG
     },
-    assertCurrencyByPageContext (currency: string) {  //  N/A
+    assertCurrencyByPageContext (currency: string) { //  N/A
       cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {
         const json = JSON.parse(context);
         expect(json.currencyCode).to.equal(currency);
       });
     },
-    /*assertFooterIsFixedAndPresent () {
+
+    /* AssertFooterIsFixedAndPresent () {
       const footerStickyPromo = selectors[variables.brand].footerStickyPromo;
       cy.scrollTo('bottom');
       cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');  //  Onlu NG doesnt have. Should be checked
-    },*/  // This is removed because its config
+    },*/ // This is removed because its config
     assertHeaderIsVisible () {
       const headerInner = selectors[variables.brand].headerInner;
       cy.get(headerInner).should('be.visible');

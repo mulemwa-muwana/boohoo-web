@@ -271,10 +271,10 @@ describe('Home Page', function () {
     
     });
     
-    it('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
+    /*it('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
       GlobalFooter.assertions.assertFooterIsFixedAndPresent();
       GlobalFooter.click.footerPromo();
-    });
+    });*/   //Removed because it config
     
     describe('Verify that the global header is displayed.', () => {
       it('Check global header is visible when scrolling down.', () => {

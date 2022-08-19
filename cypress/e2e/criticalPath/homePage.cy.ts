@@ -277,9 +277,15 @@ describe('Footer verification', () => {
   });
     
   /* It('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
+<<<<<<< HEAD
      GlobalFooter.assertions.assertFooterIsFixedAndPresent();
      GlobalFooter.click.footerPromo();
 +  });*/
+=======
+    GlobalFooter.assertions.assertFooterIsFixedAndPresent();
+    GlobalFooter.click.footerPromo();
+  });*/
+>>>>>>> remotes/origin/master
     
   describe('Verify that the global header is displayed.', () => {
     it('Check global header is visible when scrolling down.', () => {
@@ -289,7 +295,7 @@ describe('Footer verification', () => {
     it('Check global header displays.', () => {
       GlobalFooter.assertions.assertHeaderIsVisible();
     });
-    
+  
   });
 
 });

@@ -74,7 +74,7 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
-    logInIcon (opts = { force: false }) {
+    logInIcon (opts = { force: true }) {
       const loginIcon = selectors[variables.brand].loginIcon;
       cy.get(loginIcon).click({ force: opts.force });
     },
@@ -88,7 +88,7 @@ class HomePage implements AbstractPage {
     },
 
     // Objects for search subsystem tests
-    searchIcon (opts = { force: false }) {
+    searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
       cy.get(searchIcon).click({ force: opts.force });            
     },

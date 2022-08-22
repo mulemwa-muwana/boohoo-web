@@ -21,23 +21,20 @@ describe('Home Page', function () {
     HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
   });
 
-  //  Describe('Verify user can add items to wishlist and add to the cart from wishlist', () => 
-  {
-    it('Verify that item is saved to wishlist', () => {     
-      const variables = Cypress.env() as EnvironmentVariables;      
-      pdpPage.click.addToWishList(); 
-      WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
-      WishListPage.assertions.assertItemIsAddedToWishlist();
-    }),
-    it('Verify that user can add wishlist item to the cart', () => {
-      HomePage.click.wishListIcon();
-      WishListPage.click.addToCart();
-    }),
-    it('Verify that user can remove item from wishlist', () => {
-      pdpPage.click.addToWishList(); 
-      HomePage.click.wishListIcon();
-      WishListPage.click.removeItemFromWishlist();
-    });
-  }
+  it('Verify that item is saved to wishlist', () => {     
+    const variables = Cypress.env() as EnvironmentVariables;      
+    pdpPage.click.addToWishList(); 
+    WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
+    WishListPage.assertions.assertItemIsAddedToWishlist();
+  }),
+  it('Verify that user can add wishlist item to the cart', () => {
+    HomePage.click.wishListIcon();
+    WishListPage.click.addToCart();
+  }),
+  it('Verify that user can remove item from wishlist', () => {
+    pdpPage.click.addToWishList(); 
+    HomePage.click.wishListIcon();
+    WishListPage.click.removeItemFromWishlist();
+  });
 
 });

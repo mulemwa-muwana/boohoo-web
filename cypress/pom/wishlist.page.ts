@@ -78,7 +78,7 @@ class WishListPage implements AbstractPage {
   }
 
   click = {
-    sortItems (){
+    sortItems () {
       const sortItems = selectors[variables.brand].sortItems;
       cy.get(sortItems);
     },
@@ -106,7 +106,7 @@ class WishListPage implements AbstractPage {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       cy.get(removeItemFromWishlist).eq(0).click();
     },
-    wishlistLoginBtn (){
+    wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;
       cy.get(wishlistLoginBtn).eq(0).click();
     }
@@ -114,7 +114,7 @@ class WishListPage implements AbstractPage {
   };
 
   actions = {
-    showInStockItemsCheckbox (){
+    showInStockItemsCheckbox () {
       cy.get('.show-in-stock').check();
     }
   };
@@ -128,7 +128,7 @@ class WishListPage implements AbstractPage {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
       cy.get(wishListIsEmpty).should('have.text', msg);
     },
-    assertItemIsAddedtoWishlistAlertText (msg: string){
+    assertItemIsAddedtoWishlistAlertText (msg: string) {
       const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;
       cy.get(itemIsAddedtoWishlistAlertText).should('have.text', msg);
     }

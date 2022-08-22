@@ -9,11 +9,12 @@ import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 
-describe('Billing page functionality for guest user', function (){
+describe('Billing page functionality for guest user', function () {
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
+  
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize(1);
     cy.wait(2000);
@@ -23,11 +24,10 @@ describe('Billing page functionality for guest user', function (){
     PdpPage.click.miniCartViewCartBtn();
     CartPage.click.proceedToCheckout();
 
-    // Needs adapting. 
-    cy.task('createUser', variables.language).then((account: NewCustomerCredentials) => {
-      CheckoutPage.actions.guestCheckoutEmail(account.email);
-      CheckoutPage.click.continueAsGuestBtn();
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
     });
+    CheckoutPage.click.continueAsGuestBtn();
 
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -40,39 +40,39 @@ describe('Billing page functionality for guest user', function (){
     shippingPage.click.proceedToBilling();
   });
 
-  it('Verify that shipping address block is filled with data', function (){
+  it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
-  it('Verify that shipping method is displayed', function (){
+  it('Verify that shipping method is displayed', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
-  it('Verify that guest user can change shipping address', function (){
+  it('Verify that guest user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('Verify that guest user can change shipping method', function (){
+  it('Verify that guest user can change shipping method', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('Verify that email field is filled with correct email address', function (){
+  it('Verify that email field is filled with correct email address', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       BillingPage.assertions.assertEmailIsCorrect(credentials.guest);
     });
   });
-  it('Verify that subscription block is displayed', function (){
+  it('Verify that subscription block is displayed', function () {
     BillingPage.assertions.assertSubscriptionBlockPresent();
   });
-  it('Verify that date of birth form is present', function (){
+  it('Verify that date of birth form is present', function () {
     BillingPage.assertions.assertDateFormIsPresent();
   });
-  it('Verify that guest user can select date of birth', function (){
+  it('Verify that guest user can select date of birth', function () {
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
 
   });
-  it('Verify that guest user cannot place order if email field is empty', function (){
+  it('Verify that guest user cannot place order if email field is empty', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', 'May', '2001');
@@ -80,15 +80,15 @@ describe('Billing page functionality for guest user', function (){
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
     BillingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
   });
-  it('Verify that guest user cannot place order if date of birth is not selected', function (){
+  it('Verify that guest user cannot place order if date of birth is not selected', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
     BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
   });
-  it('Verify that billing address can be same as shipping address', function (){
+  it('Verify that billing address can be same as shipping address', function () {
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
-  it('Verify that guest user can submit new billing address', function (){
+  it('Verify that guest user can submit new billing address', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     BillingPage.click.shippingCheckbox();
@@ -109,7 +109,7 @@ describe('Billing page functionality for guest user', function (){
     BillingPage.assertions.assertGiftCardIsApplied('-£10.00');
   }); */
 
-  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function (){
+  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     cy.fixture('paymentMethods').then((method: PaymentMethodSelector)=>{
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.card);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
@@ -120,25 +120,30 @@ describe('Billing page functionality for guest user', function (){
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay);
     });
   });
-  describe('Verify that guest user can place orders with available payment methods', function (){
-    it('Verify that guest user can place order using Credit Card - Visa)', function (){
+  describe('Verify that guest user can place orders with available payment methods', function () {
+    it('Verify that guest user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that guest user can place order using Credit Card - Master)', function (){
+    it('Verify that guest user can place order using Credit Card - Master)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.month, cards.master.year, cards.master.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that guest user can place order using Credit Card - Amex)', function (){
+    it('Verify that guest user can place order using Credit Card - Amex)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.month, cards.amex.year, cards.amex.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that guest user can place order using PayPal', function (){
-
-      // Need to try with origin
+    it('Verify that guest user can place order using Klarna', function () {
+      BillingPage.actions.selectDate('23', 'May', '2001');
+      BillingPage.actions.selectKlarna();
+      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+    });
+    it('Verify that guest user can place order using PayPal', function () {
+      BillingPage.actions.selectDate('23', 'May', '2001');
+      BillingPage.actions.selectPayPal();
     });
   });
 });

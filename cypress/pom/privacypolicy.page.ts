@@ -6,7 +6,7 @@ const selectors: SelectorBrandMap = {
     privacyNoticyPageTitle: 'span.b-page_title',
   },
   'nastygal.com': {
-    privacyNoticyPageTitle: 'span.b-page_title',
+    privacyNoticyPageTitle: 'h1',
   },
   'dorothyperkins.com': {
     privacyNoticyPageTitle: 'span.b-page_title',
@@ -47,7 +47,7 @@ class PrivacyPolicyPage implements AbstractPage {
     assertOnPage (text: string) {
       cy.url().should('include', text);
     },
-    assertPrivacyNoticyPageOpens (text: string){
+    assertPrivacyNoticyPageOpens (text: string) {
       const privacyNoticyPageTitle = selectors[variables.brand].privacyNoticyPageTitle;
       cy.get(privacyNoticyPageTitle).should('contain.text', text);
     }

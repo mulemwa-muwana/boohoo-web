@@ -4,11 +4,11 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/eu',
-    sku: 'BQQ00474',
-    brand: 'dorothyperkins.com',
-    locale: 'EU',
-    language: 'EN',
+    url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/fr/',
+    sku: '#AGG78799',
+    brand: 'nastygal.com',
+    locale: 'FR',
+    language: 'FR',
   },
 
   viewportHeight: 1080,

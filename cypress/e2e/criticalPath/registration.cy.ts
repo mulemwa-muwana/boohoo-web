@@ -3,20 +3,25 @@ import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import RegistrationPage from '../../pom/registration.page';
 
-describe('Verify Registration feature', function (){
+const variables = Cypress.env() as EnvironmentVariables;
+
+describe('Verify Registration feature', function () {
   beforeEach(() => {
 
     HomePage.goto();
+    if (variables.brand == 'nastygal.com') {
+      cy.get('#page-body > div.b-dialog.m-welcome_popup.welcome-popup-container.js-welcome-popup-wrapper.popup-template-5.popup-close-position-right.m-opened > div.b-dialog-window.m-top_dialog.m-welcome_popup.welcome-popup.welcome-popup-wrapper > div.b-dialog-header > button').should('be.visible').click();
+    }
     HomePage.click.logInIcon();
     
   });
-  it('Verify that registration button is visible and it opens registration form', function (){
+  it('Verify that registration button is visible and it opens registration form', function () {
     HomePage.click.registrationButton();
     const randomEmail = CommonActions.randomEmail();
     RegistrationPage.actions.startRegistration(randomEmail);
     RegistrationPage.assertions.assertRegistrarionFormIsPresent();
   });
-  it('Verify that user can register new account using valid credentials', function (){
+  it('Verify that user can register new account using valid credentials', function () {
     HomePage.click.registrationButton();
     cy.fixture('newuser').then((credentials) =>{
       const randomEmail = CommonActions.randomEmail();
@@ -32,7 +37,7 @@ describe('Verify Registration feature', function (){
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.firstname);
     });
   });
-  it('Verify that user can not register using email that already has account', function (){
+  it('Verify that user can not register using email that already has account', function () {
     HomePage.click.registrationButton();
     cy.fixture('newuser').then((credentials) =>{
       RegistrationPage.actions.startRegistration(credentials.username);

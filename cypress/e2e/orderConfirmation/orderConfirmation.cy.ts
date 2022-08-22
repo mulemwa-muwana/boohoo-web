@@ -10,7 +10,7 @@ import Addresses from '../../helpers/addresses';
 import shippingMethods from '../../helpers/shippingMethods';
 import { getCardProviderByBrand } from '../../helpers/common';
 
-describe('Order confirmation page for guest user', function (){
+describe('Order confirmation page for guest user', function () {
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
@@ -41,7 +41,7 @@ describe('Order confirmation page for guest user', function (){
     orderConfirmationPage.click.closePopUp();
   });
 
-  it('Verify that email is visible for guest user', async function (){
+  it('Verify that email is visible for guest user', async function () {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get(':nth-child(1) > .b-summary_group-details').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get(':nth-child(2) > .b-summary_group-details').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
@@ -61,7 +61,8 @@ describe('Order confirmation page for guest user', function (){
             quantity: 1
           }],
           testScenario: 'CompleteOrder',
-          locale: variables.locale
+          locale: variables.locale,
+          url: variables.url
         };
 
         cy.createArtefact(testArtefactObject,`${variables.locale}_creditcard`.toLowerCase());

@@ -335,7 +335,160 @@ class AssertionText {
     IT: 'già iscritto',
     ES: 'ya registrado'
   };
- 
+
+  footerLinkTrackMyOrder: TranslationMap = {
+    EN: 'Track My Order',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerHelp: TranslationMap = {
+    EN: 'Help',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkDeliveryInfo: TranslationMap = {
+    EN: 'Delivery Info',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkAbout: TranslationMap = {
+    EN: 'About', // Brand name is missing
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkSizeGuide: TranslationMap = {
+    EN: 'Size Guide',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkTrackApp: TranslationMap = {
+    EN: 'The boohoo App', // The boohoo App
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkPremier: TranslationMap = {
+    EN: 'The boohoo App', // The boohoo App
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkStudentDiscount: TranslationMap = {
+    EN: 'Student Discount',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkReturns: TranslationMap = {
+    EN: 'Returns',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkDiscountPromo: TranslationMap = {
+    EN: 'Discount & Promo',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
+    EN: 'Get Exclusive Offers & Updates',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 }
 
 export default new AssertionText();

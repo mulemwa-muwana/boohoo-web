@@ -177,37 +177,48 @@ describe('Footer verification', () => {
   // Each of these will go back to the previous URL once the action has been completed.      
 
   it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
-    GlobalFooter.actions.checkFooterLinkByText('Track My Order');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
-    GlobalFooter.actions.checkFooterLinkByText('Help');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
-    GlobalFooter.actions.checkFooterLinkByText('Returns');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
-    GlobalFooter.actions.checkFooterLinkByText('Delivery Info');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - About boohoo', () => {
-    GlobalFooter.actions.checkFooterLinkByText('About boohoo');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAbout[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
-    GlobalFooter.actions.checkFooterLinkByText('Size Guide');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - The boohoo App', () => {
-    GlobalFooter.actions.checkFooterLinkByText('The boohoo App');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackApp[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - boohoo Premier', () => {
-    GlobalFooter.actions.checkFooterLinkByText('boohoo Premier');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkPremier[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', () => {
-    GlobalFooter.actions.checkFooterLinkByText('Student Discount');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Discount & Promo Codes', () => {
-    GlobalFooter.actions.checkFooterLinkByText('Discount & Promo Codes');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
-    GlobalFooter.actions.checkFooterLinkByText('Get Exclusive Offers & Updates');
+    const variables = Cypress.env() as EnvironmentVariables;
+    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
   });
 
   /*
@@ -277,15 +288,9 @@ describe('Footer verification', () => {
   });
     
   /* It('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
-<<<<<<< HEAD
-     GlobalFooter.assertions.assertFooterIsFixedAndPresent();
-     GlobalFooter.click.footerPromo();
-+  });*/
-=======
     GlobalFooter.assertions.assertFooterIsFixedAndPresent();
     GlobalFooter.click.footerPromo();
   });*/
->>>>>>> remotes/origin/master
     
   describe('Verify that the global header is displayed.', () => {
     it('Check global header is visible when scrolling down.', () => {

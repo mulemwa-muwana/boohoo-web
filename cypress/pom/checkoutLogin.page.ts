@@ -56,7 +56,6 @@ class CheckoutPage implements AbstractPage {
   }
 
   click = {
-<<<<<<< HEAD
     continueAsGuestBtn (){  
       const continueAsGuestBt = selectors[variables.brand].continueAsGuestBt; 
       cy.get(continueAsGuestBt).then(element => {
@@ -72,25 +71,10 @@ class CheckoutPage implements AbstractPage {
     premierAddToCart (){ 
     const premierAddToCart = selectors[variables.brand].premierAddToCart;
     cy.get(premierAddToCart).click();
-=======
-    continueAsGuestBtn () {
-      cy.get('.b-form > .b-button').then(element => {
-        cy.wrap(element).click();
-      });    
-    },
-    continueAsRegisteredUser () {
-      cy.get(':nth-child(9) > .b-login_form-group_cta > .b-button').then(element => {
-        cy.wrap(element).click();
-      });
-    },
-    premierAddToCart () {
-      cy.get('product_addToCart').click();
->>>>>>> master
     }
   };
 
   actions = {
-<<<<<<< HEAD
     guestCheckoutEmail (guestEmail: string){
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
       cy.get(guestCheckoutEmail).type(guestEmail);
@@ -102,16 +86,6 @@ class CheckoutPage implements AbstractPage {
     PasswordFieldForRegisteredUserIsVisible (password: string){  
       const passwordFieldForRegisteredUserIsVisible = selectors[variables.brand].passwordFieldForRegisteredUserIsVisible;
       cy.get(passwordFieldForRegisteredUserIsVisible).type(password);
-=======
-    guestCheckoutEmail (guestEmail: string) {
-      cy.get('#dwfrm_login_guestEmail').type(guestEmail);
-    },
-    userEmailField (username: string) {
-      cy.get('#dwfrm_login_email').type(username);
-    },
-    passwordField (password: string) {
-      cy.get('#dwfrm_login_password').type(password);
->>>>>>> master
     }
   };
 
@@ -119,7 +93,6 @@ class CheckoutPage implements AbstractPage {
     assertUserProceededToShippingPage () {
       cy.url().should('include', 'shipping');
     },
-<<<<<<< HEAD
     assertUserEmailField (){
       const userEmailField = selectors[variables.brand].userEmailField;
       cy.get(userEmailField).should('be.visible');
@@ -137,20 +110,6 @@ class CheckoutPage implements AbstractPage {
       cy.get(premierIsDisplayed).should('have.text', assertionText.Premier[variables.language]);
       const premierSubtitle=selectors[variables.brand].premierSubtitle;
       cy.get(premierSubtitle).should('have.text', assertionText.PremierText[variables.language]);
-=======
-    assertLoginFieldForRegisteredUserIsVisible () {
-      cy.get('#dwfrm_login_email').should('be.visible');
-    },
-    assertPasswordFieldForRegisteredUserIsVisible () {
-      cy.get('#dwfrm_login_password').should('be.visible');
-    },
-    assertEmailnFieldForGuestUserIsVisible () {
-      cy.get('#dwfrm_login_guestEmail').should('be.visible');
-    },
-    assertPremierIsDisplayed () {
-      cy.get('.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title').should('have.text', assertionText.Premier.EN);
-      cy.get('.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle').should('have.text', assertionText.PremierText.EN);
->>>>>>> master
     }
   };
 }

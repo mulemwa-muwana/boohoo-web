@@ -1,3 +1,4 @@
+import assertionText from 'cypress/helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -221,7 +222,11 @@ class GlobalFooter implements AbstractPage {
     },
     assertUnsuccessfulSubscription (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
-      cy.get(unsuccessfulSubscriptionMsg).should('contain.text', text);
+      if (variables.brand == 'boohoo.com') {
+        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', assertionText.unsuccessfulSubscription[variables.language]);
+      } else {
+        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', assertionText.unsuccessfulSubscriptionNG[variables.language]);       
+      }
     },
     asssertAlreadySubscribed (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;

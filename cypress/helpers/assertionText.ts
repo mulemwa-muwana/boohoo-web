@@ -322,6 +322,20 @@ class AssertionText {
     ES: '¡Sostener! Eso no parece correcto.'
   };
 
+  unsuccessfulSubscriptionNG: TranslationMap = {
+    EN: 'Please enter a valid email address',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   alreadySubscribed: TranslationMap = {
     EN: 'already signed up',
     NL: 'al aangemeld',
@@ -340,7 +354,7 @@ class AssertionText {
     EN: 'Track My Order',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Suivre ma commande',
     DK: '',
     FI: '',
     NO: '',
@@ -368,7 +382,7 @@ class AssertionText {
     EN: 'Delivery Info',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Information sur la livraison',
     DK: '',
     FI: '',
     NO: '',
@@ -452,7 +466,7 @@ class AssertionText {
     EN: 'Returns',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Retours',
     DK: '',
     FI: '',
     NO: '',
@@ -481,6 +495,118 @@ class AssertionText {
     NL: '',
     DE: '',
     FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  sustainability: TranslationMap = {
+    EN: 'Sustainability',
+    NL: '',
+    DE: '',
+    FR: 'Durabilité',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  becomeAnAffiliate: TranslationMap = {
+    EN: 'Become an Affiliate',
+    NL: '',
+    DE: '',
+    FR: 'Affiliez-vous',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  becomePartner: TranslationMap = {
+    EN: 'Become a Partner',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  termsAndCond: TranslationMap = {
+    EN: 'Terms and conditions',
+    NL: '',
+    DE: '',
+    FR: 'Conditions générales',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  privacyPolicy: TranslationMap = {
+    EN: 'Privacy Notice - Updated March 2021',
+    NL: '',
+    DE: '',
+    FR: 'Avis de confidentialité',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  careers: TranslationMap = {
+    EN: 'Careers',
+    NL: '',
+    DE: '',
+    FR: 'Carrières',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  aboutCookies: TranslationMap = {
+    EN: 'About Cookies',
+    NL: '',
+    DE: '',
+    FR: 'En savoir plus sur les cookies',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  sitemap: TranslationMap = {
+    EN: 'About Cookies',
+    NL: '',
+    DE: '',
+    FR: 'Plan du site',
     DK: '',
     FI: '',
     NO: '',

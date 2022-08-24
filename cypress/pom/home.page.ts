@@ -129,6 +129,10 @@ class HomePage implements AbstractPage {
 
   actions = {       
     findItemUsingSKU (SKU: string) {
+      if (variables.brand != 'boohoo.com') {
+        const searchIcon = selectors[variables.brand].searchIcon;
+        cy.get(searchIcon).click();
+      }
       const searchField = selectors[variables.brand].searchField;
       cy.get(searchField).click().type(SKU+'{enter}');
     },

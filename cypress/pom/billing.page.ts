@@ -1,5 +1,34 @@
 import AbstractPage from './abstract/abstract.page';
 
+const selectors: SelectorBrandMap = {
+  'boohoo.com': {
+    paynowBtn:'',
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button'
+  },
+  'nastygal.com': {
+    paynowBtn: '.b-checkout_step-controls > .b-button',
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error'
+    
+  },
+  'dorothyperkins.com': {
+    paynowBtn:''
+  },
+  'burton.co.uk': {
+    paynowBtn:''
+  },
+  'wallis.co.uk': {
+    paynowBtn:''
+  },
+  'boohooman.com': undefined,
+  'karenmillen.com': undefined,
+  'coastfashion.com': undefined,
+  'warehousefashion.com': undefined,
+  'oasis-stores.com': undefined,
+  'misspap.com': undefined
+};
+
+const variables = Cypress.env() as EnvironmentVariables;
 class BillingPage implements AbstractPage {
   goto (): void {
     cy.visit('/checkout?step=billing');
@@ -31,7 +60,7 @@ class BillingPage implements AbstractPage {
       cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select(month);
       cy.get('#dwfrm_billing_creditCardFields_expirationYear').select(year);
       cy.get('#dwfrm_billing_creditCardFields_securityCode').type(code);
-      cy.get('#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click();
+      cy.get('.b-checkout_step-controls > .b-button').click();
     },
     emptyEmailField () {
       cy.get('#dwfrm_billing_contactInfoFields_email').clear();
@@ -40,7 +69,11 @@ class BillingPage implements AbstractPage {
       cy.get('.b-form_section > .b-address_selector-actions > .b-address_selector-button').click();
     },
     addBillingAddress (line1: string, city: string, county: string, postcode: string) {
-      cy.get('[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button').click();
+      if (variables.brand == 'boohoo.com') {
+        cy.get('[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button').click();
+      } else {
+        cy.get('[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button').click();
+      }
       cy.get('#dwfrm_billing_addressFields_address1').should('be.visible').type(line1);
       cy.get('#dwfrm_billing_addressFields_city').type(city);
       cy.get('#dwfrm_billing_addressFields_states_stateCode').type(county);
@@ -71,7 +104,13 @@ class BillingPage implements AbstractPage {
       });
 
       // Click on PayNow.
-      cy.get('#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button').click();
+      const klarnaPayNow = selectors[variables.brand].klarnaPayNow;
+      const paynowBtn = selectors[variables.brand].paynowBtn;
+      if (variables.brand == 'boohoo.com') {
+        cy.get(klarnaPayNow).click();
+      } else {
+        cy.get(paynowBtn).click();
+      }
 
       // Click the Continue button.
       cy.get('button[style*="geometricprecision"]').click();
@@ -86,9 +125,13 @@ class BillingPage implements AbstractPage {
       cy.enter('#klarna-apf-iframe').then(body => {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
-        body().find('[data-testid="pick-plan"]').should('be.visible').click();
-        body().find('[testid="confirm-and-pay"]').should('be.visible').click();
-        body().find('[data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
+        body().find('[data-cid="btn-primary"]').should('be.visible').click();
+
+        // BHO Body().find('[data-testid="pick-plan"]').should('be.visible').click();
+        // BHO Body().find('[testid="confirm-and-pay"]').should('be.visible').click();
+        body().find('#payinparts_kp\\.bf0ddd49-7c29-47fe-a4df-ab9ffd52677d_3_slice_it_by_card-purchase-review-continue-button > div > div:nth-child(1)').should('be.visible').click();
+
+        // BHO Body().find('[data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
         cy.wait(5000);
       });
     },
@@ -96,17 +139,45 @@ class BillingPage implements AbstractPage {
     selectPayPal () {
       cy.get('#payment-button-PayPal').click();
 
-      cy.window().then((window: Cypress.AUTWindow) => {
-        cy.stub(window, 'open').callsFake(() => {
-          console.log('stop this button click');
-        });
+      cy.wait(2000);
+      
+      // Stub the open method inside iframe to force it not to open a window.
+      
+      cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
+      
+        cy.stub(win, 'open');
+      
       });
-      cy.get('.zoid-component-frame').click();
-      cy.get('.zoid-component-frame').click();
-      cy.frameLoaded('#ppfniframe');    
+      
+      // Click PayPal button
+      
+      cy.iframe('.zoid-component-frame').find('.paypal-button').should('be.visible').click({force:true});
+      
+      // Wait for PayPal window to load
+      
+      cy.wait(8000);
+      
+      // Get first iframe, inside its body get inner iframe and then find button
+      
+      cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
 
-      // Can't find locator for iframe
-      cy.wait(10000);
+        const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
+        
+        cy.wrap(innerIframe).find('#email').clear().type('test.user@boohoo.com');
+        cy.wrap(innerIframe).find('#btnNext').click();
+        cy.wrap(innerIframe).find('#password').click().type('boohoo123');
+        cy.wrap(innerIframe).find('#btnLogin').click();
+        cy.wait(3000);
+  
+      });
+      cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
+
+        const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
+
+        cy.wrap(innerIframe).find('#payment-submit-btn').should('be.visible').click();
+  
+      });
+      cy.wait(5000);
     }
   
   };
@@ -116,7 +187,7 @@ class BillingPage implements AbstractPage {
       cy.get('section[class="b-checkout_card b-summary_group-item m-full-width"]').should('be.visible').and('not.be.empty');
     },
     assertShippingMethodPresent (shippingMethod: string) {
-      cy.get('.b-summary_shipping-name').should('be.visible').and('contain.text', shippingMethod);
+      cy.get('.b-summary_shipping-name').should('be.visible').and('include.text', shippingMethod);
     },
     assertEmailIsCorrect (email: string) {
       cy.get('input[id="dwfrm_billing_contactInfoFields_email"]').should('have.value', email);
@@ -136,7 +207,8 @@ class BillingPage implements AbstractPage {
       cy.get('#dwfrm_billing_contactInfoFields_email-error').should('be.visible').and('contain.text', errorMsg);
     },
     assertEmptyDateFieldError (errorMsg: string) {
-      cy.get('#dwfrm_profile_customer_yearOfBirth-error').should('be.visible').and('contain', errorMsg);
+      const dateError = selectors[variables.brand].dateError;
+      cy.get(dateError).should('be.visible').and('contain.text', errorMsg);
     },
     assertSameAsShippingIsChecked () {
       cy.get('#dwfrm_billing_addressFields_useShipping').should('be.checked');

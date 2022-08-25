@@ -29,8 +29,7 @@ const selectors: SelectorBrandMap = {
     addNewAddressButton: '.b-address_selector-button',
     editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     editCart: '.b-summary_order-header > .b-link',
-    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
-    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back'
@@ -122,7 +121,7 @@ class ShippingPage implements AbstractPage {
     },
     addAddressManually () {
       const addAddressManually = selectors[variables.brand].addAddressManually;
-      cy.get(addAddressManually).click().should('be.visible');
+      cy.get(addAddressManually).should('be.visible').click();
     },
     editCart () {
       const editCart = selectors[variables.brand].editCart;

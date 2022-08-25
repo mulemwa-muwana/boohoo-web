@@ -9,9 +9,11 @@ import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Billing page functionality for guest user', function () {
   beforeEach (()=>{
-    const variables = Cypress.env() as EnvironmentVariables;
+  
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
   
@@ -61,35 +63,42 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertEmailIsCorrect(credentials.guest);
     });
   });
-  it('Verify that subscription block is displayed', function () {
+
+  /* It('Verify that subscription block is displayed', function () {
     BillingPage.assertions.assertSubscriptionBlockPresent();
-  });
-  it('Verify that date of birth form is present', function () {
+  });*/
+
+  it('Verify that date of birth form is present and that guest user can select date of birth', function () {
     BillingPage.assertions.assertDateFormIsPresent();
-  });
-  it('Verify that guest user can select date of birth', function () {
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
 
   });
   it('Verify that guest user cannot place order if email field is empty', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
-    BillingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    if (variables.brand == 'boohoo.com') {
+      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    } else {
+      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+
+    }
   });
   it('Verify that guest user cannot place order if date of birth is not selected', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
-    BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    if (variables.brand == 'boohoo.com') {
+      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    } else {
+      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+
+    }
   });
   it('Verify that billing address can be same as shipping address', function () {
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that guest user can submit new billing address', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     BillingPage.click.shippingCheckbox();
     BillingPage.assertions.assertBillingAddressFormIsPresent();
@@ -115,9 +124,12 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.klarna);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.clearPay);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
+      if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+        BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
+      }
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay);
+
+      // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
     });
   });
   describe('Verify that guest user can place orders with available payment methods', function () {
@@ -141,9 +153,10 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.selectKlarna();
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that guest user can place order using PayPal', function () {
+    it.only('Verify that guest user can place order using PayPal', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectPayPal();
+      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
   });
 });

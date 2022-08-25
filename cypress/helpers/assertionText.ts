@@ -56,6 +56,20 @@ class AssertionText {
     ES: '¡No te olvides de mí!'
   };
 
+  ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
+    EN: 'This field is required.',  
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   RegistrationPageExistingEmail: TranslationMap = {
     EN: 'Looks like you already have an account with us. Please try logging in or use a different email address  Log in',
     FR: 'Il semble que vous ayez déjà un compte chez nous. Veuillez essayer de vous connecter ou utiliser une autre adresse e-mail',

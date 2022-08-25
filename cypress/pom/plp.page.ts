@@ -16,7 +16,9 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantColour: '#searchRefineBarAccordionItemInner-colour',
     selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
     selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
-    selectRefinementVariantCategory: '#searchRefineBarAccordionItemInner-category',
+    
+    // SelectRefinementVariantCategory: '#searchRefineBarAccordionItemBtn-catégorie', // FR
+    SelectRefinementVariantCategory: '#searchRefineBarAccordionItemBtn-category',
     selectRefinementVariantOccassion: '#searchRefineBarAccordionItemInner-occasion',
     selectRefinementVariantShopByPrice: '#searchRefineBarAccordionItemInner-price',
     wishlistPlpIcon: '.b-wishlist_button-icon',

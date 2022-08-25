@@ -14,7 +14,21 @@ class megaMenuLinksLanguages {
     ES: 'TODA LA ROPA',
   };
 
-  ArkadiaNew: TranslationMap = { 
+  subnavClothingArkadiaNewIn: TranslationMap = { 
+    EN: 'New',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
+  linkArkadiaNewIn: TranslationMap = { 
     EN: 'New',
     NL: '',
     DE: '',
@@ -40,7 +54,6 @@ class megaMenuLinksLanguages {
     IL: '',
     IT: 'Nuovi arrivi',
     ES: 'Novedades',
-
   };
 
   subnavClothingNewInURL: TranslationMap = {
@@ -60,7 +73,7 @@ class megaMenuLinksLanguages {
 
   saleLink: TranslationMap = {
     EN: 'SALE',
-    FR: '',
+    FR: 'PROMOS',
     NL: '',
     DE: '',
     DK: '',
@@ -72,19 +85,46 @@ class megaMenuLinksLanguages {
     ES: ''
   };
 
-  subnavAllSale = {
+  subnavAllSale: TranslationMap = {
     EN: 'All Sale',
-
+    FR: 'Promos vêtements',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
-  newSeason = {
-    EN: 'new-season',
-
+  urlValidationSale: TranslationMap = {
+    EN: 'sale',
+    FR: 'promotions',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
-  shoesAndAcc = {
-    EN: 'shoes-accessories',
-
+  urlValidationNewIn: TranslationMap = {
+    EN: 'new',
+    NL: 'Nieuw Binnen',
+    DE: 'Neu eingetroffen',
+    FR: 'nouveautes',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'Nyheter',
+    IL: '',
+    IT: 'Nuovi arrivi',
+    ES: 'Novedades',
   };
 
 }

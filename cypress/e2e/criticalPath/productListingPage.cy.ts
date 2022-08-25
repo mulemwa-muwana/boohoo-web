@@ -13,7 +13,7 @@ describe('Home Page', function () {
   });
   it('Verify that plp page opens', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.saleLink[variables.language].toLowerCase());
+    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[variables.language].toLowerCase());
   });
   it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
@@ -46,42 +46,50 @@ describe('Home Page', function () {
 
   describe('Product refinements', () => {
     it('Verify category refinement is applied', () => {
-      const variables = Cypress.env() as EnvironmentVariables;
-      plpPage.click.categoryRefinement();  
-      plpPage.click.selectRefinementVariantCategory(productVariations.productTops[variables.language]);
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productTops[variables.language]);
+      const variables = Cypress.env() as EnvironmentVariables; 
+      if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+        plpPage.click.categoryRefinement();
+      }
+      plpPage.click.selectRefinementVariantCategory(productVariations.productAccessories[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied(productVariations.productAccessories[variables.language]);
     });
     it('Verify size refinement is applied', () => {
       const variables = Cypress.env() as EnvironmentVariables;
-      plpPage.click.sizeRefinement();
+
+      // PlpPage.click.sizeRefinement();
       plpPage.click.selectRefinementVariantSize(productVariations.Size[variables.locale]);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.Size[variables.locale]);
     });
     it('Verify style refinement is applied', () => {
       const variables = Cypress.env() as EnvironmentVariables;
-      plpPage.click.styleRefinement();
+
+      // PlpPage.click.styleRefinement();
       plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle[variables.language]);
     });
     it('Verify colour refinement is applied', () => {
       const variables = Cypress.env() as EnvironmentVariables;
-      plpPage.click.colorRefinement();
+
+      // PlpPage.click.colorRefinement();
       plpPage.click.selectRefinementVariantColour(productVariations.ColorBlack[variables.language]);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.ColorBlack[variables.language]);
     });
     it('Verify price refinement is applied', () => {
-      plpPage.click.priceRefinements();
+
+      // PlpPage.click.priceRefinements();
       plpPage.click.selectRefinementVariantShopByPrice(productVariations.priceRangePLPrefinements.range0to5); 
     });
     it('Verify shop by fit refinement is applied', () => {
       const variables = Cypress.env() as EnvironmentVariables;
-      plpPage.click.shopByFitRefinements();
+
+      // PlpPage.click.shopByFitRefinements();
       plpPage.click.selectRefinementVariantShopByFit(productVariations.productShopByFitRefinementTall[variables.language]);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByFitRefinementTall[variables.language]);
     });
     it('Verify occasion refinement is applied', () => {
       const variables = Cypress.env() as EnvironmentVariables;
-      plpPage.click.occassionRefinement();  
+
+      // PlpPage.click.occassionRefinement();  
       plpPage.click.selectRefinementVariantOccassion(productVariations.productShopByOccassionRefinementCasual[variables.language]);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByOccassionRefinementCasual[variables.language]);   
     });

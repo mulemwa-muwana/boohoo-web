@@ -283,7 +283,7 @@ describe('Footer verification', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     GlobalFooter.actions.checkFooterLinkByText(assertionText.aboutCookies[variables.language]);
   });
-  it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
+  it.only('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     GlobalFooter.actions.checkFooterLinkByText(assertionText.sitemap[variables.language]); 
   });  

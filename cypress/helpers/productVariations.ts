@@ -48,6 +48,20 @@ class productVariations {
     IT: 'Cime',
     ES: 'Tops',
   };
+  
+  productAccessories: TranslationMap = {
+    EN: 'Accessories',
+    NL: '',
+    DE: 'Oberteile',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
 
   productShopByFitRefinementTall: TranslationMap = {
     EN: 'Tall',

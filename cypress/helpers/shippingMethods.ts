@@ -5,7 +5,7 @@ class shippingMethod {
   public shippingMap: shippingMap = {
     UK: {
       shippingMethod1: {
-        shippingMethodName: 'UKstandardShippingMehod'
+        shippingMethodName: 'Standard'
       },
       shippingMethod2: {
         shippingMethodName: 'nexUKNextDaytday'

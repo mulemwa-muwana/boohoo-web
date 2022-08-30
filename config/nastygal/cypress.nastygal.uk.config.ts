@@ -5,7 +5,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/gb/',
-    sku: 'AGG78799',
+    sku: 'AGG05303-1',
     brand: 'nastygal.com',
     locale: 'UK',
     language: 'EN',
@@ -21,5 +21,7 @@ export default defineConfig({
 
       // Implement node event listeners here
     },
+
+    numTestsKeptInMemory: 0
   },
 });

@@ -26,7 +26,7 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    completeLookBox: 'div[class"b-product_section-row"] div[class="b-product_section"]'   
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text'   
   },
   'nastygal.com': {
     addToCart: '.b-product_addtocard-availability',
@@ -214,7 +214,7 @@ class PdpPage implements AbstractPage {
       cy.get(addToCartTitle).should('be.visible').and('contain.text', text);
     },
     assertErrorMsgForSizeIsDisplayed (msg: string) {
-      cy.get('div[data-tau="product_actions_error"]').should('be.visible').and('contain', msg); //  Should be tested
+      cy.get('.b-product_actions-error_msg').should('be.visible').and('contain.text', msg); //  Should be tested
     },
     assertMiniCartIsDisplayed () {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
@@ -243,9 +243,9 @@ class PdpPage implements AbstractPage {
       const returnLink = selectors[variables.brand].returnLink;
       cy.url().should('include', 'returns'); //  Need to be change
     },
-    assertCompleteLookDisplayed () {
+    assertCompleteLookDisplayed (text: string) {
       const completeLookBox = selectors[variables.brand].completeLookBox;
-      cy.get(completeLookBox).should('be.visible'); //  Only boohoo
+      cy.get(completeLookBox).should('have.text', text); //  Only boohoo
     },
     assertLinkNewSeasonIsLinked (text: string) {
       const shopNowLinkNL = selectors[variables.brand].shopNowLinkNL;

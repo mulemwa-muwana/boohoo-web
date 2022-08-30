@@ -7,7 +7,7 @@ class Addresses {
       primaryAddress: {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+44 843 837 0041',
+        phone: '08082580300',
         addrline1: '100 Browning St, Birmingham B16 8EH',
         addrline2: '',
         postcode: 'AB11 6PH',

@@ -56,6 +56,20 @@ class AssertionText {
     ES: '¡No te olvides de mí!'
   };
 
+  ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
+    EN: 'This field is required.',  
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   RegistrationPageExistingEmail: TranslationMap = {
     EN: 'Looks like you already have an account with us. Please try logging in or use a different email address  Log in',
     FR: 'Il semble que vous ayez déjà un compte chez nous. Veuillez essayer de vous connecter ou utiliser une autre adresse e-mail',
@@ -170,7 +184,7 @@ class AssertionText {
 
   inStock: TranslationMap = {
     EN: '\n                YAY! It’s in stock\n            \n                YAY! It’s in stock\n            ',
-    FR: 'YAY! C’est en stock',
+    FR: '\n                YAY ! Cet article est en stock\n            \n                YAY ! Cet article est en stock\n            ',
     NL: 'JAAAAA! Het is op voorraad',
     DE: 'YAY! Es ist auf Lager',
     DK: 'YAY! Den er på lager',
@@ -184,7 +198,7 @@ class AssertionText {
 
   sizeErrorMsg: TranslationMap = {
     EN: 'Oops please select a size',
-    FR: 'Oups, veuillez sélectionner une taille',
+    FR: '\n                    Oups, veuillez choisir une taille\n                ',
     NL: 'Oeps, selecteer een maat',
     DE: 'Hoppla, bitte wählen Sie eine Größe aus',
     DK: 'Ups vælg venligst en størrelse',
@@ -284,7 +298,7 @@ class AssertionText {
     EN: '\nAdded to your cart\n',
     NL: '\nToegevoegd aan uw winkelwagen\n',
     DE: '\nZu Ihrem Warenkorb hinzugefügt\n',
-    FR: '\nAjouté à votre panier\n',
+    FR: '\n \n Ajouté à votre panier\n \n                ',
     DK: '\nTilføjet til din indkøbskurv\n',
     FI: '\nLisätty ostoskoriin\n',
     NO: '\nLagt til i handlekurven din\n',
@@ -607,6 +621,20 @@ class AssertionText {
     NL: '',
     DE: 'Sitemap',
     FR: 'Plan du site',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'Sajtkarta',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  completeTheLook: TranslationMap = { 
+    EN: '',
+    NL: '',
+    DE: '',
+    FR: 'Compléter ce look',
     DK: '',
     FI: '',
     NO: '',

@@ -77,11 +77,11 @@ describe('Account page', function () {
   it('TC10 Verify that new card can be saved', function () {
     MyAccountPage.click.paymentOptionsLink();
     MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner);
-    MyAccountPage.assertions.assertCardDetails(Cards.visa.end, Cards.visa.owner);  
+    MyAccountPage.assertions.assertCardDetails(Cards.visa.end);  
   });
   it('TC11 Verify that payment details show correct saved card details', function () {
     MyAccountPage.click.paymentOptionsLink();
-    MyAccountPage.assertions.assertCardDetails(Cards.visa.end, Cards.visa.owner);
+    MyAccountPage.assertions.assertCardDetails(Cards.visa.end);
   });
   it('TC12 Verify that card can be deleted', function () {
     MyAccountPage.click.paymentOptionsLink();

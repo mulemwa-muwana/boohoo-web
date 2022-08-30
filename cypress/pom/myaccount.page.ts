@@ -338,7 +338,7 @@ class MyAccountPage implements AbstractPage {
       },
       deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
-        cy.get(addressDeleteBtn).eq(1).click(); //  It was eq(3)
+        cy.get(addressDeleteBtn).eq(0).click(); //  It was eq(3)
       },
       addCard (cardNumber: string, cardOwner: string) {
         const addCardBtn = selectors[variables.brand].addAddressBtn;
@@ -421,9 +421,8 @@ class MyAccountPage implements AbstractPage {
       assertAddressNotPresent (addressName: string) {
         cy.get('.b-cards_grid > div').should('not.contain', addressName);
       },
-      assertCardDetails (cardEnd: string, owner: string) {
+      assertCardDetails (cardEnd: string) {
         cy.contains(cardEnd).should('be.visible');
-        cy.contains(owner).should('be.visible');
       },
       assertCardNotPresent (cardEnd: string) {
         cy.get('.b-cards_grid').should('not.contain', cardEnd);

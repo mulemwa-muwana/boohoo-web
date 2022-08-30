@@ -275,7 +275,7 @@ describe('Footer verification', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCond[variables.language]); 
   });
-  it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated March 2021', () => {
+  it('Verify that Footer Navigation Component is present and Links are functional - Privacy - Updated March 2021', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicy[variables.language]);
   });

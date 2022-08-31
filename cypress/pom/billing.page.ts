@@ -66,7 +66,10 @@ class BillingPage implements AbstractPage {
       cy.get('#dwfrm_billing_contactInfoFields_email').clear();
     },
     addNewAddress () {
-      cy.get('.b-form_section > .b-address_selector-actions > .b-address_selector-button').click();
+      if (variables.brand == 'boohoo.com') {
+        cy.get('.b-form_section > .b-address_selector-actions > .b-address_selector-button').click();
+      }
+      cy.get('.b-form_section > .b-address_selector-actions > .b-button').click();
     },
     addBillingAddress (line1: string, city: string, county: string, postcode: string) {
       if (variables.brand == 'boohoo.com') {
@@ -90,8 +93,12 @@ class BillingPage implements AbstractPage {
       cy.get('#add-giftcert').click();
     },
     selectAddressFromBook () {
-      cy.get('.b-form_section > .b-address_selector-actions > .m-link').click();
-      cy.get('.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label').click();
+      if (variables.brand == 'boohoo.com') {
+        cy.get('.b-form_section > .b-address_selector-actions > .m-link').click();
+        cy.get('.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label').click();
+      } else {
+        cy.get('#dwfrm_billing > fieldset.b-billing_address > div.b-checkout_card.m-list > fieldset > div > div:nth-child(2) > div > label').click();
+      }
     },
     selectKlarna () {
       cy.get('#payment-button-KlarnaUK').click();

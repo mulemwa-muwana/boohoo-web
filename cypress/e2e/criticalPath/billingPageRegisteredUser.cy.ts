@@ -8,9 +8,10 @@ import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Billing page functionality for registered user', function () {
   beforeEach (()=>{
-    const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
     const itemSKU = variables.sku;
     HomePage.actions.findItemUsingSKU(itemSKU);
@@ -33,11 +34,10 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
   it('Verify that shipping method is displayed', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
-  it('Verify that guest user can change shipping address', function () {
+  it('Verify that register user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
@@ -59,7 +59,6 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.actions.selectAddressFromBook();
   });
   it('Verify that registered user can submit new billing address', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     BillingPage.click.shippingCheckbox();
     BillingPage.actions.addNewAddress();
@@ -85,9 +84,12 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.klarna);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.clearPay);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
+      if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+        BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
+      }
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay);
+
+      // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
     });
   });
   describe('Verify that registered user can place orders with available payment methods', function () {
@@ -104,12 +106,14 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
     it('Verify that registered user can place order using PayPal', function () {
-
-      // Need to try with origin
+      BillingPage.actions.selectPayPal();
+      BillingPage.actions.selectPayPal();
     });
-    it.only('Verify that registered user can place order using Klarna', function () {
-      BillingPage.actions.selectKlarna();
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
-    });
+    if (variables.locale == 'UK' || variables.locale == 'IE') {
+      it('Verify that guest user can place order using Klarna', function () {
+        BillingPage.actions.selectKlarna();
+        BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      });
+    }
   });
 });

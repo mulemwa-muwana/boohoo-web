@@ -5,7 +5,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/gb/',
-    sku: 'AGG05303-1',
+    sku: 'BGG07330-1',
     brand: 'nastygal.com',
     locale: 'UK',
     language: 'EN',

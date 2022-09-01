@@ -35,6 +35,6 @@ Cypress.Commands.add('createUser', (brand: GroupBrands) => {
 /**
  * Create an artefact file in Cypress, this file is used to fuel back end tests.
  */
-Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, name: string) => {
-  cy.writeFile(`cypress/artefacts/${name}.json`, JSON.stringify(testArtefact, null, 4));
+Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, name: string, folderName: string) => {
+  cy.writeFile(`cypress/artefacts/${folderName}/${name}.json`, JSON.stringify(testArtefact, null, 4));
 });

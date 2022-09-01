@@ -60,7 +60,7 @@ class BillingPage implements AbstractPage {
       cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select(month);
       cy.get('#dwfrm_billing_creditCardFields_expirationYear').select(year);
       cy.get('#dwfrm_billing_creditCardFields_securityCode').type(code);
-      cy.get('.b-checkout_step-controls > .b-button').click();
+      cy.get('[data-tau-payment-id="CREDIT_CARD"] button[type="submit"]').click();
     },
     emptyEmailField () {
       cy.get('#dwfrm_billing_contactInfoFields_email').clear();

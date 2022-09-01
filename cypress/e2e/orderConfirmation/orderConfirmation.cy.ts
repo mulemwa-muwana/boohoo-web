@@ -65,7 +65,7 @@ describe('Order confirmation page for guest user', function () {
           url: variables.url
         };
 
-        cy.createArtefact(testArtefactObject,`${variables.locale}_creditcard`.toLowerCase());
+        cy.createArtefact(testArtefactObject, 'worldpay', 'orderCreation');
         
       });
   });

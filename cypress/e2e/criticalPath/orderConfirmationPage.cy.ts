@@ -1,4 +1,3 @@
-
 import BillingPage from '../../pom/billing.page';
 import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';

@@ -7,7 +7,6 @@ import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import Addresses from '../../helpers/addresses';
-import shippingMethods from '../../helpers/shippingMethods';
 import { getCardProviderByBrand } from '../../helpers/common';
 
 describe('Order confirmation page for guest user', function () {

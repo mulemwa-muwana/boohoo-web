@@ -2,9 +2,34 @@ import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    paynowBtn:'',
+    paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button'
+    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    paymentTypeCC: '#payment-button-CREDIT_CARD',
+    paymentTypeKlarna: '',
+    creditCardFields_cardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
+    creditCardFields_cardOwner: '#dwfrm_billing_creditCardFields_cardOwner',
+    creditcreditCardFields_expirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
+    creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+
   },
   'nastygal.com': {
     paynowBtn: '.b-checkout_step-controls > .b-button',
@@ -12,7 +37,34 @@ const selectors: SelectorBrandMap = {
     
   },
   'dorothyperkins.com': {
-    paynowBtn:''
+    paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    paymentTypeCC: '#payment-button-CREDIT_CARD',
+    paymentTypeKlarna: '',
+    creditCardFields_cardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
+    creditCardFields_cardOwner: '#dwfrm_billing_creditCardFields_cardOwner',
+    creditcreditCardFields_expirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
+    creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+
   },
   'burton.co.uk': {
     paynowBtn:''
@@ -36,61 +88,85 @@ class BillingPage implements AbstractPage {
 
   click = {
     changeShippingAddress () {
-      cy.get(':nth-child(1) > .b-summary_group-subtitle > .b-button').click();
+      const changeShippingAddress = selectors[variables.brand].changeShippingAddress;
+      cy.get(changeShippingAddress).click();
     },
     changeShippingMethod () {
-      cy.get('.m-bordered > .b-summary_group-subtitle > .b-button').click();
+      const changeShippingMethod = selectors[variables.brand].changeShippingMethod;
+      cy.get(changeShippingMethod).click();
     },
     shippingCheckbox () {
-      cy.get('#dwfrm_billing_addressFields_useShipping').should('be.checked').uncheck();
+      const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
+      cy.get(shippingCheckbox).should('be.checked').uncheck();
     }
    
   };
 
   actions = {
     selectDate (day: string, month: string, year: string) {
-      cy.get('select[id="dwfrm_profile_customer_dayofbirth"]').should('be.visible').select(day);
-      cy.get('select[id="dwfrm_profile_customer_monthofbirth"]').select(month);
-      cy.get('select[id="dwfrm_profile_customer_yearOfBirth"]').select(year);
+      const customerDOBday = selectors[variables.brand].customerDOBday;
+      const customerDOBmonth = selectors[variables.brand].customerDOBmonth;
+      const customerDOByear = selectors[variables.brand].customerDOByear;
+      cy.get(customerDOBday).should('be.visible').select(day);
+      cy.get(customerDOBmonth).select(month);
+      cy.get(customerDOByear).select(year);
     },
     selectCreditCard (cardNo: string, cardOwner: string, month: string, year: string, code: string) {
-      cy.get('#payment-button-CREDIT_CARD').click();
-      cy.get('#dwfrm_billing_creditCardFields_cardNumber').type(cardNo);
-      cy.get('#dwfrm_billing_creditCardFields_cardOwner').type(cardOwner);
-      cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select(month);
-      cy.get('#dwfrm_billing_creditCardFields_expirationYear').select(year);
-      cy.get('#dwfrm_billing_creditCardFields_securityCode').type(code);
-      cy.get('.b-checkout_step-controls > .b-button').click();
+      const paymentTypeCC = selectors[variables.brand].paymentTypeCC;
+      const creditCardFieldsCardNumber = selectors[variables.brand].creditCardFieldsCardNumber;
+      const creditCardFieldsCardOwner = selectors[variables.brand].creditCardFieldsCardOwner;
+      const creditCardFieldsExpirationMonth = selectors[variables.brand].creditCardFieldsExpirationMonth;
+      const creditCardFieldsSecurityCode = selectors[variables.brand].creditCardFieldsSecurityCode;
+      const creditCardFieldsExpirationYear = selectors[variables.brand].creditCardFieldsExpirationYear;
+      cy.get(paymentTypeCC).click();
+      cy.get(creditCardFieldsCardNumber).type(cardNo);
+      cy.get(creditCardFieldsCardOwner).type(cardOwner);
+      cy.get(creditCardFieldsExpirationMonth).select(month);
+      cy.get(creditCardFieldsExpirationYear).select(year);
+      cy.get(creditCardFieldsSecurityCode).type(code);
+      const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
+      cy.get(paynowBtnCC).click();
     },
     emptyEmailField () {
-      cy.get('#dwfrm_billing_contactInfoFields_email').clear();
+      const emptyEmailField = selectors[variables.brand].emptyEmailField;
+      cy.get(emptyEmailField).clear();
     },
     addNewAddress () {
+      const addNewAddressBtn = selectors[variables.brand].addNewAddressBtn;
+      const addNewAddressField = selectors[variables.brand].addNewAddressField;
       if (variables.brand == 'boohoo.com') {
-        cy.get('.b-form_section > .b-address_selector-actions > .b-address_selector-button').click();
+        cy.get(addNewAddressBtn).click();
       }
-      cy.get('.b-form_section > .b-address_selector-actions > .b-button').click();
+      cy.get(addNewAddressField).click();
     },
     addBillingAddress (line1: string, city: string, county: string, postcode: string) {
+      const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
+      const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
+      const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
+      const billingPostCode = selectors[variables.brand].billingPostCode;
       if (variables.brand == 'boohoo.com') {
         cy.get('[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button').click();
       } else {
         cy.get('[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button').click();
       }
-      cy.get('#dwfrm_billing_addressFields_address1').should('be.visible').type(line1);
-      cy.get('#dwfrm_billing_addressFields_city').type(city);
-      cy.get('#dwfrm_billing_addressFields_states_stateCode').type(county);
-      cy.get('#dwfrm_billing_addressFields_postalCode').type(postcode);
+      cy.get(billingAddressFieldsAddress1).should('be.visible').type(line1);
+      cy.get(billingAddressFieldCity).type(city);
+      cy.get(billingAddressFieldsStateCode).type(county);
+      cy.get(billingPostCode).type(postcode);
 
     },
     addPromoCode (promo: string) {
-      cy.get('#dwfrm_coupon_couponCode').type(promo);
-      cy.get('#dwfrm_coupon_couponCode').click();
+      const couponCode = selectors[variables.brand].couponCode;
+      cy.get(couponCode).type(promo);
+      cy.get(couponCode).click();
     },
     addGiftCard (giftCard: string) {
-      cy.get('.b-gift_certificate-add').click();
-      cy.get('#dwfrm_billing_giftCertCode').should('be.visible').type(giftCard);
-      cy.get('#add-giftcert').click();
+      const addGiftCertificate = selectors[variables.brand].addGiftCertificate;
+      const giftCertCode = selectors[variables.brand].giftCertCode;
+      const addGiftCert = selectors[variables.brand].addGiftCert;
+      cy.get(addGiftCertificate).click();
+      cy.get(giftCertCode).should('be.visible').type(giftCard);
+      cy.get(addGiftCert).click();
     },
     selectAddressFromBook () {
       if (variables.brand == 'boohoo.com') {

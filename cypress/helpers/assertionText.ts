@@ -437,7 +437,7 @@ class AssertionText {
   footerLinkTrackApp: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
     NL: '',
-    DE: 'boohoo App', //to be consider for multiple brends
+    DE: 'boohoo App', // To be consider for multiple brends
     FR: '',
     DK: '',
     FI: '',
@@ -451,7 +451,7 @@ class AssertionText {
   footerLinkPremier: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
     NL: '',
-    DE: '', //not dispayed
+    DE: '', // Not dispayed
     FR: '',
     DK: '',
     FI: '',
@@ -535,7 +535,7 @@ class AssertionText {
   becomeAnAffiliate: TranslationMap = {
     EN: 'Become an Affiliate',
     NL: '',
-    DE: '', //not displayed
+    DE: '', // Not displayed
     FR: 'Affiliez-vous',
     DK: '',
     FI: '',
@@ -577,7 +577,7 @@ class AssertionText {
   privacyPolicy: TranslationMap = {
     EN: 'Privacy Notice - Updated March 2021',
     NL: '',
-    DE: 'Datenschutzbestimmungen', //FAILED
+    DE: 'Datenschutzbestimmungen', // FAILED
     FR: 'Avis de confidentialité',
     DK: '',
     FI: '',
@@ -591,7 +591,7 @@ class AssertionText {
   careers: TranslationMap = {
     EN: 'Careers',
     NL: '',
-    DE: 'Karriere', //FAILED
+    DE: 'Karriere', // FAILED
     FR: 'Carrières',
     DK: '',
     FI: '',

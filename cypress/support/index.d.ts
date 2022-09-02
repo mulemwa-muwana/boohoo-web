@@ -2,7 +2,7 @@ declare namespace Cypress {
         interface Chainable<Subject> {
             goOffline(): Chainable<null>;
             createUser(brand: GroupBrands): Chainable<Subject>;
-            createArtefact: (testArtefact: TestArtefact, filename: string) => void;
+            createArtefact: (testArtefact: TestArtefact, name: string, folderName: string) => void;
         }
 }
 

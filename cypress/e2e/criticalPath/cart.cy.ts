@@ -10,7 +10,7 @@ describe('Cart basic functionality for guest user', function () {
 
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();
   }); 
@@ -77,7 +77,7 @@ describe('Cart page for Registered user', function () {
     });
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();
   }); 

@@ -167,7 +167,7 @@ class PdpPage implements AbstractPage {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       cy.get(sizeVariations).find('button').each(($element) => {
         if (!$element.attr('title').includes('not available')) {
-          $element.click()
+          $element.trigger("click")
           return false;
         }
       })

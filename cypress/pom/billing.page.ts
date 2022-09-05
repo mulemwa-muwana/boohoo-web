@@ -21,15 +21,15 @@ const selectors: SelectorBrandMap = {
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     paymentTypeCC: '#payment-button-CREDIT_CARD',
     paymentTypeKlarna: '',
-    creditCardFields_cardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
-    creditCardFields_cardOwner: '#dwfrm_billing_creditCardFields_cardOwner',
-    creditcreditCardFields_expirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
-
+    creditCardFieldsCardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
+    creditCardFieldsCardOwner : '#dwfrm_billing_creditCardFields_cardOwner',
+    creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
   },
   'nastygal.com': {
     paynowBtn: '.b-checkout_step-controls > .b-button',
@@ -64,7 +64,6 @@ const selectors: SelectorBrandMap = {
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
-
   },
   'burton.co.uk': {
     paynowBtn:''

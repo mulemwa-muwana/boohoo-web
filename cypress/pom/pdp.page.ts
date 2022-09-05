@@ -14,8 +14,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart_icon-link',
     selectColor: '.b-variation_swatch-color_value',
-    sizeVariation: '.b-variation_swatch  ',
-    sizeVariationByTextValue: '.b-variation_swatch-value_text',
+    sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
     productCode: 'span[data-tau="b-product_details-id',
     productPrice: '.b-product_details-price',
@@ -36,8 +35,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart_icon-link',
     selectColor: '.b-variation_swatch-color_value',
-    sizeVariation: '.b-variation_swatch  ',
-    sizeVariationByTextValue: '.b-variation_swatch-value_text',
+    sizeVariations: '.b-product_details-variations > .m-size',
     pruductCode: 'span[data-tau="b-product_details-id',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
@@ -56,8 +54,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart_icon-link',
     selectColor: '.b-variation_swatch-color_value',
-    sizeVariation: '.b-variation_swatch  ',
-    sizeVariationByTextValue: '.b-variation_swatch-value_text',
+    sizeVariations: '.b-product_details-variations > .m-size',
     pruductCode: 'span[data-tau="b-product_details-id',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
@@ -76,8 +73,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart_icon-link',
     selectColor: '.b-variation_swatch-color_value',
-    sizeVariation: '.b-variation_swatch  ',
-    sizeVariationByTextValue: '.b-variation_swatch-value_text',
+    sizeVariations: '.b-product_details-variations > .m-size',
     pruductCode: 'span[data-tau="b-product_details-id',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
@@ -96,8 +92,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart_icon-link',
     selectColor: '.b-variation_swatch-color_value',
-    sizeVariation: '.b-variation_swatch  ',
-    sizeVariationByTextValue: '.b-variation_swatch-value_text',
+    sizeVariations: '.b-product_details-variations > .m-size',
     pruductCode: 'span[data-tau="b-product_details-id',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
@@ -168,10 +163,14 @@ class PdpPage implements AbstractPage {
       const selectColor = selectors[variables.brand].selectColor;
       cy.get(selectColor).eq(index).click({force: true});
     },
-    selectSize (index: number) {
-      const sizeVariation = selectors[variables.brand].sizeVariation;
-      const sizeVariationByTextValue = selectors[variables.brand].sizeVariationByTextValue;
-      cy.get(sizeVariation).find(sizeVariationByTextValue).eq(index).click({force: true});
+    selectSize () {
+      const sizeVariations = selectors[variables.brand].sizeVariations;
+      cy.get(sizeVariations).find('button').each(($element) => {
+        if (!$element.attr('title').includes('not available')) {
+          $element.trigger("click")
+          return false;
+        }
+      })
     },
     addToCart () {
       cy.wait(15000);

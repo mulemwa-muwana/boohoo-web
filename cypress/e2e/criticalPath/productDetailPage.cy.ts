@@ -34,7 +34,7 @@ describe('Product Details Page tests', function () {
   });
   it('TC06 Verify that it is possible to select a size when available', function () {
     PdpPage.actions.selectColor(0);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[variables.language]);
     PdpPage.actions.addToCart();
 
@@ -46,7 +46,7 @@ describe('Product Details Page tests', function () {
   });   
   it('TC08 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
-    PdpPage.actions.selectSize(0);
+    PdpPage.actions.selectSize();
     PdpPage.actions.addToCart();
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 

@@ -18,7 +18,7 @@ describe('Billing page functionality for guest user', function () {
     HomePage.goto();
   
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);

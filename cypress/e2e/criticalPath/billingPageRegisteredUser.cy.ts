@@ -15,7 +15,7 @@ describe('Billing page functionality for registered user', function () {
     HomePage.goto();
     const itemSKU = variables.sku;
     HomePage.actions.findItemUsingSKU(itemSKU);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);

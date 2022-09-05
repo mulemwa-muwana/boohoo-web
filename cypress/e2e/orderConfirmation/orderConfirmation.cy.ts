@@ -15,7 +15,7 @@ describe('Order confirmation page for guest user', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
@@ -40,7 +40,7 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.click.closePopUp();
   });
 
-  it('Verify that email is visible for guest user', async function () {
+  it('Get order details from order confirmation page and create test artefact', async function () {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get(':nth-child(1) > .b-summary_group-details').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get(':nth-child(2) > .b-summary_group-details').invoke('text').then(text => text.trim().substring(1)).as('orderValue');

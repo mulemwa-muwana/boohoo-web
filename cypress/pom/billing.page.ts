@@ -33,8 +33,21 @@ const selectors: SelectorBrandMap = {
   },
   'nastygal.com': {
     paynowBtn: '.b-checkout_step-controls > .b-button',
-    dateError: '#dwfrm_profile_customer_yearOfBirth-error'
-    
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    paymentTypeCC: '#payment-button-CREDIT_CARD',
+    paymentTypeKlarna: '',
+    creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
+    creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    creditCardFieldsCardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
+    creditCardFieldsCardOwner : '#dwfrm_billing_creditCardFields_cardOwner',
+    creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
   },
   'dorothyperkins.com': {
     paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',

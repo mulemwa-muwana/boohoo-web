@@ -32,7 +32,7 @@ const selectors: SelectorBrandMap = {
     creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
   },
   'nastygal.com': {
-    paynowBtn: '.b-checkout_step-controls > .b-button',
+    paynowBtnCC: '#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
@@ -79,10 +79,10 @@ const selectors: SelectorBrandMap = {
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
   },
   'burton.co.uk': {
-    paynowBtn:''
+    paynowBtnCC:''
   },
   'wallis.co.uk': {
-    paynowBtn:''
+    paynowBtnCC:''
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,

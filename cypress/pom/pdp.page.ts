@@ -239,7 +239,8 @@ class PdpPage implements AbstractPage {
       cy.get(productReturnsDescription).should('be.visible'); 
     },
     assertStartReturnPageIsDisplayed () {
-      const returnLink = selectors[variables.brand].returnLink;
+
+      // Temp: const returnLink = selectors[variables.brand].returnLink;
       cy.url().should('include', 'returns'); //  Need to be change
     },
     assertCompleteLookDisplayed (text: string) {
@@ -247,11 +248,13 @@ class PdpPage implements AbstractPage {
       cy.get(completeLookBox).should('have.text', text); //  Only boohoo
     },
     assertLinkNewSeasonIsLinked (text: string) {
-      const shopNowLinkNL = selectors[variables.brand].shopNowLinkNL;
+      
+      // Temp: const shopNowLinkNL = selectors[variables.brand].shopNowLinkNL;
       cy.url().should('include', text); //  Only boohoo brand // need to be change
     },
     assertLinkShoesAndAccIsLinked (text: string) {
-      const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
+
+      // Temp: const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.url().should('include', text); //  Only boohoo brand //need to be change
     }
     

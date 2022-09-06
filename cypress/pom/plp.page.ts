@@ -182,42 +182,42 @@ class PlpPage implements AbstractPage {
       cy.get(priceVariant).click({force: true});
     },
 
-    selectRefinementVariantShopByFit (shopByFit: string) {
+    selectRefinementVariantShopByFit () {
       const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
       cy.get(selectRefinementVariantShopByFit).click({force: true});
     },
 
-    selectRefinementVariantFit (fit: string) {
+    selectRefinementVariantFit () {
       const selectRefinementVariantFit = selectors[variables.brand].selectRefinementVariantFit;
       cy.get(selectRefinementVariantFit).click({force: true});
     },
     
-    selectRefinementVariantColour (colour: string) {
+    selectRefinementVariantColour () {
       const selectRefinementVariantColour = selectors[variables.brand].selectRefinementVariantColour;
       cy.get(selectRefinementVariantColour).click({force: true});
     },
 
-    selectRefinementVariantStyle (style: string) {
+    selectRefinementVariantStyle () {
       const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
       cy.get(selectRefinementVariantStyle).click({force: true});
     },
 
-    selectRefinementVariantSize (size: string) {
+    selectRefinementVariantSize () {
       const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
       cy.get(selectRefinementVariantSize).click({force: true});
     },
 
-    selectRefinementVariantCategory (category: string) {
+    selectRefinementVariantCategory () {
       const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
       cy.get(selectRefinementVariantCategory).click({force: true});
     },
 
-    selectRefinementVariantOccassion (occasion: string) {
+    selectRefinementVariantOccassion () {
       const selectRefinementVariantOccassion = selectors[variables.brand].selectRefinementVariantOccassion;
       cy.get(selectRefinementVariantOccassion).click({force: true});
     },
 
-    selectRefinementVariantShopByPrice (price: string) {
+    selectRefinementVariantShopByPrice () {
       const selectRefinementVariantShopByPrice = selectors[variables.brand].selectRefinementVariantShopByPrice;
       cy.get(selectRefinementVariantShopByPrice).click({force: true});
     },

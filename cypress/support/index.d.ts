@@ -53,40 +53,41 @@ declare type PaymentMethod =
     | 'ZipPay';
 
 declare type EnvironmentVariables = {
-        url: string;
-        sku: string;
-        brand: GroupBrands;
-        locale: Locale;
-        language: 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
-        shippingMethod: string;
-    }
+    url: string;
+    sku: string;
+    brand: GroupBrands;
+    locale: Locale;
+    language: 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
+    shippingMethod: string;
+}
     
 declare type TestArtefact = {
-        orderNumber: string;
-        orderTotal: string;
-        orderEmail: string;
-        deliveryMethod: string;
-        paymentMethod: PaymentMethod;
-        items: Array<{
-            sku: string;
-            quantity: number;
-        }>;
-        groupBrand: GroupBrands;
-        testScenario: TestScenario;
-        locale: Locale | CountryCode;
-        url: string;
-    };
+    orderNumber: string;
+    orderTotal: string;
+    orderEmail: string;
+    deliveryMethod: string;
+    paymentMethod: PaymentMethod;
+    items: Array<{
+        sku: string;
+        quantity: number;
+    }>;
+    groupBrand: GroupBrands;
+    testScenario: TestScenario;
+    locale: Locale | CountryCode;
+    url: string;
+    timestamp: number;
+};
     
 declare type TCustomerJSONResponse = {
-        email: string;
-        customer_id: string;
-        customer_no: string;
-    }
+    email: string;
+    customer_id: string;
+    customer_no: string;
+}
     
 declare type NewCustomerCredentials = {
-        email: string;
-        password: string;
-    };
+    email: string;
+    password: string;
+};
     
 declare type SelectorBrandMap = { [key in GroupBrands]: Record<string, string> };
     
@@ -100,43 +101,43 @@ declare type TLocale = 'uk' | 'us';
 declare type APIKeyType = 'Customer';
     
 declare type LoginCredentials = {
-        username: string;
-        password: string;
-        name: string;
-        guest: string;
-    }
+    username: string;
+    password: string;
+    name: string;
+    guest: string;
+}
     
 declare type AddressData = {
-        firstName: string;
-        lastName: string;
-        phone: string;
-        addrline1: string;
-        addrline2: string;
-        postcode: string;
-        addressName: string;
-        city: string;
-        county: string;
-        country: string;
-        countryCode: string;
-    }
+    firstName: string;
+    lastName: string;
+    phone: string;
+    addrline1: string;
+    addrline2: string;
+    postcode: string;
+    addressName: string;
+    city: string;
+    county: string;
+    country: string;
+    countryCode: string;
+}
     
 declare type ShippingMethods = {
-        shippingMethodName: string;
-    }
+    shippingMethodName: string;
+}
     
 declare type CardDetails = {
-        cardNo: string;
-        end: string;
-        owner: string;
-        date: string;
-        month: string;
-        year: string;
-        code: string;
-    }
+    cardNo: string;
+    end: string;
+    owner: string;
+    date: string;
+    month: string;
+    year: string;
+    code: string;
+}
     
 declare type SKU = {
-        sku: string;
-    }
+    sku: string;
+}
     
 declare type Language = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
 declare type Locale = 'UK' | 'US' |'CA' |'EU' |'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE';
@@ -144,14 +145,14 @@ declare type Locale = 'UK' | 'US' |'CA' |'EU' |'AU' |'NZ' |'NL' | 'DE' | 'FR' | 
 declare type TranslationMap = { [key in Language]: string };
     
 declare type PaymentMethodSelector = {
-        card: string;
-        payPal: string;
-        klarna: string;
-        clearPay: string;
-        amazonPay: string;
-        layBuy: string;
-        zipPay: string;
-    }
+    card: string;
+    payPal: string;
+    klarna: string;
+    clearPay: string;
+    amazonPay: string;
+    layBuy: string;
+    zipPay: string;
+}
     
 declare type Sizes = 'UK' | 'US';
     

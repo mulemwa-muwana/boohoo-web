@@ -82,7 +82,6 @@ const selectors: SelectorBrandMap = {
     paynowBtnCC:''
   },
   'wallis.co.uk': {
-<<<<<<< HEAD
     paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
@@ -110,9 +109,6 @@ const selectors: SelectorBrandMap = {
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
-=======
-    paynowBtnCC:''
->>>>>>> master
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,

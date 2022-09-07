@@ -104,9 +104,9 @@ class CheckoutPage implements AbstractPage {
       const passwordField = selectors[variables.brand].passwordField;
       cy.get(passwordField).should('be.visible');
     },
-    assertGuestCheckoutEmai () {
-      const guestCheckoutEmai = selectors[variables.brand].guestCheckoutEmai;
-      cy.get(guestCheckoutEmai).should('be.visible');
+    assertGuestCheckoutEmail () {
+      const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail;
+      cy.get(guestCheckoutEmail).should('be.visible');
     },
     assertPremierIsDisplayed () {
       const premierIsDisplayed = selectors[variables.brand].premierIsDisplayed;

@@ -131,10 +131,10 @@ class HomePage implements AbstractPage {
     findItemUsingSKU (SKU: string) {
       if (variables.brand != 'boohoo.com') {
         const searchIcon = selectors[variables.brand].searchIcon;
-        cy.get(searchIcon).click();
+        cy.get(searchIcon).click({force: true});
       }
       const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).click().type(SKU+'{enter}');
+      cy.get(searchField).click({force: true}).type(SKU+'{enter}');
     },
     forgotPassword (email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();

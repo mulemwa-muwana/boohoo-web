@@ -79,6 +79,7 @@ describe('Order confirmation page for registered user', function () {
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize();
     cy.wait(2000);
+    cy.scrollTo('top');
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  

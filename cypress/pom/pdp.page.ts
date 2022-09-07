@@ -13,7 +13,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart_icon-link',
-    selectColor: '.b-variation_swatch-color_value',
+    selectColor: '#maincontent > div > div > div > div.l-pdp-top > main > div.b-product_details-form > div.b-product_details-variations > section.b-variations_item.m-swatch.m-color',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
     productCode: 'span[data-tau="b-product_details-id',
@@ -122,7 +122,9 @@ class PdpPage implements AbstractPage {
 
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart; 
-      cy.get(addToCart).should('be.visible').click(); 
+      if (variables.brand == 'wallis.co.uk') {
+        cy.get(addToCart).should('be.visible').click({force:true}); 
+      } else {cy.get(addToCart).should('be.visible').click();}
     },
     addToWishList () {
       const addToWishListButton = selectors[variables.brand].addToWishListButton;
@@ -167,10 +169,10 @@ class PdpPage implements AbstractPage {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       cy.get(sizeVariations).find('button').each(($element) => {
         if (!$element.attr('title').includes('not available')) {
-          $element.trigger("click")
+          $element.trigger('click');
           return false;
         }
-      })
+      });
     },
     addToCart () {
       cy.wait(15000);

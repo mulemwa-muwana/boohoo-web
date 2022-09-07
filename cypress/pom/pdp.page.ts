@@ -122,13 +122,9 @@ class PdpPage implements AbstractPage {
 
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart; 
-<<<<<<< HEAD
       if (variables.brand == 'wallis.co.uk') {
         cy.get(addToCart).should('be.visible').click({force:true}); 
       } else {cy.get(addToCart).should('be.visible').click();}
-=======
-      cy.get(addToCart).should('be.visible').click({force: true}); 
->>>>>>> master
     },
     addToWishList () {
       const addToWishListButton = selectors[variables.brand].addToWishListButton;

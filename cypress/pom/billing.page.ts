@@ -50,7 +50,7 @@ const selectors: SelectorBrandMap = {
     creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
   },
   'dorothyperkins.com': {
-    paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    paynowBtnCC:'#payment-button-scheme',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',

@@ -50,7 +50,7 @@ describe('Billing page functionality for guest user', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
-  it.only('Verify that guest user can change shipping address', function () {
+  it('Verify that guest user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });

@@ -196,6 +196,20 @@ class AssertionText {
     ES: '¡HURRA! esta en stock' 
   };
 
+  inStockArkadia: TranslationMap = {
+    EN: 'Currently in stock',
+    FR: '\n                YAY ! Cet article est en stock\n            \n                YAY ! Cet article est en stock\n            ',
+    NL: 'JAAAAA! Het is op voorraad',
+    DE: 'YAY! Es ist auf Lager',
+    DK: 'YAY! Den er på lager',
+    FI: 'JEE! Se on varastossa',
+    NO: 'JIPPI! Den er på lager',
+    SE: 'JIPPIE! Den finns i lager',
+    IL: 'יש! זה במלאי',
+    IT: 'SÌÌ! È in magazzino',
+    ES: '¡HURRA! esta en stock' 
+  };
+
   sizeErrorMsg: TranslationMap = {
     EN: 'Oops please select a size',
     FR: '\n                    Oups, veuillez choisir une taille\n                ',

@@ -75,7 +75,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUp: '#WLbanner_2112171003 > a'
+    closePopUP: '#WLbanner_2201101815 > a'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -94,8 +94,8 @@ class OrderConfirmation implements AbstractPage {
 
   click = {
     closePopUp () {
-      const closePopUp = selectors[variables.brand].closePopUp;
-      cy.get(closePopUp, {timeout: 10000}).click();
+      const closePopUP = selectors[variables.brand].closePopUP;
+      cy.get(closePopUP, {timeout: 20000}).click();
     }
   };
 

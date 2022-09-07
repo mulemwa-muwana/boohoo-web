@@ -182,7 +182,7 @@ class PlpPage implements AbstractPage {
       cy.get(priceVariant).click({force: true});
     },
 
-    selectRefinementVariantShopByFit () {
+    selectRefinementVariantShopByFit (text: string) {
       const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
       cy.get(selectRefinementVariantShopByFit).click({force: true});
     },
@@ -192,32 +192,32 @@ class PlpPage implements AbstractPage {
       cy.get(selectRefinementVariantFit).click({force: true});
     },
     
-    selectRefinementVariantColour () {
+    selectRefinementVariantColour (text: string) {
       const selectRefinementVariantColour = selectors[variables.brand].selectRefinementVariantColour;
       cy.get(selectRefinementVariantColour).click({force: true});
     },
 
-    selectRefinementVariantStyle () {
+    selectRefinementVariantStyle (text: string) {
       const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
       cy.get(selectRefinementVariantStyle).click({force: true});
     },
 
-    selectRefinementVariantSize () {
+    selectRefinementVariantSize (text: string) {
       const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
       cy.get(selectRefinementVariantSize).click({force: true});
     },
 
-    selectRefinementVariantCategory () {
+    selectRefinementVariantCategory (text: string) {
       const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
       cy.get(selectRefinementVariantCategory).click({force: true});
     },
 
-    selectRefinementVariantOccassion () {
+    selectRefinementVariantOccassion (text: string) {
       const selectRefinementVariantOccassion = selectors[variables.brand].selectRefinementVariantOccassion;
       cy.get(selectRefinementVariantOccassion).click({force: true});
     },
 
-    selectRefinementVariantShopByPrice () {
+    selectRefinementVariantShopByPrice (text: string) {
       const selectRefinementVariantShopByPrice = selectors[variables.brand].selectRefinementVariantShopByPrice;
       cy.get(selectRefinementVariantShopByPrice).click({force: true});
     },

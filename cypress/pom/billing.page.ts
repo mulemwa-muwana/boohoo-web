@@ -82,7 +82,33 @@ const selectors: SelectorBrandMap = {
     paynowBtnCC:''
   },
   'wallis.co.uk': {
-    paynowBtnCC:''
+    paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    paymentTypeCC: '#payment-button-CREDIT_CARD',
+    paymentTypeKlarna: '',
+    creditCardFieldsCardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
+    creditCardFieldsCardOwner: '#dwfrm_billing_creditCardFields_cardOwner',
+    creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
+    creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -331,7 +357,11 @@ class BillingPage implements AbstractPage {
       cy.url().should('include', 'shipping');
     },
     assertOrderConfirmationPAgeIsDisplayed () {
-      cy.url().should('include', 'order-confirmation');
+      if (variables.brand == 'wallis.co.uk') {
+        cy.url().should('include', 'orderconfirmation');
+      } else {
+        cy.url().should('include', 'order-confirmation');
+      }     
     },
     assertEmailFieldCantBeChanged () {
       cy.get('#dwfrm_billing_contactInfoFields_email').should('have.attr', 'disabled');

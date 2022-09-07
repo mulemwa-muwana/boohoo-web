@@ -16,8 +16,8 @@ describe('Home Page', function () {
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    CheckoutPage.assertions.assertEmailnFieldForGuestUserIsVisible();
-    CheckoutPage.assertions.assertLoginFieldForRegisteredUserIsVisible();
+    CheckoutPage.assertions.assertGuestCheckoutEmail();
+    CheckoutPage.assertions.assertUserEmailField();
     CheckoutPage.assertions.assertPasswordFieldForRegisteredUserIsVisible();
   });
 

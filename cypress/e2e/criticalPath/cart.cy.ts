@@ -44,7 +44,7 @@ describe('Cart basic functionality for guest user', function () {
   it('Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
     cy.wait(5000);
     CartPage.click.proceedToCheckout();
-    CheckoutPage.assertions.assertEmailnFieldForGuestUserIsVisible();
+    CheckoutPage.assertions.assertGuestCheckoutEmail();
   });
   it('Verify that PayPal CTA is displayed and functional', function () {
     CartPage.assertions.assertPayPalCTAisVisible();

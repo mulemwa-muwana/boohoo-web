@@ -17,7 +17,8 @@ const selectors: SelectorBrandMap = {
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
-    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete'
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -32,7 +33,8 @@ const selectors: SelectorBrandMap = {
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
-    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete'
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -44,11 +46,12 @@ const selectors: SelectorBrandMap = {
     addNewAddressButton: '.b-address_selector-button',
     editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     editCart: '.b-summary_order-header > .b-link',
-    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
-    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete'
   },
   'burton.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -64,7 +67,8 @@ const selectors: SelectorBrandMap = {
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
-    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete'
   },
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -80,7 +84,8 @@ const selectors: SelectorBrandMap = {
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
-    cancelAddingNewAddress: '.b-button m-link b-address_form-back'
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -166,7 +171,8 @@ class ShippingPage implements AbstractPage {
       cy.get('#dwfrm_coupon_couponCode').type(promoCode);
     },
     addressLookupField (address: string) {
-      cy.get('#LoqateAutocomplete').type(address).should('be.visible');
+      const PostcodeLookup = selectors[variables.brand].PostcodeLookup;
+      cy.get(PostcodeLookup).click({force: true}).type(address).should('be.visible');
     },
     firstNameField (fname: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_firstName').type(fname);
@@ -252,7 +258,8 @@ class ShippingPage implements AbstractPage {
       cy.get('[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message').should('contain.text', text);
     },
     assertPostcodeLookupIsVisible () {
-      cy.get('#LoqateAutocomplete').should('be.visible');
+      const PostcodeLookup = selectors[variables.brand].PostcodeLookup;
+      cy.get(PostcodeLookup).should('be.visible');
     },
     assertOtherAddressesAreVisible () {
       cy.get('.m-list > :nth-child(3) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface').should('be.visible');

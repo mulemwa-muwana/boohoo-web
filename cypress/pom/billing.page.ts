@@ -32,7 +32,7 @@ const selectors: SelectorBrandMap = {
     creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
   },
   'nastygal.com': {
-    paynowBtn: '.b-checkout_step-controls > .b-button',
+    paynowBtnCC: '#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
@@ -50,7 +50,7 @@ const selectors: SelectorBrandMap = {
     creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
   },
   'dorothyperkins.com': {
-    paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    paynowBtnCC:'#payment-button-scheme',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
@@ -79,9 +79,10 @@ const selectors: SelectorBrandMap = {
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
   },
   'burton.co.uk': {
-    paynowBtn:''
+    paynowBtnCC:''
   },
   'wallis.co.uk': {
+<<<<<<< HEAD
     paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
@@ -109,6 +110,9 @@ const selectors: SelectorBrandMap = {
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+=======
+    paynowBtnCC:''
+>>>>>>> master
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,

@@ -61,7 +61,8 @@ describe('Order confirmation page for guest user', function () {
           }],
           testScenario: 'CompleteOrder',
           locale: variables.locale,
-          url: variables.url
+          url: variables.url,
+          timestamp: Date.now()
         };
 
         cy.createArtefact(testArtefactObject, 'worldpay', 'orderCreation'); // Names should be hard coded I think...

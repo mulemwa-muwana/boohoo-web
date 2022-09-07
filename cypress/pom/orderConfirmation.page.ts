@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUp: '#WLbanner_2112171003 > a',
+    closePopUp: '#WLbanner_2112171003 > a'
   },
   'nastygal.com': {
     emailIsDisplayed:'.b-confirmation_header-email',
@@ -30,6 +30,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUp: '#WLbanner_1526548622 > [href="javascript:void(0);"]'
   },
   'dorothyperkins.com': {
     emailIsDisplayed:'.b-confirmation_header-email',
@@ -44,6 +45,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUp: '#WLbanner_2112171003 > a'
   },
   'burton.co.uk': {
     emailIsDisplayed:'.b-confirmation_header-email',
@@ -58,6 +60,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUp: '#WLbanner_2112171003 > a'
   },
   'wallis.co.uk': {
     emailIsDisplayed:'.b-confirmation_header-email',

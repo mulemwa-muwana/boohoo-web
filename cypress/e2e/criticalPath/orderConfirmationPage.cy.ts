@@ -90,13 +90,14 @@ describe('Order confirmation page for registered user', function () {
     });
 
     //  ShippingPage.actions.clickPreferedShippingMethod(variables);
-    shippingPage.click.proceedToBilling(); 
+    shippingPage.click.proceedToBilling();
+    cy.location('search').should('equal', '?registration=false&step=billing');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     
   });
-  it('Verify that email is visible', function () {
+  it.only('Verify that email is visible', function () {
     orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+cypress789@gmail.com');  
   });
   it('Verify that order number is visible', function () {

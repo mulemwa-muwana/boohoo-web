@@ -4,8 +4,8 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.burton.co.uk/',
-    sku: 'ABB01243',
+    url: 'https://storefront:Oreo2022@dwstg.burton.co.uk/',
+    sku: 'BBB01461-2',
     brand: 'burton.co.uk',
     locale: 'UK',
     language: 'EN',
@@ -21,5 +21,6 @@ export default defineConfig({
 
       // Implement node event listeners here
     },
+    numTestsKeptInMemory: 0
   },
 });

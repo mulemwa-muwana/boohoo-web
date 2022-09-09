@@ -69,9 +69,9 @@ const selectors: SelectorBrandMap = {
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     paymentTypeCC: '#payment-button-CREDIT_CARD',
     paymentTypeKlarna: '',
-    creditCardFields_cardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
-    creditCardFields_cardOwner: '#dwfrm_billing_creditCardFields_cardOwner',
-    creditcreditCardFields_expirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsCardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
+    creditCardFieldsCardOwner: '#dwfrm_billing_creditCardFields_cardOwner',
+    creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
@@ -79,7 +79,33 @@ const selectors: SelectorBrandMap = {
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
   },
   'burton.co.uk': {
-    paynowBtnCC:''
+    paynowBtnCC:'#payment-details-scheme > div > div.b-payment_accordion-submit.b-checkout_step-controls > div > button',
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    paymentTypeCC: '#payment-button-scheme > .b-payment_accordion-icon',
+    paymentTypeKlarna: '',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardOwner: '#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__field.adyen-checkout__card__holderName > label > span.adyen-checkout__input-wrapper > input',
+    creditCardFieldsExpirationMonth: '#encryptedExpiryDate',
+    creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
   },
   'wallis.co.uk': {
     paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
@@ -156,14 +182,24 @@ class BillingPage implements AbstractPage {
       const creditCardFieldsExpirationMonth = selectors[variables.brand].creditCardFieldsExpirationMonth;
       const creditCardFieldsSecurityCode = selectors[variables.brand].creditCardFieldsSecurityCode;
       const creditCardFieldsExpirationYear = selectors[variables.brand].creditCardFieldsExpirationYear;
-      cy.get(paymentTypeCC).click();
-      cy.get(creditCardFieldsCardNumber).type(cardNo);
-      cy.get(creditCardFieldsCardOwner).type(cardOwner);
-      cy.get(creditCardFieldsExpirationMonth).select(month);
-      cy.get(creditCardFieldsExpirationYear).select(year);
-      cy.get(creditCardFieldsSecurityCode).type(code);
       const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
-      cy.get(paynowBtnCC).click();
+      cy.wait(1000);
+      cy.get(paymentTypeCC).click();
+      if (variables.brand == 'burton.co.uk') {
+        cy.iframe('#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__card__form > div.adyen-checkout__field.adyen-checkout__field--cardNumber > label > span.adyen-checkout__input-wrapper > span > iframe').find(creditCardFieldsCardNumber).should('be.visible').type('4111111111111111');
+        cy.iframe('#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__card__form > div.adyen-checkout__card__exp-cvc.adyen-checkout__field-wrapper > div.adyen-checkout__field.adyen-checkout__field--50.adyen-checkout__field--expiryDate > label > span.adyen-checkout__input-wrapper > span > iframe').find(creditCardFieldsExpirationMonth).should('be.visible').type('0330');
+        cy.iframe('#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__card__form > div.adyen-checkout__card__exp-cvc.adyen-checkout__field-wrapper > div.adyen-checkout__field.adyen-checkout__field--50.adyen-checkout__field__cvc.adyen-checkout__field--securityCode > label > span.adyen-checkout__input-wrapper > span > iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
+        cy.get(creditCardFieldsCardOwner).type(cardOwner);
+        cy.get(paynowBtnCC).click();
+      } else {
+        cy.get(creditCardFieldsCardNumber).type(cardNo);
+        cy.get(creditCardFieldsCardOwner).type(cardOwner);
+        cy.get(creditCardFieldsExpirationMonth).select(month);
+        cy.get(creditCardFieldsExpirationYear).select(year);
+        cy.get(creditCardFieldsSecurityCode).type(code);
+        cy.get(paynowBtnCC).click();
+      }
+  
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -357,7 +393,7 @@ class BillingPage implements AbstractPage {
       cy.url().should('include', 'shipping');
     },
     assertOrderConfirmationPAgeIsDisplayed () {
-      if (variables.brand == 'wallis.co.uk') {
+      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk') {
         cy.url().should('include', 'orderconfirmation');
       } else {
         cy.url().should('include', 'order-confirmation');

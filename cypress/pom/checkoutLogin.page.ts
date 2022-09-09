@@ -31,9 +31,9 @@ const selectors: SelectorBrandMap = {
   'burton.co.uk': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
     userEmailField: '#dwfrm_login_email',
-    passwordField:'#dwfrm_login_password]',
+    passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button'
+    continueAsRegisteredUser: ':nth-child(9) > .b-login_form-group_cta > .b-button'
   },
   'wallis.co.uk': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
@@ -80,11 +80,11 @@ class CheckoutPage implements AbstractPage {
   actions = {
     guestCheckoutEmail (guestEmail: string) {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
-      cy.get(guestCheckoutEmail).type(guestEmail);
+      cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
     },
     userEmailField (username: string) {  
       const userEmailField = selectors[variables.brand].userEmailField;
-      cy.get(userEmailField).type(username);
+      cy.get(userEmailField).click({force:true}).type(username);
     },
     passwordField (password: string) {  
       const passwordField = selectors[variables.brand].passwordField;

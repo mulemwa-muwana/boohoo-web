@@ -90,7 +90,7 @@ describe('Order confirmation page for registered user', function () {
     });
 
     //  ShippingPage.actions.clickPreferedShippingMethod(variables);
-    shippingPage.click.proceedToBilling(); 
+    shippingPage.click.proceedToBilling();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();

@@ -33,7 +33,7 @@ const selectors: SelectorBrandMap = {
     userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button'
+    continueAsRegisteredUser: ':nth-child(9) > .b-login_form-group_cta > .b-button'
   },
   'wallis.co.uk': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',

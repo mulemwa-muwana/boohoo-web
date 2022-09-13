@@ -1,13 +1,14 @@
 import axios from 'axios';
 import * as dotenv from 'dotenv';
-dotenv.config();
+
+axios.defaults.validateStatus = () => { return true; };
 
 function generateRandomEmail () {
   return `testemail${Date.now()}${Math.floor(Math.random() * 100)}@boohoo.com`;
 }
 
 function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType): string {
-        
+
   // We bring this into the method as the env variables won't load on start and need to be accessed in real time.
   const customer: BrandMap = {
     'boohoo.com': process.env.BOOHOO_CUSTOMER_MANAGER_APIKEY,
@@ -30,6 +31,7 @@ function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType): string
 
   const keyMap: BrandMap = map[keyType];
   const key: string = keyMap[brand];
+
   return key;
 }
 
@@ -49,6 +51,13 @@ async function getBearerAuth (brand: GroupBrands, realm: TLocale): Promise<strin
     const headers = response.headers;
     return headers['x-amzn-remapped-authorization'] as string; 
   }
+  console.log(JSON.stringify({
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': brandCustomerManagerKey
+    }
+  }, null, 4));
   throw Error('getBearerAuth: Did not get a success response status, with error code ' + response.status);
 }
 
@@ -79,6 +88,7 @@ export class TestCustomer {
 }
 
 export default async function (brand: GroupBrands, realm: TLocale = 'uk'): Promise<TestCustomer> {
+  dotenv.config();
 
   // Get API token.
   const brandCustomerManagerKey = getCustomerKeyByBrand(brand, 'Customer');

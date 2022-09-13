@@ -1,8 +1,10 @@
 import AbstractPage from './abstract/abstract.page';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 class CartPage implements AbstractPage {
   goto (): void {
-    cy.visit('/cart');
+    cy.visit(variables.url + '/cart');
   }
 
   click = {
@@ -16,6 +18,9 @@ class CartPage implements AbstractPage {
     },
     proceedToCheckout () {
       cy.get('a[data-tau="minicart_start_checkout_bottom"]').should('be.visible').click();
+    },
+    cartPageCheckoutButton () {
+      cy.get('.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button').click();
     }
   };
 

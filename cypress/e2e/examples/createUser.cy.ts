@@ -1,4 +1,3 @@
-import { TestCustomer } from '../../plugins/TestDataManager';
 
 describe('here\'s an example of using the task', () => {
   it('usage below', () => {
@@ -7,7 +6,7 @@ describe('here\'s an example of using the task', () => {
     // Create a new user using the task method
     // You need the argument to be a part of the GroupBrands enum.
     // You WILL need to have a file called .env which contains all the API keys, contact Miona or Jordan for this.
-    cy.createUser('boohoo.com').then((customer: TestCustomer) => {
+    cy.createUser('boohoo.com').then((customer: NewCustomerCredentials) => {
       cy.log(customer.email);
       cy.log(customer.password);
 

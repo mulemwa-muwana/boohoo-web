@@ -14,7 +14,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'United Kingdom',
         city: 'Aberdeen',
-        countryCode: 'UK',
+        countryCode: 'GB',
         county: 'Aberdeenshire',
       },
       secondaryAddress: {
@@ -27,7 +27,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'United Kingdom',
         city: 'Aberdeen',
-        countryCode: 'UK',
+        countryCode: 'GB',
         county: 'Aberdeenshire',
       }
     },

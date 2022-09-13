@@ -20,7 +20,7 @@ describe('Login Functionality tests', function () {
     // Just a comment added 
   });
 
-  it('Verify that user can not login with invalid credentials', function () {  
+  it('Verify that user can not login with invalid credentials', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     LoginPage.actions.login('euboohoo@gmail.com', 'boohoo12345');    
     HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
@@ -41,14 +41,16 @@ describe('Login Functionality tests', function () {
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
     });
     MyAccountPage.click.logOutLink();
-    LoginPage.assertions.assertLoginFormIsPresent();
+    LoginPage.assertions.assertLoginFormIsPresent();  
   });
 
   it('Verify that user can start process of reseting password using the "Forgot your password?" link', function () {
-    HomePage.click.logInIcon(); 
-    HomePage.actions.forgotPassword('jelenaboohoo@gmail.com');
+    LoginPage.click.loginIcon();
+    LoginPage.click.passwordResetLink();
+    cy.wait(2000);
+    LoginPage.actions.resetPasswordEmail('jelenaboohoo@gmail.com');
+    LoginPage.click.resetPasswordButon();
     HomePage.assertions.assertForgotPasswordMessageisDisplayed('jelenaboohoo@gmail.com');
-
   });
 
 });

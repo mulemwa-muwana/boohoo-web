@@ -252,6 +252,20 @@ class AssertionText {
     ES: ' Lo sentimos, su correo electrónico o contraseña no coincide con nuestros registros'
   };
 
+  emptyEmailFieldErrorBillingPage: TranslationMap = {
+    EN: '',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   assertUserIsNotLoggedIn: TranslationMap = {
     EN: 'Login',
     FR: 'Connexion',

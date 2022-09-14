@@ -1,4 +1,3 @@
-import assertionText from '../helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -44,7 +43,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -134,7 +133,7 @@ class ShippingPage implements AbstractPage {
     },
     editAddress () {
       const editAddress = selectors[variables.brand].editAddress;
-      cy.get(editAddress).should('be.visible').click();
+      cy.get(editAddress).click();
     },
     addNewAddressButton () {
       const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
@@ -219,14 +218,14 @@ class ShippingPage implements AbstractPage {
     assertSavedShippingAddressIsDispayed () {
       cy.get('b-address-name').eq(1).should('be.visible').should('not.be.empty');
     }, 
-    assertFirstNameIsMandatory () {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
+    assertFirstNameIsMandatory (fname: string) {
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', fname); 
     },
-    assertCityIsMandatory () {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
+    assertCityIsMandatory (city: string) {
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', city); 
     },
-    assertPostCodeIsMandatory () {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', assertionText.ShippingMandatoryFieldsFnameLnamePostcode.EN);
+    assertPostCodeIsMandatory (postcode: string) {
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', postcode); 
     },
     assertUserProceededToBillinPage () {
       cy.url().should('include', 'billing');
@@ -268,6 +267,10 @@ class ShippingPage implements AbstractPage {
       cy.get('.b-minicart_product-inner').each(() => {
         cy.contains(product.trim());
       });
+    },
+    assertAddressLookupIsVisible () {
+      const PostcodeLookup = selectors[variables.brand].PostcodeLookup;
+      cy.get(PostcodeLookup).should('be.visible');
     }
   };
 

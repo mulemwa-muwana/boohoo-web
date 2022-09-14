@@ -3,24 +3,29 @@ import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
-import homePage from '../../pom/home.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Home Page', function () {
   
   beforeEach(() => {
-    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
-    HomePage.click.searchField();
-    HomePage.actions.findItemUsingSKU[variables.sku];
+    HomePage.actions.findItemUsingSKU(variables.sku);
+    pdpPage.actions.selectSize();
+    cy.wait(2000);
     pdpPage.click.addToCart();
     cy.wait(7000);
-    homePage.click.cartIcon();  
+    HomePage.click.cartIcon();  
     pdpPage.click.miniCartViewCartBtn();
     cartPage.click.proceedToCheckout();
-    checkoutPage.actions.guestCheckoutEmail('euboohoo+guest@gmail.com');
+
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      checkoutPage.actions.guestCheckoutEmail(credentials.guest);
+    });
     checkoutPage.click.continueAsGuestBtn();
   });
 
@@ -30,9 +35,15 @@ describe('Home Page', function () {
 
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertFirstNameIsMandatory();
-    shippingPage.assertions.assertCityIsMandatory();
-    shippingPage.assertions.assertPostCodeIsMandatory();
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      shippingPage.assertions.assertCityIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    } else {
+      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      shippingPage.assertions.assertCityIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+    }   
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
@@ -64,9 +75,7 @@ describe('Home Page', function () {
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
-    shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.sku]);
+    shippingPage.assertions.assertPostcodeLookupIsVisible();
   });
 
   it('Verify that "Enter manually" button allows guest to enter address details', () => {
@@ -105,7 +114,7 @@ describe('Home Page', function () {
     shippingPage.click.proceedToBilling();
   });
 
-  it('Verify that user is able to select DPD shipping method', () => {
+  it.skip('Verify that user is able to select DPD shipping method', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod2');
@@ -165,4 +174,3 @@ describe('Home Page', function () {
   });
 
 });
-

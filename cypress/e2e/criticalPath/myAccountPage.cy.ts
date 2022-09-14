@@ -50,7 +50,6 @@ describe('Account page', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     MyAccountPage.click.addressesLink();
     MyAccountPage.actions.createAddress(localeAddress);
-    MyAccountPage.assertions.assertNewAddressData(localeAddress.firstName);
   });
   it('TC07 Verify that addresses show correct default address information', function () {
     const variables = Cypress.env() as EnvironmentVariables;

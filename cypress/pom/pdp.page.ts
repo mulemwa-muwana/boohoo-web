@@ -122,7 +122,7 @@ class PdpPage implements AbstractPage {
 
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart; 
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk') {
+      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' ) {
         cy.get(addToCart).should('be.visible').click({force:true}); 
       } else {cy.get(addToCart).should('be.visible').click();}
     },

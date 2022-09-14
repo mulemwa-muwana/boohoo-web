@@ -8,20 +8,22 @@ import homePage from '../../pom/home.page';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Home Page', function () {
   
-  beforeEach(() => {
+  beforeEach (()=>{
     HomePage.goto();
+    const itemSKU = variables.sku;
+    HomePage.actions.findItemUsingSKU(itemSKU);
+    pdpPage.actions.selectSize();
+    cy.wait(2000);
+    pdpPage.click.addToCart();
+    cy.wait(7000);
+    HomePage.click.cartIcon();  
+    pdpPage.click.miniCartViewCartBtn();
+    cartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      const variables = Cypress.env() as EnvironmentVariables;
-      HomePage.goto();
-      HomePage.click.searchField();
-      HomePage.actions.findItemUsingSKU(variables.sku);
-      pdpPage.click.addToCart();
-      cy.wait(7000);
-      homePage.click.cartIcon();  
-      pdpPage.click.miniCartViewCartBtn();
-      cartPage.click.proceedToCheckout();
       checkoutPage.actions.userEmailField(credentials.username);
       checkoutPage.actions.passwordField(credentials.password);
       checkoutPage.click.continueAsRegisteredUser();
@@ -33,10 +35,17 @@ describe('Home Page', function () {
   });
 
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+    shippingPage.click.addNewAddressButton();
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertFirstNameIsMandatory();
-    shippingPage.assertions.assertCityIsMandatory();
-    shippingPage.assertions.assertPostCodeIsMandatory();
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      shippingPage.assertions.assertCityIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    } else {
+      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      shippingPage.assertions.assertCityIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+    }   
   });
 
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
@@ -46,7 +55,8 @@ describe('Home Page', function () {
 
   it('Verify that user can edit saved shipping address', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
+    shippingPage.click.editAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -84,21 +94,21 @@ describe('Home Page', function () {
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
+  it.only('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
-  it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
+  it.only('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
+  it.only('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.actions.phoneNumberField(localeAddress.phone);

@@ -73,9 +73,10 @@ const selectors: SelectorBrandMap = {
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
-    productImageIsDisplayed: '.b-product_tile-image',
+    productImageIsDisplayed: '.b-product_tile-image img',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
-    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link',
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
   },
   'burton.co.uk': {
     categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
@@ -287,6 +288,10 @@ class PlpPage implements AbstractPage {
     assertProductVariantIsApplied (text: string) {
       cy.url().should('include', text);
     },
+    assertItemIsAddedToWishlistColorChange () {
+      const wishListIconColor = selectors[variables.brand].wishListIconColor;
+      cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
+    }
        
   };
 }

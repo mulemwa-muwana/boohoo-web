@@ -25,7 +25,7 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-search_input-submit > .i-icon',
-    registrationButton: '.b-registration_benefits > .b-button',
+    registrationButton: '#page-body > div.b-miniaccount_panel > div > div > div > div.b-miniaccount-content > div.b-registration_benefits > a',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',

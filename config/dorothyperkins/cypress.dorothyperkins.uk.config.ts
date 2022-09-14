@@ -23,4 +23,5 @@ export default defineConfig({
     },
     numTestsKeptInMemory: 0
   },
+  numTestsKeptInMemory: 0
 });

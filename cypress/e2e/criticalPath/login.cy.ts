@@ -6,7 +6,6 @@ import MyAccountPage from '../../pom/myaccount.page';
 describe('Login Functionality tests', function () {
 
   beforeEach(() => {
-
     HomePage.goto();  
   });
     

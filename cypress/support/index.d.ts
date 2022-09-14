@@ -1,9 +1,10 @@
 declare namespace Cypress {
-        interface Chainable<Subject> {
-            goOffline(): Chainable<null>;
-            createUser(brand: GroupBrands): Chainable<Subject>;
-            createArtefact: (testArtefact: TestArtefact, name: string, folderName: string) => void;
-        }
+    interface Chainable<Subject> {
+        goOffline: () => Chainable<null>;
+        createUser: (brand: GroupBrands) => Chainable<Subject>;
+        prepareUser: (customer: NewCustomerCredentials, brand: GroupBrands, sku: string) => void;
+        createArtefact: (testArtefact: TestArtefact, name: string, folderName: string) => void;
+    }
 }
 
 declare type GotoOptions = {
@@ -55,6 +56,7 @@ declare type PaymentMethod =
 declare type EnvironmentVariables = {
     url: string;
     sku: string;
+    fullSKU: string;
     brand: GroupBrands;
     locale: Locale;
     language: 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
@@ -87,6 +89,7 @@ declare type TCustomerJSONResponse = {
 declare type NewCustomerCredentials = {
     email: string;
     password: string;
+    token?: string;
 };
     
 declare type SelectorBrandMap = { [key in GroupBrands]: Record<string, string> };

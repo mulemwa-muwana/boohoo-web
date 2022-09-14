@@ -5,14 +5,12 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@uk-dwdev.boohoo.com/',
+    url: 'https://storefront:Oreo2022@uk-dwdev.boohoo.com',
     sku: '#DZZ79497',
+    fullSKU: 'DZZ79497-106-18',
     brand: 'boohoo.com',
     locale: 'UK',
-    language: 'EN',
-    UKstandardShippingMehod: 'ukstandard',
-    UKNextDay: 'nextday',
-    UkDPD: 'dpd',
+    language: 'EN'
   },
 
   viewportHeight: 1080,

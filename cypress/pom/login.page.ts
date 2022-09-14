@@ -1,6 +1,5 @@
-
 import AbstractPage from './abstract/abstract.page';
-import homePage from './home.page';
+import * as CommonActions from '../helpers/common';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -64,8 +63,13 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 class LoginPage implements AbstractPage {
 
-  goto (): void {
-    homePage.goto();
+  goto (options: GotoOptions = null): void {
+    const url = variables.url + '/login';
+    cy.visit(url);
+    if (options?.applyCookies) {
+      CommonActions.applyMarketingCookies();
+      cy.visit(url);
+    }
   }
 
   click = {
@@ -106,6 +110,14 @@ class LoginPage implements AbstractPage {
       const loginPassword = selectors[variables.brand].loginPassword;
       cy.get(loginPassword).type(pass);
       cy.wait(3000);
+      const loginButton = selectors[variables.brand].loginButton;
+      cy.get(loginButton).click();
+    },
+    loginViaPage (user: string, pass: string) {
+      const loginEmail = selectors[variables.brand].loginEmail;
+      cy.get(loginEmail).type(user); 
+      const loginPassword = selectors[variables.brand].loginPassword;
+      cy.get(loginPassword).type(pass);
       const loginButton = selectors[variables.brand].loginButton;
       cy.get(loginButton).click();
     },

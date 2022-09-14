@@ -69,11 +69,7 @@ const selectors: SelectorBrandMap = {
     customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
-<<<<<<< HEAD
-    paymentTypeCC: '#payment-button-scheme',
-=======
     paymentTypeCC: '#payment-button-scheme > .b-payment_accordion-icon',
->>>>>>> da14108d8dd0ca3ba936ae28da5cf3705398581c
     paymentTypeKlarna: '',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardFieldsCardOwner: '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',

@@ -1,9 +1,9 @@
 import LoginPage from '../../pom/login.page';
 import HomePage from '../../pom/home.page';
 import WishListPage from '../../pom/wishlist.page';
-import pdpPage from '../../pom/pdp.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import assertionText from '../../helpers/assertionText';
+import plpPage from 'cypress/pom/plp.page';
 
 describe('Home Page', function () {
     
@@ -23,16 +23,19 @@ describe('Home Page', function () {
 
   it('Verify that item is saved to wishlist', () => {     
     const variables = Cypress.env() as EnvironmentVariables;      
-    pdpPage.click.addToWishList(); 
+    plpPage.click.wishlistOnPlpImage(); 
     WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
     WishListPage.assertions.assertItemIsAddedToWishlist();
   }),
   it('Verify that user can add wishlist item to the cart', () => {
     HomePage.click.wishListIcon();
+
+    // Add steps for selecting size and color
+
     WishListPage.click.addToCart();
   }),
   it('Verify that user can remove item from wishlist', () => {
-    pdpPage.click.addToWishList(); 
+    plpPage.click.wishlistOnPlpImage(); 
     HomePage.click.wishListIcon();
     WishListPage.click.removeItemFromWishlist();
   });

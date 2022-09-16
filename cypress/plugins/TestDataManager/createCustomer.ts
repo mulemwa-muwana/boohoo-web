@@ -1,13 +1,14 @@
 import axios from 'axios';
 import * as dotenv from 'dotenv';
-dotenv.config();
+
+axios.defaults.validateStatus = () => { return true; };
 
 function generateRandomEmail () {
   return `testemail${Date.now()}${Math.floor(Math.random() * 100)}@boohoo.com`;
 }
 
-function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType): string {
-        
+export function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType): string {
+
   // We bring this into the method as the env variables won't load on start and need to be accessed in real time.
   const customer: BrandMap = {
     'boohoo.com': process.env.BOOHOO_CUSTOMER_MANAGER_APIKEY,
@@ -30,10 +31,11 @@ function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType): string
 
   const keyMap: BrandMap = map[keyType];
   const key: string = keyMap[brand];
+
   return key;
 }
 
-async function getBearerAuth (brand: GroupBrands, realm: TLocale): Promise<string> {
+export async function getBearerAuth (brand: GroupBrands, realm: TLocale): Promise<string> {
   const prefix = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
   const brandCustomerManagerKey = getCustomerKeyByBrand(brand, 'Customer');
 
@@ -49,6 +51,7 @@ async function getBearerAuth (brand: GroupBrands, realm: TLocale): Promise<strin
     const headers = response.headers;
     return headers['x-amzn-remapped-authorization'] as string; 
   }
+
   throw Error('getBearerAuth: Did not get a success response status, with error code ' + response.status);
 }
 
@@ -62,9 +65,10 @@ export class TestCustomer {
   isPreExisting: boolean;
   brandAPIKey: string;
   environment: 'mobile-gateway' | 'dev-mobile-gateway';
+  token: string;
   error: string;
 
-  constructor (brand: GroupBrands, realm: TLocale, email: string, password: string, customerId: string, name: string, preExist = false) {
+  constructor (brand: GroupBrands, realm: TLocale, email: string, password: string, customerId: string, name: string, token: string, preExist = false) {
     this.realm = realm;
     this.email = email;
     this.password = password;
@@ -75,10 +79,12 @@ export class TestCustomer {
     this.brandAPIKey = getCustomerKeyByBrand(this.brand, 'Customer');
     this.environment = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
     this.error = null;
+    this.token = token;
   }
 }
 
-export default async function (brand: GroupBrands, realm: TLocale = 'uk'): Promise<TestCustomer> {
+export default async function createCustomer (brand: GroupBrands, realm: TLocale = 'uk'): Promise<TestCustomer> {
+  dotenv.config();
 
   // Get API token.
   const brandCustomerManagerKey = getCustomerKeyByBrand(brand, 'Customer');
@@ -123,14 +129,14 @@ export default async function (brand: GroupBrands, realm: TLocale = 'uk'): Promi
   // If the response is successful, return it as an instance of customer
   if (response.status === 200) {
     const json = await response.data as TCustomerJSONResponse;
-    return new TestCustomer(brand, realm, json.email, password, json.customer_id, 'Test Account', false);
+    return new TestCustomer(brand, realm, json.email, password, json.customer_id, 'Test Account', bearer, false);
   }
 
   try {
     console.log(await response.data);
   } catch { /* Nothing */ }
  
-  const invalidCustomer = new TestCustomer(brand, realm, email, password, 'NO_CUSTOMER_ID_ASSIGNED', 'Invalid Account', false);
+  const invalidCustomer = new TestCustomer(brand, realm, email, password, 'NO_CUSTOMER_ID_ASSIGNED', 'Invalid Account', 'no token', false);
   invalidCustomer.error = 'Could not create this test customer, status code: ' + response.status;
   return invalidCustomer;
 }

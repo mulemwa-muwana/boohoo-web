@@ -196,6 +196,20 @@ class AssertionText {
     ES: '¡HURRA! esta en stock' 
   };
 
+  inStockArkadia: TranslationMap = {
+    EN: 'Currently in stock',
+    FR: '\n                YAY ! Cet article est en stock\n            \n                YAY ! Cet article est en stock\n            ',
+    NL: 'JAAAAA! Het is op voorraad',
+    DE: 'YAY! Es ist auf Lager',
+    DK: 'YAY! Den er på lager',
+    FI: 'JEE! Se on varastossa',
+    NO: 'JIPPI! Den er på lager',
+    SE: 'JIPPIE! Den finns i lager',
+    IL: 'יש! זה במלאי',
+    IT: 'SÌÌ! È in magazzino',
+    ES: '¡HURRA! esta en stock' 
+  };
+
   sizeErrorMsg: TranslationMap = {
     EN: 'Oops please select a size',
     FR: '\n                    Oups, veuillez choisir une taille\n                ',
@@ -236,6 +250,20 @@ class AssertionText {
     IL: ' מצטערים, האימייל או הסיסמה שלך אינם תואמים לרישומים שלנו',
     IT: ' Siamo spiacenti, la tua email o password non corrispondono ai nostri record',
     ES: ' Lo sentimos, su correo electrónico o contraseña no coincide con nuestros registros'
+  };
+
+  emptyEmailFieldErrorBillingPage: TranslationMap = {
+    EN: '',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   assertUserIsNotLoggedIn: TranslationMap = {
@@ -325,7 +353,7 @@ class AssertionText {
   unsuccessfulSubscription: TranslationMap = {
     EN: 'Hold up! That doesn’t seem right.',
     NL: 'Vertraging! Dat lijkt niet juist.',
-    DE: 'Halten! Das scheint nicht richtig zu sein.',
+    DE: 'Achtung! Das scheint nicht richtig zu sein.',
     FR: 'Tenir bon! Cela ne semble pas juste.',
     DK: 'Hold op! Det virker ikke rigtigt.',
     FI: 'Kestä! Se ei vaikuta oikealta.',
@@ -339,7 +367,7 @@ class AssertionText {
   unsuccessfulSubscriptionNG: TranslationMap = {
     EN: 'Please enter a valid email address',
     NL: '',
-    DE: '',
+    DE: 'Halten! Das scheint nicht richtig zu sein',
     FR: '',
     DK: '',
     FI: '',
@@ -367,7 +395,7 @@ class AssertionText {
   footerLinkTrackMyOrder: TranslationMap = {
     EN: 'Track My Order',
     NL: '',
-    DE: '',
+    DE: 'Bestellung verfolgen',
     FR: 'Suivre ma commande',
     DK: '',
     FI: '',
@@ -381,7 +409,7 @@ class AssertionText {
   footerHelp: TranslationMap = {
     EN: 'Help',
     NL: '',
-    DE: '',
+    DE: 'Kundenservices',
     FR: '',
     DK: '',
     FI: '',
@@ -395,7 +423,7 @@ class AssertionText {
   footerLinkDeliveryInfo: TranslationMap = {
     EN: 'Delivery Info',
     NL: '',
-    DE: '',
+    DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
     DK: '',
     FI: '',
@@ -409,7 +437,7 @@ class AssertionText {
   footerLinkAbout: TranslationMap = {
     EN: 'About', // Brand name is missing
     NL: '',
-    DE: '',
+    DE: 'Über',
     FR: '',
     DK: '',
     FI: '',
@@ -423,7 +451,7 @@ class AssertionText {
   footerLinkSizeGuide: TranslationMap = {
     EN: 'Size Guide',
     NL: '',
-    DE: '',
+    DE: 'Größentabelle',
     FR: '',
     DK: '',
     FI: '',
@@ -437,7 +465,7 @@ class AssertionText {
   footerLinkTrackApp: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
     NL: '',
-    DE: '',
+    DE: 'boohoo App', // To be consider for multiple brends
     FR: '',
     DK: '',
     FI: '',
@@ -451,7 +479,7 @@ class AssertionText {
   footerLinkPremier: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
     NL: '',
-    DE: '',
+    DE: '', // Not dispayed
     FR: '',
     DK: '',
     FI: '',
@@ -465,7 +493,7 @@ class AssertionText {
   footerLinkStudentDiscount: TranslationMap = {
     EN: 'Student Discount',
     NL: '',
-    DE: '',
+    DE: 'Studentenrabatt',
     FR: '',
     DK: '',
     FI: '',
@@ -479,7 +507,7 @@ class AssertionText {
   footerLinkReturns: TranslationMap = {
     EN: 'Returns',
     NL: '',
-    DE: '',
+    DE: 'Rücksendungen',
     FR: 'Retours',
     DK: '',
     FI: '',
@@ -493,7 +521,7 @@ class AssertionText {
   footerLinkDiscountPromo: TranslationMap = {
     EN: 'Discount & Promo',
     NL: '',
-    DE: '',
+    DE: 'boohoo Rabattcodes',
     FR: '',
     DK: '',
     FI: '',
@@ -507,7 +535,7 @@ class AssertionText {
   footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
     EN: 'Get Exclusive Offers & Updates',
     NL: '',
-    DE: '',
+    DE: 'Erhalte exklusive Angebote & Updates',
     FR: '',
     DK: '',
     FI: '',
@@ -521,7 +549,7 @@ class AssertionText {
   sustainability: TranslationMap = {
     EN: 'Sustainability',
     NL: '',
-    DE: '',
+    DE: 'Nachhaltigkeit',
     FR: 'Durabilité',
     DK: '',
     FI: '',
@@ -535,7 +563,7 @@ class AssertionText {
   becomeAnAffiliate: TranslationMap = {
     EN: 'Become an Affiliate',
     NL: '',
-    DE: '',
+    DE: '', // Not displayed
     FR: 'Affiliez-vous',
     DK: '',
     FI: '',
@@ -549,7 +577,7 @@ class AssertionText {
   becomePartner: TranslationMap = {
     EN: 'Become a Partner',
     NL: '',
-    DE: '',
+    DE: 'Partner werden',
     FR: '',
     DK: '',
     FI: '',
@@ -563,7 +591,7 @@ class AssertionText {
   termsAndCond: TranslationMap = {
     EN: 'Terms and conditions',
     NL: '',
-    DE: '',
+    DE: 'Nutzungsbedingungen',
     FR: 'Conditions générales',
     DK: '',
     FI: '',
@@ -577,7 +605,7 @@ class AssertionText {
   privacyPolicy: TranslationMap = {
     EN: 'Privacy Notice - Updated March 2021',
     NL: '',
-    DE: '',
+    DE: 'Datenschutzbestimmungen', // FAILED
     FR: 'Avis de confidentialité',
     DK: '',
     FI: '',
@@ -591,7 +619,7 @@ class AssertionText {
   careers: TranslationMap = {
     EN: 'Careers',
     NL: '',
-    DE: '',
+    DE: 'Karriere', // FAILED
     FR: 'Carrières',
     DK: '',
     FI: '',
@@ -605,7 +633,7 @@ class AssertionText {
   aboutCookies: TranslationMap = {
     EN: 'About Cookies',
     NL: '',
-    DE: '',
+    DE: 'Über Cookies',
     FR: 'En savoir plus sur les cookies',
     DK: '',
     FI: '',
@@ -617,9 +645,9 @@ class AssertionText {
   };
 
   sitemap: TranslationMap = {
-    EN: 'About Cookies',
+    EN: 'Sitemap',
     NL: '',
-    DE: '',
+    DE: 'Sitemap',
     FR: 'Plan du site',
     DK: '',
     FI: '',

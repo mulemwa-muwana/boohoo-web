@@ -12,13 +12,13 @@ import Addresses from '../../helpers/addresses';
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Billing page functionality for guest user', function () {
+  
   beforeEach (()=>{
   
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
-  
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
@@ -30,7 +30,6 @@ describe('Billing page functionality for guest user', function () {
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
     });
     CheckoutPage.click.continueAsGuestBtn();
-
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -78,21 +77,19 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
+    BillingPage.click.chooseCC();
     if (variables.brand == 'boohoo.com') {
-      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[variables.language]);
     } else {
-      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
-
+      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[variables.language]);
     }
   });
   it('Verify that guest user cannot place order if date of birth is not selected', function () {
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
+    BillingPage.click.chooseCC();
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
     } else {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
-
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
@@ -148,12 +145,14 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.month, cards.amex.year, cards.amex.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that guest user can place order using Klarna', function () {
-      BillingPage.actions.selectDate('23', 'May', '2001');
-      BillingPage.actions.selectKlarna();
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
-    });
-    it.only('Verify that guest user can place order using PayPal', function () {
+    if (variables.locale == 'UK' || variables.locale == 'IE') {
+      it('Verify that guest user can place order using Klarna', function () {
+        BillingPage.actions.selectDate('23', 'May', '2001');
+        BillingPage.actions.selectKlarna();
+        BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      });
+    }
+    it('Verify that guest user can place order using PayPal', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectPayPal();
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();

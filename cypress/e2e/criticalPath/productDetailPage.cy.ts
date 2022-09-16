@@ -12,7 +12,7 @@ describe('Product Details Page tests', function () {
     HomePage.actions.findItemUsingSKU(variables.sku);
   });  
   it('TC01 Verify that Product name is showing',function () {
-    PdpPage.assertions.assertProductNameIsDisplayed (skuAssertions.skuTitle[variables.language]);
+    PdpPage.assertions.assertProductNameIsDisplayed(skuAssertions.skuTitle[variables.language]);
   });
   it('TC02 Verify that Product price is showing',function () {
     PdpPage.assertions.assertProductPriceIsDisplayed();
@@ -34,8 +34,12 @@ describe('Product Details Page tests', function () {
   });
   it('TC06 Verify that it is possible to select a size when available', function () {
     PdpPage.actions.selectColor(0);
-    PdpPage.actions.selectSize(1);
-    PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[variables.language]);
+    PdpPage.actions.selectSize();
+    if (variables.brand == 'boohoo.com') {
+      PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[variables.language]);
+    } else {
+      PdpPage.assertions.assertSizeIsAvailable(assertionText.inStockArkadia[variables.language]);  
+    }    
     PdpPage.actions.addToCart();
 
     //  PdpPage.assertions.assertProductIsAddedToCart(assertionText.addedToCard[variables.language]); // we cannot predict when minicart pop up will appear
@@ -46,7 +50,7 @@ describe('Product Details Page tests', function () {
   });   
   it('TC08 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
-    PdpPage.actions.selectSize(0);
+    PdpPage.actions.selectSize();
     PdpPage.actions.addToCart();
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
@@ -67,7 +71,7 @@ describe('Product Details Page tests', function () {
     PdpPage.click.returnLink();
     PdpPage.assertions.assertStartReturnPageIsDisplayed();
   });
-  it.only('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
+  it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
     PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
   });
  

@@ -1,4 +1,3 @@
-
 import BillingPage from '../../pom/billing.page';
 import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
@@ -10,13 +9,15 @@ import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import assertionText from '../../helpers/assertionText';
 import Addresses from '../../helpers/addresses';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Order confirmation page for guest user', function () {
   beforeEach (()=>{
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
@@ -52,7 +53,6 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertOrderValueIsDisplayed();
   });
   it('Verify that shipping address is present with valid data', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
@@ -60,12 +60,10 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
   it('Verify that billing address is present with valid data', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
   it('Verify that payment method is present', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
   });
   it('Verify that for guest users password fields are present on order confirmation page', function () {
@@ -75,11 +73,11 @@ describe('Order confirmation page for guest user', function () {
 });
 describe('Order confirmation page for registered user', function () {
   beforeEach (()=>{
-    const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     cy.wait(2000);
+    cy.scrollTo('top');
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
@@ -90,10 +88,13 @@ describe('Order confirmation page for registered user', function () {
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
-    shippingPage.actions.clickPreferedShippingMethod(variables);
-    shippingPage.click.proceedToBilling(); 
+
+    //  ShippingPage.actions.clickPreferedShippingMethod(variables);
+    shippingPage.click.proceedToBilling();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
+    orderConfirmationPage.click.closePopUp();
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+    
   });
   it('Verify that email is visible', function () {
     orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+cypress789@gmail.com');  
@@ -105,7 +106,6 @@ describe('Order confirmation page for registered user', function () {
     orderConfirmationPage.assertions.assertOrderTotalIsVisible();
   });
   it('Verify that shipping address is present with valid data', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
@@ -113,12 +113,10 @@ describe('Order confirmation page for registered user', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
   it('Verify that billing address is present with valid data', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
   it('Verify that payment method is present', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
   });
 });

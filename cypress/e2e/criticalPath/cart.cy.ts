@@ -4,13 +4,15 @@ import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Cart basic functionality for guest user', function () {
   beforeEach (() =>{
     const variables = Cypress.env() as EnvironmentVariables;
 
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();
   }); 
@@ -30,9 +32,14 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
   it('Verify that user can update quantity of products', function () {
-    CartPage.actions.editCartQuantity('3');
-    CartPage.assertions.assertQuantityIsDisplayed('3');
-
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+      CartPage.actions.editCartQuantity('3');
+      CartPage.assertions.assertQuantityIsDisplayed('3');
+    } else if (variables.brand == 'dorothyperkins.com') {
+      CartPage.actions.editCartQuantityArkadia(2);
+      CartPage.assertions.assertQuantityIsDisplayed('3');
+    } 
+    
   });
   it('Verify that user can remove product from cart', function () {
     CartPage.actions.removeFromCart(0);
@@ -44,7 +51,7 @@ describe('Cart basic functionality for guest user', function () {
   it('Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
     cy.wait(5000);
     CartPage.click.proceedToCheckout();
-    CheckoutPage.assertions.assertEmailnFieldForGuestUserIsVisible();
+    CheckoutPage.assertions.assertGuestCheckoutEmail();
   });
   it('Verify that PayPal CTA is displayed and functional', function () {
     CartPage.assertions.assertPayPalCTAisVisible();
@@ -77,7 +84,7 @@ describe('Cart page for Registered user', function () {
     });
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     PdpPage.actions.addToCart();
     HomePage.click.cartIcon();
   }); 

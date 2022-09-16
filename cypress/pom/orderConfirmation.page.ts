@@ -15,6 +15,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '#WLbanner_2112171003 > a'
   },
   'nastygal.com': {
     emailIsDisplayed:'.b-confirmation_header-email',
@@ -29,6 +30,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '#WLbanner_1526548622 > [href="javascript:void(0);"]'
   },
   'dorothyperkins.com': {
     emailIsDisplayed:'.b-confirmation_header-email',
@@ -43,6 +45,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '#WLbanner_2201312015 > a'
   },
   'burton.co.uk': {
     emailIsDisplayed:'.b-confirmation_header-email',
@@ -57,6 +60,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '#WLbanner_2201312015 > a'
   },
   'wallis.co.uk': {
     emailIsDisplayed:'.b-confirmation_header-email',
@@ -71,6 +75,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '#WLbanner_2201101815 > a'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -89,7 +94,8 @@ class OrderConfirmation implements AbstractPage {
 
   click = {
     closePopUp () {
-      cy.get('#WLbanner_2112171003 > a', {timeout: 10000}).click();
+      const closePopUP = selectors[variables.brand].closePopUP;
+      cy.get(closePopUP, {timeout: 20000}).click();
     }
   };
 

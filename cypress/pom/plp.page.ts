@@ -73,9 +73,10 @@ const selectors: SelectorBrandMap = {
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
-    productImageIsDisplayed: '.b-product_tile-image',
+    productImageIsDisplayed: '.b-product_tile-image img',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
-    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link',
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
   },
   'burton.co.uk': {
     categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
@@ -182,42 +183,42 @@ class PlpPage implements AbstractPage {
       cy.get(priceVariant).click({force: true});
     },
 
-    selectRefinementVariantShopByFit (shopByFit: string) {
+    selectRefinementVariantShopByFit (text: string) {
       const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
       cy.get(selectRefinementVariantShopByFit).click({force: true});
     },
 
-    selectRefinementVariantFit (fit: string) {
+    selectRefinementVariantFit () {
       const selectRefinementVariantFit = selectors[variables.brand].selectRefinementVariantFit;
       cy.get(selectRefinementVariantFit).click({force: true});
     },
     
-    selectRefinementVariantColour (colour: string) {
+    selectRefinementVariantColour (text: string) {
       const selectRefinementVariantColour = selectors[variables.brand].selectRefinementVariantColour;
       cy.get(selectRefinementVariantColour).click({force: true});
     },
 
-    selectRefinementVariantStyle (style: string) {
+    selectRefinementVariantStyle (text: string) {
       const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
       cy.get(selectRefinementVariantStyle).click({force: true});
     },
 
-    selectRefinementVariantSize (size: string) {
+    selectRefinementVariantSize (text: string) {
       const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
       cy.get(selectRefinementVariantSize).click({force: true});
     },
 
-    selectRefinementVariantCategory (category: string) {
+    selectRefinementVariantCategory (text: string) {
       const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
       cy.get(selectRefinementVariantCategory).click({force: true});
     },
 
-    selectRefinementVariantOccassion (occasion: string) {
+    selectRefinementVariantOccassion (text: string) {
       const selectRefinementVariantOccassion = selectors[variables.brand].selectRefinementVariantOccassion;
       cy.get(selectRefinementVariantOccassion).click({force: true});
     },
 
-    selectRefinementVariantShopByPrice (price: string) {
+    selectRefinementVariantShopByPrice (text: string) {
       const selectRefinementVariantShopByPrice = selectors[variables.brand].selectRefinementVariantShopByPrice;
       cy.get(selectRefinementVariantShopByPrice).click({force: true});
     },
@@ -287,6 +288,10 @@ class PlpPage implements AbstractPage {
     assertProductVariantIsApplied (text: string) {
       cy.url().should('include', text);
     },
+    assertItemIsAddedToWishlistColorChange () {
+      const wishListIconColor = selectors[variables.brand].wishListIconColor;
+      cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
+    }
        
   };
 }

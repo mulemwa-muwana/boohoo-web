@@ -5,7 +5,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwdev.dorothyperkins.com/',
-    sku: '#QQ00474',
+    sku: '#AQQ42330-141',
     brand: 'dorothyperkins.com',
     locale: 'UK',
     language: 'EN',
@@ -21,5 +21,7 @@ export default defineConfig({
 
       // Implement node event listeners here
     },
+    numTestsKeptInMemory: 0
   },
+  numTestsKeptInMemory: 0
 });

@@ -37,7 +37,8 @@ const selectors: SelectorBrandMap = {
     wishlistLoginBtn: '.b-button',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
-    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
+    removeItemFromWishlist: '.b-wishlist_tile-remove'
   },
   'burton.co.uk': {
     sortItems: 'div.b-wishlist-sorting',

@@ -7,7 +7,6 @@ import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import Addresses from '../../helpers/addresses';
-import shippingMethods from '../../helpers/shippingMethods';
 import { getCardProviderByBrand } from '../../helpers/common';
 
 describe('Order confirmation page for guest user', function () {
@@ -16,7 +15,7 @@ describe('Order confirmation page for guest user', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize(1);
+    PdpPage.actions.selectSize();
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
@@ -41,7 +40,7 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.click.closePopUp();
   });
 
-  it('Verify that email is visible for guest user', async function () {
+  it('Get order details from order confirmation page and create test artefact', async function () {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get(':nth-child(1) > .b-summary_group-details').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get(':nth-child(2) > .b-summary_group-details').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
@@ -49,23 +48,25 @@ describe('Order confirmation page for guest user', function () {
     cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku')
       .then(function () {
         
+        const paymentMethodForBrand = getCardProviderByBrand(variables.brand, variables.locale)
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
           orderEmail: this.orderEmail,
-          paymentMethod: getCardProviderByBrand(variables.brand, variables.locale),
+          paymentMethod: paymentMethodForBrand,
           groupBrand: variables.brand,
-          deliveryMethod: shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1').shippingMethodName,
+          deliveryMethod: 'UKSuperSaver', // This is a code in the backend, not found on the front end, the test should target this delivery method code.
           items: [{
             sku: this.fullSku,
             quantity: 1
           }],
           testScenario: 'CompleteOrder',
           locale: variables.locale,
-          url: variables.url
+          url: variables.url,
+          timestamp: Date.now()
         };
 
-        cy.createArtefact(testArtefactObject,`${variables.locale}_creditcard`.toLowerCase());
+        cy.createArtefact(testArtefactObject, paymentMethodForBrand.toLowerCase(), 'orderCreation'); // Names should be hard coded I think...
         
       });
   });

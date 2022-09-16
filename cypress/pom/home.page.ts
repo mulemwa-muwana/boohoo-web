@@ -25,7 +25,7 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-search_input-submit > .i-icon',
-    registrationButton: '.b-registration_benefits > .b-button',
+    registrationButton: '#page-body > div.b-miniaccount_panel > div > div > div > div.b-miniaccount-content > div.b-registration_benefits > a',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
@@ -131,10 +131,10 @@ class HomePage implements AbstractPage {
     findItemUsingSKU (SKU: string) {
       if (variables.brand != 'boohoo.com') {
         const searchIcon = selectors[variables.brand].searchIcon;
-        cy.get(searchIcon).click();
+        cy.get(searchIcon).click({force: true});
       }
       const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).click().type(SKU+'{enter}');
+      cy.get(searchField).click({force: true}).type(SKU+'{enter}');
     },
     forgotPassword (email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();

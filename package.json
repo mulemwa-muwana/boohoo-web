@@ -6,6 +6,7 @@
     "cy:run:burton": "cypress run --config-file ./config//burton/cypress.burton.uk.config.ts",
     "cy:run:e2e:uk": "cypress run --config-file ./config/cypress.boohoo.uk.config.ts",
     "cy:open:boohoo:dev": "cypress open --config-file ./config/boohoo/cypress.boohoo.uk.dev.config.ts",
+    "cy:open:dorothy:dev": "cypress open --config-file ./config/dorothyperkins/cypress.dorothyperkins.uk.dev.config.ts",
     "cy:run:boohoo:uk:e2e": "cypress run --config-file ./config/boohoo/cypress.boohoo.uk.dev.config.ts --spec \"cypress/e2e/orderConfirmation/orderConfirmation.cy.ts\"  --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"

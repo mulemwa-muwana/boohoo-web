@@ -4,6 +4,8 @@ import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Cart basic functionality for guest user', function () {
   beforeEach (() =>{
     const variables = Cypress.env() as EnvironmentVariables;
@@ -30,9 +32,14 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
   it('Verify that user can update quantity of products', function () {
-    CartPage.actions.editCartQuantity('3');
-    CartPage.assertions.assertQuantityIsDisplayed('3');
-
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+      CartPage.actions.editCartQuantity('3');
+      CartPage.assertions.assertQuantityIsDisplayed('3');
+    } else if (variables.brand == 'dorothyperkins.com') {
+      CartPage.actions.editCartQuantityArkadia(2);
+      CartPage.assertions.assertQuantityIsDisplayed('3');
+    } 
+    
   });
   it('Verify that user can remove product from cart', function () {
     CartPage.actions.removeFromCart(0);

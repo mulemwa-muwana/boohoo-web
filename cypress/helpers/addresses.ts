@@ -437,6 +437,35 @@ class Addresses {
         countryCode: '',
         county: '',
       }
+    },
+
+    EU: {
+      primaryAddress:  {
+        firstName: 'New',
+        lastName: 'Test',
+        phone: '30 6948868',
+        addrline1: 'Gneisenaustraße 93',
+        addrline2: '',
+        postcode: '10961',
+        addressName: 'SecondAddress',
+        country: '',
+        city: 'Berlin',
+        countryCode: '',
+        county: 'Germany',
+      },
+      secondaryAddress:  {
+        firstName: 'New',
+        lastName: 'Test',
+        phone: '',
+        addrline1: '',
+        addrline2: '',
+        postcode: '',
+        addressName: '',
+        country: '',
+        city: '',
+        countryCode: '',
+        county: '',
+      }
     }
 
   };

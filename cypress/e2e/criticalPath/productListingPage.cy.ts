@@ -3,13 +3,15 @@ import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Home Page', function () {
   
   beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
   });
   it('Verify that plp page opens', () => {
     const variables = Cypress.env() as EnvironmentVariables;
@@ -37,7 +39,12 @@ describe('Home Page', function () {
     });
     it('Verify add to wishlist is displayed', () => {
       plpPage.click.wishlistOnPlpImage();
-      plpPage.assertions.assertItemIsAddedToWishlist();
+      
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+        plpPage.assertions.assertItemIsAddedToWishlist();
+      } else if (variables.brand == 'dorothyperkins.com') {
+        plpPage.assertions.assertItemIsAddedToWishlistColorChange();
+      }  
     });
     it('Verify that product color is dispayed', () => {
       plpPage.assertions.assertProductColorIsDisplayedOnPLP();

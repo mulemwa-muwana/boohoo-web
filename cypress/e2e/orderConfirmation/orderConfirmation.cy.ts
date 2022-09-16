@@ -48,11 +48,12 @@ describe('Order confirmation page for guest user', function () {
     cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku')
       .then(function () {
         
+        const paymentMethodForBrand = getCardProviderByBrand(variables.brand, variables.locale)
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
           orderEmail: this.orderEmail,
-          paymentMethod: getCardProviderByBrand(variables.brand, variables.locale),
+          paymentMethod: paymentMethodForBrand,
           groupBrand: variables.brand,
           deliveryMethod: 'UKSuperSaver', // This is a code in the backend, not found on the front end, the test should target this delivery method code.
           items: [{
@@ -65,7 +66,7 @@ describe('Order confirmation page for guest user', function () {
           timestamp: Date.now()
         };
 
-        cy.createArtefact(testArtefactObject, 'worldpay', 'orderCreation'); // Names should be hard coded I think...
+        cy.createArtefact(testArtefactObject, paymentMethodForBrand.toLowerCase(), 'orderCreation'); // Names should be hard coded I think...
         
       });
   });

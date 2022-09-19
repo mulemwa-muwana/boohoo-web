@@ -48,7 +48,7 @@ describe('Order confirmation page for guest user', function () {
     cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku')
       .then(function () {
         
-        const paymentMethodForBrand = getCardProviderByBrand(variables.brand, variables.locale)
+        const paymentMethodForBrand = getCardProviderByBrand(variables.brand, variables.locale);
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,

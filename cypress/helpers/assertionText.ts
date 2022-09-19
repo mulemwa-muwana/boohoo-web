@@ -308,6 +308,20 @@ class AssertionText {
     ES: 'Ups, algo salió mal y no pudimos guardar tu dirección de envío. Inténtalo de nuevo'
   };
 
+  assertShippingAddressIsMandatoryArkadia: TranslationMap = {
+    EN: 'Oops, looks like you didn’t add an address',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   assertPaymentMethod: TranslationMap = {
     EN: 'Credit / Debit card',
     NL: 'Creditcard / betaalkaart',

@@ -5,7 +5,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.wallisfashion.com/eu',
-    sku: '#AYY00464',
+    sku: 'AYY10937-130',
     brand: 'wallis.co.uk',
     locale: 'EU',
     language: 'EN',
@@ -21,5 +21,6 @@ export default defineConfig({
 
       // Implement node event listeners here
     },
+    numTestsKeptInMemory: 0
   },
 });

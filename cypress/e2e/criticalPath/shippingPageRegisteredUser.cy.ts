@@ -4,7 +4,6 @@ import cartPage from '../../pom/cart.page';
 import shippingPage from '../../pom/shipping.page';
 import checkoutPage from '../../pom/checkoutLogin.page';
 import assertionText from '../../helpers/assertionText';
-import homePage from '../../pom/home.page';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 
@@ -13,15 +12,16 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Home Page', function () {
   
   beforeEach (()=>{
+
+    // Const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
-    const itemSKU = variables.sku;
-    HomePage.actions.findItemUsingSKU(itemSKU);
+    HomePage.actions.findItemUsingSKU(variables.sku);
+    cy.wait(3000);
     pdpPage.actions.selectSize();
-    cy.wait(2000);
+    cy.wait(3000);
     pdpPage.click.addToCart();
-    cy.wait(7000);
-    HomePage.click.cartIcon();  
-    pdpPage.click.miniCartViewCartBtn();
+    HomePage.click.cartIcon();
+    cy.wait(3000);
     cartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       checkoutPage.actions.userEmailField(credentials.username);
@@ -60,13 +60,14 @@ describe('Home Page', function () {
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+      shippingPage.click.addAddressManually();
+    }
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
-    shippingPage.click.editAddress();
   });
 
   it('Verify that user can cancel editing shipping address', () => {
@@ -90,39 +91,51 @@ describe('Home Page', function () {
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddressButton();
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
-  it.only('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddressButton();
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
-  it.only('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddressButton();
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
-  it.only('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddressButton();
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
     const variables = Cypress.env() as EnvironmentVariables;
+    shippingPage.click.addNewAddressButton();
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
+    } else {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
+    }
   });
 
   it('Verify that "Enter manually" button allows user to enter address details', () => {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addAddressManually();
+    shippingPage.actions.addressLookupField(localeAddress.postcode);
     shippingPage.assertions.assertManualAddressFieldsAreDispayed();
   });
 

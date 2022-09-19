@@ -4,7 +4,7 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    sku: '#AYY00464',
+    sku: 'AYY10937-130',
     brand: 'wallisfashion.co.uk',
     locale: 'IE',
     language: 'EN',
@@ -20,5 +20,6 @@ export default defineConfig({
 
       // Implement node event listeners here
     },
+    numTestsKeptInMemory: 0
   },
 });

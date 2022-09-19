@@ -85,6 +85,20 @@ class megaMenuLinksLanguages {
     ES: ''
   };
 
+  saleLinkArkadia: TranslationMap = {
+    EN: 'Sale',
+    FR: 'Promos',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   subnavAllSale: TranslationMap = {
     EN: 'All Sale',
     FR: 'Promos vêtements',

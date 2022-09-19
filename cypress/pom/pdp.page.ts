@@ -25,7 +25,9 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text'   
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+
+    // ViewCart: '.b-minicart-actions > .m-outline',
   },
   'nastygal.com': {
     addToCart: '.b-product_addtocard-availability',
@@ -45,6 +47,7 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
+    viewCart: '.b-minicart-actions > .m-outline',
   },
   'dorothyperkins.com': {
     addToCart: '[data-widget="processButton"]',
@@ -64,6 +67,7 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
+    viewCart: '.b-minicart-actions > .m-outline',
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
@@ -83,9 +87,10 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
+    viewCart: '.b-minicart-actions > .m-outline',
   },
   'wallis.co.uk': {
-    addToCart: '.b-product_addtocard-availability',
+    addToCart: '.b-product_addtocard-availability', 
     addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -102,6 +107,7 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
+    viewCart: '.b-minicart-actions > .m-outline',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -123,7 +129,7 @@ class PdpPage implements AbstractPage {
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart; 
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' ) {
-        cy.get(addToCart).should('be.visible').click({force:true}); 
+        cy.get(addToCart).eq(0).should('be.visible').click({force:true}); 
       } else {cy.get(addToCart).should('be.visible').click();}
     },
     addToWishList () {
@@ -157,7 +163,11 @@ class PdpPage implements AbstractPage {
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
       cy.get(miniCartViewCartBtn).click({ force: true });
-    } 
+    },
+    viewCart () {
+      const viewCart = selectors[variables.brand].viewCart;
+      cy.get(viewCart).click();
+    }
   };
 
   actions = {
@@ -175,7 +185,7 @@ class PdpPage implements AbstractPage {
       });
     },
     addToCart () {
-      cy.wait(15000);
+      cy.wait(5000);
       const addToCart = selectors[variables.brand].addToCart;
       cy.get(addToCart).click(); //  Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
     }

@@ -13,7 +13,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: 'a[data-tau="minicart_start_checkout_bottom"]',
+    proceedToCheckout: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
@@ -29,7 +29,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: 'a[data-tau="minicart_start_checkout_bottom"]',
+    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productName: 'a[class="b-cart_product-name"]',
@@ -119,7 +119,7 @@ class CartPage implements AbstractPage {
     },
     proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
-      cy.get(proceedToCheckout).should('be.visible').click();    
+      cy.get(proceedToCheckout).should('be.visible').click({force: true});    
     },
     cartPageCheckoutButton () {
       cy.get('.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button').click();

@@ -293,14 +293,6 @@ describe('Footer verification', () => {
     cy.contains(`COPYRIGHT © ${currentYear} BOOHOO`).should('be.visible');
   });
     
-  describe('Verify that the Country Selector displayed and functional.', () => {
-    it('US', () => {
-      GlobalFooter.actions.changeCountry('US');
-      HomePage.assertions.assertCountryURL('us-dwstg.boohoo.com');
-    });
-    
-  });
-    
   /* It('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
     GlobalFooter.assertions.assertFooterIsFixedAndPresent();
     GlobalFooter.click.footerPromo();

@@ -110,11 +110,18 @@ describe('Billing page functionality for registered user', function () {
     });
     it('Verify that registered user can place order using PayPal', function () {
       BillingPage.actions.selectPayPal();
-      BillingPage.actions.selectPayPal();
+      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
     if (variables.locale == 'UK' || variables.locale == 'IE') {
       it('Verify that guest user can place order using Klarna', function () {
         BillingPage.actions.selectKlarna();
+        BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      });
+    }
+    if (variables.locale == 'UK') {
+      it('Verify that guest user can place order using Laybuy', function () {
+        BillingPage.actions.selectDate('23', 'May', '2001');
+        BillingPage.actions.selectLaybuy();
         BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
       });
     }

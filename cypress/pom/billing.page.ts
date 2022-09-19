@@ -353,7 +353,19 @@ class BillingPage implements AbstractPage {
   
       });
       cy.wait(5000);
-    }
+    },
+    selectLaybuy () {
+      cy.get('#payment-button-LAYBUY').should('be.visible').click({ force: true });
+      cy.wait(5000);
+      cy.get('#payment-details-LAYBUY > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click();
+      cy.wait(5000);
+      cy.get('.sc-himrzO').click();
+      cy.get('.mFrta > .Input__InputWrapper-pv27wu-0 > .Box-sc-1dqwcja-0 > .Input__StyledInput-pv27wu-3').type('euboohoo+nguklaybuy@gmail.com');
+      cy.get(':nth-child(2) > .Input__InputWrapper-pv27wu-0 > .Input__InputOutlineLabel-pv27wu-1 > .Input__StyledInput-pv27wu-3').type('Boohoo123!');
+      cy.get('.iWhXXJ > .Button-k6w95u-2').click();
+      cy.get(':nth-child(4) > .Button-k6w95u-2').click();
+      cy.get(':nth-child(4) > .Button-k6w95u-2').click();
+    },
   
   };
 

@@ -38,7 +38,8 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
-    removeItemFromWishlist: '.b-wishlist_tile-remove'
+    removeItemFromWishlist: '.b-wishlist_tile-remove',
+    chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
   },
   'burton.co.uk': {
     sortItems: 'div.b-wishlist-sorting',
@@ -50,7 +51,9 @@ const selectors: SelectorBrandMap = {
     wishlistLoginBtn: '.b-button',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
-    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
+    removeItemFromWishlist: '.b-wishlist_tile-remove',
+    chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
   },
   'wallis.co.uk': {
     sortItems: 'div.b-wishlist-sorting',
@@ -62,7 +65,9 @@ const selectors: SelectorBrandMap = {
     wishlistLoginBtn: '.b-button',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
-    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
+    removeItemFromWishlist: '.b-wishlist_tile-remove',
+    chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -117,6 +122,10 @@ class WishListPage implements AbstractPage {
   actions = {
     showInStockItemsCheckbox () {
       cy.get('.show-in-stock').check();
+    },
+    chooseSizeDDL (size: number) {
+      const chooseSizeDDL = selectors[variables.brand].chooseSizeDDL;
+      cy.get(chooseSizeDDL).select(size);
     }
   };
 

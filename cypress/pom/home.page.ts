@@ -134,6 +134,8 @@ class HomePage implements AbstractPage {
         cy.get(searchIcon).click({force: true});
       }
       const searchField = selectors[variables.brand].searchField;
+      const searchIcon = selectors[variables.brand].searchIcon;
+      cy.get(searchIcon).click({force: true});
       cy.get(searchField).click({force: true}).type(SKU+'{enter}');
     },
     forgotPassword (email: string) {

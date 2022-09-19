@@ -21,6 +21,9 @@ describe('Billing page functionality for registered user', function () {
     cy.wait(7000);
     HomePage.click.cartIcon();  
     PdpPage.click.miniCartViewCartBtn();
+    if (variables.brand == 'dorothyperkins.com') {
+      PdpPage.click.viewCart; 
+    }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);

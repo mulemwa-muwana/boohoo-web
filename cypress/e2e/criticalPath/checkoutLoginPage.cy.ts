@@ -8,8 +8,10 @@ describe('Home Page', function () {
   beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
-    HomePage.click.searchField();
     HomePage.actions.findItemUsingSKU(variables.sku);
+    cy.wait(3000);
+    pdpPage.actions.selectSize();
+    cy.wait(3000);
     pdpPage.click.addToCart();
     HomePage.click.cartIcon();
     cartPage.click.proceedToCheckout();

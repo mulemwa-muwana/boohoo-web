@@ -77,9 +77,9 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
-    addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    addAddressManually: '.b-address_selector-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
@@ -171,7 +171,8 @@ class ShippingPage implements AbstractPage {
     },
     addressLookupField (address: string) {
       const PostcodeLookup = selectors[variables.brand].PostcodeLookup;
-      cy.get(PostcodeLookup).click({force: true}).type(address).should('be.visible');
+      cy.get(PostcodeLookup).click({force: true}).type(address+'{enter}').should('be.visible');
+      cy.get(PostcodeLookup).type('{enter}');
     },
     firstNameField (fname: string) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_firstName').type(fname);

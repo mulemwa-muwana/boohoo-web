@@ -15,12 +15,12 @@ describe('Home Page', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
+    cy.wait(3000);
     pdpPage.actions.selectSize();
-    cy.wait(2000);
+    cy.wait(3000);
     pdpPage.click.addToCart();
-    cy.wait(7000);
-    HomePage.click.cartIcon();  
-    pdpPage.click.miniCartViewCartBtn();
+    HomePage.click.cartIcon();
+    cy.wait(3000);
     cartPage.click.proceedToCheckout();
 
     cy.fixture('users').then((credentials: LoginCredentials) => {

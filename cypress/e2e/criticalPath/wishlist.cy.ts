@@ -5,6 +5,8 @@ import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import assertionText from '../../helpers/assertionText';
 import plpPage from 'cypress/pom/plp.page';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Home Page', function () {
     
   // This will execute before every single test, we're just going to the baseURL.
@@ -13,12 +15,18 @@ describe('Home Page', function () {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       HomePage.goto();
-      HomePage.click.logInIcon();
+
+      //  HomePage.click.logInIcon();  check is this needed for BHO and NG
       LoginPage.actions.login(credentials.username, credentials.password);
       HomePage.goto(); // This is added because user is redirected to MyAccount page after login
     });
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[variables.language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+    } else {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+    }
   });
 
   it('Verify that item is saved to wishlist', () => {     
@@ -29,9 +37,11 @@ describe('Home Page', function () {
   }),
   it('Verify that user can add wishlist item to the cart', () => {
     HomePage.click.wishListIcon();
-
-    // Add steps for selecting size and color
-
+    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
+      WishListPage.actions.chooseSizeDDL(1);
+    } else {
+      plpPage.assertions.assertItemIsAddedToWishlistColorChange();
+    }
     WishListPage.click.addToCart();
   }),
   it('Verify that user can remove item from wishlist', () => {

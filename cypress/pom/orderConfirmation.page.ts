@@ -45,7 +45,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '#WLbanner_2201312015 > a'
+    closePopUP: '#WLbanner_2208111231 > a'
   },
   'burton.co.uk': {
     emailIsDisplayed:'.b-confirmation_header-email',

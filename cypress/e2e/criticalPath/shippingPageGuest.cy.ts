@@ -12,7 +12,8 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Home Page', function () {
   
   beforeEach(() => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+
+    // Const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     cy.wait(3000);
@@ -43,7 +44,7 @@ describe('Home Page', function () {
       shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
       shippingPage.assertions.assertCityIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
-    }   
+    }      
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
@@ -85,27 +86,32 @@ describe('Home Page', function () {
 
   it('Verify that user is able to add address details manually', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.click.addNewAddress();
+    }
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
+    shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertGuestEmailFiledDispayes();
   });
 
   it('Verify that user is able to select standard shipping method', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.click.addNewAddress();
+    }
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
+    shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -134,12 +140,14 @@ describe('Home Page', function () {
   it('Verify that PUDO locations are dispayed', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.click.addNewAddress();
+    }
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
+    shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.adressLine2(localeAddress.addrline2);
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -160,10 +168,13 @@ describe('Home Page', function () {
   it('Verify that user is able to proceed to billing page after adding fname, lname, country, phone number and select shipping method', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.click.addNewAddress();
+    }
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
+    shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);

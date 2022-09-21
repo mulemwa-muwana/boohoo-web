@@ -17,7 +17,8 @@ const selectors: SelectorBrandMap = {
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
-    PostcodeLookup: '#LoqateAutocomplete'
+    PostcodeLookup: '#LoqateAutocomplete',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -33,7 +34,8 @@ const selectors: SelectorBrandMap = {
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
-    PostcodeLookup: '#LoqateAutocomplete'
+    PostcodeLookup: '#LoqateAutocomplete',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -46,11 +48,12 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
-    PostcodeLookup: '#LoqateAutocomplete'
+    PostcodeLookup: '#LoqateAutocomplete',
   },
   'burton.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -67,7 +70,8 @@ const selectors: SelectorBrandMap = {
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
-    PostcodeLookup: '#LoqateAutocomplete'
+    PostcodeLookup: '#LoqateAutocomplete',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
   },
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -84,7 +88,8 @@ const selectors: SelectorBrandMap = {
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: 'button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
-    PostcodeLookup: '#LoqateAutocomplete'
+    PostcodeLookup: '#LoqateAutocomplete',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -109,7 +114,7 @@ class ShippingPage implements AbstractPage {
     },
     addNewAddress () {
       const addNewAddress = selectors[variables.brand].addNewAddress;
-      cy.get(addNewAddress).eq(1).click();
+      cy.get(addNewAddress).click();
     },
     cancelAddingNewAddress () {
       const cancelAddingNewAddress = selectors[variables.brand].cancelAddingNewAddress;
@@ -159,6 +164,10 @@ class ShippingPage implements AbstractPage {
       const PUDOlocations = selectors[variables.brand].PUDOlocations;
       cy.get(PUDOlocations).click();
     },
+    enterManuallyAddressDetails () {
+      const enterManually = selectors[variables.brand].enterManually;
+      cy.get(enterManually).click();
+    }
   
   };
 

@@ -2,6 +2,7 @@ import PdpPage from '../../pom/pdp.page';
 import HomePage from '../../pom/home.page';
 import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
+import _ = require('cypress/types/lodash');
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -29,11 +30,10 @@ describe('Product Details Page tests', function () {
   });
   it('TC05 Verify that colour swatches are shown and selecting one will change the main image',function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
-    PdpPage.actions.selectColor(0); //  Color is selected by its index number(trying to find better solution)
+    PdpPage.actions.selectColor(0);
     PdpPage.assertions.assertColorIsDisplayed(skuAssertions.mainSkuColor[variables.language]);
   });
   it('TC06 Verify that it is possible to select a size when available', function () {
-    PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize();
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[variables.language]);

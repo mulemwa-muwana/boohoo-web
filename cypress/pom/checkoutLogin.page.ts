@@ -9,7 +9,7 @@ const selectors: SelectorBrandMap = {
     userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: ':nth-child(8) > .b-login_form-group_cta > .b-button',
+    continueAsRegisteredUser: ':nth-child(9) > .b-login_form-group_cta > .b-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'

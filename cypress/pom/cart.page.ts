@@ -13,7 +13,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    proceedToCheckout: '[href="https://uk-dwstg.boohoo.com/checkout-login"]',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',

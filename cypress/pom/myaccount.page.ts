@@ -208,7 +208,7 @@ const selectors: SelectorBrandMap = {
     nameGreeting: 'p[data-tau="greeting_message"]',
     addressNameLine: '.b-address-name',
     addressSummaryLine: '.b-address-summary',
-    orderHistoryLoadMoreBtn: 'a[data-tau="orders_load_more',
+    orderHistoryLoadMoreBtn: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -241,7 +241,7 @@ class MyAccountPage implements AbstractPage {
       },
       orderHistoryLink () {
         const orderHistory = selectors[variables.brand].orderHistory;
-        cy.get(orderHistory).should('be.visible').click();
+        cy.get(orderHistory).should('be.visible').click({force: true});
       },
       loadMoreButton () {
         const orderHistoryLoadMoreBtn = selectors[variables.brand].orderHistoryLoadMoreBtn;
@@ -285,16 +285,16 @@ class MyAccountPage implements AbstractPage {
       viewNewestOrderHistory () {
         const orderHistory = selectors[variables.brand].orderHistory;
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
-        cy.get(orderHistory).should('be.visible').click();
+        cy.get(orderHistory).should('be.visible').click({force: true});
         cy
           .get(viewOrderBtn)
           .eq(0)
-          .click();
+          .click({force: true});
       },
       loadMoreOrders () {
         const orderHistoryLoadMoreBtn = selectors[variables.brand].orderHistoryLoadMoreBtn;
         if (cy.get(orderHistoryLoadMoreBtn).should('be.visible')) {
-          cy.get(orderHistoryLoadMoreBtn).click();
+          cy.get(orderHistoryLoadMoreBtn).click({force: true});
         }
       },
       updateAccountName (newName: string) {

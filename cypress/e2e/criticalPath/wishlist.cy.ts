@@ -32,12 +32,15 @@ describe('Home Page', function () {
   it('Verify that item is saved to wishlist', () => {     
     const variables = Cypress.env() as EnvironmentVariables;      
     plpPage.click.wishlistOnPlpImage(); 
-    WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
-    WishListPage.assertions.assertItemIsAddedToWishlist();
+    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com' 
+    || variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com' ) {
+      WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
+      WishListPage.assertions.assertItemIsAddedToWishlist();     
+    }
   }),
   it('Verify that user can add wishlist item to the cart', () => {
     HomePage.click.wishListIcon();
-    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
+    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'nastygal.com' || variables.brand == 'burton.co.uk' ) {
       WishListPage.actions.chooseSizeDDL(1);
     } else {
       plpPage.assertions.assertItemIsAddedToWishlistColorChange();

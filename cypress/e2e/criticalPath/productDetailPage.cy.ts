@@ -29,11 +29,10 @@ describe('Product Details Page tests', function () {
   });
   it('TC05 Verify that colour swatches are shown and selecting one will change the main image',function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
-    PdpPage.actions.selectColor(0); //  Color is selected by its index number(trying to find better solution)
+    PdpPage.actions.selectColor(0);
     PdpPage.assertions.assertColorIsDisplayed(skuAssertions.mainSkuColor[variables.language]);
   });
   it('TC06 Verify that it is possible to select a size when available', function () {
-    PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize();
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertSizeIsAvailable(assertionText.inStock[variables.language]);
@@ -66,13 +65,12 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertDeliveryInfoIsDisplayed();
   });
   it('TC12 Verify that Returns Info carousel is displayed when configured', function () {
-    PdpPage.click.shippingInfoButton();
     PdpPage.assertions.assertReturnInfoIsDisplayed();
-    PdpPage.click.returnLink();
-    PdpPage.assertions.assertStartReturnPageIsDisplayed();
   });
   it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
-    PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
+    if (variables.brand == 'boohoo.com') {
+      PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
+    }
   });
  
 }); 

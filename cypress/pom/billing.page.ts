@@ -19,7 +19,7 @@ const selectors: SelectorBrandMap = {
     customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
-    paymentTypeCC: '#payment-button-scheme',
+    paymentTypeCC: '#payment-button-CREDIT_CARD > .b-payment_accordion-icon',
     paymentTypeKlarna: '',
     creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
@@ -300,11 +300,19 @@ class BillingPage implements AbstractPage {
       cy.enter('#klarna-apf-iframe').then(body => {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
-        body().find('[data-cid="btn-primary"]').should('be.visible').click();
+        // eslint-disable-next-line no-cond-assign, no-constant-condition
+        if (variables.brand = 'boohoo.com') {
+          body().find('[testid="confirm-and-pay"]').should('be.visible').click();
+
+          // Body().find('#pay_later-pay_later').click();
+          // Body().find('[data-testid="select-payment-category"]').click();
+        } else {
+          body().find('[data-cid="btn-primary"]').should('be.visible').click();
+        }
 
         // BHO Body().find('[data-testid="pick-plan"]').should('be.visible').click();
         // BHO Body().find('[testid="confirm-and-pay"]').should('be.visible').click();
-        body().find('#payinparts_kp\\.bf0ddd49-7c29-47fe-a4df-ab9ffd52677d_3_slice_it_by_card-purchase-review-continue-button > div > div:nth-child(1)').should('be.visible').click();
+        // Body().find('#payinparts_kp\\.bf0ddd49-7c29-47fe-a4df-ab9ffd52677d_3_slice_it_by_card-purchase-review-continue-button > div > div:nth-child(1)').should('be.visible').click();
 
         // BHO Body().find('[data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
         cy.wait(5000);

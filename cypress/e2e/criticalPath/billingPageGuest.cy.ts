@@ -152,7 +152,7 @@ describe('Billing page functionality for guest user', function () {
         BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
       });
     }
-    it('Verify that guest user can place order using PayPal', function () {
+    it.only('Verify that guest user can place order using PayPal', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectPayPal();
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();

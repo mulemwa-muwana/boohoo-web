@@ -124,7 +124,7 @@ describe('Home Page', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     shippingPage.click.addNewAddressButton();
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+    if (variables.brand == 'boohoo.com') {
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
     } else {
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
@@ -134,7 +134,13 @@ describe('Home Page', function () {
   it('Verify that "Enter manually" button allows user to enter address details', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    shippingPage.click.addAddressManually();
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.click.addNewAddressButton();
+      shippingPage.click.addAddressManually();
+    } else {
+      shippingPage.click.addNewAddressButton();
+      shippingPage.click.enterManuallyAddressDetails();
+    }
     shippingPage.actions.addressLookupField(localeAddress.postcode);
     shippingPage.assertions.assertManualAddressFieldsAreDispayed();
   });
@@ -142,10 +148,15 @@ describe('Home Page', function () {
   it('Verify that user is able to add address details manually', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+      shippingPage.click.addNewAddress();
+    } else {
+      shippingPage.click.addNewAddressButton();
+    }
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
+    shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);

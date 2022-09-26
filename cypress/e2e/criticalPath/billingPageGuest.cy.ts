@@ -71,7 +71,6 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertDateFormIsPresent();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
-
   });
   it('Verify that guest user cannot place order if email field is empty', function () {
     BillingPage.actions.emptyEmailField();
@@ -120,12 +119,11 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.card);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.klarna);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.clearPay);
-      if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' && variables.locale == 'UK') {
         BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
+        BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
       }
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
-
+     
       // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
     });
   });
@@ -152,7 +150,7 @@ describe('Billing page functionality for guest user', function () {
         BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
       });
     }
-    it('Verify that guest user can place order using PayPal', function () {
+    it.only('Verify that guest user can place order using PayPal', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectPayPal();
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();

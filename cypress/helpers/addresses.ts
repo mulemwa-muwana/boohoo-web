@@ -10,7 +10,7 @@ class Addresses {
         phone: '08082580300',
         addrline1: '100 Browning St, Birmingham B16 8EH',
         addrline2: '',
-        postcode: 'AB11 6PH',
+        postcode: 'AB116PH',
         addressName: 'SecondAddress',
         country: 'United Kingdom',
         city: 'Aberdeen',

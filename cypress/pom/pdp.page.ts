@@ -12,7 +12,7 @@ const selectors: SelectorBrandMap = {
     shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',  // changed for billing page - should checknp
     selectColor: '#maincontent > div > div > div > div.l-pdp-top > main > div.b-product_details-form > div.b-product_details-variations > section.b-variations_item.m-swatch.m-color',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
@@ -21,7 +21,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
-    miniCartProductIner: '.b-minicart_product-inner', 
+    miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
@@ -35,7 +35,7 @@ const selectors: SelectorBrandMap = {
     returnLink: 'a[href="https://us1-dev.nastygal.com/eu/page/returns-and-refunds-customer-service.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
     sizeVariations: '.b-product_details-variations > .m-size',
     pruductCode: 'span[data-tau="b-product_details-id',
@@ -48,6 +48,8 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     viewCart: '.b-minicart-actions > .m-outline',
+    productTitle: '#editProductModalTitle',
+    shippingInfoButton: '.b-product_delivery-link',
   },
   'dorothyperkins.com': {
     addToCart: '[data-widget="processButton"]',
@@ -68,6 +70,8 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     viewCart: '.b-minicart-actions > .m-outline',
+    productTitle: '#editProductModalTitle',
+    shippingInfoButton: '.b-product_delivery-link',
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
@@ -88,6 +92,8 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     viewCart: '.b-minicart-actions > .m-outline',
+    productTitle: '#editProductModalTitle',
+    shippingInfoButton: '#product-details-btn-shipping',
   },
   'wallis.co.uk': {
     addToCart: '.b-product_addtocard-availability', 
@@ -95,7 +101,7 @@ const selectors: SelectorBrandMap = {
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
     sizeVariations: '.b-product_details-variations > .m-size',
     pruductCode: 'span[data-tau="b-product_details-id',
@@ -108,6 +114,8 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     viewCart: '.b-minicart-actions > .m-outline',
+    productTitle: '#editProductModalTitle',
+    shippingInfoButton: '#product-details-btn-shipping',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -187,7 +195,7 @@ class PdpPage implements AbstractPage {
     addToCart () {
       cy.wait(5000);
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).click(); //  Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
+      cy.get(addToCart).click({force: true}); //  Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
     }
   };
 

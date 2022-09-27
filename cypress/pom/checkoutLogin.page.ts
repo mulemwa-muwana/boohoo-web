@@ -61,11 +61,11 @@ class CheckoutPage implements AbstractPage {
   click = {
     continueAsGuestBtn () {  
       const continueAsGuestBt = selectors[variables.brand].continueAsGuestBt; 
-      cy.get(continueAsGuestBt).click()
+      cy.get(continueAsGuestBt).click();
     },
     continueAsRegisteredUser () {  
       const continueAsRegisteredUser = selectors[variables.brand].continueAsRegisteredUser; 
-      cy.get(continueAsRegisteredUser).click()
+      cy.get(continueAsRegisteredUser).click();
     },
     premierAddToCart () { 
       const premierAddToCart = selectors[variables.brand].premierAddToCart;

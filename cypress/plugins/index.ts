@@ -13,9 +13,8 @@ export default async function (on: Cypress.PluginEvents): Promise<void> {
     }
     console.log('Environment Variables', configWithDotenv.parsed);
   } catch {
-    console.warn('No env file found.')
+    console.warn('No env file found.');
   }
-
 
   on('task', {
 

@@ -12,7 +12,7 @@ const selectors: SelectorBrandMap = {
     shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',  // changed for billing page - should checknp
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline', // Changed for billing page - should checknp
     selectColor: '#maincontent > div > div > div > div.l-pdp-top > main > div.b-product_details-form > div.b-product_details-variations > section.b-variations_item.m-swatch.m-color',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',

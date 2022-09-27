@@ -22,17 +22,17 @@ describe('Boohoo order placement', () => {
       CartPage.click.proceedToCheckout();
     });
 
-     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
      
-     ShippingPage.actions.firstNameField(localeAddress.firstName);
-     ShippingPage.actions.lastNameField(localeAddress.lastName);
-     ShippingPage.actions.selectCountry(localeAddress.country);
-     ShippingPage.click.addAddressManually();
-     ShippingPage.actions.adressLine1(localeAddress.addrline1);
-     ShippingPage.actions.cityFiled(localeAddress.city);
-     ShippingPage.actions.postcodeField(localeAddress.postcode);
-     ShippingPage.actions.phoneNumberField(localeAddress.phone);
-     ShippingPage.click.proceedToBilling();
+    ShippingPage.actions.firstNameField(localeAddress.firstName);
+    ShippingPage.actions.lastNameField(localeAddress.lastName);
+    ShippingPage.actions.selectCountry(localeAddress.country);
+    ShippingPage.click.addAddressManually();
+    ShippingPage.actions.adressLine1(localeAddress.addrline1);
+    ShippingPage.actions.cityFiled(localeAddress.city);
+    ShippingPage.actions.postcodeField(localeAddress.postcode);
+    ShippingPage.actions.phoneNumberField(localeAddress.phone);
+    ShippingPage.click.proceedToBilling();
   });
 
   it('can select credit card and generate an artefact', async function () {
@@ -40,11 +40,11 @@ describe('Boohoo order placement', () => {
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     OrderConfirmationPage.click.closePopUp();
 
-    generateArtefact('worldpay')
+    generateArtefact('worldpay');
   });
 
   // Method for generating artefact for back end tests.
-  async function generateArtefact(artefactName: string) {
+  async function generateArtefact (artefactName: string) {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get(':nth-child(1) > .b-summary_group-details').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get(':nth-child(2) > .b-summary_group-details').invoke('text').then(text => text.trim().substring(1)).as('orderValue');

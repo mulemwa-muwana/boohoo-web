@@ -4,12 +4,18 @@ import { join } from 'path';
 
 export default async function (on: Cypress.PluginEvents): Promise<void> {
 
-  const configWithDotenv = (await import('dotenv')).config({path: join(__dirname, '..', '..', '.env')});
-  if (configWithDotenv.error) {
-    throw configWithDotenv.error;
+  try {
+    const configWithDotenv = (await import('dotenv')).config({ 
+      path: join(__dirname, '..', '..', '.env'),
+    });
+    if (configWithDotenv.error) {
+      throw configWithDotenv.error;
+    }
+    console.log('Environment Variables', configWithDotenv.parsed);
+  } catch {
+    console.warn('No env file found.')
   }
-  
-  console.log('Environment Variables', configWithDotenv.parsed);
+
 
   on('task', {
 

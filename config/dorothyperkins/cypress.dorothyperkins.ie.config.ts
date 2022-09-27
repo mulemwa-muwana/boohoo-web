@@ -21,6 +21,6 @@ export default defineConfig({
 
       // Implement node event listeners here
     },
+    numTestsKeptInMemory: 0
   },
-  numTestsKeptInMemory: 0
 });

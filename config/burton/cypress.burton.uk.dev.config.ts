@@ -1,12 +1,14 @@
 import { defineConfig } from 'cypress';
+import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/',
-    sku: '#AQQ42330-141',
-    brand: 'dorothyperkins.com',
+    url: 'https://storefront:Oreo2022@dwdev.burton.co.uk/',
+    sku: 'ABB01243',
+    fullSKU: 'ABB01243-131-30',
+    brand: 'burton.co.uk',
     locale: 'UK',
     language: 'EN',
   },
@@ -17,10 +19,9 @@ export default defineConfig({
   chromeWebSecurity: false,
 
   e2e: {
-    setupNodeEvents (on, config) {
-
-      // Implement node event listeners here
+    setupNodeEvents (on) {
+      plugins(on);
     },
     numTestsKeptInMemory: 0
-  },   
+  },
 });

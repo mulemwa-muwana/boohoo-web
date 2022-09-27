@@ -406,7 +406,7 @@ class BillingPage implements AbstractPage {
       cy.url().should('include', 'shipping');
     },
     assertOrderConfirmationPAgeIsDisplayed () {
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk') {
+      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url().should('include', 'orderconfirmation');
       } else {
         cy.url().should('include', 'order-confirmation');

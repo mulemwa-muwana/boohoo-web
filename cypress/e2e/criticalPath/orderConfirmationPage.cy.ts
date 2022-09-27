@@ -38,12 +38,14 @@ describe('Order confirmation page for guest user', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     BillingPage.actions.selectDate('23', 'May', '2001');
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
+    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
   });
 
   it('Verify that email is visible for guest user', function () {
-    orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+guest@gmail.com');    
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);    
+    });
   });
 
   it('Verify that order number', function () {
@@ -91,13 +93,15 @@ describe('Order confirmation page for registered user', function () {
 
     //  ShippingPage.actions.clickPreferedShippingMethod(variables);
     shippingPage.click.proceedToBilling();
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
+    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     
   });
   it('Verify that email is visible', function () {
-    orderConfirmationPage.assertions.assertEmailIsDisplayed('euboohoo+cypress789@gmail.com');  
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);    
+    });
   });
   it('Verify that order number is visible', function () {
     orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();

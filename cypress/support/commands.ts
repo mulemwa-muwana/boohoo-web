@@ -45,3 +45,14 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
 Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, name: string, folderName: string) => {
   cy.writeFile(`cypress/artefacts/${folderName}/${name}.json`, JSON.stringify(testArtefact, null, 4));
 });
+
+/**
+ * If selector exists, run callback where arguement is the selector.
+ */
+Cypress.Commands.add('ifExists', (selector: string, callback: Function) => {
+  return cy.get('body').then($body => {
+    if ($body.find(selector).length > 0) {
+      return callback(selector);
+    }
+  });
+});

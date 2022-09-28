@@ -35,7 +35,21 @@ describe('Order confirmation page for guest user', function () {
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
+
+    // There's a date of birth field on Oasis's checkout, we need to fill this out as well.
+    if (variables.brand == 'oasis-stores.com') {
+      BillingPage.actions.selectDate('23', 'May', '2001');
+    }
+
     shippingPage.click.proceedToBilling();
+
+    // If the validate address button shows, click it away.
+    if (variables.brand == 'oasis-stores.com') {
+      cy.ifExists('.verification-address-button', () => {
+        cy.get('.verification-address-button').click();
+      })
+    }
+    
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
     orderConfirmationPage.click.closePopUp();

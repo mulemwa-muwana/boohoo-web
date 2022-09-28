@@ -20,7 +20,7 @@ describe('Order confirmation page for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    PdpPage.click.miniCartViewCartBtn();
+    //PdpPage.click.miniCartViewCartBtn();
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
@@ -30,6 +30,7 @@ describe('Order confirmation page for guest user', function () {
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.addAddressManually();
+    shippingPage.click.confirmEmail();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);

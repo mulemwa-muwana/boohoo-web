@@ -145,7 +145,36 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    customerDOByear: 'select[id="dwfrm_profile_customer_yearofbirth"]',
+    paymentTypeCC: '#payment-button-scheme',
+    paymentTypeKlarna: '',
+    creditCardFieldsCardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
+    creditCardFieldsCardOwner: '#dwfrm_billing_creditCardFields_cardOwner',
+    creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
+    creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error'
+  },
   'misspap.com': undefined
 };
 
@@ -192,7 +221,9 @@ class BillingPage implements AbstractPage {
       const creditCardFieldsSecurityCode = selectors[variables.brand].creditCardFieldsSecurityCode;
       const creditCardFieldsExpirationYear = selectors[variables.brand].creditCardFieldsExpirationYear;
       const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
-      cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
+      if (variables.brand !== 'oasis-stores.com') {
+        cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
+      }
       cy.wait(3000);
       cy.get(paymentTypeCC).click();
       cy.wait(2000);

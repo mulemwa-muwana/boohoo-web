@@ -113,7 +113,26 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    addToCart: '#add-to-cart', 
+    addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
+    returnLink: '',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '#mini-cart > div.mini-cart-content.js-mini-cart-content > div.mini-cart-content-inner.js-mini-cart-content-inner > div.mini-cart-totals > a.button.mini-cart-link-cart',
+    selectColor: '.b-variation_swatch-color_value',
+    sizeVariations: '.size-attribute > .value > .swatches > :nth-child(1) > .swatchanchor',
+    pruductCode: 'span[data-tau="b-product_details-id',
+    productPrice: '.b-product_details-price',
+    colorSwatches: 'div[role="radiogroup"]',
+    productImage: '#product-image-0',
+    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
+    miniCartProductIner: '.b-minicart_product-inner',
+    productDescription: 'div[data-id="descriptions"]',
+    productDelivery: '.b-product_delivery',
+    productReturnsDescription: '.b-product_shipping-returns',
+    viewCart: '.b-minicart-actions > .m-outline',
+  },
   'misspap.com': undefined
 };
 
@@ -177,12 +196,16 @@ class PdpPage implements AbstractPage {
     },
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      cy.get(sizeVariations).find('button').each(($element) => {
-        if (!$element.attr('title').includes('not available')) {
-          $element.trigger('click');
-          return false;
-        }
-      });
+      if (variables.brand == 'oasis-stores.com') {
+        cy.get(sizeVariations).click()
+      } else {
+        cy.get(sizeVariations).find('button').each(($element) => {
+          if (!$element.attr('title').includes('not available')) {
+            $element.trigger('click');
+            return false;
+          }
+        });
+      }
     },
     addToCart () {
       cy.wait(5000);

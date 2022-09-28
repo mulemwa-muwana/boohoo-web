@@ -46,7 +46,13 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    guestCheckoutEmail: '[id^=dwfrm_login_username]',
+    userEmailField: '#dwfrm_login_email',
+    passwordField:'#dwfrm_login_password',
+    continueAsGuestBt:'.login-page-button',
+    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button'
+  },
   'misspap.com': undefined
 };
 
@@ -80,7 +86,10 @@ class CheckoutPage implements AbstractPage {
   actions = {
     guestCheckoutEmail (guestEmail: string) {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
-      cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
+      if (variables.brand == 'oasis-stores.com') {
+        cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
+      } 
+      
     },
     userEmailField (username: string) {  
       const userEmailField = selectors[variables.brand].userEmailField;

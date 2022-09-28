@@ -81,7 +81,21 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    emailIsDisplayed:'.b-confirmation_header-email',
+    orderValueIsDisplayed:'.b-summary_shipping-cost',
+    shippingAddressDetailsName:'',
+    shippingAddressDetailsSummary:'',
+    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName:'',
+    billingAddressDetailsSummary:'',
+    shippingMethodIsDisplayed:'b-summary_shipping-name',
+    paymentMethod:'.b-summary_payment',
+    orderTotalIsVisible:'.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '#WLbanner_2208111231 > a'
+  },
   'misspap.com': undefined
 };
 

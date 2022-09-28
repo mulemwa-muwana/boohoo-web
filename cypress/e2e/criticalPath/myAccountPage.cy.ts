@@ -23,7 +23,6 @@ describe('Account page', function () {
     MyAccountPage.assertions.assertOrderDetailsContent();
   });
   it('TC02 Verify that "Load More" button at the buttom of the page works as expected', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
     MyAccountPage.click.orderHistoryLink();
     MyAccountPage.assertions.assertOrderHistoryPageTitle('order');
     

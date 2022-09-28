@@ -13,7 +13,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '[href="https://uk-dwstg.boohoo.com/checkout-login"]',
+    proceedToCheckout: '[data-tau="cart_bottom_section"] [data-tau="start_checkout_bottom"]',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
@@ -47,7 +47,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '[href="https://dwdev.dorothyperkins.com/checkout-login"]',
+    proceedToCheckout: '.b-minicart-actions a:nth-child(2)',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
@@ -66,7 +66,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
+    proceedToCheckout: '.b-minicart-actions a:nth-child(2)',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
@@ -120,9 +120,6 @@ class CartPage implements AbstractPage {
     proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
       cy.get(proceedToCheckout).should('be.visible').click({force: true});    
-    },
-    cartPageCheckoutButton () {
-      cy.get('.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button').click();
     }
   };
 

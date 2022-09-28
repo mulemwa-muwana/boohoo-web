@@ -1,59 +1,61 @@
-import BillingPage from '../../pom/billing.page';
-import CartPage from '../../pom/cart.page';
-import CheckoutPage from '../../pom/checkoutLogin.page';
-import HomePage from '../../pom/home.page';
-import PdpPage from '../../pom/pdp.page';
-import shippingPage from '../../pom/shipping.page';
-import cards from '../../helpers/cards';
-import orderConfirmationPage from '../../pom/orderConfirmation.page';
-import Addresses from '../../helpers/addresses';
-import { getCardProviderByBrand } from '../../helpers/common';
+import { getCardProviderByBrand } from 'cypress/helpers/common';
+import Addresses from 'cypress/helpers/addresses';
+import BillingPage from 'cypress/pom/billing.page';
+import LoginPage from 'cypress/pom/login.page';
+import OrderConfirmationPage from 'cypress/pom/orderConfirmation.page';
+import Cards from '../../helpers/cards';
+import ShippingPage from 'cypress/pom/shipping.page';
+import CartPage from 'cypress/pom/cart.page';
 
-describe('Order confirmation page for guest user', function () {
-  beforeEach (()=>{
-    const variables = Cypress.env() as EnvironmentVariables;
+const variables = Cypress.env() as EnvironmentVariables;
+
+describe('Boohoo order placement', () => {
+  
+  beforeEach(() => {
+    cy.createUser(variables.brand).then((credentials: NewCustomerCredentials) => {
+      cy.log(credentials.email, credentials.password),
+      cy.prepareUser(credentials, variables.brand, variables.fullSKU);
+      LoginPage.goto({ applyCookies: true });
+      LoginPage.actions.loginViaPage(credentials.email, credentials.password);
+      cy.wait(2000);
+      CartPage.goto();
+      CartPage.click.proceedToCheckout();
+    });
+
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize();
-    cy.wait(2000);
-    PdpPage.click.addToCart();
-    cy.wait(7000);
-    HomePage.click.cartIcon();  
-    PdpPage.click.miniCartViewCartBtn();
-    CartPage.click.proceedToCheckout();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-      CheckoutPage.click.continueAsGuestBtn();
-    }); 
-    shippingPage.actions.firstNameField(localeAddress.firstName);
-    shippingPage.actions.lastNameField(localeAddress.lastName);
-    shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
-    shippingPage.actions.postcodeField(localeAddress.postcode);
-    shippingPage.actions.phoneNumberField(localeAddress.phone);
-    shippingPage.click.proceedToBilling();
-    BillingPage.actions.selectDate('23', 'May', '2001');
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
-    orderConfirmationPage.click.closePopUp();
+     
+    ShippingPage.actions.firstNameField(localeAddress.firstName);
+    ShippingPage.actions.lastNameField(localeAddress.lastName);
+    ShippingPage.actions.selectCountry(localeAddress.country);
+    ShippingPage.click.addAddressManually();
+    ShippingPage.actions.adressLine1(localeAddress.addrline1);
+    ShippingPage.actions.cityFiled(localeAddress.city);
+    ShippingPage.actions.postcodeField(localeAddress.postcode);
+    ShippingPage.actions.phoneNumberField(localeAddress.phone);
+    ShippingPage.click.proceedToBilling();
   });
 
-  it('Get order details from order confirmation page and create test artefact', async function () {
+  it('can select credit card and generate an artefact', async function () {
+    const visa = Cards.visa;
+    BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
+    OrderConfirmationPage.click.closePopUp();
+
+    generateArtefact('worldpay');
+  });
+
+  // Method for generating artefact for back end tests.
+  async function generateArtefact (artefactName: string) {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get(':nth-child(1) > .b-summary_group-details').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get(':nth-child(2) > .b-summary_group-details').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
     cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail');
     cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku')
       .then(function () {
-        
-        const paymentMethodForBrand = getCardProviderByBrand(variables.brand, variables.locale);
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
           orderEmail: this.orderEmail,
-          paymentMethod: paymentMethodForBrand,
+          paymentMethod: getCardProviderByBrand(variables.brand, variables.locale),
           groupBrand: variables.brand,
           deliveryMethod: 'UKSuperSaver', // This is a code in the backend, not found on the front end, the test should target this delivery method code.
           items: [{
@@ -66,9 +68,8 @@ describe('Order confirmation page for guest user', function () {
           timestamp: Date.now()
         };
 
-        cy.createArtefact(testArtefactObject, paymentMethodForBrand.toLowerCase(), 'orderCreation'); // Names should be hard coded I think...
-        
+        cy.createArtefact(testArtefactObject, artefactName);
       });
-  });
+  }
 
 });

@@ -9,7 +9,7 @@ const selectors: SelectorBrandMap = {
     userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: ':nth-child(9) > .b-login_form-group_cta > .b-button',
+    continueAsRegisteredUser: 'button[data-tau="login_submit"]',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
@@ -33,7 +33,7 @@ const selectors: SelectorBrandMap = {
     userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: ':nth-child(9) > .b-login_form-group_cta > .b-button'
+    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button'
   },
   'wallis.co.uk': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
@@ -61,15 +61,11 @@ class CheckoutPage implements AbstractPage {
   click = {
     continueAsGuestBtn () {  
       const continueAsGuestBt = selectors[variables.brand].continueAsGuestBt; 
-      cy.get(continueAsGuestBt).then(element => {
-        cy.wrap(element).click();
-      });    
+      cy.get(continueAsGuestBt).click();
     },
     continueAsRegisteredUser () {  
       const continueAsRegisteredUser = selectors[variables.brand].continueAsRegisteredUser; 
-      cy.get(continueAsRegisteredUser).then(element => {
-        cy.wrap(element).click();
-      });
+      cy.get(continueAsRegisteredUser).click();
     },
     premierAddToCart () { 
       const premierAddToCart = selectors[variables.brand].premierAddToCart;

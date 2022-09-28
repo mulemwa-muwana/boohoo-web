@@ -44,7 +44,7 @@ describe('Order confirmation page for guest user', function () {
 
   it('Verify that email is visible for guest user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);    
+      orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);
     });
   });
 
@@ -100,7 +100,7 @@ describe('Order confirmation page for registered user', function () {
   });
   it('Verify that email is visible', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);    
+      orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);
     });
   });
   it('Verify that order number is visible', function () {

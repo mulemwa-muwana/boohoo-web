@@ -55,7 +55,16 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    loginIcon: '.b-header_login-icon > .i-icon',
+    loginEmail: '[id*="login_username"]',
+    loginPassword: '[id*="login_password"]',
+    loginButton:'[name*="dwfrm_login_login"]',
+    passwordReset: '#password-reset',
+    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
+    resetPasswordBtn: '.b-dialog-footer > .b-button',
+    loginForm: ':nth-child(1) > .l-service-section_inner'
+  },
   'misspap.com': undefined
 };
 

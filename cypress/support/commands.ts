@@ -46,3 +46,11 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
 Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, name: string) => {
   cy.writeFile(`cypress/artefacts/orderCreation/${name}.json`, JSON.stringify(testArtefact, null, 4));
 });
+
+Cypress.Commands.add('ifExists', (selector: string, callback: Function) => {
+  return cy.get('body').then($body => {
+    if ($body.find(selector).length > 0) {
+      return callback(selector);
+    }
+  });
+});

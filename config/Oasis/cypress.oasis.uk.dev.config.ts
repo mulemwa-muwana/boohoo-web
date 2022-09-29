@@ -1,10 +1,11 @@
 import { defineConfig } from 'cypress';
+import plugins from 'cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.oasisfashion.com/',
+    url: 'https://storefront:Oreo2022@dwdev.oasisfashion.com',
     sku: 'AAA67414-128',
     fullSKU: 'AAA67414-128-14',
     brand: 'oasis-stores.com',
@@ -18,10 +19,11 @@ export default defineConfig({
   chromeWebSecurity: false,
 
   e2e: {
-    setupNodeEvents (on, config) {
-
-      // Implement node event listeners here
+    experimentalSessionAndOrigin: true,
+    setupNodeEvents (on) {
+      plugins(on);
     },
+
     numTestsKeptInMemory: 0
   },
 });

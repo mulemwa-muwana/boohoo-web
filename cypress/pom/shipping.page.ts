@@ -239,7 +239,7 @@ class ShippingPage implements AbstractPage {
   
     postcodeField (postcode: string) {
       cy.wait(1000);
-      cy.get('[id$=addressFields_postalCode][id*="shipping"]').type(postcode);
+      cy.get('[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]').type(postcode);
     },
     selectShippingMethod (shippingMethod: string) {
       cy.get('.b-option_switch-label').each(() => {

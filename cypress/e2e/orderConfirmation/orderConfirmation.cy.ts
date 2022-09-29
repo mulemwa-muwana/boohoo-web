@@ -37,25 +37,31 @@ describe('Boohoo order placement', () => {
   });
 
   it('can select credit card and generate an artefact', async function () {
+
+    // Proceed to billing as Site Genesis confirms your delivery address.
+    if (variables.brand === 'oasis-stores.com') {
+      cy.contains('there may be a problem with the address you have entered.').should('be.visible');
+      cy.get('.verification-address-button-container').should('be.visible').click();
+    }
+
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     OrderConfirmationPage.click.closePopUp();
-
     generateArtefact('worldpay');
   });
 
   // Method for generating artefact for back end tests.
   async function generateArtefact (artefactName: string) {
     const variables = Cypress.env() as EnvironmentVariables;
-    cy.get('[data-tau="order_number"]').invoke('text').then(text => text.trim()).as('orderNumber');
-    cy.get('.m-total').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
-    cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail');
+    cy.get('[data-tau="order_number"], .orderdetails-header-number .value').invoke('text').then(text => text.trim()).as('orderNumber');
+    cy.get('.m-total, .order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
+    cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail');
     if (variables.brand == 'oasis-stores.com') {
       cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
     } else {
       cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
     }
-    cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail')
+    cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
 
         const testArtefactObject: TestArtefact = {

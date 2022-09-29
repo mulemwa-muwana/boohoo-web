@@ -41,8 +41,8 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
 
 /**
  * Create an artefact file in Cypress, this file is used to fuel back end tests.
+ * We need to store the test type so the test frameknown knows how to process it, it needs a folder name which will be the brand and it'll need a name.
  */
-
 Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, brand: string, paymentMethod: string) => {
   // Example: cypress/artefacts/orderCreation/boohoo/adyen.json
   cy.log('Writing artefact file.')

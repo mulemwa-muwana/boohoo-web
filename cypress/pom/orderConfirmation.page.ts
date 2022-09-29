@@ -18,18 +18,18 @@ const selectors: SelectorBrandMap = {
     closePopUP: '[id^=WLbanner] > a'
   },
   'nastygal.com': {
-    emailIsDisplayed:'.b-confirmation_header-email',
-    orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
-    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
-    shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment',
-    orderTotalIsVisible:'.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '#WLbanner_1526548622 > [href="javascript:void(0);"]'
   },
   'dorothyperkins.com': {
@@ -63,25 +63,39 @@ const selectors: SelectorBrandMap = {
     closePopUP: '[id^=WLbanner] > a'
   },
   'wallis.co.uk': {
-    emailIsDisplayed:'.b-confirmation_header-email',
-    orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
-    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
-    shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment',
-    orderTotalIsVisible:'.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '#WLbanner_2201101815 > a'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '[id^=WLbanner] > a'
+  },
   'misspap.com': undefined
 };
 
@@ -95,7 +109,7 @@ class OrderConfirmation implements AbstractPage {
   click = {
     closePopUp () {
       const closePopUP = selectors[variables.brand].closePopUP;
-      cy.get(closePopUP, {timeout: 20000}).click();
+      cy.get(closePopUP, { timeout: 20000 }).click();
     }
   };
 

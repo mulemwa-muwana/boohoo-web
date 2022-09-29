@@ -95,7 +95,25 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    productPrice: '.m-user_cart > .b-summary_table-value',
+    subtotal: '.m-total > .b-summary_table-value',
+    cartQuantity: '.b-cart_product-qty',
+    editQuantity: '.b-cart_product-edit',
+    updateQuantityBtn: '.b-product_update-button_update',
+    setQuantityDDL: '.b-product_update-button_update',
+    updateQuantityDDL: '#quantity-08630916a2e766c39d1e0c8c70',
+    premierBlock: '.b-ngvip-details',
+    addPremierToCart: '.b-ngvip-button',
+    PayPalCTA: '.zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button-0',
+    AmazonCTA: '#OffAmazonPaymentsWidgets0',
+    proceedToCheckout: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
+    clearCart: '.b-cart_product-remove',
+    emptyCartTitle: '.b-cart_empty-title',
+    productDetails: '.l-cart_product-details',
+    productName: '.b-cart_product-title > a',
+  },
   'misspap.com': undefined
 };
 
@@ -165,7 +183,7 @@ class CartPage implements AbstractPage {
     },
     assertProductImageIsDisplayed (pictureId: string) {
       cy.get(pictureId).then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10); 
+        cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
     assertProductTitleIsVisible () {

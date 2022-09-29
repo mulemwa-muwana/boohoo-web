@@ -10,7 +10,7 @@ import CartPage from 'cypress/pom/cart.page';
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Boohoo order placement', () => {
-  
+
   beforeEach(() => {
     cy.createUser(variables.brand).then((credentials: NewCustomerCredentials) => {
       cy.log(credentials.email, credentials.password),
@@ -23,7 +23,7 @@ describe('Boohoo order placement', () => {
     });
 
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-     
+
     ShippingPage.actions.firstNameField(localeAddress.firstName);
     ShippingPage.actions.lastNameField(localeAddress.lastName);
     ShippingPage.actions.selectCountry(localeAddress.country);
@@ -33,6 +33,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.actions.phoneNumberField(localeAddress.phone);
     ShippingPage.click.proceedToBilling();
+
   });
 
   it('can select credit card and generate an artefact', async function () {
@@ -46,11 +47,17 @@ describe('Boohoo order placement', () => {
   // Method for generating artefact for back end tests.
   async function generateArtefact (artefactName: string) {
     const variables = Cypress.env() as EnvironmentVariables;
-    cy.get(':nth-child(1) > .b-summary_group-details').invoke('text').then(text => text.trim()).as('orderNumber');
-    cy.get(':nth-child(2) > .b-summary_group-details').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
-    cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail');
-    cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku')
+    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.order-confirmation-details > div.orderdetails > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
+    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.order-confirmation-details > div.orderdetails > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
+    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.confirmation-message > div.confirmation-message-inner > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail');
+    if (variables.brand == 'oasis-stores.com') {
+      cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
+    } else {
+      cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
+    }
+    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.confirmation-message > div.confirmation-message-inner > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
+
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
@@ -69,6 +76,7 @@ describe('Boohoo order placement', () => {
         };
 
         cy.createArtefact(testArtefactObject, artefactName);
+
       });
   }
 

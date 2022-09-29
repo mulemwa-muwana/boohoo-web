@@ -47,11 +47,11 @@ describe('Boohoo order placement', () => {
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     OrderConfirmationPage.click.closePopUp();
-    generateArtefact('worldpay');
+    generateArtefact();
   });
 
   // Method for generating artefact for back end tests.
-  async function generateArtefact (artefactName: string) {
+  async function generateArtefact () {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get('[data-tau="order_number"], .orderdetails-header-number .value').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get('.m-total, .order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
@@ -64,11 +64,12 @@ describe('Boohoo order placement', () => {
     cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
 
+        const paymentMethod = getCardProviderByBrand(variables.brand, variables.locale);
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
           orderEmail: this.orderEmail,
-          paymentMethod: getCardProviderByBrand(variables.brand, variables.locale),
+          paymentMethod: paymentMethod,
           groupBrand: variables.brand,
           deliveryMethod: 'UKSuperSaver', // This is a code in the backend, not found on the front end, the test should target this delivery method code.
           items: [{
@@ -81,7 +82,8 @@ describe('Boohoo order placement', () => {
           timestamp: Date.now()
         };
 
-        cy.createArtefact(testArtefactObject, artefactName);
+
+        cy.createArtefact(testArtefactObject, paymentMethod.toLowerCase(), variables.brand, 'orderCreation');
 
       });
   }

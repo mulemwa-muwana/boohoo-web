@@ -71,7 +71,6 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertDateFormIsPresent();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
-
   });
   it('Verify that guest user cannot place order if email field is empty', function () {
     BillingPage.actions.emptyEmailField();
@@ -120,29 +119,28 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.card);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.klarna);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.clearPay);
-      if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' && variables.locale == 'UK') {
         BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
+        BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
       }
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
-
+     
       // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
     });
   });
   describe('Verify that guest user can place orders with available payment methods', function () {
-    it('Verify that guest user can place order using Credit Card - Visa)', function () {
+    it.only('Verify that guest user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
-      BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
+      BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
     it('Verify that guest user can place order using Credit Card - Master)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
-      BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.month, cards.master.year, cards.master.code);
+      BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
     it('Verify that guest user can place order using Credit Card - Amex)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
-      BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.month, cards.amex.year, cards.amex.code);
+      BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
     if (variables.locale == 'UK' || variables.locale == 'IE') {

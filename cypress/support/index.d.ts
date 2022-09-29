@@ -4,7 +4,7 @@ declare namespace Cypress {
         createUser: (brand: GroupBrands) => Chainable<Subject>;
         ifExists(selector: string, callback: Function): Chainable<Subject>;
         prepareUser: (customer: NewCustomerCredentials, brand: GroupBrands, sku: string) => void;
-        createArtefact: (testArtefact: TestArtefact, name: string, folderName: string) => void;
+        createArtefact: (testArtefact: TestArtefact, name: string) => void;
     }
 }
 

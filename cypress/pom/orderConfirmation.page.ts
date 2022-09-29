@@ -3,19 +3,19 @@ import homePage from './home.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    emailIsDisplayed: '.b-confirmation_header-email',
-    orderValueIsDisplayed: '.b-summary_shipping-cost',
-    shippingAddressDetailsName: '',
-    shippingAddressDetailsSummary: '',
-    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName: '',
-    billingAddressDetailsSummary: '',
-    shippingMethodIsDisplayed: 'b-summary_shipping-name',
-    paymentMethod: '.b-summary_payment',
-    orderTotalIsVisible: '.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '#WLbanner_2112171003 > a'
+    emailIsDisplayed:'.b-confirmation_header-email',
+    orderValueIsDisplayed:'.b-summary_shipping-cost',
+    shippingAddressDetailsName:'[aria-label="Shipping Details"] p.b-address-name',
+    shippingAddressDetailsSummary:'[aria-label="Shipping Details"] p.b-address-summary',
+    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName:'[aria-label="Payment Details"] p.b-address-name',
+    billingAddressDetailsSummary:'[aria-label="Payment Details"] p.b-address-summary',
+    shippingMethodIsDisplayed:'b-summary_shipping-name',
+    paymentMethod:'.b-summary_payment-name',
+    orderTotalIsVisible:'.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '[id^=WLbanner] > a'
   },
   'nastygal.com': {
     emailIsDisplayed: '.b-confirmation_header-email',
@@ -33,34 +33,34 @@ const selectors: SelectorBrandMap = {
     closePopUP: '#WLbanner_1526548622 > [href="javascript:void(0);"]'
   },
   'dorothyperkins.com': {
-    emailIsDisplayed: '.b-confirmation_header-email',
-    orderValueIsDisplayed: '.b-summary_shipping-cost',
-    shippingAddressDetailsName: '',
-    shippingAddressDetailsSummary: '',
-    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName: '',
-    billingAddressDetailsSummary: '',
-    shippingMethodIsDisplayed: 'b-summary_shipping-name',
-    paymentMethod: '.b-summary_payment',
-    orderTotalIsVisible: '.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '#WLbanner_2208111231 > a'
+    emailIsDisplayed:'.b-confirmation_header-email',
+    orderValueIsDisplayed:'.b-summary_shipping-cost',
+    shippingAddressDetailsName:'',
+    shippingAddressDetailsSummary:'',
+    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName:'',
+    billingAddressDetailsSummary:'',
+    shippingMethodIsDisplayed:'b-summary_shipping-name',
+    paymentMethod:'.b-summary_payment',
+    orderTotalIsVisible:'.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '[id^=WLbanner] > a'
   },
   'burton.co.uk': {
-    emailIsDisplayed: '.b-confirmation_header-email',
-    orderValueIsDisplayed: '.b-summary_shipping-cost',
-    shippingAddressDetailsName: '',
-    shippingAddressDetailsSummary: '',
-    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName: '',
-    billingAddressDetailsSummary: '',
-    shippingMethodIsDisplayed: 'b-summary_shipping-name',
-    paymentMethod: '.b-summary_payment',
-    orderTotalIsVisible: '.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '#WLbanner_2201312015 > a'
+    emailIsDisplayed:'.b-confirmation_header-email',
+    orderValueIsDisplayed:'.b-summary_shipping-cost',
+    shippingAddressDetailsName:'[aria-label="Shipping Details"] p.b-address-name',
+    shippingAddressDetailsSummary:'[aria-label="Shipping Details"] p.b-address-summary',
+    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName:'[aria-label="Payment Details"] p.b-address-name',
+    billingAddressDetailsSummary:'[aria-label="Payment Details"] p.b-address-summary',
+    shippingMethodIsDisplayed:'b-summary_shipping-name',
+    paymentMethod:'.b-summary_payment',
+    orderTotalIsVisible:'.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '[id^=WLbanner] > a'
   },
   'wallis.co.uk': {
     emailIsDisplayed: '.b-confirmation_header-email',
@@ -139,10 +139,10 @@ class OrderConfirmation implements AbstractPage {
     },
     assertBillingAddressDetails(fname: string, lname: string, addressLine1: string) {
       const billingAddressDetailsName = selectors[variables.brand].billingAddressDetailsName;
-      cy.get(billingAddressDetailsName).eq(1).should('contain', fname);
-      cy.get(billingAddressDetailsName).eq(1).should('contain', lname);
+      cy.get(billingAddressDetailsName).should('contain', fname);
+      cy.get(billingAddressDetailsName).should('contain', lname);
       const billingAddressDetailsSummary = selectors[variables.brand].billingAddressDetailsSummary;
-      cy.get(billingAddressDetailsSummary).eq(1).should('contain', addressLine1);
+      cy.get(billingAddressDetailsSummary).should('contain', addressLine1);
     },
     assertShippingMethodIsDisplayed() {
       const shippingMethodIsDisplayed = selectors[variables.brand].shippingMethodIsDisplayed;

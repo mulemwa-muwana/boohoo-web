@@ -24,8 +24,8 @@ describe('Account page', function () {
   });
   it('TC02 Verify that "Load More" button at the buttom of the page works as expected', function () {
     MyAccountPage.click.orderHistoryLink();
-    MyAccountPage.assertions.assertOrderHistoryPageTitle('order-history');
-    MyAccountPage.actions.loadMoreOrders();
+    MyAccountPage.assertions.assertOrderHistoryPageTitle('order');
+    
   });
   it('TC03 Verify that returns option links to correct page', function () {
     MyAccountPage.actions.viewNewestOrderHistory();

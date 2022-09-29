@@ -323,7 +323,7 @@ class AssertionText {
   };
 
   assertPaymentMethod: TranslationMap = {
-    EN: 'Credit / Debit card',
+    EN: 'Credit Card',
     NL: 'Creditcard / betaalkaart',
     DK: 'Kredit-/betalingskort',
     FR: 'Carte de crédit / débit',

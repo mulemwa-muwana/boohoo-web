@@ -2,7 +2,7 @@ import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
@@ -21,15 +21,13 @@ const selectors: SelectorBrandMap = {
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     paymentTypeCC: '#payment-button-scheme',
     paymentTypeKlarna: '',
-    creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
-    creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
-    creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
-    creditCardFieldsCardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
-    creditCardFieldsCardOwner : '#dwfrm_billing_creditCardFields_cardOwner',
-    creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
   },
   'nastygal.com': {
@@ -73,7 +71,7 @@ const selectors: SelectorBrandMap = {
     paymentTypeKlarna: '',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardFieldsCardOwner: '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',
-    creditCardFieldsExpirationMonth: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
@@ -103,7 +101,7 @@ const selectors: SelectorBrandMap = {
     paymentTypeKlarna: '',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardFieldsCardOwner: '#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__field.adyen-checkout__card__holderName > label > span.adyen-checkout__input-wrapper > input',
-    creditCardFieldsExpirationMonth: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
@@ -226,11 +224,13 @@ class BillingPage implements AbstractPage {
       cy.wait(3000);
       cy.get(paymentTypeCC).click();
       cy.wait(2000);
-      cy.get(creditCardFieldsCardOwner).type(cardOwner)
-        cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(creditCardFieldsCardNumber).should('be.visible').type(cardNo);
-        cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(creditCardFieldsExpirationDate).should('be.visible').type(date);
-        cy.iframe('.adyen-checkout__field__cvc .js-iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
-        cy.get(paynowBtnCC).click();
+
+      cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(creditCardFieldsCardNumber).should('be.visible').type(cardNo);
+      cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(creditCardFieldsExpirationDate).should('be.visible').type(date);
+      cy.iframe('.adyen-checkout__field__cvc .js-iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
+      cy.get(creditCardFieldsCardOwner).should('be.visible').type(cardOwner);
+      cy.get(paynowBtnCC).click();
+
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -313,11 +313,13 @@ class BillingPage implements AbstractPage {
       cy.enter('#klarna-apf-iframe').then(body => {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
-        body().find('[data-cid="btn-primary"]').should('be.visible').click();
+
+        // Body().find('[data-cid="btn-primary"]').should('be.visible').click();
 
         // BHO Body().find('[data-testid="pick-plan"]').should('be.visible').click();
-        // BHO Body().find('[testid="confirm-and-pay"]').should('be.visible').click();
-        body().find('#payinparts_kp\\.bf0ddd49-7c29-47fe-a4df-ab9ffd52677d_3_slice_it_by_card-purchase-review-continue-button > div > div:nth-child(1)').should('be.visible').click();
+        body().find('[testid="confirm-and-pay"]').should('be.visible').click();
+
+        // Body().find('#payinparts_kp\\.bf0ddd49-7c29-47fe-a4df-ab9ffd52677d_3_slice_it_by_card-purchase-review-continue-button > div > div:nth-child(1)').should('be.visible').click();
 
         // BHO Body().find('[data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
         cy.wait(5000);
@@ -437,7 +439,7 @@ class BillingPage implements AbstractPage {
       cy.url().should('include', 'shipping');
     },
     assertOrderConfirmationPAgeIsDisplayed () {
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk') {
+      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url().should('include', 'orderconfirmation');
       } else {
         cy.url().should('include', 'order-confirmation');

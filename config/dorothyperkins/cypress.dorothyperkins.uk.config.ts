@@ -4,8 +4,8 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.dorothyperkins.com/',
-    sku: '#AQQ42330-141',
+    url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/',
+    sku: 'AQQ42847-128',
     brand: 'dorothyperkins.com',
     locale: 'UK',
     language: 'EN',
@@ -21,7 +21,6 @@ export default defineConfig({
 
       // Implement node event listeners here
     },
-     
-  },
-   
+    numTestsKeptInMemory: 0
+  },   
 });

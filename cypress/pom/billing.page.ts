@@ -4,7 +4,7 @@ const selectors: SelectorBrandMap = {
   'boohoo.com': {
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -82,7 +82,7 @@ const selectors: SelectorBrandMap = {
   'burton.co.uk': {
     paynowBtnCC:'#payment-details-scheme > div > div.b-payment_accordion-submit.b-checkout_step-controls > div > button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -282,24 +282,21 @@ class BillingPage implements AbstractPage {
       }
     },
     selectKlarna () {
-      cy.get('#payment-button-KlarnaUK').click();
-
+      cy.wait(5000);
+      cy.get('#payment-button-KlarnaUK').click({force:true});
+      cy.wait(2000);
+      
       // Stub the open method with just a console log to force it not to open a window.
       cy.window().then((window: Cypress.AUTWindow) => {
         cy.stub(window, 'open').callsFake(() => {
           console.log('stop this button click');
         });
       });
-
+      
       // Click on PayNow.
       const klarnaPayNow = selectors[variables.brand].klarnaPayNow;
-      const paynowBtn = selectors[variables.brand].paynowBtn;
-      if (variables.brand == 'boohoo.com') {
-        cy.get(klarnaPayNow).click();
-      } else {
-        cy.get(paynowBtn).click();
-      }
-
+      cy.get(klarnaPayNow).click();
+      
       // Click the Continue button.
       cy.get('button[style*="geometricprecision"]').click();
 
@@ -313,15 +310,12 @@ class BillingPage implements AbstractPage {
       cy.enter('#klarna-apf-iframe').then(body => {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
-
-        // Body().find('[data-cid="btn-primary"]').should('be.visible').click();
-
-        // BHO Body().find('[data-testid="pick-plan"]').should('be.visible').click();
+        cy.wait(3000)
+        body().find('#pay_now-pay_now__container #pay_now-pay_now__label').should('be.visible').click();
+        body().find('[data-testid="select-payment-category"]').should('be.visible').click();
         body().find('[testid="confirm-and-pay"]').should('be.visible').click();
+        body().find('#dialog  [data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
 
-        // Body().find('#payinparts_kp\\.bf0ddd49-7c29-47fe-a4df-ab9ffd52677d_3_slice_it_by_card-purchase-review-continue-button > div > div:nth-child(1)').should('be.visible').click();
-
-        // BHO Body().find('[data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
         cy.wait(5000);
       });
     },
@@ -370,6 +364,7 @@ class BillingPage implements AbstractPage {
       cy.wait(5000);
     },
     selectLaybuy () {
+      cy.wait(5000);
       cy.get('#payment-button-LAYBUY').should('be.visible').click({ force: true });
       cy.wait(5000);
       cy.get('#payment-details-LAYBUY > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click();

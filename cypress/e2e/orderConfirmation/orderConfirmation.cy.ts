@@ -36,24 +36,31 @@ describe('Boohoo order placement', () => {
 
   });
 
-  it('can select credit card and generate an artefact', async function () {
+  it('can select credit card and generate an artefact', function () {
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     OrderConfirmationPage.click.closePopUp();
 
-    generateArtefact('worldpay');
+    generateArtefact(variables.brand, getCardProviderByBrand(variables.brand, variables.locale));
+  });
+
+  it('can select Klarna as payment method and generate an artefact', function () {
+    BillingPage.actions.selectKlarna();
+    OrderConfirmationPage.click.closePopUp();
+
+    generateArtefact(variables.brand, 'Klarna');
   });
 
   // Method for generating artefact for back end tests.
-  async function generateArtefact (artefactName: string) {
+  function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get('[data-tau="order_number"]').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get('.m-total').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
     cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail');
     if (variables.brand == 'oasis-stores.com') {
-      cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
-    } else {
-      cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
+        cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
+      } else {
+          cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
     }
     cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
@@ -62,7 +69,7 @@ describe('Boohoo order placement', () => {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
           orderEmail: this.orderEmail,
-          paymentMethod: getCardProviderByBrand(variables.brand, variables.locale),
+          paymentMethod: paymentMethod,
           groupBrand: variables.brand,
           deliveryMethod: 'UKSuperSaver', // This is a code in the backend, not found on the front end, the test should target this delivery method code.
           items: [{
@@ -75,7 +82,8 @@ describe('Boohoo order placement', () => {
           timestamp: Date.now()
         };
 
-        cy.createArtefact(testArtefactObject, artefactName);
+        const brandName = brand.split('.')[0]   // boohoo.com => boohoo
+        cy.createArtefact(testArtefactObject, brandName, paymentMethod.toLowerCase());
 
       });
   }

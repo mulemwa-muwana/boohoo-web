@@ -3,7 +3,7 @@ declare namespace Cypress {
         goOffline: () => Chainable<null>;
         createUser: (brand: GroupBrands) => Chainable<Subject>;
         prepareUser: (customer: NewCustomerCredentials, brand: GroupBrands, sku: string) => void;
-        createArtefact: (testArtefact: TestArtefact, name: string) => void;
+        createArtefact: (testArtefact: TestArtefact, brand: string, paymentMethod: string) => Chainable<null>;
     }
 }
 

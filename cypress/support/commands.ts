@@ -43,6 +43,8 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
  * Create an artefact file in Cypress, this file is used to fuel back end tests.
  */
 
-Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, name: string) => {
-  cy.writeFile(`cypress/artefacts/orderCreation/${name}.json`, JSON.stringify(testArtefact, null, 4));
+Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, brand: string, paymentMethod: string) => {
+  // Example: cypress/artefacts/orderCreation/boohoo/adyen.json
+  cy.log('Writing artefact file.')
+  cy.writeFile(`cypress/artefacts/orderCreation/${brand}/${paymentMethod}.json`, JSON.stringify(testArtefact, null, 4));
 });

@@ -99,7 +99,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       NL: 'WorldPay',
       NO: 'WorldPay',
       SE: 'WorldPay',
-      UK: 'WorldPay',
+      UK: 'Adyen',
       IE: 'WorldPay',
     },
     'burton.co.uk': {
@@ -113,7 +113,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       NL: 'WorldPay',
       NO: 'WorldPay',
       SE: 'WorldPay',
-      UK: 'WorldPay',
+      UK: 'Adyen',
       IE: 'WorldPay',
     },
     'wallis.co.uk': {

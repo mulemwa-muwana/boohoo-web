@@ -44,12 +44,16 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
  * We need to store the test type so the test frameknown knows how to process it, it needs a folder name which will be the brand and it'll need a name.
  */
 Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, brand: string, paymentMethod: string) => {
+
   // Example: cypress/artefacts/orderCreation/boohoo/adyen.json
-  cy.log(`Writing artefact file. Brand: '${brand}'. Payment method: '${paymentMethod}'. Order number: '${testArtefact.orderNumber}'`)
+  cy.log(`Writing artefact file. Brand: '${brand}'. Payment method: '${paymentMethod}'. Order number: '${testArtefact.orderNumber}'`);
   cy.writeFile(`cypress/artefacts/orderCreation/${brand}/${paymentMethod}.json`, JSON.stringify(testArtefact, null, 4));
 });
 
 /**
- * Outputs everything from cy.log() out to the console terminal
+ * Outputs everything from cy.log() out to the console terminal as well
  */
-Cypress.Commands.overwrite('log', (subject, message, ...args) => cy.task('log', message));
+Cypress.Commands.overwrite('log', (log, message, ...args) => {
+  log(message, ...args);
+  cy.task('log', [message, ...args].join(', '), { log: false });
+});

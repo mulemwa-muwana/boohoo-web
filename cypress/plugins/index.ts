@@ -34,10 +34,10 @@ export default async function (on: Cypress.PluginEvents): Promise<void> {
       return updatedCustomer;
     },
 
-    // Outputs everything from cy.log() to the console
-    async log (message, ...args) {
-      console.log(message, args)
-      return null
-    }
+    // Outputs everything from cy.log() to the console as well
+    log (message) {
+      console.log(message);
+      return null;
+    },
   });
 }

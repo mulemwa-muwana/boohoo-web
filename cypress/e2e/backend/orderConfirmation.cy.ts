@@ -13,7 +13,8 @@ describe('Boohoo order placement', () => {
 
   beforeEach(() => {
     cy.createUser(variables.brand).then((credentials: NewCustomerCredentials) => {
-      cy.log(credentials.email, credentials.password),
+      cy.log(credentials.email, credentials.password);
+
       cy.prepareUser(credentials, variables.brand, variables.fullSKU);
       LoginPage.goto({ applyCookies: true });
       LoginPage.actions.loginViaPage(credentials.email, credentials.password);
@@ -57,9 +58,9 @@ describe('Boohoo order placement', () => {
     cy.get('.m-total, .order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
     cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail');
     if (variables.brand == 'oasis-stores.com') {
-        cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
-      } else {
-          cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
+      cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
+    } else {
+      cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
     }
     cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
@@ -81,7 +82,7 @@ describe('Boohoo order placement', () => {
           timestamp: Date.now()
         };
 
-        const brandName = brand.split('.')[0]   // boohoo.com => boohoo
+        const brandName = brand.split('.')[0]; // Boohoo.com => boohoo
         cy.createArtefact(testArtefactObject, brandName, paymentMethod.toLowerCase());
       });
   }

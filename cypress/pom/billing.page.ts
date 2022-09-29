@@ -315,7 +315,7 @@ class BillingPage implements AbstractPage {
       cy.enter('#klarna-apf-iframe').then(body => {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
-        cy.wait(3000)
+        cy.wait(3000);
         body().find('#pay_now-pay_now__container #pay_now-pay_now__label').should('be.visible').click();
         body().find('[data-testid="select-payment-category"]').should('be.visible').click();
         body().find('[testid="confirm-and-pay"]').should('be.visible').click();

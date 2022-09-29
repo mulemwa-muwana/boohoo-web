@@ -11,10 +11,10 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "cy:open:boohoo:dev": "cypress open --config-file ./config/boohoo/cypress.boohoo.uk.dev.config.ts",
-    "cy:run:boohoo:uk:e2e": "cypress run --config-file ./config/boohoo/cypress.boohoo.uk.dev.config.ts --spec \"cypress/e2e/orderConfirmation/orderConfirmation.cy.ts\"  --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
     "cy:open:dorothy:dev": "cypress open --config-file ./config/dorothyperkins/cypress.dorothyperkins.uk.dev.config.ts",
     "cy:open:burton:dev": "cypress open --config-file ./config/burton/cypress.burton.uk.dev.config.ts",
-    "cy:open:oasis:dev": "cypress run --config-file ./config/oasis/cypress.oasis.uk.dev.config.ts"
+    "cy:open:oasis:dev": "cypress run --config-file ./config/oasis/cypress.oasis.uk.dev.config.ts",
+    "cy:run:boohoo:uk:e2e": "cypress run --config-file ./config/boohoo/cypress.boohoo.uk.dev.config.ts --spec \"cypress/e2e/orderConfirmation/orderConfirmation.cy.ts\"  --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",

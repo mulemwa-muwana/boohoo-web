@@ -47,15 +47,15 @@ describe('Boohoo order placement', () => {
   // Method for generating artefact for back end tests.
   async function generateArtefact (artefactName: string) {
     const variables = Cypress.env() as EnvironmentVariables;
-    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.order-confirmation-details > div.orderdetails > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
-    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.order-confirmation-details > div.orderdetails > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
-    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.confirmation-message > div.confirmation-message-inner > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail');
+    cy.get('[data-tau="order_number"]').invoke('text').then(text => text.trim()).as('orderNumber');
+    cy.get('.m-total').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
+    cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail');
     if (variables.brand == 'oasis-stores.com') {
       cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
     } else {
       cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
     }
-    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.confirmation-message > div.confirmation-message-inner > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
+    cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
 
         const testArtefactObject: TestArtefact = {

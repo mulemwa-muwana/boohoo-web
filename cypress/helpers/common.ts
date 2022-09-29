@@ -29,7 +29,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       IL: 'Adyen', // Israel
       NZ: 'WorldPay', // New Zealand
       SE: 'Adyen', // Sweden
-      UK: 'WorldPay', // United Kingdom
+      UK: 'Adyen', // United Kingdom
       IE: 'WorldPay', // Ireland
       US: 'WorldPay' // United States
     },

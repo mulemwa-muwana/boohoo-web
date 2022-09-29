@@ -209,37 +209,37 @@ class ShippingPage implements AbstractPage {
       cy.get(PostcodeLookup).type('{enter}');
     },
     firstNameField (fname: string) {
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_firstName').type(fname);
+      cy.get('[id$=addressFields_firstName][id*="shipping"]').type(fname);
     },
     lastNameField (lname: string) {
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_lastName').type(lname);
+      cy.get('[id$=addressFields_lastName][id*="shipping"]').type(lname);
     },
     countrySelector () {
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_country'); 
+      cy.get('[id$=addressFields_country][id*="shipping"]'); 
     },
     phoneNumberField (phone: string) {
       cy.wait(1000);
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_phone').type(phone);
+      cy.get('[id$=addressFields_phone][id*="shipping"]').type(phone);
     },
     selectCountry (country: string) {
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_country').select(country).invoke('show');
+      cy.get('[id$=addressFields_country][id*="shipping"]').select(country).invoke('show');
     },
     adressLine1 (address1: string) {
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_address1').type(address1);
+      cy.get('[id$=addressFields_address1][id*="shipping"]').type(address1);
     },
     adressLine2 (address2: string) {
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_address2').type(address2);
+      cy.get('[id$=addressFields_address2][id*="shipping"]').type(address2);
     },
     cityFiled (city: string) {
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_city').type(city);
+      cy.get('[id$=addressFields_city][id*="shipping"]').type(city);
     },
     countyField (county: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').type(county);
+      cy.get('[id$=addressFields_states_stateCode][id*="shipping"]').type(county);
     },
   
     postcodeField (postcode: string) {
       cy.wait(1000);
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal').type(postcode);
+      cy.get('[id$=addressFields_postalCode][id*="shipping"]').type(postcode);
     },
     selectShippingMethod (shippingMethod: string) {
       cy.get('.b-option_switch-label').each(() => {

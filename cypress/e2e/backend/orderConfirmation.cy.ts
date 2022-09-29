@@ -33,17 +33,9 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.actions.phoneNumberField(localeAddress.phone);
     ShippingPage.click.proceedToBilling();
-
   });
 
   it('can select credit card and generate an artefact', function () {
-
-    // Proceed to billing as Site Genesis confirms your delivery address.
-    if (variables.brand === 'oasis-stores.com') {
-      cy.contains('there may be a problem with the address you have entered.').should('be.visible');
-      cy.get('.verification-address-button-container').should('be.visible').click();
-    }
-
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     OrderConfirmationPage.click.closePopUp();
@@ -72,7 +64,6 @@ describe('Boohoo order placement', () => {
     cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
 
-        const paymentMethod = getCardProviderByBrand(variables.brand, variables.locale);
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,

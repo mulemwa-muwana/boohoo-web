@@ -4,6 +4,7 @@ const selectors: SelectorBrandMap = {
   'boohoo.com': {
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaButton:'#payment-button-KlarnaUK',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
@@ -52,6 +53,7 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     paynowBtnCC:'#payment-details-scheme > div > div.b-payment_accordion-submit.b-checkout_step-controls > div > button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaButton:'#payment-button-KlarnaUK',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
@@ -82,6 +84,7 @@ const selectors: SelectorBrandMap = {
   'burton.co.uk': {
     paynowBtnCC:'#payment-details-scheme > div > div.b-payment_accordion-submit.b-checkout_step-controls > div > button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaButton:'#payment-button-KlarnaUK',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
@@ -146,7 +149,8 @@ const selectors: SelectorBrandMap = {
   'oasis-stores.com': {
     paynowBtnCC:'#billingSubmitButton',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    klarnaButton:'.payment-methods-wrapper #is-KlarnaUK',
+    klarnaPayNow:'#billingSubmitButton',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -283,7 +287,8 @@ class BillingPage implements AbstractPage {
     },
     selectKlarna () {
       cy.wait(5000);
-      cy.get('#payment-button-KlarnaUK').click({force:true});
+      const klarnaButton = selectors[variables.brand].klarnaButton;
+      cy.get(klarnaButton).click({force:true});
       cy.wait(2000);
       
       // Stub the open method with just a console log to force it not to open a window.

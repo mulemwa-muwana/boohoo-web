@@ -26,7 +26,7 @@ export default defineConfig({
       plugins(on);
     },
 
-    numTestsKeptInMemory: 2
+    numTestsKeptInMemory: 0
   },
 
 });

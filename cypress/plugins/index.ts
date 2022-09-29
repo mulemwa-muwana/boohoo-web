@@ -32,6 +32,12 @@ export default async function (on: Cypress.PluginEvents): Promise<void> {
     async prepareUser (parameters: { credentials: NewCustomerCredentials; brand: GroupBrands; sku: string }) {
       const updatedCustomer = await prepareCustomer(parameters.credentials, parameters.brand, parameters.sku, 'uk');
       return updatedCustomer;
+    },
+
+    // Outputs everything from cy.log() to the console
+    async log (message, ...args) {
+      console.log(message, args)
+      return null
     }
   });
 }

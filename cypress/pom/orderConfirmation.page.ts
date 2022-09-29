@@ -3,78 +3,78 @@ import homePage from './home.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    emailIsDisplayed:'.b-confirmation_header-email',
-    orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
-    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
-    shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment',
-    orderTotalIsVisible:'.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '#WLbanner_2112171003 > a'
   },
   'nastygal.com': {
-    emailIsDisplayed:'.b-confirmation_header-email',
-    orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
-    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
-    shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment',
-    orderTotalIsVisible:'.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '#WLbanner_1526548622 > [href="javascript:void(0);"]'
   },
   'dorothyperkins.com': {
-    emailIsDisplayed:'.b-confirmation_header-email',
-    orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
-    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
-    shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment',
-    orderTotalIsVisible:'.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '#WLbanner_2208111231 > a'
   },
   'burton.co.uk': {
-    emailIsDisplayed:'.b-confirmation_header-email',
-    orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
-    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
-    shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment',
-    orderTotalIsVisible:'.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '#WLbanner_2201312015 > a'
   },
   'wallis.co.uk': {
-    emailIsDisplayed:'.b-confirmation_header-email',
-    orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
-    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
-    shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment',
-    orderTotalIsVisible:'.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '#WLbanner_2201101815 > a'
   },
   'boohooman.com': undefined,
@@ -82,19 +82,19 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
-    emailIsDisplayed:'.b-confirmation_header-email',
-    orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
-    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
-    shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment',
-    orderTotalIsVisible:'.b-summary_shipping-cost',
-    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
-    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '#WLbanner_2208111231 > a'
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName: '',
+    shippingAddressDetailsSummary: '',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName: '',
+    billingAddressDetailsSummary: '',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '[id^=WLbanner] > a'
   },
   'misspap.com': undefined
 };
@@ -102,14 +102,14 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 
 class OrderConfirmation implements AbstractPage {
-  goto (): void {
+  goto(): void {
     homePage.goto();
   }
 
   click = {
-    closePopUp () {
+    closePopUp() {
       const closePopUP = selectors[variables.brand].closePopUP;
-      cy.get(closePopUP, {timeout: 20000}).click();
+      cy.get(closePopUP, { timeout: 20000 }).click();
     }
   };
 
@@ -118,49 +118,49 @@ class OrderConfirmation implements AbstractPage {
   };
 
   assertions = {
-    assertEmailIsDisplayed (email: string) {
+    assertEmailIsDisplayed(email: string) {
       const emailIsDisplayed = selectors[variables.brand].emailIsDisplayed;
       cy.get(emailIsDisplayed).should('contain.text', email);
     },
-    assertOrderValueIsDisplayed () {
+    assertOrderValueIsDisplayed() {
       const orderValueIsDisplayed = selectors[variables.brand].orderValueIsDisplayed;
       cy.get(orderValueIsDisplayed).should('not.be.empty');
     },
-    assertShippingAddressDetails (fname: string, lname: string, addressLine1: string) {
+    assertShippingAddressDetails(fname: string, lname: string, addressLine1: string) {
       const shippingAddressDetailsName = selectors[variables.brand].shippingAddressDetailsName;
       cy.get(shippingAddressDetailsName).should('contain', fname);
       cy.get(shippingAddressDetailsName).should('contain', lname);
       const shippingAddressDetailsSummary = selectors[variables.brand].shippingAddressDetailsSummary;
       cy.get(shippingAddressDetailsSummary).should('contain', addressLine1);
     },
-    assertOrderNumberIsDisplayed () {
+    assertOrderNumberIsDisplayed() {
       const orderNumberIsDisplayed = selectors[variables.brand].orderNumberIsDisplayed;
       cy.get(orderNumberIsDisplayed).eq(0).should('not.be.empty');
     },
-    assertBillingAddressDetails (fname: string, lname: string, addressLine1: string) {
+    assertBillingAddressDetails(fname: string, lname: string, addressLine1: string) {
       const billingAddressDetailsName = selectors[variables.brand].billingAddressDetailsName;
       cy.get(billingAddressDetailsName).eq(1).should('contain', fname);
       cy.get(billingAddressDetailsName).eq(1).should('contain', lname);
       const billingAddressDetailsSummary = selectors[variables.brand].billingAddressDetailsSummary;
       cy.get(billingAddressDetailsSummary).eq(1).should('contain', addressLine1);
     },
-    assertShippingMethodIsDisplayed () {
+    assertShippingMethodIsDisplayed() {
       const shippingMethodIsDisplayed = selectors[variables.brand].shippingMethodIsDisplayed;
       cy.get(shippingMethodIsDisplayed).should('not.be.empty');
     },
-    assertPaymentMethod (method: string) {
+    assertPaymentMethod(method: string) {
       const paymentMethod = selectors[variables.brand].paymentMethod;
       cy.get(paymentMethod).should('contain.text', method);
     },
-    assertOrderTotalIsVisible () {
+    assertOrderTotalIsVisible() {
       const orderTotalIsVisible = selectors[variables.brand].orderTotalIsVisible;
       cy.get(orderTotalIsVisible).should('not.be.empty');
     },
-    assertThatPasswordFieldForGuestUserIsDisplayed () {
+    assertThatPasswordFieldForGuestUserIsDisplayed() {
       const thatPasswordFieldForGuestUserIsDisplayed = selectors[variables.brand].thatPasswordFieldForGuestUserIsDisplayed;
       cy.get(thatPasswordFieldForGuestUserIsDisplayed).should('be.visible');
     },
-    assertThatConfirmPasswordFieldForGuestUserIsDisplayed () {
+    assertThatConfirmPasswordFieldForGuestUserIsDisplayed() {
       const thatConfirmPasswordFieldForGuestUserIsDisplayed = selectors[variables.brand].thatConfirmPasswordFieldForGuestUserIsDisplayed;
       cy.get(thatConfirmPasswordFieldForGuestUserIsDisplayed).should('be.visible');
     }

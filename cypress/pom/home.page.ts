@@ -68,10 +68,10 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 class HomePage implements AbstractPage {
 
-  goto (options: GotoOptions = null) {
-       
+  goto(options: GotoOptions = null) {
+
     cy.visit(variables.url);
-       
+
     if (options?.applyCookies) {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
@@ -82,114 +82,114 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
-    logInIcon (opts = { force: true }) {
+    logInIcon(opts = { force: true }) {
       const loginIcon = selectors[variables.brand].loginIcon;
       cy.get(loginIcon).invoke('show').click({ force: opts.force });
     },
-    forgotPasswordLink () {
+    forgotPasswordLink() {
       const resetPassword = selectors[variables.brand].resetPassword;
       cy.get(resetPassword).click();
     },
-    registrationButton () {
+    registrationButton() {
       const registrationButton = selectors[variables.brand].registrationButton;
       cy.get(registrationButton).should('be.visible').click();
     },
 
     // Objects for search subsystem tests
-    searchIcon (opts = { force: true }) {
+    searchIcon(opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({ force: opts.force });            
+      cy.get(searchIcon).click({ force: opts.force });
     },
-    searchField () {
+    searchField() {
       const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).click({force: true});
+      cy.get(searchField).click({ force: true });
     },
-    wishListIcon () {
+    wishListIcon() {
       const wishListIcon = selectors[variables.brand].wishListIcon;
-      cy.get(wishListIcon).click({force: true});
+      cy.get(wishListIcon).click({ force: true });
     },
-    cartIcon () {
+    cartIcon() {
       const minicartIcon = selectors[variables.brand].minicartIcon;
-      cy.get(minicartIcon).click({force: true});
+      cy.get(minicartIcon).click({ force: true });
     },
-    
+
     // MEGA MENU - MAIN NAV
 
-    selectLinkFromMegaMenu (text: string) {
-      cy.contains(text).click({force: true});
+    selectLinkFromMegaMenu(text: string) {
+      cy.contains(text).click({ force: true });
     },
 
     //  SUB-LINKS FROM MEGA MENU
-    backInStockLink (opts = { force: true }) {
+    backInStockLink(opts = { force: true }) {
       cy.get('#womens > div > ul > li:nth-child(3) > div > div.b-menu_bar-flyout_inner.m-tab_womens > div:nth-child(1) > div > div > div:nth-child(2) > a').click({ force: opts.force });
     },
-    allShoesLink (opts = { force: true }) {
+    allShoesLink(opts = { force: true }) {
       cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
     },
-    investorRelationsAcceptBtn () {
+    investorRelationsAcceptBtn() {
       cy.get('cc-saveAll-startBtn').click();
     },
-    acceptCookies () {
-      const acceptCookies = selectors[variables.brand].acceptCookies;      
+    acceptCookies() {
+      const acceptCookies = selectors[variables.brand].acceptCookies;
       cy.get(acceptCookies).click();
-    }   
+    }
   };
 
-  actions = {       
-    findItemUsingSKU (SKU: string) {
+  actions = {
+    findItemUsingSKU(SKU: string) {
       if (variables.brand != 'boohoo.com') {
         const searchIcon = selectors[variables.brand].searchIcon;
-        cy.get(searchIcon).click({force: true});
+        cy.get(searchIcon).click({ force: true });
       }
       const searchField = selectors[variables.brand].searchField;
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({force: true});
-      cy.get(searchField).click({force: true}).type(SKU+'{enter}');
+      cy.get(searchIcon).click({ force: true });
+      cy.get(searchField).click({ force: true }).type(SKU + '{enter}');
     },
-    forgotPassword (email: string) {
+    forgotPassword(email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();
       cy.get('.b-dialog-window').should('be.visible');
       cy.get('#dwfrm_profile_resetPassword_email').type(email);
-      cy.get('button[data-tau="forgot_password_submit"]', {timeout: 6000}).click();
+      cy.get('button[data-tau="forgot_password_submit"]', { timeout: 6000 }).click();
     },
-    closeNastygalPopup () {
+    closeNastygalPopup() {
       cy.get('#page-body > div.b-dialog.m-welcome_popup.welcome-popup-container.js-welcome-popup-wrapper.popup-template-5.popup-close-position-right.m-opened > div.b-dialog-window.m-top_dialog.m-welcome_popup.welcome-popup.welcome-popup-wrapper > div.b-dialog-header > button').should('be.visible').click();
     }
   };
 
   assertions = {
-    assertUserPanelTitle (name: string) {
+    assertUserPanelTitle(name: string) {
       cy.get('.b-header_login-icon > .i-icon').click();
       cy.get(':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label').click();
       cy.get('.b-user_greeting-message').should('contain.text', name);
     },
 
     // Search assertions
-    assertSearchIconPresent () {
+    assertSearchIconPresent() {
       const searchIcon = selectors[variables.brand].searchField;
       cy.get(searchIcon).should('be.visible');
     },
-    assertSearchFiledPresent () {
+    assertSearchFiledPresent() {
       const searchField = selectors[variables.brand].searchField;
       cy.get(searchField).should('be.visible');
     },
-    assertSearchFieldContains (text: string) {
+    assertSearchFieldContains(text: string) {
       const searchField = selectors[variables.brand].searchField;
       cy.get(searchField).contains(text);
     },
-    assertSearchResultPage (text: string) {
+    assertSearchResultPage(text: string) {
       cy.url().should('include', text);
     },
-    assertAutosearchSuggestionsDispayed () {
+    assertAutosearchSuggestionsDispayed() {
 
       // TODO.
     },
-    assertUserIsNotLoggedIn (msg: string) {
+    assertUserIsNotLoggedIn(msg: string) {
       cy.get('.b-miniaccount-title').should('contain.text', msg);
     },
 
     // Counter (header) assertion
-    counterOnHeaderPresent () {
+    counterOnHeaderPresent() {
       const promotion = selectors[variables.brand].promotion;
       cy.get(promotion).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
@@ -197,46 +197,46 @@ class HomePage implements AbstractPage {
     },
 
     // Links assertions
-    assertMegaMenuLinkIsOpeningCorrectPage (text: string) {
+    assertMegaMenuLinkIsOpeningCorrectPage(text: string) {
       cy.url().should('include', text);
     },
 
     // Logo
-    assertLogoPresent () {
+    assertLogoPresent() {
       cy.get('.b-logo').should('be.visible').should('have.attr', 'href');
     },
 
     // Header icons
-    assertWishListIconPresent () {
+    assertWishListIconPresent() {
       cy.get('.b-header_wishlist-icon > .i-icon').invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },
-    assertCartIconPresent () {
+    assertCartIconPresent() {
       cy.get('.b-minicart_icon-link').should('be.visible');
     },
-    assertAccountIconPresent () {
+    assertAccountIconPresent() {
       cy.get('.b-header_login-icon').invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },
 
     //  Login Attempts
-    assertErrorLoginMessageIsPresent (text: string) {
+    assertErrorLoginMessageIsPresent(text: string) {
       cy.get('.b-message-copy').should('be.visible').and('contain.text', text);
     },
-    assertForgotPasswordMessageisDisplayed (email: string) {
+    assertForgotPasswordMessageisDisplayed(email: string) {
       cy.get('.b-dialog-window').should('be.visible').and('contain', email);
     },
-    assertCountryURL (country: string) {
+    assertCountryURL(country: string) {
       cy.url().should('include', country);
     },
-    assertPromoLinkHeaderIsVisible () {
+    assertPromoLinkHeaderIsVisible() {
       cy.get('div[class="b-hero_carousel-item m-promotion m-current"]').should('be.visible').click();
     }
 
   };
-    
+
 }
 
 export default new HomePage();

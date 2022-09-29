@@ -107,7 +107,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '#address-autocomplete',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    proceedToBilling: '#dwfrm_singleshipping_shippingAddress > fieldset.address-container > fieldset:nth-child(4) > div > div > button',
+    proceedToBilling: '#dwfrm_singleshipping_shippingAddress > fieldset.address-container > fieldset:nth-child(3) > div > div > button',
     addNewAddress: 'button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
@@ -140,7 +140,7 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[variables.brand].proceedToBilling;
-      cy.wait(3000)
+      cy.wait(1000)
       cy.get(proceedToBilling).click({force: true});
     },
     editSavedAddress () {
@@ -315,3 +315,7 @@ class ShippingPage implements AbstractPage {
 }
 
 export default new ShippingPage();
+
+function mail(mail: any) {
+  throw new Error('Function not implemented.');
+}

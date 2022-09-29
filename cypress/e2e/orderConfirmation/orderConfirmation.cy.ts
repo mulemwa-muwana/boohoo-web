@@ -10,7 +10,7 @@ import Addresses from '../../helpers/addresses';
 import { getCardProviderByBrand } from '../../helpers/common';
 
 describe('Order confirmation page for guest user', function () {
-  beforeEach (()=>{
+  beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
@@ -19,13 +19,12 @@ describe('Order confirmation page for guest user', function () {
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
-    HomePage.click.cartIcon();  
-    //PdpPage.click.miniCartViewCartBtn();
+    HomePage.click.cartIcon();
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
       CheckoutPage.click.continueAsGuestBtn();
-    }); 
+    });
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -39,30 +38,33 @@ describe('Order confirmation page for guest user', function () {
     // There's a date of birth field on Oasis's checkout, we need to fill this out as well.
     if (variables.brand == 'oasis-stores.com') {
       BillingPage.actions.selectDate('23', 'May', '2001');
+    } else {
+      BillingPage.actions.selectDate('23', 'May', '2001');
     }
-
     shippingPage.click.proceedToBilling();
 
     // If the validate address button shows, click it away.
     if (variables.brand == 'oasis-stores.com') {
-      cy.ifExists('.verification-address-button', () => {
-        cy.get('.verification-address-button').click();
-      })
+      cy.get('.verification-address-button').click({ force: true });
     }
-    
-    BillingPage.actions.selectDate('23', 'May', '2001');
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.month, cards.visa.year, cards.visa.code);
+
+    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
   });
 
   it('Get order details from order confirmation page and create test artefact', async function () {
     const variables = Cypress.env() as EnvironmentVariables;
-    cy.get(':nth-child(1) > .b-summary_group-details').invoke('text').then(text => text.trim()).as('orderNumber');
-    cy.get(':nth-child(2) > .b-summary_group-details').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
-    cy.get('.b-confirmation_header-email').invoke('text').then(text => text.trim()).as('orderEmail');
-    cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku')
+    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.order-confirmation-details > div.orderdetails > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
+    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.order-confirmation-details > div.orderdetails > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
+    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.confirmation-message > div.confirmation-message-inner > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail');
+    if (variables.brand == 'oasis-stores.com') {
+      cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
+    } else {
+      cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
+    }
+    cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.confirmation-message > div.confirmation-message-inner > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
-        
+
         const paymentMethodForBrand = getCardProviderByBrand(variables.brand, variables.locale);
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
@@ -82,7 +84,7 @@ describe('Order confirmation page for guest user', function () {
         };
 
         cy.createArtefact(testArtefactObject, paymentMethodForBrand.toLowerCase(), 'orderCreation'); // Names should be hard coded I think...
-        
+
       });
   });
 

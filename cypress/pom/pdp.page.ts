@@ -21,7 +21,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
-    miniCartProductIner: '.b-minicart_product-inner', 
+    miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
@@ -90,7 +90,7 @@ const selectors: SelectorBrandMap = {
     viewCart: '.b-minicart-actions > .m-outline',
   },
   'wallis.co.uk': {
-    addToCart: '.b-product_addtocard-availability', 
+    addToCart: '.b-product_addtocard-availability',
     addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -114,7 +114,7 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
-    addToCart: '#add-to-cart', 
+    addToCart: '#add-to-cart',
     addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -139,62 +139,62 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 
 class PdpPage implements AbstractPage {
-  goto (): void {
+  goto(): void {
     homePage.goto();
   }
 
   click = {
 
-    addToCart () {
-      const addToCart = selectors[variables.brand].addToCart; 
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' ) {
-        cy.get(addToCart).eq(0).should('be.visible').click({force:true}); 
-      } else {cy.get(addToCart).should('be.visible').click();}
+    addToCart() {
+      const addToCart = selectors[variables.brand].addToCart;
+      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
+        cy.get(addToCart).eq(0).should('be.visible').click({ force: true });
+      } else { cy.get(addToCart).should('be.visible').click(); }
     },
-    addToWishList () {
+    addToWishList() {
       const addToWishListButton = selectors[variables.brand].addToWishListButton;
       cy.get(addToWishListButton).should('be.visible').click();
     },
-    shippingInfoButton () {
+    shippingInfoButton() {
       const shippingInfoButton = selectors[variables.brand].shippingInfoButton;
       cy.get(shippingInfoButton).click(); // Only boohoo
     },
-    returnLink () {
+    returnLink() {
       const returnLink = selectors[variables.brand].returnLink;
       cy.get(returnLink).invoke('removeAttr', 'target').click();
     },
-    shopNowLinkNL () {
+    shopNowLinkNL() {
       const shopNowLinkNL = selectors[variables.brand].shopNowLinkNL;
       cy.get(shopNowLinkNL).invoke('removeAttr', 'target').click();
     },
-    shopNowLinkSA () {
-      const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA; 
+    shopNowLinkSA() {
+      const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.get(shopNowLinkSA).invoke('removeAttr', 'target').click();
     },
-    minicartCloseBtn () {
+    minicartCloseBtn() {
       const minicartCloseBtn = selectors[variables.brand].minicartCloseBtn;
       cy.get(minicartCloseBtn).click();
     },
-    miniCartIcon () {
+    miniCartIcon() {
       const miniCartIcon = selectors[variables.brand].minicartIcon;
-      cy.get(miniCartIcon).click();  
+      cy.get(miniCartIcon).click();
     },
-    miniCartViewCartBtn () {
+    miniCartViewCartBtn() {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
       cy.get(miniCartViewCartBtn).click({ force: true });
     },
-    viewCart () {
+    viewCart() {
       const viewCart = selectors[variables.brand].viewCart;
       cy.get(viewCart).click();
     }
   };
 
   actions = {
-    selectColor (index: number) {
+    selectColor(index: number) {
       const selectColor = selectors[variables.brand].selectColor;
-      cy.get(selectColor).eq(index).click({force: true});
+      cy.get(selectColor).eq(index).click({ force: true });
     },
-    selectSize () {
+    selectSize() {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       if (variables.brand == 'oasis-stores.com') {
         cy.get(sizeVariations).click()
@@ -207,7 +207,7 @@ class PdpPage implements AbstractPage {
         });
       }
     },
-    addToCart () {
+    addToCart() {
       cy.wait(5000);
       const addToCart = selectors[variables.brand].addToCart;
       cy.get(addToCart).click(); //  Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
@@ -215,86 +215,86 @@ class PdpPage implements AbstractPage {
   };
 
   assertions = {
-    assertProductNameIsDisplayed (productName: string) {
+    assertProductNameIsDisplayed(productName: string) {
       const productTitle = selectors[variables.brand].productTitle;
       cy.get(productTitle).should('be.visible');
 
       // .and('include.text', productName);  // Skus are different 
     },
-    assertProductCodeIsDisplayed (SKU: string) {
+    assertProductCodeIsDisplayed(SKU: string) {
       const productCode = selectors[variables.brand].productCode;
       cy.get(productCode).should('be.visible').and('include.text', SKU);
     },
-    assertProductPriceIsDisplayed () {
+    assertProductPriceIsDisplayed() {
       const productPrice = selectors[variables.brand].productPrice;
       cy.get(productPrice).should('be.visible').and('not.have.text', '0.00');
     },
-    assertImageIsDisplayed (pictureId: string) {
+    assertImageIsDisplayed(pictureId: string) {
       cy.get(pictureId).then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10); 
+        cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
-    assertColorSwatchesAreVisible () {
+    assertColorSwatchesAreVisible() {
       const colorSwatches = selectors[variables.brand].colorSwatches;
       cy.get(colorSwatches).should('be.visible'); // Check how it works with single color 
     },
-    assertColorIsDisplayed (color: string) {
+    assertColorIsDisplayed(color: string) {
       const productImage = selectors[variables.brand].productImage;
-      cy.get(productImage).should('have.attr', 'src').and('include',color);
+      cy.get(productImage).should('have.attr', 'src').and('include', color);
     },
-    assertSizeIsAvailable (msg: string) {
+    assertSizeIsAvailable(msg: string) {
       cy.get('.b-availability-status').should('contain.text', msg); // N/a need check
     },
-    assertProductIsAddedToCart (text: string) {
+    assertProductIsAddedToCart(text: string) {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       cy.get(addToCartTitle).should('be.visible').and('contain.text', text);
     },
-    assertErrorMsgForSizeIsDisplayed (msg: string) {
+    assertErrorMsgForSizeIsDisplayed(msg: string) {
       cy.get('.b-product_actions-error_msg').should('be.visible').and('contain.text', msg); //  Should be tested
     },
-    assertMiniCartIsDisplayed () {
+    assertMiniCartIsDisplayed() {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       cy.get(addToCartTitle).should('be.visible');
       const miniCartProductIner = selectors[variables.brand].miniCartProductIner;
       cy.get(miniCartProductIner).should('be.visible');
     },
-    assertProductIsAddedToWishlist (msg: string) {
+    assertProductIsAddedToWishlist(msg: string) {
       cy.get('.m-outline').should('have.text', msg); //  Check how to switch between brands
     },
-    assertStyleNotesArePresent () {
+    assertStyleNotesArePresent() {
       const productDescription = selectors[variables.brand].productDescription;
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
-    assertDeliveryInfoIsDisplayed () {
-      const productDelivery = selectors[variables.brand].productDelivery; 
+    assertDeliveryInfoIsDisplayed() {
+      const productDelivery = selectors[variables.brand].productDelivery;
       cy.get(productDelivery).should('be.visible');
       cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
       cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); //  Work only boohoo, other brands redirect to new tab
     },
-    assertReturnInfoIsDisplayed () {
+    assertReturnInfoIsDisplayed() {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
-      cy.get(productReturnsDescription).should('be.visible'); 
+      cy.get(productReturnsDescription).should('be.visible');
     },
-    assertStartReturnPageIsDisplayed () {
+    assertStartReturnPageIsDisplayed() {
 
       // Temp: const returnLink = selectors[variables.brand].returnLink;
       cy.url().should('include', 'returns'); //  Need to be change
     },
-    assertCompleteLookDisplayed (text: string) {
+    assertCompleteLookDisplayed(text: string) {
       const completeLookBox = selectors[variables.brand].completeLookBox;
       cy.get(completeLookBox).should('have.text', text); //  Only boohoo
     },
-    assertLinkNewSeasonIsLinked (text: string) {
-      
+    assertLinkNewSeasonIsLinked(text: string) {
+
       // Temp: const shopNowLinkNL = selectors[variables.brand].shopNowLinkNL;
       cy.url().should('include', text); //  Only boohoo brand // need to be change
     },
-    assertLinkShoesAndAccIsLinked (text: string) {
+    assertLinkShoesAndAccIsLinked(text: string) {
 
       // Temp: const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.url().should('include', text); //  Only boohoo brand //need to be change
     }
-    
+
   };
 
 }

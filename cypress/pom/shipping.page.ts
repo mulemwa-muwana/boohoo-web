@@ -140,7 +140,7 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[variables.brand].proceedToBilling;
-      cy.wait(1000)
+      cy.wait(1000);
       cy.get(proceedToBilling).click({force: true});
     },
     editSavedAddress () {
@@ -153,8 +153,8 @@ class ShippingPage implements AbstractPage {
     },
     confirmEmail () {
       const confirmEmail = selectors[variables.brand].confirmEmail;
-      if(variables.brand = 'oasis-stores.com') {
-        cy.get(confirmEmail).type('euboohoo+guest1@gmail.com')
+      if (variables.brand == 'oasis-stores.com') {
+        cy.get(confirmEmail).type('euboohoo+guest1@gmail.com');
       }
     },
     editCart () {
@@ -218,7 +218,7 @@ class ShippingPage implements AbstractPage {
       cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_country'); 
     },
     phoneNumberField (phone: string) {
-      cy.wait(1000)
+      cy.wait(1000);
       cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_phone').type(phone);
     },
     selectCountry (country: string) {
@@ -238,7 +238,7 @@ class ShippingPage implements AbstractPage {
     },
   
     postcodeField (postcode: string) {
-      cy.wait(1000)
+      cy.wait(1000);
       cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal').type(postcode);
     },
     selectShippingMethod (shippingMethod: string) {
@@ -315,7 +315,3 @@ class ShippingPage implements AbstractPage {
 }
 
 export default new ShippingPage();
-
-function mail(mail: any) {
-  throw new Error('Function not implemented.');
-}

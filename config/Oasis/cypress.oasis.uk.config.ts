@@ -4,7 +4,7 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.oasisfashion.com/',
+    url: 'https://storefront:Oreo2022@dwstg.oasisfashion.com/',
     sku: 'AAA67414-294',
     brand: 'oasis-stores.com',
     locale: 'UK',

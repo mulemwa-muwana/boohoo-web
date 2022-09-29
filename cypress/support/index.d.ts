@@ -2,7 +2,6 @@ declare namespace Cypress {
     interface Chainable<Subject> {
         goOffline: () => Chainable<null>;
         createUser: (brand: GroupBrands) => Chainable<Subject>;
-        ifExists(selector: string, callback: Function): Chainable<Subject>;
         prepareUser: (customer: NewCustomerCredentials, brand: GroupBrands, sku: string) => void;
         createArtefact: (testArtefact: TestArtefact, name: string) => void;
     }
@@ -115,7 +114,7 @@ declare type AddressData = {
     firstName: string;
     lastName: string;
     phone: string;
-    confirmEmail: string, 
+    confirmEmail: string; 
     addrline1: string;
     addrline2: string;
     postcode: string;

@@ -14,7 +14,7 @@ describe('Boohoo order placement', () => {
   beforeEach(() => {
     cy.createUser(variables.brand).then((credentials: NewCustomerCredentials) => {
       cy.log(credentials.email, credentials.password),
-        cy.prepareUser(credentials, variables.brand, variables.fullSKU);
+      cy.prepareUser(credentials, variables.brand, variables.fullSKU);
       LoginPage.goto({ applyCookies: true });
       LoginPage.actions.loginViaPage(credentials.email, credentials.password);
       cy.wait(2000);
@@ -45,7 +45,7 @@ describe('Boohoo order placement', () => {
   });
 
   // Method for generating artefact for back end tests.
-  async function generateArtefact(artefactName: string) {
+  async function generateArtefact (artefactName: string) {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.order-confirmation-details > div.orderdetails > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get('#main > div.confirmation.create-account.confirmation-fb-enabled > div.order-confirmation-details > div.orderdetails > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');

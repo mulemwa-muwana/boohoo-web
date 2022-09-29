@@ -120,45 +120,45 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 
 class CartPage implements AbstractPage {
-  goto(): void {
+  goto (): void {
     cy.visit(variables.url + '/cart');
   }
 
   click = {
-    proceedToCheckoutHeaderLink() {
+    proceedToCheckoutHeaderLink () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
       cy.get(proceedToCheckout).should('be.visible').click();
     },
-    clearCart() {
+    clearCart () {
       const clearCart = selectors[variables.brand].clearCart;
       cy.get(clearCart).each(($el) => {
         $el.click();
       });
     },
-    proceedToCheckout() {
+    proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
       cy.get(proceedToCheckout).should('be.visible').click({force: true});    
     }
   };
 
   actions = {
-    updateQuantity() {
+    updateQuantity () {
       const editQuantity = selectors[variables.brand].editQuantity;
       cy.get(editQuantity).should('be.visible').click();
     },
-    removeFromCart(index: number) {
+    removeFromCart (index: number) {
       cy.get('.b-cart_product-remove').eq(index).click();
     },
-    openPayPalSandbox() {
+    openPayPalSandbox () {
       cy.get('.zoid-component-frame').invoke('removeAttr', 'target').click();
     },
-    openKlarnaSandbox() {
+    openKlarnaSandbox () {
       cy.get('#klarna-express-button-0').invoke('removeAttr', 'target').click();
     },
-    openAmazonSandbox() {
+    openAmazonSandbox () {
       cy.get('#OffAmazonPaymentsWidgets0').invoke('removeAttr', 'target').click();
     },
-    editCartQuantity(quantity: string) {
+    editCartQuantity (quantity: string) {
       const editQuantity = selectors[variables.brand].editQuantity;
       const setQuantity = selectors[variables.brand].setQuantity;
       const updateQuantity = selectors[variables.brand].updateQuantity;
@@ -167,7 +167,7 @@ class CartPage implements AbstractPage {
       cy.get(updateQuantity).click();
     },
 
-    editCartQuantityArkadia(quantity: number) {
+    editCartQuantityArkadia (quantity: number) {
       const editQuantity = selectors[variables.brand].editQuantity;
       const updateQuantityBtn = selectors[variables.brand].updateQuantityBtn;
       const updateQuantityDDL = selectors[variables.brand].updateQuantityDDL;
@@ -178,51 +178,51 @@ class CartPage implements AbstractPage {
   };
 
   assertions = {
-    assertTableWithProductIsVisible() {
+    assertTableWithProductIsVisible () {
       cy.get('.b-cart_products').should('be.visible');
     },
-    assertProductImageIsDisplayed(pictureId: string) {
+    assertProductImageIsDisplayed (pictureId: string) {
       cy.get(pictureId).then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
-    assertProductTitleIsVisible() {
+    assertProductTitleIsVisible () {
       const productName = selectors[variables.brand].productName;
       cy.get(productName).should('not.be.empty');
     },
-    assertProductDetailsAreVisible() {
+    assertProductDetailsAreVisible () {
       const productDetails = selectors[variables.brand].productDetails;
       cy.get(productDetails).should('be.visible');
     },
-    assertPriceAndSubtotalAreVisible() {
+    assertPriceAndSubtotalAreVisible () {
       const productPrice = selectors[variables.brand].productPrice;
       const subtotal = selectors[variables.brand].subtotal;
       cy.get(productPrice).should('be.visible').and('not.null');
       cy.get(subtotal).should('be.visible').and('not.null');
     },
-    assertQuantityIsDisplayed(quantity: string) {
+    assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
       cy.get(cartQuantity).should('contain', quantity);
     },
-    assertCartIsEmpty() {
+    assertCartIsEmpty () {
       const emptyCartTitle = selectors[variables.brand].emptyCartTitle;
       cy.get(emptyCartTitle).should('be.visible');
     },
-    assertPremierSlotsAreVisible() {
+    assertPremierSlotsAreVisible () {
       const premierBlock = selectors[variables.brand].premierBlock;
       const addPremierToCart = selectors[variables.brand].addPremierToCart;
       cy.get(premierBlock).should('be.visible');
       cy.get(addPremierToCart).should('be.visible');
     },
-    assertPayPalCTAisVisible() {
+    assertPayPalCTAisVisible () {
       const PayPalCTA = selectors[variables.brand].PayPalCTA;
       cy.get(PayPalCTA).should('be.visible');
     },
-    assertKlarnaCTAisVisible() {
+    assertKlarnaCTAisVisible () {
       const KlarnaCTA = selectors[variables.brand].KlarnaCTA;
       cy.get(KlarnaCTA).should('be.visible');
     },
-    assertAmazonPazCTAisVisible() {
+    assertAmazonPazCTAisVisible () {
       const AmazonCTA = selectors[variables.brand].AmazonCTA;
       cy.get(AmazonCTA).should('be.visible');
     }

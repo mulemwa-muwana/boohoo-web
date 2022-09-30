@@ -227,13 +227,9 @@ class GlobalFooter implements AbstractPage {
       const successfulSubscriptionMsg = selectors[variables.brand].successfulSubscriptionMsg;
       cy.get(successfulSubscriptionMsg).contains(text);
     },
-    assertUnsuccessfulSubscription () {
+    assertUnsuccessfulSubscription (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
-      if (variables.brand == 'boohoo.com') {
-        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', assertionText.unsuccessfulSubscription[variables.language]);
-      } else {
-        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', assertionText.unsuccessfulSubscriptionNG[variables.language]);       
-      }
+        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
     },
     asssertAlreadySubscribed (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;

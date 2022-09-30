@@ -10,25 +10,26 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: 'button[data-tau="add_new_address"]',
+    addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    cartContainer: '.b-minicart_product-inner',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    addPremierToCartFromShippingPage: '.b-ngvip-button',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
@@ -36,6 +37,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    cartContainer: '[data-tau="checkout_products"]',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -63,7 +65,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -81,7 +83,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: '.b-option_switch-label_surface > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -163,7 +165,7 @@ class ShippingPage implements AbstractPage {
     },
     editAddress () {
       const editAddress = selectors[variables.brand].editAddress;
-      cy.get(editAddress).click();
+      cy.get(editAddress).click({force: true});
     },
     addNewAddressButton () {
       const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
@@ -302,7 +304,8 @@ class ShippingPage implements AbstractPage {
       cy.get('.m-list > :nth-child(3) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface').should('be.visible');
     },
     assertCartShippingPageContainsContainsProduct (product: string) {
-      cy.get('.b-minicart_product-inner').each(() => {
+      const cartContainer = selectors[variables.brand].cartContainer;
+      cy.get(cartContainer).each(() => {
         cy.contains(product.trim());
       });
     },

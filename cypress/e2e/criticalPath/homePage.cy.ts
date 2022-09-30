@@ -106,7 +106,11 @@ describe('Footer verification', () => {
   it('Verify that Form validation error is displayed - newsletter subscription footer', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     GlobalFooter.actions.subscribeToNewsletter('nonValidEmail.com');
-    GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscription[variables.language]);
+    if (variables.brand == 'boohoo.com') {
+      GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscription[variables.language]);
+    } else {
+      GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscriptionNG[variables.language]);
+    }
   });
     
   it('Verify correct error message is displayed - newsletter subscription footer', () => {

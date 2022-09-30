@@ -229,7 +229,7 @@ class GlobalFooter implements AbstractPage {
     },
     assertUnsuccessfulSubscription (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
-        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
+      cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
     },
     asssertAlreadySubscribed (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;

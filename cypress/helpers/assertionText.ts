@@ -533,7 +533,7 @@ class AssertionText {
   };
 
   footerLinkDeliveryInfoArcadia: TranslationMap = {
-    EN: 'Delivery',  //  info
+    EN: 'Delivery',
     NL: '',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',

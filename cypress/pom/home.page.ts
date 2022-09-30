@@ -178,8 +178,8 @@ class HomePage implements AbstractPage {
       cy.get(searchField).contains(text);
     },
     assertSearchResultPage (text: string) {
-      var helper = text.split("-");
-      var finalSku = helper[0].trim().replace('#','');
+      const helper = text.split('-');
+      const finalSku = helper[0].trim().replace('#','');
       cy.url().should('include', finalSku);
     },
     assertAutosearchSuggestionsDispayed () {

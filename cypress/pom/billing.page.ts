@@ -2,7 +2,7 @@ import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
@@ -19,17 +19,15 @@ const selectors: SelectorBrandMap = {
     customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
-    paymentTypeCC: '#payment-button-CREDIT_CARD > .b-payment_accordion-icon',
+    paymentTypeCC: '#payment-button-scheme',
     paymentTypeKlarna: '',
-    creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
-    creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
-    creditCardFieldsSecurityCode: '#dwfrm_billing_creditCardFields_securityCode',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
-    creditCardFieldsCardNumber: '#dwfrm_billing_creditCardFields_cardNumber',
-    creditCardFieldsCardOwner : '#dwfrm_billing_creditCardFields_cardOwner',
-    creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
   },
   'nastygal.com': {
@@ -73,7 +71,7 @@ const selectors: SelectorBrandMap = {
     paymentTypeKlarna: '',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardFieldsCardOwner: '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',
-    creditCardFieldsExpirationMonth: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
@@ -103,7 +101,7 @@ const selectors: SelectorBrandMap = {
     paymentTypeKlarna: '',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardFieldsCardOwner: '#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__field.adyen-checkout__card__holderName > label > span.adyen-checkout__input-wrapper > input',
-    creditCardFieldsExpirationMonth: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
@@ -145,7 +143,36 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    paynowBtnCC:'#billingSubmitButton',
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    customerDOByear: 'select[id="dwfrm_profile_customer_yearofbirth"]',
+    paymentTypeCC: ':nth-child(3) > .payment-method-option',
+    paymentTypeKlarna: '',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardOwner: '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    
+  },
   'misspap.com': undefined
 };
 
@@ -184,40 +211,26 @@ class BillingPage implements AbstractPage {
       cy.get(customerDOBmonth).select(month);
       cy.get(customerDOByear).select(year);
     },
-    selectCreditCard (cardNo: string, cardOwner: string, month: string, year: string, code: string) {
+    selectCreditCard (cardNo: string, cardOwner: string, date: string, code: string) {
       const paymentTypeCC = selectors[variables.brand].paymentTypeCC;
       const creditCardFieldsCardNumber = selectors[variables.brand].creditCardFieldsCardNumber;
       const creditCardFieldsCardOwner = selectors[variables.brand].creditCardFieldsCardOwner;
-      const creditCardFieldsExpirationMonth = selectors[variables.brand].creditCardFieldsExpirationMonth;
+      const creditCardFieldsExpirationDate = selectors[variables.brand].creditCardFieldsExpirationDate;
       const creditCardFieldsSecurityCode = selectors[variables.brand].creditCardFieldsSecurityCode;
-      const creditCardFieldsExpirationYear = selectors[variables.brand].creditCardFieldsExpirationYear;
       const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
-      cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
+      if (variables.brand !== 'oasis-stores.com') {
+        cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
+      }
       cy.wait(3000);
       cy.get(paymentTypeCC).click();
       cy.wait(2000);
-      if (variables.brand == 'burton.co.uk') {
-        cy.iframe('#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__card__form > div.adyen-checkout__field.adyen-checkout__field--cardNumber > label > span.adyen-checkout__input-wrapper > span > iframe').find(creditCardFieldsCardNumber).should('be.visible').type('4111111111111111');
-        cy.iframe('#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__card__form > div.adyen-checkout__card__exp-cvc.adyen-checkout__field-wrapper > div.adyen-checkout__field.adyen-checkout__field--50.adyen-checkout__field--expiryDate > label > span.adyen-checkout__input-wrapper > span > iframe').find(creditCardFieldsExpirationMonth).should('be.visible').type('0330');
-        cy.iframe('#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__card__form > div.adyen-checkout__card__exp-cvc.adyen-checkout__field-wrapper > div.adyen-checkout__field.adyen-checkout__field--50.adyen-checkout__field__cvc.adyen-checkout__field--securityCode > label > span.adyen-checkout__input-wrapper > span > iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
-        cy.get(creditCardFieldsCardOwner).type(cardOwner);
-        cy.get(paynowBtnCC).click();
-      }
-      if (variables.brand == 'dorothyperkins.com') {
-        cy.iframe('iframe.js-iframe:nth-child(2)').find(creditCardFieldsCardNumber).should('be.visible').type('4111111111111111');
-        cy.iframe('#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__card__form > div.adyen-checkout__card__exp-cvc.adyen-checkout__field-wrapper > div.adyen-checkout__field.adyen-checkout__field--50.adyen-checkout__field--expiryDate > label > span.adyen-checkout__input-wrapper > span > iframe').find(creditCardFieldsExpirationMonth).should('be.visible').type('0330');
-        cy.iframe('#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__card__form > div.adyen-checkout__card__exp-cvc.adyen-checkout__field-wrapper > div.adyen-checkout__field.adyen-checkout__field--50.adyen-checkout__field__cvc.adyen-checkout__field--securityCode > label > span.adyen-checkout__input-wrapper > span > iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
-        cy.get(creditCardFieldsCardOwner).should('be.visible').type(cardOwner);
-        cy.get(paynowBtnCC).click();
-      } else {
-        cy.get(creditCardFieldsCardNumber).type(cardNo);
-        cy.get(creditCardFieldsCardOwner).type(cardOwner);
-        cy.get(creditCardFieldsExpirationMonth).select(month);
-        cy.get(creditCardFieldsExpirationYear).select(year);
-        cy.get(creditCardFieldsSecurityCode).type(code);
-        cy.get(paynowBtnCC).click();
-      }
-    
+
+      cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(creditCardFieldsCardNumber).should('be.visible').type(cardNo);
+      cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(creditCardFieldsExpirationDate).should('be.visible').type(date);
+      cy.iframe('.adyen-checkout__field__cvc .js-iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
+      cy.get(creditCardFieldsCardOwner).should('be.visible').type(cardOwner);
+      cy.get(paynowBtnCC).click();
+
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -426,7 +439,7 @@ class BillingPage implements AbstractPage {
       cy.url().should('include', 'shipping');
     },
     assertOrderConfirmationPAgeIsDisplayed () {
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk') {
+      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url().should('include', 'orderconfirmation');
       } else {
         cy.url().should('include', 'order-confirmation');

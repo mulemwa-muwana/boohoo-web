@@ -42,8 +42,11 @@ describe('Home Page', function () {
     HomePage.click.wishListIcon();
     if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'nastygal.com' || variables.brand == 'burton.co.uk' ) {
       WishListPage.actions.chooseSizeDDL(1);
-    } else {
       plpPage.assertions.assertItemIsAddedToWishlistColorChange();
+    } else {
+      WishListPage.actions.chooseSizeBHO();
+      WishListPage.actions.selectColourBHO(0);
+      WishListPage.actions.selectSizeBHO(0);
     }
     WishListPage.click.addToCart();
   }),

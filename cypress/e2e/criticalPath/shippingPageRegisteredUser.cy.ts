@@ -61,7 +61,7 @@ describe('Home Page', function () {
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-      shippingPage.click.addAddressManually();
+      shippingPage.click.addNewAddress();
     }
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);
@@ -166,8 +166,13 @@ describe('Home Page', function () {
 
   it('Verify that PREMIER can be added to the cart', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    shippingPage.click.addPremierToCartFromShippingPage();
-    shippingPage.assertions.assertCartShippingPageContainsContainsProduct(assertionText.Premier[variables.language]);
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.click.addPremierToCartFromShippingPage();
+      shippingPage.assertions.assertCartShippingPageContainsContainsProduct(assertionText.Premier[variables.language]);
+    } else if (variables.brand == 'nastygal.com' ) {
+      shippingPage.click.addPremierToCartFromShippingPage();
+      shippingPage.assertions.assertCartShippingPageContainsContainsProduct(assertionText.PremierNG[variables.language]);
+    }
   });
 
   it('Verify that user is able to select standard shipping method', () => {

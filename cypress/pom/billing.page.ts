@@ -381,6 +381,25 @@ class BillingPage implements AbstractPage {
       cy.get(':nth-child(4) > .Button-k6w95u-2').click();
       cy.get(':nth-child(4) > .Button-k6w95u-2').click();
     },
+    selectClearpay () {
+      cy.wait(5000);
+      cy.get('#payment-button-CLEARPAY').should('be.visible').click({ force: true });
+      cy.wait(5000);
+      cy.get('#payment-details-CLEARPAY  button[type="submit"]').should('be.visible').click();
+      cy.wait(8000);
+      cy.get('body').then($body => {
+        if ($body.find('[data-testid="summary-button"]').length > 0) {  
+            cy.get('[data-testid="summary-button"]').click()
+        }
+      });
+      cy.get('[data-testid="login-identity-input"]').should('be.visible').clear().type('ukboohoo@outlook.com');
+      cy.get('[data-testid="login-identity-button"]').should('be.visible').click();
+      cy.get('[data-testid="login-password-input"]').should('be.visible').type('Boohoo!23');
+      cy.get('[data-testid="login-password-button"]').should('be.visible').click();
+      cy.wait(2000);
+      cy.get('[data-testid="summary-button"]').should('be.visible').click();
+      cy.wait(8000);
+    },
   
   };
 

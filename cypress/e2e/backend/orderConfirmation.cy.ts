@@ -51,6 +51,20 @@ describe('Boohoo order placement', () => {
     generateArtefact(variables.brand, 'Klarna');
   });
 
+  it('can select LayBuy as payment method and generate an artefact', function () {
+    BillingPage.actions.selectLaybuy();
+    OrderConfirmationPage.click.closePopUp();
+
+    generateArtefact(variables.brand, 'LayBuy');
+  });
+
+  it('can select LayBuy as payment method and generate an artefact', function () {
+    BillingPage.actions.selectClearpay();
+    OrderConfirmationPage.click.closePopUp();
+
+    generateArtefact(variables.brand, 'Clearpay');
+  });
+
   // Method for generating artefact for back end tests.
   function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
     const variables = Cypress.env() as EnvironmentVariables;
@@ -82,7 +96,7 @@ describe('Boohoo order placement', () => {
           timestamp: Date.now()
         };
 
-        const brandName = brand.split('.')[0]; // Boohoo.com => boohoo
+        const brandName = brand.split('.')[0]; // Get first part of a brand: boohoo.com => boohoo
         cy.createArtefact(testArtefactObject, brandName, paymentMethod.toLowerCase());
       });
   }

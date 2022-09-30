@@ -46,7 +46,7 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
 Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, brand: string, paymentMethod: string) => {
 
   // Example: cypress/artefacts/orderCreation/boohoo/adyen.json
-  cy.log(`Writing artefact file. Brand: '${brand}'. Payment method: '${paymentMethod}'. Order number: '${testArtefact.orderNumber}'`);
+  cy.log(`Writing artefact file. Brand: '${brand}'. Payment method: '${paymentMethod}'. Artefact: ${JSON.stringify(testArtefact)}'`);
   cy.writeFile(`cypress/artefacts/orderCreation/${brand}/${paymentMethod}.json`, JSON.stringify(testArtefact, null, 4));
 });
 

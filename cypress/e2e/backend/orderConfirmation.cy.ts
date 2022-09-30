@@ -82,7 +82,6 @@ describe('Boohoo order placement', () => {
           timestamp: Date.now()
         };
 
-
         cy.createArtefact(testArtefactObject, paymentMethod.toLowerCase(), variables.brand, 'orderCreation');
 
       });

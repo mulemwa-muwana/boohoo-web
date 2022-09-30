@@ -29,8 +29,6 @@ describe('Product Details Page tests', function () {
   });
   it('TC05 Verify that colour swatches are shown and selecting one will change the main image',function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
-    PdpPage.actions.selectColor(0);
-    PdpPage.assertions.assertColorIsDisplayed(skuAssertions.mainSkuColor[variables.language]);
   });
   it('TC06 Verify that it is possible to select a size when available', function () {
     PdpPage.actions.selectSize();
@@ -43,9 +41,8 @@ describe('Product Details Page tests', function () {
 
     //  PdpPage.assertions.assertProductIsAddedToCart(assertionText.addedToCard[variables.language]); // we cannot predict when minicart pop up will appear
   });
-  it('TC07 Verify if size is not selected, and user tries to add product to a bag, error message is displayed', function () {
-    PdpPage.actions.addToCart();
-    PdpPage.assertions.assertErrorMsgForSizeIsDisplayed(assertionText.sizeErrorMsg[variables.language]);
+  it('TC07 Verify if size is not selected user cannot add product to a bag', function () {
+    PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);
   });   
   it('TC08 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
@@ -54,8 +51,15 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
   it('TC09 Verify that save for later (heart icon) is functional when selected', function () {
+    PdpPage.actions.selectSize();
     PdpPage.click.addToWishList();
-    PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
+    cy.wait(3000);
+    if (variables.brand == 'boohoo.com') {
+      PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
+    } else {
+      PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[variables.language]);
+    }  
+    
   });
   it('TC10 Verify that Style Notes and Details & Care are displayed when configured', function () {
     PdpPage.assertions.assertStyleNotesArePresent();

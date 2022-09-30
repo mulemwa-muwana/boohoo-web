@@ -10,25 +10,26 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: 'button[data-tau="add_new_address"]',
+    addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    cartContainer: '.b-minicart_product-inner',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    addPremierToCartFromShippingPage: '.b-ngvip-button',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
@@ -36,6 +37,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    cartContainer: '[data-tau="checkout_products"]',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -63,7 +65,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -81,7 +83,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: '.b-option_switch-label_surface > .b-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -95,7 +97,25 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: '.b-address_selector-button',
+    editAddress: '.b-option_switch-label_surface > .b-button',
+    editCart: '.b-summary_order-header > .b-link',
+    addAddressManually: '#address-autocomplete',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '#dwfrm_singleshipping_shippingAddress > fieldset.address-container > fieldset:nth-child(3) > div > div > button',
+    addNewAddress: 'button[data-tau="add_new_address"]',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete',
+    confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm', 
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button'
+  },
   'misspap.com': undefined
 };
 
@@ -122,7 +142,8 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[variables.brand].proceedToBilling;
-      cy.get(proceedToBilling).click();
+      cy.wait(1000);
+      cy.get(proceedToBilling).click({force: true});
     },
     editSavedAddress () {
       const editSavedAddress = selectors[variables.brand].editSavedAddress;
@@ -132,13 +153,19 @@ class ShippingPage implements AbstractPage {
       const addAddressManually = selectors[variables.brand].addAddressManually;
       cy.get(addAddressManually).should('be.visible').click();
     },
+    confirmEmail () {
+      const confirmEmail = selectors[variables.brand].confirmEmail;
+      if (variables.brand == 'oasis-stores.com') {
+        cy.get(confirmEmail).type('euboohoo+guest1@gmail.com');
+      }
+    },
     editCart () {
       const editCart = selectors[variables.brand].editCart;
       cy.get(editCart).should('be.visible').click();
     },
     editAddress () {
       const editAddress = selectors[variables.brand].editAddress;
-      cy.get(editAddress).click();
+      cy.get(editAddress).click({force: true});
     },
     addNewAddressButton () {
       const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
@@ -184,34 +211,37 @@ class ShippingPage implements AbstractPage {
       cy.get(PostcodeLookup).type('{enter}');
     },
     firstNameField (fname: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_firstName').type(fname);
+      cy.get('[id$=addressFields_firstName][id*="shipping"]').type(fname);
     },
     lastNameField (lname: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_lastName').type(lname);
+      cy.get('[id$=addressFields_lastName][id*="shipping"]').type(lname);
     },
     countrySelector () {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_country'); 
+      cy.get('[id$=addressFields_country][id*="shipping"]'); 
     },
     phoneNumberField (phone: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_phone').type(phone);
+      cy.wait(1000);
+      cy.get('[id$=addressFields_phone][id*="shipping"]').type(phone);
     },
     selectCountry (country: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_country').select(country).invoke('show');
+      cy.get('[id$=addressFields_country][id*="shipping"]').select(country).invoke('show');
     },
     adressLine1 (address1: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1').type(address1);
+      cy.get('[id$=addressFields_address1][id*="shipping"]').type(address1);
     },
     adressLine2 (address2: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address2').type(address2);
+      cy.get('[id$=addressFields_address2][id*="shipping"]').type(address2);
     },
     cityFiled (city: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city').type(city);
+      cy.get('[id$=addressFields_city][id*="shipping"]').type(city);
     },
     countyField (county: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').type(county);
+      cy.get('[id$=addressFields_states_stateCode][id*="shipping"]').type(county);
     },
+  
     postcodeField (postcode: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode').type(postcode);
+      cy.wait(1000);
+      cy.get('[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]').type(postcode);
     },
     selectShippingMethod (shippingMethod: string) {
       cy.get('.b-option_switch-label').each(() => {
@@ -235,7 +265,7 @@ class ShippingPage implements AbstractPage {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', city); 
     },
     assertPostCodeIsMandatory (postcode: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_postalCode-error').should('contain.text', postcode); 
+      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error').should('contain.text', postcode); 
     },
     assertUserProceededToBillinPage () {
       cy.url().should('include', 'billing');
@@ -274,7 +304,8 @@ class ShippingPage implements AbstractPage {
       cy.get('.m-list > :nth-child(3) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface').should('be.visible');
     },
     assertCartShippingPageContainsContainsProduct (product: string) {
-      cy.get('.b-minicart_product-inner').each(() => {
+      const cartContainer = selectors[variables.brand].cartContainer;
+      cy.get(cartContainer).each(() => {
         cy.contains(product.trim());
       });
     },

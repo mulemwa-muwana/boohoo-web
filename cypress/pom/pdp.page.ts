@@ -1,3 +1,4 @@
+import { contains } from 'cypress/types/jquery';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -12,7 +13,7 @@ const selectors: SelectorBrandMap = {
     shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',  // changed for billing page - should checknp
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline', // Changed for billing page - should checknp
     selectColor: '#maincontent > div > div > div > div.l-pdp-top > main > div.b-product_details-form > div.b-product_details-variations > section.b-variations_item.m-swatch.m-color',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
@@ -31,7 +32,7 @@ const selectors: SelectorBrandMap = {
   },
   'nastygal.com': {
     addToCart: '.b-product_addtocard-availability',
-    addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
+    addToWishListButton: '.b-product_wishlist-button',
     returnLink: 'a[href="https://us1-dev.nastygal.com/eu/page/returns-and-refunds-customer-service.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
@@ -53,7 +54,7 @@ const selectors: SelectorBrandMap = {
   },
   'dorothyperkins.com': {
     addToCart: '[data-widget="processButton"]',
-    addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
+    addToWishListButton: '.b-product_wishlist-button',
     returnLink: 'a[href="https://dwdev.dorothyperkins.com/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
@@ -75,7 +76,7 @@ const selectors: SelectorBrandMap = {
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
-    addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
+    addToWishListButton: '.b-product_wishlist-button',
     returnLink: 'a[href="https://dwdev.burton.co.uk/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
@@ -96,7 +97,7 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '#product-details-btn-shipping',
   },
   'wallis.co.uk': {
-    addToCart: '.b-product_addtocard-availability', 
+    addToCart: '.b-product_addtocard-availability',
     addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -121,7 +122,26 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    addToCart: '#add-to-cart',
+    addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
+    returnLink: '',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '#mini-cart > div.mini-cart-content.js-mini-cart-content > div.mini-cart-content-inner.js-mini-cart-content-inner > div.mini-cart-totals > a.button.mini-cart-link-cart',
+    selectColor: '.b-variation_swatch-color_value',
+    sizeVariations: '.size-attribute > .value > .swatches > :nth-child(1) > .swatchanchor',
+    pruductCode: 'span[data-tau="b-product_details-id',
+    productPrice: '.b-product_details-price',
+    colorSwatches: 'div[role="radiogroup"]',
+    productImage: '#product-image-0',
+    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
+    miniCartProductIner: '.b-minicart_product-inner',
+    productDescription: 'div[data-id="descriptions"]',
+    productDelivery: '.b-product_delivery',
+    productReturnsDescription: '.b-product_shipping-returns',
+    viewCart: '.b-minicart-actions > .m-outline',
+  },
   'misspap.com': undefined
 };
 
@@ -135,14 +155,14 @@ class PdpPage implements AbstractPage {
   click = {
 
     addToCart () {
-      const addToCart = selectors[variables.brand].addToCart; 
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' ) {
-        cy.get(addToCart).eq(0).should('be.visible').click({force:true}); 
-      } else {cy.get(addToCart).should('be.visible').click();}
+      const addToCart = selectors[variables.brand].addToCart;
+      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
+        cy.get(addToCart).eq(0).should('be.visible').click({ force: true });
+      } else { cy.get(addToCart).should('be.visible').click(); }
     },
     addToWishList () {
       const addToWishListButton = selectors[variables.brand].addToWishListButton;
-      cy.get(addToWishListButton).should('be.visible').click();
+      cy.get(addToWishListButton).click({force: true});
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[variables.brand].shippingInfoButton;
@@ -157,7 +177,7 @@ class PdpPage implements AbstractPage {
       cy.get(shopNowLinkNL).invoke('removeAttr', 'target').click();
     },
     shopNowLinkSA () {
-      const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA; 
+      const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.get(shopNowLinkSA).invoke('removeAttr', 'target').click();
     },
     minicartCloseBtn () {
@@ -166,7 +186,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartIcon () {
       const miniCartIcon = selectors[variables.brand].minicartIcon;
-      cy.get(miniCartIcon).click();  
+      cy.get(miniCartIcon).click();
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
@@ -181,16 +201,20 @@ class PdpPage implements AbstractPage {
   actions = {
     selectColor (index: number) {
       const selectColor = selectors[variables.brand].selectColor;
-      cy.get(selectColor).eq(index).click({force: true});
+      cy.get(selectColor).eq(index).click({ force: true });
     },
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      cy.get(sizeVariations).find('button').each(($element) => {
-        if (!$element.attr('title').includes('not available')) {
-          $element.trigger('click');
-          return false;
-        }
-      });
+      if (variables.brand == 'oasis-stores.com') {
+        cy.get(sizeVariations).click();
+      } else {
+        cy.get(sizeVariations).find('button').each(($element) => {
+          if (!$element.attr('title').includes('not available')) {
+            $element.trigger('click');
+            return false;
+          }
+        });
+      }
     },
     addToCart () {
       cy.wait(5000);
@@ -216,7 +240,7 @@ class PdpPage implements AbstractPage {
     },
     assertImageIsDisplayed (pictureId: string) {
       cy.get(pictureId).then(element => {
-        cy.wrap(element).invoke('width').should('be.gt', 10); 
+        cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
     assertColorSwatchesAreVisible () {
@@ -225,7 +249,7 @@ class PdpPage implements AbstractPage {
     },
     assertColorIsDisplayed (color: string) {
       const productImage = selectors[variables.brand].productImage;
-      cy.get(productImage).should('have.attr', 'src').and('include',color);
+      cy.get(productImage).should('have.attr', 'src').and('include', color);
     },
     assertSizeIsAvailable (msg: string) {
       cy.get('.b-availability-status').should('contain.text', msg); // N/a need check
@@ -234,8 +258,8 @@ class PdpPage implements AbstractPage {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       cy.get(addToCartTitle).should('be.visible').and('contain.text', text);
     },
-    assertErrorMsgForSizeIsDisplayed (msg: string) {
-      cy.get('.b-product_actions-error_msg').should('be.visible').and('contain.text', msg); //  Should be tested
+    assertAddToCartBtnIsNotAvailable (msg: string) {
+      cy.get('.b-product_actions-inner').should('be.visible').contains(msg);
     },
     assertMiniCartIsDisplayed () {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
@@ -244,21 +268,22 @@ class PdpPage implements AbstractPage {
       cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string) {
-      cy.get('.m-outline').should('have.text', msg); //  Check how to switch between brands
+      const addToWishListButton = selectors[variables.brand].addToWishListButton; 
+      cy.get(addToWishListButton).should('contains.text', msg); //  Check how to switch between brands
     },
     assertStyleNotesArePresent () {
       const productDescription = selectors[variables.brand].productDescription;
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
     assertDeliveryInfoIsDisplayed () {
-      const productDelivery = selectors[variables.brand].productDelivery; 
+      const productDelivery = selectors[variables.brand].productDelivery;
       cy.get(productDelivery).should('be.visible');
       cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
       cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); //  Work only boohoo, other brands redirect to new tab
     },
     assertReturnInfoIsDisplayed () {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
-      cy.get(productReturnsDescription).should('be.visible'); 
+      cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {
 
@@ -270,7 +295,7 @@ class PdpPage implements AbstractPage {
       cy.get(completeLookBox).should('have.text', text); //  Only boohoo
     },
     assertLinkNewSeasonIsLinked (text: string) {
-      
+
       // Temp: const shopNowLinkNL = selectors[variables.brand].shopNowLinkNL;
       cy.url().should('include', text); //  Only boohoo brand // need to be change
     },
@@ -279,7 +304,7 @@ class PdpPage implements AbstractPage {
       // Temp: const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.url().should('include', text); //  Only boohoo brand //need to be change
     }
-    
+
   };
 
 }

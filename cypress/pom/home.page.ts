@@ -53,7 +53,15 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': undefined,
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    minicartIcon: '#js-minicart-quantity',
+    loginIcon: '.b-header_login-icon > .i-icon',
+    registrationButton: '.b-registration_benefits > .b-button',
+    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
+    searchIcon: '.js-search-icon',
+    promotion: 'div[class="b-hero_carousel-track"]'
+  },
   'misspap.com': undefined
 };
 
@@ -61,9 +69,9 @@ const variables = Cypress.env() as EnvironmentVariables;
 class HomePage implements AbstractPage {
 
   goto (options: GotoOptions = null) {
-       
+
     cy.visit(variables.url);
-       
+
     if (options?.applyCookies) {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
@@ -90,25 +98,25 @@ class HomePage implements AbstractPage {
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({ force: opts.force });            
+      cy.get(searchIcon).click({ force: opts.force });
     },
     searchField () {
       const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).click({force: true});
+      cy.get(searchField).click({ force: true });
     },
     wishListIcon () {
       const wishListIcon = selectors[variables.brand].wishListIcon;
-      cy.get(wishListIcon).click({force: true});
+      cy.get(wishListIcon).click({ force: true });
     },
     cartIcon () {
       const minicartIcon = selectors[variables.brand].minicartIcon;
-      cy.get(minicartIcon).click({force: true});
+      cy.get(minicartIcon).click({ force: true });
     },
-    
+
     // MEGA MENU - MAIN NAV
 
     selectLinkFromMegaMenu (text: string) {
-      cy.contains(text).click({force: true});
+      cy.contains(text).click({ force: true });
     },
 
     //  SUB-LINKS FROM MEGA MENU
@@ -122,27 +130,27 @@ class HomePage implements AbstractPage {
       cy.get('cc-saveAll-startBtn').click();
     },
     acceptCookies () {
-      const acceptCookies = selectors[variables.brand].acceptCookies;      
+      const acceptCookies = selectors[variables.brand].acceptCookies;
       cy.get(acceptCookies).click();
-    }   
+    }
   };
 
-  actions = {       
+  actions = {
     findItemUsingSKU (SKU: string) {
       if (variables.brand != 'boohoo.com') {
         const searchIcon = selectors[variables.brand].searchIcon;
-        cy.get(searchIcon).click({force: true});
+        cy.get(searchIcon).click({ force: true });
       }
       const searchField = selectors[variables.brand].searchField;
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({force: true});
-      cy.get(searchField).click({force: true}).type(SKU+'{enter}');
+      cy.get(searchIcon).click({ force: true });
+      cy.get(searchField).click({ force: true }).type(SKU + '{enter}');
     },
     forgotPassword (email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();
       cy.get('.b-dialog-window').should('be.visible');
       cy.get('#dwfrm_profile_resetPassword_email').type(email);
-      cy.get('button[data-tau="forgot_password_submit"]', {timeout: 6000}).click();
+      cy.get('button[data-tau="forgot_password_submit"]', { timeout: 6000 }).click();
     },
     closeNastygalPopup () {
       cy.get('#page-body > div.b-dialog.m-welcome_popup.welcome-popup-container.js-welcome-popup-wrapper.popup-template-5.popup-close-position-right.m-opened > div.b-dialog-window.m-top_dialog.m-welcome_popup.welcome-popup.welcome-popup-wrapper > div.b-dialog-header > button').should('be.visible').click();
@@ -230,7 +238,7 @@ class HomePage implements AbstractPage {
     }
 
   };
-    
+
 }
 
 export default new HomePage();

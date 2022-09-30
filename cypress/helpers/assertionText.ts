@@ -14,6 +14,34 @@ class AssertionText {
     ES: '\n\nSalvado\n'
   };
 
+  startAReturnURLvalidation: TranslationMap = {
+    EN: 'return',
+    FR: '\n\nEnregistré\n',
+    NL: '\n\nOpgeslagen\n',
+    DE: '\n\nGerettet\n',
+    DK: '\n\nGemt\n',
+    FI: '\n\nTallennettu\n',
+    NO: '\n\nLagret\n',
+    SE: '\n\nSparad\n',
+    IL: '\n\nשמור\n',
+    IT: '\n\nSalvato\n',
+    ES: '\n\nSalvado\n'
+  };
+
+  WishlistItemsAddedArkadia: TranslationMap = {
+    EN: 'Saved for later',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   WishlistItemsAddedAlert: TranslationMap = {
     EN: 'Product added to wish list',
     FR: 'Produit ajouté à la liste de souhaits',
@@ -154,6 +182,20 @@ class AssertionText {
     ES: '\nPRIMERO\n'
   };
 
+  PremierNG: TranslationMap = {
+    EN: 'NGVIP',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PremierText: TranslationMap = {
     EN: '\nFREE NEXT DAY DELIVERY FOR 1 YEAR!\n',
     FR: '\nLIVRAISON GRATUITE LE LENDEMAIN PENDANT 1 AN !\n',
@@ -208,6 +250,20 @@ class AssertionText {
     IL: 'יש! זה במלאי',
     IT: 'SÌÌ! È in magazzino',
     ES: '¡HURRA! esta en stock' 
+  };
+
+  selectSize: TranslationMap = {
+    EN: ' Select Size',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   sizeErrorMsg: TranslationMap = {

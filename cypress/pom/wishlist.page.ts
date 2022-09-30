@@ -13,7 +13,8 @@ const selectors: SelectorBrandMap = {
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
-    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item'
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   },
   'nastygal.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -126,6 +127,16 @@ class WishListPage implements AbstractPage {
     chooseSizeDDL (size: number) {
       const chooseSizeDDL = selectors[variables.brand].chooseSizeDDL;
       cy.get(chooseSizeDDL).select(size);
+    },
+    chooseSizeBHO () {
+      const chooseSizeBHO = selectors[variables.brand].chooseSizeBHO;
+      cy.get(chooseSizeBHO).click();
+    },
+    selectSizeBHO (size: number) {
+      cy.get('#attribute-b42fa661ec3462331eea8571c9-size').select(size);
+    },
+    selectColourBHO (colour: number) {
+      cy.get('.b-select-input attribute-color').select(colour);
     }
   };
 

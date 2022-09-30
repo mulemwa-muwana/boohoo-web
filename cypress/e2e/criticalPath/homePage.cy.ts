@@ -151,23 +151,31 @@ describe('Footer verification', () => {
     });
     
     it('TikTok', () => {
-      SocialsPage.assertions.assertTikTokIconIsPresent();
-      GlobalFooter.click.tiktokLink();
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
+        SocialsPage.assertions.assertTikTokIconIsPresent();
+        GlobalFooter.click.tiktokLink();
+      } 
     });
     
     it('YouTube', () => {
-      SocialsPage.assertions.assertYouTubeIconIsPresent();
-      GlobalFooter.click.youtubeLink();
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
+        SocialsPage.assertions.assertYouTubeIconIsPresent();
+        GlobalFooter.click.youtubeLink();
+      } 
     });
     
     it('Pintrest', () => {
-      SocialsPage.assertions.assertPinterestIconIsPresent();
-      GlobalFooter.click.pintrestLink();
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
+        SocialsPage.assertions.assertPinterestIconIsPresent();
+        GlobalFooter.click.pintrestLink();
+      } 
     });
     
     it('TheFix', () => {
-      SocialsPage.assertions.assertTheFixIconIsPresent();
-      GlobalFooter.click.theFixLink();
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
+        SocialsPage.assertions.assertTheFixIconIsPresent();
+        GlobalFooter.click.theFixLink();
+      } 
     });
   });
     

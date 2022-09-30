@@ -1,5 +1,4 @@
 import axios from 'axios';
-import * as dotenv from 'dotenv';
 
 axios.defaults.validateStatus = () => { return true; };
 
@@ -84,7 +83,6 @@ export class TestCustomer {
 }
 
 export default async function createCustomer (brand: GroupBrands, realm: TLocale = 'uk'): Promise<TestCustomer> {
-  dotenv.config();
 
   // Get API token.
   const brandCustomerManagerKey = getCustomerKeyByBrand(brand, 'Customer');

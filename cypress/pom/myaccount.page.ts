@@ -316,7 +316,7 @@ class MyAccountPage implements AbstractPage {
       loadMoreOrders () {
         const orderHistoryLoadMoreBtn = selectors[variables.brand].orderHistoryLoadMoreBtn;
         if (cy.get(orderHistoryLoadMoreBtn).should('be.visible')) {
-          cy.get(orderHistoryLoadMoreBtn).click();
+          cy.get(orderHistoryLoadMoreBtn).click({force: true});
         }
       },
       updateAccountName (newName: string) {

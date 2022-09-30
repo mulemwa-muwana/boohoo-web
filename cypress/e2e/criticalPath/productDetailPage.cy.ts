@@ -69,13 +69,12 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertDeliveryInfoIsDisplayed();
   });
   it('TC12 Verify that Returns Info carousel is displayed when configured', function () {
-    PdpPage.click.shippingInfoButton();
     PdpPage.assertions.assertReturnInfoIsDisplayed();
-    PdpPage.click.returnLink();
-    PdpPage.assertions.assertStartReturnPageIsDisplayed();
   });
   it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
-    PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
+    if (variables.brand == 'boohoo.com') {
+      PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
+    }
   });
  
 }); 

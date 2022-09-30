@@ -25,13 +25,14 @@ describe('Account page', function () {
     MyAccountPage.actions.viewNewestOrderHistory();
     MyAccountPage.assertions.assertOrderDetailsContent();
   });
-  it('TC02 Verify that "Load More" button at the buttom of the page works as expected', function () {
+  it('TC02 Verify that Order history page works as expected', function () {
     const variables = Cypress.env() as EnvironmentVariables;
-    MyAccountPage.click.ordersLink();
+    MyAccountPage.click.orderHistoryLink();
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       MyAccountPage.assertions.assertOrderHistoryPageTitle('order-history');
     } else {
-      MyAccountPage.click.loadMoreButton();
+
+      // MyAccountPage.click.loadMoreButton();  // Works only if there are  >10 orders
       MyAccountPage.assertions.assertOrderHistoryPageTitle('orders');
     }
   
@@ -39,7 +40,7 @@ describe('Account page', function () {
   });
   it('TC03 Verify that returns option links to correct page', function () {
     const variables = Cypress.env() as EnvironmentVariables;
-    MyAccountPage.click.ordersLink();
+    MyAccountPage.click.viewOrderBtn();
     MyAccountPage.click.startReturnButton(assertionText.startAReturnURLvalidation[variables.language]);
   });
 

@@ -46,6 +46,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(5) > .b-account_nav-item_link > .b-account_nav-item_label',
+    orderHistoryLink: ':nth-child(3) > .b-account_nav-item_link'
   },
   'nastygal.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -90,6 +91,7 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
+    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
   },
   'dorothyperkins.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -134,6 +136,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
+    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
   },
   'burton.co.uk': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -178,6 +181,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
+    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
   },
   'wallis.co.uk': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -222,6 +226,7 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
+    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -304,6 +309,10 @@ class MyAccountPage implements AbstractPage {
       viewOrderBtn () {
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
         cy.get(viewOrderBtn).should('be.visible').click({force:true});
+      },
+      orderHistoryLink () {
+        const orderHistoryLink = selectors[variables.brand].orderHistoryLink;
+        cy.get(orderHistoryLink).should('be.visible').click({force:true});
       },
     };
 

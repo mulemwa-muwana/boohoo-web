@@ -71,9 +71,9 @@ describe('Home Page', function () {
     });
 
     it('Verify Mega Menu - Sale link opens', () => {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
-        HomePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[variables.language].toLowerCase());
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+      HomePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[variables.language].toLowerCase());
     });
  
     it('Verify Mega Menu - NewIn link opens', () => {
@@ -198,9 +198,9 @@ describe('Footer verification', () => {
   it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);
     } else {
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrderArcadia[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrderArcadia[variables.language]);
     }
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
@@ -214,15 +214,15 @@ describe('Footer verification', () => {
   it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com') {
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
     } else {
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);
     }
   });
   it('Verify that Footer Navigation Component is present and Links are functional - About boohoo', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com')
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAbout[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAbout[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
     const variables = Cypress.env() as EnvironmentVariables;
@@ -231,12 +231,12 @@ describe('Footer verification', () => {
   it('Verify that Footer Navigation Component is present and Links are functional - The boohoo App', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' )
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackApp[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackApp[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - boohoo Premier', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' )
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkPremier[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkPremier[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', () => {
     const variables = Cypress.env() as EnvironmentVariables;
@@ -245,12 +245,12 @@ describe('Footer verification', () => {
   it('Verify that Footer Navigation Component is present and Links are functional - Discount & Promo Codes', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com')
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com')
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
   });
 
   /*
@@ -261,17 +261,17 @@ describe('Footer verification', () => {
   it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com')
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Become a Partner', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com')
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.becomePartner[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.becomePartner[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Sustainability', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com')
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.sustainability[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.sustainability[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Klarna', () => {
     GlobalFooter.actions.checkFooterLinkByText('Klarna');
@@ -281,22 +281,22 @@ describe('Footer verification', () => {
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com')
-    GlobalFooter.actions.checkFooterLinkByText('Laybuy');
+      GlobalFooter.actions.checkFooterLinkByText('Laybuy');
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Zip', () => {
     GlobalFooter.actions.checkFooterLinkByText('Zip');
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {
     if (variables.brand == 'boohoo.com')
-    GlobalFooter.actions.checkFooterLinkByText('Investor Relations');
+      GlobalFooter.actions.checkFooterLinkByText('Investor Relations');
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Environmental & Social Responsibility', () => {
     if (variables.brand == 'boohoo.com')
-    GlobalFooter.actions.checkFooterLinkByText('Environmental & Social Responsibility');
+      GlobalFooter.actions.checkFooterLinkByText('Environmental & Social Responsibility');
   });
   it.only('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
     if (variables.brand == 'boohoo.com' || variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk')
-    GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
+      GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Modern Slavery Statement', () => {
     GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
@@ -304,12 +304,12 @@ describe('Footer verification', () => {
   it('Verify that Footer Navigation Component is present and Links are functional - Careers', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'wallis.co.uk')
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[variables.language]);
   });
   it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' ) {
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCond[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCond[variables.language]);
     } else {
       GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
     }
@@ -317,9 +317,9 @@ describe('Footer verification', () => {
   it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicy[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicy[variables.language]);
     } else {
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);
     }
   });
   it('Verify that Footer Navigation Component is present and Links are functional - About Cookies', () => {
@@ -329,12 +329,12 @@ describe('Footer verification', () => {
   it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com')
-    GlobalFooter.actions.checkFooterLinkByText(assertionText.sitemap[variables.language]); 
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.sitemap[variables.language]); 
   });  
   it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
     const currentYear = new Date().getFullYear();
     cy.scrollTo('bottom');
-    cy.contains(`COPYRIGHT © ${currentYear}`).should('be.visible');  //  It was + BOOHOO
+    cy.contains(`COPYRIGHT © ${currentYear}`).should('be.visible'); //  It was + BOOHOO
   });
     
   /* It('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {

@@ -231,7 +231,7 @@ class BillingPage implements AbstractPage {
 
       cy.get('body').then($body => {
         if ($body.find('[data-ref="newAdyenCardBlock"]').attr('hidden') == 'hidden') {  
-            cy.get('.b-payment_options_group-actions > button').click()
+          cy.get('.b-payment_options_group-actions > button').click();
         }
       });
       cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(creditCardFieldsCardNumber).should('be.visible').type(cardNo);
@@ -382,7 +382,7 @@ class BillingPage implements AbstractPage {
       }
       cy.get('body', { timeout: 10000 }).then($body => {
         if ($body.find('[data-testid="summary-button"]').length > 0) {  
-            cy.get('[data-testid="summary-button"]').click()
+          cy.get('[data-testid="summary-button"]').click();
         }
       });
       cy.get('[data-testid="login-identity-input"]', { timeout: 12000 }).should('be.visible').clear();

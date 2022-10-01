@@ -37,9 +37,9 @@ describe('Boohoo order placement', () => {
     cy.wait(8000);
   });
 
-  it('can select Credit Card - Adyen as payment method and generate an artefact', function () {
-    const paymentMethod: PaymentMethod =  getCardProviderByBrand(variables.brand, variables.locale);
-    if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+  it('can select Credit Card as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = getCardProviderByBrand(variables.brand, variables.locale);
+    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
       this.skip();
     }
 
@@ -52,7 +52,7 @@ describe('Boohoo order placement', () => {
 
   it('can select Klarna as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Klarna';
-    if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
       this.skip();
     }
 
@@ -64,7 +64,7 @@ describe('Boohoo order placement', () => {
 
   it('can select Laybuy as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'LayBuy';
-    if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
       this.skip();
     }
 
@@ -76,7 +76,7 @@ describe('Boohoo order placement', () => {
 
   it('can select Clearpay as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Clearpay';
-    if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
       this.skip();
     }
 

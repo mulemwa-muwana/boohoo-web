@@ -1,4 +1,4 @@
-import { getCardProviderByBrand } from 'cypress/helpers/common';
+import { isBrandSupportingPaymentMethod as isBrandSupportingPaymentMethod } from 'cypress/helpers/common';
 import Addresses from 'cypress/helpers/addresses';
 import BillingPage from 'cypress/pom/billing.page';
 import LoginPage from 'cypress/pom/login.page';
@@ -37,33 +37,53 @@ describe('Boohoo order placement', () => {
     cy.wait(8000);
   });
 
-  it('can select Credit Card as payment method and generate an artefact', function () {
+  it('can select Credit Card - Adyen as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = 'Adyen';
+    if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+      this.skip();
+    }
+
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     OrderConfirmationPage.click.closePopUp();
 
-    generateArtefact(variables.brand, getCardProviderByBrand(variables.brand, variables.locale));
+    generateArtefact(variables.brand, paymentMethod);
   });
 
   it('can select Klarna as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = 'Klarna';
+    if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+      this.skip();
+    }
+
     BillingPage.actions.selectKlarna();
     OrderConfirmationPage.click.closePopUp();
 
-    generateArtefact(variables.brand, 'Klarna');
+    generateArtefact(variables.brand, paymentMethod);
   });
 
   it('can select Laybuy as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = 'LayBuy';
+    if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+      this.skip();
+    }
+
     BillingPage.actions.selectLaybuy();
     OrderConfirmationPage.click.closePopUp();
 
-    generateArtefact(variables.brand, 'LayBuy');
+    generateArtefact(variables.brand, paymentMethod);
   });
 
   it('can select Clearpay as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = 'Clearpay';
+    if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+      this.skip();
+    }
+
     BillingPage.actions.selectClearpay();
     OrderConfirmationPage.click.closePopUp();
 
-    generateArtefact(variables.brand, 'Clearpay');
+    generateArtefact(variables.brand, paymentMethod);
   });
 
   // Method for generating artefact on OrderConfirmation page for back end tests.

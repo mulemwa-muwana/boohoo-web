@@ -6,8 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwdev.burton.co.uk/',
-    sku: 'ABB08034',
-    fullSKU: 'ABB08034-148-56',
+    sku: 'ABB02908',
+    fullSKU: 'ABB02908-115-286',
     brand: 'burton.co.uk',
     locale: 'UK',
     language: 'EN',

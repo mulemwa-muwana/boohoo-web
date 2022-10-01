@@ -144,3 +144,123 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
   const paymentType = localeTable[locale] ?? 'Could not find payment type' as PaymentMethod; 
   return paymentType;
 }
+
+type BrandPaymentMap = Record < GroupBrands,  Record < PaymentMethod, boolean > >;
+
+export function isBrandSupportingPaymentMethod (brand: GroupBrands, paymentMethod: PaymentMethod): boolean {
+  const paymentLookupTable: BrandPaymentMap = {
+    'boohoo.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'boohooman.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'nastygal.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'karenmillen.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'coastfashion.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'warehousefashion.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'oasis-stores.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'dorothyperkins.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'burton.co.uk': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: false,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'wallis.co.uk': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    },
+    'misspap.com': {
+      Adyen: true,
+      PayPal: true,
+      Clearpay: true,
+      LayBuy: true,
+      WorldPay: true,
+      Klarna: true,
+      AfterPay: true,
+      ZipPay: true
+    }
+  };
+
+  const paymentMethodTable = paymentLookupTable[brand] ?? {};
+  return paymentMethodTable[paymentMethod];
+}

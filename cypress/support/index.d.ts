@@ -47,7 +47,6 @@ declare type PaymentMethod =
     | 'PayPal'
     | 'Clearpay'
     | 'LayBuy'
-    | 'Paypal'
     | 'WorldPay'
     | 'Klarna'
     | 'AfterPay'

@@ -229,6 +229,11 @@ class BillingPage implements AbstractPage {
       cy.get(paymentTypeCC).click();
       cy.wait(2000);
 
+      cy.get('body').then($body => {
+        if ($body.find('[data-ref="newAdyenCardBlock"]').attr('hidden') == 'hidden') {  
+            cy.get('.b-payment_options_group-actions > button').click()
+        }
+      });
       cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(creditCardFieldsCardNumber).should('be.visible').type(cardNo);
       cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(creditCardFieldsExpirationDate).should('be.visible').type(date);
       cy.iframe('.adyen-checkout__field__cvc .js-iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);

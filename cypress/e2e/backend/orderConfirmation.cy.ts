@@ -1,4 +1,4 @@
-import { isBrandSupportingPaymentMethod as isBrandSupportingPaymentMethod } from 'cypress/helpers/common';
+import { getCardProviderByBrand, isBrandSupportingPaymentMethod } from 'cypress/helpers/common';
 import Addresses from 'cypress/helpers/addresses';
 import BillingPage from 'cypress/pom/billing.page';
 import LoginPage from 'cypress/pom/login.page';
@@ -38,7 +38,7 @@ describe('Boohoo order placement', () => {
   });
 
   it('can select Credit Card - Adyen as payment method and generate an artefact', function () {
-    const paymentMethod: PaymentMethod = 'Adyen';
+    const paymentMethod: PaymentMethod =  getCardProviderByBrand(variables.brand, variables.locale);
     if(!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
       this.skip();
     }

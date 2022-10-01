@@ -8,7 +8,6 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Cart basic functionality for guest user', function () {
   beforeEach (() =>{
-    const variables = Cypress.env() as EnvironmentVariables;
 
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
@@ -32,22 +31,25 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
   it('Verify that user can update quantity of products', function () {
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+    if (variables.brand == 'boohoo.com') {
       CartPage.actions.editCartQuantity('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
-    } else if (variables.brand == 'dorothyperkins.com') {
+    } else {
       CartPage.actions.editCartQuantityArkadia(2);
       CartPage.assertions.assertQuantityIsDisplayed('3');
-    } 
+    }
     
   });
   it('Verify that user can remove product from cart', function () {
-    CartPage.actions.removeFromCart(0);
+    CartPage.click.clearCart();
     CartPage.assertions.assertCartIsEmpty();
   });
-  it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
-    CartPage.assertions.assertPremierSlotsAreVisible();
-  });
+
+  if (variables.brand == 'boohoo.com'|| variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' && variables.locale == 'UK') {
+    it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
+      CartPage.assertions.assertPremierSlotsAreVisible();
+    });
+  }
   it('Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
     cy.wait(5000);
     CartPage.click.proceedToCheckout();
@@ -56,17 +58,20 @@ describe('Cart basic functionality for guest user', function () {
   it('Verify that PayPal CTA is displayed and functional', function () {
     CartPage.assertions.assertPayPalCTAisVisible();
     CartPage.actions.openPayPalSandbox(); 
+  });
 
-    //  Nothing happens?
-  });
-  it('Verify that Klarna CTA is displayed and functional', function () {
-    CartPage.assertions.assertKlarnaCTAisVisible();
-    CartPage.actions.openKlarnaSandbox();
-  });
-  it('Verify that AmazonPay CTA is displayed and functional', function () {
-    CartPage.assertions.assertAmazonPazCTAisVisible();
-    CartPage.actions.openAmazonSandbox();
-  });
+  if (variables.brand == 'boohoo.com' || variables.brand == 'burton.co.uk' || variables.brand == 'nastygal.com' && variables.locale == 'UK'|| variables.locale == 'IE') {
+    it('Verify that Klarna CTA is displayed and functional', function () {
+      CartPage.assertions.assertKlarnaCTAisVisible();
+      CartPage.actions.openKlarnaSandbox();
+    });
+  }
+  if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+    it('Verify that AmazonPay CTA is displayed and functional', function () {
+      CartPage.assertions.assertAmazonPazCTAisVisible();
+      CartPage.actions.openAmazonSandbox();
+    });
+  }
 
 });
 
@@ -75,6 +80,7 @@ describe('Cart page for Registered user', function () {
     const variables = Cypress.env() as EnvironmentVariables;
 
     HomePage.goto();
+
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, credentials.password); 
       cy.wait(5000);
@@ -82,6 +88,7 @@ describe('Cart page for Registered user', function () {
       // HomePage.click.cartIcon();  
       // CartPage.click.clearCart();
     });
+  
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize();

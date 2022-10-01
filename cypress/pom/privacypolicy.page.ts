@@ -6,16 +6,16 @@ const selectors: SelectorBrandMap = {
     privacyNoticyPageTitle: 'span.b-page_title',
   },
   'nastygal.com': {
-    privacyNoticyPageTitle: 'h1',
+    privacyNoticyPageTitle: '.b-user_content h1',
   },
   'dorothyperkins.com': {
-    privacyNoticyPageTitle: 'span.b-page_title',
+    privacyNoticyPageTitle: '.l-static_page-title',
   },
   'burton.co.uk': {
-    privacyNoticyPageTitle: 'span.b-page_title',
+    privacyNoticyPageTitle: '.l-static_page-title',
   },
   'wallis.co.uk': {
-    privacyNoticyPageTitle: 'span.b-page_title',
+    privacyNoticyPageTitle: '.l-static_page-title',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -49,7 +49,7 @@ class PrivacyPolicyPage implements AbstractPage {
     },
     assertPrivacyNoticyPageOpens (text: string) {
       const privacyNoticyPageTitle = selectors[variables.brand].privacyNoticyPageTitle;
-      cy.get(privacyNoticyPageTitle).should('contain.text', text);
+      cy.get(privacyNoticyPageTitle).should('contains.text', text);
     }
   };
 }

@@ -3,7 +3,7 @@ import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    privacyPolicyLink: '.l-static_page-title > strong',
+    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a',
     instagramLink: 'a[href="https://www.instagram.com/boohoo/"]',
     facebookLink: 'a[href="https://www.facebook.com/boohoo.com"]',
@@ -11,7 +11,7 @@ const selectors: SelectorBrandMap = {
     tiktokLink: 'a[href="https://www.tiktok.com/@boohoo?lang=en"]',
     youtubeLink: 'a[href="https://www.youtube.com/c/boohoo"]',
     pintrestLink: 'a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]',
-    theFixLinkL: 'a[href="https://thefix.boohoo.com/"]',
+    theFixLink: 'a[href="https://thefix.boohoo.com/"]',
     footerPromoLink: '#footer-sticky-promo > a',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
@@ -20,15 +20,17 @@ const selectors: SelectorBrandMap = {
     successfulSubscriptionMsg: '.b-newsletters-message_success',
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
     paymentOptions: '.b-footer_top',
-    promoBanner: 'l-footer-app',
+    appBanner: '.b-app_banner-actions',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
   },
   'nastygal.com': {
-    privacyPolicyLink: '.l-static_page-title > strong',
+    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     instagramLink: 'a[href="https://www.instagram.com/nastygal/"]',
     facebookLink: 'a[href="https://www.facebook.com/nastygal"]',
     twitterLink: 'a[href="https://twitter.com/nastygal"]',
+    tiktokLink: 'a[href="https://www.tiktok.com/@nastygal?lang=en"]',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: 'button[data-id="submitButton"]',
@@ -36,11 +38,12 @@ const selectors: SelectorBrandMap = {
     successfulSubscriptionMsg: '.b-newsletters-message_success',
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
     paymentOptions: '.b-footer_top',
-    promoBanner: 'l-footer-app',
+    appBanner: '.b-app_banner-actions',
     headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
   },
   'dorothyperkins.com': {
-    privacyPolicyLink: '.l-static_page-title > strong',
+    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     instagramLink: 'a[href="https://www.instagram.com/dorothyperkins/"]',
     facebookLink: 'a[href="https://www.facebook.com/dorothyperkins"]',
     twitterLink: 'a[href="https://twitter.com/Dorothy_Perkins"]',
@@ -51,14 +54,15 @@ const selectors: SelectorBrandMap = {
     successfulSubscriptionMsg: '.b-newsletters-message_success',
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
     paymentOptions: '.b-footer_top',
-    promoBanner: 'l-footer-app',
+    appBanner: '.l-footer-app_list',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
   },
   'burton.co.uk': {
-    privacyPolicyLink: '.l-static_page-title > strong',
+    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     instagramLink: 'a[href="https://www.instagram.com/burton_menswear/"]',
-    facebookLink: 'a[href="https://m.me/burtonmenswear "]', //  Messenger
+    facebookLink: 'a[href="https://www.facebook.com/BurtonMenswear/"]',
     twitterLink: 'a[href="https://twitter.com/messages/1326555588-978546536232685568"]',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
@@ -67,12 +71,13 @@ const selectors: SelectorBrandMap = {
     successfulSubscriptionMsg: '.b-newsletters-message_success',
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
     paymentOptions: '.b-footer_top',
-    promoBanner: 'l-footer-app',
+    appBanner: '.l-footer-app_list',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
   },
   'wallis.co.uk': {
-    privacyPolicyLink: '.l-static_page-title > strong',
+    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
     facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
     twitterLink: 'a[href="https://twitter.com/wallisfashion?lang=en"]',
@@ -82,9 +87,11 @@ const selectors: SelectorBrandMap = {
     changeCountryDropdown: '.b-country-select',
     successfulSubscriptionMsg: '.b-newsletters-message_success',
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
-    promoBanner: 'l-footer-app',
+    paymentOptions: '.b-footer_top',
+    appBanner: '.l-footer-app_list',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -220,13 +227,9 @@ class GlobalFooter implements AbstractPage {
       const successfulSubscriptionMsg = selectors[variables.brand].successfulSubscriptionMsg;
       cy.get(successfulSubscriptionMsg).contains(text);
     },
-    assertUnsuccessfulSubscription () {
+    assertUnsuccessfulSubscription (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
-      if (variables.brand == 'boohoo.com') {
-        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', assertionText.unsuccessfulSubscription[variables.language]);
-      } else {
-        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', assertionText.unsuccessfulSubscriptionNG[variables.language]);       
-      }
+        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
     },
     asssertAlreadySubscribed (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
@@ -236,9 +239,9 @@ class GlobalFooter implements AbstractPage {
       const paymentOptions = selectors[variables.brand].paymentOptions;
       cy.get(paymentOptions).scrollIntoView().should('be.visible'); //  Only Wallis doesnt have
     },
-    assertPromoBannerPresent () {
-      const promoBanner = selectors[variables.brand].promoBanner;
-      cy.get(promoBanner).should('be.visible'); //  It was div[class="b-app_banner"], only visible on BH and NG
+    assertAppBannerPresent () {
+      const appBanner = selectors[variables.brand].appBanner;
+      cy.get(appBanner).scrollIntoView().should('be.visible'); //  It was div[class="b-app_banner"], only visible on BH and NG
     },
     assertCurrencyByPageContext (currency: string) { //  N/A
       cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {

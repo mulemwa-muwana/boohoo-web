@@ -95,7 +95,7 @@ describe('Boohoo order placement', () => {
           url: variables.url,
           timestamp: Date.now()
         };
-
+        
         const brandName = brand.split('.')[0]; // Get first part of a brand: boohoo.com => boohoo
         cy.createArtefact(testArtefactObject, brandName, paymentMethod.toLowerCase());
       });

@@ -2,12 +2,12 @@ import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    productPrice: 'div[class="b-price-item "]',
-    subtotal: 'tr[class="b-summary_table-item m-total"]',
+    productPrice: '.l-cart_product-total',
+    subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
-    updateQuantity: '#quantity-74ac3e217d2adbf01f8d1b2e86',
-    setQuantity: '.b-product_update-button_update',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '.m-with_actions',
     addPremierToCart: 'button[data-tau="product_addToCart"]',
     PayPalCTA: '.zoid-component-frame',
@@ -20,11 +20,12 @@ const selectors: SelectorBrandMap = {
     productName: 'a[class="b-cart_product-name"]',
   },
   'nastygal.com': {
-    productPrice: 'div[class="b-price-item "]',
+    productPrice: '.l-cart_product-total',
     subtotal: 'tr[class="b-summary_table-item m-total"]',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
-    updateQuantity: '#quantity-74ac3e217d2adbf01f8d1b2e86',
+    updateQuantityDDL: '#quantity-29baf2a29909dbdb2daa4f029e',
+    updateQuantityBtn: '.b-product_update-button_update',
     setQuantity: '.b-product_update-button_update',
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
@@ -32,7 +33,10 @@ const selectors: SelectorBrandMap = {
     proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
+    productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
+    premierBlock: '.b-ngvip',
+    addPremierToCart:'.b-ngvip-button'
   },
   'dorothyperkins.com': {
     productPrice: '.m-user_cart > .b-summary_table-value',
@@ -60,7 +64,7 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.b-cart_product-edit',
     updateQuantityBtn: '.b-product_update-button_update',
     setQuantityDDL: '.b-product_update-button_update',
-    updateQuantityDDL: '#quantity-08630916a2e766c39d1e0c8c70',
+    updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
     premierBlock: '.b-ngvip-details',
     addPremierToCart: '.b-ngvip-button',
     PayPalCTA: '.zoid-component-frame',
@@ -79,7 +83,7 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.b-cart_product-edit',
     updateQuantityBtn: '.b-product_update-button_update',
     setQuantityDDL: '.b-product_update-button_update',
-    updateQuantityDDL: '#quantity-08630916a2e766c39d1e0c8c70',
+    updateQuantityDDL: '#quantity-5df24a2f64f926342fa1dc64be',
     premierBlock: '.b-ngvip-details',
     addPremierToCart: '.b-ngvip-button',
     PayPalCTA: '.zoid-component-frame',
@@ -150,10 +154,32 @@ class CartPage implements AbstractPage {
       cy.get('.b-cart_product-remove').eq(index).click();
     },
     openPayPalSandbox () {
-      cy.get('.zoid-component-frame').invoke('removeAttr', 'target').click();
+      
+      cy.get('.zoid-component-frame').click({force: true});
+      cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
+      
+        cy.stub(win, 'open');
+      
+      });
+      cy.iframe('.zoid-component-frame').find('.paypal-button').should('be.visible').click({force:true});
+      cy.wait(8000);
+      cy.get('.paypal-checkout-sandbox-iframe').should('be.visible');
     },
     openKlarnaSandbox () {
-      cy.get('#klarna-express-button-0').invoke('removeAttr', 'target').click();
+      
+      if (variables.brand == 'burton.co.uk') {
+        cy.get('#klarna-express-button-0').click({force: true});
+      } else {
+        cy.get('#klarna-express-button-0').click();
+      }
+
+      // Stub the open method with just a console log to force it not to open a window.
+      cy.window().then((window: Cypress.AUTWindow) => {
+        cy.stub(window, 'open').callsFake(() => {
+          console.log('stop this button click');
+        });
+      });
+      cy.frameLoaded('#klarna-express-button-fullscreen');
     },
     openAmazonSandbox () {
       cy.get('#OffAmazonPaymentsWidgets0').invoke('removeAttr', 'target').click();
@@ -171,9 +197,9 @@ class CartPage implements AbstractPage {
       const editQuantity = selectors[variables.brand].editQuantity;
       const updateQuantityBtn = selectors[variables.brand].updateQuantityBtn;
       const updateQuantityDDL = selectors[variables.brand].updateQuantityDDL;
-      cy.get(editQuantity).click();
-      cy.get(updateQuantityDDL).select(quantity);
-      cy.get(updateQuantityBtn).click();
+      cy.get(editQuantity).click({force: true});
+      cy.get(updateQuantityDDL).select(quantity,{force: true});
+      cy.get(updateQuantityBtn).click({force: true});
     }
   };
 
@@ -198,7 +224,7 @@ class CartPage implements AbstractPage {
       const productPrice = selectors[variables.brand].productPrice;
       const subtotal = selectors[variables.brand].subtotal;
       cy.get(productPrice).should('be.visible').and('not.null');
-      cy.get(subtotal).should('be.visible').and('not.null');
+      cy.get(subtotal).should('be.visible').and('not.to.be.empty');
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;

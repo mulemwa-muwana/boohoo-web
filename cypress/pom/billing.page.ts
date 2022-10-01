@@ -286,7 +286,6 @@ class BillingPage implements AbstractPage {
       }
     },
     selectKlarna () {
-      cy.wait(5000);
       const klarnaButton = selectors[variables.brand].klarnaButton;
       cy.get(klarnaButton).click({force:true});
       cy.wait(2000);
@@ -320,36 +319,26 @@ class BillingPage implements AbstractPage {
         body().find('[data-testid="select-payment-category"]').should('be.visible').click();
         body().find('[testid="confirm-and-pay"]').should('be.visible').click();
         body().find('#dialog  [data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
-
-        cy.wait(5000);
       });
     },
 
     selectPayPal () {
       cy.get('#payment-button-PayPal').click();
-
       cy.wait(2000);
       
       // Stub the open method inside iframe to force it not to open a window.
-      
       cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
-      
         cy.stub(win, 'open');
-      
       });
       
       // Click PayPal button
-      
       cy.iframe('.zoid-component-frame').find('.paypal-button').should('be.visible').click({force:true});
       
       // Wait for PayPal window to load
-      
       cy.wait(8000);
       
       // Get first iframe, inside its body get inner iframe and then find button
-      
       cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
-
         const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
         
         cy.wrap(innerIframe).find('#email').clear().type('test.user@boohoo.com');
@@ -357,48 +346,47 @@ class BillingPage implements AbstractPage {
         cy.wrap(innerIframe).find('#password').click().type('boohoo123');
         cy.wrap(innerIframe).find('#btnLogin').click();
         cy.wait(3000);
-  
       });
+
       cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
-
         const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
-
         cy.wrap(innerIframe).find('#payment-submit-btn').should('be.visible').click();
-  
       });
-      cy.wait(5000);
     },
     selectLaybuy () {
-      cy.wait(5000);
-      cy.get('#payment-button-LAYBUY').should('be.visible').click({ force: true });
-      cy.wait(5000);
-      cy.get('#payment-details-LAYBUY > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click();
-      cy.wait(5000);
-      cy.get('.sc-himrzO').click();
-      cy.get('.mFrta > .Input__InputWrapper-pv27wu-0 > .Box-sc-1dqwcja-0 > .Input__StyledInput-pv27wu-3').type('euboohoo+nguklaybuy@gmail.com');
-      cy.get(':nth-child(2) > .Input__InputWrapper-pv27wu-0 > .Input__InputOutlineLabel-pv27wu-1 > .Input__StyledInput-pv27wu-3').type('Boohoo123!');
-      cy.get('.iWhXXJ > .Button-k6w95u-2').click();
-      cy.get(':nth-child(4) > .Button-k6w95u-2').click();
-      cy.get(':nth-child(4) > .Button-k6w95u-2').click();
+      if (variables.brand == 'oasis-stores.com') {
+        cy.get('[for="is-LAYBUY"]', { timeout: 10000 }).should('be.visible').click({ force: true });
+        cy.get('#billingSubmitButton').should('be.visible').click({ force: true });
+      } else {
+        cy.get('#payment-button-LAYBUY', { timeout: 10000 }).should('be.visible').click({ force: true });
+        cy.get('#payment-details-LAYBUY > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button', { timeout: 10000 }).click();
+      }
+      cy.get('.sc-himrzO', { timeout: 10000 }).click();
+      cy.get('input[type="email"]').type('euboohoo+uklaybuy@gmail.com');
+      cy.get('input[type="password"]').type('Boohoo123$');
+      cy.get('button[type="submit"]').click();
+      cy.get('button[data-test-id="payment-complete-order-button"]').click();
     },
     selectClearpay () {
-      cy.wait(5000);
-      cy.get('#payment-button-CLEARPAY').should('be.visible').click({ force: true });
-      cy.wait(5000);
-      cy.get('#payment-details-CLEARPAY  button[type="submit"]').should('be.visible').click();
-      cy.wait(8000);
-      cy.get('body').then($body => {
+      if (variables.brand == 'oasis-stores.com') {
+        cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).should('be.visible').click({ force: true });
+        cy.get('#billingSubmitButton').should('be.visible').click({ force: true });
+      } else {
+        cy.get('#payment-button-CLEARPAY').should('be.visible').click({ force: true });
+        cy.get('#payment-details-CLEARPAY button[type="submit"]', { timeout: 10000 }).should('be.visible').click();
+      }
+      cy.get('body', { timeout: 10000 }).then($body => {
         if ($body.find('[data-testid="summary-button"]').length > 0) {  
             cy.get('[data-testid="summary-button"]').click()
         }
       });
-      cy.get('[data-testid="login-identity-input"]').should('be.visible').clear().type('ukboohoo@outlook.com');
+      cy.get('[data-testid="login-identity-input"]', { timeout: 12000 }).should('be.visible').clear();
+      cy.wait(1000);
+      cy.get('[data-testid="login-identity-input"]').should('be.visible').type('ukboohoo@outlook.com');
       cy.get('[data-testid="login-identity-button"]').should('be.visible').click();
       cy.get('[data-testid="login-password-input"]').should('be.visible').type('Boohoo!23');
       cy.get('[data-testid="login-password-button"]').should('be.visible').click();
-      cy.wait(2000);
-      cy.get('[data-testid="summary-button"]').should('be.visible').click();
-      cy.wait(8000);
+      cy.get('[data-testid="summary-button"]', { timeout: 6000 }).should('be.visible').click();
     },
   
   };

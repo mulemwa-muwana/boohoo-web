@@ -34,9 +34,10 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.actions.phoneNumberField(localeAddress.phone);
     ShippingPage.click.proceedToBilling();
+    cy.wait(8000);
   });
 
-  it('can select credit card and generate an artefact', function () {
+  it('can select Credit Card as payment method and generate an artefact', function () {
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     OrderConfirmationPage.click.closePopUp();
@@ -51,21 +52,21 @@ describe('Boohoo order placement', () => {
     generateArtefact(variables.brand, 'Klarna');
   });
 
-  it('can select LayBuy as payment method and generate an artefact', function () {
+  it('can select Laybuy as payment method and generate an artefact', function () {
     BillingPage.actions.selectLaybuy();
     OrderConfirmationPage.click.closePopUp();
 
     generateArtefact(variables.brand, 'LayBuy');
   });
 
-  it('can select LayBuy as payment method and generate an artefact', function () {
+  it('can select Clearpay as payment method and generate an artefact', function () {
     BillingPage.actions.selectClearpay();
     OrderConfirmationPage.click.closePopUp();
 
     generateArtefact(variables.brand, 'Clearpay');
   });
 
-  // Method for generating artefact for back end tests.
+  // Method for generating artefact on OrderConfirmation page for back end tests.
   function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get('[data-tau="order_number"], .orderdetails-header-number .value').invoke('text').then(text => text.trim()).as('orderNumber');
@@ -95,7 +96,7 @@ describe('Boohoo order placement', () => {
           url: variables.url,
           timestamp: Date.now()
         };
-        
+
         const brandName = brand.split('.')[0]; // Get first part of a brand: boohoo.com => boohoo
         cy.createArtefact(testArtefactObject, brandName, paymentMethod.toLowerCase());
       });

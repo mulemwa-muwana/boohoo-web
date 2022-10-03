@@ -320,10 +320,14 @@ class BillingPage implements AbstractPage {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
         cy.wait(3000);
-        body().find('#pay_now-pay_now__container #pay_now-pay_now__label').should('be.visible').click();
-        body().find('[data-testid="select-payment-category"]').should('be.visible').click();
-        body().find('[testid="confirm-and-pay"]').should('be.visible').click();
-        body().find('#dialog  [data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
+        if (variables.brand == 'boohoo.com') {
+          body().find('#pay_now-pay_now__container #pay_now-pay_now__label').should('be.visible').click();
+          body().find('[data-testid="select-payment-category"]').should('be.visible').click();
+          body().find('[testid="confirm-and-pay"]').should('be.visible').click();
+          body().find('#dialog  [data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
+        } else {
+          body().find('[testid="confirm-and-pay"]').should('be.visible').click();
+        }
       });
     },
 

@@ -294,7 +294,7 @@ describe('Footer verification', () => {
     if (variables.brand == 'boohoo.com')
       GlobalFooter.actions.checkFooterLinkByText('Environmental & Social Responsibility');
   });
-  it.only('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
+  it('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
     if (variables.brand == 'boohoo.com' || variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk')
       GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
   });

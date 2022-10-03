@@ -73,7 +73,7 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
   });
 });
-describe.only('Order confirmation page for registered user', function () {
+describe('Order confirmation page for registered user', function () {
   beforeEach (()=>{
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);

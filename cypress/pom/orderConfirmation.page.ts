@@ -109,7 +109,7 @@ class OrderConfirmation implements AbstractPage {
   click = {
     closePopUp () {
       const closePopUP = selectors[variables.brand].closePopUP;
-      cy.get(closePopUP, { timeout: 20000 }).click();
+      cy.get(closePopUP, { timeout: 30000 }).click();
     }
   };
 

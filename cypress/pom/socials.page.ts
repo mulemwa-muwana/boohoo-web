@@ -6,14 +6,16 @@ const selectors: SelectorBrandMap = {
     instagram: 'a[href="https://www.instagram.com/boohoo/"] > svg > path',
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     facebookUrl: 'facebook.com/boohoo.com',
-    twitter: 'a[href="https://twitter.com/boohoo"] > svg > path'
+    twitter: 'a[href="https://twitter.com/boohoo"] > svg > path',
+    tiktok: 'a[href="https://www.tiktok.com/@boohoo?lang=en"] > svg',
   },
   'nastygal.com': {
     instagramUrl: 'instagram.com/nastygal/',
     instagram: '#footercontent > div.l-footer-content > div.l-footer-signup > div.l-footer-follow > div.b-footer_social > div > section > div > a:nth-child(3) > svg',
     facebook: '#footercontent > div.l-footer-content > div.l-footer-signup > div.l-footer-follow > div.b-footer_social > div > section > div > a:nth-child(1) > svg > path',
     facebookUrl: 'facebook.com/nastygal',
-    twitter: '#footercontent > div.l-footer-content > div.l-footer-signup > div.l-footer-follow > div.b-footer_social > div > section > div > a:nth-child(2)'
+    twitter: '#footercontent > div.l-footer-content > div.l-footer-signup > div.l-footer-follow > div.b-footer_social > div > section > div > a:nth-child(2)',
+    tiktok: 'a[href="https://www.tiktok.com/@nastygal?lang=en"]',  
   },
   'dorothyperkins.com': {
     instagramUrl: 'instagram.com/dorothyperkins/',
@@ -79,7 +81,8 @@ class SocialsPage implements AbstractPage {
       cy.get('[href="https://www.pinterest.co.uk/boohooofficial/_created/"] > svg').should('be.visible');
     },
     assertTikTokIconIsPresent () {
-      cy.get('a[href="https://www.tiktok.com/@boohoo?lang=en"] > svg').should('be.visible');
+      const tiktok = selectors[variables.brand].tiktok;
+      cy.get(tiktok).should('be.visible');
     },
     assertTwitterIconIsPresent () {
       const twitter = selectors[variables.brand].twitter;

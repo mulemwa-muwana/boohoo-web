@@ -82,10 +82,7 @@ class CheckoutPage implements AbstractPage {
   actions = {
     guestCheckoutEmail (guestEmail: string) {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
-      if (variables.brand == 'oasis-stores.com') {
-        cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
-      } 
-      
+      cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
     },
     userEmailField (username: string) {  
       const userEmailField = selectors[variables.brand].userEmailField;

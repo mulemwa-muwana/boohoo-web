@@ -128,7 +128,7 @@ describe('Billing page functionality for guest user', function () {
     });
   });
   describe('Verify that guest user can place orders with available payment methods', function () {
-    it.only('Verify that guest user can place order using Credit Card - Visa)', function () {
+    it('Verify that guest user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();

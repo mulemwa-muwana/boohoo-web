@@ -144,6 +144,12 @@ class ShippingPage implements AbstractPage {
       const proceedToBilling = selectors[variables.brand].proceedToBilling;
       cy.wait(1000);
       cy.get(proceedToBilling).click({force: true});
+      
+      // Proceed to billing as Site Genesis confirms your delivery address.
+      if (variables.brand === 'oasis-stores.com') {
+        cy.contains('there may be a problem with the address you have entered.').should('be.visible');
+        cy.get('.verification-address-button').should('be.visible').click();
+      }
     },
     editSavedAddress () {
       const editSavedAddress = selectors[variables.brand].editSavedAddress;

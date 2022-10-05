@@ -140,6 +140,20 @@ class AssertionText {
     ES: 'aviso-de-privacidad'
   };
 
+  PrivacyPolicyArcadiaURL: TranslationMap = {
+    EN: 'privacy-policy',
+    FR: 'avis-de-confidentialité',
+    NL: 'privacyverklaring',
+    DE: 'datenschutzerklärung',
+    DK: 'fortrolighedserklæring',
+    FI: 'tietosuojailmoitus',
+    NO: 'personvernerklæring',
+    SE: 'integritetsmeddelande',
+    IL: 'הודעת פרטיות',
+    IT: 'informativa-sulla-privacy',
+    ES: 'aviso-de-privacidad'
+  };
+
   PrivacyPolicyH1: TranslationMap = {
     EN: '\n                Privacy Notice\n            ',
     FR: '\n                Avis de confidentialité\n            ',
@@ -155,7 +169,7 @@ class AssertionText {
   };
 
   PrivacyPolicyH1Arcadia: TranslationMap = {
-    EN: '\nPrivacy Notice\n',
+    EN: 'Privacy',
     FR: '\nAvis de confidentialité\n',
     NL: '\nPrivacyverklaring\n',
     DE: '\nDatenschutzerklärung\n',
@@ -476,6 +490,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkTrackMyOrderArcadia: TranslationMap = {
+    EN: 'Track my order',
+    NL: '',
+    DE: 'Bestellung verfolgen',
+    FR: 'Suivre ma commande',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerHelp: TranslationMap = {
     EN: 'Help',
     NL: '',
@@ -504,8 +532,22 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkDeliveryInfoArcadia: TranslationMap = {
+    EN: 'Delivery', //  Info
+    NL: '',
+    DE: 'Lieferinformationen',
+    FR: 'Information sur la livraison',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkAbout: TranslationMap = {
-    EN: 'About', // Brand name is missing
+    EN: 'About boohoo', // Brand name is missing
     NL: '',
     DE: 'Über',
     FR: '',
@@ -659,7 +701,21 @@ class AssertionText {
   };
 
   termsAndCond: TranslationMap = {
-    EN: 'Terms and conditions',
+    EN: 'T&Cs',
+    NL: '',
+    DE: 'Nutzungsbedingungen',
+    FR: 'Conditions générales',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  termsAndCondArcadia: TranslationMap = {
+    EN: 'Terms & Conditions',
     NL: '',
     DE: 'Nutzungsbedingungen',
     FR: 'Conditions générales',
@@ -673,7 +729,21 @@ class AssertionText {
   };
 
   privacyPolicy: TranslationMap = {
-    EN: 'Privacy Notice - Updated March 2021',
+    EN: 'Privacy Notice - Updated July 2022',
+    NL: '',
+    DE: 'Datenschutzbestimmungen', // FAILED
+    FR: 'Avis de confidentialité',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  privacyPolicyArcadia: TranslationMap = {
+    EN: 'Privacy Policy',
     NL: '',
     DE: 'Datenschutzbestimmungen', // FAILED
     FR: 'Avis de confidentialité',

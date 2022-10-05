@@ -7,19 +7,19 @@ const selectors: SelectorBrandMap = {
     emailError: '#dwfrm_profile_customer_email-error > span'
   },
   'nastygal.com': {
-    submitButton: ':nth-child(12) > .b-button',
+    submitButton: '[data-tau="register_submit"]',
     emailError: '#dwfrm_profile_customer_email-error'
   },
   'dorothyperkins.com': {
-    submitButton: ':nth-child(12) > .b-button',
+    submitButton: '[data-tau="register_submit"]',
     emailError: '#dwfrm_profile_customer_email-error'
   },
   'burton.co.uk': {
-    submitButton: ':nth-child(12) > .b-button',
+    submitButton: '[data-tau="register_submit"]',
     emailError: '#dwfrm_profile_customer_email-error'
   },
   'wallis.co.uk': {
-    submitButton: ':nth-child(12) > .b-button',
+    submitButton: '[data-tau="register_submit"]',
     emailError: '#dwfrm_profile_customer_email-error'
   },
   'boohooman.com': undefined,
@@ -40,7 +40,7 @@ class RegistrationPage implements AbstractPage {
 
   click = {
     chooseEmailConsent () {
-      cy.get('#dwfrm_profile_customer_subscription_isemailsubscribed').click();
+      cy.get('#dwfrm_profile_customer_subscription_isemailsubscribed').click({force: true});
     },
     choosePostConsent () {
       cy.get('#dwfrm_profile_customer_subscription_ispostalsubscribed').click();
@@ -59,25 +59,50 @@ class RegistrationPage implements AbstractPage {
 
   actions = {
     startRegistration (randomEmail: string) {
-      cy.get('#dwfrm_profile_customer_email').type(randomEmail);
+      if (variables.brand == 'wallis.co.uk'||variables.brand == 'dorothyperkins.com'||variables.brand == 'burton.co.uk') {
+        cy.get('#dwfrm_profile_customer_email').click({force: true}).type(randomEmail);
+      } else {
+        cy.get('#dwfrm_profile_customer_email').type(randomEmail);
+      }
+      
       if (variables.brand == 'boohoo.com') {
         cy.get('button[data-id="continueButton"]').click();
       }
       
     },
     confirmationCheckbox () {
-      cy.get('#dwfrm_profile_customer_emailregistationconfirm').check();
+      if (variables.brand == 'burton.co.uk'|| variables.brand == 'dorothyperkins.com'||variables.brand == 'wallis.co.uk') {
+        cy.get('#dwfrm_profile_customer_emailregistationconfirm').check({force:true});
+      } else {
+        cy.get('#dwfrm_profile_customer_emailregistationconfirm').check();
+      }
+      
     },
     enterNewUserData (password: string, confirmPassword: string, firstName: string, lastName: string) {
-      cy.get('#dwfrm_profile_login_password').type(password);
-      cy.get('#dwfrm_profile_login_passwordconfirm').type(confirmPassword);
-      cy.get('#dwfrm_profile_customer_firstname').type(firstName);
-      cy.get('#dwfrm_profile_customer_lastname').type(lastName);
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
+        cy.get('#dwfrm_profile_login_password').click({force: true}).type(password);
+        cy.get('#dwfrm_profile_login_passwordconfirm').click({force: true}).type(confirmPassword);
+        cy.get('#dwfrm_profile_customer_firstname').click({force: true}).type(firstName);
+        cy.get('#dwfrm_profile_customer_lastname').click({force: true}).type(lastName);
+      } else {
+        cy.get('#dwfrm_profile_login_password').type(password);
+        cy.get('#dwfrm_profile_login_passwordconfirm').type(confirmPassword);
+        cy.get('#dwfrm_profile_customer_firstname').type(firstName);
+        cy.get('#dwfrm_profile_customer_lastname').type(lastName);
+      }
+     
     },
     chooseDate (date: string, month: string, year: string) {
-      cy.get('#dwfrm_profile_customer_dayofbirth').select(date);
-      cy.get('#dwfrm_profile_customer_monthofbirth').select(month);
-      cy.get('#dwfrm_profile_customer_yearOfBirth').select(year);
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
+        cy.get('#dwfrm_profile_customer_dayofbirth').select(date,{force: true});
+        cy.get('#dwfrm_profile_customer_monthofbirth').select(month,{force: true});
+        cy.get('#dwfrm_profile_customer_yearOfBirth').select(year,{force: true});
+      } else {
+        cy.get('#dwfrm_profile_customer_dayofbirth').select(date);
+        cy.get('#dwfrm_profile_customer_monthofbirth').select(month);
+        cy.get('#dwfrm_profile_customer_yearOfBirth').select(year);
+      }
+      
     }
 
   };

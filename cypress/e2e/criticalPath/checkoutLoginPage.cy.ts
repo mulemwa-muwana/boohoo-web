@@ -2,6 +2,10 @@ import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
+import { isVariableStatement } from 'typescript';
+import assertionText from 'cypress/helpers/assertionText';
+
+const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Home Page', function () {
   
@@ -24,7 +28,12 @@ describe('Home Page', function () {
   });
 
   it('Verify Premier is displayed and can be added to the cart', () => {
-    CheckoutPage.assertions.assertPremierIsDisplayed();
+    if (variables.brand == 'boohoo.com') {
+      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
+      CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
+    } else if (variables.brand == 'nastygal.com') {
+      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
+    }
   });
 
   it('Verify that registered user is able to login', () => {

@@ -25,7 +25,7 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
-    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',
@@ -38,6 +38,7 @@ const selectors: SelectorBrandMap = {
     customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     paymentTypeCC: '#payment-button-scheme',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
     paymentTypeKlarna: '',
     creditCardFieldsExpirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
@@ -249,9 +250,10 @@ class BillingPage implements AbstractPage {
       const addNewAddressBtn = selectors[variables.brand].addNewAddressBtn;
       const addNewAddressField = selectors[variables.brand].addNewAddressField;
       if (variables.brand == 'boohoo.com') {
-        cy.get(addNewAddressBtn).click();
-      }
-      cy.get(addNewAddressField).click();
+        cy.get(addNewAddressBtn).eq(0).click({force: true});
+      } else if (variables.brand == 'nastygal.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
+        cy.get(addNewAddressField).click({force: true});
+      }    
     },
     addBillingAddress (line1: string, city: string, county: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;

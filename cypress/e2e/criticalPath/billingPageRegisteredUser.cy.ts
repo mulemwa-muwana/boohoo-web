@@ -120,7 +120,6 @@ describe('Billing page functionality for registered user', function () {
     }
     if (variables.locale == 'UK') {
       it('Verify that guest user can place order using Laybuy', function () {
-        BillingPage.actions.selectDate('23', 'May', '2001');
         BillingPage.actions.selectLaybuy();
         BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
       });

@@ -246,7 +246,7 @@ class MyAccountPage implements AbstractPage {
     {
       logOutLink () {
         const accountLogout = selectors[variables.brand].accountLogout;
-        cy.get(accountLogout).should('be.visible').click();
+        cy.get(accountLogout).should('be.visible').click({force: true});
       },
       myAccountLink () {
         const myAccountBtn = selectors[variables.brand].myAccountBtn;

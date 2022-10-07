@@ -19,7 +19,8 @@ const selectors: SelectorBrandMap = {
     loginButton:'button[data-tau="login_submit"]',
     passwordReset: '#password-reset',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
-    resetPasswordBtn: '.b-dialog-footer > .b-button'
+    resetPasswordBtn: '.b-dialog-footer > .b-button',
+    loginForm: '.b-login_form'
   },
   'dorothyperkins.com': {
     loginIcon: '.b-header_login-icon > .i-icon',

@@ -97,7 +97,7 @@ describe('Home Page', function () {
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
-  it.only('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
@@ -105,7 +105,7 @@ describe('Home Page', function () {
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
-  it.only('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
@@ -113,7 +113,7 @@ describe('Home Page', function () {
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
-  it.only('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();

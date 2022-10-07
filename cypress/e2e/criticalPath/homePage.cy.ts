@@ -36,7 +36,7 @@ describe('Home Page', function () {
        
   // HEADER
   describe('Header verifications', () => {
-    it.only('Header Logo', () => {
+    it('Header Logo', () => {
       homePage.assertions.assertLogoPresent();
     });
     
@@ -147,15 +147,15 @@ describe('Footer verification', () => {
         PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
       }
       if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-        PrivacyPolicyPage.assertions.assertOnPage('privacy-notice');  //  assertionText.PrivacyPolicyURL[variables.language]
+        PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
       } else {
-        PrivacyPolicyPage.assertions.assertOnPage('privacy-policy');  //  assertionText.PrivacyPolicyArcadiaURL[variables.language]
+        PrivacyPolicyPage.assertions.assertOnPage('privacy-policy'); //  AssertionText.PrivacyPolicyArcadiaURL[variables.language]
       }
     });
 
     it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
       const variable = Cypress.env() as EnvironmentVariables;
-      GlobalFooter.click.copyrightTermsAndConditionsLink('terms-and-conditions');  //  assertionText.termsAndCondFooterLink[variables.language]
+      GlobalFooter.click.copyrightTermsAndConditionsLink('terms-and-conditions'); //  AssertionText.termsAndCondFooterLink[variables.language]
     });
   });
 
@@ -294,7 +294,7 @@ describe('Footer verification', () => {
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Klarna', () => {
     if (!(variables.brand == 'boohoo.com' && variables.locale == 'EU'))
-    GlobalFooter.actions.checkFooterLinkByText('Klarna');
+      GlobalFooter.actions.checkFooterLinkByText('Klarna');
   });
   it('Verify that Footer Navigation Component is present and Links are functional - Clearpay', () => {
     GlobalFooter.actions.checkFooterLinkByText('Clearpay');
@@ -316,7 +316,7 @@ describe('Footer verification', () => {
     if (variables.brand == 'boohoo.com' && variables.locale == 'EU') {
       GlobalFooter.actions.checkFooterLinkByText('boohoo Social Responsibility');
     }
-    if (variables.brand == 'boohoo.com' && variables.locale != 'EU'){
+    if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
       GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[variables.language]);
     } 
   });

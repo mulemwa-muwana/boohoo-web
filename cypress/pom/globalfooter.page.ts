@@ -22,10 +22,11 @@ const selectors: SelectorBrandMap = {
     appBanner: '.b-app_banner-actions',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
-    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
+    copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
   },
   'nastygal.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
+    copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-notice"]',
     instagramLink: 'a[href="https://www.instagram.com/nastygal/"]',
     facebookLink: 'a[href="https://www.facebook.com/nastygal"]',
     twitterLink: 'a[href="https://twitter.com/nastygal"]',
@@ -39,10 +40,11 @@ const selectors: SelectorBrandMap = {
     paymentOptions: '.b-footer_top',
     appBanner: '.b-app_banner-actions',
     headerInner: '.b-header_utility-inner',
-    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
+    copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
   },
   'dorothyperkins.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
+    copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/dorothyperkins/"]',
     facebookLink: 'a[href="https://www.facebook.com/dorothyperkins"]',
     twitterLink: 'a[href="https://twitter.com/Dorothy_Perkins"]',
@@ -56,10 +58,11 @@ const selectors: SelectorBrandMap = {
     appBanner: '.l-footer-app_list',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
-    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
+    copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
   },
   'burton.co.uk': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
+    copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/burton_menswear/"]',
     facebookLink: 'a[href="https://www.facebook.com/BurtonMenswear/"]',
     twitterLink: 'a[href="https://twitter.com/messages/1326555588-978546536232685568"]',
@@ -73,10 +76,11 @@ const selectors: SelectorBrandMap = {
     appBanner: '.l-footer-app_list',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
-    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
+    copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
   },
   'wallis.co.uk': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
+    copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
     facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
     twitterLink: 'a[href="https://twitter.com/wallisfashion?lang=en"]',
@@ -90,7 +94,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.l-footer-app_list',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
-    copyrightTermAndCondLink: 'b div[class="l-footer-copy"] li:nth-child(1) a:nth-child(1)',
+    copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -114,7 +118,14 @@ class GlobalFooter implements AbstractPage {
     },
     copyrightPrivacyPolicyLink () {
       const copyrightPrivacyPolicyLink = selectors[variables.brand].copyrightPrivacyPolicyLink;
-      cy.get(copyrightPrivacyPolicyLink).click();
+      cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click();
+    },
+    copyrightTermsAndConditionsLink (text: string, options?: { assertionUrl: string }) {
+      const copyrightTermAndCondLink = selectors[variables.brand].copyrightTermAndCondLink;
+      cy.get(copyrightTermAndCondLink).scrollIntoView().click();
+      cy.url().then(url => {
+        expect(url).to.contain(options?.assertionUrl ?? text);
+      });
     },
     instagramLink () {
       const instagramLink = selectors[variables.brand].instagramLink;

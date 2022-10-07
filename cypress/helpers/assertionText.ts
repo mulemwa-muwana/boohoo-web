@@ -130,7 +130,7 @@ class AssertionText {
     EN: 'privacy-notice',
     FR: 'avis-de-confidentialité',
     NL: 'privacyverklaring',
-    DE: 'datenschutzerklärung',
+    DE: 'privacy-notice',
     DK: 'fortrolighedserklæring',
     FI: 'tietosuojailmoitus',
     NO: 'personvernerklæring',
@@ -158,7 +158,7 @@ class AssertionText {
     EN: '\n                Privacy Notice\n            ',
     FR: '\n                Avis de confidentialité\n            ',
     NL: '\n                Privacyverklaring\n            ',
-    DE: '\n                Datenschutzerklärung\n            ',
+    DE: 'Datenschutzrichtlinien',
     DK: '\n                Bekendtgørelse om beskyttelse af personlige oplysninger\n            ',
     FI: '\n                Tietosuojailmoitus\n            ',
     NO: '\n                Personvernerklæring\n            ',
@@ -183,7 +183,7 @@ class AssertionText {
   };
 
   Premier: TranslationMap = {
-    EN: '\nPREMIER\n',
+    EN: ' \n\n                        .b-ngvip-title {\n                        \n                            letter-spacing: 10px;\n                        \n                        }\n                        \n                        \n                        PREMIER\n                    ',
     FR: '\nENSIMMÄINEN\n',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
@@ -211,7 +211,7 @@ class AssertionText {
   };
 
   PremierText: TranslationMap = {
-    EN: '\nFREE NEXT DAY DELIVERY FOR 1 YEAR!\n',
+    EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
     FR: '\nLIVRAISON GRATUITE LE LENDEMAIN PENDANT 1 AN !\n',
     NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
     DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',
@@ -423,7 +423,7 @@ class AssertionText {
   successfulSubscription: TranslationMap = {
     EN: 'Thanks for ',
     NL: 'Bedankt voor ',
-    DE: 'Danke für ',
+    DE: 'Danke für',
     FR: 'Merci pour ',
     DK: 'Tak for',
     FI: 'Kiitos ',
@@ -507,7 +507,7 @@ class AssertionText {
   footerHelp: TranslationMap = {
     EN: 'Help',
     NL: '',
-    DE: 'Kundenservices',
+    DE: 'Kundenservice',
     FR: '',
     DK: '',
     FI: '',
@@ -533,7 +533,7 @@ class AssertionText {
   };
 
   footerLinkDeliveryInfoArcadia: TranslationMap = {
-    EN: 'Delivery', //  Info
+    EN: 'Delivery',
     NL: '',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
@@ -728,6 +728,20 @@ class AssertionText {
     ES: ''
   };
 
+  termsAndCondFooterLink: TranslationMap = {
+    EN: 'terms-and-conditions',
+    NL: '',
+    DE: 'terms-and-conditions',
+    FR: 'Conditions générales',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   privacyPolicy: TranslationMap = {
     EN: 'Privacy Notice - Updated July 2022',
     NL: '',
@@ -747,6 +761,34 @@ class AssertionText {
     NL: '',
     DE: 'Datenschutzbestimmungen', // FAILED
     FR: 'Avis de confidentialité',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  investor: TranslationMap = {
+    EN: 'Investor Relations',
+    NL: '',
+    DE: 'Finanzkommunikation', // FAILED
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  envAndSocResp: TranslationMap = {
+    EN: 'Environmental & Social Responsibility',
+    NL: '',
+    DE: 'Soziale Verantwortung von boohoo',
+    FR: '',
     DK: '',
     FI: '',
     NO: '',

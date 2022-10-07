@@ -42,6 +42,20 @@ class megaMenuLinksLanguages {
     ES: '',
   };
 
+  linkArkadiaDreeses: TranslationMap = { 
+    EN: 'Dreeses',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
   subnavClothingNewIn: TranslationMap = {
     EN: 'New In',
     NL: 'Nieuw Binnen',
@@ -75,7 +89,7 @@ class megaMenuLinksLanguages {
     EN: 'SALE',
     FR: 'PROMOS',
     NL: '',
-    DE: '',
+    DE: 'SALE',
     DK: '',
     FI: '',
     NO: '',
@@ -103,7 +117,7 @@ class megaMenuLinksLanguages {
     EN: 'All Sale',
     FR: 'Promos vêtements',
     NL: '',
-    DE: '',
+    DE: 'Alles im Sale',
     DK: '',
     FI: '',
     NO: '',
@@ -117,7 +131,7 @@ class megaMenuLinksLanguages {
     EN: 'sale',
     FR: 'promotions',
     NL: '',
-    DE: '',
+    DE: 'sale',
     DK: '',
     FI: '',
     NO: '',

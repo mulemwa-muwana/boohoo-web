@@ -20,6 +20,8 @@ const selectors: SelectorBrandMap = {
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.b-minicart_product-inner',
+    postcodeFiled: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
+    postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -38,6 +40,8 @@ const selectors: SelectorBrandMap = {
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     cartContainer: '[data-tau="checkout_products"]',
+    postcodeFiled: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
+    postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -56,6 +60,8 @@ const selectors: SelectorBrandMap = {
     addNewAddress: 'button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
+    postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
   },
   'burton.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -74,6 +80,8 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
   },
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -92,6 +100,8 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -114,7 +124,8 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm', 
-    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button'
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
   },
   'misspap.com': undefined
 };
@@ -271,7 +282,8 @@ class ShippingPage implements AbstractPage {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', city); 
     },
     assertPostCodeIsMandatory (postcode: string) {
-      cy.get('#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error').should('contain.text', postcode); 
+      const postcodeValidation = selectors[variables.brand].postcodeValidation;
+      cy.get(postcodeValidation).should('contain.text', postcode); 
     },
     assertUserProceededToBillinPage () {
       cy.url().should('include', 'billing');

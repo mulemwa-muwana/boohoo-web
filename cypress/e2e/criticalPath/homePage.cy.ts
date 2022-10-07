@@ -36,7 +36,7 @@ describe('Home Page', function () {
        
   // HEADER
   describe('Header verifications', () => {
-    it('Header Logo', () => {
+    it.only('Header Logo', () => {
       homePage.assertions.assertLogoPresent();
     });
     

@@ -2,6 +2,7 @@ import PdpPage from '../../pom/pdp.page';
 import HomePage from '../../pom/home.page';
 import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
+import pdpPage from '../../pom/pdp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -65,8 +66,11 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertStyleNotesArePresent();
   });
   it('TC11 Verify that Shipping Info is displayed when configured', function () {
-    PdpPage.click.shippingInfoButton();
-    PdpPage.assertions.assertDeliveryInfoIsDisplayed();
+    if (variables.brand == 'boohoo.com') {
+      PdpPage.click.shippingInfoButton();
+      PdpPage.assertions.assertDeliveryInfoIsDisplayed();
+    }
+    pdpPage.assertions.assertDeliveryOptionsAvailableArkadia();
   });
   it('TC12 Verify that Returns Info carousel is displayed when configured', function () {
     PdpPage.assertions.assertReturnInfoIsDisplayed();

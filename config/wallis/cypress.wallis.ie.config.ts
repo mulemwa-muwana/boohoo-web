@@ -4,8 +4,9 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
+    url: 'https://storefront:Oreo2022@dwstg.wallisfashion.com/ie',
     sku: 'AYY10937-130',
-    brand: 'wallisfashion.co.uk',
+    brand: 'wallis.co.uk',
     locale: 'IE',
     language: 'EN',
   },

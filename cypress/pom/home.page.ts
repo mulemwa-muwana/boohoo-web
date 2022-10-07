@@ -11,7 +11,8 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
     promotion: '#promotion_slide-0 > div > div > a',
-    loginIcon: '.b-header_login-icon > .i-icon'
+    loginIcon: '.b-header_login-icon > .i-icon',
+    logo: '.b-logo',
   },
   'nastygal.com': {
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
@@ -20,7 +21,8 @@ const selectors: SelectorBrandMap = {
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
-    loginIcon: '.b-header_login-icon > .i-icon'
+    loginIcon: '.b-header_login-icon > .i-icon',
+    logo: '.b-logo',
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
@@ -30,6 +32,7 @@ const selectors: SelectorBrandMap = {
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
+    logo: '.b-logo',
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -38,7 +41,8 @@ const selectors: SelectorBrandMap = {
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
-    loginIcon: '.b-header_login-icon > .i-icon'
+    loginIcon: '.b-header_login-icon > .i-icon',
+    logo: '.b-logo',
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -48,6 +52,7 @@ const selectors: SelectorBrandMap = {
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
+    logo: '.b-logo',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -60,7 +65,8 @@ const selectors: SelectorBrandMap = {
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
     searchIcon: '.js-search-icon',
-    promotion: 'div[class="b-hero_carousel-track"]'
+    promotion: 'div[class="b-hero_carousel-track"]',
+
   },
   'misspap.com': undefined
 };
@@ -205,7 +211,8 @@ class HomePage implements AbstractPage {
 
     // Logo
     assertLogoPresent () {
-      cy.get('.b-logo').should('be.visible').should('have.attr', 'href');
+      const logo = selectors[variables.brand].logo;
+      cy.get(logo).should('be.visible').should('have.attr', 'href');
     },
 
     // Header icons

@@ -37,7 +37,13 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
-    shippingPage.actions.phoneNumberField(localeAddress.phone);
+    if (variables.brand == 'boohoo.com' || variables.brand =='nastygal.com') {
+      shippingPage.actions.phoneNumberField('+' + localeAddress.phone);
+    } else if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand =='dorothyperkins.com') {
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
+    } else { 
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
+    }
     shippingPage.click.proceedToBilling();
   });
 
@@ -53,7 +59,7 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it.only('Verify that guest user can change shipping method', function () {
+  it('Verify that guest user can change shipping method', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });

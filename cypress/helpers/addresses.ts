@@ -8,7 +8,7 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '08082580300',
-        addrline1: '100 Browning St, Birmingham B16 8EH',
+        addrline1: '100 Browning St',
         addrline2: '',
         postcode: 'AB116PH',
         addressName: 'SecondAddress',
@@ -16,12 +16,13 @@ class Addresses {
         city: 'Aberdeen',
         countryCode: 'GB',
         county: 'Aberdeenshire',
+        confirmEmail: ''
       },
       secondaryAddress: {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+020 7590 6960',
-        addrline1: '259 Oxford St, London W1C 2DD',
+        phone: '020 7590 6960',
+        addrline1: '259 Oxford St',
         addrline2: '',
         postcode: 'AB11 6PH',
         addressName: 'SecondAddress',
@@ -29,6 +30,7 @@ class Addresses {
         city: 'Aberdeen',
         countryCode: 'GB',
         county: 'Aberdeenshire',
+        confirmEmail: ''
       }
     },
 
@@ -37,8 +39,8 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+1 917 640 9576',
-        addrline1: '1665 St Marks Ave, Brooklyn',
+        phone: '19176409576',
+        addrline1: '1665 St Marks Ave',
         addrline2: '',
         postcode: '11233',
         addressName: 'SecondAddress',
@@ -46,12 +48,13 @@ class Addresses {
         city: 'New York',
         countryCode: 'NY',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+1 212 273 3267',
-        addrline1: '110 W 42nd St, New York',
+        phone: '12122733267',
+        addrline1: '110 W 42nd St',
         addrline2: '',
         postcode: '10036',
         addressName: 'SecondAddress',
@@ -59,6 +62,7 @@ class Addresses {
         city: 'New York',
         countryCode: 'NY',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -66,8 +70,8 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+35314850900',
-        addrline1: 'Smithfield Market, Smithfield, Dublin 7',
+        phone: '35314850900',
+        addrline1: 'Smithfield Market 7',
         addrline2: '',
         postcode: 'D07 RF2Y',
         addressName: 'SecondAddress',
@@ -75,12 +79,13 @@ class Addresses {
         city: 'Smithfield',
         countryCode: '',
         county: 'Dublin',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+35316615133',
-        addrline1: 'Merrion Square W, Dublin 2',
+        phone: '35316615133',
+        addrline1: 'Merrion Square W',
         addrline2: '',
         postcode: 'D02 K303',
         addressName: 'SecondAddress',
@@ -88,6 +93,7 @@ class Addresses {
         city: 'Dublin',
         countryCode: '',
         county: 'Dublin',
+        confirmEmail: ''
       }
     },
 
@@ -95,7 +101,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+30 6948868',
+        phone: '306948868',
         addrline1: 'Gneisenaustraße 93 ',
         addrline2: '',
         postcode: '10961',
@@ -104,11 +110,12 @@ class Addresses {
         city: 'Berlin',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+163 1161055',
+        phone: '1631161055',
         addrline1: 'Schleiermacherstraße 18',
         addrline2: '',
         postcode: '10961',
@@ -117,6 +124,7 @@ class Addresses {
         city: ' Berlin',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -124,7 +132,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+142223144',
+        phone: '142223144',
         addrline1: '132 Rue de Rennes',
         addrline2: '',
         postcode: '75006',
@@ -133,11 +141,12 @@ class Addresses {
         city: 'Paris',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+140750875',
+        phone: '140750875',
         addrline1: '75 Av. des Champs-Élysées, 8e Arrondissement',
         addrline2: '',
         postcode: '75008',
@@ -146,6 +155,7 @@ class Addresses {
         city: ' Paris',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -153,7 +163,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+06 4244 0415',
+        phone: '0642440415',
         addrline1: 'Via del Corso, 98 ',
         addrline2: '',
         postcode: '00187',
@@ -162,11 +172,12 @@ class Addresses {
         city: 'Roma',
         countryCode: 'RM',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+06 4812 4524',
+        phone: '0648124524',
         addrline1: 'Viale delle Provincie, 31-33 ',
         addrline2: '',
         postcode: '00162',
@@ -175,6 +186,7 @@ class Addresses {
         city: 'Roma',
         countryCode: 'RM',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -182,7 +194,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+34932160306',
+        phone: '34932160306',
         addrline1: 'Passeig de Gràcia, 43',
         addrline2: '',
         postcode: '08007',
@@ -191,11 +203,12 @@ class Addresses {
         city: 'Barcelona',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+34935537801',
+        phone: '34935537801',
         addrline1: 'Avinguda Diagonal, 208',
         addrline2: '',
         postcode: '08018',
@@ -204,6 +217,7 @@ class Addresses {
         city: 'Barcelona',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -211,7 +225,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+19053547887',
+        phone: '19053547887',
         addrline1: '6361 Fallsview Blvd, Niagara Falls',
         addrline2: '',
         postcode: 'ON L2G 3V9',
@@ -220,6 +234,7 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -233,6 +248,7 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -240,7 +256,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '++47 925 40 835',
+        phone: '4792540835',
         addrline1: 'HaMaccabi 2',
         addrline2: '',
         postcode: '6329302',
@@ -249,6 +265,7 @@ class Addresses {
         city: 'Tel Aviv',
         countryCode: '',
         county: 'Israel',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -262,6 +279,7 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -269,7 +287,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+358294500501',
+        phone: '358294500501',
         addrline1: 'Mannerheiminaukio 2',
         addrline2: '',
         postcode: '00100',
@@ -278,6 +296,7 @@ class Addresses {
         city: 'Helsinki',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -291,6 +310,7 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -298,7 +318,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+850532370',
+        phone: '850532370',
         addrline1: 'Torsgatan 10',
         addrline2: '',
         postcode: '111 23',
@@ -307,11 +327,12 @@ class Addresses {
         city: 'Stockholm',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+850900500',
+        phone: '850900500',
         addrline1: 'Stadsgårdshamnen 22',
         addrline2: '',
         postcode: '116 45',
@@ -320,6 +341,7 @@ class Addresses {
         city: 'Stockholm',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -327,7 +349,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '++47 21 98 20 00',
+        phone: '4721982000',
         addrline1: 'Universitetsgata 13,  ',
         addrline2: '',
         postcode: '0164',
@@ -336,6 +358,7 @@ class Addresses {
         city: 'Oslo',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -349,6 +372,7 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
     
@@ -356,7 +380,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+4538163816',
+        phone: '4538163816',
         addrline1: 'Nordre Fasanvej 57',
         addrline2: '',
         postcode: '2000',
@@ -365,11 +389,12 @@ class Addresses {
         city: 'Frederiksberg',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+4570232110',
+        phone: '4570232110',
         addrline1: 'Vandkunsten 5',
         addrline2: '',
         postcode: '1467',
@@ -378,6 +403,7 @@ class Addresses {
         city: 'København',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -385,7 +411,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+2 9247 5630',
+        phone: '292475630',
         addrline1: '50 Clunies Ross St, Australian Capital Territory',
         addrline2: '',
         postcode: '2600',
@@ -394,11 +420,12 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '+2 9799 8488',
+        phone: '297998488',
         addrline1: '82 Ebden St, Ainslie ACT',
         addrline2: '',
         postcode: '2602',
@@ -407,6 +434,7 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -414,7 +442,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '++64 3 345 6789 ',
+        phone: '6433456789 ',
         addrline1: '123 Pinehaven Road',
         addrline2: '',
         postcode: '5019',
@@ -423,6 +451,7 @@ class Addresses {
         city: 'Pinehaven',
         countryCode: '',
         county: 'Upper Hutt',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -436,6 +465,7 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     },
 
@@ -443,7 +473,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '30 6948868',
+        phone: '306948868',
         addrline1: 'Gneisenaustraße 93',
         addrline2: '',
         postcode: '10961',
@@ -452,6 +482,7 @@ class Addresses {
         city: 'Berlin',
         countryCode: '',
         county: 'Germany',
+        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -465,6 +496,7 @@ class Addresses {
         city: '',
         countryCode: '',
         county: '',
+        confirmEmail: ''
       }
     }
 

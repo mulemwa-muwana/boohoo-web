@@ -280,6 +280,9 @@ class PdpPage implements AbstractPage {
       cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
       cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); //  Work only boohoo, other brands redirect to new tab
     },
+    assertDeliveryOptionsAvailableArkadia () {
+      cy.get('.b-product_delivery-link').should('be.visible');
+    },
     assertReturnInfoIsDisplayed () {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
       cy.get(productReturnsDescription).should('be.visible');

@@ -43,7 +43,7 @@ class megaMenuLinksLanguages {
   };
 
   linkArkadiaDreeses: TranslationMap = { 
-    EN: 'Dreeses',
+    EN: 'New In',
     NL: '',
     DE: '',
     FR: '',

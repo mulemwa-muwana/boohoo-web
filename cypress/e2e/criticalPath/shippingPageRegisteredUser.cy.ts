@@ -35,17 +35,18 @@ describe('Home Page', function () {
   });
 
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
-    shippingPage.click.addNewAddressButton();
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
+    shippingPage.click.addNewAddress();
+    shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(4000);
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
-      shippingPage.assertions.assertCityIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
-    } else {
-      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
-      shippingPage.assertions.assertCityIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
-    }   
+    }
+
+    // Else if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
+    shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryPostcodeArcadia[variables.language]);
   });
 
   it('Verify that user can proceed to billing with one of the saved addresees', () => {

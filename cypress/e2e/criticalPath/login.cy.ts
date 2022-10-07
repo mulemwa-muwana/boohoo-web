@@ -3,37 +3,46 @@ import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 describe('Login Functionality tests', function () {
 
   beforeEach(() => {
-    HomePage.goto();  
+    HomePage.goto(); 
+
   });
     
   it('Verify that user can login with valid credentials', function () {
-
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
     });
 
-    // Just a comment added 
   });
 
   it('Verify that user can not login with invalid credentials', function () {
-    const variables = Cypress.env() as EnvironmentVariables;
+    if (variables.brand == 'boohoo.com') {
+      HomePage.click.acceptCookies();
+    }
+      
     LoginPage.actions.login('euboohoo@gmail.com', 'boohoo12345');    
     HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
 
   });
     
-  it('Verify that user can not login with non-registered mail address', function () {   
-    const variables = Cypress.env() as EnvironmentVariables;
+  it('Verify that user can not login with non-registered mail address', function () {
+    if (variables.brand == 'boohoo.com') {
+      HomePage.click.acceptCookies();
+    }   
     LoginPage.actions.login('unknown@mail.com', 'boohoo123');
     HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
  
   });
     
   it('Verify that user can log out', function () {
+    if (variables.brand == 'boohoo.com') {
+      HomePage.click.acceptCookies();
+    }
 
     cy.fixture('users').then((credentials: LoginCredentials) => {   
       LoginPage.actions.login(credentials.username, credentials.password);
@@ -44,6 +53,9 @@ describe('Login Functionality tests', function () {
   });
 
   it('Verify that user can start process of reseting password using the "Forgot your password?" link', function () {
+    if (variables.brand == 'boohoo.com') {
+      HomePage.click.acceptCookies();
+    }
     LoginPage.click.loginIcon();
     LoginPage.click.passwordResetLink();
     cy.wait(2000);

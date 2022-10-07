@@ -360,7 +360,7 @@ describe('Footer verification', () => {
   it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
     const currentYear = new Date().getFullYear();
     cy.scrollTo('bottom');
-    cy.contains(`COPYRIGHT © ${currentYear}`).should('be.visible');//  It was + BOOHOO
+    cy.contains(`COPYRIGHT © ${currentYear}`).should('be.visible'); //  It was + BOOHOO
   });
     
   /* It('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {

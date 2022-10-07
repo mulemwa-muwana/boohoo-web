@@ -1,4 +1,3 @@
-import { contains } from 'cypress/types/jquery';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -58,7 +57,7 @@ const selectors: SelectorBrandMap = {
     returnLink: 'a[href="https://dwdev.dorothyperkins.com/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
     sizeVariations: '.b-product_details-variations > .m-size',
     pruductCode: 'span[data-tau="b-product_details-id',
@@ -80,7 +79,7 @@ const selectors: SelectorBrandMap = {
     returnLink: 'a[href="https://dwdev.burton.co.uk/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
     sizeVariations: '.b-product_details-variations > .m-size',
     pruductCode: 'span[data-tau="b-product_details-id',

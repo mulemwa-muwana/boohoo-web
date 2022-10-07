@@ -82,10 +82,7 @@ class CheckoutPage implements AbstractPage {
   actions = {
     guestCheckoutEmail (guestEmail: string) {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
-      if (variables.brand == 'oasis-stores.com') {
-        cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
-      } 
-      
+      cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
     },
     userEmailField (username: string) {  
       const userEmailField = selectors[variables.brand].userEmailField;
@@ -113,10 +110,12 @@ class CheckoutPage implements AbstractPage {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail;
       cy.get(guestCheckoutEmail).should('be.visible');
     },
-    assertPremierIsDisplayed () {
+    assertPremierTitleIsDisplayed (premierTitleText: string) {
       const premierIsDisplayed = selectors[variables.brand].premierIsDisplayed;
       cy.get(premierIsDisplayed).should('have.text', assertionText.Premier[variables.language]);
-      const premierSubtitle=selectors[variables.brand].premierSubtitle;
+    },
+    assertPremierSubtitleIsDisplayed (premierSubtitleText: string) {
+      const premierSubtitle = selectors[variables.brand].premierSubtitle;
       cy.get(premierSubtitle).should('have.text', assertionText.PremierText[variables.language]);
     }
   };

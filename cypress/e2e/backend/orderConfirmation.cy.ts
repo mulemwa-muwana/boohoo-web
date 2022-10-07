@@ -1,4 +1,4 @@
-import { getCardProviderByBrand } from 'cypress/helpers/common';
+import { getCardProviderByBrand, isBrandSupportingPaymentMethod } from 'cypress/helpers/common';
 import Addresses from 'cypress/helpers/addresses';
 import BillingPage from 'cypress/pom/billing.page';
 import LoginPage from 'cypress/pom/login.page';
@@ -13,7 +13,8 @@ describe('Boohoo order placement', () => {
 
   beforeEach(() => {
     cy.createUser(variables.brand).then((credentials: NewCustomerCredentials) => {
-      cy.log(credentials.email, credentials.password),
+      cy.log(credentials.email, credentials.password);
+
       cy.prepareUser(credentials, variables.brand, variables.fullSKU);
       LoginPage.goto({ applyCookies: true });
       LoginPage.actions.loginViaPage(credentials.email, credentials.password);
@@ -33,25 +34,60 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.actions.phoneNumberField(localeAddress.phone);
     ShippingPage.click.proceedToBilling();
-
+    cy.wait(8000);
   });
 
-  it('can select credit card and generate an artefact', async function () {
-
-    // Proceed to billing as Site Genesis confirms your delivery address.
-    if (variables.brand === 'oasis-stores.com') {
-      cy.contains('there may be a problem with the address you have entered.').should('be.visible');
-      cy.get('.verification-address-button-container').should('be.visible').click();
+  it('can select Credit Card as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = getCardProviderByBrand(variables.brand, variables.locale);
+    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+      this.skip();
     }
 
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     OrderConfirmationPage.click.closePopUp();
-    generateArtefact();
+
+    generateArtefact(variables.brand, paymentMethod);
   });
 
-  // Method for generating artefact for back end tests.
-  async function generateArtefact () {
+  it('can select Klarna as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = 'Klarna';
+    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+      this.skip();
+    }
+
+    BillingPage.actions.selectKlarna();
+    OrderConfirmationPage.click.closePopUp();
+
+    generateArtefact(variables.brand, paymentMethod);
+  });
+
+  it('can select Laybuy as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = 'LayBuy';
+    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+      this.skip();
+    }
+
+    BillingPage.actions.selectLaybuy();
+    OrderConfirmationPage.click.closePopUp();
+
+    generateArtefact(variables.brand, paymentMethod);
+  });
+
+  it('can select Clearpay as payment method and generate an artefact', function () {
+    const paymentMethod: PaymentMethod = 'Clearpay';
+    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+      this.skip();
+    }
+
+    BillingPage.actions.selectClearpay();
+    OrderConfirmationPage.click.closePopUp();
+
+    generateArtefact(variables.brand, paymentMethod);
+  });
+
+  // Method for generating artefact on OrderConfirmation page for back end tests.
+  function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
     const variables = Cypress.env() as EnvironmentVariables;
     cy.get('[data-tau="order_number"], .orderdetails-header-number .value').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get('.m-total, .order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
@@ -64,7 +100,6 @@ describe('Boohoo order placement', () => {
     cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
 
-        const paymentMethod = getCardProviderByBrand(variables.brand, variables.locale);
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
           orderTotal: this.orderValue,
@@ -82,8 +117,8 @@ describe('Boohoo order placement', () => {
           timestamp: Date.now()
         };
 
-        cy.createArtefact(testArtefactObject, paymentMethod.toLowerCase(), variables.brand, 'orderCreation');
-
+        const brandName = brand.split('.')[0]; // Get first part of a brand: boohoo.com => boohoo
+        cy.createArtefact(testArtefactObject, brandName, paymentMethod.toLowerCase());
       });
   }
 

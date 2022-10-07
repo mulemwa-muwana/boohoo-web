@@ -1,4 +1,3 @@
-import assertionText from 'cypress/helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {

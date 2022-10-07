@@ -183,7 +183,7 @@ class AssertionText {
   };
 
   Premier: TranslationMap = {
-    EN: '\nPREMIER\n',
+    EN: ' \n\n                        .b-ngvip-title {\n                        \n                            letter-spacing: 10px;\n                        \n                        }\n                        \n                        \n                        PREMIER\n                    ',
     FR: '\nENSIMMÄINEN\n',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
@@ -211,7 +211,7 @@ class AssertionText {
   };
 
   PremierText: TranslationMap = {
-    EN: '\nFREE NEXT DAY DELIVERY FOR 1 YEAR!\n',
+    EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
     FR: '\nLIVRAISON GRATUITE LE LENDEMAIN PENDANT 1 AN !\n',
     NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
     DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',

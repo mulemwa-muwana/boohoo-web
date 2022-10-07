@@ -1,4 +1,3 @@
-import { contains } from 'cypress/types/jquery';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {

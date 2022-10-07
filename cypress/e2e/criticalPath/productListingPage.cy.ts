@@ -11,11 +11,11 @@ describe('Home Page', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
     HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
+    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDreeses[variables.language]);
   });
   it('Verify that plp page opens', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[variables.language].toLowerCase());
+    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.linkArkadiaDreeses[variables.language].toLowerCase());
   });
   it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();

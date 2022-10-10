@@ -169,17 +169,17 @@ class AssertionText {
   };
 
   PrivacyPolicyH1: TranslationMap = {
-    EN: '\n                Privacy Notice\n            ',
-    FR: '\n                Avis de confidentialité\n            ',
-    NL: '\n                Privacyverklaring\n            ',
+    EN: 'Privacy Notice',
+    FR: 'Avis de confidentialité',
+    NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
-    DK: '\n                Bekendtgørelse om beskyttelse af personlige oplysninger\n            ',
-    FI: '\n                Tietosuojailmoitus\n            ',
-    NO: '\n                Personvernerklæring\n            ',
-    SE: '\n                Sekretessmeddelande\n            ',
-    IL: '\n                הודעת פרטיות\n            ',
-    IT: '\n                Informativa sulla Privacy\n            ',
-    ES: '\n                Aviso de Privacidad\n            '
+    DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
+    FI: 'Tietosuojailmoitus',
+    NO: 'Personvernerklæring',
+    SE: 'Sekretessmeddelande',
+    IL: 'הודעת פרטיות',
+    IT: 'Informativa sulla Privacy',
+    ES: 'Aviso de Privacidad'
   };
 
   PrivacyPolicyH1Arcadia: TranslationMap = {
@@ -194,6 +194,48 @@ class AssertionText {
     IL: '\nהודעת פרטיות\n',
     IT: '\nInformativa sulla Privacy\n',
     ES: '\nAviso de Privacidad\n'
+  };
+
+  TermsAndConditionsH1: TranslationMap = {
+    EN: 'Terms & Conditions',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  TermsAndConditionsArcadiaH1: TranslationMap = {
+    EN: 'IMPORTANT LEGAL NOTICE',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  TermsAndConditionsSiteGenesisH1: TranslationMap = {
+    EN: 'TERMS OF WEBSITE USE',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   Premier: TranslationMap = {

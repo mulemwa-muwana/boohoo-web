@@ -99,8 +99,8 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
   'coastfashion.com': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
-    copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
     facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
     twitterLink: 'a[href="https://twitter.com/wallisfashion?lang=en"]',
@@ -114,7 +114,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.l-footer-app_list',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
-    copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper [title="Terms of use"]',
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
@@ -137,12 +137,9 @@ class GlobalFooter implements AbstractPage {
       const copyrightPrivacyPolicyLink = selectors[variables.brand].copyrightPrivacyPolicyLink;
       cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click();
     },
-    copyrightTermsAndConditionsLink (text: string, options?: { assertionUrl: string }) {
+    copyrightTermsAndConditionsLink () {
       const copyrightTermAndCondLink = selectors[variables.brand].copyrightTermAndCondLink;
       cy.get(copyrightTermAndCondLink).scrollIntoView().click();
-      cy.url().then(url => {
-        expect(url).to.contain(options?.assertionUrl ?? text);
-      });
     },
     instagramLink () {
       const instagramLink = selectors[variables.brand].instagramLink;

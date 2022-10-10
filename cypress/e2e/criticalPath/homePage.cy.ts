@@ -2,6 +2,7 @@ import * as CommonActions from '../../helpers/common';
 import GlobalFooter from '../../pom/globalfooter.page';
 import HomePage from '../../pom/home.page';
 import PrivacyPolicyPage from '../../pom/privacypolicy.page';
+import TermsAndConditionsPage from '../../pom/termsandconditions.page';
 import SocialsPage from '../../pom/socials.page';
 import homePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
@@ -131,14 +132,15 @@ describe('Footer verification', () => {
   // Needs updating global footer, privacy and social pages
     
   describe('Verify the content page (Privacy Policy) is displayed.', () => {
-    it.only('Privacy policy', () => {
+    it('Privacy policy', () => {
       GlobalFooter.click.privacyPolicyLink();
-      if (variables.brand == 'boohoo.com') {
+      if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
         PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
       } else {
         PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
       }
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
         PrivacyPolicyPage.assertions.assertOnPage('privacy-notice');
       } else {
         PrivacyPolicyPage.assertions.assertOnPage('privacy-policy');
@@ -147,26 +149,34 @@ describe('Footer verification', () => {
   
     it('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
       GlobalFooter.click.copyrightPrivacyPolicyLink();
-      if (variables.brand == 'boohoo.com') {
+
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
         PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
-      } else {
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
-      }
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
         PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
       } else {
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
         PrivacyPolicyPage.assertions.assertOnPage('privacy-policy'); //  AssertionText.PrivacyPolicyArcadiaURL[variables.language]
       }
     });
 
     it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
-      const variable = Cypress.env() as EnvironmentVariables;
-      GlobalFooter.click.copyrightTermsAndConditionsLink('terms-and-conditions'); //  AssertionText.termsAndCondFooterLink[variables.language]
+      GlobalFooter.click.copyrightTermsAndConditionsLink(); //  AssertionText.termsAndCondFooterLink[variables.language]
+
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+        TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsH1[variables.language]);
+        TermsAndConditionsPage.assertions.assertOnPage('terms-and-conditions');
+      } else if (variables.brand == 'coastfashion.com') {
+        TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsSiteGenesisH1[variables.language]);
+        TermsAndConditionsPage.assertions.assertOnPage('terms-of-use');
+      } else {
+        TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsArcadiaH1[variables.language]);
+        TermsAndConditionsPage.assertions.assertOnPage('cs-terms-and-conditions');
+      }
     });
   });
 
   describe('Verify that Social Networking Links are present.', () => {
-    it('Instagram', () => {
+    it.only('Instagram', () => {
       SocialsPage.assertions.assertInstagramIconIsPresent();
       GlobalFooter.click.instagramLink();
     });

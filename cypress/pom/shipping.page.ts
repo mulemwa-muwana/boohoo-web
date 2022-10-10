@@ -145,7 +145,7 @@ class ShippingPage implements AbstractPage {
     },
     addNewAddress () {
       const addNewAddress = selectors[variables.brand].addNewAddress;
-      cy.get(addNewAddress).click();
+      cy.get(addNewAddress).click({force: true});
     },
     cancelAddingNewAddress () {
       const cancelAddingNewAddress = selectors[variables.brand].cancelAddingNewAddress;

@@ -178,9 +178,18 @@ describe('Home Page', function () {
 
   it('Verify that user is able to select standard shipping method', () => {
     const variables = Cypress.env() as EnvironmentVariables;
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.shippingMethod, 'shippingMethod1');
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddressButton();
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
+    shippingPage.click.addNewAddress();
+    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.cityFiled(localeAddress.city);
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
-    shippingPage.click.proceedToBilling();
+
+    // ShippingPage.click.proceedToBilling();
   });
 
   it('Verify that PUDO locations are dispayed', () => {

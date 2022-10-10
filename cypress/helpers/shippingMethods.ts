@@ -1,8 +1,8 @@
-type shippingMap = Record<string, Record<'shippingMethod1' | 'shippingMethod2' | 'shippingMethod3', ShippingMethods>>
+type ShippingMap = Record<string, Record<'shippingMethod1' | 'shippingMethod2' | 'shippingMethod3', ShippingData>>
 
-class shippingMethod {
+class ShippingMethod {
   
-  public shippingMap: shippingMap = {
+  public shippingMap: ShippingMap = {
     UK: {
       shippingMethod1: {
         shippingMethodName: 'Standard'
@@ -12,7 +12,7 @@ class shippingMethod {
       },
       shippingMethod3: {
         shippingMethodName: 'UkDPD'
-      },
+      }
     },
     US: {
       shippingMethod1: {
@@ -199,10 +199,10 @@ class shippingMethod {
    * @returns AddressData type with all the details for an address.
    */
 
-  getShippingMethodByLocale (locale: string, type: 'shippingMethod1' | 'shippingMethod2'): ShippingMethods {
+  getShippingMethodByLocale (locale: string, type: 'shippingMethod1' | 'shippingMethod2'): ShippingData {
     if (typeof this.shippingMap[locale] === 'undefined') throw new Error('Shipping method could not be found with locale ' + locale);
-    return this.shippingMap[locale][type] as ShippingMethods;
+    return this.shippingMap[locale][type] as ShippingData;
   }
 }
 
-export default new shippingMethod();
+export default new ShippingMethod();

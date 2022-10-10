@@ -124,7 +124,7 @@ declare type AddressData = {
     countryCode: string;
 }
     
-declare type ShippingMethods = {
+declare type ShippingData = {
     shippingMethodName: string;
 }
     
@@ -169,4 +169,4 @@ declare type AddressMapAddressLine1 = {[key in Locale]: string}
 declare type AddressMapAddressLine2 = {[key in Locale]: string}
 declare type AddressMapPostcode = {[key in Locale]: string}
 declare type AddressMapPhoneNumber = {[key in Locale]: string}
-    
+

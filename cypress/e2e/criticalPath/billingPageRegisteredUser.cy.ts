@@ -21,7 +21,7 @@ describe('Billing page functionality for registered user', function () {
     cy.wait(7000);
     HomePage.click.cartIcon();  
     PdpPage.click.miniCartViewCartBtn();
-    if (variables.brand == 'dorothyperkins.com') {
+    if (variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
       PdpPage.click.viewCart; 
     }
     CartPage.click.proceedToCheckout();

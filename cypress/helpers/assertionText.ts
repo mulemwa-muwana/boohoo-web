@@ -476,6 +476,20 @@ class AssertionText {
     ES: ''
   };
 
+  unsuccessfulSubscriptionCoast: TranslationMap = {
+    EN: 'Please enter a valid Email Address.',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   alreadySubscribed: TranslationMap = {
     EN: 'already signed up',
     NL: 'al aangemeld',

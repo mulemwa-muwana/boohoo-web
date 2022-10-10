@@ -4,6 +4,7 @@
     "cy:open:oasis": "cypress open --config-file ./config/oasis/cypress.oasis.uk.config.ts",
     "cy:open:burton": "cypress open --config-file ./config/burton/cypress.burton.uk.config.ts",
     "cy:open:dorothy": "cypress open --config-file ./config/dorothyperkins/cypress.dorothyperkins.uk.config.ts",
+    "cy:open:coast": "cypress open --config-file ./config/coast/cypress.coast.uk.config.ts",
     "cy:run:boohoo": "cypress run --config-file ./config//boohoo/cypress.boohoo.uk.config.ts",
     "cy:run:dorothy": "cypress run --config-file ./config/dorothyperkins/cypress.dorothyperkins.uk.config.ts",
     "cy:run:burton": "cypress run --config-file ./config/burton/cypress.burton.uk.config.ts",

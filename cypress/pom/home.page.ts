@@ -56,7 +56,16 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.b-header_login-icon > .i-icon',
+    registrationButton: '.b-registration_benefits > .b-button',
+    wishListIcon: '.icon-wishlist',
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     minicartIcon: '#js-minicart-quantity',
@@ -217,12 +226,14 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
-      cy.get('.b-header_wishlist-icon > .i-icon').invoke('show').then(element => {
+      const wishListIcon = selectors[variables.brand].wishlistIcon;
+      cy.get(wishListIcon).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },
     assertCartIconPresent () {
-      cy.get('.b-minicart_icon-link').should('be.visible');
+      const minicartIcon = selectors[variables.brand].minicartIcon;
+      cy.get(minicartIcon).should('be.visible');
     },
     assertAccountIconPresent () {
       cy.get('.b-header_login-icon').invoke('show').then(element => {

@@ -54,10 +54,12 @@ describe('Home Page', function () {
       HomePage.assertions.assertSearchResultPage(variables.sku);
     });  
     
+    /////////////////// TODO
     it('Verify header icon Account present', () => {
       homePage.assertions.assertAccountIconPresent();
     });
 
+    /////////////////// TODO
     it('Verify header icon Wish List present', () => {
       homePage.assertions.assertWishListIconPresent();
     });
@@ -66,6 +68,7 @@ describe('Home Page', function () {
       homePage.assertions.assertCartIconPresent();
     });
 
+    //////////////////// TODO
     it('Verify header Counter present', () => {
       homePage.assertions.counterOnHeaderPresent();
     });
@@ -76,12 +79,13 @@ describe('Home Page', function () {
       HomePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[variables.language].toLowerCase());
     });
  
+    //////////////////// TODO - IMPROVE TranslationMap
     it('Verify Mega Menu - NewIn link opens', () => {
       if (variables.brand == 'boohoo.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
-      } else if (variables.brand == 'nastygal.com') {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
+      }  else if (variables.brand == 'coastfashion.com') {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       } else {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
@@ -108,6 +112,8 @@ describe('Footer verification', () => {
     GlobalFooter.actions.subscribeToNewsletter('nonValidEmail.com');
     if (variables.brand == 'boohoo.com') {
       GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscription[variables.language]);
+    } else if (variables.brand == 'coastfashion.com') {
+      GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscriptionCoast[variables.language]);
     } else {
       GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscriptionNG[variables.language]);
     }
@@ -125,7 +131,7 @@ describe('Footer verification', () => {
   // Needs updating global footer, privacy and social pages
     
   describe('Verify the content page (Privacy Policy) is displayed.', () => {
-    it('Privacy policy', () => {
+    it.only('Privacy policy', () => {
       GlobalFooter.click.privacyPolicyLink();
       if (variables.brand == 'boohoo.com') {
         PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);

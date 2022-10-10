@@ -98,7 +98,24 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
+    copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
+    instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
+    facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
+    twitterLink: 'a[href="https://twitter.com/wallisfashion?lang=en"]',
+    newsletterInputMail: 'input[id^="footer_newsletter_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: '.newsletter-form-group button',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.footer-newsletter-info',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.b-footer_top',
+    appBanner: '.l-footer-app_list',
+    footerStickyPromo: '#footer-sticky-promo',
+    headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
   'misspap.com': undefined
@@ -207,9 +224,14 @@ class GlobalFooter implements AbstractPage {
       const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
       const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
       const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
-      cy.get(newsletterInputMail).type(email);
-      cy.get(agreeToPrivacyCheckbox).check();
-      cy.get(subscribeSubmitBtn).click();
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(newsletterInputMail).type(email);
+        cy.get(subscribeSubmitBtn).click();
+      } else {
+        cy.get(newsletterInputMail).type(email);
+        cy.get(agreeToPrivacyCheckbox).check();
+        cy.get(subscribeSubmitBtn).click();
+      }
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
       //cy.log(`searching for '${text}' in footer`);
@@ -238,8 +260,13 @@ class GlobalFooter implements AbstractPage {
       cy.get(successfulSubscriptionMsg).contains(text);
     },
     assertUnsuccessfulSubscription (text: string) {
-      const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
-      cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
+      if (variables.brand == 'coastfashion.com') {
+        const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').invoke('text').should('contain', text);
+      } else {
+        const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
+      }
     },
     asssertAlreadySubscribed (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;

@@ -42,7 +42,7 @@ class megaMenuLinksLanguages {
     ES: '',
   };
 
-  linkArkadiaDreeses: TranslationMap = { 
+  linkArkadiaDresses: TranslationMap = { 
     EN: 'New In',
     NL: '',
     DE: '',

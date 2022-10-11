@@ -2,12 +2,11 @@ import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
-import { isVariableStatement } from 'typescript';
 import assertionText from 'cypress/helpers/assertionText';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
-describe('Home Page', function () {
+describe('Checkout Page', function () {
   
   beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;

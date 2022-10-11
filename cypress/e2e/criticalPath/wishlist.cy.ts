@@ -7,7 +7,7 @@ import plpPage from 'cypress/pom/plp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
-describe('Home Page', function () {
+describe('Wishlist Page tests', function () {
     
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {

@@ -5,7 +5,7 @@ import productVariations from '../../helpers/productVariations';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
-describe('Home Page', function () {
+describe('Product Listing Page tests', function () {
   
   beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;

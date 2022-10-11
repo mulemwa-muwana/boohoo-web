@@ -176,7 +176,7 @@ describe('Footer verification', () => {
   });
 
   describe('Verify that Social Networking Links are present.', () => {
-    it.only('Instagram', () => {
+    it('Instagram', () => {
       SocialsPage.assertions.assertInstagramIconIsPresent();
       GlobalFooter.click.instagramLink();
     });
@@ -192,14 +192,14 @@ describe('Footer verification', () => {
     });
     
     it('TikTok', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
         SocialsPage.assertions.assertTikTokIconIsPresent();
         GlobalFooter.click.tiktokLink();
       }
     });
     
-    it('YouTube', () => {
-      if (variables.brand == 'boohoo.com') {
+    it.only('YouTube', () => {
+      if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
         SocialsPage.assertions.assertYouTubeIconIsPresent();
         GlobalFooter.click.youtubeLink();
       }

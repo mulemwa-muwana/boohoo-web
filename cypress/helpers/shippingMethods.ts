@@ -82,10 +82,10 @@ class ShippingMethod {
     },
     DE: {
       shippingMethod1: {
-        shippingMethodName: 'Deutschland Standardlieferung'
+        shippingMethodName: 'Standardlieferung'
       },
       shippingMethod2: {
-        shippingMethodName: 'Deutschland Expresslieferung'
+        shippingMethodName: 'Expresslieferung'
       },
       shippingMethod3: {
         shippingMethodName: ''

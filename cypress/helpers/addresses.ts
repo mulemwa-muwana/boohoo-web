@@ -104,12 +104,12 @@ class Addresses {
         phone: '306948868',
         addrline1: 'Potsdamer Str. 50',
         addrline2: '',
-        postcode: '10785',
+        postcode: '10785 Berlin',
         addressName: 'SecondAddress',
         country: 'Deutschland',
         city: 'Berlin',
-        countryCode: '',
-        county: '',
+        countryCode: '10785',
+        county: 'Berlin',
         confirmEmail: ''
       },
       secondaryAddress:  {

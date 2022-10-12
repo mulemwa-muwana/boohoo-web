@@ -8,6 +8,8 @@ const selectors: SelectorBrandMap = {
     facebookUrl: 'facebook.com/boohoo.com',
     twitter: 'a[href="https://twitter.com/boohoo"] > svg > path',
     tiktok: 'a[href="https://www.tiktok.com/@boohoo?lang=en"] > svg',
+    youtube: 'a[href="https://www.youtube.com/c/boohoo"] > svg > path',
+    pinterest: '[href="https://www.pinterest.co.uk/boohooofficial/_created/"] > svg'
   },
   'nastygal.com': {
     instagramUrl: 'instagram.com/nastygal/',
@@ -40,7 +42,15 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    instagramUrl: 'instagram.com/coastfashion/',
+    instagram: '.icon-instagram-2',
+    facebook: '.icon-facebook-2',
+    facebookUrl: 'facebook.com/coaststores',
+    twitter: '.icon-twitter-2',
+    youtube: '.icon-youtube-2',
+    pinterest: '.icon-pinterest-2'
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
   'misspap.com': undefined
@@ -68,17 +78,33 @@ class SocialsPage implements AbstractPage {
     // Not working for Dorothy Perkins and Wallis 
     assertInstagramIconIsPresent () {
       const instagram = selectors[variables.brand].instagram;
-      cy.get(instagram).should('be.visible');
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(instagram).should('be.visible');
+      } else {
+        cy.get(instagram).should('be.visible');
+      }
     },
     assertFacebookIconIsPresent () {
       const facebook = selectors[variables.brand].facebook;
-      cy.get(facebook).should('be.visible');
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(facebook).should('be.visible');
+      } else {
+        cy.get(facebook).should('be.visible');
+      }
     },
     assertTheFixIconIsPresent () {
       cy.get('[href="https://thefix.boohoo.com/"] > svg').should('be.visible');
     },
     assertPinterestIconIsPresent () {
-      cy.get('[href="https://www.pinterest.co.uk/boohooofficial/_created/"] > svg').should('be.visible');
+      const pinterest = selectors[variables.brand].pinterest;
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(pinterest).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(pinterest).should('be.visible');
+      } else {
+        cy.get(pinterest).should('be.visible');
+      }
     },
     assertTikTokIconIsPresent () {
       const tiktok = selectors[variables.brand].tiktok;
@@ -86,10 +112,21 @@ class SocialsPage implements AbstractPage {
     },
     assertTwitterIconIsPresent () {
       const twitter = selectors[variables.brand].twitter;
-      cy.get(twitter).should('be.visible');
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(twitter).should('be.visible');
+      } else {
+        cy.get(twitter).should('be.visible');
+      }
     },
     assertYouTubeIconIsPresent () {
-      cy.get('a[href="https://www.youtube.com/c/boohoo"] > svg > path').should('be.visible');
+      const youtube = selectors[variables.brand].youtube;
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(youtube).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(youtube).should('be.visible');
+      } else {
+        cy.get(youtube).should('be.visible');
+      }
     },
     assertOnFacebook () {
       const facebookUrl = selectors[variables.brand].facebookUrl;

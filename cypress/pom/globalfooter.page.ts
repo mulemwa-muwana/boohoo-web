@@ -101,17 +101,19 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
-    instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
-    facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
-    twitterLink: 'a[href="https://twitter.com/wallisfashion?lang=en"]',
+    instagramLink: 'a[href="https://www.instagram.com/coastfashion/?hl=en"]',
+    facebookLink: 'a[href="https://www.facebook.com/coaststores/"]',
+    twitterLink: 'a[href="https://twitter.com/CoastFashion"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/coastfashion/"]',
+    youtubeLink: 'a[href="https://www.youtube.com/user/CoastStores"]',
     newsletterInputMail: 'input[id^="footer_newsletter_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: '.newsletter-form-group button',
     changeCountryDropdown: '.b-country-select',
     successfulSubscriptionMsg: '.footer-newsletter-info',
     unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
-    paymentOptions: '.b-footer_top',
-    appBanner: '.l-footer-app_list',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-links',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.footer-copyright-wrapper [title="Terms of use"]',
@@ -178,7 +180,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     youtubeLink () {
-      const youtubeLink = selectors[variables.brand].youtubeLink; //  Only boohoo
+      const youtubeLink = selectors[variables.brand].youtubeLink; //  Only boohoo and coastfashion
       cy.get(youtubeLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -187,7 +189,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     pintrestLink () {
-      const pintrestLink = selectors[variables.brand].pintrestLink; //  Only boohoo
+      const pintrestLink = selectors[variables.brand].pintrestLink; //  Only boohoo and coastfashion
       cy.get(pintrestLink).then(link => {
         cy
           .request(link.prop('href'))

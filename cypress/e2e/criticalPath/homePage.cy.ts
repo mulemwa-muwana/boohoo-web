@@ -198,7 +198,7 @@ describe('Footer verification', () => {
       }
     });
     
-    it.only('YouTube', () => {
+    it('YouTube', () => {
       if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
         SocialsPage.assertions.assertYouTubeIconIsPresent();
         GlobalFooter.click.youtubeLink();
@@ -206,7 +206,7 @@ describe('Footer verification', () => {
     });
     
     it('Pintrest', () => {
-      if (variables.brand == 'boohoo.com') {
+      if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
         SocialsPage.assertions.assertPinterestIconIsPresent();
         GlobalFooter.click.pintrestLink();
       }
@@ -230,7 +230,7 @@ describe('Footer verification', () => {
 
   // Each of these will go back to the previous URL once the action has been completed.
 
-  it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
+  it.only('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);

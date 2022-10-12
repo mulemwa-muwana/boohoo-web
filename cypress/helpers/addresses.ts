@@ -476,7 +476,7 @@ class Addresses {
         phone: '306948868',
         addrline1: 'Gneisenaustraße 93',
         addrline2: '',
-        postcode: '10961',
+        postcode: '10785 Berlin',
         addressName: 'SecondAddress',
         country: '',
         city: 'Berlin',
@@ -487,15 +487,15 @@ class Addresses {
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '',
-        addrline1: '',
+        phone: '306948868',
+        addrline1: 'Gneisenaustraße 193',
         addrline2: '',
-        postcode: '',
+        postcode: '10785 Berlin',
         addressName: '',
-        country: '',
-        city: '',
+        country: 'Germany',
+        city: 'Berlin',
         countryCode: '',
-        county: '',
+        county: 'Germany',
         confirmEmail: ''
       }
     }

@@ -38,7 +38,7 @@ const selectors: SelectorBrandMap = {
     orderTotal: '.m-total > .b-summary_table-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
-    shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
+    shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     shippingMethodname: '.b-option_switch-label',
   },
   'nastygal.com': {
@@ -353,13 +353,13 @@ class ShippingPage implements AbstractPage {
     },
     countyField (county: string) {
       const shippingCounty = selectors[variables.brand].shippingCounty;
-      cy.get(shippingCounty).clear().type(county);
+      cy.get(shippingCounty).select(county);
     },
   
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
-      cy.get(shippingPostcode).clear().type(postcode);
+      cy.get(shippingPostcode).clear({force: true}).type(postcode);
     },
     selectShippingMethod (shippingMethod: string) {
       const shippingMethodname = selectors[variables.brand].shippingMethodname;
@@ -403,8 +403,8 @@ class ShippingPage implements AbstractPage {
       cy.get(shippingLname).should('contain.value', text);
     },
     assertCountryIsSelected (text: string) {
-      const assertCountryIsSelected = selectors[variables.brand].assertCountryIsSelected;
-      cy.get(assertCountryIsSelected).should('contain.value', text);
+      const shippingCountry = selectors[variables.brand].shippingCountry;
+      cy.get(shippingCountry).should('contain.value', text);
     },
     assertPhoneNumberFieldIsPopulated (text: string) {
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;

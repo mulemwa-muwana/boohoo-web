@@ -104,13 +104,13 @@ class ShippingMethod {
     },
     IE: {
       shippingMethod1: {
-        shippingMethodName: 'Republic of Ireland Standard Delivery'
+        shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'Republic of Ireland Next Day Delivery joanna test'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
-        shippingMethodName: ''
+        shippingMethodName: 'Republic of Ireland Next Day Delivery joanna test'
       },
     },
     DK: {

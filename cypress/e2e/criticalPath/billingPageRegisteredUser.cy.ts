@@ -30,6 +30,17 @@ describe('Billing page functionality for registered user', function () {
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddressButton();
+    shippingPage.actions.selectCountry(localeAddress.country);
+    shippingPage.click.addAddressManually();  
+    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.postcodeField(localeAddress.postcode);
+
+    // If (variables.locale == 'IE') {
+    //   ShippingPage.actions.countyField(localeAddress.county);
+   
     shippingPage.click.proceedToBilling(); 
   });
 
@@ -38,13 +49,13 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
+    BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');
   });
   it('Verify that register user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('Verify that guest user can change shipping method', function () {
+  it('Verify that register user can change shipping method', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
@@ -63,9 +74,8 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that registered user can submit new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    BillingPage.click.shippingCheckbox();
-    BillingPage.actions.addNewAddress();
-    BillingPage.actions.addBillingAddress(localeAddress.addrline1, localeAddress.city, localeAddress.county, localeAddress.postcode);
+    BillingPage.click.addNewBilingAddress();
+    BillingPage.actions.addBillingAddress(localeAddress.addrline1, localeAddress.city, localeAddress.postcode, localeAddress.county);
   });
 
   /* This can be tested only if Promo code is available and Gift card 

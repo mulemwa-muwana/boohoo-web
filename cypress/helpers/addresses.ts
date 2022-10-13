@@ -474,14 +474,14 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '306948868',
-        addrline1: 'Gneisenaustraße 93',
+        addrline1: 'Burgring 7',
         addrline2: '',
-        postcode: '10785 Berlin',
+        postcode: '1010',
         addressName: 'SecondAddress',
-        country: '',
-        city: 'Berlin',
+        country: 'Austria',
+        city: 'Wien',
         countryCode: '',
-        county: 'Germany',
+        county: '',
         confirmEmail: ''
       },
       secondaryAddress:  {
@@ -495,7 +495,7 @@ class Addresses {
         country: 'Germany',
         city: 'Berlin',
         countryCode: '',
-        county: 'Germany',
+        county: '',
         confirmEmail: ''
       }
     }

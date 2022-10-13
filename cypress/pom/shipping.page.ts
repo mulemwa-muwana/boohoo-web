@@ -116,6 +116,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
+    cartContainer: '.b-summary_table-name',
   },
   'burton.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -154,6 +155,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
+    cartContainer: '.b-summary_table-name',
   },
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -192,6 +194,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
+    cartContainer: '.b-summary_table-name',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -301,7 +304,7 @@ class ShippingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      cy.get(enterManually).click();
+      cy.get(enterManually).click({force: true});
     }
   
   };
@@ -319,6 +322,13 @@ class ShippingPage implements AbstractPage {
       cy.get(PostcodeLookup).click({force: true}).type(address+'{enter}').should('be.visible');
       cy.get(PostcodeLookup).type('{enter}');
     },
+    selectFirstAddressFromAddressLookup (address: string) {
+      const PostcodeLookup = selectors[variables.brand].PostcodeLookup;
+      cy.get(PostcodeLookup).click({force: true}).type(address+'{enter}').should('be.visible');
+      cy.get(PostcodeLookup).type('{enter}');
+      cy.get('div:nth-child(1) > span').eq(1).click({force: true});
+      
+    },
     firstNameField (fname: string) {
       const shippingFname = selectors[variables.brand].shippingFname;
       cy.get(shippingFname).clear().type(fname);
@@ -330,10 +340,15 @@ class ShippingPage implements AbstractPage {
     countrySelector () {
       cy.get('[id$=addressFields_country][id*="shipping"]'); 
     },
-    phoneNumberField (phone: string) {
+    clearPhoneNumberFieldAndAddNewOne (phone: string) {
       cy.wait(1000);
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
       cy.get(shippingPhoneNumber).clear().type(phone);
+    },
+    phoneNumberField (phone: string) {
+      cy.wait(1000);
+      const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
+      cy.get(shippingPhoneNumber).type(phone);
     },
     selectCountry (country: string) {
       const shippingCountry = selectors[variables.brand].shippingCountry;
@@ -341,22 +356,38 @@ class ShippingPage implements AbstractPage {
     },
     adressLine1 (address1: string) {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
-      cy.get(addressLine1Shipping).clear().type(address1);
+      cy.get(addressLine1Shipping).type(address1);
+    },
+    clearAdressLine1AndAddNewOne (address1: string) {
+      const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
+      cy.get(addressLine1Shipping).clear({force: true}).type(address1);
+    },
+    clearAdressLine2AndAddNewOne (address2: string) {
+      const addressLine2Shipping = selectors[variables.brand].addressLine2Shipping;
+      cy.get(addressLine2Shipping).clear({force: true}).type(address2);
     },
     adressLine2 (address2: string) {
       const addressLine2Shipping = selectors[variables.brand].addressLine2Shipping;
-      cy.get(addressLine2Shipping).clear().type(address2);
+      cy.get(addressLine2Shipping).type(address2);
     },
     cityFiled (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
-      cy.get(shippingCityShipping).clear().type(city);
+      cy.get(shippingCityShipping).type(city);
+    },
+    clearCityFiledAndAddNewOne (city: string) {
+      const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
+      cy.get(shippingCityShipping).clear({force: true}).type(city);
     },
     countyField (county: string) {
       const shippingCounty = selectors[variables.brand].shippingCounty;
       cy.get(shippingCounty).select(county);
     },
-  
     postcodeField (postcode: string) {
+      cy.wait(1000);
+      const shippingPostcode = selectors[variables.brand].shippingPostcode;
+      cy.get(shippingPostcode).type(postcode);
+    },
+    clearPostcodeFieldAndAddNewOne (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
       cy.get(shippingPostcode).clear({force: true}).type(postcode);
@@ -451,6 +482,9 @@ class ShippingPage implements AbstractPage {
       cy.get(cartContainer).each(() => {
         cy.contains(shippingMethod.trim());
       });
+    },
+    assertNewAddressIsAdded (addressline1: string) {
+      cy.get('.b-address > .b-address-summary').should('contain.text', addressline1);
     }
   };
 

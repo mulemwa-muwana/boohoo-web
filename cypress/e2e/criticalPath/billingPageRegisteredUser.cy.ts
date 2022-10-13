@@ -34,9 +34,9 @@ describe('Billing page functionality for registered user', function () {
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.addAddressManually();  
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
-    shippingPage.actions.postcodeField(localeAddress.postcode);
+    shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+    shippingPage.actions.clearCityFiledAndAddNewOne(localeAddress.city);
+    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
 
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);

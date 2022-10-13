@@ -27,21 +27,21 @@ class ShippingMethod {
     },
     EU: {
       shippingMethod1: {
-        shippingMethodName: 'UKstandardShippingMehod'
+        shippingMethodName: 'Europe and International Delivery'
       },
       shippingMethod2: {
-        shippingMethodName: 'nexUKNextDaytday'
+        shippingMethodName: 'Europe and International Delivery'
       },
       shippingMethod3: {
-        shippingMethodName: 'UkDPD'
+        shippingMethodName: 'Europe and International Delivery'
       },
     },
     AU: {
       shippingMethod1: {
-        shippingMethodName: 'Australia Standard Shipping'
+        shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'Australia Express Shipping'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
         shippingMethodName: 'Australia Saver Shipping'
@@ -49,10 +49,10 @@ class ShippingMethod {
     },
     NZ: {
       shippingMethod1: {
-        shippingMethodName: 'New Zealand Standard Shipping'
+        shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'New Zealand Express Shipping'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -60,10 +60,10 @@ class ShippingMethod {
     },
     CA: {
       shippingMethod1: {
-        shippingMethodName: 'Canada Express Shipping'
+        shippingMethodName: 'Express'
       },
       shippingMethod2: {
-        shippingMethodName: 'Canada Standard Shipping'
+        shippingMethodName: 'Standard'
       },
       shippingMethod3: {
         shippingMethodName: ''

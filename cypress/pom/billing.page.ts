@@ -1,3 +1,4 @@
+import cards from 'cypress/helpers/cards';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -28,7 +29,7 @@ const selectors: SelectorBrandMap = {
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
-    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
     addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
     billingForm: '.b-billing_address-form',
@@ -270,7 +271,6 @@ class BillingPage implements AbstractPage {
       if (variables.brand !== 'oasis-stores.com') {
         cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
       }
-      cy.wait(3000);
       cy.get(paymentTypeCC).click();
       cy.wait(2000);
 
@@ -281,10 +281,15 @@ class BillingPage implements AbstractPage {
       });
       cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(creditCardFieldsCardNumber).should('be.visible').type(cardNo);
       cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(creditCardFieldsExpirationDate).should('be.visible').type(date);
-      cy.iframe('.adyen-checkout__field__cvc .js-iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
+      cy.iframe('.b-form-set .adyen-checkout__field__cvc .js-iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
       cy.get(creditCardFieldsCardOwner).should('be.visible').type(cardOwner);
       cy.get(paynowBtnCC).click();
 
+      if (cardNo == cards.master.cardNo) {  // Adyen test simulator page appears for MasterCard
+        cy.get('#threeDS2 .adyen-checkout__iframe', { timeout: 20000 }).should('be.visible')
+        cy.iframe('#threeDS2 .adyen-checkout__iframe').find('.input-field').type('password');
+        cy.iframe('#threeDS2 .adyen-checkout__iframe').find('#buttonSubmit').click();
+      }
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -361,18 +366,32 @@ class BillingPage implements AbstractPage {
       cy.wait(8000);
 
       // Complete the Klarna iframe journey.
-      cy.enter('#klarna-apf-iframe').then(body => {
+      cy.enter('#klarna-apf-iframe', { timeout: 20000 }).then(body => {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
-        cy.wait(3000);
-        if (variables.brand == 'boohoo.com') {
-          body().find('#pay_now-pay_now__container #pay_now-pay_now__label').should('be.visible').click();
-          body().find('[data-testid="select-payment-category"]').should('be.visible').click();
-          body().find('[testid="confirm-and-pay"]').should('be.visible').click();
-          body().find('#dialog  [data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
-        } else {
-          body().find('[testid="confirm-and-pay"]').should('be.visible').click();
-        }
+        cy.wait(6000);
+
+        body().then($body => {
+          if ($body.find('#pay_now-pay_now__container #pay_now-pay_now').length) { 
+            body().find('#pay_now-pay_now__container #pay_now-pay_now').click();
+            body().find('button[data-testid="select-payment-category"]').click();
+          }
+        });
+
+        body().then($body => {
+          if ($body.find('button[data-testid="pick-plan"]').length) {   // if Continue button on test plan page exists
+            body().find('button[data-testid="pick-plan"]').click();
+          }
+        });
+
+        body().find('[testid="confirm-and-pay"]').click();
+
+        cy.wait(2000);
+        body().then($body => {
+          if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) {  // if Skip and continue button exists
+            body().find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click();
+          }
+        });
       });
     },
 
@@ -506,11 +525,11 @@ class BillingPage implements AbstractPage {
     assertShippingPageIsOpened () {
       cy.url().should('include', 'shipping');
     },
-    assertOrderConfirmationPAgeIsDisplayed () {
+    assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
-        cy.url().should('include', 'orderconfirmation');
+        cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else {
-        cy.url().should('include', 'order-confirmation');
+        cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }     
     },
     assertEmailFieldCantBeChanged () {

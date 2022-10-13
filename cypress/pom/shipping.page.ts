@@ -38,7 +38,7 @@ const selectors: SelectorBrandMap = {
     orderTotal: '.m-total > .b-summary_table-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
-    shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingMethodname: '.b-option_switch-label',
   },
   'nastygal.com': {
@@ -255,6 +255,10 @@ class ShippingPage implements AbstractPage {
         cy.contains('there may be a problem with the address you have entered.').should('be.visible');
         cy.get('.verification-address-button').should('be.visible').click();
       }
+
+      // Wait for credit card payment method to load on a page - that indicates the page is fully loaded
+      cy.intercept('**/Adyen-GetPaymentMethods*').as('paymentMethods')
+      cy.wait('@paymentMethods', { timeout: 20000 }).its('response.statusCode').should('eq', 200)
     },
     editSavedAddress () {
       const editSavedAddress = selectors[variables.brand].editSavedAddress;
@@ -262,7 +266,7 @@ class ShippingPage implements AbstractPage {
     },
     addAddressManually () {
       const addAddressManually = selectors[variables.brand].addAddressManually;
-      cy.get(addAddressManually).should('be.visible').click();
+      cy.get(addAddressManually).should('be.visible').click({force:true});
     },
     confirmEmail () {
       const confirmEmail = selectors[variables.brand].confirmEmail;
@@ -370,11 +374,11 @@ class ShippingPage implements AbstractPage {
       const addressLine2Shipping = selectors[variables.brand].addressLine2Shipping;
       cy.get(addressLine2Shipping).type(address2);
     },
-    cityFiled (city: string) {
+    cityField (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
       cy.get(shippingCityShipping).type(city);
     },
-    clearCityFiledAndAddNewOne (city: string) {
+    clearCityFieldAndAddNewOne (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
       cy.get(shippingCityShipping).clear({force: true}).type(city);
     },

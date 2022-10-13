@@ -33,7 +33,7 @@ describe('Order confirmation page for guest user', function () {
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.addAddressManually();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
@@ -95,7 +95,7 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.click.proceedToBilling();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
-    BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     
   });
   it('Verify that email is visible', function () {

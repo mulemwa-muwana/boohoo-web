@@ -8,7 +8,7 @@ class ShippingMethod {
         shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'nexUKNextDaytday'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
         shippingMethodName: 'UkDPD'
@@ -27,7 +27,7 @@ class ShippingMethod {
     },
     EU: {
       shippingMethod1: {
-        shippingMethodName: 'Europe and International Delivery'
+        shippingMethodName: 'Germany Standard Delivery'
       },
       shippingMethod2: {
         shippingMethodName: 'Europe and International Delivery'

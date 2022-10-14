@@ -99,7 +99,7 @@ class AssertionText {
   };
 
   ShippingMandatoryPostcodeArcadia: TranslationMap = {
-    EN: 'Please enter a valid Post Code',  
+    EN: 'This field is required.',  
     FR: '',
     NL: '',
     DE: '',

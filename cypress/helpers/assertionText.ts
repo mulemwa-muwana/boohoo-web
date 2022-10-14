@@ -435,7 +435,7 @@ class AssertionText {
   };
 
   assertShippingAddressIsMandatoryArkadia: TranslationMap = {
-    EN: 'Oops, looks like you didn’t add an address',
+    EN: 'Oops, looks like you didn\'t add an address',
     FR: '',
     NL: '',
     DE: '',

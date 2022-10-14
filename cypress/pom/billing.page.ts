@@ -1,3 +1,4 @@
+import cards from 'cypress/helpers/cards';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -10,7 +11,7 @@ const selectors: SelectorBrandMap = {
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
     billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
-    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    billingPostCode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
@@ -28,8 +29,15 @@ const selectors: SelectorBrandMap = {
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
-    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName > .adyen-checkout__label > .adyen-checkout__input-wrapper > .adyen-checkout__input',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
+    billingForm: '.b-billing_address-form',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    dobForm: 'div[class="b-form_section m-required m-wrapper"]',
   },
   'nastygal.com': {
     paynowBtnCC: '#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
@@ -50,6 +58,18 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardOwner : '#dwfrm_billing_creditCardFields_cardOwner',
     creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    billingForm: '.b-billing_address-form',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    dobForm: 'div[class="b-form_section m-required m-wrapper"]',
   },
   'dorothyperkins.com': {
     paynowBtnCC:'#payment-details-scheme > div > div.b-payment_accordion-submit.b-checkout_step-controls > div > button',
@@ -81,6 +101,13 @@ const selectors: SelectorBrandMap = {
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
+    billingForm: '.b-billing_address-form',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    dobForm: 'div[class="b-form_section m-required m-wrapper"]',
   },
   'burton.co.uk': {
     paynowBtnCC:'#payment-details-scheme > div > div.b-payment_accordion-submit.b-checkout_step-controls > div > button',
@@ -112,6 +139,13 @@ const selectors: SelectorBrandMap = {
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
+    billingForm: '.b-billing_address-form',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    dobForm: 'div[class="b-form_section m-required m-wrapper"]',
   },
   'wallis.co.uk': {
     paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
@@ -142,6 +176,13 @@ const selectors: SelectorBrandMap = {
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
+    billingForm: '.b-billing_address-form',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    dobForm: 'div[class="b-form_section m-required m-wrapper"]',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -192,6 +233,10 @@ class BillingPage implements AbstractPage {
       const changeShippingAddress = selectors[variables.brand].changeShippingAddress;
       cy.get(changeShippingAddress).click();
     },
+    addNewBilingAddress () {
+      const addNewBillingAddress = selectors[variables.brand].addNewBillingAddress;
+      cy.get(addNewBillingAddress).click({force: true});
+    },
     changeShippingMethod () {
       const changeShippingMethod = selectors[variables.brand].changeShippingMethod;
       cy.get(changeShippingMethod).click();
@@ -226,7 +271,6 @@ class BillingPage implements AbstractPage {
       if (variables.brand !== 'oasis-stores.com') {
         cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
       }
-      cy.wait(3000);
       cy.get(paymentTypeCC).click();
       cy.wait(2000);
 
@@ -237,10 +281,15 @@ class BillingPage implements AbstractPage {
       });
       cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(creditCardFieldsCardNumber).should('be.visible').type(cardNo);
       cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(creditCardFieldsExpirationDate).should('be.visible').type(date);
-      cy.iframe('.adyen-checkout__field__cvc .js-iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
+      cy.iframe('.b-form-set .adyen-checkout__field__cvc .js-iframe').find(creditCardFieldsSecurityCode).should('be.visible').type(code);
       cy.get(creditCardFieldsCardOwner).should('be.visible').type(cardOwner);
       cy.get(paynowBtnCC).click();
 
+      if (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
+        cy.get('#threeDS2 .adyen-checkout__iframe', { timeout: 20000 }).should('be.visible');
+        cy.iframe('#threeDS2 .adyen-checkout__iframe').find('.input-field').type('password');
+        cy.iframe('#threeDS2 .adyen-checkout__iframe').find('#buttonSubmit').click();
+      }
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -269,7 +318,6 @@ class BillingPage implements AbstractPage {
       cy.get(billingAddressFieldCity).type(city);
       cy.get(billingAddressFieldsStateCode).type(county);
       cy.get(billingPostCode).type(postcode);
-
     },
     addPromoCode (promo: string) {
       const couponCode = selectors[variables.brand].couponCode;
@@ -285,9 +333,9 @@ class BillingPage implements AbstractPage {
       cy.get(addGiftCert).click();
     },
     selectAddressFromBook () {
-      if (variables.brand == 'boohoo.com') {
-        cy.get('.b-form_section > .b-address_selector-actions > .m-link').click();
-        cy.get('.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label').click();
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+        cy.get('.b-form_section > .b-address_selector-actions > .m-link').click({force: true});
+        cy.get('.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label').click({force: true});
       } else {
         cy.get('#dwfrm_billing > fieldset.b-billing_address > div.b-checkout_card.m-list > fieldset > div > div:nth-child(2) > div > label').click();
       }
@@ -318,18 +366,32 @@ class BillingPage implements AbstractPage {
       cy.wait(8000);
 
       // Complete the Klarna iframe journey.
-      cy.enter('#klarna-apf-iframe').then(body => {
+      cy.enter('#klarna-apf-iframe', { timeout: 20000 }).then(body => {
         body().find('#onContinue').should('be.visible').click();
         body().find('#otp_field').should('be.visible').type('111111');
-        cy.wait(3000);
-        if (variables.brand == 'boohoo.com') {
-          body().find('#pay_now-pay_now__container #pay_now-pay_now__label').should('be.visible').click();
-          body().find('[data-testid="select-payment-category"]').should('be.visible').click();
-          body().find('[testid="confirm-and-pay"]').should('be.visible').click();
-          body().find('#dialog  [data-testid="PushFavoritePayment:skip-favorite-selection"]').should('be.visible').click();
-        } else {
-          body().find('[testid="confirm-and-pay"]').should('be.visible').click();
-        }
+        cy.wait(6000);
+
+        body().then($body => {
+          if ($body.find('#pay_now-pay_now__container #pay_now-pay_now').length) { 
+            body().find('#pay_now-pay_now__container #pay_now-pay_now').click();
+            body().find('button[data-testid="select-payment-category"]').click();
+          }
+        });
+
+        body().then($body => {
+          if ($body.find('button[data-testid="pick-plan"]').length) { // If Continue button on test plan page exists
+            body().find('button[data-testid="pick-plan"]').click();
+          }
+        });
+
+        body().find('[testid="confirm-and-pay"]').click();
+
+        cy.wait(2000);
+        body().then($body => {
+          if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) { // If Skip and continue button exists
+            body().find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click();
+          }
+        });
       });
     },
 
@@ -407,7 +469,7 @@ class BillingPage implements AbstractPage {
       cy.get('section[class="b-checkout_card b-summary_group-item m-full-width"]').should('be.visible').and('not.be.empty');
     },
     assertShippingMethodPresent (shippingMethod: string) {
-      cy.get('.b-summary_shipping-name').should('be.visible').and('include.text', shippingMethod);
+      cy.get('p.b-summary_shipping-method > span').should('be.visible').and('include.text', shippingMethod.trim());
     },
     assertEmailIsCorrect (email: string) {
       cy.get('input[id="dwfrm_billing_contactInfoFields_email"]').should('have.value', email);
@@ -416,12 +478,16 @@ class BillingPage implements AbstractPage {
       cy.get('div[class="b-create_account_form-subscription"]').should('be.visible');
     },
     assertDateFormIsPresent () {
-      cy.get('div[class="b-form_section m-required m-wrapper"]').should('be.visible');
+      const dobForm = selectors[variables.brand].dobForm;
+      cy.get(dobForm).should('be.visible');
     },
     assertDateIsSelected (day: string, month: string, year: string) {
-      cy.get('select[id="dwfrm_profile_customer_dayofbirth"]').should('have.have.value',day);
-      cy.get('select[id="dwfrm_profile_customer_monthofbirth"]').should('have.value',month);
-      cy.get('select[id="dwfrm_profile_customer_yearOfBirth"]').should('have.value',year);
+      const dobDate = selectors[variables.brand].dobDate;
+      const dobMonth = selectors[variables.brand].dobMonth;
+      const dobYear = selectors[variables.brand].dobYear;
+      cy.get(dobDate).should('have.have.value', day);
+      cy.get(dobMonth).should('have.value', month);
+      cy.get(dobYear).should('have.value', year);
     },
     assertEmptyEmailFieldError (errorMsg: string) {
       const emptyEmailFiledError = selectors[variables.brand].emptyEmailFiledError;
@@ -432,13 +498,16 @@ class BillingPage implements AbstractPage {
       cy.get(dateError).should('be.visible').and('contain.text', errorMsg);
     },
     assertSameAsShippingIsChecked () {
-      cy.get('#dwfrm_billing_addressFields_useShipping').should('be.checked');
+      const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
+      cy.get(shippingCheckbox).should('be.checked');
     },
     assertBillingAddressFormIsPresent () {
-      cy.get('.b-billing_address-form').should('be.visible');
+      const billingForm = selectors[variables.locale].billingForm;
+      cy.get(billingForm).should('be.visible');
     },
     assertNewBillingAddress (address: string) {
-      cy.get('div[data-ref="summarizedAddressBlock"]').should('be.visible').and('include.text', address);
+      const newBillingAddressForm = selectors[variables.locale].newBillingAddressForm;
+      cy.get(newBillingAddressForm).should('be.visible').and('include.text', address);
     },
     assertPaymentMethodIsDisplayed (method: string) {
       cy.get(method).should('be.visible');
@@ -456,11 +525,11 @@ class BillingPage implements AbstractPage {
     assertShippingPageIsOpened () {
       cy.url().should('include', 'shipping');
     },
-    assertOrderConfirmationPAgeIsDisplayed () {
+    assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
-        cy.url().should('include', 'orderconfirmation');
+        cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else {
-        cy.url().should('include', 'order-confirmation');
+        cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }     
     },
     assertEmailFieldCantBeChanged () {

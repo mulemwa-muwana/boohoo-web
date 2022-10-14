@@ -21,7 +21,7 @@ describe('Billing page functionality for registered user', function () {
     cy.wait(7000);
     HomePage.click.cartIcon();  
     PdpPage.click.miniCartViewCartBtn();
-    if (variables.brand == 'dorothyperkins.com') {
+    if (variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
       PdpPage.click.viewCart; 
     }
     CartPage.click.proceedToCheckout();
@@ -30,7 +30,20 @@ describe('Billing page functionality for registered user', function () {
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
-    shippingPage.click.proceedToBilling(); 
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddressButton();
+    shippingPage.actions.selectCountry(localeAddress.country);
+    shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
+    cy.wait(5000);
+    shippingPage.click.addAddressManually();  
+    shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+    shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+
+    // If (variables.locale == 'IE') {
+    //   ShippingPage.actions.countyField(localeAddress.county);
+   
+    shippingPage.click.proceedToBilling();
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -38,13 +51,13 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
+    BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');
   });
   it('Verify that register user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('Verify that guest user can change shipping method', function () {
+  it('Verify that register user can change shipping method', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
@@ -63,9 +76,8 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that registered user can submit new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    BillingPage.click.shippingCheckbox();
-    BillingPage.actions.addNewAddress();
-    BillingPage.actions.addBillingAddress(localeAddress.addrline1, localeAddress.city, localeAddress.county, localeAddress.postcode);
+    BillingPage.click.addNewBilingAddress();
+    BillingPage.actions.addBillingAddress(localeAddress.addrline1, localeAddress.city, localeAddress.postcode, localeAddress.county);
   });
 
   /* This can be tested only if Promo code is available and Gift card 
@@ -98,30 +110,30 @@ describe('Billing page functionality for registered user', function () {
   describe('Verify that registered user can place orders with available payment methods', function () {
     it('Verify that registered user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
     it('Verify that registered user can place order using Credit Card - Master)', function () {
       BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
     it('Verify that registered user can place order using Credit Card - Amex)', function () {
       BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
     it('Verify that registered user can place order using PayPal', function () {
       BillingPage.actions.selectPayPal();
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
     if (variables.locale == 'UK' || variables.locale == 'IE') {
       it('Verify that guest user can place order using Klarna', function () {
         BillingPage.actions.selectKlarna();
-        BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
       });
     }
-    if (variables.locale == 'UK') {
+    if (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
       it('Verify that guest user can place order using Laybuy', function () {
         BillingPage.actions.selectLaybuy();
-        BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
       });
     }
   });

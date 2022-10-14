@@ -17,6 +17,9 @@ export default defineConfig({
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
+  blockHosts: [
+    'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
+  ],
   
   e2e: {
     experimentalSessionAndOrigin: true,

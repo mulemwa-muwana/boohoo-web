@@ -1,10 +1,11 @@
 import { defineConfig } from 'cypress';
+import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@us1-stg.nastygal.com/gb',
+    url: 'https://storefront:Oreo2022@dwstg.nastygal.com/gb',
     sku: 'BGG07330-1',
     brand: 'nastygal.com',
     locale: 'UK',
@@ -17,9 +18,8 @@ export default defineConfig({
   chromeWebSecurity: false,
 
   e2e: {
-    setupNodeEvents (on, config) {
-
-      // Implement node event listeners here
+    setupNodeEvents (on) {
+      plugins(on);
     },
 
     numTestsKeptInMemory: 0

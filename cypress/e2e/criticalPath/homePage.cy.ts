@@ -159,19 +159,22 @@ describe('Footer verification', () => {
       }
     });
 
-    it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
-      GlobalFooter.click.copyrightTermsAndConditionsLink(); //  AssertionText.termsAndCondFooterLink[variables.language]
-
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-        TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsH1[variables.language]);
-        TermsAndConditionsPage.assertions.assertOnPage('terms-and-conditions');
-      } else if (variables.brand == 'coastfashion.com') {
-        TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsSiteGenesisH1[variables.language]);
-        TermsAndConditionsPage.assertions.assertOnPage('terms-of-use');
+    it('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
+      GlobalFooter.click.copyrightPrivacyPolicyLink();
+      if (variables.brand == 'boohoo.com') {
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
       } else {
-        TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsArcadiaH1[variables.language]);
-        TermsAndConditionsPage.assertions.assertOnPage('cs-terms-and-conditions');
+        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
       }
+      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+        PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
+      } else {
+        PrivacyPolicyPage.assertions.assertOnPage('privacy-policy'); //  AssertionText.PrivacyPolicyArcadiaURL[variables.language]
+      }
+    });
+
+    it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
+      GlobalFooter.click.copyrightTermsAndConditionsLink();
     });
   });
 

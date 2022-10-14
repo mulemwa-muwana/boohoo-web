@@ -124,7 +124,7 @@ declare type AddressData = {
     countryCode: string;
 }
     
-declare type ShippingMethods = {
+declare type ShippingData = {
     shippingMethodName: string;
 }
     
@@ -143,7 +143,7 @@ declare type SKU = {
 }
     
 declare type Language = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
-declare type Locale = 'UK' | 'EU' | 'US' |'CA' |'EU' |'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE';
+declare type Locale = 'UK' | 'EU' | 'US' |'CA' | 'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE';
     
 declare type TranslationMap = { [key in Language]: string };
     
@@ -169,4 +169,4 @@ declare type AddressMapAddressLine1 = {[key in Locale]: string}
 declare type AddressMapAddressLine2 = {[key in Locale]: string}
 declare type AddressMapPostcode = {[key in Locale]: string}
 declare type AddressMapPhoneNumber = {[key in Locale]: string}
-    
+

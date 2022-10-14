@@ -22,6 +22,24 @@ const selectors: SelectorBrandMap = {
     cartContainer: '.b-minicart_product-inner',
     postcodeFiled: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
+    promoCodeField: '#dwfrm_coupon_couponCode',
+    addressName: 'b-address-name',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
+    shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
+    shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
+    shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addressLine1Shipping: '[id$=addressFields_address1][id*="shipping"]',
+    addressLine2Shipping: '[id$=addressFields_address2][id*="shipping"]',
+    shippingCityShipping: '[id$=addressFields_city][id*="shipping"]',
+    shippingCounty: '[id$=addressFields_states_stateCode][id*="shipping"]',
+    orderTotal: '.m-total > .b-summary_table-value',
+    allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    coupon: '#dwfrm_coupon_couponCode',
+    shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    shippingMethodname: '.b-option_switch-label',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -42,6 +60,24 @@ const selectors: SelectorBrandMap = {
     cartContainer: '[data-tau="checkout_products"]',
     postcodeFiled: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
+    promoCodeField: '#dwfrm_coupon_couponCode',
+    addressName: 'b-address-name',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
+    shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
+    shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
+    shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addressLine1Shipping: '[id$=addressFields_address1][id*="shipping"]',
+    addressLine2Shipping: '[id$=addressFields_address2][id*="shipping"]',
+    shippingCityShipping: '[id$=addressFields_city][id*="shipping"]',
+    shippingCounty: '[id$=addressFields_states_stateCode][id*="shipping"]',
+    orderTotal: '.m-total > .b-summary_table-value',
+    allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    coupon: '#dwfrm_coupon_couponCode',
+    shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
+    shippingMethodname: '.b-option_switch-label',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -62,6 +98,25 @@ const selectors: SelectorBrandMap = {
     PostcodeLookup: '#LoqateAutocomplete',
     postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
+    promoCodeField: '#dwfrm_coupon_couponCode',
+    addressName: 'b-address-name',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
+    shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
+    shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
+    shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addressLine1Shipping: '[id$=addressFields_address1][id*="shipping"]',
+    addressLine2Shipping: '[id$=addressFields_address2][id*="shipping"]',
+    shippingCityShipping: '[id$=addressFields_city][id*="shipping"]',
+    shippingCounty: '[id$=addressFields_states_stateCode][id*="shipping"]',
+    orderTotal: '.m-total > .b-summary_table-value',
+    allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    coupon: '#dwfrm_coupon_couponCode',
+    shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
+    shippingMethodname: '.b-option_switch-label',
+    cartContainer: '.b-summary_table-name',
   },
   'burton.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -82,6 +137,25 @@ const selectors: SelectorBrandMap = {
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
+    promoCodeField: '#dwfrm_coupon_couponCode',
+    addressName: 'b-address-name',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
+    shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
+    shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
+    shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addressLine1Shipping: '[id$=addressFields_address1][id*="shipping"]',
+    addressLine2Shipping: '[id$=addressFields_address2][id*="shipping"]',
+    shippingCityShipping: '[id$=addressFields_city][id*="shipping"]',
+    shippingCounty: '[id$=addressFields_states_stateCode][id*="shipping"]',
+    orderTotal: '.m-total > .b-summary_table-value',
+    allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    coupon: '#dwfrm_coupon_couponCode',
+    shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
+    shippingMethodname: '.b-option_switch-label',
+    cartContainer: '.b-summary_table-name',
   },
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -102,6 +176,25 @@ const selectors: SelectorBrandMap = {
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
+    promoCodeField: '#dwfrm_coupon_couponCode',
+    addressName: 'b-address-name',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
+    shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
+    shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
+    shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addressLine1Shipping: '[id$=addressFields_address1][id*="shipping"]',
+    addressLine2Shipping: '[id$=addressFields_address2][id*="shipping"]',
+    shippingCityShipping: '[id$=addressFields_city][id*="shipping"]',
+    shippingCounty: '[id$=addressFields_states_stateCode][id*="shipping"]',
+    orderTotal: '.m-total > .b-summary_table-value',
+    allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    coupon: '#dwfrm_coupon_couponCode',
+    shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
+    shippingMethodname: '.b-option_switch-label',
+    cartContainer: '.b-summary_table-name',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -126,6 +219,7 @@ const selectors: SelectorBrandMap = {
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm', 
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
   },
   'misspap.com': undefined
 };
@@ -145,7 +239,7 @@ class ShippingPage implements AbstractPage {
     },
     addNewAddress () {
       const addNewAddress = selectors[variables.brand].addNewAddress;
-      cy.get(addNewAddress).click();
+      cy.get(addNewAddress).click({force: true});
     },
     cancelAddingNewAddress () {
       const cancelAddingNewAddress = selectors[variables.brand].cancelAddingNewAddress;
@@ -161,6 +255,10 @@ class ShippingPage implements AbstractPage {
         cy.contains('there may be a problem with the address you have entered.').should('be.visible');
         cy.get('.verification-address-button').should('be.visible').click();
       }
+
+      // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
+      cy.intercept('**/Checkout-RenderedPaymentOptions*').as('paymentMethods');
+      cy.wait('@paymentMethods', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
     },
     editSavedAddress () {
       const editSavedAddress = selectors[variables.brand].editSavedAddress;
@@ -168,7 +266,7 @@ class ShippingPage implements AbstractPage {
     },
     addAddressManually () {
       const addAddressManually = selectors[variables.brand].addAddressManually;
-      cy.get(addAddressManually).should('be.visible').click();
+      cy.get(addAddressManually).should('be.visible').click({force:true});
     },
     confirmEmail () {
       const confirmEmail = selectors[variables.brand].confirmEmail;
@@ -210,7 +308,7 @@ class ShippingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      cy.get(enterManually).click();
+      cy.get(enterManually).click({force: true});
     }
   
   };
@@ -220,66 +318,109 @@ class ShippingPage implements AbstractPage {
       cy.get('span').contains(variables.shippingMethod).click();
     },
     promoCodeField (promoCode: string) {
-      cy.get('#dwfrm_coupon_couponCode').type(promoCode);
+      const coupon = selectors[variables.brand].coupon;
+      cy.get(coupon).type(promoCode);
     },
     addressLookupField (address: string) {
       const PostcodeLookup = selectors[variables.brand].PostcodeLookup;
       cy.get(PostcodeLookup).click({force: true}).type(address+'{enter}').should('be.visible');
       cy.get(PostcodeLookup).type('{enter}');
     },
+    selectFirstAddressFromAddressLookup (address: string) {
+      const PostcodeLookup = selectors[variables.brand].PostcodeLookup;
+      cy.get(PostcodeLookup).click({force: true}).type(address+'{enter}').should('be.visible');
+      cy.get(PostcodeLookup).type('{enter}');
+      cy.get('div:nth-child(1) > span').eq(1).click({force: true});
+      
+    },
     firstNameField (fname: string) {
-      cy.get('[id$=addressFields_firstName][id*="shipping"]').type(fname);
+      const shippingFname = selectors[variables.brand].shippingFname;
+      cy.get(shippingFname).clear().type(fname);
     },
     lastNameField (lname: string) {
-      cy.get('[id$=addressFields_lastName][id*="shipping"]').type(lname);
+      const shippingLname = selectors[variables.brand].shippingLname;
+      cy.get(shippingLname).clear().type(lname);
     },
     countrySelector () {
       cy.get('[id$=addressFields_country][id*="shipping"]'); 
     },
+    clearPhoneNumberFieldAndAddNewOne (phone: string) {
+      cy.wait(1000);
+      const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
+      cy.get(shippingPhoneNumber).clear().type(phone);
+    },
     phoneNumberField (phone: string) {
       cy.wait(1000);
-      cy.get('[id$=addressFields_phone][id*="shipping"]').type(phone);
+      const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
+      cy.get(shippingPhoneNumber).type(phone);
     },
     selectCountry (country: string) {
-      cy.get('[id$=addressFields_country][id*="shipping"]').select(country).invoke('show');
+      const shippingCountry = selectors[variables.brand].shippingCountry;
+      cy.get(shippingCountry).select(country).invoke('show');
     },
     adressLine1 (address1: string) {
-      cy.get('[id$=addressFields_address1][id*="shipping"]').type(address1);
+      const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
+      cy.get(addressLine1Shipping).type(address1);
+    },
+    clearAdressLine1AndAddNewOne (address1: string) {
+      const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
+      cy.get(addressLine1Shipping).clear({force: true}).type(address1);
+    },
+    clearAdressLine2AndAddNewOne (address2: string) {
+      const addressLine2Shipping = selectors[variables.brand].addressLine2Shipping;
+      cy.get(addressLine2Shipping).clear({force: true}).type(address2);
     },
     adressLine2 (address2: string) {
-      cy.get('[id$=addressFields_address2][id*="shipping"]').type(address2);
+      const addressLine2Shipping = selectors[variables.brand].addressLine2Shipping;
+      cy.get(addressLine2Shipping).type(address2);
     },
-    cityFiled (city: string) {
-      cy.get('[id$=addressFields_city][id*="shipping"]').type(city);
+    cityField (city: string) {
+      const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
+      cy.get(shippingCityShipping).type(city);
+    },
+    clearCityFieldAndAddNewOne (city: string) {
+      const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
+      cy.get(shippingCityShipping).clear({force: true}).type(city);
     },
     countyField (county: string) {
-      cy.get('[id$=addressFields_states_stateCode][id*="shipping"]').type(county);
+      const shippingCounty = selectors[variables.brand].shippingCounty;
+      cy.get(shippingCounty).select(county);
     },
-  
     postcodeField (postcode: string) {
       cy.wait(1000);
-      cy.get('[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]').type(postcode);
+      const shippingPostcode = selectors[variables.brand].shippingPostcode;
+      cy.get(shippingPostcode).type(postcode);
+    },
+    clearPostcodeFieldAndAddNewOne (postcode: string) {
+      cy.wait(1000);
+      const shippingPostcode = selectors[variables.brand].shippingPostcode;
+      cy.get(shippingPostcode).clear({force: true}).type(postcode);
     },
     selectShippingMethod (shippingMethod: string) {
-      cy.get('.b-option_switch-label').each(() => {
+      const shippingMethodname = selectors[variables.brand].shippingMethodname;
+      cy.get(shippingMethodname).each(() => {
         cy.contains(shippingMethod).click({force: true});
       });
-    }
+    },
 
   };
 
   assertions = {
     assertPromoCodeFieldIsDispayed () {
-      cy.get('#dwfrm_coupon_couponCode').should('be.visible');
+      const coupon = selectors[variables.brand].coupon;
+      cy.get(coupon).should('be.visible');
     },
     assertSavedShippingAddressIsDispayed () {
-      cy.get('b-address-name').eq(1).should('be.visible').should('not.be.empty');
+      const addressName = selectors[variables.brand].addressName;
+      cy.get(addressName).eq(1).should('be.visible').should('not.be.empty');
     }, 
     assertFirstNameIsMandatory (fname: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1-error').should('contain.text', fname); 
+      const fnameValidationMsg = selectors[variables.brand].fnameValidationMsg;
+      cy.get(fnameValidationMsg).should('contain.text', fname); 
     },
     assertCityIsMandatory (city: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city-error').should('contain.text', city); 
+      const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
+      cy.get(shippingCityShipping).should('contain.text', city); 
     },
     assertPostCodeIsMandatory (postcode: string) {
       const postcodeValidation = selectors[variables.brand].postcodeValidation;
@@ -289,27 +430,36 @@ class ShippingPage implements AbstractPage {
       cy.url().should('include', 'billing');
     },
     assertFirstNameFieldIsPopulated (text: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_firstName').should('contain.value', text);
+      const shippingFname = selectors[variables.brand].shippingFname;
+      cy.get(shippingFname).should('contain.value', text);
     },
     assertLastNameFieldIsPopulated (text: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_lastName').should('contain.value', text);
+      const shippingLname = selectors[variables.brand].shippingLname;
+      cy.get(shippingLname).should('contain.value', text);
     },
     assertCountryIsSelected (text: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_country').should('contain.value', text);
+      const shippingCountry = selectors[variables.brand].shippingCountry;
+      cy.get(shippingCountry).should('contain.value', text);
     },
     assertPhoneNumberFieldIsPopulated (text: string) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_phone').should('contain.value', text);
+      const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
+      cy.get(shippingPhoneNumber).should('contain.value', text);
     },
     assertGuestEmailFiledDispayes () {
-      cy.get('#dwfrm_billing_contactInfoFields_email').should('be.visible');
+      const guestEmailField = selectors[variables.brand].guestEmailField;
+      cy.get(guestEmailField).should('be.visible');
     },
     assertManualAddressFieldsAreDispayed () {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address1').should('be.visible');
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_address2').should('be.visible');
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_city').should('be.visible');
+      const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
+      const addressLine2Shipping = selectors[variables.brand].addressLine2Shipping;
+      const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
+      cy.get(addressLine1Shipping).should('be.visible');
+      cy.get(addressLine2Shipping).should('be.visible');
+      cy.get(shippingCityShipping).should('be.visible');
     },
     assertOrderTotalIsDsipayed () {
-      cy.get('.m-total > .b-summary_table-value').should('not.be.empty');
+      const orderTotal = selectors[variables.brand].orderTotal;
+      cy.get(orderTotal).should('not.be.empty');
     },
     assertAddressDetailsAreMandatory (text: string) {
       cy.get('[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message').should('contain.text', text);
@@ -330,9 +480,19 @@ class ShippingPage implements AbstractPage {
     assertAddressLookupIsVisible () {
       const PostcodeLookup = selectors[variables.brand].PostcodeLookup;
       cy.get(PostcodeLookup).should('be.visible');
+    },
+    assertShippingMethodIsSelected (shippingMethod: string) {
+      const cartContainer = selectors[variables.brand].cartContainer;
+      cy.get(cartContainer).each(() => {
+        cy.contains(shippingMethod.trim());
+      });
+    },
+    assertNewAddressIsAdded (addressline1: string) {
+      cy.get('.b-address > .b-address-summary').should('contain.text', addressline1);
     }
   };
 
 }
 
 export default new ShippingPage();
+

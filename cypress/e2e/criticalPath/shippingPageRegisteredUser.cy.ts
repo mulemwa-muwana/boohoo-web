@@ -65,7 +65,7 @@ describe('Home Page', function () {
       shippingPage.click.addNewAddress();
     }
     shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
@@ -160,13 +160,13 @@ describe('Home Page', function () {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }   
     shippingPage.click.proceedToBilling();
@@ -197,13 +197,13 @@ describe('Home Page', function () {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
@@ -237,13 +237,13 @@ describe('Home Page', function () {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);

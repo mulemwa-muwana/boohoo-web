@@ -110,7 +110,7 @@ const selectors: SelectorBrandMap = {
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
   },
   'burton.co.uk': {
-    paynowBtnCC:'#payment-details-scheme > div > div.b-payment_accordion-submit.b-checkout_step-controls > div > button',
+    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaButton:'#payment-button-KlarnaUK',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
@@ -128,10 +128,10 @@ const selectors: SelectorBrandMap = {
     customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
-    paymentTypeCC: '#payment-button-scheme > .b-payment_accordion-icon',
+    paymentTypeCC: '#payment-button-scheme',
     paymentTypeKlarna: '',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
-    creditCardFieldsCardOwner: '#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__field.adyen-checkout__card__holderName > label > span.adyen-checkout__input-wrapper > input',
+    creditCardFieldsCardOwner: '.adyen-checkout__card__holderName .adyen-checkout__input',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
@@ -413,17 +413,20 @@ class BillingPage implements AbstractPage {
       // Get first iframe, inside its body get inner iframe and then find button
       cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
         const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
+
+        // If accept cookies button appears
+        cy.wrap(innerIframe).then($body => {
+          if ($body.find('#acceptAllButton').length) {
+            cy.wrap(innerIframe).find('#acceptAllButton').click();
+          }
+        });
         
         cy.wrap(innerIframe).find('#email').clear().type('test.user@boohoo.com');
         cy.wrap(innerIframe).find('#btnNext').click();
         cy.wrap(innerIframe).find('#password').click().type('boohoo123');
         cy.wrap(innerIframe).find('#btnLogin').click();
-        cy.wait(3000);
-      });
 
-      cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
-        const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
-        cy.wrap(innerIframe).find('#payment-submit-btn').should('be.visible').click();
+        cy.wrap(innerIframe, { timeout: 6000 }).find('#payment-submit-btn').should('be.visible').click();
       });
     },
     selectLaybuy () {

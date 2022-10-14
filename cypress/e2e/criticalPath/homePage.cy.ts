@@ -10,16 +10,16 @@ import assertionText from '../../helpers/assertionText';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
-describe('Home Page', function () {
-    
-  // This will execute before every single test, we're just going to the baseURL.
-  beforeEach(() => {
-    HomePage.goto();
+// This will execute before every single test, we're just going to the baseURL.
+beforeEach(() => {
+  HomePage.goto();
 
-    /* If (variables.brand == 'nastygal.com') {
-      HomePage.actions.closeNastygalPopup();
-    }*/
-  });
+  /* If (variables.brand == 'nastygal.com') {
+    HomePage.actions.closeNastygalPopup();
+  }*/
+});
+
+describe('Home Page', function () {
 
   /* Describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
     it('No login', () => {
@@ -159,22 +159,9 @@ describe('Footer verification', () => {
       }
     });
 
-    it('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
-      GlobalFooter.click.copyrightPrivacyPolicyLink();
-      if (variables.brand == 'boohoo.com') {
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
-      } else {
-        PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
-      }
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-        PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
-      } else {
-        PrivacyPolicyPage.assertions.assertOnPage('privacy-policy'); //  AssertionText.PrivacyPolicyArcadiaURL[variables.language]
-      }
-    });
-
     it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
       GlobalFooter.click.copyrightTermsAndConditionsLink();
+      ///// ADD ASSERTION ON TERMS AND CONDITIONS PAGE
     });
   });
 
@@ -194,33 +181,33 @@ describe('Footer verification', () => {
       GlobalFooter.click.twitterLink();
     });
     
-    it('TikTok', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+      it('TikTok', () => {
         SocialsPage.assertions.assertTikTokIconIsPresent();
         GlobalFooter.click.tiktokLink();
-      }
-    });
+      });
+    }
     
-    it('YouTube', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+      it('YouTube', () => {
         SocialsPage.assertions.assertYouTubeIconIsPresent();
         GlobalFooter.click.youtubeLink();
-      }
-    });
+      });
+    }
     
-    it('Pintrest', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+      it('Pintrest', () => {
         SocialsPage.assertions.assertPinterestIconIsPresent();
         GlobalFooter.click.pintrestLink();
-      }
-    });
+      });
+    }
     
-    it('TheFix', () => {
-      if (variables.brand == 'boohoo.com') {
+    if (variables.brand == 'boohoo.com') {
+      it('TheFix', () => {
         SocialsPage.assertions.assertTheFixIconIsPresent();
         GlobalFooter.click.theFixLink();
-      }
-    });
+      });
+    }
   });
     
   it('Verify that Payment and Delivery Providers are present as content slot.', () => {
@@ -233,7 +220,7 @@ describe('Footer verification', () => {
 
   // Each of these will go back to the previous URL once the action has been completed.
 
-  it.only('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
+  it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);

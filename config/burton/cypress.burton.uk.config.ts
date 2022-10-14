@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
@@ -17,9 +18,8 @@ export default defineConfig({
   chromeWebSecurity: false,
 
   e2e: {
-    setupNodeEvents (on, config) {
-
-      // Implement node event listeners here
+    setupNodeEvents (on) {
+      plugins(on);
     },
     numTestsKeptInMemory: 0
   },

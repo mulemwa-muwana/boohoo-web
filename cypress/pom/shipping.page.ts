@@ -256,9 +256,9 @@ class ShippingPage implements AbstractPage {
         cy.get('.verification-address-button').should('be.visible').click();
       }
 
-      // Wait for credit card payment method to load on a page - that indicates the page is fully loaded
-      cy.intercept('**/Adyen-GetPaymentMethods*').as('paymentMethods')
-      cy.wait('@paymentMethods', { timeout: 20000 }).its('response.statusCode').should('eq', 200)
+      // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
+      cy.intercept('**/Checkout-RenderedPaymentOptions*').as('paymentMethods');
+      cy.wait('@paymentMethods', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
     },
     editSavedAddress () {
       const editSavedAddress = selectors[variables.brand].editSavedAddress;

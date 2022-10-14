@@ -18,7 +18,7 @@ export default defineConfig({
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   blockHosts: [
-    "boohoo-engb.qa.verbolia.com"  // stops verbolia sign-in popup on pdp page
+    'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
   ],
   
   e2e: {

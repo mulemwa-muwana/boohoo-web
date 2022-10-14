@@ -285,8 +285,8 @@ class BillingPage implements AbstractPage {
       cy.get(creditCardFieldsCardOwner).should('be.visible').type(cardOwner);
       cy.get(paynowBtnCC).click();
 
-      if (cardNo == cards.master.cardNo) {  // Adyen test simulator page appears for MasterCard
-        cy.get('#threeDS2 .adyen-checkout__iframe', { timeout: 20000 }).should('be.visible')
+      if (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
+        cy.get('#threeDS2 .adyen-checkout__iframe', { timeout: 20000 }).should('be.visible');
         cy.iframe('#threeDS2 .adyen-checkout__iframe').find('.input-field').type('password');
         cy.iframe('#threeDS2 .adyen-checkout__iframe').find('#buttonSubmit').click();
       }
@@ -379,7 +379,7 @@ class BillingPage implements AbstractPage {
         });
 
         body().then($body => {
-          if ($body.find('button[data-testid="pick-plan"]').length) {   // if Continue button on test plan page exists
+          if ($body.find('button[data-testid="pick-plan"]').length) { // If Continue button on test plan page exists
             body().find('button[data-testid="pick-plan"]').click();
           }
         });
@@ -388,7 +388,7 @@ class BillingPage implements AbstractPage {
 
         cy.wait(2000);
         body().then($body => {
-          if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) {  // if Skip and continue button exists
+          if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) { // If Skip and continue button exists
             body().find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click();
           }
         });

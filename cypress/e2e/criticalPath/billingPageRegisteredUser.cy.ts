@@ -33,6 +33,7 @@ describe('Billing page functionality for registered user', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
     shippingPage.click.addAddressManually();  
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityFiled(localeAddress.city);

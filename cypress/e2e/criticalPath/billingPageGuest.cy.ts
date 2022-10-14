@@ -34,6 +34,7 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
+    cy.wait(5000);
     shippingPage.click.addAddressManually();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);

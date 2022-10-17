@@ -33,17 +33,12 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
+    cy.wait(5000);
     shippingPage.click.addAddressManually();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
-    if (variables.brand == 'boohoo.com' || variables.brand =='nastygal.com') {
-      shippingPage.actions.phoneNumberField('+' + localeAddress.phone);
-    } else if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand =='dorothyperkins.com') {
-      shippingPage.actions.phoneNumberField(localeAddress.phone);
-    } else { 
-      shippingPage.actions.phoneNumberField(localeAddress.phone);
-    }
     shippingPage.click.proceedToBilling();
   });
 
@@ -78,7 +73,7 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
   });
-  it.only('Verify that guest user cannot place order if email field is empty', function () {
+  it('Verify that guest user cannot place order if email field is empty', function () {
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
@@ -125,7 +120,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.card);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
       BillingPage.assertions.assertPaymentMethodIsDisplayed(method.klarna);
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' && variables.locale == 'UK') {
+      if ((variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') && variables.locale == 'UK') {
         BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
         BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
       }
@@ -137,35 +132,35 @@ describe('Billing page functionality for guest user', function () {
     it('Verify that guest user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
     it('Verify that guest user can place order using Credit Card - Master)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
     it('Verify that guest user can place order using Credit Card - Amex)', function () {
       BillingPage.actions.selectDate('23', 'May', '2001');
       BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    });
+    it('Verify that guest user can place order using PayPal', function () {
+      BillingPage.actions.selectDate('23', 'May', '2001');
+      BillingPage.actions.selectPayPal();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
     if (variables.locale == 'UK' || variables.locale == 'IE') {
       it('Verify that guest user can place order using Klarna', function () {
         BillingPage.actions.selectDate('23', 'May', '2001');
         BillingPage.actions.selectKlarna();
-        BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
       });
     }
-    it('Verify that guest user can place order using PayPal', function () {
-      BillingPage.actions.selectDate('23', 'May', '2001');
-      BillingPage.actions.selectPayPal();
-      BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
-    });
-    if (variables.locale == 'UK') {
+    if (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
       it('Verify that guest user can place order using Laybuy', function () {
         BillingPage.actions.selectDate('23', 'May', '2001');
         BillingPage.actions.selectLaybuy();
-        BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
+        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
       });
     }
   });

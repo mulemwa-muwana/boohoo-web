@@ -154,7 +154,6 @@ describe('Footer verification', () => {
     });
 
     it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
-      const variable = Cypress.env() as EnvironmentVariables;
       GlobalFooter.click.copyrightTermsAndConditionsLink('terms-and-conditions'); //  AssertionText.termsAndCondFooterLink[variables.language]
     });
   });

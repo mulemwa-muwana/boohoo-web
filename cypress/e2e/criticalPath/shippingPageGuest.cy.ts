@@ -116,7 +116,7 @@ describe('Home Page', function () {
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
@@ -135,7 +135,7 @@ describe('Home Page', function () {
     cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
@@ -152,7 +152,7 @@ describe('Home Page', function () {
     shippingPage.click.addAddressManually();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.adressLine2(localeAddress.addrline2);
-    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
@@ -170,7 +170,7 @@ describe('Home Page', function () {
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.OpenPUDOlocations();
@@ -199,7 +199,7 @@ describe('Home Page', function () {
     cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityFiled(localeAddress.city);
+    shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();

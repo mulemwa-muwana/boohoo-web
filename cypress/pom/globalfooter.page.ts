@@ -212,7 +212,7 @@ class GlobalFooter implements AbstractPage {
       cy.get(subscribeSubmitBtn).click();
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
-      //cy.log(`searching for '${text}' in footer`);
+      // Cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       cy.get('footer[class="l-page-footer l-footer"]').contains(text)
         .invoke('removeAttr', 'target')

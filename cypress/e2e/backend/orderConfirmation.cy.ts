@@ -24,17 +24,16 @@ describe('Boohoo order placement', () => {
     });
 
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-
     ShippingPage.actions.firstNameField(localeAddress.firstName);
     ShippingPage.actions.lastNameField(localeAddress.lastName);
     ShippingPage.actions.selectCountry(localeAddress.country);
-    ShippingPage.click.addAddressManually();
-    ShippingPage.actions.adressLine1(localeAddress.addrline1);
-    ShippingPage.actions.cityFiled(localeAddress.city);
-    ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.actions.phoneNumberField(localeAddress.phone);
+    ShippingPage.click.addAddressManually();
+    cy.wait(2000);
+    ShippingPage.actions.adressLine1(localeAddress.addrline1);
+    ShippingPage.actions.cityField(localeAddress.city);
+    ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.click.proceedToBilling();
-    cy.wait(8000);
   });
 
   it('can select Credit Card as payment method and generate an artefact', function () {

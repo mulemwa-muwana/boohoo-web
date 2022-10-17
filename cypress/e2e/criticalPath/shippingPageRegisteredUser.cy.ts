@@ -68,17 +68,11 @@ describe('Home Page', function () {
     cy.wait(5000);
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       shippingPage.click.addNewAddress();
-      shippingPage.click.enterManuallyAddressDetails();
-      shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-      shippingPage.actions.phoneNumberField(localeAddress.phone);
-    } else {
-      shippingPage.click.enterManuallyAddressDetails();
-      shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-    }   
+    }
+    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.cityField(localeAddress.city);
+    shippingPage.actions.postcodeField(localeAddress.postcode);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertNewAddressIsAdded(localeAddress.addrline1);
   });
@@ -167,13 +161,13 @@ describe('Home Page', function () {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }   
     shippingPage.click.proceedToBilling();
@@ -204,13 +198,13 @@ describe('Home Page', function () {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
@@ -244,13 +238,13 @@ describe('Home Page', function () {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     } else if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' && variables.locale != 'EU') {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.cityFiled(localeAddress.city);
+      shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);

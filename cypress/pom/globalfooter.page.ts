@@ -23,6 +23,7 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'nastygal.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -41,6 +42,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.b-app_banner-actions',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'dorothyperkins.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -59,6 +61,7 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'burton.co.uk': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -77,6 +80,7 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'wallis.co.uk': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -95,6 +99,7 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -116,7 +121,8 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
-    copyrightTermAndCondLink: '.footer-copyright-wrapper [title="Terms of use"]',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
+    footer: '.footer'
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
@@ -235,7 +241,8 @@ class GlobalFooter implements AbstractPage {
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
       //cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
-      cy.get('footer[class="l-page-footer l-footer"]').contains(text)
+      const footer = selectors[variables.brand].footer;
+      cy.get(footer).contains(text)
         .invoke('removeAttr', 'target')
         .then(element => {
           const href = element.attr('href');

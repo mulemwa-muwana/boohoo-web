@@ -616,6 +616,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkDeliveryInfoSiteGenesis: TranslationMap = {
+    EN: 'Delivery Information',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkAbout: TranslationMap = {
     EN: 'About boohoo', // Brand name is missing
     NL: '',
@@ -798,6 +812,20 @@ class AssertionText {
     ES: ''
   };
 
+  termsAndCondSiteGenesis: TranslationMap = {
+    EN: 'terms of use',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   termsAndCondFooterLink: TranslationMap = {
     EN: 'terms-and-conditions',
     NL: '',
@@ -840,6 +868,20 @@ class AssertionText {
     ES: ''
   };
 
+  privacyPolicySiteGenesis: TranslationMap = {
+    EN: 'Privacy Notice - Updated August 2022',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   investor: TranslationMap = {
     EN: 'Investor Relations',
     NL: '',
@@ -858,6 +900,20 @@ class AssertionText {
     EN: 'Environmental & Social Responsibility',
     NL: '',
     DE: 'Soziale Verantwortung von boohoo',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  envAndSocRespSiteGenesis: TranslationMap = {
+    EN: 'Environment & Social Responsibility',
+    NL: '',
+    DE: '',
     FR: '',
     DK: '',
     FI: '',

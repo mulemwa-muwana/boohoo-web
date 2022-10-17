@@ -23,7 +23,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantShopByPrice: '#searchRefineBarAccordionItemInner-price',
     wishlistPlpIcon: '.b-wishlist_button-icon',
     loadMoreProducts: 'div.b-load_more > a',
-    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    numberOfItemsTextIsVisible: 'div.b-load_progress > span',
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
@@ -46,7 +46,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantOccassion: '#searchRefineBarAccordionItemInner-occasion',
     wishlistPlpIcon: '.b-wishlist_button-icon',
     loadMoreProducts: 'div.b-load_more > a',
-    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    numberOfItemsTextIsVisible: 'div.b-load_progress > span',
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
@@ -69,7 +69,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
     loadMoreProducts: 'div.b-load_more > a',
-    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    numberOfItemsTextIsVisible: 'div.b-load_progress > span',
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
@@ -93,7 +93,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
     loadMoreProducts: 'div.b-load_more > a',
-    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    numberOfItemsTextIsVisible: 'div.b-load_progress > span',
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
@@ -117,7 +117,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
     loadMoreProducts: 'div.b-load_more > a',
-    numberOfItemsTextISVisible: 'div.b-load_progress > span',
+    numberOfItemsTextIsVisible: 'div.b-load_progress > span',
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
@@ -128,7 +128,30 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    lengthRefinement: '#searchRefineBarAccordionItemBtn-length > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: '.search-result-options [title="Next"]',
+    numberOfPagesTextIsVisible: '.search-result-options select[class*="pagination-select"]',
+    productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
+    newProductPriceIsDispayed: '.product-pricing .product-sales-price',
+    productPriceIsDispayed: '.product-pricing .product-standard-price',
+    productImageIsDisplayed: '.thumb-link img',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    productNameIsDisplayed: '.product-tile-name > .name-link',
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
   'misspap.com': undefined
@@ -228,8 +251,7 @@ class PlpPage implements AbstractPage {
     // Load more products
     loadMoreProducts () {
       cy.scrollTo('bottom');
-      const brand: GroupBrands = 'boohoo.com';
-      const loadMoreProducts = selectors[brand].loadMoreProducts;
+      const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       cy.get(loadMoreProducts).click({force: true});
       cy.wait(10000);
     },
@@ -253,10 +275,15 @@ class PlpPage implements AbstractPage {
         expect(currentUrl).to.contain(text);
       }); 
     },
-    assertNumberOfItemsTextISVisible () {
+    assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');
-      const numberOfItemsTextISVisible = selectors[variables.brand].numberOfItemsTextISVisible;
-      cy.get(numberOfItemsTextISVisible).should('be.visible');
+      if (variables.brand == 'coastfashion.com') {
+        const numberOfPagesTextIsVisible = selectors[variables.brand].numberOfPagesTextIsVisible;
+        cy.get(numberOfPagesTextIsVisible).should('be.visible');
+      } else {
+        const numberOfItemsTextIsVisible = selectors[variables.brand].numberOfItemsTextIsVisible;
+        cy.get(numberOfItemsTextIsVisible).should('be.visible');
+      }
     },
     assertLoadMoreBtnIsVisible () {
       cy.scrollTo('bottom');

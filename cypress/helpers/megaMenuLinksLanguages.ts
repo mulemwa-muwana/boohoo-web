@@ -82,7 +82,20 @@ class megaMenuLinksLanguages {
     IL: '',
     IT: 'nuovi-arrivi',
     ES: 'novedades',
+  };
 
+  urlLinkNewIn: TranslationMap = { 
+    EN: 'new-in',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
   };
 
   saleLink: TranslationMap = {

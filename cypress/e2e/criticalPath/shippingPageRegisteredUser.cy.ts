@@ -37,30 +37,35 @@ describe('Home Page', function () {
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
-    shippingPage.click.addNewAddress();
+    shippingPage.click.addNewAddressButton();
     shippingPage.actions.selectCountry(localeAddress.country);
-    cy.wait(4000);
+    cy.wait(5000);
+    
+    if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
+      shippingPage.click.enterManuallyAddressDetails();
+    }   
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
     }
-
-    // Else if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
     shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryPostcodeArcadia[variables.language]);
   });
 
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
-    shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertUserProceededToBillinPage();
+    const variables = Cypress.env() as EnvironmentVariables;
+    if (variables.locale != 'IE') {
+      shippingPage.click.proceedToBilling();
+      cy.wait(4000);
+      shippingPage.assertions.assertUserProceededToBillinPage();
+    }   
   });
 
   it('Verify that user can edit saved shipping address', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     shippingPage.click.editAddress();
-    shippingPage.actions.firstNameField(localeAddress.firstName);
-    shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       shippingPage.click.addNewAddress();
     }
@@ -69,16 +74,12 @@ describe('Home Page', function () {
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertNewAddressIsAdded(localeAddress.addrline1);
   });
 
   it('Verify that user can cancel editing shipping address', () => {
     shippingPage.click.addNewAddressButton();
     shippingPage.click.cancelAddingNewAddressForRegisteredUser();
-  });
-
-  it('Verify that user can view all saved addresses', () => {
-    shippingPage.click.viewAllAddressesLink();
-    shippingPage.assertions.assertOtherAddressesAreVisible();
   });
 
   it('Verify that Add new address button allows user to add address details', () => {
@@ -240,7 +241,7 @@ describe('Home Page', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-    } else {
+    } else if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' && variables.locale != 'EU') {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);

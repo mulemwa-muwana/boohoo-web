@@ -35,6 +35,14 @@ describe('Home Page', function () {
   });
 
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
+    
+    if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
+      shippingPage.click.enterManuallyAddressDetails();
+    }   
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'boohoo.com') {
       shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
@@ -42,7 +50,6 @@ describe('Home Page', function () {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
     } else {
       shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
-      shippingPage.assertions.assertCityIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
     }      
   });
@@ -76,10 +83,24 @@ describe('Home Page', function () {
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.locale == 'EU') {
+      shippingPage.actions.firstNameField(localeAddress.firstName);
+      shippingPage.actions.lastNameField(localeAddress.lastName);
+      shippingPage.actions.selectCountry(localeAddress.country);
+    }
     shippingPage.assertions.assertPostcodeLookupIsVisible();
   });
 
   it('Verify that "Enter manually" button allows guest to enter address details', () => {
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.locale == 'EU') {
+      shippingPage.actions.firstNameField(localeAddress.firstName);
+      shippingPage.actions.lastNameField(localeAddress.lastName);
+      shippingPage.actions.selectCountry(localeAddress.country);
+    }
     shippingPage.click.addAddressManually();
     shippingPage.assertions.assertManualAddressFieldsAreDispayed();
   });
@@ -104,13 +125,14 @@ describe('Home Page', function () {
   it('Verify that user is able to select standard shipping method', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     if (variables.brand == 'boohoo.com') {
       shippingPage.click.addNewAddress();
     }
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);
@@ -174,6 +196,7 @@ describe('Home Page', function () {
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);

@@ -29,7 +29,7 @@ class AssertionText {
   };
 
   WishlistItemsAddedArkadia: TranslationMap = {
-    EN: 'Saved for later',
+    EN: 'The product is added to wish list',
     FR: '',
     NL: '',
     DE: '',

@@ -48,7 +48,9 @@ describe('Billing page functionality for guest user', function () {
   it('Verify that shipping method is displayed', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
+    if (variables.locale != 'EU') {    
+      BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName); // EU has only Europe and International Delivery
+    }
   });
   it('Verify that guest user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();

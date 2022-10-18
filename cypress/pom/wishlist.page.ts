@@ -64,7 +64,7 @@ const selectors: SelectorBrandMap = {
     sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
-    addToCart: 'div.b-wishlist_tile-actions > button > span',
+    addToCart: '.b-wishlist_tile-action > span',
     wishlistLoginBtn: '.b-button',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
@@ -109,7 +109,7 @@ class WishListPage implements AbstractPage {
     },
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).eq(0).click;
+      cy.get(addToCart).eq(0).click();
     },
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;

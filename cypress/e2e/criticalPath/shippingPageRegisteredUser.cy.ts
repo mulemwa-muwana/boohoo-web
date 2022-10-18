@@ -86,6 +86,9 @@ describe('Home Page', function () {
     const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
+    if (variables.locale == 'IE') {
+      shippingPage.actions.selectCountry(localeAddress.country);
+    }
     shippingPage.assertions.assertFirstNameFieldIsPopulated(localeAddress.firstName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
@@ -142,6 +145,8 @@ describe('Home Page', function () {
       // ShippingPage.click.addAddressManually();
     } else {
       shippingPage.click.addNewAddressButton();
+      shippingPage.actions.selectCountry(localeAddress.country);
+      cy.wait(4000);
 
       // ShippingPage.click.enterManuallyAddressDetails();
     }

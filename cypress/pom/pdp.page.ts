@@ -26,7 +26,8 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-
+    addedToWishlistMsg: '.b-message',
+    
     // ViewCart: '.b-minicart-actions > .m-outline',
   },
   'nastygal.com': {
@@ -50,10 +51,11 @@ const selectors: SelectorBrandMap = {
     viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
+    addedToWishlistMsg: '.b-message',
   },
   'dorothyperkins.com': {
     addToCart: '[data-widget="processButton"]',
-    addToWishListButton: '.b-product_wishlist-button',
+    addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
     returnLink: 'a[href="https://dwdev.dorothyperkins.com/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
@@ -72,10 +74,12 @@ const selectors: SelectorBrandMap = {
     viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
+    addedToWishlistMsg: '.b-message',
+    productDeliveryInfo: '.b-product_tabs-list',
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
-    addToWishListButton: '.b-product_wishlist-button',
+    addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
     returnLink: 'a[href="https://dwdev.burton.co.uk/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
@@ -94,10 +98,12 @@ const selectors: SelectorBrandMap = {
     viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
+    addedToWishlistMsg: '.b-message',
+    productDeliveryInfo: '.b-product_tabs-list',
   },
   'wallis.co.uk': {
     addToCart: '.b-product_addtocard-availability',
-    addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
+    addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
@@ -116,6 +122,8 @@ const selectors: SelectorBrandMap = {
     viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
+    addedToWishlistMsg: '.b-message',
+    productDeliveryInfo: '.b-product_tabs-list',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -267,8 +275,8 @@ class PdpPage implements AbstractPage {
       cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string) {
-      const addToWishListButton = selectors[variables.brand].addToWishListButton; 
-      cy.get(addToWishListButton).should('contains.text', msg); //  Check how to switch between brands
+      const addedToWishlistMsg = selectors[variables.brand].addedToWishlistMsg; 
+      cy.get(addedToWishlistMsg).should('contains.text', msg); //  Check how to switch between brands
     },
     assertStyleNotesArePresent () {
       const productDescription = selectors[variables.brand].productDescription;
@@ -281,7 +289,8 @@ class PdpPage implements AbstractPage {
       cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); //  Work only boohoo, other brands redirect to new tab
     },
     assertDeliveryOptionsAvailableArkadia () {
-      cy.get('.b-product_delivery-link').should('be.visible');
+      const productDeliveryInfo = selectors[variables.brand].productDeliveryInfo;
+      cy.get(productDeliveryInfo).should('be.visible');
     },
     assertReturnInfoIsDisplayed () {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;

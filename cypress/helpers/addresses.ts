@@ -116,7 +116,7 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '1631161055',
-        addrline1: 'Schleiermacherstraße 18',
+        addrline1: 'Schleiermacherstrase 18',
         addrline2: '',
         postcode: '10961',
         addressName: 'SecondAddress',

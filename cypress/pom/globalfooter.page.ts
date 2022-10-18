@@ -239,7 +239,7 @@ class GlobalFooter implements AbstractPage {
       }
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
-      //cy.log(`searching for '${text}' in footer`);
+      // Cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       const footer = selectors[variables.brand].footer;
       cy.get(footer).contains(text)

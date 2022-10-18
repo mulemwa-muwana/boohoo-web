@@ -44,7 +44,16 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    guestCheckoutEmail: '#dwfrm_login_guestEmail',
+    userEmailField: '#dwfrm_login_email',
+    passwordField:'#dwfrm_login_password',
+    continueAsGuestBt:'.b-form > .b-button',
+    continueAsRegisteredUser: 'button[data-tau="login_submit"]',
+    premierAddToCart:'button[class="b-ngvip-button b-button"]',
+    premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     guestCheckoutEmail: '[id^=dwfrm_login_username]',

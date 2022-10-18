@@ -16,7 +16,7 @@ const selectors: SelectorBrandMap = {
     selectColor: '#maincontent > div > div > div > div.l-pdp-top > main > div.b-product_details-form > div.b-product_details-variations > section.b-variations_item.m-swatch.m-color',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
-    productCode: 'span[data-tau="b-product_details-id',
+    productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
@@ -38,7 +38,7 @@ const selectors: SelectorBrandMap = {
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
     sizeVariations: '.b-product_details-variations > .m-size',
-    pruductCode: 'span[data-tau="b-product_details-id',
+    productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
@@ -60,7 +60,7 @@ const selectors: SelectorBrandMap = {
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
     sizeVariations: '.b-product_details-variations > .m-size',
-    pruductCode: 'span[data-tau="b-product_details-id',
+    productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
@@ -82,7 +82,7 @@ const selectors: SelectorBrandMap = {
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
     sizeVariations: '.b-product_details-variations > .m-size',
-    pruductCode: 'span[data-tau="b-product_details-id',
+    productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
@@ -104,7 +104,7 @@ const selectors: SelectorBrandMap = {
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
     sizeVariations: '.b-product_details-variations > .m-size',
-    pruductCode: 'span[data-tau="b-product_details-id',
+    productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
@@ -119,7 +119,31 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    searchField: '#header-search-input',
+    addToCart: '.b-product_addtocard-availability',
+    addToWishListButton: '.m-outline > span',
+    shippingInfoButton: '#product-details-btn-shipping',
+    returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
+    shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
+    selectColor: '#maincontent > div > div > div > div.l-pdp-top > main > div.b-product_details-form > div.b-product_details-variations > section.b-variations_item.m-swatch.m-color',
+    sizeVariations: '.b-product_details-variations > .m-size',
+    productTitle: '.product-detail > h1.product-name',
+    productCode: '.product-number > [itemprop="sku"]',
+    productPrice: '.product-price',
+    colorSwatches: 'div[role="radiogroup"]',
+    productImage: '#product-image-0',
+    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
+    miniCartProductIner: '.b-minicart_product-inner',
+    productDescription: 'div[data-id="descriptions"]',
+    productDelivery: '.b-product_delivery',
+    productReturnsDescription: '.b-product_shipping-returns',
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     addToCart: '#add-to-cart',
@@ -223,7 +247,7 @@ class PdpPage implements AbstractPage {
   };
 
   assertions = {
-    assertProductNameIsDisplayed (productName: string) {
+    assertProductNameIsDisplayed () {
       const productTitle = selectors[variables.brand].productTitle;
       cy.get(productTitle).should('be.visible');
 

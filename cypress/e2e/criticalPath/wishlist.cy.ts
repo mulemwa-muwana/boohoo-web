@@ -4,6 +4,7 @@ import WishListPage from '../../pom/wishlist.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import assertionText from '../../helpers/assertionText';
 import plpPage from 'cypress/pom/plp.page';
+import pdpPage from 'cypress/pom/pdp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -20,18 +21,14 @@ describe('Wishlist Page tests', function () {
       LoginPage.actions.login(credentials.username, credentials.password);
       HomePage.goto(); // This is added because user is redirected to MyAccount page after login
     });
-    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
-    } else {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
-    }
+    HomePage.goto();
+    HomePage.actions.findItemUsingSKU(variables.sku);
+    pdpPage.actions.selectSize();
   });
 
   it('Verify that item is saved to wishlist', () => {     
     const variables = Cypress.env() as EnvironmentVariables;      
-    plpPage.click.wishlistOnPlpImage(); 
+    pdpPage.click.addToWishList(); 
     if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com' 
     || variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com' ) {
       WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
@@ -40,18 +37,9 @@ describe('Wishlist Page tests', function () {
   }),
   it('Verify that user can add wishlist item to the cart', () => {
     HomePage.click.wishListIcon();
-    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'nastygal.com' || variables.brand == 'burton.co.uk' ) {
-      WishListPage.actions.chooseSizeDDL(1);
-      plpPage.assertions.assertItemIsAddedToWishlistColorChange();
-    } else {
-      WishListPage.actions.chooseSizeBHO();
-      WishListPage.actions.selectColourBHO(0);
-      WishListPage.actions.selectSizeBHO(0);
-    }
     WishListPage.click.addToCart();
   }),
   it('Verify that user can remove item from wishlist', () => {
-    plpPage.click.wishlistOnPlpImage(); 
     HomePage.click.wishListIcon();
     WishListPage.click.removeItemFromWishlist();
   });

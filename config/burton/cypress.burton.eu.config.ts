@@ -4,8 +4,8 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.burton-menswear.com/eu',
-    sku: 'ABB01243',
+    url: 'https://storefront:Oreo2022@dwstg.burton-menswear.com/eu',
+    sku: 'BBB01461-2',
     brand: 'burton.co.uk',
     locale: 'EU',
     language: 'EN',

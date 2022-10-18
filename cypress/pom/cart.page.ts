@@ -62,7 +62,7 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: '.b-cart_product-edit',
-    updateQuantityBtn: '.b-product_update-button_update',
+    updateQuantityBtn: '#quantity',
     setQuantityDDL: '.b-product_update-button_update',
     updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
     premierBlock: '.b-ngvip-details',

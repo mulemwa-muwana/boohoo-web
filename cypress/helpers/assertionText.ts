@@ -336,6 +336,20 @@ class AssertionText {
     ES: ''
   };
 
+  selectSizeSiteGenesis: TranslationMap = {
+    EN: ' Select UK Size',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   sizeErrorMsg: TranslationMap = {
     EN: 'Oops please select a size',
     FR: '\n                    Oups, veuillez choisir une taille\n                ',

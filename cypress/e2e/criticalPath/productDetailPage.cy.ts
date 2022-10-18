@@ -37,7 +37,11 @@ describe('Product Details Page tests', function () {
     PdpPage.actions.addToCart();
   });
   it('TC07 Verify if size is not selected user cannot add product to a bag', function () {
-    PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);
+    if (variables.brand == 'coastfashion.com') {
+      PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSizeSiteGenesis[variables.language]);
+    } else {
+      PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);
+    }
   });   
   it('TC08 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
@@ -45,7 +49,7 @@ describe('Product Details Page tests', function () {
     PdpPage.actions.addToCart();
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
-  it('TC09 Verify that save for later (heart icon) is functional when selected', function () {
+  it.only('TC09 Verify that save for later (heart icon) is functional when selected', function () {
     PdpPage.actions.selectSize();
     PdpPage.click.addToWishList();
     cy.wait(3000);

@@ -9,7 +9,7 @@ import Addresses from '../../helpers/addresses';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
-describe('Home Page', function () {
+describe('Shipping Page Registered user tests', function () {
   
   beforeEach (()=>{
 

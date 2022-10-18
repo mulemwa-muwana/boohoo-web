@@ -110,7 +110,7 @@ const selectors: SelectorBrandMap = {
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
   },
   'burton.co.uk': {
-    paynowBtnCC:'#payment-details-scheme > div > div.b-payment_accordion-submit.b-checkout_step-controls > div > button',
+    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaButton:'#payment-button-KlarnaUK',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
@@ -128,10 +128,10 @@ const selectors: SelectorBrandMap = {
     customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
-    paymentTypeCC: '#payment-button-scheme > .b-payment_accordion-icon',
+    paymentTypeCC: '#payment-button-scheme',
     paymentTypeKlarna: '',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
-    creditCardFieldsCardOwner: '#payment-details-scheme > div > fieldset > div > div > div > div.adyen-checkout__loading-input__form._1jpVsksYS5faJOp2y0Tpl4 > div.adyen-checkout__field.adyen-checkout__card__holderName > label > span.adyen-checkout__input-wrapper > input',
+    creditCardFieldsCardOwner: '.adyen-checkout__card__holderName .adyen-checkout__input',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
     creditCardFieldsExpirationYear: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
@@ -186,7 +186,43 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaButton:'#payment-button-KlarnaUK',
+    klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    customerDOBday: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    customerDOBmonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    customerDOByear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    paymentTypeCC: '#payment-button-scheme',
+    paymentTypeKlarna: '',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input',
+    emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
+    billingForm: '.b-billing_address-form',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
+    dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
+    dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
+    dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     paynowBtnCC:'#billingSubmitButton',
@@ -413,17 +449,20 @@ class BillingPage implements AbstractPage {
       // Get first iframe, inside its body get inner iframe and then find button
       cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
         const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
+
+        // If accept cookies button appears
+        cy.wrap(innerIframe).then($body => {
+          if ($body.find('#acceptAllButton').length) {
+            cy.wrap(innerIframe).find('#acceptAllButton').click();
+          }
+        });
         
         cy.wrap(innerIframe).find('#email').clear().type('test.user@boohoo.com');
         cy.wrap(innerIframe).find('#btnNext').click();
         cy.wrap(innerIframe).find('#password').click().type('boohoo123');
         cy.wrap(innerIframe).find('#btnLogin').click();
-        cy.wait(3000);
-      });
 
-      cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
-        const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
-        cy.wrap(innerIframe).find('#payment-submit-btn').should('be.visible').click();
+        cy.wrap(innerIframe, { timeout: 6000 }).find('#payment-submit-btn').should('be.visible').click();
       });
     },
     selectLaybuy () {

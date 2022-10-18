@@ -6,7 +6,7 @@ const selectors: SelectorBrandMap = {
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     resetPassword: '',
-    wishListIcon: '.b-header_wishlist-icon',
+    wishlistIcon: '.b-header_wishlist-icon',
     registrationButton: '.b-registration_benefits > .b-button',
     minicartIcon: '.b-minicart_icon-link',
     acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'nastygal.com': {
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',
     searchField: '#header-search-input',
@@ -28,7 +28,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-search_input-submit > .i-icon',
     registrationButton: '#page-body > div.b-miniaccount_panel > div > div > div > div.b-miniaccount-content > div.b-registration_benefits > a',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
@@ -37,18 +37,17 @@ const selectors: SelectorBrandMap = {
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
-    loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-header_login-icon > .i-icon',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
@@ -56,13 +55,22 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.user-account',
+    registrationButton: '.b-registration_benefits > .b-button',
+    wishlistIcon: '.icon-wishlist',
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     minicartIcon: '#js-minicart-quantity',
     loginIcon: '.b-header_login-icon > .i-icon',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
     searchIcon: '.js-search-icon',
     promotion: 'div[class="b-hero_carousel-track"]',
@@ -175,7 +183,7 @@ class HomePage implements AbstractPage {
       const searchIcon = selectors[variables.brand].searchField;
       cy.get(searchIcon).should('be.visible');
     },
-    assertSearchFiledPresent () {
+    assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;
       cy.get(searchField).should('be.visible');
     },
@@ -197,7 +205,7 @@ class HomePage implements AbstractPage {
     },
 
     // Counter (header) assertion
-    counterOnHeaderPresent () {
+    assertPromotionPresent () {
       const promotion = selectors[variables.brand].promotion;
       cy.get(promotion).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
@@ -217,15 +225,18 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
-      cy.get('.b-header_wishlist-icon > .i-icon').invoke('show').then(element => {
+      const wishListIcon = selectors[variables.brand].wishlistIcon;
+      cy.get(wishListIcon).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },
     assertCartIconPresent () {
-      cy.get('.b-minicart_icon-link').should('be.visible');
+      const minicartIcon = selectors[variables.brand].minicartIcon;
+      cy.get(minicartIcon).should('be.visible');
     },
     assertAccountIconPresent () {
-      cy.get('.b-header_login-icon').invoke('show').then(element => {
+      const loginIcon = selectors[variables.brand].loginIcon;
+      cy.get(loginIcon).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },

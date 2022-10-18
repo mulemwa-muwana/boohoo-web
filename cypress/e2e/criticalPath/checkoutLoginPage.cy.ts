@@ -6,7 +6,7 @@ import assertionText from 'cypress/helpers/assertionText';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
-describe('Home Page', function () {
+describe('Checkout Page', function () {
   
   beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;

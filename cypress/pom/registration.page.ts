@@ -24,7 +24,10 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    submitButton: ':nth-child(9) > .b-button',
+    emailError: '#dwfrm_profile_customer_email-error > span'
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
   'misspap.com': undefined

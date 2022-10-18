@@ -13,7 +13,7 @@ describe('Product Details Page tests', function () {
     HomePage.actions.findItemUsingSKU(variables.sku);
   });  
   it('TC01 Verify that Product name is showing',function () {
-    PdpPage.assertions.assertProductNameIsDisplayed(skuAssertions.skuTitle[variables.language]);
+    PdpPage.assertions.assertProductNameIsDisplayed();
   });
   it('TC02 Verify that Product price is showing',function () {
     PdpPage.assertions.assertProductPriceIsDisplayed();

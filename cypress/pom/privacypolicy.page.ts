@@ -19,7 +19,9 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    privacyNoticyPageTitle: 'h1 > strong',
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
   'misspap.com': undefined

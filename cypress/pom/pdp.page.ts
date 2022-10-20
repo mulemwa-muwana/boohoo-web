@@ -130,7 +130,7 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     searchField: '#header-search-input',
     addToCart: '#add-to-cart',
-    addToWishListButton: '.m-outline > span',
+    addToWishListButton: '.wishlist-button',
     shippingInfoButton: '#product-details-btn-shipping',
     returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
     shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
@@ -147,10 +147,11 @@ const selectors: SelectorBrandMap = {
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-text.mini-cart-header-product-added',
     miniCartProductIner: 'div.mini-cart-product-content',
-    productDescription: 'div[data-id="descriptions"]',
+    productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
-    productReturnsDescription: '.b-product_shipping-returns',
+    productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+    productDeliveryInfo: '#product-delivery-info-tab',
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
@@ -193,6 +194,7 @@ class PdpPage implements AbstractPage {
     },
     addToWishList () {
       const addToWishListButton = selectors[variables.brand].addToWishListButton;
+      cy.get(addToWishListButton, {timeout: 10000}).should('not.have.attr', 'disabled');
       cy.get(addToWishListButton).click({force: true});
     },
     shippingInfoButton () {
@@ -308,7 +310,7 @@ class PdpPage implements AbstractPage {
       const addedToWishlistMsg = selectors[variables.brand].addedToWishlistMsg; 
       cy.get(addedToWishlistMsg).should('contains.text', msg); //  Check how to switch between brands
     },
-    assertStyleNotesArePresent () {
+    assertProductDescriptionIsPresent () {
       const productDescription = selectors[variables.brand].productDescription;
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
@@ -318,7 +320,7 @@ class PdpPage implements AbstractPage {
       cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
       cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); //  Work only boohoo, other brands redirect to new tab
     },
-    assertDeliveryOptionsAvailableArkadia () {
+    assertDeliveryOptionsAreDisplayed () {
       const productDeliveryInfo = selectors[variables.brand].productDeliveryInfo;
       cy.get(productDeliveryInfo).should('be.visible');
     },

@@ -1,8 +1,8 @@
 import PdpPage from '../../pom/pdp.page';
 import HomePage from '../../pom/home.page';
-import skuAssertions from '../../helpers/skuAssertions';
 import assertionText from '../../helpers/assertionText';
 import pdpPage from '../../pom/pdp.page';
+import LoginPage from 'cypress/pom/login.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -49,38 +49,39 @@ describe('Product Details Page tests', function () {
     PdpPage.actions.addToCart();
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
-  it.only('TC09 Verify that save for later (heart icon) is functional when selected', function () {
+  it('TC09 Verify that save for later (heart icon) is functional when selected', function () {
     PdpPage.actions.selectSize();
     PdpPage.click.addToWishList();
     cy.wait(3000);
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
-    } else if (variables.brand == 'dorothyperkins.com' || variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk') {
+    } else if (variables.brand == 'coastfashion.com') {
+      LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitle[variables.language]);
+    }  else {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[variables.language]);
-    }  
-    PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[variables.language]);
+    }
   });
   it('TC10 Verify that Style Notes and Details & Care are displayed when configured', function () {
-    PdpPage.assertions.assertStyleNotesArePresent();
+    PdpPage.assertions.assertProductDescriptionIsPresent();
   });
   it('TC11 Verify that Shipping Info is displayed when configured', function () {
     if (variables.brand == 'boohoo.com') {
       PdpPage.click.shippingInfoButton();
       PdpPage.assertions.assertDeliveryInfoIsDisplayed();
     }
-    pdpPage.assertions.assertDeliveryOptionsAvailableArkadia();
+    pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
   });
   it('TC12 Verify that Returns Info carousel is displayed when configured', function () {
     if (variables.brand == 'dorothyperkins.com' || variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk') {
-      pdpPage.assertions.assertDeliveryOptionsAvailableArkadia();
+      pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
     } else {
       PdpPage.assertions.assertReturnInfoIsDisplayed(); 
     }
   });
-  it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
-    if (variables.brand == 'boohoo.com') {
+  if (variables.brand == 'boohoo.com') {
+    it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
       PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
-    }
-  });
+    });
+  }
  
 }); 

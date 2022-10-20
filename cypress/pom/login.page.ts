@@ -55,14 +55,16 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
   'coastfashion.com': {
-    loginIcon: '.b-header_login-icon > .i-icon',
-    loginEmail: '#dwfrm_login_email',
-    loginPassword: '#dwfrm_login_password',
-    loginButton:'button[data-tau="login_submit"]',
-    passwordReset: '#password-reset',
+    loginIcon: '.user-account',
+    loginLink: '.user-links > [title="Log In"]',
+    loginEmail: '[id^=dwfrm_login_username]',
+    loginPassword: '[id^=dwfrm_login_password]',
+    loginButton:'#dwfrm_login .login-page-button',
+    passwordReset: '.password-reset',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box'
+    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box',
+    wishlistLoginTitle: '.login-title'
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
@@ -109,19 +111,24 @@ class LoginPage implements AbstractPage {
   assertions = {
     assertLoginFormIsPresent () {
       const loginForm = selectors[variables.brand].loginForm;
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' ) {
-        cy.get(loginForm).should('be.visible');
-      } else {
-        cy.get(loginForm).should('be.visible');
-      }
-      
+      cy.get(loginForm).should('be.visible');
+    },
+    assertWishlistLoginTitleIsPresent (title: string) {
+      const wishlistLoginTitle = selectors[variables.brand].wishlistLoginTitle;
+      cy.get(wishlistLoginTitle).should('contain.text', title);
     }
   };
 
   actions = {
     login (user: string, pass: string, opts = { force: false }) {
       const loginIcon = selectors[variables.brand].loginIcon;
-      cy.get(loginIcon).click({ force: opts.force });
+      if(variables.brand == 'coastfashion.com') {
+        cy.get(loginIcon).invoke('show');
+        const loginLink = selectors[variables.brand].loginLink;
+        cy.get(loginLink).click({force:true});
+      } else {
+        cy.get(loginIcon).click({ force: opts.force });
+      }
       cy.wait(3000);
       const loginEmail = selectors[variables.brand].loginEmail;
       cy.get(loginEmail).type(user); 

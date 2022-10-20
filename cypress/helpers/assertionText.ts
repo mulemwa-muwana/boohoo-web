@@ -70,6 +70,20 @@ class AssertionText {
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
   };
 
+  WishlistLoginTitle: TranslationMap = {
+    EN: '\nWish List\nLog In\n',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don’t forget about me!',  
     FR: 'Ne m’oublie pas!',

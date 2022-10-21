@@ -80,10 +80,10 @@ const selectors: SelectorBrandMap = {
     sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
-    addToCart: 'div.b-wishlist_tile-actions > button > span',
-    removeItemFromWishlist: 'a[data-tau="wishlist_product_delete"]',
+    addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
+    removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    itemIsAddedToWishlist: '.wishlist-table form',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'

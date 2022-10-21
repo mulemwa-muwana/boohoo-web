@@ -7,50 +7,60 @@ const selectors: SelectorBrandMap = {
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
-    passwordReset: '#password-reset',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '.b-dialog-window',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box'
+    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box',
+    errorLoginMessage: '.b-message-copy'
   },
   'nastygal.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
-    passwordReset: '#password-reset',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '.b-dialog-window',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: '.b-login_form'
+    loginForm: '.b-login_form',
+    errorLoginMessage: '.b-message-copy'
   },
   'dorothyperkins.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
-    passwordReset: '#password-reset',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '.b-dialog-window',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner'
+    loginForm: ':nth-child(1) > .l-service-section_inner',
+    errorLoginMessage: '.b-message-copy'
   },
   'burton.co.uk': {
     loginIcon: '.b-header_login-icon > .i-icon',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
-    passwordReset: '#password-reset',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '.b-dialog-window',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner'
+    loginForm: ':nth-child(1) > .l-service-section_inner',
+    errorLoginMessage: '.b-message-copy'
   },
   'wallis.co.uk': {
     loginIcon: '.b-header_login-icon > .i-icon',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
-    passwordReset: '#password-reset',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '.b-dialog-window',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner'
+    loginForm: ':nth-child(1) > .l-service-section_inner',
+    errorLoginMessage: '.b-message-copy'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -60,11 +70,13 @@ const selectors: SelectorBrandMap = {
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
-    passwordReset: '.password-reset',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
-    resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box',
-    wishlistLoginTitle: '.login-title'
+    forgotPassword: '.password-reset',
+    forgotPasswordMessage: '#ShowResetPasswordDialog',
+    resetPasswordEmailField: '#dwfrm_requestpassword_email',
+    resetPasswordBtn: '.reset-password-btn',
+    loginForm: '#dwfrm_login',
+    wishlistLoginTitle: '.login-title',
+    errorLoginMessage: '.error-form'
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
@@ -72,10 +84,12 @@ const selectors: SelectorBrandMap = {
     loginEmail: '[id*="login_username"]',
     loginPassword: '[id*="login_password"]',
     loginButton:'[name*="dwfrm_login_login"]',
-    passwordReset: '#password-reset',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '#ShowResetPasswordDialog',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner'
+    loginForm: ':nth-child(1) > .l-service-section_inner',
+    errorLoginMessage: '.error-form'
   },
   'misspap.com': undefined
 };
@@ -96,11 +110,15 @@ class LoginPage implements AbstractPage {
   click = {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      cy.get(loginIcon).click({ force: true });
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(loginIcon).invoke('show');
+      } else {
+        cy.get(loginIcon).click({ force: true });
+      }
     },
-    passwordResetLink (opts = { force: true }) {
-      const passwordReset = selectors[variables.brand].passwordReset;
-      cy.get(passwordReset).click({ force: opts.force });
+    forgotPasswordLink (opts = { force: true }) {
+      const forgotPassword = selectors[variables.brand].forgotPassword;
+      cy.get(forgotPassword).click({ force: opts.force });
     },
     resetPasswordButon () {
       const resetPasswordBtn = selectors[variables.brand].resetPasswordBtn;
@@ -116,7 +134,20 @@ class LoginPage implements AbstractPage {
     assertWishlistLoginTitleIsPresent (title: string) {
       const wishlistLoginTitle = selectors[variables.brand].wishlistLoginTitle;
       cy.get(wishlistLoginTitle).should('contain.text', title);
-    }
+    },
+    //  Login Attempts
+    assertErrorLoginMessageIsPresent (text: string) {
+      const errorLoginMessage = selectors[variables.brand].errorLoginMessage;
+      cy.get(errorLoginMessage).should('be.visible').and('contain.text', text);
+    },
+    assertForgotPasswordMessageisDisplayed (email: string) {
+      const forgotPasswordMessage = selectors[variables.brand].forgotPasswordMessage;
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(forgotPasswordMessage).should('be.visible');
+      } else {
+        cy.get(forgotPasswordMessage).should('be.visible').and('contain', email);
+      }
+    },
   };
 
   actions = {

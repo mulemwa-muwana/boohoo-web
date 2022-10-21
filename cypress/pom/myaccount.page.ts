@@ -259,7 +259,7 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
   'coastfashion.com': {
-    accountLogout: 'a[data-tau="account_signout"]',
+    accountLogout: 'a[title="Log out"]',
     myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
     ordersLink: 'a[data-tau="navigation_orderHistory"]',
     wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
@@ -302,7 +302,7 @@ const selectors: SelectorBrandMap = {
     shippingInfo: '.order-date > .value',
     billingAndPaymentInfo: '.processing',
     accountDetailsEmailField: '#account-email-input',
-    nameGreeting: 'p[data-tau="greeting_message"]',
+    nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
     addressNameLine: '.mini-address-name',
     addressSummaryLine: '.mini-address-location-group',

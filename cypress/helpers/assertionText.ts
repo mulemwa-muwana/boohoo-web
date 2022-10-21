@@ -154,6 +154,20 @@ class AssertionText {
     ES: ''
   };
 
+  RegistrationPageExistingEmailSiteGenesis: TranslationMap = {
+    EN: 'Email address already taken. Please use different email address or try to log in with current one',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PrivacyPolicyURL: TranslationMap = {
     EN: 'privacy-notice',
     FR: 'avis-de-confidentialité',
@@ -390,6 +404,20 @@ class AssertionText {
     IL: 'יש לך עוד 4 ניסיונות כניסה',
     IT: 'Hai altri 4 tentativi di accesso',
     ES: 'Tienes 4 intentos más de inicio de sesión'
+  };
+
+  loginErrorSiteGenesis: TranslationMap = {
+    EN: 'Looks like either your email address or password were incorrect. Please try again.',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   unknownEmail: TranslationMap = {

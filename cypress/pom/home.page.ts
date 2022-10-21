@@ -59,8 +59,8 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
-    registrationButton: '.b-registration_benefits > .b-button',
-    wishlistIcon: '.icon-wishlist',
+    registrationButton: 'a[title="Register"]',
+    wishlistIcon: '.header-wishlist > .header-wishlist-link',
     searchField: '.js-header-search-input',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
@@ -69,13 +69,12 @@ const selectors: SelectorBrandMap = {
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     minicartIcon: '#js-minicart-quantity',
-    loginIcon: '.b-header_login-icon > .i-icon',
+    loginIcon: '.user-account',
     registrationButton: '.b-registration_benefits > .b-button',
     wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
     searchIcon: '.js-search-icon',
     promotion: 'div[class="b-hero_carousel-track"]',
-
   },
   'misspap.com': undefined
 };
@@ -106,8 +105,9 @@ class HomePage implements AbstractPage {
       cy.get(resetPassword).click();
     },
     registrationButton () {
+      const loginIcon = selectors[variables.brand].loginIcon;
       const registrationButton = selectors[variables.brand].registrationButton;
-      cy.get(registrationButton).should('be.visible').click();
+      cy.get(registrationButton).click({force:true});
     },
 
     // Objects for search subsystem tests
@@ -242,13 +242,6 @@ class HomePage implements AbstractPage {
       });
     },
 
-    //  Login Attempts
-    assertErrorLoginMessageIsPresent (text: string) {
-      cy.get('.b-message-copy').should('be.visible').and('contain.text', text);
-    },
-    assertForgotPasswordMessageisDisplayed (email: string) {
-      cy.get('.b-dialog-window').should('be.visible').and('contain', email);
-    },
     assertCountryURL (country: string) {
       cy.url().should('include', country);
     },

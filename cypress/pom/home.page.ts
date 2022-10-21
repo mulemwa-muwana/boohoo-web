@@ -36,6 +36,7 @@ const selectors: SelectorBrandMap = {
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
+    loginIcon: '.b-header_login-icon',
     registrationButton: '.b-registration_benefits > .b-button',
     wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
@@ -96,9 +97,9 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
-    logInIcon (opts = { force: true }) {
+    logInIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      cy.get(loginIcon).invoke('show').click({ force: opts.force });
+      cy.get(loginIcon).invoke('show').click({ force: true });
     },
     forgotPasswordLink () {
       const resetPassword = selectors[variables.brand].resetPassword;

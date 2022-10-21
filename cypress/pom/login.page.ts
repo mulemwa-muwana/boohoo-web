@@ -94,9 +94,9 @@ class LoginPage implements AbstractPage {
   }
 
   click = {
-    loginIcon (opts = { force: true }) {
+    loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      cy.get(loginIcon).click({ force: opts.force });
+      cy.get(loginIcon).click({ force: true });
     },
     passwordResetLink (opts = { force: true }) {
       const passwordReset = selectors[variables.brand].passwordReset;
@@ -120,14 +120,14 @@ class LoginPage implements AbstractPage {
   };
 
   actions = {
-    login (user: string, pass: string, opts = { force: false }) {
+    login (user: string, pass: string) {
       const loginIcon = selectors[variables.brand].loginIcon;
+      const loginLink = selectors[variables.brand].loginLink;
       if(variables.brand == 'coastfashion.com') {
         cy.get(loginIcon).invoke('show');
-        const loginLink = selectors[variables.brand].loginLink;
         cy.get(loginLink).click({force:true});
       } else {
-        cy.get(loginIcon).click({ force: opts.force });
+        cy.get(loginIcon).click({force:true});
       }
       cy.wait(3000);
       const loginEmail = selectors[variables.brand].loginEmail;

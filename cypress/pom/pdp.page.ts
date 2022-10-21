@@ -4,7 +4,7 @@ import homePage from './home.page';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     searchField: '#header-search-input',
-    addToCart: '.b-product_addtocard-availability',
+    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
     addToWishListButton: '.m-outline > span',
     shippingInfoButton: '#product-details-btn-shipping',
     returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
@@ -20,7 +20,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
+    addToCartTitle: '.b-minicart-inner .b-minicart-title',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -31,7 +31,7 @@ const selectors: SelectorBrandMap = {
     // ViewCart: '.b-minicart-actions > .m-outline',
   },
   'nastygal.com': {
-    addToCart: '.b-product_addtocard-availability',
+    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
     addToWishListButton: '.b-product_wishlist-button',
     returnLink: 'a[href="https://us1-dev.nastygal.com/eu/page/returns-and-refunds-customer-service.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -43,7 +43,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
+    addToCartTitle: '.b-minicart-inner .b-minicart-title',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -54,7 +54,7 @@ const selectors: SelectorBrandMap = {
     addedToWishlistMsg: '.b-message',
   },
   'dorothyperkins.com': {
-    addToCart: '[data-widget="processButton"]',
+    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
     addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
     returnLink: 'a[href="https://dwdev.dorothyperkins.com/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -66,7 +66,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
+    addToCartTitle: '.b-minicart-inner .b-minicart-title',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -78,7 +78,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
   },
   'burton.co.uk': {
-    addToCart: '.b-product_addtocard-availability',
+    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
     addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
     returnLink: 'a[href="https://dwdev.burton.co.uk/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -90,7 +90,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
+    addToCartTitle: '.b-minicart-inner .b-minicart-title',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -102,7 +102,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
   },
   'wallis.co.uk': {
-    addToCart: '.b-product_addtocard-availability',
+    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
     addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -114,7 +114,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
+    addToCartTitle: '.b-minicart-inner .b-minicart-title',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -145,8 +145,8 @@ const selectors: SelectorBrandMap = {
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
-    addToCartTitle: '.mini-cart-header-text.mini-cart-header-product-added',
-    miniCartProductIner: 'div.mini-cart-product-content',
+    addToCartTitle: '.mini-cart-header-product-added',
+    miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '#ui-id-5',
@@ -188,9 +188,9 @@ class PdpPage implements AbstractPage {
 
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
-        cy.get(addToCart).eq(0).should('be.visible').click({ force: true });
-      } else { cy.get(addToCart).should('be.visible').click(); }
+      cy.get(addToCart, {timeout: 10000}).should('not.have.attr', 'disabled');
+      cy.get(addToCart, {timeout: 10000}).should('not.have.attr', 'data-is-out-of-stock');
+      cy.get(addToCart).click({force: true});
     },
     addToWishList () {
       const addToWishListButton = selectors[variables.brand].addToWishListButton;

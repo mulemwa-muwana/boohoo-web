@@ -45,12 +45,12 @@ class AssertionText {
   WishlistItemsAddedAlert: TranslationMap = {
     EN: 'Product added to wish list',
     FR: 'Produit ajouté à la liste de souhaits',
-    NL: 'Product toegevoegd aan verlanglijst',
+    NL: '\n    \n    Bewaar voor later\n',
     DE: 'Produkt zur Wunschliste hinzugefügt',
     DK: 'Produkt tilføjet til ønskeliste',
     FI: 'Tuote lisätty toivelistaan',
     NO: 'Produkt lagt til ønskeliste',
-    SE: 'Produkten har lagts till på önskelistan',
+    SE: '\n    \n    Sparad\n',
     IL: 'מוצר נוסף לרשימת המשאלות',
     IT: 'Prodotto aggiunto alla lista dei desideri',
     ES: 'Producto añadido a la lista de deseos'
@@ -190,7 +190,7 @@ class AssertionText {
     DK: '\nBekendtgørelse om beskyttelse af personlige oplysninger\n',
     FI: '\nTietosuojailmoitus\n',
     NO: '\nPersonvernerklæring\n',
-    SE: '\nSekretessmeddelande\n',
+    SE: '\n                Integritetspolicy\n            ',
     IL: '\nהודעת פרטיות\n',
     IT: '\nInformativa sulla Privacy\n',
     ES: '\nAviso de Privacidad\n'
@@ -492,13 +492,13 @@ class AssertionText {
 
   unsuccessfulSubscription: TranslationMap = {
     EN: 'Hold up! That doesn’t seem right.',
-    NL: 'Vertraging! Dat lijkt niet juist.',
+    NL: 'Wacht! Er gaat iets mis.',
     DE: 'Achtung! Das scheint nicht richtig zu sein.',
     FR: 'Tenir bon! Cela ne semble pas juste.',
     DK: 'Hold op! Det virker ikke rigtigt.',
     FI: 'Kestä! Se ei vaikuta oikealta.',
     NO: 'Vent! Det virker ikke riktig.',
-    SE: 'Vänta! Det verkar inte rätt.',
+    SE: 'Vänta! Något gick fel.',
     IL: 'המתן! זה לא נראה נכון.',
     IT: 'Sostenere! Non sembra giusto.',
     ES: '¡Sostener! Eso no parece correcto.'
@@ -506,13 +506,13 @@ class AssertionText {
 
   unsuccessfulSubscriptionNG: TranslationMap = {
     EN: 'Please enter a valid email address',
-    NL: '',
+    NL: 'Wacht! Er gaat iets mis.',
     DE: 'Halten! Das scheint nicht richtig zu sein',
     FR: '',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Vänta! Något gick fel.',
     IL: '',
     IT: '',
     ES: ''
@@ -539,7 +539,7 @@ class AssertionText {
     FR: 'déjà inscrit',
     DK: 'allerede tilmeldt',
     FI: 'jo ilmoittautunut',
-    NO: 'allerede registrert',
+    NO: 'Wacht! Er gaat iets mis.',
     SE: 'redan anmält sig',
     IL: 'כבר נרשמת',
     IT: 'già iscritto',
@@ -968,13 +968,27 @@ class AssertionText {
 
   completeTheLook: TranslationMap = { 
     EN: '',
-    NL: '',
+    NL: 'Maak de look af',
     DE: '',
     FR: 'Compléter ce look',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Fixa looken',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  DOBmonth: TranslationMap = { 
+    EN: 'May',
+    NL: 'Mei',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'Maj',
     IL: '',
     IT: '',
     ES: ''

@@ -10,8 +10,6 @@ import assertionText from '../../helpers/assertionText';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
-
-
 describe('Home Page', function () {
 
   // This will execute before every single test, we're just going to the baseURL.
@@ -85,7 +83,7 @@ describe('Home Page', function () {
       if (variables.brand == 'boohoo.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
-      }  else if (variables.brand == 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       } else {
@@ -162,13 +160,13 @@ describe('Home Page', function () {
 
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsH1[variables.language]);
-          TermsAndConditionsPage.assertions.assertOnPage('terms-and-conditions')
+          TermsAndConditionsPage.assertions.assertOnPage('terms-and-conditions');
         } else if (variables.brand == 'coastfashion.com') {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsSiteGenesisH1[variables.language]);
-          TermsAndConditionsPage.assertions.assertOnPage('terms-of-use')
+          TermsAndConditionsPage.assertions.assertOnPage('terms-of-use');
         } else {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsArcadiaH1[variables.language]);
-          TermsAndConditionsPage.assertions.assertOnPage('cs-terms-and-conditions')
+          TermsAndConditionsPage.assertions.assertOnPage('cs-terms-and-conditions');
         }
       });
     });
@@ -236,7 +234,7 @@ describe('Home Page', function () {
       }
     });
     it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
+      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
     });
     it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
       GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[variables.language]);
@@ -312,9 +310,9 @@ describe('Home Page', function () {
     it('Verify that Footer Navigation Component is present and Links are functional - Environmental & Social Responsibility', () => {
       if (variables.brand == 'boohoo.com' && variables.locale == 'EU') {
         GlobalFooter.actions.checkFooterLinkByText('boohoo Social Responsibility');
-      }else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
+      } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[variables.language]);
-      } else if (variables.brand == 'coastfashion.com'){
+      } else if (variables.brand == 'coastfashion.com') {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespSiteGenesis[variables.language]);
       }
     });
@@ -368,13 +366,13 @@ describe('Home Page', function () {
 
   describe('Verify that the global header is displayed.', () => {
     it('Check global header is visible when scrolling down.', () => {
-      if (variables.brand != 'coastfashion.com'){
+      if (variables.brand != 'coastfashion.com') {
         cy.scrollTo('bottom');
         GlobalFooter.assertions.assertHeaderIsVisible();
       }
     });
     it('Check global header displays.', () => {
-      if (variables.brand != 'coastfashion.com'){
+      if (variables.brand != 'coastfashion.com') {
         GlobalFooter.assertions.assertHeaderIsVisible();
       }
     });

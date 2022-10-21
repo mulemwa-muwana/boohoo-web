@@ -10,19 +10,19 @@ class megaMenuLinksLanguages {
     NO: '',
     SE: 'ALLA KLÄDER',
     IL: 'כל הבגדים',
-    IT: 'TUTTO L’ABBIGLIAMENTO',
+    IT: 'TUTTO L/`ABBIGLIAMENTO',
     ES: 'TODA LA ROPA',
   };
 
   subnavClothingArkadiaNewIn: TranslationMap = { 
     EN: 'New',
-    NL: '',
+    NL: 'Alles Bekijken',
     DE: '',
     FR: '',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Alla Nyheter',
     IL: '',
     IT: '',
     ES: '',
@@ -30,13 +30,13 @@ class megaMenuLinksLanguages {
 
   linkArkadiaNewIn: TranslationMap = { 
     EN: 'New',
-    NL: '',
+    NL: 'NIEUW',
     DE: '',
     FR: '',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'NYHETER',
     IL: '',
     IT: '',
     ES: '',
@@ -85,17 +85,17 @@ class megaMenuLinksLanguages {
   };
 
   urlLinkNewIn: TranslationMap = { 
-    EN: 'new-in',
-    NL: '',
-    DE: '',
-    FR: '',
+    EN: 'new',
+    NL: 'nieuw',
+    DE: 'neu',
+    FR: 'nouveautés',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'nyheter',
     IL: '',
-    IT: '',
-    ES: '',
+    IT: 'nuovi',
+    ES: 'novedades',
   };
 
   saleLink: TranslationMap = {

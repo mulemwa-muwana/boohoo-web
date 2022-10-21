@@ -37,7 +37,7 @@ describe('Order confirmation page for guest user', function () {
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
-    BillingPage.actions.selectDate('23', 'May', '2001');
+    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
   });

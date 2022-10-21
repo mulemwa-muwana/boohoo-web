@@ -37,7 +37,7 @@ const selectors: SelectorBrandMap = {
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: '.b-header_wishlist-icon',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',

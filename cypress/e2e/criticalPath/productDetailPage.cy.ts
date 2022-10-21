@@ -34,7 +34,7 @@ describe('Product Details Page tests', function () {
   });
   it('TC06 Verify that it is possible to select a size when available', function () {
     PdpPage.actions.selectSize();  
-    PdpPage.actions.addToCart();
+    PdpPage.click.addToCart();
   });
   it('TC07 Verify if size is not selected user cannot add product to a bag', function () {
     if (variables.brand == 'coastfashion.com') {
@@ -46,7 +46,7 @@ describe('Product Details Page tests', function () {
   it('TC08 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize();
-    PdpPage.actions.addToCart();
+    PdpPage.click.addToCart();
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
   it('TC09 Verify that save for later (heart icon) is functional when selected', function () {

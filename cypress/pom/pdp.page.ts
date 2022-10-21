@@ -254,11 +254,6 @@ class PdpPage implements AbstractPage {
         });
       }
     },
-    addToCart () {
-      cy.wait(5000);
-      const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).click({force: true}); //  Button[data-widget-event-click="addToCart"] one more locator for AddToCartField
-    }
   };
 
   assertions = {

@@ -12,14 +12,15 @@ describe('Cart basic functionality for guest user', function () {
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize();
-    PdpPage.actions.addToCart();
+    PdpPage.click.addToCart();
+    cy.wait(2000);
     HomePage.click.cartIcon();
   }); 
   it('Verify the presence of table with all products added to cart', function () {   
     CartPage.assertions.assertTableWithProductIsVisible();
   });
   it('Verify that Product Image is visible', function () {
-    CartPage.assertions.assertProductImageIsDisplayed('.l-cart_product-image');
+    CartPage.assertions.assertProductImageIsDisplayed();
   });
   it('Verify that Product name is visible', function () {
     CartPage.assertions.assertProductTitleIsVisible();
@@ -34,18 +35,20 @@ describe('Cart basic functionality for guest user', function () {
     if (variables.brand == 'boohoo.com') {
       CartPage.actions.editCartQuantity('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
+    } else if (variables.brand == 'coastfashion.com') {
+      CartPage.actions.editCartQuantitySiteGenesis('3');
+      CartPage.assertions.assertQuantityIsDisplayed('3');
     } else {
       CartPage.actions.editCartQuantityArkadia(2);
       CartPage.assertions.assertQuantityIsDisplayed('3');
     }
-    
   });
   it('Verify that user can remove product from cart', function () {
     CartPage.click.clearCart();
     CartPage.assertions.assertCartIsEmpty();
   });
 
-  if (variables.brand == 'boohoo.com'|| variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' && variables.locale == 'UK') {
+  if (['boohoo.com', 'nastygal.com', 'dorothyperkins.com', 'coastfashion.com'].includes(variables.brand) && variables.locale == 'UK') {
     it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
       CartPage.assertions.assertPremierSlotsAreVisible();
     });
@@ -60,7 +63,7 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.actions.openPayPalSandbox(); 
   });
 
-  if (variables.brand == 'boohoo.com' || variables.brand == 'burton.co.uk' || variables.brand == 'nastygal.com' && variables.locale == 'UK'|| variables.locale == 'IE') {
+  if (['boohoo.com', 'burton.co.uk', 'nastygal.com', 'coastfashion.com'].includes(variables.brand) && (variables.locale == 'UK'|| variables.locale == 'IE')) {
     it('Verify that Klarna CTA is displayed and functional', function () {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox();
@@ -92,7 +95,7 @@ describe('Cart page for Registered user', function () {
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize();
-    PdpPage.actions.addToCart();
+    PdpPage.click.addToCart();
     HomePage.click.cartIcon();
   }); 
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {

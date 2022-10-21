@@ -45,7 +45,7 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
   'coastfashion.com': {
-    guestCheckoutEmail: '#dwfrm_login_guestEmail',
+    guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',

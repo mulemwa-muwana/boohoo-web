@@ -86,7 +86,7 @@ class HomePage implements AbstractPage {
 
     cy.visit(variables.url);
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }

@@ -46,10 +46,10 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
-    userEmailField: '#dwfrm_login_email',
-    passwordField:'#dwfrm_login_password',
+    userEmailField: '[id^="dwfrm_login_username"]',
+    passwordField:'[id^="dwfrm_login_password"]',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: 'button[data-tau="login_submit"]',
+    continueAsRegisteredUser: '.login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'

@@ -6,36 +6,40 @@ import checkoutPage from '../../pom/checkoutLogin.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
+import billingPage from 'cypress/pom/billing.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Shipping Page Registered user tests', function () {
   
   beforeEach (()=>{
-
-    // Const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     cy.wait(3000);
     pdpPage.actions.selectSize();
     cy.wait(3000);
     pdpPage.click.addToCart();
+    cy.wait(3000);
     HomePage.click.cartIcon();
     cy.wait(3000);
     cartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       checkoutPage.actions.userEmailField(credentials.username);
+      if (variables.brand == 'coastfashion.com') {
+        checkoutPage.click.continueAsRegisteredUser();
+      }
       checkoutPage.actions.passwordField(credentials.password);
       checkoutPage.click.continueAsRegisteredUser();
     });
   });
-
-  it('Verify that promo code field is dispayed', () => {
-    shippingPage.assertions.assertPromoCodeFieldIsDispayed();
-  });
-
-  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
+  
+  if (variables.brand != 'coastfashion.com') {
+    it('Verify that promo code field is dispayed', () => {
+      shippingPage.assertions.assertPromoCodeFieldIsDispayed();
+    });
+  }
+  
+  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -52,16 +56,17 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     if (variables.locale != 'IE') {
       shippingPage.click.proceedToBilling();
+      if (variables.brand == 'coastfashion.com') {
+        shippingPage.click.proceedToBillingAddressVerification();
+      }
       cy.wait(4000);
-      shippingPage.assertions.assertUserProceededToBillinPage();
+      shippingPage.assertions.assertUserProceededToBillingPage();
     }   
   });
 
   it('Verify that user can edit saved shipping address', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     shippingPage.click.editAddress();
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -69,12 +74,16 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       shippingPage.click.addNewAddress();
     }
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityField(localeAddress.city);
-    shippingPage.actions.postcodeField(localeAddress.postcode);
-    shippingPage.actions.phoneNumberField(localeAddress.phone);
+    shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+    shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+    shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertNewAddressIsAdded(localeAddress.addrline1);
+    if (variables.brand == 'coastfashion.com') {
+      shippingPage.click.proceedToBillingAddressVerification();
+    } 
+    billingPage.assertions.assertBillingPageIsLoaded();
+    billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
 
   it('Verify that user can cancel editing shipping address', () => {
@@ -94,7 +103,6 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -102,7 +110,6 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -110,7 +117,6 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -118,44 +124,44 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
-  it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
-    shippingPage.click.addNewAddressButton();
-    shippingPage.click.proceedToBilling();
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
-    } else {
-      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
-    }
-  });
-
-  it('Verify that "Enter manually" button allows user to enter address details', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (variables.brand == 'boohoo.com') {
+  if (variables.brand != 'coastfashion.com') {
+    it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
       shippingPage.click.addNewAddressButton();
+      shippingPage.click.proceedToBilling();
+      if (variables.brand == 'boohoo.com') {
+        shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
+      } else {
+        shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
+      }
+    });
+  }
 
-      // ShippingPage.click.addAddressManually();
-    } else {
-      shippingPage.click.addNewAddressButton();
-      shippingPage.actions.selectCountry(localeAddress.country);
-      cy.wait(4000);
+  if (variables.brand != 'coastfashion.com') {
+    it('Verify that "Enter manually" button allows user to enter address details', () => {
+      const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+      if (variables.brand == 'boohoo.com') {
+        shippingPage.click.addNewAddressButton();
 
-      // ShippingPage.click.enterManuallyAddressDetails();
-    }
-    shippingPage.actions.selectFirstAddressFromAddressLookup(localeAddress.addrline1);
-    shippingPage.assertions.assertManualAddressFieldsAreDispayed();
-  });
+        // ShippingPage.click.addAddressManually();
+      } else {
+        shippingPage.click.addNewAddressButton();
+        shippingPage.actions.selectCountry(localeAddress.country);
+        cy.wait(4000);
+
+        // ShippingPage.click.enterManuallyAddressDetails();
+      }
+      shippingPage.actions.selectFirstAddressFromAddressLookup(localeAddress.addrline1);
+      shippingPage.assertions.assertManualAddressFieldsAreDispayed();
+    });
+  }
 
   it('Verify that user is able to add address details manually', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -169,6 +175,11 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
+    } else if (variables.brand == 'coastfashion.com') {
+      shippingPage.actions.adressLine1(localeAddress.addrline1);
+      shippingPage.actions.cityField(localeAddress.city);
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
@@ -176,23 +187,28 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }   
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertNewAddressIsAdded(localeAddress.addrline1);
+    if (variables.brand == 'coastfashion.com') {
+      shippingPage.click.proceedToBillingAddressVerification();
+    } 
+    billingPage.assertions.assertBillingPageIsLoaded();
+    billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
 
   it('Verify that PREMIER can be added to the cart', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com') {
       shippingPage.click.addPremierToCartFromShippingPage();
-      shippingPage.assertions.assertCartShippingPageContainsContainsProduct(assertionText.Premier[variables.language]);
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
     } else if (variables.brand == 'nastygal.com' ) {
       shippingPage.click.addPremierToCartFromShippingPage();
-      shippingPage.assertions.assertCartShippingPageContainsContainsProduct(assertionText.PremierNG[variables.language]);
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
+    } else if (variables.brand == 'coastfashion.com'){
+      shippingPage.click.addPremierToCartFromShippingPage();
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
     }
   });
 
   it('Verify that user is able to select standard shipping method', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod2');
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -202,6 +218,11 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
+      shippingPage.actions.adressLine1(localeAddress.addrline1);
+      shippingPage.actions.cityField(localeAddress.city);
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
+    } else if (variables.brand == 'coastfashion.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -214,6 +235,7 @@ describe('Shipping Page Registered user tests', function () {
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
+    billingPage.assertions.assertBillingPageIsLoaded();
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
   });
 
@@ -222,7 +244,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that order total is dispayed', () => {
-    shippingPage.assertions.assertOrderTotalIsDsipayed();
+    shippingPage.assertions.assertOrderTotalIsDisplayed();
   });
 
   it('Verify that user can Edit cart from shipping page', () => {
@@ -231,8 +253,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user is able to proceed to billing page', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod2');
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -251,10 +272,19 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
-    } 
+    } else if (variables.brand == 'coastfashion.com') {
+      shippingPage.actions.adressLine1(localeAddress.addrline1);
+      shippingPage.actions.cityField(localeAddress.city);
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
+    }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertUserProceededToBillinPage();
+    if (variables.brand == 'coastfashion.com') {
+      shippingPage.click.proceedToBillingAddressVerification();
+    }
+    billingPage.assertions.assertBillingPageIsLoaded();
+    shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
 });

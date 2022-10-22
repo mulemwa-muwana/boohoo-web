@@ -6,6 +6,7 @@ import shippingPage from '../../pom/shipping.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
+import billingPage from 'cypress/pom/billing.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -45,6 +46,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
     }   
     shippingPage.click.proceedToBilling();
+    billingPage.assertions.assertBillingPageIsLoaded();
     if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
     }
@@ -176,7 +178,7 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   it('Verify that order total is dispayed', () => {
-    shippingPage.assertions.assertOrderTotalIsDsipayed();
+    shippingPage.assertions.assertOrderTotalIsDisplayed();
   });
 
   it('Verify that guest user can Edit cart from shipping page', () => {
@@ -201,7 +203,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertGuestEmailFiledDispayes();
-    shippingPage.assertions.assertUserProceededToBillinPage();
+    shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
 });

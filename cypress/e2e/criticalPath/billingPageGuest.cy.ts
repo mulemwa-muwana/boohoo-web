@@ -40,6 +40,7 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.click.proceedToBilling();
+    BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   it('Verify that shipping address block is filled with data', function () {

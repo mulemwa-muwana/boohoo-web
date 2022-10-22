@@ -294,6 +294,20 @@ class AssertionText {
     ES: ''
   };
 
+  PremierSiteGenesis: TranslationMap = {
+    EN: 'VIP',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PremierText: TranslationMap = {
     EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
     FR: '\nLIVRAISON GRATUITE LE LENDEMAIN PENDANT 1 AN !\n',

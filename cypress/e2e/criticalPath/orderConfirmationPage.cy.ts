@@ -37,6 +37,7 @@ describe('Order confirmation page for guest user', function () {
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
+    BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectDate('23', 'May', '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
@@ -93,6 +94,7 @@ describe('Order confirmation page for registered user', function () {
 
     //  ShippingPage.actions.clickPreferedShippingMethod(variables);
     shippingPage.click.proceedToBilling();
+    BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     orderConfirmationPage.click.closePopUp();
     BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();

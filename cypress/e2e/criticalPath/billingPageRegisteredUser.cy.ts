@@ -44,6 +44,7 @@ describe('Billing page functionality for registered user', function () {
     //   ShippingPage.actions.countyField(localeAddress.county);
    
     shippingPage.click.proceedToBilling();
+    BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   it('Verify that shipping address block is filled with data', function () {

@@ -15,6 +15,7 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    shippingAddress: '.b-address > .b-address-summary',
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
     shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
@@ -58,6 +59,7 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardOwner : '#dwfrm_billing_creditCardFields_cardOwner',
     creditcreditCardFieldsExpirationYearCardFields_expirationMonth: '#dwfrm_billing_creditCardFields_expirationMonth',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    shippingAddress: '.b-address > .b-address-summary',
     addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
@@ -76,6 +78,7 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaButton:'#payment-button-KlarnaUK',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    shippingAddress: '.b-address > .b-address-summary',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -114,6 +117,7 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaButton:'#payment-button-KlarnaUK',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
+    shippingAddress: '.b-address > .b-address-summary',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -151,6 +155,7 @@ const selectors: SelectorBrandMap = {
     paynowBtnCC:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    shippingAddress: '.b-address > .b-address-summary',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -191,6 +196,7 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaButton:'#payment-button-KlarnaUK',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
+    shippingAddress: '.address-radios-content',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -504,8 +510,19 @@ class BillingPage implements AbstractPage {
   };
 
   assertions = {
+    assertBillingPageIsLoaded() {
+      if (variables.brand != 'coastfashion.com') {
+        // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
+        cy.intercept(/checkoutshopper/).as('paymentMethodsSection');
+        cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+      }
+    },
     assertShippingAddressPresent () {
       cy.get('section[class="b-checkout_card b-summary_group-item m-full-width"]').should('be.visible').and('not.be.empty');
+    },
+    assertNewShippingAddress (addressline1: string) {
+      const shippingAddress = selectors[variables.brand].shippingAddress;
+      cy.get(shippingAddress).should('contain.text', addressline1);
     },
     assertShippingMethodPresent (shippingMethod: string) {
       cy.get('p.b-summary_shipping-method > span').should('be.visible').and('include.text', shippingMethod.trim());

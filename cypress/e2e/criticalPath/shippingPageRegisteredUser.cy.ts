@@ -25,6 +25,7 @@ describe('Shipping Page Registered user tests', function () {
     cartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       checkoutPage.actions.userEmailField(credentials.username);
+
       if (variables.brand == 'coastfashion.com') {
         checkoutPage.click.continueAsRegisteredUser();
       }
@@ -35,7 +36,7 @@ describe('Shipping Page Registered user tests', function () {
   
   if (variables.brand != 'coastfashion.com') {
     it('Verify that promo code field is dispayed', () => {
-      shippingPage.assertions.assertPromoCodeFieldIsDispayed();
+      shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     });
   }
   
@@ -92,7 +93,6 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that Add new address button allows user to add address details', () => {
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'IE') {

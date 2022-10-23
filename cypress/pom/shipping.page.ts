@@ -200,7 +200,7 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
-    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '#add-to-cart',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
@@ -228,10 +228,14 @@ const selectors: SelectorBrandMap = {
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
     guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     shippingCityShipping: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     shippingCounty: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    dobDay: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
     orderTotal: '.order-total',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
@@ -241,7 +245,7 @@ const selectors: SelectorBrandMap = {
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
-    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
@@ -302,12 +306,6 @@ class ShippingPage implements AbstractPage {
       const addAddressManually = selectors[variables.brand].addAddressManually;
       cy.get(addAddressManually).should('be.visible').click({force:true});
     },
-    confirmEmail () {
-      const confirmEmail = selectors[variables.brand].confirmEmail;
-      if (variables.brand == 'oasis-stores.com') {
-        cy.get(confirmEmail).type('euboohoo+guest1@gmail.com');
-      }
-    },
     editCart () {
       const editCart = selectors[variables.brand].editCart;
       cy.get(editCart).should('be.visible').click();
@@ -342,7 +340,9 @@ class ShippingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      cy.get(enterManually).click({force: true});
+      if (variables.brand != 'coastfashion.com') {
+        cy.get(enterManually).click({force: true});
+      }
     }
   
   };
@@ -436,11 +436,23 @@ class ShippingPage implements AbstractPage {
         cy.contains(shippingMethod).click({force: true});
       });
     },
+    selectDate (day: string, month: string, year: string) {   // Only for Site Genesis - coast and oasis
+      const dobDay = selectors[variables.brand].dobDay;
+      const dobMonth = selectors[variables.brand].dobMonth;
+      const dobYear = selectors[variables.brand].dobYear;
+      cy.get(dobDay).select(day);
+      cy.get(dobMonth).select(month);
+      cy.get(dobYear).select(year);
+    },
+    confirmEmail (email: string) {  // Only for Site Genesis - coast and oasis
+      const confirmEmail = selectors[variables.brand].confirmEmail;
+      cy.get(confirmEmail).type(email);
+    },
 
   };
 
   assertions = {
-    assertPromoCodeFieldIsDispayed () {
+    assertPromoCodeFieldIsDisplayed () {
       const coupon = selectors[variables.brand].coupon;
       cy.get(coupon).should('be.visible');
     },
@@ -479,7 +491,7 @@ class ShippingPage implements AbstractPage {
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
       cy.get(shippingPhoneNumber).should('contain.value', text);
     },
-    assertGuestEmailFiledDispayes () {
+    assertGuestEmailFieldDisplayed () {
       const guestEmailField = selectors[variables.brand].guestEmailField;
       cy.get(guestEmailField).should('be.visible');
     },

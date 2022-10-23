@@ -532,6 +532,20 @@ class AssertionText {
     DE: 'Kredit-/Debitkarte'
   };
 
+  assertPaymentMethodSiteGenesis: TranslationMap = {
+    EN: 'Card',
+    NL: '',
+    DK: '',
+    FR: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+    DE: ''
+  };
+
   addedToCard: TranslationMap = {
     EN: '\nAdded to your cart\n',
     NL: '\nToegevoegd aan uw winkelwagen\n',

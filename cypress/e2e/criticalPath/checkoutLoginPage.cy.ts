@@ -16,28 +16,41 @@ describe('Checkout Page', function () {
     pdpPage.actions.selectSize();
     cy.wait(3000);
     pdpPage.click.addToCart();
+    cy.wait(3000);
     HomePage.click.cartIcon();
+    if (variables.brand != 'coastfashion.com') {
+      pdpPage.click.miniCartViewCartBtn();
+    }
     cartPage.click.proceedToCheckout();
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    CheckoutPage.assertions.assertGuestCheckoutEmail();
-    CheckoutPage.assertions.assertUserEmailField();
-    CheckoutPage.assertions.assertPasswordFieldForRegisteredUserIsVisible();
-  });
-
-  it('Verify Premier is displayed and can be added to the cart', () => {
-    if (variables.brand == 'boohoo.com') {
-      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
-      CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
-    } else if (variables.brand == 'nastygal.com') {
-      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
+    if (variables.brand == 'coastfashion.com') {
+      CheckoutPage.assertions.assertUserEmailField();
+    } else {
+      CheckoutPage.assertions.assertGuestCheckoutEmail();
+      CheckoutPage.assertions.assertUserEmailField();
+      CheckoutPage.assertions.assertPasswordFieldForRegisteredUserIsVisible();
     }
   });
+
+  if (variables.brand != 'coastfashion.com') {
+    it('Verify Premier is displayed and can be added to the cart', () => {
+      if (variables.brand == 'boohoo.com') {
+        CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
+        CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
+      } else if (variables.brand == 'nastygal.com') {
+        CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
+      }
+    });
+  }
 
   it('Verify that registered user is able to login', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
+      if (variables.brand == 'coastfashion.com') {
+        CheckoutPage.click.continueAsRegisteredUser();
+      }
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });

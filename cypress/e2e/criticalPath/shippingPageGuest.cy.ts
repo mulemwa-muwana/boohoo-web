@@ -34,7 +34,6 @@ describe('Shipping Page Guest user tests', function () {
       pdpPage.click.miniCartViewCartBtn();
     }
     cartPage.click.proceedToCheckout();
-
     checkoutPage.actions.guestCheckoutEmail(this.guestEmail);
     checkoutPage.click.continueAsGuestBtn();
   });

@@ -20,13 +20,18 @@ describe('Billing page functionality for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    PdpPage.click.miniCartViewCartBtn();
+    if (variables.brand != 'coastfashion.com') {
+      PdpPage.click.miniCartViewCartBtn();
+    }
     if (variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
       PdpPage.click.viewCart; 
     }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
+      if (variables.brand == 'coastfashion.com') {
+        CheckoutPage.click.continueAsRegisteredUser();
+      }
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
@@ -39,12 +44,14 @@ describe('Billing page functionality for registered user', function () {
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-
+    
     // If (variables.locale == 'IE') {
-    //   ShippingPage.actions.countyField(localeAddress.county);
-   
-    shippingPage.click.proceedToBilling();
-    BillingPage.assertions.assertBillingPageIsLoaded();
+      //   ShippingPage.actions.countyField(localeAddress.county);
+      shippingPage.click.proceedToBilling();
+      if (variables.brand == 'coastfashion.com') {
+        shippingPage.click.proceedToBillingAddressVerification();
+      }
+      BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -62,23 +69,40 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('Verify that email address is displayed and it cannot be changed', function () {
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      BillingPage.assertions.assertEmailIsCorrect(credentials.username);
+  if (variables.brand != 'coastfashion.com') {
+    it('Verify that email address is displayed and it cannot be changed', function () {
+      cy.fixture('users').then((credentials: LoginCredentials) => {
+        BillingPage.assertions.assertEmailIsCorrect(credentials.username);
+      });
+      BillingPage.assertions.assertEmailFieldCantBeChanged();
     });
-    BillingPage.assertions.assertEmailFieldCantBeChanged();
-  });
+  }
   it('Verify that billing address can be same as shipping address', function () {
+    if (variables.brand == 'coastfashion.com') {
+      BillingPage.click.changeShippingAddress();
+    }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
+    if (variables.brand == 'coastfashion.com') {
+      BillingPage.click.changeShippingAddress();
+    }
     BillingPage.click.uncheckShippingCheckbox();
     BillingPage.actions.selectAddressFromBook();
   });
   it('Verify that registered user can submit new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    BillingPage.click.addNewBilingAddress();
-    BillingPage.actions.addBillingAddress(localeAddress.addrline1, localeAddress.city, localeAddress.postcode, localeAddress.county);
+    if (variables.brand == 'coastfashion.com') {
+      BillingPage.click.changeShippingAddress();
+      BillingPage.click.uncheckShippingCheckbox();
+      shippingPage.click.proceedToBilling();
+      BillingPage.click.addNewBilingAddress();
+      BillingPage.assertions.assertBillingAddressFormIsPresent();
+      BillingPage.actions.addBillingAddressRegisteredUser(localeAddress.addrline1, localeAddress.city, localeAddress.postcode);
+    } else {
+      BillingPage.click.addNewBilingAddress();
+      BillingPage.actions.addBillingAddressRegisteredUser(localeAddress.addrline1, localeAddress.city, localeAddress.postcode);
+    }
   });
 
   /* This can be tested only if Promo code is available and Gift card 

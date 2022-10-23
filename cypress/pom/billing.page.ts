@@ -41,6 +41,8 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.b-address_selector-actions > button:nth-child(2)',
+    billingAddressFromBook: '.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label',
     dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
@@ -81,6 +83,8 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.b-address_selector-actions > button:nth-child(2)',
+    billingAddressFromBook: '.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label',
     dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
@@ -126,6 +130,8 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.b-address_selector-actions > button:nth-child(2)',
+    billingAddressFromBook: '.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label',
     dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
@@ -171,6 +177,8 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.b-address_selector-actions > button:nth-child(2)',
+    billingAddressFromBook: '.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label',
     dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
@@ -216,6 +224,8 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.b-address_selector-actions > button:nth-child(2)',
+    billingAddressFromBook: '.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label',
     dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
@@ -237,7 +247,7 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
-    changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"',
+    changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
     shippingCheckbox: 'div[class*="useAsBillingAddress"]',
@@ -259,6 +269,8 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.use-another-address',
+    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
     dobDate: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -302,7 +314,7 @@ class BillingPage implements AbstractPage {
   click = {
     changeShippingAddress () {
       const changeShippingAddress = selectors[variables.brand].changeShippingAddress;
-      cy.get(changeShippingAddress).click();
+      cy.get(changeShippingAddress).click({force: true});
     },
     addNewBilingAddress () {
       const addNewBillingAddress = selectors[variables.brand].addNewBillingAddress;
@@ -394,16 +406,25 @@ class BillingPage implements AbstractPage {
       const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
     },
-    addBillingAddress (line1: string, city: string, state: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
       const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
       const billingPostCode = selectors[variables.brand].billingPostCode;
       this.enterManuallyAddressDetails ();
-      cy.get(billingAddressFieldsAddress1).should('be.visible').type(line1);
-      cy.get(billingAddressFieldCity).type(city);
-      cy.get(billingAddressFieldsStateCode).type(state);
-      cy.get(billingPostCode).type(postcode);
+      cy.get(billingAddressFieldsAddress1).clear().type(line1);
+      cy.get(billingAddressFieldCity).clear().type(city);
+      cy.get(billingAddressFieldsStateCode).clear().type(state);
+      cy.get(billingPostCode).clear().type(postcode);
+    },
+    addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
+      const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
+      const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
+      const billingPostCode = selectors[variables.brand].billingPostCode;
+      this.enterManuallyAddressDetails ();
+      cy.get(billingAddressFieldsAddress1).clear().type(line1);
+      cy.get(billingAddressFieldCity).clear().type(city);
+      cy.get(billingPostCode).clear().type(postcode);
     },
     addPromoCode (promo: string) {
       const couponCode = selectors[variables.brand].couponCode;
@@ -419,12 +440,10 @@ class BillingPage implements AbstractPage {
       cy.get(addGiftCert).click();
     },
     selectAddressFromBook () {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-        cy.get('.b-form_section > .b-address_selector-actions > .m-link').click({force: true});
-        cy.get('.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label').click({force: true});
-      } else {
-        cy.get('#dwfrm_billing > fieldset.b-billing_address > div.b-checkout_card.m-list > fieldset > div > div:nth-child(2) > div > label').click();
-      }
+    const viewAllBillingAddresses = selectors[variables.brand].viewAllBillingAddresses;
+    const billingAddressFromBook = selectors[variables.brand].billingAddressFromBook;
+    cy.get(viewAllBillingAddresses).click({force: true});
+    cy.get(billingAddressFromBook).click({force: true});
     },
     selectKlarna () {
       const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;

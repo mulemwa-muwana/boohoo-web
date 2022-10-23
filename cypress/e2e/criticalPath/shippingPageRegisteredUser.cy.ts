@@ -22,6 +22,9 @@ describe('Shipping Page Registered user tests', function () {
     cy.wait(3000);
     HomePage.click.cartIcon();
     cy.wait(3000);
+    if (variables.brand != 'coastfashion.com') {
+      pdpPage.click.miniCartViewCartBtn();
+    }
     cartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       checkoutPage.actions.userEmailField(credentials.username);

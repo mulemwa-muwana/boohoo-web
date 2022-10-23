@@ -72,7 +72,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
-    BillingPage.click.shippingCheckbox();
+    BillingPage.click.uncheckShippingCheckbox();
     BillingPage.actions.selectAddressFromBook();
   });
   it('Verify that registered user can submit new billing address', function () {
@@ -95,18 +95,18 @@ describe('Billing page functionality for registered user', function () {
   }); */
 
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
-    cy.fixture('paymentMethods').then((method: PaymentMethodSelector)=>{
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.card);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.payPal);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.klarna);
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.clearPay);
-      if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
-        BillingPage.assertions.assertPaymentMethodIsDisplayed(method.amazonPay);
-      }
-      BillingPage.assertions.assertPaymentMethodIsDisplayed(method.layBuy);
-
+    BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
+    BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
+    BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
+    BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+      BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
+      BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
+      BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
+    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK') {
+      BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
+    }
       // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
-    });
   });
   describe('Verify that registered user can place orders with available payment methods', function () {
     it('Verify that registered user can place order using Credit Card - Visa)', function () {

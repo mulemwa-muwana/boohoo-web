@@ -15,6 +15,9 @@ describe('Cart basic functionality for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(2000);
     HomePage.click.cartIcon();
+    if (variables.brand != 'coastfashion.com') {
+      PdpPage.click.miniCartViewCartBtn();
+    }
   }); 
   it('Verify the presence of table with all products added to cart', function () {   
     CartPage.assertions.assertTableWithProductIsVisible();

@@ -30,6 +30,9 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(3000);
     HomePage.click.cartIcon();
     cy.wait(3000);
+    if (variables.brand != 'coastfashion.com') {
+      pdpPage.click.miniCartViewCartBtn();
+    }
     cartPage.click.proceedToCheckout();
 
     checkoutPage.actions.guestCheckoutEmail(this.guestEmail);
@@ -54,7 +57,6 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
     }   
     shippingPage.click.proceedToBilling();
-    billingPage.assertions.assertBillingPageIsLoaded();
     if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
     }

@@ -303,8 +303,10 @@ class ShippingPage implements AbstractPage {
       cy.get(editSavedAddress).click();
     },
     addAddressManually () {
-      const addAddressManually = selectors[variables.brand].addAddressManually;
-      cy.get(addAddressManually).should('be.visible').click({force:true});
+      if (variables.brand != 'coastfashion.com') {
+        const addAddressManually = selectors[variables.brand].addAddressManually;
+        cy.get(addAddressManually).should('be.visible').click({force:true});
+      }
     },
     editCart () {
       const editCart = selectors[variables.brand].editCart;
@@ -436,7 +438,7 @@ class ShippingPage implements AbstractPage {
         cy.contains(shippingMethod).click({force: true});
       });
     },
-    selectDate (day: string, month: string, year: string) {   // Only for Site Genesis - coast and oasis
+    selectDate (day: string, month: string, year: string) {   // Only for Site Genesis brands
       const dobDay = selectors[variables.brand].dobDay;
       const dobMonth = selectors[variables.brand].dobMonth;
       const dobYear = selectors[variables.brand].dobYear;
@@ -444,7 +446,7 @@ class ShippingPage implements AbstractPage {
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
     },
-    confirmEmail (email: string) {  // Only for Site Genesis - coast and oasis
+    confirmEmail (email: string) {  // Only for Site Genesis brands
       const confirmEmail = selectors[variables.brand].confirmEmail;
       cy.get(confirmEmail).type(email);
     },

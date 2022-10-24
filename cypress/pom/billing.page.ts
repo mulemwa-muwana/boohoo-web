@@ -389,15 +389,15 @@ class BillingPage implements AbstractPage {
 
       cy.get('body').then($body => {
         if ($body.find('[data-ref="newAdyenCardBlock"]').attr('hidden') == 'hidden') {  
-          cy.get('.b-payment_options_group-actions > button').click();
+          cy.get('.b-payment_options_group-actions > button').click({force:true});
         }
       });
 
-      cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).should('be.visible').type(cardNo);
-      cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).should('be.visible').type(date);
-      cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).should('be.visible').type(code);
-      cy.get(creditCardFieldsCardOwner).type(cardOwner);
-      cy.get(paynowBtnCC).click();
+      cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).should('be.visible').type(cardNo, {force:true});
+      cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).should('be.visible').type(date, {force:true});
+      cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).should('be.visible').type(code, {force:true});
+      cy.get(creditCardFieldsCardOwner).type(cardOwner, {force:true});
+      cy.get(paynowBtnCC).click({force:true});
 
       if (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
         cy.get('.adyen-checkout__iframe', { timeout: 20000 }).should('be.visible');
@@ -594,6 +594,7 @@ class BillingPage implements AbstractPage {
         }
       });
 
+      cy.wait(5000);
       cy.get('[data-testid="login-identity-input"]', { timeout: 30000 }).clear();
       cy.wait(2000);
       cy.get('[data-testid="login-identity-input"]', { timeout: 30000 }).type('ukboohoo@outlook.com');

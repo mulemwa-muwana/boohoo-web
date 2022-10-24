@@ -76,7 +76,7 @@ describe('Boohoo order placement', () => {
     generateArtefact(variables.brand, paymentMethod);
   });
 
-  it.skip('can select Clearpay as payment method and generate an artefact', function () {
+  it('can select Clearpay as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Clearpay';
     if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
       this.skip();

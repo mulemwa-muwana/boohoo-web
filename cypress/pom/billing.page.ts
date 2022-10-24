@@ -585,22 +585,22 @@ class BillingPage implements AbstractPage {
         cy.get('#billingSubmitButton').click({ force: true });
       } else {
         cy.get('#payment-button-CLEARPAY').click({ force: true });
-        cy.get('#payment-details-CLEARPAY button[type="submit"]', { timeout: 10000 }).click();
+        cy.get('#payment-details-CLEARPAY button[type="submit"]', { timeout: 20000 }).click();
       }
   
-      cy.get('body', { timeout: 10000 }).then($body => {
+      cy.get('body', { timeout: 20000 }).then($body => {
         if ($body.find('[data-testid="summary-button"]').length > 0) {  
           cy.get('[data-testid="summary-button"]').click();
         }
       });
 
-      cy.get('[data-testid="login-identity-input"]', { timeout: 20000 }).clear();
+      cy.get('[data-testid="login-identity-input"]', { timeout: 60000 }).clear();
       cy.wait(2000);
-      cy.get('[data-testid="login-identity-input"]').type('ukboohoo@outlook.com');
-      cy.get('[data-testid="login-identity-button"]').click();
-      cy.get('[data-testid="login-password-input"]').type('Boohoo!23');
-      cy.get('[data-testid="login-password-button"]').click();
-      cy.get('[data-testid="summary-button"]', { timeout: 20000 }).click();
+      cy.get('[data-testid="login-identity-input"]', { timeout: 60000 }).type('ukboohoo@outlook.com');
+      cy.get('[data-testid="login-identity-button"]', { timeout: 60000 }).click();
+      cy.get('[data-testid="login-password-input"]', { timeout: 60000 }).type('Boohoo!23');
+      cy.get('[data-testid="login-password-button"]', { timeout: 60000 }).click();
+      cy.get('[data-testid="summary-button"]', { timeout: 60000 }).click();
     },
   
   };

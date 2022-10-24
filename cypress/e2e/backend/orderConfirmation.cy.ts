@@ -36,6 +36,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.click.proceedToBilling();
+    BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   it('can select Credit Card as payment method and generate an artefact', function () {

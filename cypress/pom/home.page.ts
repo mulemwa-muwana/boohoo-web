@@ -36,6 +36,7 @@ const selectors: SelectorBrandMap = {
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
+    loginIcon: '.b-header_login-icon',
     registrationButton: '.b-registration_benefits > .b-button',
     wishlistIcon: '.b-header_wishlist-icon',
     searchField: '#header-search-input',
@@ -58,8 +59,8 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
-    registrationButton: '.b-registration_benefits > .b-button',
-    wishlistIcon: '.icon-wishlist',
+    registrationButton: 'a[title="Register"]',
+    wishlistIcon: '.header-wishlist > .header-wishlist-link',
     searchField: '.js-header-search-input',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
@@ -68,13 +69,12 @@ const selectors: SelectorBrandMap = {
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     minicartIcon: '#js-minicart-quantity',
-    loginIcon: '.b-header_login-icon > .i-icon',
+    loginIcon: '.user-account',
     registrationButton: '.b-registration_benefits > .b-button',
     wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
     searchIcon: '.js-search-icon',
     promotion: 'div[class="b-hero_carousel-track"]',
-
   },
   'misspap.com': undefined
 };
@@ -86,7 +86,7 @@ class HomePage implements AbstractPage {
 
     cy.visit(variables.url);
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }
@@ -96,17 +96,18 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
-    logInIcon (opts = { force: true }) {
+    logInIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      cy.get(loginIcon).invoke('show').click({ force: opts.force });
+      cy.get(loginIcon).invoke('show').click({ force: true });
     },
     forgotPasswordLink () {
       const resetPassword = selectors[variables.brand].resetPassword;
       cy.get(resetPassword).click();
     },
     registrationButton () {
+      const loginIcon = selectors[variables.brand].loginIcon;
       const registrationButton = selectors[variables.brand].registrationButton;
-      cy.get(registrationButton).should('be.visible').click();
+      cy.get(registrationButton).click({force:true});
     },
 
     // Objects for search subsystem tests
@@ -241,13 +242,6 @@ class HomePage implements AbstractPage {
       });
     },
 
-    //  Login Attempts
-    assertErrorLoginMessageIsPresent (text: string) {
-      cy.get('.b-message-copy').should('be.visible').and('contain.text', text);
-    },
-    assertForgotPasswordMessageisDisplayed (email: string) {
-      cy.get('.b-dialog-window').should('be.visible').and('contain', email);
-    },
     assertCountryURL (country: string) {
       cy.url().should('include', country);
     },

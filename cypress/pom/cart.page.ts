@@ -2,6 +2,8 @@ import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
+    productsTable: '.b-cart_products',
+    productImage: '.l-cart_product-image',
     productPrice: '.l-cart_product-total',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
@@ -20,6 +22,8 @@ const selectors: SelectorBrandMap = {
     productName: 'a[class="b-cart_product-name"]',
   },
   'nastygal.com': {
+    productsTable: '.b-cart_products',
+    productImage: '.l-cart_product-image',
     productPrice: '.l-cart_product-total',
     subtotal: 'tr[class="b-summary_table-item m-total"]',
     cartQuantity: '.b-cart_product-qty',
@@ -39,6 +43,8 @@ const selectors: SelectorBrandMap = {
     addPremierToCart:'.b-ngvip-button'
   },
   'dorothyperkins.com': {
+    productsTable: '.b-cart_products',
+    productImage: '.l-cart_product-image',
     productPrice: '.m-user_cart > .b-summary_table-value',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
@@ -58,6 +64,8 @@ const selectors: SelectorBrandMap = {
     productName: '.b-cart_product-title > a',
   },
   'burton.co.uk': {
+    productsTable: '.b-cart_products',
+    productImage: '.l-cart_product-image',
     productPrice: '.m-user_cart > .b-summary_table-value',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
@@ -77,6 +85,8 @@ const selectors: SelectorBrandMap = {
     productName: '.b-cart_product-title > a',
   },
   'wallis.co.uk': {
+    productsTable: '.b-cart_products',
+    productImage: '.l-cart_product-image',
     productPrice: '.m-user_cart > .b-summary_table-value',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
@@ -98,22 +108,24 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
   'coastfashion.com': {
-    productPrice: '.l-cart_product-total',
-    subtotal: '.m-total > .b-summary_table-value',
-    cartQuantity: '.b-cart_product-qty',
-    editQuantity: 'button[data-tau="cart_product_edit"]',
+    productsTable: '#cart-table',
+    productImage: '[class*="item-image"] img[class*="product-tile-image"]',
+    productPrice: '[class*="item-price"]',
+    subtotal: '.price-adjusted-total',
+    cartQuantity: '.cart-input-quantity',
+    editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
-    premierBlock: '.m-with_actions',
-    addPremierToCart: 'button[data-tau="product_addToCart"]',
-    PayPalCTA: '.zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button-0',
+    premierBlock: '[data-itemid="coastvip"]',
+    addPremierToCart: '#quickviewbutton',
+    PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '[data-tau="cart_bottom_section"] [data-tau="start_checkout_bottom"]',
-    clearCart: '.b-cart_product-remove',
-    emptyCartTitle: '.b-cart_empty-title',
-    productDetails: '.l-cart_product-details',
-    productName: 'a[class="b-cart_product-name"]',
+    proceedToCheckout: '[class*="js-second-button-checkout"]',
+    clearCart: '[class*="button-remove"]',
+    emptyCartTitle: '.cart-empty-title',
+    productDetails: '.variations',
+    productName: '.name > a',
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
@@ -171,12 +183,11 @@ class CartPage implements AbstractPage {
       cy.get('.b-cart_product-remove').eq(index).click();
     },
     openPayPalSandbox () {
-      
-      cy.get('.zoid-component-frame').click({force: true});
+      const payPalCTA = selectors[variables.brand].PayPalCTA;
+      cy.get(payPalCTA).click({force: true});
       cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
       
         cy.stub(win, 'open');
-      
       });
       cy.iframe('.zoid-component-frame').find('.paypal-button').should('be.visible').click({force:true});
       cy.wait(8000);
@@ -217,15 +228,25 @@ class CartPage implements AbstractPage {
       cy.get(editQuantity).click({force: true});
       cy.get(updateQuantityDDL).select(quantity,{force: true});
       cy.get(updateQuantityBtn).click({force: true});
+    },
+
+    editCartQuantitySiteGenesis (quantity: string) {
+      const editQuantity = selectors[variables.brand].editQuantity;
+      cy.get(editQuantity).clear().type(quantity);
+      cy.get(editQuantity).blur();
+      cy.intercept('**/cart').as('cartPage');
+      cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
     }
   };
 
   assertions = {
     assertTableWithProductIsVisible () {
-      cy.get('.b-cart_products').should('be.visible');
+      const productsTable = selectors[variables.brand].productsTable;
+      cy.get(productsTable).should('be.visible');
     },
-    assertProductImageIsDisplayed (pictureId: string) {
-      cy.get(pictureId).then(element => {
+    assertProductImageIsDisplayed () {
+      const productImage = selectors[variables.brand].productImage;
+      cy.get(productImage).then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
@@ -245,7 +266,11 @@ class CartPage implements AbstractPage {
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
-      cy.get(cartQuantity).should('contain', quantity);
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(cartQuantity).should('have.value', quantity);
+      } else {
+        cy.get(cartQuantity).should('contain', quantity);
+      }
     },
     assertCartIsEmpty () {
       const emptyCartTitle = selectors[variables.brand].emptyCartTitle;

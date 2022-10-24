@@ -8,8 +8,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Login Functionality tests', function () {
 
   beforeEach(() => {
-    HomePage.goto(); 
-
+    HomePage.goto();
   });
     
   it('Verify that user can login with valid credentials', function () {
@@ -17,33 +16,31 @@ describe('Login Functionality tests', function () {
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
     });
-
   });
-
+  
   it('Verify that user can not login with invalid credentials', function () {
-    if (variables.brand == 'boohoo.com') {
-      HomePage.click.acceptCookies();
-    }
-      
-    LoginPage.actions.login('euboohoo@gmail.com', 'boohoo12345');    
-    HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
-
+    cy.fixture('users').then((credentials: LoginCredentials) => {    
+      LoginPage.actions.login(credentials.username, 'invalid12345');
+      if (variables.brand == 'coastfashion.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
+      } else {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
+      }
+    });
   });
-    
+  
   it('Verify that user can not login with non-registered mail address', function () {
-    if (variables.brand == 'boohoo.com') {
-      HomePage.click.acceptCookies();
-    }   
-    LoginPage.actions.login('unknown@mail.com', 'boohoo123');
-    HomePage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
- 
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
+      if (variables.brand == 'coastfashion.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
+      } else {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
+      }
+    });
   });
     
   it('Verify that user can log out', function () {
-    if (variables.brand == 'boohoo.com') {
-      HomePage.click.acceptCookies();
-    }
-
     cy.fixture('users').then((credentials: LoginCredentials) => {   
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
@@ -53,15 +50,12 @@ describe('Login Functionality tests', function () {
   });
 
   it('Verify that user can start process of reseting password using the "Forgot your password?" link', function () {
-    if (variables.brand == 'boohoo.com') {
-      HomePage.click.acceptCookies();
-    }
-    LoginPage.click.loginIcon();
-    LoginPage.click.passwordResetLink();
+    LoginPage.goto();
+    LoginPage.click.forgotPasswordLink();
     cy.wait(2000);
     LoginPage.actions.resetPasswordEmail('jelenaboohoo@gmail.com');
     LoginPage.click.resetPasswordButon();
-    HomePage.assertions.assertForgotPasswordMessageisDisplayed('jelenaboohoo@gmail.com');
+    LoginPage.assertions.assertForgotPasswordMessageisDisplayed('jelenaboohoo@gmail.com');
   });
 
 });

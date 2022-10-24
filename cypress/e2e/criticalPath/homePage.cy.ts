@@ -16,9 +16,6 @@ describe('Home Page', function () {
   beforeEach(() => {
     HomePage.goto();
 
-    /* If (variables.brand == 'nastygal.com') {
-      HomePage.actions.closeNastygalPopup();
-    }*/
   });
 
   /* Describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
@@ -37,7 +34,7 @@ describe('Home Page', function () {
        
   // HEADER
   describe('Header verifications', () => {
-    it('Header Logo', () => {
+    it('Header Logo', () => {  
       homePage.assertions.assertLogoPresent();
     });
     
@@ -193,197 +190,206 @@ describe('Home Page', function () {
         GlobalFooter.click.twitterLink();
       });
       
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-        it('TikTok', () => {
+      it('TikTok', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
           SocialsPage.assertions.assertTikTokIconIsPresent();
           GlobalFooter.click.tiktokLink();
-        });
-      }
+        }
+      });
       
-      if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
-        it('YouTube', () => {
+      it('YouTube', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
           SocialsPage.assertions.assertYouTubeIconIsPresent();
           GlobalFooter.click.youtubeLink();
-        });
-      }
+        }
+      });
       
-      if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
-        it('Pintrest', () => {
+      it('Pintrest', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
           SocialsPage.assertions.assertPinterestIconIsPresent();
           GlobalFooter.click.pintrestLink();
-        });
-      }
+        }
+      });
       
-      if (variables.brand == 'boohoo.com') {
-        it('TheFix', () => {
+      it('TheFix', () => {
+        if (variables.brand == 'boohoo.com') {
           SocialsPage.assertions.assertTheFixIconIsPresent();
           GlobalFooter.click.theFixLink();
-        });
-      }
-    });
-      
-    it('Verify that Payment and Delivery Providers are present as content slot.', () => {
-      GlobalFooter.assertions.assertPaymentOptionsArePresent();
-    });
-        
-    it('Verify that App Banner is present as content slot.', () => {
-      GlobalFooter.assertions.assertAppBannerPresent();
-    });
-
-    // Each of these will go back to the previous URL once the action has been completed.
-
-    it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);
-      } else {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrderArcadia[variables.language]);
-      }
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
-      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
-      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
-      if (variables.brand == 'boohoo.com') {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
-      } else if (variables.brand == 'coastfashion.com') {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoSiteGenesis[variables.language]);
-      } else {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);
-      }
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - About boohoo', () => {
-      if (variables.brand == 'boohoo.com')
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAbout[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
-      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - The boohoo App', () => {
-      if (variables.brand == 'boohoo.com')
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackApp[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - boohoo Premier', () => {
-      if (variables.brand == 'boohoo.com' )
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkPremier[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', () => {
-      GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Discount & Promo Codes', () => {
-      if (variables.brand == 'boohoo.com') 
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') 
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
-    });
-
-    /*
-        It('Verify that Footer Navigation Component is present and Links are functional - Refer a Friend', () => {
-        GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');
+        }
       });
-      */
-    it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', () => {
-      if ((variables.brand == 'boohoo.com' && variables.locale == 'UK') || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com')
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Become a Partner', () => {
-      if (variables.brand == 'boohoo.com')
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.becomePartner[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Sustainability', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'coastfashion.com')
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.sustainability[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Klarna', () => {
-      if (!(variables.brand == 'boohoo.com' && variables.locale == 'EU'))
-        GlobalFooter.actions.checkFooterLinkByText('Klarna');
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Clearpay', () => {
-      if (variables.locale == 'UK' || variables.locale == 'EU') {
-        GlobalFooter.actions.checkFooterLinkByText('Clearpay'); 
-      }
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com')
-        GlobalFooter.actions.checkFooterLinkByText('Laybuy');
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {
-      if (variables.brand == 'boohoo.com')
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Environmental & Social Responsibility', () => {
-      if (variables.brand == 'boohoo.com' && variables.locale == 'EU') {
-        GlobalFooter.actions.checkFooterLinkByText('boohoo Social Responsibility');
-      } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[variables.language]);
-      } else if (variables.brand == 'coastfashion.com') {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespSiteGenesis[variables.language]);
-      }
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
-      if ((variables.brand == 'boohoo.com' && variables.locale == 'UK') || (variables.brand == 'boohoo.com' && variables.locale == 'EU'))
-        GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Modern Slavery Statement', () => {
-      GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'modern-slavery' });
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Careers', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'wallis.co.uk')
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[variables.language], { assertionUrl: 'https://careers.boohoogroup.com/' });
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {
-      if (variables.brand == 'boohoo.com' ) {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCond[variables.language]);
-      } else if (variables.brand == 'coastfashion.com') {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondSiteGenesis[variables.language]);
-      } else {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
-      }
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicy[variables.language]);
-      } else if (variables.brand == 'coastfashion.com') {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicySiteGenesis[variables.language]);
-      } else {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);
-      }
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - About Cookies', () => {
-      GlobalFooter.actions.checkFooterLinkByText(assertionText.aboutCookies[variables.language]);
-    });
-    it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com')
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.sitemap[variables.language]); 
-    });  
-    it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
-      const currentYear = new Date().getFullYear();
-      cy.scrollTo('bottom');
-      cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible'); //  It was + BOOHOO
     });
       
-    /* It('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
-      GlobalFooter.assertions.assertFooterIsFixedAndPresent();
-      GlobalFooter.click.footerPromo();
-    });*/
-  });
+    describe('Verify Footer Payment providers and mobile App Banners', () => {
+      it('Verify that Payment and Delivery Providers are present as content slot.', () => {
+        GlobalFooter.assertions.assertPaymentOptionsArePresent();
+      });
+          
+      it('Verify that App Banner is present as content slot.', () => {
+        GlobalFooter.assertions.assertAppBannerPresent();
+      });
+    });
 
-  describe('Verify that the global header is displayed.', () => {
-    it('Check global header is visible when scrolling down.', () => {
-      if (variables.brand != 'coastfashion.com') {
+    describe('Verify Footer Navigation Components are present and Links are functional.', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrderArcadia[variables.language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
+        if (variables.brand == 'boohoo.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
+        } else if (variables.brand == 'coastfashion.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoSiteGenesis[variables.language]);
+        } else if (variables.brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[variables.language]);
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - About boohoo', () => {
+        if (variables.brand == 'boohoo.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAbout[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - The boohoo App', () => {
+        if (variables.brand == 'boohoo.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackApp[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - boohoo Premier', () => {
+        if (variables.brand == 'boohoo.com' )
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkPremier[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', () => {
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Discount & Promo Codes', () => {
+        if (variables.brand == 'boohoo.com') 
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') 
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
+      });
+
+      /*
+          It('Verify that Footer Navigation Component is present and Links are functional - Refer a Friend', () => {
+          GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');
+        });
+        */
+      it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', () => {
+        if ((variables.brand == 'boohoo.com' && variables.locale == 'UK') || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Become a Partner', () => {
+        if (variables.brand == 'boohoo.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.becomePartner[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Sustainability', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'coastfashion.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.sustainability[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Klarna', () => {
+        if (!(variables.brand == 'boohoo.com' && variables.locale == 'EU'))
+          GlobalFooter.actions.checkFooterLinkByText('Klarna');
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Clearpay', () => {
+        if (variables.locale == 'US' || variables.locale == 'AU') {
+          GlobalFooter.actions.checkFooterLinkByText('Afterpay');
+        } else if (variables.locale == 'UK' || variables.locale == 'EU') {
+          GlobalFooter.actions.checkFooterLinkByText('Clearpay'); 
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com')
+          GlobalFooter.actions.checkFooterLinkByText('Laybuy');
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {
+        if (variables.brand == 'boohoo.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Environmental & Social Responsibility', () => {
+        if (variables.brand == 'boohoo.com' && variables.locale == 'EU') {
+          GlobalFooter.actions.checkFooterLinkByText('boohoo Social Responsibility');
+        } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[variables.language]);
+        } else if (variables.brand == 'coastfashion.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespSiteGenesis[variables.language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
+        if ((variables.brand == 'boohoo.com') && (variables.locale == 'UK' || variables.locale == 'EU'))
+          GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Modern Slavery Statement', () => {
+        GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'modern-slavery' });
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Careers', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'coastfashion.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[variables.language], { assertionUrl: 'https://careers.boohoogroup.com/' });
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {
+        if (variables.brand == 'boohoo.com' ) {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCond[variables.language]);
+        } else if (variables.brand == 'coastfashion.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondSiteGenesis[variables.language]);
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicy[variables.language]);
+        } else if (variables.brand == 'coastfashion.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicySiteGenesis[variables.language]);
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - About Cookies', () => {
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.aboutCookies[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.sitemap[variables.language]); 
+      });  
+      it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
+        const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-        GlobalFooter.assertions.assertHeaderIsVisible();
-      }
+        cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible'); //  It was + BOOHOO
+      });
+        
+      it('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
+          GlobalFooter.assertions.assertFooterIsFixedAndPresent();
+          GlobalFooter.click.footerPromo();
+        }
+      });
     });
-    it('Check global header displays.', () => {
-      if (variables.brand != 'coastfashion.com') {
-        GlobalFooter.assertions.assertHeaderIsVisible();
-      }
+
+    describe('Verify that the global header is displayed.', () => {
+      it('Check global header is visible when scrolling down.', () => {
+        if (variables.brand != 'coastfashion.com') {
+          cy.scrollTo('bottom');
+          GlobalFooter.assertions.assertHeaderIsVisible();
+        }
+      });
+      it('Check global header displays.', () => {
+        if (variables.brand != 'coastfashion.com') {
+          GlobalFooter.assertions.assertHeaderIsVisible();
+        }
+      });
     });
+
   });
 
 });

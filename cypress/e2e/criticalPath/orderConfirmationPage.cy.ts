@@ -21,23 +21,36 @@ describe('Order confirmation page for guest user', function () {
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
-    HomePage.click.cartIcon();  
-    PdpPage.click.miniCartViewCartBtn();
+    HomePage.click.cartIcon();
+    if (variables.brand != 'coastfashion.com') {
+      PdpPage.click.miniCartViewCartBtn();
+    }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
       CheckoutPage.click.continueAsGuestBtn();
-    }); 
-    shippingPage.actions.firstNameField(localeAddress.firstName);
-    shippingPage.actions.lastNameField(localeAddress.lastName);
-    shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityField(localeAddress.city);
-    shippingPage.actions.postcodeField(localeAddress.postcode);
-    shippingPage.actions.phoneNumberField(localeAddress.phone);
-    shippingPage.click.proceedToBilling();
-    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+
+      shippingPage.actions.firstNameField(localeAddress.firstName);
+      shippingPage.actions.lastNameField(localeAddress.lastName);
+      shippingPage.actions.selectCountry(localeAddress.country);
+      shippingPage.click.addAddressManually();
+      shippingPage.actions.adressLine1(localeAddress.addrline1);
+      shippingPage.actions.cityField(localeAddress.city);
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
+      if (variables.brand == 'coastfashion.com') {
+        shippingPage.actions.selectDate('23', 'May', '2001');
+        shippingPage.actions.confirmEmail(credentials.guest);
+        
+        shippingPage.click.proceedToBilling();
+        shippingPage.click.proceedToBillingAddressVerification();
+      } else {
+        shippingPage.click.proceedToBilling();
+        BillingPage.assertions.assertBillingPageIsLoaded();
+        BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+      }
+    });
+
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     if (variables.brand == 'boohoo.com') {
       orderConfirmationPage.click.closePopUp1(assertionText.closePopUp[variables.language]);
@@ -60,6 +73,17 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
 
+  it('Verify that billing address is present with valid data', function () {
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
+  });
+  it('Verify that payment method is present', function () {
+    if (variables.brand == 'coastfashion.com') {
+      orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
+    } else {
+      orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
+    }
+  });
   it('Verify that for guest users password fields are present on order confirmation page', function () {
     orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
     orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
@@ -77,10 +101,15 @@ describe('Order confirmation page for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    PdpPage.click.miniCartViewCartBtn();
+    if (variables.brand != 'coastfashion.com') {
+      PdpPage.click.miniCartViewCartBtn();
+    }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
+      if (variables.brand == 'coastfashion.com') {
+        CheckoutPage.click.continueAsRegisteredUser();
+      }
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
@@ -92,7 +121,12 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+
     shippingPage.click.proceedToBilling();
+    if (variables.brand == 'coastfashion.com') {
+      shippingPage.click.proceedToBillingAddressVerification();
+    }
+    BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     if (variables.brand == 'boohoo.com') {
       orderConfirmationPage.click.closePopUp1(assertionText.closePopUp[variables.language]);
@@ -112,5 +146,12 @@ describe('Order confirmation page for registered user', function () {
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
+  });
+  it('Verify that payment method is present', function () {
+    if (variables.brand == 'coastfashion.com') {
+      orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
+    } else {
+      orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
+    }
   });
 });

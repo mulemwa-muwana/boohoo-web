@@ -147,16 +147,6 @@ declare type Locale = 'UK' | 'EU' | 'US' |'CA' | 'AU' |'NZ' |'NL' | 'DE' | 'FR' 
     
 declare type TranslationMap = { [key in Language]: string };
     
-declare type PaymentMethodSelector = {
-    card: string;
-    payPal: string;
-    klarna: string;
-    clearPay: string;
-    amazonPay: string;
-    layBuy: string;
-    zipPay: string;
-}
-    
 declare type Sizes = 'UK' | 'US';
     
 declare type SizesMap = { [key in Sizes]: string };

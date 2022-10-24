@@ -70,6 +70,20 @@ class AssertionText {
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
   };
 
+  WishlistLoginTitle: TranslationMap = {
+    EN: '\nWish List\nLog In\n',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don’t forget about me!',  
     FR: 'Ne m’oublie pas!',
@@ -128,6 +142,20 @@ class AssertionText {
 
   RegistrationPageExistingEmailArcadia: TranslationMap = {
     EN: 'Email address already taken. Please use a different email address or try to log in with the current one',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  RegistrationPageExistingEmailSiteGenesis: TranslationMap = {
+    EN: 'Email address already taken. Please use different email address or try to log in with current one',
     FR: '',
     NL: '',
     DE: '',
@@ -266,6 +294,20 @@ class AssertionText {
     ES: ''
   };
 
+  PremierSiteGenesis: TranslationMap = {
+    EN: 'VIP',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PremierText: TranslationMap = {
     EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
     FR: '\nLIVRAISON GRATUITE LE LENDEMAIN PENDANT 1 AN !\n',
@@ -336,6 +378,20 @@ class AssertionText {
     ES: ''
   };
 
+  selectSizeSiteGenesis: TranslationMap = {
+    EN: ' Select UK Size',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   sizeErrorMsg: TranslationMap = {
     EN: 'Oops please select a size',
     FR: '\n                    Oups, veuillez choisir une taille\n                ',
@@ -362,6 +418,20 @@ class AssertionText {
     IL: 'יש לך עוד 4 ניסיונות כניסה',
     IT: 'Hai altri 4 tentativi di accesso',
     ES: 'Tienes 4 intentos más de inicio de sesión'
+  };
+
+  loginErrorSiteGenesis: TranslationMap = {
+    EN: 'Looks like either your email address or password were incorrect. Please try again.',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   unknownEmail: TranslationMap = {
@@ -460,6 +530,20 @@ class AssertionText {
     IT: 'Carta di credito / debito',
     ES: 'Tarjeta de crédito / débito',
     DE: 'Kredit-/Debitkarte'
+  };
+
+  assertPaymentMethodSiteGenesis: TranslationMap = {
+    EN: 'Card',
+    NL: '',
+    DK: '',
+    FR: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+    DE: ''
   };
 
   addedToCard: TranslationMap = {
@@ -618,6 +702,20 @@ class AssertionText {
 
   footerLinkDeliveryInfoSiteGenesis: TranslationMap = {
     EN: 'Delivery Information',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerShipping: TranslationMap = {
+    EN: 'Shipping',
     NL: '',
     DE: '',
     FR: '',
@@ -841,7 +939,7 @@ class AssertionText {
   };
 
   privacyPolicy: TranslationMap = {
-    EN: 'Privacy Notice - Updated July 2022',
+    EN: 'Privacy Notice - Updated August 2022',
     NL: '',
     DE: 'Datenschutzbestimmungen', // FAILED
     FR: 'Avis de confidentialité',

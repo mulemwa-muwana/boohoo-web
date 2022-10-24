@@ -4,7 +4,7 @@ import pdpPage from '../../pom/pdp.page';
 
 describe('Mini Cart is displayed, Mini Cart Contains correct information, Checkout and View Bag buttons redirect correctly', function () {
     
-  // This will execute before every single test, we're just going to the baseURL.
+  // This will execute before every single test
   beforeEach(() => {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -19,8 +19,9 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
       const variables = Cypress.env() as EnvironmentVariables;    
       HomePage.click.searchIcon();
       HomePage.actions.findItemUsingSKU(variables.sku);
+      pdpPage.actions.selectSize();
       pdpPage.click.addToCart();
-          
+      pdpPage.assertions.assertMiniCartIsDisplayed();
     });
   }
     

@@ -20,7 +20,7 @@ const selectors: SelectorBrandMap = {
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
     paymentOptions: '.b-footer_top',
     appBanner: '.b-app_banner-actions',
-    footerStickyPromo: '#footer-sticky-promo',
+    footerStickyPromo: '#footer-sticky-promo > a',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
     footer: '#footercontent'
@@ -119,7 +119,8 @@ const selectors: SelectorBrandMap = {
     unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
     paymentOptions: '.footer-payment-method',
     appBanner: '.footer-app-links',
-    footerStickyPromo: '#footer-sticky-promo',
+    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
+    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
@@ -213,7 +214,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     footerPromo () {
-      const footerPromoLink = selectors[variables.brand].footerPromoLink; //  Only boohoo
+      const footerPromoLink = selectors[variables.brand].footerPromoLink;
       cy.get(footerPromoLink).then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
@@ -251,7 +252,6 @@ class GlobalFooter implements AbstractPage {
             expect(url).to.contain(options?.assertionUrl ?? href);
           });
         });
-      cy.go('back');
     },
     changeCountry (country: CountryCode) {
       const changeCountryDropdown = selectors[variables.brand].changeCountryDropdown;
@@ -292,12 +292,11 @@ class GlobalFooter implements AbstractPage {
         expect(json.currencyCode).to.equal(currency);
       });
     },
-
-    /* AssertFooterIsFixedAndPresent () {
+    assertFooterIsFixedAndPresent () {
       const footerStickyPromo = selectors[variables.brand].footerStickyPromo;
       cy.scrollTo('bottom');
-      cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');  //  Onlu NG doesnt have. Should be checked
-    },*/ // This is removed because its config
+      cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');
+    },
     assertHeaderIsVisible () {
       const headerInner = selectors[variables.brand].headerInner;
       cy.get(headerInner).should('be.visible');

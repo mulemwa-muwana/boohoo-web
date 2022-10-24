@@ -78,8 +78,8 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
   },
   'burton.co.uk': {
-    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
-    addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
+    addToCart: '.b-product_addtocard-availability',
+    addToWishListButton: '.b-product_wishlist-button > span',
     returnLink: 'a[href="https://dwdev.burton.co.uk/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',

@@ -1,3 +1,4 @@
+import { contains } from 'cypress/types/jquery';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -35,11 +36,11 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     emailIsDisplayed:'.b-confirmation_header-email',
     orderValueIsDisplayed:'.b-summary_shipping-cost',
-    shippingAddressDetailsName:'',
-    shippingAddressDetailsSummary:'',
+    shippingAddressDetailsName:'[aria-label="Shipping Details"] p.b-address-name',
+    shippingAddressDetailsSummary:'[aria-label="Shipping Details"] p.b-address-summary',
     orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName:'',
-    billingAddressDetailsSummary:'',
+    billingAddressDetailsName:'[aria-label="Payment Details"] p.b-address-name',
+    billingAddressDetailsSummary:'[aria-label="Payment Details"] p.b-address-summary',
     shippingMethodIsDisplayed:'b-summary_shipping-name',
     paymentMethod:'.b-summary_payment',
     orderTotalIsVisible:'.b-summary_shipping-cost',
@@ -65,11 +66,11 @@ const selectors: SelectorBrandMap = {
   'wallis.co.uk': {
     emailIsDisplayed: '.b-confirmation_header-email',
     orderValueIsDisplayed: '.b-summary_shipping-cost',
-    shippingAddressDetailsName: '',
-    shippingAddressDetailsSummary: '',
+    shippingAddressDetailsName:'[aria-label="Shipping Details"] p.b-address-name',
+    shippingAddressDetailsSummary:'[aria-label="Shipping Details"] p.b-address-summary',
     orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
-    billingAddressDetailsName: '',
-    billingAddressDetailsSummary: '',
+    billingAddressDetailsName:'[aria-label="Payment Details"] p.b-address-name',
+    billingAddressDetailsSummary:'[aria-label="Payment Details"] p.b-address-summary',
     shippingMethodIsDisplayed: 'b-summary_shipping-name',
     paymentMethod: '.b-summary_payment',
     orderTotalIsVisible: '.b-summary_shipping-cost',
@@ -124,6 +125,9 @@ class OrderConfirmation implements AbstractPage {
     closePopUp () {
       const closePopUP = selectors[variables.brand].closePopUP;
       cy.get(closePopUP, { timeout: 30000 }).click();
+    },
+    closePopUp1 (text: string) {
+      cy.contains(text).click();
     }
   };
 

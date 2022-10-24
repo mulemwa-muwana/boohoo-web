@@ -594,7 +594,7 @@ class BillingPage implements AbstractPage {
         }
       });
 
-      cy.get('[data-testid="login-identity-input"]', { timeout: 12000 }).clear();
+      cy.get('[data-testid="login-identity-input"]', { timeout: 20000 }).clear();
       cy.wait(2000);
       cy.get('[data-testid="login-identity-input"]').type('ukboohoo@outlook.com');
       cy.get('[data-testid="login-identity-button"]').click();

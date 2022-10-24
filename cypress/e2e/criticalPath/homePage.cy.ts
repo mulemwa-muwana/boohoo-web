@@ -10,17 +10,12 @@ import assertionText from '../../helpers/assertionText';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
-
-
 describe('Home Page', function () {
 
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
     HomePage.goto();
 
-    /* If (variables.brand == 'nastygal.com') {
-      HomePage.actions.closeNastygalPopup();
-    }*/
   });
 
   /* Describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
@@ -39,7 +34,7 @@ describe('Home Page', function () {
        
   // HEADER
   describe('Header verifications', () => {
-    it('Header Logo', () => {
+    it('Header Logo', () => {  
       homePage.assertions.assertLogoPresent();
     });
     
@@ -85,7 +80,7 @@ describe('Home Page', function () {
       if (variables.brand == 'boohoo.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
-      }  else if (variables.brand == 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       } else {
@@ -162,13 +157,13 @@ describe('Home Page', function () {
 
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsH1[variables.language]);
-          TermsAndConditionsPage.assertions.assertOnPage('terms-and-conditions')
+          TermsAndConditionsPage.assertions.assertOnPage('terms-and-conditions');
         } else if (variables.brand == 'coastfashion.com') {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsSiteGenesisH1[variables.language]);
-          TermsAndConditionsPage.assertions.assertOnPage('terms-of-use')
+          TermsAndConditionsPage.assertions.assertOnPage('terms-of-use');
         } else {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsArcadiaH1[variables.language]);
-          TermsAndConditionsPage.assertions.assertOnPage('cs-terms-and-conditions')
+          TermsAndConditionsPage.assertions.assertOnPage('cs-terms-and-conditions');
         }
       });
     });
@@ -247,6 +242,8 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
         } else if (variables.brand == 'coastfashion.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoSiteGenesis[variables.language]);
+        } else if (variables.brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);
         }
@@ -300,7 +297,11 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('Klarna');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Clearpay', () => {
-        GlobalFooter.actions.checkFooterLinkByText('Clearpay');
+        if (variables.locale == 'US' || variables.locale == 'AU') {
+          GlobalFooter.actions.checkFooterLinkByText('Afterpay');
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText('Clearpay');
+        }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com')
@@ -381,7 +382,6 @@ describe('Home Page', function () {
           GlobalFooter.assertions.assertHeaderIsVisible();
         }
       });
-
     });
 
   });

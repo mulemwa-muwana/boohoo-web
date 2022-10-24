@@ -714,6 +714,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerShipping: TranslationMap = {
+    EN: 'Shipping',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkAbout: TranslationMap = {
     EN: 'About boohoo', // Brand name is missing
     NL: '',
@@ -925,7 +939,7 @@ class AssertionText {
   };
 
   privacyPolicy: TranslationMap = {
-    EN: 'Privacy Notice - Updated July 2022',
+    EN: 'Privacy Notice - Updated August 2022',
     NL: '',
     DE: 'Datenschutzbestimmungen', // FAILED
     FR: 'Avis de confidentialité',

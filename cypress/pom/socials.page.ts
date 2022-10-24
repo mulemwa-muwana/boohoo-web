@@ -79,7 +79,7 @@ class SocialsPage implements AbstractPage {
     assertInstagramIconIsPresent () {
       const instagram = selectors[variables.brand].instagram;
       if (variables.brand == 'coastfashion.com') {
-        cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(instagram).should('be.visible');
       } else {
         cy.get(instagram).should('be.visible');
@@ -88,7 +88,7 @@ class SocialsPage implements AbstractPage {
     assertFacebookIconIsPresent () {
       const facebook = selectors[variables.brand].facebook;
       if (variables.brand == 'coastfashion.com') {
-        cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(facebook).should('be.visible');
       } else {
         cy.get(facebook).should('be.visible');
@@ -100,7 +100,7 @@ class SocialsPage implements AbstractPage {
     assertPinterestIconIsPresent () {
       const pinterest = selectors[variables.brand].pinterest;
       if (variables.brand == 'coastfashion.com') {
-        cy.get(pinterest).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(pinterest).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(pinterest).should('be.visible');
       } else {
         cy.get(pinterest).should('be.visible');
@@ -113,7 +113,7 @@ class SocialsPage implements AbstractPage {
     assertTwitterIconIsPresent () {
       const twitter = selectors[variables.brand].twitter;
       if (variables.brand == 'coastfashion.com') {
-        cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(twitter).should('be.visible');
       } else {
         cy.get(twitter).should('be.visible');
@@ -122,7 +122,7 @@ class SocialsPage implements AbstractPage {
     assertYouTubeIconIsPresent () {
       const youtube = selectors[variables.brand].youtube;
       if (variables.brand == 'coastfashion.com') {
-        cy.get(youtube).parent().invoke('attr', 'style', 'overflow:visible')
+        cy.get(youtube).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(youtube).should('be.visible');
       } else {
         cy.get(youtube).should('be.visible');

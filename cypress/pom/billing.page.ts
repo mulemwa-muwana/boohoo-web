@@ -594,13 +594,13 @@ class BillingPage implements AbstractPage {
         }
       });
 
-      cy.get('[data-testid="login-identity-input"]', { timeout: 60000 }).clear();
+      cy.get('[data-testid="login-identity-input"]', { timeout: 30000 }).clear();
       cy.wait(2000);
-      cy.get('[data-testid="login-identity-input"]', { timeout: 60000 }).type('ukboohoo@outlook.com');
-      cy.get('[data-testid="login-identity-button"]', { timeout: 60000 }).click();
-      cy.get('[data-testid="login-password-input"]', { timeout: 60000 }).type('Boohoo!23');
-      cy.get('[data-testid="login-password-button"]', { timeout: 60000 }).click();
-      cy.get('[data-testid="summary-button"]', { timeout: 60000 }).click();
+      cy.get('[data-testid="login-identity-input"]', { timeout: 30000 }).type('ukboohoo@outlook.com');
+      cy.get('[data-testid="login-identity-button"]', { timeout: 30000 }).click();
+      cy.get('[data-testid="login-password-input"]', { timeout: 30000 }).type('Boohoo!23');
+      cy.get('[data-testid="login-password-button"]', { timeout: 30000 }).click();
+      cy.get('[data-testid="summary-button"]', { timeout: 30000 }).click();
     },
   
   };

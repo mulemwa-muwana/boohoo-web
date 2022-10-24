@@ -74,7 +74,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.click.shippingCheckbox();
     BillingPage.actions.selectAddressFromBook();
   });
-  it('Verify that registered user can submit new billing address', function () {
+  it('Verify that registered user can add  new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     BillingPage.click.addNewBilingAddress();
     BillingPage.actions.addBillingAddress(localeAddress.addrline1, localeAddress.city, localeAddress.postcode, localeAddress.county);

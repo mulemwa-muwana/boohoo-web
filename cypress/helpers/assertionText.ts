@@ -983,12 +983,26 @@ class AssertionText {
   DOBmonth: TranslationMap = { 
     EN: 'May',
     NL: 'Mei',
+    DE: 'Mai',
+    FR: 'Mai',
+    DK: '',
+    FI: '',
+    NO: 'May',
+    SE: 'Maj',
+    IL: '',
+    IT: 'Maggio',
+    ES: 'Mayo'
+  };
+
+  closePopUp: TranslationMap = {
+    EN: '',
+    NL: '',
     DE: '',
     FR: '',
     DK: '',
     FI: '',
     NO: '',
-    SE: 'Maj',
+    SE: 'Ja tack',
     IL: '',
     IT: '',
     ES: ''

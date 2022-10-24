@@ -140,7 +140,7 @@ class ShippingMethod {
         shippingMethodName: 'Norwegian Standard Delivery'
       },
       shippingMethod2: {
-        shippingMethodName: 'NO Super Saver Delivery'
+        shippingMethodName: 'Norwegian Express Delivery'
       },
       shippingMethod3: {
         shippingMethodName: ''

@@ -39,35 +39,27 @@ describe('Order confirmation page for guest user', function () {
     shippingPage.click.proceedToBilling();
     BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    orderConfirmationPage.click.closePopUp();
+    if (variables.brand == 'boohoo.com') {
+      orderConfirmationPage.click.closePopUp1(assertionText.closePopUp[variables.language]);
+    }
   });
 
-  it('Verify that email is visible for guest user', function () {
+  it('Verify that email address, order number, value and method are visible for guest user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);
+      orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
+      orderConfirmationPage.assertions.assertOrderValueIsDisplayed();
+      orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
     });
   });
 
-  it('Verify that order number', function () {
-    orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
-  }); 
-  it('Verify that total amount paid is visible', function () {
-    orderConfirmationPage.assertions.assertOrderValueIsDisplayed();
-  });
-  it('Verify that shipping address is present with valid data', function () {
+  it('Verify that shipping and billing addresses and shipping method are present with valid data for guest user', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
-  });
-  it('Verify that shipping method is present', function () {
+    orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
-  it('Verify that billing address is present with valid data', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
-  });
-  it('Verify that payment method is present', function () {
-    orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
-  });
+
   it('Verify that for guest users password fields are present on order confirmation page', function () {
     orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
     orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
@@ -75,6 +67,8 @@ describe('Order confirmation page for guest user', function () {
 });
 describe('Order confirmation page for registered user', function () {
   beforeEach (()=>{
+    const variables = Cypress.env() as EnvironmentVariables;
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize();
@@ -90,37 +84,33 @@ describe('Order confirmation page for registered user', function () {
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
-
-    //  ShippingPage.actions.clickPreferedShippingMethod(variables);
+    shippingPage.click.addNewAddressButton();
+    shippingPage.actions.selectCountry(localeAddress.country);
+    shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
+    cy.wait(5000);
+    shippingPage.click.addAddressManually();  
+    shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+    shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     shippingPage.click.proceedToBilling();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    orderConfirmationPage.click.closePopUp();
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    
+    if (variables.brand == 'boohoo.com') {
+      orderConfirmationPage.click.closePopUp1(assertionText.closePopUp[variables.language]);
+    }
   });
-  it('Verify that email is visible', function () {
+  it('Verify that email, order number, value and order total are visible for registred users', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);
+      orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
+      orderConfirmationPage.assertions.assertOrderTotalIsVisible();
+      orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
     });
   });
-  it('Verify that order number is visible', function () {
-    orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
-  }); 
-  it('Verify that total amount paid is visible', function () {
-    orderConfirmationPage.assertions.assertOrderTotalIsVisible();
-  });
-  it('Verify that shipping address is present with valid data', function () {
+
+  it('Verify that shipping, billing addresses and shipping method are present with valid data for registered user', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
-  });
-  it('Verify that shipping method is present', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
-  });
-  it('Verify that billing address is present with valid data', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
-  });
-  it('Verify that payment method is present', function () {
-    orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
   });
 });

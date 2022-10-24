@@ -5,7 +5,7 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/',
+    url: 'https://storefront:Oreo2022@dwdev.dorothyperkins.com/',
     sku: 'AQQ42330',
     fullSKU: 'AQQ42330-105-14',
     brand: 'dorothyperkins.com',

@@ -64,7 +64,7 @@ describe('Boohoo order placement', () => {
     generateArtefact(variables.brand, paymentMethod);
   });
 
-  it('can select Laybuy as payment method and generate an artefact', function () {
+  it.skip('can select Laybuy as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'LayBuy';
     if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
       this.skip();

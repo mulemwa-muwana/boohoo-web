@@ -1,9 +1,7 @@
 import LoginPage from '../../pom/login.page';
 import HomePage from '../../pom/home.page';
 import WishListPage from '../../pom/wishlist.page';
-import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import assertionText from '../../helpers/assertionText';
-import plpPage from 'cypress/pom/plp.page';
 import pdpPage from 'cypress/pom/pdp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;

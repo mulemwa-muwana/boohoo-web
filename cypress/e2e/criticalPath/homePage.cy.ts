@@ -60,7 +60,7 @@ describe('Home Page', function () {
       homePage.assertions.assertWishListIconPresent();
     });
 
-    it('Verify header icon Cart present', () => {
+    it.skip('Verify header icon Cart present', () => {
       homePage.assertions.assertCartIconPresent();
     });
 
@@ -71,8 +71,16 @@ describe('Home Page', function () {
     }
 
     it('Verify Mega Menu - Sale link opens', () => {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+      if (variables.brand == 'boohoo.com') {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+      } else if (variables.brand == 'coastfashion.com') {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+      } else {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[variables.language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+      }
       HomePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[variables.language].toLowerCase());
     });
  
@@ -115,10 +123,8 @@ describe('Home Page', function () {
       
     it('Verify correct error message is displayed - newsletter subscription footer', () => {
       const variables = Cypress.env() as EnvironmentVariables;
-      const randomEmail = CommonActions.randomEmail();
-      GlobalFooter.actions.subscribeToNewsletter(randomEmail);
       HomePage.goto();
-      GlobalFooter.actions.subscribeToNewsletter(randomEmail);
+      GlobalFooter.actions.subscribeToNewsletter('euboohoo@gmail.com');
       GlobalFooter.assertions.asssertAlreadySubscribed(assertionText.alreadySubscribed[variables.language]);
     });
 
@@ -299,8 +305,8 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Clearpay', () => {
         if (variables.locale == 'US' || variables.locale == 'AU') {
           GlobalFooter.actions.checkFooterLinkByText('Afterpay');
-        } else {
-          GlobalFooter.actions.checkFooterLinkByText('Clearpay');
+        } else if (variables.locale == 'UK' || variables.locale == 'EU') {
+          GlobalFooter.actions.checkFooterLinkByText('Clearpay'); 
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
@@ -325,7 +331,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Modern Slavery Statement', () => {
-        GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'https://www.boohooplc.com/sustainability/downloads/modern-slavery' });
+        GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'modern-slavery' });
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Careers', () => {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'coastfashion.com')

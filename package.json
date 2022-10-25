@@ -23,7 +23,7 @@
     "//": "CI/CD TESTS",
       "cy:run:boohoo:uk:e2e": "cypress run --config-file ./config/boohoo/cypress.boohoo.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\"  --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
       "cy:run:dorothy:uk:e2e": "cypress run --config-file ./config/dorothyperkins/cypress.dorothyperkins.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\"  --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
-      "cy:run:burton:uk:e2e": "cypress run --config-file ./config/burton/cypress.burton.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --browser chrome --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
+      "cy:run:burton:uk:e2e": "cypress run --config-file ./config/burton/cypress.burton.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
       "cy:run:oasis:uk:e2e": "cypress run --config-file ./config/oasis/cypress.oasis.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661"
   },
   "dependencies": {

@@ -90,7 +90,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.click.uncheckShippingCheckbox();
     BillingPage.actions.selectAddressFromBook();
   });
-  it('Verify that registered user can submit new billing address', function () {
+  it('Verify that registered user can add  new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     if (variables.brand == 'coastfashion.com') {
       BillingPage.click.changeShippingAddress();

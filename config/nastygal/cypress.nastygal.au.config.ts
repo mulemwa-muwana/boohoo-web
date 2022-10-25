@@ -4,7 +4,7 @@ export default defineConfig({
   projectId: 'i6d3n8',
   env: {
     url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/au/',
-    sku: '#AGG78799',
+    sku: '#BGG07330-1',
     brand: 'nastygal.com',
     locale: 'AU',
     language: 'EN',

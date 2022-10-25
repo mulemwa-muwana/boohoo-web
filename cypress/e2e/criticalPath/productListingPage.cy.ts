@@ -9,10 +9,18 @@ describe('Product Listing Page tests', function () {
   
   beforeEach(() => {
     HomePage.goto();
+    HomePage.actions.closeNastygalPopup();
     HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
+    if (variables.brand == 'nastygal.com') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
+    }
   });
   it('Verify that plp page opens', () => {
-    plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[variables.language]);
+    if (variables.brand == 'nastygal.com') {
+      plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlDresses[variables.language]);
+    } else {
+      plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[variables.language]);
+    }
   });
   it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
@@ -34,10 +42,10 @@ describe('Product Listing Page tests', function () {
       // To be discussed is it needed because many products dont have it (maybe looping)
     });
     it('Verify add to wishlist is displayed', () => {
-      if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+      if (variables.brand == 'boohoo.com') {
         plpPage.click.wishlistOnPlpImage();
         plpPage.assertions.assertItemIsAddedToWishlist();
-      } else if (variables.brand == 'dorothyperkins.com') {
+      } else if (variables.brand == 'dorothyperkins.com'|| variables.brand == 'nastygal.com') {
         plpPage.click.wishlistOnPlpImage();
         plpPage.assertions.assertItemIsAddedToWishlistColorChange();
       }  

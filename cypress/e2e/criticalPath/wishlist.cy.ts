@@ -13,10 +13,12 @@ describe('Wishlist Page tests', function () {
   // This will execute before every single test
   beforeEach(() => {
     HomePage.goto();
+    HomePage.actions.closeNastygalPopup();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, credentials.password);
       HomePage.goto(); // This is added because user is redirected to MyAccount page after login
     });
+  
   });
   
   it('Verify that item is saved to wishlist', () => {   
@@ -32,6 +34,9 @@ describe('Wishlist Page tests', function () {
   }),
   it('Verify that user can add wishlist item to the cart', () => {
     HomePage.click.wishListIcon();
+    if (variables.brand == 'nastygal.com') {
+      WishListPage.actions.chooseSizeDDL('18');
+    }
     WishListPage.click.addToCart();
   }),
   it('Verify that user can remove item from wishlist', () => {

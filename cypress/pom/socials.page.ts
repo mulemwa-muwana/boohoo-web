@@ -52,7 +52,15 @@ const selectors: SelectorBrandMap = {
     pinterest: '.icon-pinterest-2'
   },
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    instagramUrl: 'instagram.com/coastfashion/',
+    instagram: '.icon-instagram-2',
+    facebook: '.icon-facebook-2',
+    facebookUrl: 'facebook.com/coaststores',
+    twitter: '.icon-twitter-2',
+    youtube: '.icon-youtube-2',
+    pinterest: '.icon-pinterest-2'
+  },
   'misspap.com': undefined
 };
 
@@ -82,7 +90,7 @@ class SocialsPage implements AbstractPage {
         cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(instagram).should('be.visible');
       } else {
-        cy.get(instagram).should('be.visible');
+        cy.get(instagram).invoke('show');
       }
     },
     assertFacebookIconIsPresent () {
@@ -91,7 +99,7 @@ class SocialsPage implements AbstractPage {
         cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(facebook).should('be.visible');
       } else {
-        cy.get(facebook).should('be.visible');
+        cy.get(facebook).invoke('show');
       }
     },
     assertTheFixIconIsPresent () {
@@ -116,7 +124,7 @@ class SocialsPage implements AbstractPage {
         cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(twitter).should('be.visible');
       } else {
-        cy.get(twitter).should('be.visible');
+        cy.get(twitter).invoke('show');
       }
     },
     assertYouTubeIconIsPresent () {

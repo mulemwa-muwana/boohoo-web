@@ -22,7 +22,9 @@ const selectors: SelectorBrandMap = {
     termsAndConditionsPageTitle: '.cs-terms-of-use > h1',
   },
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    termsAndConditionsPageTitle: '.cs-terms-of-use > h1'
+  },
   'misspap.com': undefined
 };
 

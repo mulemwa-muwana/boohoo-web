@@ -1,5 +1,6 @@
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
+import { invoke } from 'cypress/types/lodash';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -68,13 +69,14 @@ const selectors: SelectorBrandMap = {
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
-    minicartIcon: '#js-minicart-quantity',
+    minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
-    registrationButton: '.b-registration_benefits > .b-button',
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
-    searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
+    registrationButton: 'a[title="Register"]',
+    wishlistIcon: '.header-wishlist > .header-wishlist-link',
+    searchField: '.js-header-search-input',
     searchIcon: '.js-search-icon',
-    promotion: 'div[class="b-hero_carousel-track"]',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
   },
   'misspap.com': undefined
 };
@@ -182,7 +184,7 @@ class HomePage implements AbstractPage {
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[variables.brand].searchField;
-      cy.get(searchIcon).should('be.visible');
+      cy.get(searchIcon).invoke('show');
     },
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;

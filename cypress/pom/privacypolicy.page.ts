@@ -23,7 +23,9 @@ const selectors: SelectorBrandMap = {
     privacyNoticyPageTitle: 'h1 > strong',
   },
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    privacyNoticyPageTitle: 'h1 > strong'
+  },
   'misspap.com': undefined
 };
 

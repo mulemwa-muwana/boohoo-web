@@ -107,7 +107,23 @@ const selectors: SelectorBrandMap = {
     emailError: 'div[class^="error error-message"]'
   },
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    registrationForm: '#RegistrationForm',
+    passwordField: '[id^="dwfrm_profile_login_password"]:not([class*="passwordconfirm"])',
+    passwordConfirmField: '[id^="dwfrm_profile_login_passwordconfirm"]',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    lastNameField: '#dwfrm_profile_customer_lastname',
+    dayOfBirth: '#dwfrm_profile_customer_dayofbirth',
+    monthOfBirth: '#dwfrm_profile_customer_monthofbirth',
+    yearOfBirth: '#dwfrm_profile_customer_yearofbirth',
+    emailConsent: '.form-row.isemailsubscribed > .form-label',
+    postConsent: '.form-row.ispostalsubscribed > .form-label',
+    smsConsent: '.form-row.issmssubscribed > .form-label',
+    thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
+    submitButton: '.form-row-button > .button',
+    myAccountUrl: 'myaccount?registration=true',
+    emailError: 'div[class^="error error-message"]'
+  },
   'misspap.com': undefined
 };
 

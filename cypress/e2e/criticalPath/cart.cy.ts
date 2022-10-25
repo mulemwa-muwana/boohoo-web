@@ -101,7 +101,7 @@ describe('Cart page for Registered user', function () {
     PdpPage.click.addToCart();
     HomePage.click.cartIcon();
   }); 
-  it.only('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
+  it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
     CartPage.click.proceedToCheckout();
     CheckoutPage.assertions.assertUserProceededToShippingPage();
   });

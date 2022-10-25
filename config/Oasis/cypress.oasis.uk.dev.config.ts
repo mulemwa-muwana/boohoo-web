@@ -18,6 +18,7 @@ export default defineConfig({
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,
+  screenshotOnRunFailure: true,
 
   e2e: {
     experimentalSessionAndOrigin: true,

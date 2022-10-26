@@ -48,7 +48,7 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__cvc__input"] .js-iframe',
+    creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
@@ -93,7 +93,7 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .adyen-checkout__input',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
@@ -144,7 +144,7 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
@@ -195,7 +195,7 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
@@ -299,7 +299,7 @@ const selectors: SelectorBrandMap = {
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
-    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+    paynowBtnCC:'#billingSubmitButton',
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
@@ -525,14 +525,14 @@ class BillingPage implements AbstractPage {
       cy.enter('#klarna-apf-iframe', { timeout: 20000 }).then(body => {
         body().find('#onContinue').click({force:true});
         cy.wait(2000);
-        body().find('#otp_field').type('111111');
+        body().find('#otp_field').type('111111', {force: true});
         cy.wait(12000);
 
         body().then($body => { 
           cy.wait(5000);
           if ($body.find('#pay_now-pay_now').length) { // If Payment options popup exists select Pay now
-            body().find('#pay_now-pay_now').click();
-            body().find('button[data-testid="select-payment-category"]').click();
+            body().find('#pay_now-pay_now').click({force: true});
+            body().find('button[data-testid="select-payment-category"]').click({force: true});
           }
         });
         
@@ -582,30 +582,44 @@ class BillingPage implements AbstractPage {
           }
         });
         
-        cy.wrap(innerIframe).find('#email').clear().type('test.user@boohoo.com');
-        cy.wrap(innerIframe).find('#btnNext').click();
-        cy.wrap(innerIframe).find('#password').click().type('boohoo123');
-        cy.wrap(innerIframe).find('#btnLogin').click();
+        // If Login form appears 
+        cy.wrap(innerIframe).then($body => {
+          if ($body.find('#email').length) {
+            cy.wrap(innerIframe).find('#email').clear().type('test.user@boohoo.com');
+            cy.wrap(innerIframe).find('#btnNext').click();
+            cy.wrap(innerIframe).find('#password').type('boohoo123');
+            cy.wrap(innerIframe).find('#btnLogin').click();
+          }
+        });
+      });
 
-        cy.wrap(innerIframe, { timeout: 6000 }).find('#payment-submit-btn').should('be.visible').click();
+      cy.wait(12000);
+
+      // New iframe opens after PayPal user logs in
+      cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
+        const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
+        cy.wrap(innerIframe).find('#payment-submit-btn').click({force: true});
+
       });
     },
     selectLaybuy () {
-      if (variables.brand == 'oasis-stores.com') {
-        cy.get('[for="is-LAYBUY"]', { timeout: 10000 }).should('be.visible').click({ force: true });
-        cy.get('#billingSubmitButton').should('be.visible').click({ force: true });
+      cy.wait(5000);
+      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
+        cy.get('[for="is-LAYBUY"]', { timeout: 30000 }).should('be.visible').click({ force: true });
+        cy.get('#billingSubmitButton', { timeout: 30000 }).click({ force: true });
       } else {
-        cy.get('#payment-button-LAYBUY', { timeout: 10000 }).should('be.visible').click({ force: true });
-        cy.get('#payment-details-LAYBUY > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button', { timeout: 10000 }).click();
+        cy.get('#payment-button-LAYBUY', { timeout: 30000 }).should('be.visible').click({ force: true });
+        cy.get('#payment-details-LAYBUY > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button', { timeout: 30000 }).click();
       }
-      cy.get('.sc-himrzO', { timeout: 10000 }).click();
-      cy.get('input[type="email"]').type('euboohoo+uklaybuy@gmail.com');
-      cy.get('input[type="password"]').type('Boohoo123$');
-      cy.get('button[type="submit"]').click();
+      cy.get('.sc-himrzO', { timeout: 30000 }).click();
+      cy.get('input[type="email"]', { timeout: 30000 }).clear().type('euboohoo+uklaybuy@gmail.com');
+      cy.get('input[type="password"]', { timeout: 30000 }).clear().type('Boohoo123$');
+      cy.get('button[type="submit"]', { timeout: 30000 }).click();
+      cy.get('button[data-test-id="payment-complete-order-button"]', { timeout: 60000 }).should('not.have.attr', 'disabled');
       cy.get('button[data-test-id="payment-complete-order-button"]').click();
     },
     selectClearpay () {
-      if (variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });
         cy.get('#billingSubmitButton').click({ force: true });
       } else {
@@ -621,7 +635,7 @@ class BillingPage implements AbstractPage {
 
       cy.wait(5000);
       cy.get('[data-testid="login-identity-input"]', { timeout: 30000 }).clear();
-      cy.wait(2000);
+      cy.wait(5000);
       cy.get('[data-testid="login-identity-input"]', { timeout: 30000 }).type('ukboohoo@outlook.com');
       cy.get('[data-testid="login-identity-button"]', { timeout: 30000 }).click();
       cy.get('[data-testid="login-password-input"]', { timeout: 30000 }).type('Boohoo!23');
@@ -633,11 +647,13 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertBillingPageIsLoaded () {
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+      if ((variables.brand != 'coastfashion.com') && (variables.brand != 'oasis-stores.com') && (variables.brand != 'nastygal.com')) {
 
         // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
-        //cy.intercept(/checkoutshopper/).as('paymentMethodsSection');  //  Adding comment because test are failing
-        //cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+        cy.intercept(/checkoutshopper/).as('paymentMethodsSection');
+        cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+      } else {
+        cy.wait(12000);
       }
     },
     assertShippingAddressPresent () {

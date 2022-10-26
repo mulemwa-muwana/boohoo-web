@@ -255,7 +255,7 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': undefined,
   'coastfashion.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
-    klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
+    klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
     shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',

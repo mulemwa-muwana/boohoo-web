@@ -632,16 +632,16 @@ class AssertionText {
 
   footerLinkTrackMyOrder: TranslationMap = {
     EN: 'Track My Order',
-    NL: '',
+    NL: 'Volg mijn bestelling',
     DE: 'Bestellung verfolgen',
     FR: 'Suivre ma commande',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Track My Order',
+    FI: 'Track My Order',
+    NO: 'Track My Order',
+    SE: 'Spåra min beställning',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Segui Il Mio Ordine',
+    ES: 'Seguir el estado de mi pedido'
   };
 
   footerLinkTrackMyOrderArcadia: TranslationMap = {
@@ -730,51 +730,51 @@ class AssertionText {
 
   footerLinkAbout: TranslationMap = {
     EN: 'About boohoo', // Brand name is missing
-    NL: '',
+    NL: 'Over boohoo',
     DE: 'Über',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    FR: 'En savoir plus sur boohoo',
+    DK: 'About boohoo',
+    FI: 'About boohoo',
+    NO: 'About boohoo',
+    SE: 'Om boohoo',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'A proposito di boohoo',
+    ES: 'Sobre boohoo'
   };
 
   footerLinkSizeGuide: TranslationMap = {
     EN: 'Size Guide',
-    NL: '',
+    NL: 'Maatwijzer',
     DE: 'Größentabelle',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    FR: 'Maatwijzer',
+    DK: 'Size Guide',
+    FI: 'Size Guide',
+    NO: 'Size Guide',
+    SE: 'Storleksguide',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Guida taglie boohoo',
+    ES: 'Guía de tallas'
   };
 
   footerLinkTrackApp: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
     NL: '',
     DE: 'boohoo App', // To be consider for multiple brends
-    FR: '',
+    FR: 'Appli boohoo',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'boohoo-appen',
     IL: '',
     IT: '',
     ES: ''
   };
 
   footerLinkPremier: TranslationMap = {
-    EN: 'The boohoo App', // The boohoo App
+    EN: 'boohoo Premier', // The boohoo App
     NL: '',
     DE: '', // Not dispayed
-    FR: '',
+    FR: 'boohoo Premier',
     DK: '',
     FI: '',
     NO: '',
@@ -786,16 +786,16 @@ class AssertionText {
 
   footerLinkStudentDiscount: TranslationMap = {
     EN: 'Student Discount',
-    NL: '',
+    NL: 'Studentenkorting',
     DE: 'Studentenrabatt',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    FR: 'Réduction étudiant',
+    DK: 'Student Discount',
+    FI: 'Student Discount',
+    NO: 'Student Discount',
+    SE: 'Studentrabatt',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Sconto Studente',
+    ES: 'Descuento para estudiantes'
   };
 
   footerLinkReturns: TranslationMap = {
@@ -940,16 +940,16 @@ class AssertionText {
 
   privacyPolicy: TranslationMap = {
     EN: 'Privacy Notice - Updated August 2022',
-    NL: '',
+    NL: 'Privacyverklaring - Bijgewerkt in juli 2022',
     DE: 'Datenschutzbestimmungen', // FAILED
     FR: 'Avis de confidentialité',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Privacy Notice - Updated August 2022',
+    FI: 'Privacy Notice - Updated August 2022',
+    NO: 'Privacy Notice - Updated August 2022',
+    SE: 'Integritetspolicy - uppdaterad Juli 2022',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Politica sulla Privacy - aggiornata in data 26 aprile 2021',
+    ES: 'Política de privacidad - Actualizado 26 abril 2021'
   };
 
   privacyPolicyArcadia: TranslationMap = {
@@ -982,30 +982,30 @@ class AssertionText {
 
   investor: TranslationMap = {
     EN: 'Investor Relations',
-    NL: '',
+    NL: 'Investeerdersrelaties',
     DE: 'Finanzkommunikation', // FAILED
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    FR: 'Relation avec les investisseurs',
+    DK: 'Investor Relations',
+    FI: 'Investor Relations',
+    NO: 'Investor Relations',
+    SE: 'För investerare',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Relazioni con gli investitori',
+    ES: 'Relaciones con inversores'
   };
 
   envAndSocResp: TranslationMap = {
     EN: 'Environmental & Social Responsibility',
-    NL: '',
+    NL: 'boohoo Sociale verantwoordelijkheid',
     DE: 'Soziale Verantwortung von boohoo',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    FR: 'Responsabilité sociale de boohoo',
+    DK: 'boohoo Social Responsibility',
+    FI: 'boohoo Social Responsibility',
+    NO: 'boohoo Social Responsibility',
+    SE: 'Socialt ansvar',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Responsabilità sociale di boohoo',
+    ES: 'Responsabilidad social de boohoo'
   };
 
   envAndSocRespSiteGenesis: TranslationMap = {
@@ -1024,16 +1024,16 @@ class AssertionText {
 
   careers: TranslationMap = {
     EN: 'Careers',
-    NL: '',
+    NL: 'Loopbanen',
     DE: 'Karriere', // FAILED
     FR: 'Carrières',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Careers',
+    FI: 'Careers',
+    NO: 'Careers',
+    SE: 'Karriär',
     IL: '',
     IT: '',
-    ES: ''
+    ES: 'Carreras'
   };
 
   aboutCookies: TranslationMap = {
@@ -1093,7 +1093,7 @@ class AssertionText {
   };
 
   closePopUp: TranslationMap = {
-    EN: '',
+    EN: 'Your order is complete',
     NL: '',
     DE: '',
     FR: '',

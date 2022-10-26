@@ -40,6 +40,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingMethodname: '.b-option_switch-label',
+    shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -78,6 +79,10 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
+    shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    dobDay: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearOfBirth',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -393,6 +398,10 @@ class ShippingPage implements AbstractPage {
     selectCountry (country: string) {
       const shippingCountry = selectors[variables.brand].shippingCountry;
       cy.get(shippingCountry).select(country).invoke('show');
+    },
+    selectState (state: string) {
+      const shippingState = selectors[variables.brand].shippingState;
+      cy.get(shippingState).select(state).invoke('show');
     },
     adressLine1 (address1: string) {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;

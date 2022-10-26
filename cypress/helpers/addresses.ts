@@ -47,7 +47,7 @@ class Addresses {
         country: 'United States',
         city: 'New York',
         countryCode: 'NY',
-        county: '',
+        county: 'NY',
         confirmEmail: ''
       },
       secondaryAddress:  {
@@ -61,7 +61,7 @@ class Addresses {
         country: 'United States',
         city: 'New York',
         countryCode: 'NY',
-        county: '',
+        county: 'NY',
         confirmEmail: ''
       }
     },

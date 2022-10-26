@@ -36,18 +36,19 @@ describe('Order confirmation page for guest user', function () {
       shippingPage.click.addAddressManually();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
+      if (variables.locale == 'US') {
+        shippingPage.actions.selectState(localeAddress.county);}
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
       if (variables.brand == 'coastfashion.com') {
         shippingPage.actions.selectDate('23', 'May', '2001');
         shippingPage.actions.confirmEmail(credentials.guest);
-        
         shippingPage.click.proceedToBilling();
         shippingPage.click.proceedToBillingAddressVerification();
       } else {
         shippingPage.click.proceedToBilling();
-        BillingPage.assertions.assertBillingPageIsLoaded();
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+        BillingPage.assertions.assertBillingPageIsLoaded();
       }
     });
 

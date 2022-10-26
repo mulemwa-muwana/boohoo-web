@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'nastygal.com': {
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',
     searchField: '#header-search-input',
@@ -85,6 +85,7 @@ class HomePage implements AbstractPage {
   goto (options: GotoOptions = null) {
 
     cy.visit(variables.url);
+    cy.intercept('**/NewsletterSubscribe-FirstVisit*', []); // Stops nastygal newsletter popup
 
     if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
       CommonActions.applyMarketingCookies();
@@ -105,7 +106,6 @@ class HomePage implements AbstractPage {
       cy.get(resetPassword).click();
     },
     registrationButton () {
-      const loginIcon = selectors[variables.brand].loginIcon;
       const registrationButton = selectors[variables.brand].registrationButton;
       cy.get(registrationButton).click({force:true});
     },
@@ -168,7 +168,15 @@ class HomePage implements AbstractPage {
       cy.get('button[data-tau="forgot_password_submit"]', { timeout: 6000 }).click();
     },
     closeNastygalPopup () {
-      cy.get('#page-body > div.b-dialog.m-welcome_popup.welcome-popup-container.js-welcome-popup-wrapper.popup-template-5.popup-close-position-right.m-opened > div.b-dialog-window.m-top_dialog.m-welcome_popup.welcome-popup.welcome-popup-wrapper > div.b-dialog-header > button').should('be.visible').click();
+
+      // Cy.get('.b-dialog.m-opened, .b-dialog.m-active').should('be.visible').click();
+
+      cy.get('body').then($body => {
+        if ($body.find('.b-dialog.m-opened').length > 0) {
+          cy.get('.b-dialog.m-opened').invoke('attr', 'style', 'visibility:hidden!important;');
+        }
+      });
+
     }
   };
 

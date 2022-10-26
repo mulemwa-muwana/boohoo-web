@@ -28,6 +28,7 @@ const selectors: SelectorBrandMap = {
     addressPhoneNumberField: '#dwfrm_address_phone',
     addressCityField: '#dwfrm_address_city',
     addressPostalCodeField: '#dwfrm_address_postalCode',
+    addressStateCode: '#dwfrm_address_states_stateCode',
     addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
     addressDeleteBtn: '.b-cards_grid-footer > .b-button',
     creditCardsList: '.b-cards_grid',
@@ -79,6 +80,7 @@ const selectors: SelectorBrandMap = {
     addressPhoneNumberField: '#dwfrm_address_phone',
     addressCityField: '#dwfrm_address_city',
     addressPostalCodeField: '#dwfrm_address_postalCode',
+    addressStateCode: '#dwfrm_address_states_stateCode',
     addressDeleteBtn: '.b-cards_grid-footer > .b-button',
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
@@ -101,7 +103,8 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
+    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    newestOrderHistory: '[data-tau="account_viewOrder"]',
   },
   'dorothyperkins.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -346,17 +349,23 @@ class MyAccountPage implements AbstractPage {
         cy.get(loadMoreButton).eq(0).click({force: true});
       },
       startReturnButton (text: string) {
-        cy.log(`searching for '${text}' in order history`);
-        cy.get('.l-account-main').contains(text)
-          .invoke('removeAttr', 'target')
-          .then(element => {
-            const href = element.attr('href');
-            cy.wrap(element).click({force: true});
-            cy.url().then(url => {
-              expect(url).to.contain('delivery');
+        if (variables.brand == 'nastygal.com') {
+          cy.get('.b-order_item-button').click();
+          cy.url().should('contain', 'delivery');
+        } else {
+          cy.log(`searching for '${text}' in order history`);
+          cy.get('.l-account-main').contains(text)
+            .invoke('removeAttr', 'target')
+            .then(element => {
+              const href = element.attr('href');
+              cy.wrap(element).click({force: true});
+              cy.url().then(url => {
+                expect(url).to.contain('delivery');
+              });
             });
-          });
-        cy.go('back');
+          cy.go('back');
+        }
+        
       },
       wishListLink () {
         const wishListBtn = selectors[variables.brand].wishListBtn;
@@ -435,6 +444,7 @@ class MyAccountPage implements AbstractPage {
         const addressSubmitBtn = selectors[variables.brand].addressSubmitBtn;
         const addressNicknameField = selectors[variables.brand].addressNicknameField;
         const proceedToBillingBtn = selectors[variables.brand].proceedToBillingBtn;
+        const addressStateCode = selectors[variables.brand].addressStateCode;
         cy.get(addAddressBtn).should('be.visible').click({force: true});
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, {force: true});
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, {force: true});
@@ -445,6 +455,9 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressField).should('be.visible').type(address.addrline1, {force: true});
         cy.get(addressCityField).type(address.city, {force: true});
         cy.get(addressPostalCodeField).type(address.postcode, {force: true});
+        if (variables.locale == 'AU') {
+          cy.get(addressStateCode).select(address.county, {force: true});
+        }
         if (variables.brand == 'coastfashion.com') {
           cy.get(addressNicknameField).type('test');
           cy.get(addressSubmitBtn).click({force: true});

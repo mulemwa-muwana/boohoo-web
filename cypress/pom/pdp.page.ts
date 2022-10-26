@@ -52,6 +52,7 @@ const selectors: SelectorBrandMap = {
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
+    productDeliveryInfo: '.b-product_delivery'
   },
   'dorothyperkins.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',

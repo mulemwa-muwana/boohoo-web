@@ -204,7 +204,7 @@ describe('Shipping Page Registered user tests', function () {
     } else if (variables.brand == 'nastygal.com' ) {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
-    } else if (variables.brand == 'coastfashion.com'){
+    } else if (variables.brand == 'coastfashion.com') {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
     }

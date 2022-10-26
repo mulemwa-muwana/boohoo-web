@@ -240,14 +240,14 @@ class PdpPage implements AbstractPage {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
         cy.get(sizeVariations).find('li > span').each(($element) => {
-          if (!$element.attr('title').includes('not available')) {  // if size is available
+          if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');
             return false;
           }
         });
       } else {
         cy.get(sizeVariations).find('button').each(($element) => {
-          if (!$element.attr('title').includes('not available')) {  // if size is available
+          if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');
             return false;
           }

@@ -135,6 +135,7 @@ class LoginPage implements AbstractPage {
       const wishlistLoginTitle = selectors[variables.brand].wishlistLoginTitle;
       cy.get(wishlistLoginTitle).should('contain.text', title);
     },
+
     //  Login Attempts
     assertErrorLoginMessageIsPresent (text: string) {
       const errorLoginMessage = selectors[variables.brand].errorLoginMessage;
@@ -154,7 +155,7 @@ class LoginPage implements AbstractPage {
     login (user: string, pass: string) {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
-      if(variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com') {
         cy.get(loginIcon).invoke('show');
         cy.get(loginLink).click({force:true});
       } else {

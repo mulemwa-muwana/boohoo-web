@@ -544,14 +544,14 @@ class MyAccountPage implements AbstractPage {
         cy.contains(addressName).should('be.visible');
       },
       assertAddressNotPresent (addressName: string) {
-        const addressCardsList = selectors[variables.brand].addressCardsList
+        const addressCardsList = selectors[variables.brand].addressCardsList;
         cy.get(addressCardsList).should('not.contain', addressName);
       },
       assertCardDetails (cardEnd: string) {
         cy.contains(cardEnd).should('be.visible');
       },
       assertCardNotPresent (cardEnd: string) {
-        const creditCardsList = selectors[variables.brand].creditCardsList
+        const creditCardsList = selectors[variables.brand].creditCardsList;
         cy.get(creditCardsList).should('not.contain', cardEnd);
       },
       assertOrderCantBeTracked () {

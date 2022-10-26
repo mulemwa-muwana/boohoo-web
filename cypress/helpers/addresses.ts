@@ -448,9 +448,9 @@ class Addresses {
         postcode: '2600',
         addressName: 'SecondAddress',
         country: 'Australia',
-        city: '',
+        city: 'Sydney',
         countryCode: '',
-        county: '',
+        county: 'ACT',
         confirmEmail: ''
       },
       secondaryAddress:  {

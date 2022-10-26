@@ -81,7 +81,7 @@ describe('Billing page functionality for guest user', function () {
   
   it('Verify that email field is filled with correct email address', function () {
     if (variables.brand != 'coastfashion.com') {
-    BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
+      BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
     }
   });
 

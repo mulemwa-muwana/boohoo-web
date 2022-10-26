@@ -525,14 +525,14 @@ class BillingPage implements AbstractPage {
       cy.enter('#klarna-apf-iframe', { timeout: 20000 }).then(body => {
         body().find('#onContinue').click({force:true});
         cy.wait(2000);
-        body().find('#otp_field').type('111111');
+        body().find('#otp_field').type('111111', {force: true});
         cy.wait(12000);
 
         body().then($body => { 
           cy.wait(5000);
           if ($body.find('#pay_now-pay_now').length) { // If Payment options popup exists select Pay now
-            body().find('#pay_now-pay_now').click();
-            body().find('button[data-testid="select-payment-category"]').click();
+            body().find('#pay_now-pay_now').click({force: true});
+            body().find('button[data-testid="select-payment-category"]').click({force: true});
           }
         });
         
@@ -594,6 +594,7 @@ class BillingPage implements AbstractPage {
       });
 
       cy.wait(12000);
+
       // New iframe opens after PayPal user logs in
       cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
         const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
@@ -646,7 +647,7 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertBillingPageIsLoaded () {
-      if ((variables.brand != 'coastfashion.com') && (variables.brand != 'oasis-stores.com')  && (variables.brand != 'nastygal.com')) {
+      if ((variables.brand != 'coastfashion.com') && (variables.brand != 'oasis-stores.com') && (variables.brand != 'nastygal.com')) {
 
         // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
         cy.intercept(/checkoutshopper/).as('paymentMethodsSection');

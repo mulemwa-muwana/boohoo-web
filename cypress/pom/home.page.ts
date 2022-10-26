@@ -90,7 +90,7 @@ class HomePage implements AbstractPage {
     if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
       CommonActions.applyMarketingCookies();
       if (variables.brand == 'nastygal.com') {
-        cy.intercept(/newsletter/i, [])   // Don't show Nastygal newsletter popup
+        cy.intercept(/newsletter/i, []); // Don't show Nastygal newsletter popup
       }
       cy.visit(variables.url);
     }

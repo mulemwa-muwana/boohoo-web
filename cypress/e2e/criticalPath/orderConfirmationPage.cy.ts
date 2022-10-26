@@ -37,7 +37,8 @@ describe('Order confirmation page for guest user', function () {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       if (variables.locale == 'US') {
-        shippingPage.actions.selectState(localeAddress.county);}
+        shippingPage.actions.selectState(localeAddress.county);
+      }
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
       if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {

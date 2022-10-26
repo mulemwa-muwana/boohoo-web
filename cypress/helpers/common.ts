@@ -145,7 +145,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
   return paymentType;
 }
 
-type BrandPaymentMap = Record < GroupBrands, PaymentMethod[] >;
+type BrandPaymentMap = Record < GroupBrands, Array<PaymentMethod> >;
 
 export function isBrandSupportingPaymentMethod (brand: GroupBrands, paymentMethod: PaymentMethod): boolean {
   const paymentLookupTable: BrandPaymentMap = {

@@ -89,6 +89,9 @@ class HomePage implements AbstractPage {
 
     if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
       CommonActions.applyMarketingCookies();
+      if (variables.brand == 'nastygal.com') {
+        cy.intercept(/newsletter/i, [])   // Don't show Nastygal newsletter popup
+      }
       cy.visit(variables.url);
     }
 
@@ -159,7 +162,7 @@ class HomePage implements AbstractPage {
       const searchField = selectors[variables.brand].searchField;
       const searchIcon = selectors[variables.brand].searchIcon;
       cy.get(searchIcon).click({ force: true });
-      cy.get(searchField).click({ force: true }).type(SKU + '{enter}');
+      cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
     },
     forgotPassword (email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();

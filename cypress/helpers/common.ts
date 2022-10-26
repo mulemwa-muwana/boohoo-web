@@ -145,122 +145,85 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
   return paymentType;
 }
 
-type BrandPaymentMap = Record < GroupBrands, Record < PaymentMethod, boolean > >;
+type BrandPaymentMap = Record < GroupBrands, PaymentMethod[] >;
 
 export function isBrandSupportingPaymentMethod (brand: GroupBrands, paymentMethod: PaymentMethod): boolean {
   const paymentLookupTable: BrandPaymentMap = {
-    'boohoo.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'boohooman.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'nastygal.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'karenmillen.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'coastfashion.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'warehousefashion.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'oasis-stores.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'dorothyperkins.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'burton.co.uk': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: false,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'wallis.co.uk': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    },
-    'misspap.com': {
-      Adyen: true,
-      PayPal: true,
-      Clearpay: true,
-      LayBuy: true,
-      WorldPay: true,
-      Klarna: true,
-      AfterPay: true,
-      ZipPay: true
-    }
+    'boohoo.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'LayBuy',
+      'Klarna'
+    ],
+    'boohooman.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+      'LayBuy',
+    ],
+    'nastygal.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+      'LayBuy',
+    ],
+    'karenmillen.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+      'LayBuy',
+    ],
+    'coastfashion.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+      'LayBuy',
+    ],
+    'warehousefashion.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+      'LayBuy',
+    ],
+    'oasis-stores.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+      'LayBuy',
+    ],
+    'dorothyperkins.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+    ],
+    'burton.co.uk': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+    ],
+    'wallis.co.uk': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+    ],
+    'misspap.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+      'LayBuy',
+    ]
   };
 
-  const paymentMethodTable = paymentLookupTable[brand] ?? {};
-  return paymentMethodTable[paymentMethod] as boolean;
+  return paymentLookupTable[brand].includes(paymentMethod) as boolean;
 }

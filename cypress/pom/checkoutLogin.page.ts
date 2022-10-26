@@ -79,11 +79,11 @@ class CheckoutPage implements AbstractPage {
   click = {
     continueAsGuestBtn () {  
       const continueAsGuestBt = selectors[variables.brand].continueAsGuestBt; 
-      cy.get(continueAsGuestBt).click();
+      cy.get(continueAsGuestBt).click({force:true});
     },
     continueAsRegisteredUser () {  
       const continueAsRegisteredUser = selectors[variables.brand].continueAsRegisteredUser; 
-      cy.get(continueAsRegisteredUser).click();
+      cy.get(continueAsRegisteredUser).click({force:true});
     },
     premierAddToCart () { 
       const premierAddToCart = selectors[variables.brand].premierAddToCart;
@@ -94,15 +94,15 @@ class CheckoutPage implements AbstractPage {
   actions = {
     guestCheckoutEmail (guestEmail: string) {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
-      cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
+      cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail, {force:true});
     },
     userEmailField (username: string) {  
       const userEmailField = selectors[variables.brand].userEmailField;
-      cy.get(userEmailField).click({force:true}).type(username);
+      cy.get(userEmailField).click({force:true}).type(username, {force:true});
     },
     passwordField (password: string) {  
       const passwordField = selectors[variables.brand].passwordField;
-      cy.get(passwordField).type(password);
+      cy.get(passwordField).type(password, {force:true});
     }
   };
 

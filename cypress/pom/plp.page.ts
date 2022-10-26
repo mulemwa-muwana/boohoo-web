@@ -50,9 +50,10 @@ const selectors: SelectorBrandMap = {
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
-    productImageIsDisplayed: '.b-product_tile-image',
+    productImageIsDisplayed: '#product-grid > div.l-plp_grid > section:nth-child(3) > div.b-product_tile-container > div:nth-child(1) > div.b-product_tile-top > a > picture > img',
     itemIsAddedToWishlist: '.b-header_wishlist-count', //  Does not exist for NG 
-    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link',
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
   },
   'dorothyperkins.com': {
     styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
@@ -292,7 +293,11 @@ class PlpPage implements AbstractPage {
     },
     assertProductImageIsDisplayed () {
       const productImageIsDisplayed = selectors[variables.brand].productImageIsDisplayed;
-      cy.get(productImageIsDisplayed).eq(1).should('be.visible').should('have.attr', 'src');
+      if (variables.brand == 'nastygal.com') {
+        cy.get(productImageIsDisplayed).should('be.visible').and('have.prop', 'naturalWidth').should('be.greaterThan', 0);
+      } else {
+        cy.get(productImageIsDisplayed).eq(1).should('be.visible').should('have.attr', 'src');
+      }   
     },
     assertItemIsAddedToWishlist () {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;

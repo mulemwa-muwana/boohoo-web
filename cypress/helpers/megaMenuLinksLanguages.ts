@@ -43,7 +43,7 @@ class megaMenuLinksLanguages {
   };
 
   linkArkadiaDresses: TranslationMap = { 
-    EN: 'New In',
+    EN: 'Dresses',
     NL: '',
     DE: '',
     FR: '',
@@ -96,6 +96,20 @@ class megaMenuLinksLanguages {
     IL: '',
     IT: 'nuovi',
     ES: 'novedades',
+  };
+
+  urlDresses: TranslationMap = { 
+    EN: 'dresses',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
   };
 
   saleLink: TranslationMap = {

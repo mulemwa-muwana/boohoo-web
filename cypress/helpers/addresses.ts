@@ -314,6 +314,37 @@ class Addresses {
       }
     },
 
+    NL: {
+      primaryAddress:  {
+        firstName: 'New',
+        lastName: 'Test',
+        phone: '358294500501',
+        addrline1: 'Museumstraat 1',
+        addrline2: '',
+        postcode: '1071 XX',
+        addressName: 'SecondAddress',
+        country: 'Netherlands',
+        city: 'Amsterdam',
+        countryCode: '',
+        county: '',
+        confirmEmail: ''
+      },
+      secondaryAddress:  {
+        firstName: 'New',
+        lastName: 'Test',
+        phone: '358294500501',
+        addrline1: 'Museumstraat 3',
+        addrline2: '',
+        postcode: '1071 XX',
+        addressName: 'SecondAddress',
+        country: 'Netherlands',
+        city: 'Amsterdam',
+        countryCode: '',
+        county: '',
+        confirmEmail: ''
+      }
+    },
+
     SE: {
       primaryAddress:  {
         firstName: 'New',
@@ -417,9 +448,9 @@ class Addresses {
         postcode: '2600',
         addressName: 'SecondAddress',
         country: 'Australia',
-        city: '',
+        city: 'Sydney',
         countryCode: '',
-        county: '',
+        county: 'ACT',
         confirmEmail: ''
       },
       secondaryAddress:  {

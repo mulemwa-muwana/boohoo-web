@@ -6,8 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwdev.oasisfashion.com',
-    sku: 'AAA67414-128',
-    fullSKU: 'AAA67414-128-14',
+    sku: 'AAA73613-152',
+    fullSKU: 'AAA73613-152-16',
     brand: 'oasis-stores.com',
     locale: 'UK',
     language: 'EN',
@@ -18,6 +18,7 @@ export default defineConfig({
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,
+  screenshotOnRunFailure: true,
 
   e2e: {
     experimentalSessionAndOrigin: true,

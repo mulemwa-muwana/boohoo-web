@@ -48,12 +48,12 @@ describe('Billing page functionality for registered user', function () {
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     
     // If (variables.locale == 'IE') {
-      //   ShippingPage.actions.countyField(localeAddress.county);
-      shippingPage.click.proceedToBilling();
-      if (variables.brand == 'coastfashion.com') {
-        shippingPage.click.proceedToBillingAddressVerification();
-      }
-      BillingPage.assertions.assertBillingPageIsLoaded();
+    //   ShippingPage.actions.countyField(localeAddress.county);
+    shippingPage.click.proceedToBilling();
+    if (variables.brand == 'coastfashion.com') {
+      shippingPage.click.proceedToBillingAddressVerification();
+    }
+    BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -132,7 +132,8 @@ describe('Billing page functionality for registered user', function () {
     } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK') {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
-      // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
+
+    // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
   });
   describe('Verify that registered user can place orders with available payment methods', function () {
     it('Verify that registered user can place order using Credit Card - Visa)', function () {

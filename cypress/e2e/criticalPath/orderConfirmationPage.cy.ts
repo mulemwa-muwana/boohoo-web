@@ -40,7 +40,7 @@ describe('Order confirmation page for guest user', function () {
         shippingPage.actions.selectState(localeAddress.county);}
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         shippingPage.actions.selectDate('23', 'May', '2001');
         shippingPage.actions.confirmEmail(credentials.guest);
         shippingPage.click.proceedToBilling();
@@ -124,7 +124,7 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
 
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.click.proceedToBillingAddressVerification();
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
@@ -149,7 +149,7 @@ describe('Order confirmation page for registered user', function () {
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
   it('Verify that payment method is present', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
     } else {
       orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);

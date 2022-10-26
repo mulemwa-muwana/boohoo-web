@@ -299,7 +299,7 @@ const selectors: SelectorBrandMap = {
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
-    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+    paynowBtnCC:'#billingSubmitButton',
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
@@ -604,7 +604,7 @@ class BillingPage implements AbstractPage {
     },
     selectLaybuy () {
       cy.wait(5000);
-      if (variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
         cy.get('[for="is-LAYBUY"]', { timeout: 30000 }).should('be.visible').click({ force: true });
         cy.get('#billingSubmitButton', { timeout: 30000 }).click({ force: true });
       } else {
@@ -619,7 +619,7 @@ class BillingPage implements AbstractPage {
       cy.get('button[data-test-id="payment-complete-order-button"]').click();
     },
     selectClearpay () {
-      if (variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });
         cy.get('#billingSubmitButton').click({ force: true });
       } else {

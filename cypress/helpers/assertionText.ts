@@ -856,16 +856,16 @@ class AssertionText {
 
   becomeAnAffiliate: TranslationMap = {
     EN: 'Become an Affiliate',
-    NL: '',
-    DE: '', // Not displayed
+    NL: 'Word partner',
+    DE: 'Partner werden',
     FR: 'Affiliez-vous',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Become an Affiliate',
+    FI: 'Become an Affiliate',
+    NO: 'Become an Affiliate',
+    SE: 'Affiliates',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Diventa un affiliato',
+    ES: 'Conviértete en socio'
   };
 
   becomePartner: TranslationMap = {
@@ -876,7 +876,7 @@ class AssertionText {
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Hållbarhet',
     IL: '',
     IT: '',
     ES: ''

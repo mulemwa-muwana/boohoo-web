@@ -43,6 +43,8 @@ describe('Billing page functionality for registered user', function () {
     shippingPage.click.addAddressManually();  
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+    if (variables.locale == 'US') {
+      shippingPage.actions.selectState(localeAddress.county);}
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     
     // If (variables.locale == 'IE') {
@@ -69,14 +71,14 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  if (variables.brand != 'coastfashion.com') {
-    it('Verify that email address is displayed and it cannot be changed', function () {
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        BillingPage.assertions.assertEmailIsCorrect(credentials.username);
-      });
-      BillingPage.assertions.assertEmailFieldCantBeChanged();
+  it('Verify that email address is displayed and it cannot be changed', function () {
+    if (variables.brand != 'coastfashion.com') {
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      BillingPage.assertions.assertEmailIsCorrect(credentials.username);
     });
-  }
+    BillingPage.assertions.assertEmailFieldCantBeChanged();
+    }
+  });
   it('Verify that billing address can be same as shipping address', function () {
     if (variables.brand == 'coastfashion.com') {
       BillingPage.click.changeShippingAddress();

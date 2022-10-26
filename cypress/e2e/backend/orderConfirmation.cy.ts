@@ -36,6 +36,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.click.proceedToBilling();
+    ShippingPage.click.proceedToBillingAddressVerification();
     BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
@@ -91,15 +92,15 @@ describe('Boohoo order placement', () => {
   // Method for generating artefact on OrderConfirmation page for back end tests.
   function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
     const variables = Cypress.env() as EnvironmentVariables;
-    cy.get('[data-tau="order_number"], .orderdetails-header-number .value').invoke('text').then(text => text.trim()).as('orderNumber');
-    cy.get('.m-total, .order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
-    cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail');
+    cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
+    cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
+    cy.get('#main > div > div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail');
     if (variables.brand == 'oasis-stores.com') {
       cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');
     } else {
       cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
     }
-    cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
+    cy.get('#main > div > div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim()).as('orderEmail')
       .then(function () {
 
         const testArtefactObject: TestArtefact = {

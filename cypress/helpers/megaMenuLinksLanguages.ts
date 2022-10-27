@@ -129,12 +129,12 @@ class megaMenuLinksLanguages {
   saleLinkArkadia: TranslationMap = {
     EN: 'Sale',
     FR: 'Promos',
-    NL: '',
+    NL: 'UITVERKOOP',
     DE: '',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'REA',
     IL: '',
     IT: '',
     ES: ''
@@ -143,12 +143,12 @@ class megaMenuLinksLanguages {
   subnavAllSale: TranslationMap = {
     EN: 'All Sale',
     FR: 'Promos vêtements',
-    NL: '',
+    NL: 'Alles uitverkoop',
     DE: 'Alles im Sale',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Alla Reaprodukter',
     IL: '',
     IT: '',
     ES: ''
@@ -157,12 +157,12 @@ class megaMenuLinksLanguages {
   urlValidationSale: TranslationMap = {
     EN: 'sale',
     FR: 'promotions',
-    NL: '',
+    NL: 'vandaag-nieuw-binnen',
     DE: 'sale',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'nyheter',
     IL: '',
     IT: '',
     ES: ''
@@ -170,13 +170,13 @@ class megaMenuLinksLanguages {
 
   urlValidationNewIn: TranslationMap = {
     EN: 'new',
-    NL: 'Nieuw Binnen',
-    DE: 'Neu eingetroffen',
+    NL: 'vandaag-nieuw-binnen',
+    DE: 'neu-eingetroffen',
     FR: 'nouveautes',
     DK: '',
     FI: '',
     NO: '',
-    SE: 'Nyheter',
+    SE: 'nyheter',
     IL: '',
     IT: 'Nuovi arrivi',
     ES: 'Novedades',

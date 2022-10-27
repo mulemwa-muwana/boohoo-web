@@ -47,7 +47,7 @@ class Addresses {
         country: 'United States',
         city: 'New York',
         countryCode: 'NY',
-        county: '',
+        county: 'NY',
         confirmEmail: ''
       },
       secondaryAddress:  {
@@ -61,7 +61,7 @@ class Addresses {
         country: 'United States',
         city: 'New York',
         countryCode: 'NY',
-        county: '',
+        county: 'NY',
         confirmEmail: ''
       }
     },
@@ -308,6 +308,37 @@ class Addresses {
         addressName: '',
         country: '',
         city: '',
+        countryCode: '',
+        county: '',
+        confirmEmail: ''
+      }
+    },
+
+    NL: {
+      primaryAddress:  {
+        firstName: 'New',
+        lastName: 'Test',
+        phone: '358294500501',
+        addrline1: 'Museumstraat 1',
+        addrline2: '',
+        postcode: '1071 XX',
+        addressName: 'SecondAddress',
+        country: 'Netherlands',
+        city: 'Amsterdam',
+        countryCode: '',
+        county: '',
+        confirmEmail: ''
+      },
+      secondaryAddress:  {
+        firstName: 'New',
+        lastName: 'Test',
+        phone: '358294500501',
+        addrline1: 'Museumstraat 3',
+        addrline2: '',
+        postcode: '1071 XX',
+        addressName: 'SecondAddress',
+        country: 'Netherlands',
+        city: 'Amsterdam',
         countryCode: '',
         county: '',
         confirmEmail: ''

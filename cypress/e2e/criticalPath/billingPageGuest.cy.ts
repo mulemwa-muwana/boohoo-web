@@ -53,6 +53,11 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();
       shippingPage.click.proceedToBillingAddressVerification();
+    } if (variables.locale == 'US') {
+      shippingPage.actions.selectState(localeAddress.county);
+      shippingPage.click.proceedToBilling();
+      cy.wait(3000);
+      shippingPage.actions.selectDate('23', 'May', '2001');
     } else {
       shippingPage.click.proceedToBilling();
     }
@@ -76,11 +81,12 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  if (variables.brand != 'coastfashion.com') {
-    it('Verify that email field is filled with correct email address', function () {
+  
+  it('Verify that email field is filled with correct email address', function () {
+    if (variables.brand != 'coastfashion.com') {
       BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
-    });
-  }
+    }
+  });
 
   /* It('Verify that subscription block is displayed', function () {
     BillingPage.assertions.assertSubscriptionBlockPresent();

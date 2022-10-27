@@ -1,14 +1,14 @@
 import { defineConfig } from 'cypress';
-import plugins from 'cypress/plugins';
+import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.oasisfashion.com',
-    sku: 'AAA73613-152',
-    fullSKU: 'AAA73613-152-16',
-    brand: 'oasis-stores.com',
+    url: 'https://storefront:Oreo2022@dev.coastfashion.com/',
+    sku: 'ACC99478-119-18',
+    fullSKU: 'ACC99478-119-18',
+    brand: 'coastfashion.com',
     locale: 'UK',
     language: 'EN',
   },
@@ -17,15 +17,11 @@ export default defineConfig({
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
-  video: false,
-  screenshotOnRunFailure: true,
 
   e2e: {
-    experimentalSessionAndOrigin: true,
-    setupNodeEvents (on) {
+    setupNodeEvents (on, config) {
       plugins(on);
     },
-
     numTestsKeptInMemory: 0
-  },
+  },   
 });

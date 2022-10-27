@@ -98,7 +98,7 @@ describe('Order confirmation page for registered user', function () {
     BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     
   });
-  it('Verify that email is visible', function () {
+  it.only('Verify that email is visible', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);
     });

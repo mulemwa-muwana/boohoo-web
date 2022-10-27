@@ -238,7 +238,7 @@ describe('Footer verification', () => {
       GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);
     }
   });
-  it('Verify that Footer Navigation Component is present and Links are functional - About boohoo', () => {
+  it.only('Verify that Footer Navigation Component is present and Links are functional - About boohoo', () => {
     const variables = Cypress.env() as EnvironmentVariables;
     if (variables.brand == 'boohoo.com')
       GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAbout[variables.language]);

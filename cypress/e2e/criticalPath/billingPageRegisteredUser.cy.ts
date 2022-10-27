@@ -100,7 +100,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });
-    it('Verify that registered user can place order using Credit Card - Master)', function () {
+    it.only('Verify that registered user can place order using Credit Card - Master)', function () {
       BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
       BillingPage.assertions.assertOrderConfirmationPAgeIsDisplayed();
     });

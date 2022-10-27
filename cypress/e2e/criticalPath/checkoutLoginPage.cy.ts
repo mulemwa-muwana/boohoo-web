@@ -44,7 +44,7 @@ describe('Home Page', function () {
     });
   });
 
-  it('Verify that user is able to proceed as guest', () => {
+  it.only('Verify that user is able to proceed as guest', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
       CheckoutPage.click.continueAsGuestBtn();

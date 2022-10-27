@@ -6,7 +6,6 @@ import shippingPage from '../../pom/shipping.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
-import billingPage from 'cypress/pom/billing.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -47,7 +46,9 @@ describe('Shipping Page Guest user tests', function () {
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     if (variables.brand != 'coastfashion.com') {
-      shippingPage.click.addNewAddressButton();
+
+      // ShippingPage.click.addNewAddressButton();
+      shippingPage.click.addAddressManually();
     }
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
@@ -146,6 +147,9 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
+    if (variables.locale == 'AU') {
+      shippingPage.actions.stateField(localeAddress.county);
+    }
     if (variables.brand == 'coastfashion.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);

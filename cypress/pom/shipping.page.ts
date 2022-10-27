@@ -53,7 +53,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: 'button[data-tau="add_new_address"]',
+    addNewAddress: '#deliveryPanel > div > div:nth-child(1) > div > button',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
@@ -78,6 +78,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
+    stateField: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -293,7 +294,7 @@ class ShippingPage implements AbstractPage {
       cy.wait(1000);
       cy.get(proceedToBilling).click({force: true});
     },
-    proceedToBillingAddressVerification() {
+    proceedToBillingAddressVerification () {
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.get(proceedToBillingVerificationBtn).click({force: true});
@@ -427,6 +428,11 @@ class ShippingPage implements AbstractPage {
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
       cy.get(shippingPostcode).type(postcode);
     },
+    stateField (state: string) {
+      cy.wait(1000);
+      const stateField = selectors[variables.brand].stateField;
+      cy.get(stateField).select(state);
+    },
     clearPostcodeFieldAndAddNewOne (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
@@ -438,7 +444,7 @@ class ShippingPage implements AbstractPage {
         cy.contains(shippingMethod).click({force: true});
       });
     },
-    selectDate (day: string, month: string, year: string) {   // Only for Site Genesis brands
+    selectDate (day: string, month: string, year: string) { // Only for Site Genesis brands
       const dobDay = selectors[variables.brand].dobDay;
       const dobMonth = selectors[variables.brand].dobMonth;
       const dobYear = selectors[variables.brand].dobYear;
@@ -446,7 +452,7 @@ class ShippingPage implements AbstractPage {
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
     },
-    confirmEmail (email: string) {  // Only for Site Genesis brands
+    confirmEmail (email: string) { // Only for Site Genesis brands
       const confirmEmail = selectors[variables.brand].confirmEmail;
       cy.get(confirmEmail).type(email);
     },

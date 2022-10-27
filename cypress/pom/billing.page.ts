@@ -330,9 +330,6 @@ const selectors: SelectorBrandMap = {
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
-<<<<<<< HEAD
-    emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
-=======
     emptyEmailFiledError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     addNewBillingAddress: '.js-edit-address',
     billingForm: '.js-address-form',
@@ -345,7 +342,6 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
->>>>>>> master
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -548,13 +544,8 @@ class BillingPage implements AbstractPage {
         body().then($body => { 
           cy.wait(5000);
           if ($body.find('#pay_now-pay_now').length) { // If Payment options popup exists select Pay now
-<<<<<<< HEAD
             body().find('#pay_now-pay_now').click();
             body().find('button[data-testid="select-payment-category"]').click();
-=======
-            body().find('#pay_now-pay_now').click({force: true});
-            body().find('button[data-testid="select-payment-category"]').click({force: true});
->>>>>>> master
           }
         });
         
@@ -676,11 +667,7 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertBillingPageIsLoaded () {
-<<<<<<< HEAD
-      if (variables.brand != 'coastfashion.com') {
-=======
       if ((variables.brand != 'coastfashion.com') && (variables.brand != 'oasis-stores.com') && (variables.brand != 'nastygal.com')) {
->>>>>>> master
 
         // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
         cy.intercept(/checkoutshopper/).as('paymentMethodsSection');

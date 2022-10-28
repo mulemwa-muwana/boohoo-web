@@ -127,6 +127,10 @@ class WishListPage implements AbstractPage {
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       cy.get(removeItemFromWishlist).eq(0).click();
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
+        cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({force:true});
+      }
+      
     },
     wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;

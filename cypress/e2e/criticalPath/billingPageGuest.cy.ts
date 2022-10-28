@@ -45,6 +45,9 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
+    if (variables.locale == 'AU') {
+      shippingPage.actions.stateField(localeAddress.county);
+    }
     if (variables.brand == 'coastfashion.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
@@ -168,13 +171,19 @@ describe('Billing page functionality for guest user', function () {
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-    BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
+    } 
+
+    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+      BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+    } 
+    
     if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK') {
+    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK' || variables.locale == 'AU') {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
     
@@ -205,7 +214,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.selectPayPal();
       BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
-    if (variables.locale == 'UK' || variables.locale == 'IE') {
+    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
       it('Verify that guest user can place order using Klarna', function () {
         BillingPage.actions.selectKlarna();
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();

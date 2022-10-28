@@ -323,7 +323,7 @@ class Addresses {
         addrline2: '',
         postcode: '1071 XX',
         addressName: 'SecondAddress',
-        country: 'Netherlands',
+        country: 'Nederland',
         city: 'Amsterdam',
         countryCode: '',
         county: '',
@@ -337,7 +337,7 @@ class Addresses {
         addrline2: '',
         postcode: '1071 XX',
         addressName: 'SecondAddress',
-        country: 'Netherlands',
+        country: 'Nederland',
         city: 'Amsterdam',
         countryCode: '',
         county: '',
@@ -449,7 +449,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Australia',
         city: 'Sydney',
-        countryCode: '',
+        countryCode: 'AU',
         county: 'ACT',
         confirmEmail: ''
       },
@@ -512,7 +512,7 @@ class Addresses {
         country: 'Austria',
         city: 'Wien',
         countryCode: '',
-        county: '',
+        county: 'Austria',
         confirmEmail: ''
       },
       secondaryAddress:  {

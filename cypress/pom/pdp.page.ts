@@ -58,9 +58,10 @@ const selectors: SelectorBrandMap = {
   },
   'dorothyperkins.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
-    addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
+    addToWishList: '.b-product_wishlist-button > .b-button-icon',
     returnLink: 'a[href="https://dwdev.dorothyperkins.com/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    addToWishListButton: '.b-product_wishlist-button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-variation_swatch-color_value',
@@ -83,7 +84,8 @@ const selectors: SelectorBrandMap = {
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
-    addToWishListButton: '.b-product_wishlist-button > span',
+    addToWishList: '.b-product_wishlist-button > span',
+    addToWishListButton: '.b-product_wishlist-button',
     returnLink: 'a[href="https://dwdev.burton.co.uk/page/returns-refunds-cs.html"]',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
@@ -108,7 +110,7 @@ const selectors: SelectorBrandMap = {
   },
   'wallis.co.uk': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
-    addToWishListButton: '.b-product_wishlist-button > .b-button-icon',
+    addToWishListButton: '.b-product_wishlist-button',
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',

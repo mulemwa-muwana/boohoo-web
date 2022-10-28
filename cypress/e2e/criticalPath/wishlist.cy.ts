@@ -23,10 +23,10 @@ describe('Wishlist Page tests', function () {
     HomePage.actions.findItemUsingSKU(variables.sku);
     pdpPage.actions.selectSize();
     pdpPage.click.addToWishList(); 
-    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com' 
-    || variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com' ) {
+    if (variables.brand == 'boohoo.com' ) {
       WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
     }
+    HomePage.goto();
     HomePage.click.wishListIcon();
     WishListPage.assertions.assertItemIsAddedToWishlist();
   }),

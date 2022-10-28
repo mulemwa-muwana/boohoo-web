@@ -54,7 +54,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: 'button[data-tau="add_new_address"]',
+    addNewAddress: '#deliveryPanel > div > div:nth-child(1) > div > button',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
@@ -79,6 +79,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
+    stateField: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -458,6 +459,11 @@ class ShippingPage implements AbstractPage {
       cy.wait(1000);
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
       cy.get(shippingPostcode).type(postcode);
+    },
+    stateField (state: string) {
+      cy.wait(1000);
+      const stateField = selectors[variables.brand].stateField;
+      cy.get(stateField).select(state);
     },
     clearPostcodeFieldAndAddNewOne (postcode: string) {
       cy.wait(1000);

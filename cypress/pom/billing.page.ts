@@ -100,6 +100,7 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
   },
   'dorothyperkins.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',

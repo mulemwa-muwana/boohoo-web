@@ -46,15 +46,17 @@ describe('Shipping Page Guest user tests', function () {
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     if (variables.brand != 'coastfashion.com') {
-
-      // ShippingPage.click.addNewAddressButton();
       shippingPage.click.addAddressManually();
     }
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
+      shippingPage.click.addNewAddressButton();
+    }
+
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
     
     if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
-      shippingPage.click.enterManuallyAddressDetails();
+      shippingPage.click.addAddressManually();
     }   
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {

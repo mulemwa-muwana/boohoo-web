@@ -55,7 +55,7 @@ describe('Order confirmation page for guest user', function () {
 
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     if (variables.brand == 'boohoo.com') {
-      orderConfirmationPage.click.closePopUp1(assertionText.closePopUp[variables.language]);
+      orderConfirmationPage.click.closePopUp();
     }
   });
 

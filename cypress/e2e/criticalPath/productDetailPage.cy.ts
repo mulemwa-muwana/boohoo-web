@@ -65,9 +65,9 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertProductDescriptionIsPresent();
   });
   it('TC11 Verify that Shipping Info is displayed when configured', function () {
-    if (variables.brand == 'boohoo.com') {
+    if (variables.brand == 'boohoo.com' ) {
       PdpPage.click.shippingInfoButton();
-      PdpPage.assertions.assertDeliveryInfoIsDisplayed();
+      PdpPage.assertions.assertDeliveryInfoIsDisplayed(assertionText.pdpDeliverylist[variables.language]);
     }
     pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
   });

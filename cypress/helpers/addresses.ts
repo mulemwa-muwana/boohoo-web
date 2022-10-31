@@ -91,7 +91,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Ireland',
         city: 'Dublin',
-        countryCode: '',
+        countryCode: 'D01',
         county: 'Dublin',
         confirmEmail: ''
       }
@@ -139,7 +139,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'France',
         city: 'Paris',
-        countryCode: '',
+        countryCode: '75006',
         county: '',
         confirmEmail: ''
       },
@@ -153,7 +153,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'France',
         city: ' Paris',
-        countryCode: '',
+        countryCode: '75006',
         county: '',
         confirmEmail: ''
       }
@@ -325,7 +325,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Nederland',
         city: 'Amsterdam',
-        countryCode: '',
+        countryCode: '1071 XX',
         county: '',
         confirmEmail: ''
       },
@@ -339,7 +339,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Nederland',
         city: 'Amsterdam',
-        countryCode: '',
+        countryCode: '1071 XX',
         county: '',
         confirmEmail: ''
       }

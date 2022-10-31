@@ -1,14 +1,14 @@
 class AssertionText {
   
   WishlistItemsAdded: TranslationMap = {
-    EN: '\n\nSaved\n',
-    FR: '\n\nEnregistré\n',
+    EN: 'The product is added to wish list',
+    FR: 'Le produit a été ajouté à la liste des favoris',
     NL: '\n\nOpgeslagen\n',
     DE: '\n\nGerettet\n',
     DK: '\n\nGemt\n',
     FI: '\n\nTallennettu\n',
     NO: '\n\nLagret\n',
-    SE: '\n\nSparad\n',
+    SE: 'The product is added to wish list',
     IL: '\n\nשמור\n',
     IT: '\n\nSalvato\n',
     ES: '\n\nSalvado\n'
@@ -30,7 +30,6 @@ class AssertionText {
 
   WishlistItemsAddedArkadia: TranslationMap = {
     EN: 'The product is added to wish list',
-    FR: '',
     NL: '',
     DE: '',
     DK: '',
@@ -39,7 +38,8 @@ class AssertionText {
     SE: '',
     IL: '',
     IT: '',
-    ES: ''
+    ES: '',
+    FR: ''
   };
 
   WishlistItemsAddedAlert: TranslationMap = {
@@ -450,13 +450,13 @@ class AssertionText {
 
   emptyEmailFieldErrorBillingPage: TranslationMap = {
     EN: '',
-    FR: '',
-    NL: '',
-    DE: '',
+    FR: 'Ne m’oubliez pas !',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Glöm inte mig!',
     IL: '',
     IT: '',
     ES: ''
@@ -674,6 +674,20 @@ class AssertionText {
 
   footerLinkDeliveryInfo: TranslationMap = {
     EN: 'Delivery Info',
+    NL: 'Bezorginformatie',
+    DE: 'Lieferinformationen',
+    FR: 'Information sur la livraison',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'Leveranser',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  pdpDeliverylist: TranslationMap = {
+    EN: '\nFewer shipping options\n',
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',

@@ -45,24 +45,15 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
-    if (variables.brand != 'coastfashion.com') {
-      shippingPage.click.addAddressManually();
-    }
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-      shippingPage.click.addNewAddressButton();
-    }
-
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
-    
-    if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
-      shippingPage.click.addAddressManually();
-    }   
+    shippingPage.click.enterManuallyAddressDetails();
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
-    }
-    shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryPostcodeArcadia[variables.language]);    
+      if (variables.brand == 'boohoo.com'){
+        shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      } else {
+        shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      }
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', function () {
@@ -101,7 +92,7 @@ describe('Shipping Page Guest user tests', function () {
     });
   }
 
-  if (variables.brand != 'coastfashion.com') {
+  //if (variables.brand != 'coastfashion.com') {
     it('Verify that "Enter manually" button allows guest to enter address details', function () {
       const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
       if (variables.locale == 'EU') {
@@ -112,7 +103,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.click.addAddressManually();
       shippingPage.assertions.assertManualAddressFieldsAreDispayed();
     });
-  }
+ // }
 
   it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');

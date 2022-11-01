@@ -9,7 +9,7 @@ const selectors: SelectorBrandMap = {
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
-    addNewAddressButton: '.b-address_selector-button',
+    addNewAddressButton: '.b-address_selector-button.b-button.m-info',
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',

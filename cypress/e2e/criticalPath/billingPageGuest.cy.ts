@@ -56,8 +56,8 @@ describe('Billing page functionality for guest user', function () {
     } if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);
       shippingPage.click.proceedToBilling();
-      cy.wait(3000);
-      shippingPage.actions.selectDate('23', 'May', '2001');
+      //cy.wait(3000);
+      //shippingPage.actions.selectDate('23', 'May', '2001');
     } else {
       shippingPage.click.proceedToBilling();
     }

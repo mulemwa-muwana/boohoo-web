@@ -322,11 +322,11 @@ class PdpPage implements AbstractPage {
       const productDescription = selectors[variables.brand].productDescription;
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
-    assertDeliveryInfoIsDisplayed () {
+    assertDeliveryInfoIsDisplayed (text: string) {
       const productDelivery = selectors[variables.brand].productDelivery;
       cy.get(productDelivery).should('be.visible');
       cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
-      cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n'); //  Work only boohoo, other brands redirect to new tab
+      cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', text); //  Work only boohoo, other brands redirect to new tab
     },
     assertDeliveryOptionsAreDisplayed () {
       const productDeliveryInfo = selectors[variables.brand].productDeliveryInfo;

@@ -220,6 +220,9 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
+    if (variables.locale == 'US' || variables.locale == 'AU') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (variables.brand == 'coastfashion.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');

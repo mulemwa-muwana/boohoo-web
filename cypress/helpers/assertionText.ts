@@ -44,13 +44,13 @@ class AssertionText {
 
   WishlistItemsAddedAlert: TranslationMap = {
     EN: 'Product added to wish list',
-    FR: 'Produit ajouté à la liste de souhaits',
-    NL: '\n    \n    Bewaar voor later\n',
+    FR: 'Article ajouté à ta wish list',
+    NL: 'Product added to wish list', // \n    \n    Bewaar voor later\n
     DE: 'Produkt zur Wunschliste hinzugefügt',
     DK: 'Produkt tilføjet til ønskeliste',
     FI: 'Tuote lisätty toivelistaan',
-    NO: 'Produkt lagt til ønskeliste',
-    SE: '\n    \n    Sparad\n',
+    NO: 'Product added to wish list', // Produkt lagt til ønskeliste
+    SE: 'Sparad i önskelistan',
     IL: 'מוצר נוסף לרשימת המשאלות',
     IT: 'Prodotto aggiunto alla lista dei desideri',
     ES: 'Producto añadido a la lista de deseos'

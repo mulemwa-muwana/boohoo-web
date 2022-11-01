@@ -55,11 +55,11 @@ const selectors: SelectorBrandMap = {
   },
   'nastygal.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    klarnaPayNow: '#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    klarnaPayNow: '#payment-details-KlarnaUK button',
     paymentMethodCreditCard: '#payment-button-scheme',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
-    paymentMethodKlarna: '[data-method-id="klarna_pay_later"]',
+    paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
     paymentMethodLayBuy: '#payment-button-LAYBUY',
@@ -94,13 +94,12 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
-    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .adyen-checkout__input',
+    creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
-    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
   },
   'dorothyperkins.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
@@ -416,15 +415,15 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodCreditCard).click({force: true});
       cy.wait(2000);
 
-      cy.get('body').then($body => {
+      cy.get('body').then($body => {  // If Creadit Card is saved, click Add new Card button
         if ($body.find('[data-ref="newAdyenCardBlock"]').attr('hidden') == 'hidden') {  
           cy.get('.b-payment_options_group-actions > button').click({force:true});
         }
       });
 
-      cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).should('be.visible').type(cardNo, {force:true});
-      cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).should('be.visible').type(date, {force:true});
-      cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).should('be.visible').type(code, {force:true});
+      cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).type(cardNo, {force:true});
+      cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(date, {force:true});
+      cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(code, {force:true});
       cy.get(creditCardFieldsCardOwner).type(cardOwner, {force:true});
       cy.get(paynowBtnCC).click({force:true});
 
@@ -523,7 +522,6 @@ class BillingPage implements AbstractPage {
         cy.get('#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button').click({force:true});
       } else {
         cy.get(klarnaPayNow).click({force:true});
-      
       }
       
       // Click the Continue button.

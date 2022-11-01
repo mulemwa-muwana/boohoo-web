@@ -27,6 +27,7 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '.b-product_shipping-returns',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     addedToWishlistMsg: '.b-message',
+    wishListIcon: '.b-header_wishlist'
     
     // ViewCart: '.b-minicart-actions > .m-outline',
   },
@@ -52,7 +53,8 @@ const selectors: SelectorBrandMap = {
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
-    productDeliveryInfo: '.b-product_delivery'
+    productDeliveryInfo: '.b-product_delivery',
+    wishListIcon: '.b-header_wishlist'
   },
   'dorothyperkins.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -78,6 +80,7 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
+    wishListIcon: '.b-header_wishlist'
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
@@ -103,6 +106,7 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
+    wishListIcon: '.b-header_wishlist'
   },
   'wallis.co.uk': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -127,6 +131,7 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
+    wishListIcon: '.b-header_wishlist'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -198,6 +203,7 @@ class PdpPage implements AbstractPage {
     addToWishList () {
       const addToWishListButton = selectors[variables.brand].addToWishListButton;
       cy.get(addToWishListButton, {timeout: 10000}).should('not.have.attr', 'disabled');
+      cy.wait(4000);
       cy.get(addToWishListButton).click({force: true});
     },
     shippingInfoButton () {
@@ -231,6 +237,10 @@ class PdpPage implements AbstractPage {
     viewCart () {
       const viewCart = selectors[variables.brand].viewCart;
       cy.get(viewCart).click();
+    },
+    wishListIcon () {
+      const wishListIcon = selectors[variables.brand].wishListIcon;
+      cy.get(wishListIcon).click({force:true});
     }
   };
 

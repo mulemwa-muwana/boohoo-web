@@ -32,9 +32,6 @@ describe('Wishlist Page tests', function () {
   }),
   it('Verify that user can add wishlist item to the cart', () => {
     HomePage.click.wishListIcon();
-    if (variables.brand == 'nastygal.com') {
-      WishListPage.actions.chooseSizeDDL('18');
-    }
     WishListPage.click.addToCart();
   }),
   it('Verify that user can remove item from wishlist', () => {

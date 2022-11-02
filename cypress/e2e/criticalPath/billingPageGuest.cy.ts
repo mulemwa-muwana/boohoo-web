@@ -47,6 +47,7 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.postcodeField(localeAddress.postcode);
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
+    } 
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
@@ -55,7 +56,8 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();
       shippingPage.click.proceedToBillingAddressVerification();
-    } if (variables.locale == 'US') {
+    } 
+    if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
@@ -85,14 +87,10 @@ describe('Billing page functionality for guest user', function () {
   });
 
   if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
-    it('Verify that email field is filled with correct email address', function () {
-  
-  it('Verify that email field is filled with correct email address', function () {
-    if (variables.brand != 'coastfashion.com') {
+    it('Verify that email field is filled with correct email address', function () {   
       BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
-    }
-  });
-
+    });
+  }   
   /* It('Verify that subscription block is displayed', function () {
     BillingPage.assertions.assertSubscriptionBlockPresent();
   });*/
@@ -202,11 +200,9 @@ describe('Billing page functionality for guest user', function () {
 
     beforeEach (function () {
       if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com') {
-        BillingPage.actions.selectDate('23', 'May', '2001');
-       if (variables.brand != 'coastfashion.com') {
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
       }
-    }});
+    });
 
     it('Verify that guest user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);

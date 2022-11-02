@@ -153,7 +153,7 @@ describe('Order confirmation page for registered user', function () {
     });
   });
 
-  it.only('Verify that shipping, billing addresses and shipping method are present with valid data for registered user', function () {
+  it('Verify that shipping, billing addresses and shipping method are present with valid data for registered user', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();

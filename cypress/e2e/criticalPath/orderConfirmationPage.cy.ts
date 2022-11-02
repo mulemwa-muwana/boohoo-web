@@ -79,7 +79,6 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
 
-
   it('Verify that billing address is present with valid data', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);

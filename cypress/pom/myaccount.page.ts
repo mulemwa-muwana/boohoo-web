@@ -374,34 +374,35 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 
 class MyAccountPage implements AbstractPage {
-  // assertions: any;
-  goto(): void {
+
+  // Assertions: any;
+  goto (): void {
     cy.visit('/myaccount');
   }
 
   click =
     {
-      logOutLink() {
+      logOutLink () {
         const accountLogout = selectors[variables.brand].accountLogout;
         cy.get(accountLogout).should('be.visible').click({ force: true });
       },
-      myAccountLink() {
+      myAccountLink () {
         const myAccountBtn = selectors[variables.brand].myAccountBtn;
         cy.get(myAccountBtn).should('be.visible').click();
       },
-      accountMyPremierLink() {
+      accountMyPremierLink () {
         const myPremier = selectors[variables.brand].myPremier;
         cy.get(myPremier).should('be.visible').click();
       },
-      ordersLink() {
+      ordersLink () {
         const ordersLink = selectors[variables.brand].ordersLink;
         cy.get(ordersLink).should('be.visible').click({ force: true });
       },
-      loadMoreButton() {
+      loadMoreButton () {
         const loadMoreButton = selectors[variables.brand].loadMoreButton;
         cy.get(loadMoreButton).eq(0).click({ force: true });
       },
-      startReturnButton(text: string) {
+      startReturnButton (text: string) {
         if (variables.brand == 'nastygal.com') {
           cy.get('.b-order_item-button').click();
           cy.url().should('contain', 'delivery');
@@ -420,39 +421,39 @@ class MyAccountPage implements AbstractPage {
         }
 
       },
-      wishListLink() {
+      wishListLink () {
         const wishListBtn = selectors[variables.brand].wishListBtn;
         cy.get(wishListBtn).should('be.visible').click();
       },
-      changePasswordLink() {
+      changePasswordLink () {
         const changePassword = selectors[variables.brand].changePassword;
         cy.get(changePassword).should('be.visible').click();
       },
-      contactPreferencesLink() {
+      contactPreferencesLink () {
         const contactPreferences = selectors[variables.brand].contactPreferences;
         cy.get(contactPreferences).should('be.visible').click();
       },
-      accountDetailsLink() {
+      accountDetailsLink () {
         const accountDetailsLink = selectors[variables.brand].accountDetailsLink;
         cy.get(accountDetailsLink).should('be.visible').click({ force: true });
       },
-      addressesLink() {
+      addressesLink () {
         const accountAddresses = selectors[variables.brand].accountAddresses;
         cy.get(accountAddresses).should('be.visible').click({ force: true });
       },
-      paymentDetailsLink() {
+      paymentDetailsLink () {
         const paymentDetails = selectors[variables.brand].paymentDetails;
         cy.get(paymentDetails).should('be.visible').click();
       },
-      socialAccountsLink() {
+      socialAccountsLink () {
         const socialAccounts = selectors[variables.brand].socialAccounts;
         cy.get(socialAccounts).should('be.visible').click();
       },
-      viewOrderBtn() {
+      viewOrderBtn () {
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
         cy.get(viewOrderBtn).should('be.visible').click({ force: true });
       },
-      orderHistoryLink() {
+      orderHistoryLink () {
         const orderHistoryLink = selectors[variables.brand].orderHistoryLink;
         cy.get(orderHistoryLink).should('be.visible').click({ force: true });
       },
@@ -460,17 +461,17 @@ class MyAccountPage implements AbstractPage {
 
   actions =
     {
-      viewNewestOrderHistory() {
+      viewNewestOrderHistory () {
         const newestOrderHistory = selectors[variables.brand].newestOrderHistory;
         cy.get(newestOrderHistory).should('be.visible').click({ force: true });
       },
-      updateAccountName(newName: string) {
+      updateAccountName (newName: string) {
         const firstNameField = selectors[variables.brand].firstNameField;
         const profileUpdateBtn = selectors[variables.brand].profileUpdateBtn;
         cy.get(firstNameField).clear({ force: true }).type(newName);
         cy.get(profileUpdateBtn).click({ force: true });
       },
-      editDefaultAddress(line1: string) {
+      editDefaultAddress (line1: string) {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         const addressEditBtn = selectors[variables.brand].addressEditBtn;
         const addressEditForm = selectors[variables.brand].addressEditForm;
@@ -485,7 +486,7 @@ class MyAccountPage implements AbstractPage {
           cy.get(proceedToBillingBtn).click();
         }
       },
-      createAddress(address: AddressData) {
+      createAddress (address: AddressData) {
         const addAddressBtn = selectors[variables.brand].addAddressBtn;
         const addressFirstNameField = selectors[variables.brand].addressFirstNameField;
         const addressLastNameField = selectors[variables.brand].addressLastNameField;
@@ -520,11 +521,11 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressSubmitBtn).click({ force: true });
         }
       },
-      deleteAddress() {
+      deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
         cy.get(addressDeleteBtn).eq(0).click(); //  It was eq(3)
       },
-      addCard(cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {
+      addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {
         const addCreditCardBtn = selectors[variables.brand].addCreditCardBtn;
         const addCardEditForm = selectors[variables.brand].addressEditForm;
         const addCreditCardNumber = selectors[variables.brand].addCreditCardNumber;
@@ -542,7 +543,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addCreditCardSaveBtn).click();
       },
 
-      deleteCard(cardEnd: string) {
+      deleteCard (cardEnd: string) {
         const creditCardSection = selectors[variables.brand].creditCardSection;
         const creditCardDeleteBtn = selectors[variables.brand].creditCardDeleteBtn;
         const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
@@ -552,12 +553,12 @@ class MyAccountPage implements AbstractPage {
           cy.get(cardDeleteConfirmationBtn).click();
         }
       },
-      trackNewestOrder() {
+      trackNewestOrder () {
         cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked
         cy.url().should('include', 'order-details?orderID=');
         cy.get('button[data-tau="track_order_submit"]').click();
       },
-      trackOrderByNumber() {
+      trackOrderByNumber () {
         cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked
         cy.get('#dwfrm_trackOrder_orderNumber').clear().type('UK300151163');
         cy.get('button[data-tau="track_order_submit"]').click();
@@ -566,13 +567,13 @@ class MyAccountPage implements AbstractPage {
 
   assertions =
     {
-      assertOrderHistoryPageTitle(text: string) {
+      assertOrderHistoryPageTitle (text: string) {
         cy.url().should('include', text);
       },
-      assertStartReturnPageIsDisplayed() {
+      assertStartReturnPageIsDisplayed () {
         cy.url().should('include', 'delivery');
       },
-      assertOrderDetailsContent() {
+      assertOrderDetailsContent () {
         const orderID = selectors[variables.brand].orderID;
         const shippingInfo = selectors[variables.brand].shippingInfo;
         const billingAndPaymentInfo = selectors[variables.brand].billingAndPaymentInfo;
@@ -580,55 +581,55 @@ class MyAccountPage implements AbstractPage {
         cy.get(shippingInfo).should('be.visible');
         cy.get(billingAndPaymentInfo).should('be.visible');
       },
-      assertLoadedOrders() {
+      assertLoadedOrders () {
         cy.get('.b-load_progress-value').eq(1).should('be.greaterThan', '10'); //  Check (2 parametars)
       },
-      assertAccountDetails(email: string) {
+      assertAccountDetails (email: string) {
         const accountDetailsEmailField = selectors[variables.brand].accountDetailsEmailField;
         cy.get(accountDetailsEmailField).should('have.value', email);
       },
-      assertNameGreetingMessage(newName: string) {
+      assertNameGreetingMessage (newName: string) {
         const nameGreeting = selectors[variables.brand].nameGreeting;
         cy.get(nameGreeting).should('be.visible').then(element => {
           expect(element.text().trim().toUpperCase()).to.contain(newName);
         });
       },
-      assertAccountEditedSuccessfulPopup() {
+      assertAccountEditedSuccessfulPopup () {
         const accountEditedSuccessfulPopup = selectors[variables.brand].accountEditedSuccessfulPopup;
         cy.get(accountEditedSuccessfulPopup).should('be.visible');
       },
-      assertDefaultAddressPresence() {
+      assertDefaultAddressPresence () {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         cy.get(addressDefaultBox).should('be.visible');
       },
-      assertDefaultAddressData(addressName: string, addressSummary: string) {
+      assertDefaultAddressData (addressName: string, addressSummary: string) {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         const addressNameLine = selectors[variables.brand].addressNameLine;
         const addressSummaryLine = selectors[variables.brand].addressSummaryLine;
         cy.get(addressDefaultBox).find(addressNameLine).should('contain.text', addressName);
         cy.get(addressDefaultBox).find(addressSummaryLine).should('contain', addressSummary);
       },
-      assertNewAddressData(addressName: string) {
+      assertNewAddressData (addressName: string) {
         cy.contains(addressName).should('be.visible');
       },
-      assertAddressNotPresent(addressName: string) {
+      assertAddressNotPresent (addressName: string) {
         const addressCardsList = selectors[variables.brand].addressCardsList;
         cy.get(addressCardsList).should('not.contain', addressName);
       },
-      assertCardDetails(cardEnd: string) {
+      assertCardDetails (cardEnd: string) {
         cy.contains(cardEnd).should('be.visible');
       },
-      assertCardNotPresent(cardEnd: string) {
+      assertCardNotPresent (cardEnd: string) {
         const creditCardsList = selectors[variables.brand].creditCardsList;
         cy.get(creditCardsList).should('not.contain', cardEnd);
       },
-      assertOrderCantBeTracked() {
+      assertOrderCantBeTracked () {
         cy.get('.b-form-message').should('include', 'Sorry, this order number does not match our records.');
       },
-      assertOrderCanBeTracked() {
+      assertOrderCanBeTracked () {
         cy.get('.b-form-message').should('include', 'We found your order');
       },
-    }
-};
+    };
+}
 
 export default new MyAccountPage();

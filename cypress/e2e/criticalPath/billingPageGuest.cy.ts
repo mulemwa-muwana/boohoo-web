@@ -91,6 +91,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
     });
   }   
+
   /* It('Verify that subscription block is displayed', function () {
     BillingPage.assertions.assertSubscriptionBlockPresent();
   });*/
@@ -102,13 +103,14 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertDateFormIsPresent();
     BillingPage.actions.selectDate('23', 'May', '2001');
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
-    if (variables.brand == 'coastfashion.com') {
-      BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
-    } else {
-      BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
+      BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+      if (variables.brand == 'coastfashion.com') {
+        BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
+      } else {
+        BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
+      }
     }
-  }});
+  });
   it('Verify that guest user cannot place order if email field is empty', function () {
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
@@ -188,8 +190,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') && variables.locale == 'UK') {
-    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK' || variables.locale == 'AU') {
+    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') && variables.locale == 'UK' || variables.locale == 'AU') {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
     

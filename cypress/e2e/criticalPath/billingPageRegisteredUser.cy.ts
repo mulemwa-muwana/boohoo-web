@@ -56,11 +56,12 @@ describe('Billing page functionality for registered user', function () {
     //   ShippingPage.actions.countyField(localeAddress.county);
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-    if (variables.brand == 'coastfashion.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+      if (variables.brand == 'coastfashion.com') {
+        shippingPage.click.proceedToBillingAddressVerification();
+      }
+      BillingPage.assertions.assertBillingPageIsLoaded();
     }
-    BillingPage.assertions.assertBillingPageIsLoaded();
-  }});
+  });
 
   it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
@@ -70,56 +71,56 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');
   });
 });
-  it('Verify that register user can change shipping address', function () {
-    BillingPage.click.changeShippingAddress();
-    BillingPage.assertions.assertShippingPageIsOpened();
-  });
-  it('Verify that register user can change shipping method', function () {
-    BillingPage.click.changeShippingMethod();
-    BillingPage.assertions.assertShippingPageIsOpened();
-  });
-
-  if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com') {
-    it('Verify that email address is displayed and it cannot be changed', function () {
-  it('Verify that email address is displayed and it cannot be changed', function () {
-    if (variables.brand != 'coastfashion.com') {
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        BillingPage.assertions.assertEmailIsCorrect(credentials.username);
-      });
-      BillingPage.assertions.assertEmailFieldCantBeChanged();
-    }
-  });
+it('Verify that register user can change shipping address', function () {
+  BillingPage.click.changeShippingAddress();
+  BillingPage.assertions.assertShippingPageIsOpened();
 });
-};
-  it('Verify that billing address can be same as shipping address', function () {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      BillingPage.click.changeShippingAddress();
-    }
-    BillingPage.assertions.assertSameAsShippingIsChecked();
-  });
-  it('Verify that registered user can submit new billing address from address book', function () {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      BillingPage.click.changeShippingAddress();
-    }
-    BillingPage.click.uncheckShippingCheckbox();
-    BillingPage.actions.selectAddressFromBook();
-  });
-  it('Verify that registered user can add  new billing address', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      BillingPage.click.changeShippingAddress();
-      BillingPage.click.uncheckShippingCheckbox();
-      shippingPage.click.proceedToBilling();
-      BillingPage.click.addNewBilingAddress();
-      BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressRegisteredUser(localeAddress.addrline1, localeAddress.city, localeAddress.postcode);
-    } else {
-      BillingPage.click.addNewBilingAddress();
-      BillingPage.actions.addBillingAddressRegisteredUser(localeAddress.addrline1, localeAddress.city, localeAddress.postcode);
-    }
-  });
+it('Verify that register user can change shipping method', function () {
+  BillingPage.click.changeShippingMethod();
+  BillingPage.assertions.assertShippingPageIsOpened();
+});
 
-  /* This can be tested only if Promo code is available and Gift card 
+if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com') {
+  it('Verify that email address is displayed and it cannot be changed', function () {
+    it('Verify that email address is displayed and it cannot be changed', function () {
+      if (variables.brand != 'coastfashion.com') {
+        cy.fixture('users').then((credentials: LoginCredentials) => {
+          BillingPage.assertions.assertEmailIsCorrect(credentials.username);
+        });
+        BillingPage.assertions.assertEmailFieldCantBeChanged();
+      }
+    });
+  });
+}
+it('Verify that billing address can be same as shipping address', function () {
+  if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    BillingPage.click.changeShippingAddress();
+  }
+  BillingPage.assertions.assertSameAsShippingIsChecked();
+});
+it('Verify that registered user can submit new billing address from address book', function () {
+  if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    BillingPage.click.changeShippingAddress();
+  }
+  BillingPage.click.uncheckShippingCheckbox();
+  BillingPage.actions.selectAddressFromBook();
+});
+it('Verify that registered user can add  new billing address', function () {
+  const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+  if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    BillingPage.click.changeShippingAddress();
+    BillingPage.click.uncheckShippingCheckbox();
+    shippingPage.click.proceedToBilling();
+    BillingPage.click.addNewBilingAddress();
+    BillingPage.assertions.assertBillingAddressFormIsPresent();
+    BillingPage.actions.addBillingAddressRegisteredUser(localeAddress.addrline1, localeAddress.city, localeAddress.postcode);
+  } else {
+    BillingPage.click.addNewBilingAddress();
+    BillingPage.actions.addBillingAddressRegisteredUser(localeAddress.addrline1, localeAddress.city, localeAddress.postcode);
+  }
+});
+
+/* This can be tested only if Promo code is available and Gift card 
   
    it('Verify that guest user can enter promo code and that is applied to order summary', function (){
     BillingPage.actions.selectDate('23', 'May', '2001');
@@ -132,56 +133,55 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertGiftCardIsApplied('-£10.00');
   }); */
 
-  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
-    BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
-    BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
-      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-    } 
+it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
+  BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
+  BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
+  if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+    BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
+  } 
 
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
-      BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
-    } 
+  if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+    BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+  } 
     
-    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
-      BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
-      BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
-      BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') && variables.locale == 'UK') {
-    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK' || variables.locale == 'AU') {
-      BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    }
+  if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+    BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
+    BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
+    BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
+  } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') && variables.locale == 'UK' || variables.locale == 'AU') {
+    BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
+  }
 
-    // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
+  // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
+});
+describe('Verify that registered user can place orders with available payment methods', function () {
+  it('Verify that registered user can place order using Credit Card - Visa)', function () {
+    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
   });
-  describe('Verify that registered user can place orders with available payment methods', function () {
-    it('Verify that registered user can place order using Credit Card - Visa)', function () {
-      BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that registered user can place order using Credit Card - Master)', function () {
-      BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that registered user can place order using Credit Card - Amex)', function () {
-      BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that registered user can place order using PayPal', function () {
-      BillingPage.actions.selectPayPal();
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
-      it('Verify that guest user can place order using Klarna', function () {
-        BillingPage.actions.selectKlarna();
-        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-      });
-    }
-    if (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
-      it('Verify that guest user can place order using Laybuy', function () {
-        BillingPage.actions.selectLaybuy();
-        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-      });
-    }
+  it('Verify that registered user can place order using Credit Card - Master)', function () {
+    BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
   });
+  it('Verify that registered user can place order using Credit Card - Amex)', function () {
+    BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  });
+  it('Verify that registered user can place order using PayPal', function () {
+    BillingPage.actions.selectPayPal();
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  });
+  if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+    it('Verify that guest user can place order using Klarna', function () {
+      BillingPage.actions.selectKlarna();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    });
+  }
+  if (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
+    it('Verify that guest user can place order using Laybuy', function () {
+      BillingPage.actions.selectLaybuy();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    });
+  }
+});
  

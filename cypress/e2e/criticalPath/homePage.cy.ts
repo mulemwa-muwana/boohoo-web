@@ -278,8 +278,8 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') 
-        if (variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES') || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com'|| variables.brand == 'oasis-stores.com')
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
+          if (variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES') || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com'|| variables.brand == 'oasis-stores.com')
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
       });
 
       /*
@@ -289,8 +289,8 @@ describe('Home Page', function () {
         */
       it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', () => {
         if ((variables.brand == 'boohoo.com' && variables.locale == 'UK') || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')
-        if (variables.brand == 'boohoo.com' || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || variables.brand == 'coastfashion.com'|| variables.brand == 'oasis-stores.com')
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[variables.language]);
+          if (variables.brand == 'boohoo.com' || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || variables.brand == 'coastfashion.com'|| variables.brand == 'oasis-stores.com')
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Become a Partner', () => {
         if (variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'NZ'))
@@ -313,8 +313,8 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US') || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')
-          GlobalFooter.actions.checkFooterLinkByText('Laybuy');
+          if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US') || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')
+            GlobalFooter.actions.checkFooterLinkByText('Laybuy');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {
         if (variables.brand == 'boohoo.com')
@@ -339,8 +339,8 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Careers', () => {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')
-        if (!(variables.brand == 'boohoo.com' && variables.locale == 'IT') && !(variables.brand == 'nastygal.com' && variables.locale == 'FR'))
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[variables.language], { assertionUrl: 'https://careers.boohoogroup.com/' });
+          if (!(variables.brand == 'boohoo.com' && variables.locale == 'IT') && !(variables.brand == 'nastygal.com' && variables.locale == 'FR'))
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[variables.language], { assertionUrl: 'https://careers.boohoogroup.com/' });
       });
       it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {
         if (variables.brand == 'boohoo.com' ) {

@@ -158,7 +158,6 @@ class LoginPage implements AbstractPage {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
       if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      if (variables.brand == 'coastfashion.com') {
         cy.get(loginIcon).invoke('show');
         cy.get(loginLink).click({force:true});
       } else {

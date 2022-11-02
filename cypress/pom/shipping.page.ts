@@ -9,7 +9,7 @@ const selectors: SelectorBrandMap = {
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
-    addNewAddressButton: '.b-address_selector-button',
+    addNewAddressButton: '.b-address_selector-button.b-button.m-info',
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
@@ -40,6 +40,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingMethodname: '.b-option_switch-label',
+    shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -53,7 +54,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: 'button[data-tau="add_new_address"]',
+    addNewAddress: '#deliveryPanel > div > div:nth-child(1) > div > button',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
@@ -78,6 +79,11 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
+    stateField: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    dobDay: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearOfBirth',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -286,6 +292,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodname: 'div.form-row.delivery-row'
+    shippingMethodname: 'div.form-row.delivery-row',
   },
   'misspap.com': undefined
 };
@@ -313,7 +320,7 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[variables.brand].proceedToBilling;
-      cy.wait(1000);
+      cy.wait(3000);
       cy.get(proceedToBilling).click({force: true});
     },
     proceedToBillingAddressVerification () {
@@ -417,6 +424,10 @@ class ShippingPage implements AbstractPage {
       const shippingCountry = selectors[variables.brand].shippingCountry;
       cy.get(shippingCountry).select(country).invoke('show');
     },
+    selectState (state: string) {
+      const shippingState = selectors[variables.brand].shippingState;
+      cy.get(shippingState).select(state).invoke('show');
+    },
     adressLine1 (address1: string) {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
       cy.get(addressLine1Shipping).type(address1);
@@ -449,6 +460,11 @@ class ShippingPage implements AbstractPage {
       cy.wait(1000);
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
       cy.get(shippingPostcode).type(postcode);
+    },
+    stateField (state: string) {
+      cy.wait(1000);
+      const stateField = selectors[variables.brand].stateField;
+      cy.get(stateField).select(state);
     },
     clearPostcodeFieldAndAddNewOne (postcode: string) {
       cy.wait(1000);

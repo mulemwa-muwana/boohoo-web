@@ -43,16 +43,24 @@ describe('Billing page functionality for registered user', function () {
     shippingPage.click.addAddressManually();  
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode); 
+    if (variables.locale == 'AU') {
+      shippingPage.actions.stateField(localeAddress.county);
+    }
+    if (variables.locale == 'US') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (variables.brand == 'coastfashion.com') {
       shippingPage.click.proceedToBillingAddressVerification();
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
-  });
+  }});
 
   it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
@@ -69,14 +77,17 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
+
   if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com') {
     it('Verify that email address is displayed and it cannot be changed', function () {
+  it('Verify that email address is displayed and it cannot be changed', function () {
+    if (variables.brand != 'coastfashion.com') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         BillingPage.assertions.assertEmailIsCorrect(credentials.username);
       });
       BillingPage.assertions.assertEmailFieldCantBeChanged();
-    });
-  }
+    }
+  });
   it('Verify that billing address can be same as shipping address', function () {
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
@@ -121,13 +132,20 @@ describe('Billing page functionality for registered user', function () {
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-    BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
+    } 
+
+    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+      BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+    } 
+    
     if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') && variables.locale == 'UK') {
+    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK' || variables.locale == 'AU') {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
 
@@ -150,7 +168,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.actions.selectPayPal();
       BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
-    if (variables.locale == 'UK' || variables.locale == 'IE') {
+    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
       it('Verify that guest user can place order using Klarna', function () {
         BillingPage.actions.selectKlarna();
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();

@@ -13,9 +13,8 @@ const selectors: SelectorBrandMap = {
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
-    itemIsAddedtoWishlistAlertText: '.m-outline',
-    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
-    wishlistIcon: '.b-header_wishlist-icon',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   },
   'nastygal.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -44,7 +43,6 @@ const selectors: SelectorBrandMap = {
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     removeItemFromWishlist: '.b-wishlist_tile-remove',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
   },
   'burton.co.uk': {
     sortItems: 'div.b-wishlist-sorting',
@@ -59,7 +57,6 @@ const selectors: SelectorBrandMap = {
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     removeItemFromWishlist: '.b-wishlist_tile-remove',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
   },
   'wallis.co.uk': {
     sortItems: 'div.b-wishlist-sorting',
@@ -74,7 +71,6 @@ const selectors: SelectorBrandMap = {
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     removeItemFromWishlist: '.b-wishlist_tile-remove',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -145,15 +141,15 @@ class WishListPage implements AbstractPage {
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       cy.get(removeItemFromWishlist).eq(0).click();
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
+        cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({force:true});
+      }
+      
     },
     wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;
       cy.get(wishlistLoginBtn).eq(0).click();
-    },
-    wishListIcon () {
-      const wishListIcon = selectors[variables.brand].wishListIcon;
-      cy.get(wishListIcon).click({ force: true });
-    },
+    }
 
   };
 
@@ -161,7 +157,7 @@ class WishListPage implements AbstractPage {
     showInStockItemsCheckbox () {
       cy.get('.show-in-stock').check();
     },
-    chooseSizeDDL (size: number) {
+    chooseSizeDDL (size: string) {
       const chooseSizeDDL = selectors[variables.brand].chooseSizeDDL;
       cy.get(chooseSizeDDL).select(size);
     },

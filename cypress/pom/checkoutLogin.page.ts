@@ -61,6 +61,7 @@ const selectors: SelectorBrandMap = {
     passwordField:'[id^="dwfrm_login_password"]',
     continueAsGuestBt:'.login-page-button',
     continueAsRegisteredUser: '.login-page-button',
+    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
@@ -94,15 +95,16 @@ class CheckoutPage implements AbstractPage {
   actions = {
     guestCheckoutEmail (guestEmail: string) {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
-      cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail);
+      cy.get(guestCheckoutEmail).click({force:true}).type(guestEmail, {force:true});
     },
     userEmailField (username: string) {  
       const userEmailField = selectors[variables.brand].userEmailField;
-      cy.get(userEmailField).click({force:true}).type(username);
+      cy.get(userEmailField).click({force:true}).type(username, {force:true});
     },
     passwordField (password: string) {  
       const passwordField = selectors[variables.brand].passwordField;
       cy.get(passwordField).click({force:true}).type(password);
+      cy.get(passwordField).type(password, {force:true});
     }
   };
 

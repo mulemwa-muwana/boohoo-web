@@ -1,3 +1,4 @@
+import assertionText from 'cypress/helpers/assertionText';
 import LoginPage from 'cypress/pom/login.page';
 import * as CommonActions from '../../helpers/common';
 import HomePage from '../../pom/home.page';
@@ -33,7 +34,7 @@ describe('Verify Registration feature', function () {
       }
       RegistrationPage.actions.enterNewUserData(credentials.password, credentials.password, credentials.firstname, credentials.lastname);
     
-      RegistrationPage.actions.chooseDate('23', 'June', '1989');
+      RegistrationPage.actions.chooseDate('23', assertionText.DOBmonth[variables.language], '1989');
       RegistrationPage.click.chooseEmailConsent();
       RegistrationPage.click.submitButton();
       RegistrationPage.assertions.assertMyAcountPageIsOpened();
@@ -49,7 +50,7 @@ describe('Verify Registration feature', function () {
       }
       RegistrationPage.actions.enterNewUserData(credentials.password, credentials.password, credentials.firstname, credentials.lastname);
     });
-    RegistrationPage.actions.chooseDate('23', 'June', '1989');
+    RegistrationPage.actions.chooseDate('23', assertionText.DOBmonth[variables.language], '1989');
     RegistrationPage.click.chooseEmailConsent();
     RegistrationPage.click.submitButton();
     RegistrationPage.assertions.assertErrorMessageExistingEmail();

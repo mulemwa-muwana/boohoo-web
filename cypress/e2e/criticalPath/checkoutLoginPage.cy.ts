@@ -39,7 +39,7 @@ describe('Checkout Page', function () {
       if (variables.brand == 'boohoo.com') {
         CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
         CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
-      } else if (variables.brand == 'nastygal.com') {
+      } else if (variables.brand == 'nastygal.com' && variables.locale == 'UK') {
         CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
       }
     });

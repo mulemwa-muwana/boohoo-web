@@ -1,14 +1,18 @@
 import { defineConfig } from 'cypress';
+import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
+
   env: {
-    url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/au/',
-    sku: '#BGG07330-1',
-    brand: 'nastygal.com',
-    locale: 'AU',
+    url: 'https://storefront:Oreo2022@dev.coastfashion.com/',
+    sku: 'ACC99478-119-18',
+    fullSKU: 'ACC99478-119-18',
+    brand: 'coastfashion.com',
+    locale: 'UK',
     language: 'EN',
   },
+
   viewportHeight: 1080,
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
@@ -16,8 +20,8 @@ export default defineConfig({
 
   e2e: {
     setupNodeEvents (on, config) {
-
-      // Implement node event listeners here
+      plugins(on);
     },
-  },
+    numTestsKeptInMemory: 0
+  },   
 });

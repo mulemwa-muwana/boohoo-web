@@ -158,6 +158,7 @@ class LoginPage implements AbstractPage {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
       if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com') {
         cy.get(loginIcon).invoke('show');
         cy.get(loginLink).click({force:true});
       } else {
@@ -165,21 +166,21 @@ class LoginPage implements AbstractPage {
       }
       cy.wait(3000);
       const loginEmail = selectors[variables.brand].loginEmail;
-      cy.get(loginEmail).type(user); 
+      cy.get(loginEmail).type(user, {force: true}); 
       cy.wait(3000);
       const loginPassword = selectors[variables.brand].loginPassword;
-      cy.get(loginPassword).type(pass);
+      cy.get(loginPassword).type(pass, {force: true});
       cy.wait(3000);
       const loginButton = selectors[variables.brand].loginButton;
-      cy.get(loginButton).click();
+      cy.get(loginButton).click({force: true});
     },
     loginViaPage (user: string, pass: string) {
       const loginEmail = selectors[variables.brand].loginEmail;
-      cy.get(loginEmail).type(user); 
+      cy.get(loginEmail).type(user, {force: true}); 
       const loginPassword = selectors[variables.brand].loginPassword;
-      cy.get(loginPassword).type(pass);
+      cy.get(loginPassword).type(pass, {force: true});
       const loginButton = selectors[variables.brand].loginButton;
-      cy.get(loginButton).click();
+      cy.get(loginButton).click({force: true});
     },
     resetPasswordEmail (email: string) {
       const resetPasswordEmailField = selectors[variables.brand].resetPasswordEmailField;

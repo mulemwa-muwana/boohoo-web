@@ -46,17 +46,19 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     shippingPage.click.addNewAddressButton();
-    shippingPage.actions.selectCountry(localeAddress.country);
-    cy.wait(5000);
-    
-    if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
-      shippingPage.click.enterManuallyAddressDetails();
-    }   
-    shippingPage.click.proceedToBilling();
-    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    if (variables.locale == 'AU') {
+      shippingPage.actions.selectCountry(localeAddress.countryCode); // Can't select
+    } else {
+      shippingPage.actions.selectCountry(localeAddress.country);
     }
-    shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryPostcodeArcadia[variables.language]);
+    cy.wait(5000);
+    shippingPage.click.enterManuallyAddressDetails();
+    shippingPage.click.proceedToBilling();
+      if (variables.brand == 'boohoo.com'){
+        shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      } else {
+        shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      }
   });
 
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
@@ -81,6 +83,9 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+    if (variables.locale == 'US') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
@@ -134,6 +139,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+  //if (variables.brand != 'coastfashion.com') {
     it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
       shippingPage.click.addNewAddressButton();
       shippingPage.click.proceedToBilling();
@@ -143,9 +149,11 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
       }
     });
-  }
+  //}
+
 
   if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+  //if (variables.brand != 'coastfashion.com') {
     it('Verify that "Enter manually" button allows user to enter address details', () => {
       const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
       if (variables.brand == 'boohoo.com') {
@@ -162,7 +170,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.selectFirstAddressFromAddressLookup(localeAddress.addrline1);
       shippingPage.assertions.assertManualAddressFieldsAreDispayed();
     });
-  }
+  //}
 
   it('Verify that user is able to add address details manually', () => {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
@@ -176,9 +184,17 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
+      if (variables.locale == 'US') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
+
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.locale == 'AU') {
+        shippingPage.actions.stateField(localeAddress.county);
+      }
+    } else if (variables.brand == 'coastfashion.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -188,6 +204,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
+     
     }   
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
@@ -201,10 +218,11 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoo.com') {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
-    } else if (variables.brand == 'nastygal.com' ) {
+    } else if (variables.brand == 'nastygal.com' && variables.locale == 'UK') {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
     } else if (variables.brand == 'coastfashion.com'|| variables.brand != 'oasis-stores.com') {
+    } else if (variables.brand == 'coastfashion.com') {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
     }
@@ -223,9 +241,16 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
+      if (variables.locale == 'US') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     } else if (variables.brand == 'coastfashion.com' || variables.brand != 'oasis-stores.com') {
+      if (variables.locale == 'AU') {
+        shippingPage.actions.stateField(localeAddress.county);
+      }
+    } else if (variables.brand == 'coastfashion.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -268,8 +293,14 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
+      if (variables.locale == 'US') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
+      if (variables.locale == 'AU') {
+        shippingPage.actions.stateField(localeAddress.county);
+      }
     } else if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' && variables.locale != 'EU') {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
@@ -278,6 +309,7 @@ describe('Shipping Page Registered user tests', function () {
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
+    
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     }

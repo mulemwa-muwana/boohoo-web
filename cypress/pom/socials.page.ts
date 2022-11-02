@@ -53,13 +53,13 @@ const selectors: SelectorBrandMap = {
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
-    instagramUrl: 'instagram.com/coastfashion/',
+    instagramUrl: 'instagram.com/oasisfashion/',
     instagram: '.icon-instagram-2',
     facebook: '.icon-facebook-2',
-    facebookUrl: 'facebook.com/coaststores',
+    facebookUrl: 'facebook.com/oasisfashions',
     twitter: '.icon-twitter-2',
-    youtube: '.icon-youtube-2',
-    pinterest: '.icon-pinterest-2'
+    youtube: '',
+    pinterest: '.icon-pinterest'
   },
   'misspap.com': undefined
 };
@@ -86,7 +86,7 @@ class SocialsPage implements AbstractPage {
     // Not working for Dorothy Perkins and Wallis 
     assertInstagramIconIsPresent () {
       const instagram = selectors[variables.brand].instagram;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(instagram).should('be.visible');
       } else {
@@ -95,7 +95,7 @@ class SocialsPage implements AbstractPage {
     },
     assertFacebookIconIsPresent () {
       const facebook = selectors[variables.brand].facebook;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(facebook).should('be.visible');
       } else {
@@ -107,7 +107,7 @@ class SocialsPage implements AbstractPage {
     },
     assertPinterestIconIsPresent () {
       const pinterest = selectors[variables.brand].pinterest;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(pinterest).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(pinterest).should('be.visible');
       } else {
@@ -120,7 +120,7 @@ class SocialsPage implements AbstractPage {
     },
     assertTwitterIconIsPresent () {
       const twitter = selectors[variables.brand].twitter;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(twitter).should('be.visible');
       } else {

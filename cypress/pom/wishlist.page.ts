@@ -105,7 +105,8 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.wishlist-table form',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
-    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
+    wishlistIcon: '.wishlist-button'
   },
   'misspap.com': undefined
 };

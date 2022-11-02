@@ -316,7 +316,7 @@ class ShippingPage implements AbstractPage {
       cy.wait(1000);
       cy.get(proceedToBilling).click({force: true});
     },
-    proceedToBillingAddressVerification() {
+    proceedToBillingAddressVerification () {
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.get(proceedToBillingVerificationBtn).click({force: true});
@@ -326,7 +326,7 @@ class ShippingPage implements AbstractPage {
       cy.get(editSavedAddress).click();
     },
     addAddressManually () {
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         const addAddressManually = selectors[variables.brand].addAddressManually;
         cy.get(addAddressManually).should('be.visible').click({force:true});
       }
@@ -365,7 +365,7 @@ class ShippingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         cy.get(enterManually).click({force: true});
       }
     }
@@ -394,11 +394,11 @@ class ShippingPage implements AbstractPage {
     },
     firstNameField (fname: string) {
       const shippingFname = selectors[variables.brand].shippingFname;
-      cy.get(shippingFname).clear().type(fname);
+      cy.get(shippingFname).type(fname, {force: true});
     },
     lastNameField (lname: string) {
       const shippingLname = selectors[variables.brand].shippingLname;
-      cy.get(shippingLname).clear().type(lname);
+      cy.get(shippingLname).type(lname, {force: true});
     },
     countrySelector () {
       cy.get('[id$=addressFields_country][id*="shipping"]'); 
@@ -461,7 +461,7 @@ class ShippingPage implements AbstractPage {
         cy.contains(shippingMethod).click({force: true});
       });
     },
-    selectDate (day: string, month: string, year: string) {   // Only for Site Genesis brands
+    selectDate (day: string, month: string, year: string) { // Only for Site Genesis brands
       const dobDay = selectors[variables.brand].dobDay;
       const dobMonth = selectors[variables.brand].dobMonth;
       const dobYear = selectors[variables.brand].dobYear;
@@ -469,7 +469,7 @@ class ShippingPage implements AbstractPage {
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
     },
-    confirmEmail (email: string) {  // Only for Site Genesis brands
+    confirmEmail (email: string) { // Only for Site Genesis brands
       const confirmEmail = selectors[variables.brand].confirmEmail;
       cy.get(confirmEmail).type(email);
     },

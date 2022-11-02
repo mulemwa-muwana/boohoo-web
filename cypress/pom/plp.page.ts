@@ -167,8 +167,8 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
-    loadMoreProducts: '.search-result-options [title="Next"]',
-    numberOfPagesTextIsVisible: '.search-result-options select[class*="pagination-select"]',
+    loadMoreProducts: ':nth-child(6) > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link > .pagination-item-link-text',
+    numberOfPagesTextIsVisible: ':nth-child(6) > .pagination > .pagination-list',
     productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
     newProductPriceIsDispayed: '.product-pricing .product-sales-price',
     productPriceIsDispayed: '.product-pricing .product-standard-price',
@@ -300,7 +300,7 @@ class PlpPage implements AbstractPage {
     },
     assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         const numberOfPagesTextIsVisible = selectors[variables.brand].numberOfPagesTextIsVisible;
         cy.get(numberOfPagesTextIsVisible).should('be.visible');
       } else {

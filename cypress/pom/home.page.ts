@@ -72,7 +72,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
-    wishlistIcon: '.header-wishlist > .header-wishlist-link',
+    wishlistIcon: '.wishlist-button',
     searchField: '.js-header-search-input',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
@@ -88,7 +88,7 @@ class HomePage implements AbstractPage {
 
     cy.visit(variables.url);
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }
@@ -115,19 +115,19 @@ class HomePage implements AbstractPage {
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({ force: opts.force });
+      cy.get(searchIcon).click({force: opts.force});
     },
     searchField () {
       const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).click({ force: true });
+      cy.get(searchField).click({force: true});
     },
     wishListIcon () {
       const wishListIcon = selectors[variables.brand].wishListIcon;
-      cy.get(wishListIcon).click({ force: true });
+      cy.get(wishListIcon).click({force: true});
     },
     cartIcon () {
       const minicartIcon = selectors[variables.brand].minicartIcon;
-      cy.get(minicartIcon).click({ force: true });
+      cy.get(minicartIcon).click({force: true});
     },
 
     // MEGA MENU - MAIN NAV
@@ -160,8 +160,8 @@ class HomePage implements AbstractPage {
       }
       const searchField = selectors[variables.brand].searchField;
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({ force: true });
-      cy.get(searchField).click({ force: true }).type(SKU + '{enter}');
+      cy.get(searchIcon).click({force: true});
+      cy.get(searchField).click({force: true}).type(SKU + '{enter}');
     },
     forgotPassword (email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();

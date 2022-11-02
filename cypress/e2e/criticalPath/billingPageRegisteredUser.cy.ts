@@ -29,7 +29,7 @@ describe('Billing page functionality for registered user', function () {
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -46,12 +46,12 @@ describe('Billing page functionality for registered user', function () {
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     
     // If (variables.locale == 'IE') {
-      //   ShippingPage.actions.countyField(localeAddress.county);
-      shippingPage.click.proceedToBilling();
-      if (variables.brand == 'coastfashion.com') {
-        shippingPage.click.proceedToBillingAddressVerification();
-      }
-      BillingPage.assertions.assertBillingPageIsLoaded();
+    //   ShippingPage.actions.countyField(localeAddress.county);
+    shippingPage.click.proceedToBilling();
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      shippingPage.click.proceedToBillingAddressVerification();
+    }
+    BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -69,7 +69,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  if (variables.brand != 'coastfashion.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com') {
     it('Verify that email address is displayed and it cannot be changed', function () {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         BillingPage.assertions.assertEmailIsCorrect(credentials.username);
@@ -78,13 +78,13 @@ describe('Billing page functionality for registered user', function () {
     });
   }
   it('Verify that billing address can be same as shipping address', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.click.uncheckShippingCheckbox();
@@ -92,7 +92,7 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that registered user can add  new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
@@ -127,10 +127,11 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK') {
+    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') && variables.locale == 'UK') {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
-      // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
+
+    // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
   });
   describe('Verify that registered user can place orders with available payment methods', function () {
     it('Verify that registered user can place order using Credit Card - Visa)', function () {

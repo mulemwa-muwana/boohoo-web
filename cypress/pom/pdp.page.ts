@@ -164,14 +164,14 @@ const selectors: SelectorBrandMap = {
     shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
+    miniCartViewCartBtn: '.mini-cart-link',
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '.product-detail > h1.product-name',
     productCode: '.product-number > [itemprop="sku"]',
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
-    productImage: '#product-image-0',
+    productImage: '.primary-image',
     addToCartTitle: '.mini-cart-header-product-added',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2 > p',
@@ -229,7 +229,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
-      cy.get(miniCartViewCartBtn).click({ force: true });
+      cy.get(miniCartViewCartBtn).click({force: true});
     },
     viewCart () {
       const viewCart = selectors[variables.brand].viewCart;
@@ -246,14 +246,14 @@ class PdpPage implements AbstractPage {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
         cy.get(sizeVariations).find('li > span').each(($element) => {
-          if (!$element.attr('title').includes('not available')) {  // if size is available
+          if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');
             return false;
           }
         });
       } else {
         cy.get(sizeVariations).find('button').each(($element) => {
-          if (!$element.attr('title').includes('not available')) {  // if size is available
+          if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');
             return false;
           }

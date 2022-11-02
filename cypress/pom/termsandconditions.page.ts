@@ -23,7 +23,7 @@ const selectors: SelectorBrandMap = {
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
-    termsAndConditionsPageTitle: '.cs-terms-of-use > h1'
+    termsAndConditionsPageTitle: '#primary > div > h1'
   },
   'misspap.com': undefined
 };
@@ -33,7 +33,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 class TermsAndConditionsPage implements AbstractPage {
 
   goto () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       cy.visit(variables.url + '/page/terms-of-use.html');
     } else {
       cy.visit(variables.url + '/page/terms-and-conditions.html');

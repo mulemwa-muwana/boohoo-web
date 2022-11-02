@@ -146,7 +146,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
-    productName: '.name > a',
+    productName: '.name > a' 
   },
   'misspap.com': undefined
 };
@@ -267,7 +267,7 @@ class CartPage implements AbstractPage {
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(cartQuantity).should('have.value', quantity);
       } else {
         cy.get(cartQuantity).should('contain', quantity);

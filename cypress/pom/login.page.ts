@@ -112,7 +112,7 @@ class LoginPage implements AbstractPage {
   click = {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(loginIcon).invoke('show');
       } else {
         cy.get(loginIcon).click({ force: true });
@@ -137,6 +137,7 @@ class LoginPage implements AbstractPage {
       const wishlistLoginTitle = selectors[variables.brand].wishlistLoginTitle;
       cy.get(wishlistLoginTitle).should('contain.text', title);
     },
+
     //  Login Attempts
     assertErrorLoginMessageIsPresent (text: string) {
       const errorLoginMessage = selectors[variables.brand].errorLoginMessage;
@@ -144,7 +145,7 @@ class LoginPage implements AbstractPage {
     },
     assertForgotPasswordMessageisDisplayed (email: string) {
       const forgotPasswordMessage = selectors[variables.brand].forgotPasswordMessage;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(forgotPasswordMessage).should('be.visible');
       } else {
         cy.get(forgotPasswordMessage).should('be.visible').and('contain', email);
@@ -156,7 +157,7 @@ class LoginPage implements AbstractPage {
     login (user: string, pass: string) {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
-      if(variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(loginIcon).invoke('show');
         cy.get(loginLink).click({force:true});
       } else {

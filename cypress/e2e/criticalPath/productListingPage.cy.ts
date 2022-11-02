@@ -12,7 +12,7 @@ describe('Product Listing Page tests', function () {
     if (variables.brand == 'boohoo.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
-    } else if (variables.brand == 'coastfashion.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
     } else {
@@ -23,7 +23,7 @@ describe('Product Listing Page tests', function () {
   it('Verify that plp page opens', () => {
     plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[variables.language]);
   });
-  it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
+  it.only('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
     plpPage.click.loadMoreProducts();
     plpPage.assertions.assertNumberOfItemsTextIsVisible();

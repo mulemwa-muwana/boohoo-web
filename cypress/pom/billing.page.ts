@@ -42,7 +42,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
-    // credit card section
+
+    // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
@@ -86,7 +87,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
-    // credit card section
+
+    // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
@@ -136,7 +138,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
-    // credit card section
+
+    // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
@@ -186,7 +189,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
-    // credit card section
+
+    // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
@@ -236,7 +240,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
-    // credit card section
+
+    // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
@@ -285,7 +290,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
-    // credit card section
+
+    // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
@@ -333,7 +339,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
-    // credit card section
+
+    // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
@@ -341,7 +348,7 @@ const selectors: SelectorBrandMap = {
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
-    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+    paynowBtnCC:'#billingSubmitButton > span',
   },
   'misspap.com': undefined
 };
@@ -367,7 +374,7 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(shippingCheckbox).click();
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
@@ -439,7 +446,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -485,10 +492,10 @@ class BillingPage implements AbstractPage {
       cy.get(addGiftCert).click();
     },
     selectAddressFromBook () {
-    const viewAllBillingAddresses = selectors[variables.brand].viewAllBillingAddresses;
-    const billingAddressFromBook = selectors[variables.brand].billingAddressFromBook;
-    cy.get(viewAllBillingAddresses).click({force: true});
-    cy.get(billingAddressFromBook).click({force: true});
+      const viewAllBillingAddresses = selectors[variables.brand].viewAllBillingAddresses;
+      const billingAddressFromBook = selectors[variables.brand].billingAddressFromBook;
+      cy.get(viewAllBillingAddresses).click({force: true});
+      cy.get(billingAddressFromBook).click({force: true});
     },
     selectKlarna () {
       const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;
@@ -524,7 +531,7 @@ class BillingPage implements AbstractPage {
 
         body().then($body => { 
           cy.wait(5000);
-          if ($body.find('#pay_now-pay_now').length) {  // If Payment options popup exists select Pay now
+          if ($body.find('#pay_now-pay_now').length) { // If Payment options popup exists select Pay now
             body().find('#pay_now-pay_now').click();
             body().find('button[data-testid="select-payment-category"]').click();
           }
@@ -626,8 +633,9 @@ class BillingPage implements AbstractPage {
   };
 
   assertions = {
-    assertBillingPageIsLoaded() {
-      if (variables.brand != 'coastfashion.com') {
+    assertBillingPageIsLoaded () {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+
         // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
         cy.intercept(/checkoutshopper/).as('paymentMethodsSection');
         cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
@@ -673,8 +681,8 @@ class BillingPage implements AbstractPage {
     },
     assertSameAsShippingIsChecked () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if(variables.brand == 'coastfashion.com') {
-        cy.get(shippingCheckbox).should('have.class', 'is-checked')
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+        cy.get(shippingCheckbox).should('have.class', 'is-checked');
       } else {
         cy.get(shippingCheckbox).should('be.checked');
       }
@@ -687,8 +695,8 @@ class BillingPage implements AbstractPage {
       const newBillingAddressForm = selectors[variables.brand].newBillingAddressForm;
       cy.get(newBillingAddressForm).should('be.visible').and('include.text', address);
     },
-    assertGiftCertificateFormIsPresent() {
-      if (variables.brand != 'coastfashion.com') {
+    assertGiftCertificateFormIsPresent () {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
       }
     },
@@ -736,7 +744,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (variables.brand = 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');

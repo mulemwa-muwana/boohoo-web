@@ -22,7 +22,7 @@ describe('Order confirmation page for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
@@ -38,7 +38,7 @@ describe('Order confirmation page for guest user', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         shippingPage.actions.selectDate('23', 'May', '2001');
         shippingPage.actions.confirmEmail(credentials.guest);
         
@@ -78,7 +78,7 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
   it('Verify that payment method is present', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
     } else {
       orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
@@ -101,13 +101,13 @@ describe('Order confirmation page for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' ) {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -123,7 +123,7 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
 
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.click.proceedToBillingAddressVerification();
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
@@ -141,14 +141,14 @@ describe('Order confirmation page for registered user', function () {
     });
   });
 
-  it('Verify that shipping, billing addresses and shipping method are present with valid data for registered user', function () {
+  it.only('Verify that shipping, billing addresses and shipping method are present with valid data for registered user', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
     orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
   });
   it('Verify that payment method is present', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
     } else {
       orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);

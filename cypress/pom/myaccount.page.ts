@@ -471,7 +471,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressEditForm).should('be.visible');
         cy.get(addressField).clear({force: true}).type(line1);
         cy.get(addressSubmitBtn).click({force: true});
-        if (variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           cy.get(proceedToBillingBtn).click();
         }
       },
@@ -491,13 +491,13 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, {force: true});
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, {force: true});
         cy.get(addressPhoneNumberField).type(address.phone, {force: true});
-        if (variables.brand != 'coastfashion.com') {
+        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
           cy.get(addressEnterManualyBtn).click({force: true});
         }
         cy.get(addressField).should('be.visible').type(address.addrline1, {force: true});
         cy.get(addressCityField).type(address.city, {force: true});
         cy.get(addressPostalCodeField).type(address.postcode, {force: true});
-        if (variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           cy.get(addressNicknameField).type('test');
           cy.get(addressSubmitBtn).click({force: true});
           cy.get(proceedToBillingBtn).click();
@@ -532,7 +532,7 @@ class MyAccountPage implements AbstractPage {
         const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
         cy.get(creditCardSection).contains(cardEnd).should('be.visible');
         cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click();
-        if (variables.brand != 'coastfashion.com') {
+        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
           cy.get(cardDeleteConfirmationBtn).click();
         }
       },
@@ -596,14 +596,14 @@ class MyAccountPage implements AbstractPage {
         cy.contains(addressName).should('be.visible');
       },
       assertAddressNotPresent (addressName: string) {
-        const addressCardsList = selectors[variables.brand].addressCardsList
+        const addressCardsList = selectors[variables.brand].addressCardsList;
         cy.get(addressCardsList).should('not.contain', addressName);
       },
       assertCardDetails (cardEnd: string) {
         cy.contains(cardEnd).should('be.visible');
       },
       assertCardNotPresent (cardEnd: string) {
-        const creditCardsList = selectors[variables.brand].creditCardsList
+        const creditCardsList = selectors[variables.brand].creditCardsList;
         cy.get(creditCardsList).should('not.contain', cardEnd);
       },
       assertOrderCantBeTracked () {

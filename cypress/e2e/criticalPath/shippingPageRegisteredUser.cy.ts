@@ -139,7 +139,6 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
-  //if (variables.brand != 'coastfashion.com') {
     it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
       shippingPage.click.addNewAddressButton();
       shippingPage.click.proceedToBilling();
@@ -151,9 +150,8 @@ describe('Shipping Page Registered user tests', function () {
     });
   //}
 
-
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
-  //if (variables.brand != 'coastfashion.com') {
+  };
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com'){
     it('Verify that "Enter manually" button allows user to enter address details', () => {
       const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
       if (variables.brand == 'boohoo.com') {
@@ -170,7 +168,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.selectFirstAddressFromAddressLookup(localeAddress.addrline1);
       shippingPage.assertions.assertManualAddressFieldsAreDispayed();
     });
-  //}
+  }
 
   it('Verify that user is able to add address details manually', () => {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
@@ -194,7 +192,6 @@ describe('Shipping Page Registered user tests', function () {
       if (variables.locale == 'AU') {
         shippingPage.actions.stateField(localeAddress.county);
       }
-    } else if (variables.brand == 'coastfashion.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -222,7 +219,6 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
     } else if (variables.brand == 'coastfashion.com'|| variables.brand != 'oasis-stores.com') {
-    } else if (variables.brand == 'coastfashion.com') {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
     }
@@ -250,7 +246,6 @@ describe('Shipping Page Registered user tests', function () {
       if (variables.locale == 'AU') {
         shippingPage.actions.stateField(localeAddress.county);
       }
-    } else if (variables.brand == 'coastfashion.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -323,4 +318,5 @@ describe('Shipping Page Registered user tests', function () {
   });
 
 });
+
 

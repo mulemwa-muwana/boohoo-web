@@ -107,7 +107,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.click.addAddressManually();
       shippingPage.assertions.assertManualAddressFieldsAreDispayed();
     });
- // }
+ }
 
   it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
@@ -154,8 +154,9 @@ describe('Shipping Page Guest user tests', function () {
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
-  });
-
+  }
+});
+  
   it.skip('Verify that user is able to select DPD shipping method', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod2');
@@ -232,6 +233,6 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.assertions.assertGuestEmailFieldDisplayed();
       shippingPage.assertions.assertUserProceededToBillingPage();
     }
-  });
-
+ });
+  
 });

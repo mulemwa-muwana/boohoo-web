@@ -69,6 +69,7 @@ describe('Billing page functionality for registered user', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');
   });
+});
   it('Verify that register user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
@@ -88,6 +89,8 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertEmailFieldCantBeChanged();
     }
   });
+});
+};
   it('Verify that billing address can be same as shipping address', function () {
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
@@ -181,4 +184,4 @@ describe('Billing page functionality for registered user', function () {
       });
     }
   });
-});
+ 

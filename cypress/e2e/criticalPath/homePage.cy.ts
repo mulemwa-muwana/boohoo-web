@@ -298,7 +298,6 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Sustainability', () => {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')
-        if (!(variables.brand == 'burton.co.uk' && variables.locale == 'IE'))
           GlobalFooter.actions.checkFooterLinkByText(assertionText.sustainability[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Klarna', () => {
@@ -326,7 +325,6 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('Social Responsibility');
         } else if (variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'FR' || variables.locale == 'DE' || variables.locale == 'NZ' || variables.locale == 'DK' || variables.locale == 'FI'|| variables.locale == 'NO')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[variables.language]);
-        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         } else if (variables.brand == 'coastfashion.com'|| variables.brand == 'nastygal.com' || variables.brand == 'wallis.co.uk'|| variables.brand == 'dorothyperkins.com' || variables.brand == 'burton.co.uk' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespSiteGenesis[variables.language]);
         }

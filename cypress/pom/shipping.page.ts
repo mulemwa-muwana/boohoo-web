@@ -292,7 +292,6 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodname: 'div.form-row.delivery-row'
-    shippingMethodname: 'div.form-row.delivery-row',
   },
   'misspap.com': undefined
 };

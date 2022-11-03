@@ -45,7 +45,7 @@ describe('Order confirmation page for guest user', function () {
         shippingPage.actions.selectDate('23', 'May', '2001');
         shippingPage.actions.confirmEmail(credentials.guest);
         shippingPage.click.proceedToBilling();
-        shippingPage.click.proceedToBillingAddressVerification();
+        shippingPage.click.proceedToBillingVerification();
       } else {
         shippingPage.click.proceedToBilling();
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
@@ -119,7 +119,7 @@ describe('Order confirmation page for registered user', function () {
 
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+      shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);

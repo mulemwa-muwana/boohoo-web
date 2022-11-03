@@ -25,7 +25,6 @@ export default defineConfig({
       plugins(on);
     },
 
-    numTestsKeptInMemory: 3,
-    watchForFileChanges: false
+    numTestsKeptInMemory: 0
   },
 });

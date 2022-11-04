@@ -64,7 +64,7 @@ describe('Home Page', function () {
       homePage.assertions.assertCartIconPresent();
     });
 
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
       it('Verify header Counter present', () => {
         homePage.assertions.assertPromotionPresent();
       });
@@ -74,7 +74,7 @@ describe('Home Page', function () {
       if (variables.brand == 'boohoo.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
-      } else if (variables.brand == 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
       } else {
@@ -88,7 +88,7 @@ describe('Home Page', function () {
       if (variables.brand == 'boohoo.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
-      } else if (variables.brand == 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       } else {
@@ -114,7 +114,7 @@ describe('Home Page', function () {
       GlobalFooter.actions.subscribeToNewsletter('nonValidEmail.com');
       if (variables.brand == 'boohoo.com') {
         GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscription[variables.language]);
-      } else if (variables.brand == 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscriptionCoast[variables.language]);
       } else {
         GlobalFooter.assertions.assertUnsuccessfulSubscription(assertionText.unsuccessfulSubscriptionNG[variables.language]);
@@ -133,13 +133,13 @@ describe('Home Page', function () {
     describe('Verify the content page (Privacy Policy and Terms And Conditions) is displayed.', () => {
       it('Privacy policy', () => {
         GlobalFooter.click.privacyPolicyLink();
-        if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
         } else {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
         }
 
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice');
         } else {
           PrivacyPolicyPage.assertions.assertOnPage('privacy-policy');
@@ -149,7 +149,7 @@ describe('Home Page', function () {
       it('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
         GlobalFooter.click.copyrightPrivacyPolicyLink();
 
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
         } else {
@@ -164,7 +164,7 @@ describe('Home Page', function () {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsH1[variables.language]);
           TermsAndConditionsPage.assertions.assertOnPage('terms-and-conditions');
-        } else if (variables.brand == 'coastfashion.com') {
+        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsSiteGenesisH1[variables.language]);
           TermsAndConditionsPage.assertions.assertOnPage('terms-of-use');
         } else {
@@ -198,7 +198,7 @@ describe('Home Page', function () {
       });
       
       it('YouTube', () => {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           SocialsPage.assertions.assertYouTubeIconIsPresent();
           GlobalFooter.click.youtubeLink();
         }
@@ -231,7 +231,7 @@ describe('Home Page', function () {
 
     describe('Verify Footer Navigation Components are present and Links are functional.', () => {
       it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrderArcadia[variables.language]);
@@ -246,7 +246,7 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
         if (variables.brand == 'boohoo.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
-        } else if (variables.brand == 'coastfashion.com') {
+        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoSiteGenesis[variables.language]);
         } else if (variables.brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[variables.language]);
@@ -277,7 +277,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
-        if (variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES') || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com'|| variables.brand == 'oasis-stores.com')
+        if ((variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES')) || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com'|| variables.brand == 'oasis-stores.com')
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
       });
 
@@ -295,7 +295,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.becomePartner[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Sustainability', () => {
-        if (!(variables.brand == 'burton.co.uk' && variables.locale == 'IE'))
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')
           GlobalFooter.actions.checkFooterLinkByText(assertionText.sustainability[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Klarna', () => {
@@ -341,7 +341,7 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {
         if (variables.brand == 'boohoo.com' ) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCond[variables.language]);
-        } else if (variables.brand == 'coastfashion.com') {
+        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondSiteGenesis[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
@@ -350,7 +350,7 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' ) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicy[variables.language]);
-        } else if (variables.brand == 'coastfashion.com') {
+        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicySiteGenesis[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);
@@ -370,7 +370,7 @@ describe('Home Page', function () {
       });
         
       it('Verify that the Sticky Footer displayed below Copyright and clickable.', () => {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.assertions.assertFooterIsFixedAndPresent();
           GlobalFooter.click.footerPromo();
         }
@@ -379,13 +379,13 @@ describe('Home Page', function () {
 
     describe('Verify that the global header is displayed.', () => {
       it('Check global header is visible when scrolling down.', () => {
-        if (variables.brand != 'coastfashion.com') {
+        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
           cy.scrollTo('bottom');
           GlobalFooter.assertions.assertHeaderIsVisible();
         }
       });
       it('Check global header displays.', () => {
-        if (variables.brand != 'coastfashion.com') {
+        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
           GlobalFooter.assertions.assertHeaderIsVisible();
         }
       });

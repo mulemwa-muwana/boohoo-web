@@ -28,7 +28,7 @@ describe('Verify Registration feature', function () {
     cy.fixture('newuser').then((credentials) =>{
       const randomEmail = CommonActions.randomEmail();
       RegistrationPage.actions.startRegistration(randomEmail);
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         RegistrationPage.actions.confirmationCheckbox();
         RegistrationPage.assertions.assertCheckboxIsChecked();
       }
@@ -44,7 +44,7 @@ describe('Verify Registration feature', function () {
   it('Verify that user can not register using email that already has account', function () {
     cy.fixture('newuser').then((credentials) =>{
       RegistrationPage.actions.startRegistration(credentials.username);
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         RegistrationPage.actions.confirmationCheckbox();
         RegistrationPage.assertions.assertCheckboxIsChecked();
       }

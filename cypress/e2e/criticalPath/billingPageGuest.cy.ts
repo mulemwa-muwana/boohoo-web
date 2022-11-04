@@ -45,13 +45,10 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      shippingPage.actions.selectDate('23', 'May', '2001');
-    } 
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();

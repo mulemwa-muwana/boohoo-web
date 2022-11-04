@@ -295,7 +295,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.becomePartner[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Sustainability', () => {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')
+        if (!(variables.brand == 'burton.co.uk' && variables.locale == 'IE'))
           GlobalFooter.actions.checkFooterLinkByText(assertionText.sustainability[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Klarna', () => {

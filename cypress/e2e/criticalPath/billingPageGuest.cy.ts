@@ -101,14 +101,11 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertDateFormIsPresent();
-    BillingPage.actions.selectDate('23', 'May', '2001');
+    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
-      if (variables.brand == 'coastfashion.com') {
-        BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
-      } else {
-        BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
-      }
+      BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
+    } else {
+      BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
     }
   });
   it('Verify that guest user cannot place order if email field is empty', function () {

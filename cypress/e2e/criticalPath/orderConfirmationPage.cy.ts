@@ -54,8 +54,8 @@ describe('Order confirmation page for guest user', function () {
     });
 
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    if (variables.brand == 'boohoo.com') {
-      orderConfirmationPage.click.closePopUp();
+    if (variables.brand == 'boohoo.com'  && (variables.language == 'DE' || variables.language == 'SE')) {
+      orderConfirmationPage.click.closeCancellationPopup();
     }
   });
 
@@ -123,8 +123,8 @@ describe('Order confirmation page for registered user', function () {
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    if (variables.brand == 'boohoo.com') {
-      orderConfirmationPage.click.closePopUp1(assertionText.closePopUp[variables.language]);
+    if (variables.brand == 'boohoo.com'  && (variables.language == 'DE' || variables.language == 'SE')) {
+      orderConfirmationPage.click.closeCancellationPopup();
     }
   });
   it('Verify that email, order number, value and order total are visible for registred users', function () {

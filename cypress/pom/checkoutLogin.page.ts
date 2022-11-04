@@ -122,11 +122,11 @@ class CheckoutPage implements AbstractPage {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail;
       cy.get(guestCheckoutEmail).should('be.visible');
     },
-    assertPremierTitleIsDisplayed (premierTitleText: string) {
+    assertPremierTitleIsDisplayed () {
       const premierIsDisplayed = selectors[variables.brand].premierIsDisplayed;
       cy.get(premierIsDisplayed).should('have.text', assertionText.Premier[variables.language]);
     },
-    assertPremierSubtitleIsDisplayed (premierSubtitleText: string) {
+    assertPremierSubtitleIsDisplayed () {
       const premierSubtitle = selectors[variables.brand].premierSubtitle;
       cy.get(premierSubtitle).should('have.text', assertionText.PremierText[variables.language]);
     }

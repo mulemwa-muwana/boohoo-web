@@ -1,4 +1,3 @@
-import { contains } from 'cypress/types/jquery';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -76,7 +75,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible: '.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '#WLbanner_2201101815 > a'
+    closePopUP: '[id^=WLbanner] > a'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,

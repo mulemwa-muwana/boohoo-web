@@ -148,6 +148,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
     }
   });
+
   // }
 
   // If (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {

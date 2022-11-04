@@ -92,7 +92,6 @@ describe('Shipping Page Guest user tests', function () {
     });
   }
 
-
   // If (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
   it('Verify that "Enter manually" button allows guest to enter address details', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
@@ -104,6 +103,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.addAddressManually();
     shippingPage.assertions.assertManualAddressFieldsAreDispayed();
   });
+
   // }
 
   it('Verify that user is able to add address details manually', function () {

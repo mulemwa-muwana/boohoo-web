@@ -6,8 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwdev.wallis.co.uk',
-    sku: 'AYY00008-105',
-    fullSKU: 'AYY00008-105-18',
+    sku: 'AYY10937-130',
+    fullSKU: 'AYY10937-130-51',
     brand: 'wallis.co.uk',
     locale: 'UK',
     language: 'EN',

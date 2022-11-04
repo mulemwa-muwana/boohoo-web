@@ -56,11 +56,11 @@ const selectors: SelectorBrandMap = {
   },
   'nastygal.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    klarnaPayNow: '#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    klarnaPayNow: '#payment-details-KlarnaUK button',
     paymentMethodCreditCard: '#payment-button-scheme',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
-    paymentMethodKlarna: '[data-method-id="klarna_pay_later"]',
+    paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
     paymentMethodLayBuy: '#payment-button-LAYBUY',
@@ -95,9 +95,9 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
-    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .adyen-checkout__input',
+    creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
@@ -416,15 +416,15 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodCreditCard).click({force: true});
       cy.wait(2000);
 
-      cy.get('body').then($body => {
+      cy.get('body').then($body => { // If there is saved Credit Card, click Add new Card button
         if ($body.find('[data-ref="newAdyenCardBlock"]').attr('hidden') == 'hidden') {  
           cy.get('.b-payment_options_group-actions > button').click({force:true});
         }
       });
 
-      cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).should('be.visible').type(cardNo, {force:true});
-      cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).should('be.visible').type(date, {force:true});
-      cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).should('be.visible').type(code, {force:true});
+      cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).type(cardNo, {force:true});
+      cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(date, {force:true});
+      cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(code, {force:true});
       cy.get(creditCardFieldsCardOwner).type(cardOwner, {force:true});
       cy.get(paynowBtnCC).click({force:true});
 
@@ -522,7 +522,6 @@ class BillingPage implements AbstractPage {
         cy.get('#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button').click({force:true});
       } else {
         cy.get(klarnaPayNow).click({force:true});
-      
       }
       
       // Click the Continue button.
@@ -542,29 +541,30 @@ class BillingPage implements AbstractPage {
         cy.wait(12000);
 
         body().then($body => { 
-          cy.wait(5000);
           if ($body.find('#pay_now-pay_now').length) { // If Payment options popup exists select Pay now
             body().find('#pay_now-pay_now').click();
             body().find('button[data-testid="select-payment-category"]').click();
+            cy.wait(5000);
           }
         });
         
         body().then($body => {
-          cy.wait(5000);
-          if ($body.find('button[data-testid="pick-plan"]').length) { // If Continue button on test plan page exists
-            body().find('button[data-testid="pick-plan"]').click({force:true});
+          const continueButtonLocator= (variables.brand == 'nastygal.com') ? '[data-cid="btn-primary"]' : 'button[data-testid="pick-plan"]';
+          if ($body.find(continueButtonLocator).length) { // If Continue button on test plan page exists
+            body().find(continueButtonLocator).click({force:true});
+            cy.wait(5000);
           }
         });
-        cy.wait(5000);
+        
+        body().then($body => {
+          if ($body.find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').length) { // If terms&condition checkbox exists
+            body().find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').click({force:true}); 
+            cy.wait(5000);
+          }
+        });
 
-        body().then($body => {
-          cy.wait(5000);
-          if ($body.find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').length) {
-            body().find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').click({force:true}); // If terms&condition checkbox exists
-          }
-        });
-        
-        body().find('[testid="confirm-and-pay"]').click({force:true});
+        const payButtonLocator = (variables.brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[testid="confirm-and-pay"]';
+        body().find(payButtonLocator).click({force:true});
 
         body().then($body => {
           cy.wait(5000);
@@ -667,14 +667,13 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertBillingPageIsLoaded () {
-      if ((variables.brand != 'coastfashion.com') && (variables.brand != 'oasis-stores.com') && (variables.brand != 'nastygal.com')) {
-
-        // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
-        cy.intercept(/checkoutshopper/).as('paymentMethodsSection');
-        cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+      // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
+      if (variables.brand == 'nastygal.com') {
+        cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');
       } else {
-        cy.wait(12000);
+        cy.intercept(/checkoutshopper/).as('paymentMethodsSection');
       }
+      cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
     },
     assertShippingAddressPresent () {
       const shippingAddressSection = selectors[variables.brand].shippingAddressSection;

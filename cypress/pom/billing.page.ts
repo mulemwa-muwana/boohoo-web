@@ -42,6 +42,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingAddressCountry: '',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -514,14 +515,13 @@ class BillingPage implements AbstractPage {
       const billingPostCode = selectors[variables.brand].billingPostCode;
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
-      cy.get(billingAddressFieldCity).clear().type(city);
+      cy.get(billingAddressFieldCity).clear({force: true}).type(city);
       if (variables.locale == 'AU') {
         cy.get(billingAddressFieldsStateCode).select(state);
       } else {
-        cy.get(billingAddressFieldsStateCode).clear().type(state);
-      }
-      
-      cy.get(billingPostCode).clear().type(postcode);
+        cy.get(billingAddressFieldsStateCode).type(billingAddressFieldsStateCode);
+      }     
+      cy.get(billingPostCode).click({force: true}).type(postcode);
     },
     addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;

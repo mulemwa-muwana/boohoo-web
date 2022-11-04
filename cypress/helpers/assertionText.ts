@@ -1,14 +1,14 @@
 class AssertionText {
   
   WishlistItemsAdded: TranslationMap = {
-    EN: '\n\nSaved\n',
-    FR: '\n\nEnregistré\n',
+    EN: 'The product is added to wish list',
+    FR: 'Le produit a été ajouté à la liste des favoris',
     NL: '\n\nOpgeslagen\n',
     DE: '\n\nGerettet\n',
     DK: '\n\nGemt\n',
     FI: '\n\nTallennettu\n',
     NO: '\n\nLagret\n',
-    SE: '\n\nSparad\n',
+    SE: 'The product is added to wish list',
     IL: '\n\nשמור\n',
     IT: '\n\nSalvato\n',
     ES: '\n\nSalvado\n'
@@ -30,7 +30,6 @@ class AssertionText {
 
   WishlistItemsAddedArkadia: TranslationMap = {
     EN: 'The product is added to wish list',
-    FR: '',
     NL: '',
     DE: '',
     DK: '',
@@ -39,18 +38,19 @@ class AssertionText {
     SE: '',
     IL: '',
     IT: '',
-    ES: ''
+    ES: '',
+    FR: ''
   };
 
   WishlistItemsAddedAlert: TranslationMap = {
     EN: 'Product added to wish list',
-    FR: 'Produit ajouté à la liste de souhaits',
-    NL: '\n    \n    Bewaar voor later\n',
+    FR: 'Article ajouté à ta wish list',
+    NL: 'Product added to wish list', // \n    \n    Bewaar voor later\n
     DE: 'Produkt zur Wunschliste hinzugefügt',
     DK: 'Produkt tilføjet til ønskeliste',
     FI: 'Tuote lisätty toivelistaan',
-    NO: 'Produkt lagt til ønskeliste',
-    SE: '\n    \n    Sparad\n',
+    NO: 'Product added to wish list', // Produkt lagt til ønskeliste
+    SE: 'Sparad i önskelistan',
     IL: 'מוצר נוסף לרשימת המשאלות',
     IT: 'Prodotto aggiunto alla lista dei desideri',
     ES: 'Producto añadido a la lista de deseos'
@@ -58,7 +58,7 @@ class AssertionText {
 
   WishListIsEmpty: TranslationMap = {
     EN: 'You dont have any items saved for later (yet)',
-    FR: 'Vous n’avez pas (encore) enregistré d`éléments pour plus tard',
+    FR: 'Vous n\’avez pas (encore) enregistré d`éléments pour plus tard',
     NL: 'Je hebt (nog) geen items opgeslagen voor later',
     DE: 'Sie haben (noch) keine Artikel für später gespeichert',
     DK: 'Je hebt (nog) geen items opgeslagen voor later',
@@ -85,45 +85,45 @@ class AssertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
-    EN: 'Don/’t forget about me!',  
-    FR: 'Ne m/’oublie pas!',
+    EN: 'Don\’t forget about me!',
+    FR: 'Ne m\’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
     FI: 'Älä unohda minua!',
     NO: 'Ikke glem meg!',
-    SE: 'Glöm inte bort mig!',
+    SE: 'Glöm inte mig!',
     IL: 'אל תשכח ממני!',
     IT: 'Non dimenticarti di me!',
     ES: '¡No te olvides de mí!'
   };
 
   ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
-    EN: 'This field is required.',  
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    EN: 'This field is required.', 
+    FR: 'Ne m\’oublie pas!',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
+    DK: 'Glem ikke mig!',
+    FI: 'Älä unohda minua!',
+    NO: 'Ikke glem meg!',
+    SE: 'Glöm inte mig!',
+    IL: 'אל תשכח ממני!',
+    IT: 'Non dimenticarti di me!',
+    ES: '¡No te olvides de mí!'
   };
 
   ShippingMandatoryPostcodeArcadia: TranslationMap = {
-    EN: 'This field is required.',  
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    EN: 'Don\’t forget about me!',
+    FR: 'Ne m\’oublie pas!',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
+    DK: 'Glem ikke mig!',
+    FI: 'Älä unohda minua!',
+    NO: 'Ikke glem meg!',
+    SE: 'Glöm inte mig!',
+    IL: 'אל תשכח ממני!',
+    IT: 'Non dimenticarti di me!',
+    ES: '¡No te olvides de mí!'
   };
 
   RegistrationPageExistingEmail: TranslationMap = {
@@ -337,7 +337,7 @@ class AssertionText {
   };
 
   inStock: TranslationMap = {
-    EN: '\n                YAY! It’s in stock\n            \n                YAY! It’s in stock\n            ',
+    EN: '\n                YAY! It\’s in stock\n            \n                YAY! It\’s in stock\n            ',
     FR: '\n                YAY ! Cet article est en stock\n            \n                YAY ! Cet article est en stock\n            ',
     NL: 'JAAAAA! Het is op voorraad',
     DE: 'YAY! Es ist auf Lager',
@@ -450,13 +450,13 @@ class AssertionText {
 
   emptyEmailFieldErrorBillingPage: TranslationMap = {
     EN: '',
-    FR: '',
-    NL: '',
-    DE: '',
+    FR: 'Ne m’oubliez pas !',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Glöm inte mig!',
     IL: '',
     IT: '',
     ES: ''
@@ -491,10 +491,10 @@ class AssertionText {
   };
 
   assertShippingAddressIsMandatory: TranslationMap = {
-    EN: 'Ooops, something went wrong and we couldn’t save your shipping address. Please try again',
+    EN: 'Ooops, something went wrong and we couldn\’t save your shipping address. Please try again',
     NL: 'Oeps, er is iets misgegaan en we konden je verzendadres niet opslaan. Probeer het opnieuw',
     DE: 'Hoppla, etwas ist schief gelaufen und wir konnten Ihre Lieferadresse nicht speichern. Bitte versuche es erneut',
-    FR: 'Oups, quelque chose s’est mal passé et nous n’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
+    FR: 'Oups, quelque chose s\’est mal passé et nous n\’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
     DK: 'Ups, noget gik galt, og vi kunne ikke gemme din leveringsadresse. Prøv igen',
     FI: 'Hups, jotain meni pieleen, emmekä voineet tallentaa toimitusosoitettasi. Yritä uudelleen',
     NO: 'Beklager, noe gikk galt, og vi kunne ikke lagre leveringsadressen din. Vær så snill, prøv på nytt',
@@ -575,7 +575,7 @@ class AssertionText {
   };
 
   unsuccessfulSubscription: TranslationMap = {
-    EN: 'Hold up! That doesn’t seem right.',
+    EN: 'Hold up! That doesn\’t seem right.',
     NL: 'Wacht! Er gaat iets mis.',
     DE: 'Achtung! Das scheint nicht richtig zu sein.',
     FR: 'Tenir bon! Cela ne semble pas juste.',
@@ -674,6 +674,20 @@ class AssertionText {
 
   footerLinkDeliveryInfo: TranslationMap = {
     EN: 'Delivery Info',
+    NL: 'Bezorginformatie',
+    DE: 'Lieferinformationen',
+    FR: 'Information sur la livraison',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'Leveranser',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  pdpDeliverylist: TranslationMap = {
+    EN: '\nFewer shipping options\n',
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',

@@ -248,7 +248,50 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodname: 'div.form-row.delivery-row',
   },
-  'warehousefashion.com': undefined,
+  'warehousefashion.com': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
+    addPremierToCartFromShippingPage: '#add-to-cart',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: 'span.button.add-new-address',
+    editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    editCart: '.section-header-note',
+    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
+    proceedToBillingVerificationBtn: '.verification-address-button',
+    addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    cartContainer: '.summary-inner',
+    postcodeFiled: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
+    postcodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
+    promoCodeField: '#dwfrm_coupon_couponCode',
+    addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
+    shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
+    shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
+    shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
+    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
+    addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
+    addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
+    shippingCityShipping: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
+    shippingCounty: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    dobDay: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
+    orderTotal: '.order-total',
+    allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    coupon: '#dwfrm_coupon_couponCode',
+    shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
+    shippingMethodname: 'div.form-row.delivery-row',
+  },
   'oasis-stores.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
@@ -322,17 +365,24 @@ class ShippingPage implements AbstractPage {
       cy.wait(3000);
       cy.get(proceedToBilling).click({force: true});
     },
-    proceedToBillingAddressVerification () {
+    proceedToBillingVerification () {  // Only for SiteGenesis: coast, oasis and warehouse
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.get(proceedToBillingVerificationBtn).click({force: true});
+    },
+    proceedToBillingVerificationAndWaitBillingPageToLoad () {  // Only for SiteGenesis: coast, oasis and warehouse
+      const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
+      cy.wait(1000);
+      cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
+      cy.get(proceedToBillingVerificationBtn).click({force: true});
+      cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
     },
     editSavedAddress () {
       const editSavedAddress = selectors[variables.brand].editSavedAddress;
       cy.get(editSavedAddress).click();
     },
     addAddressManually () {
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'warehousefashion.com') {
         const addAddressManually = selectors[variables.brand].addAddressManually;
         cy.get(addAddressManually).should('be.visible').click({force:true});
       }

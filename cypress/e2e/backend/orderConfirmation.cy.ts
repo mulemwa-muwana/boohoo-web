@@ -36,10 +36,11 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.click.proceedToBilling();
-    if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
-      ShippingPage.click.proceedToBillingAddressVerification();
+    if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
+      ShippingPage.click.proceedToBillingVerificationAndWaitBillingPageToLoad();
+    } else {
+      BillingPage.assertions.assertBillingPageIsLoaded();
     }
-    BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   it('can select Credit Card as payment method and generate an artefact', function () {
@@ -107,7 +108,7 @@ describe('Boohoo order placement', () => {
   function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
     const variables = Cypress.env() as EnvironmentVariables;
     
-    if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
       cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
       cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
       cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');

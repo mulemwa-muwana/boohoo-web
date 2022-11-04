@@ -163,8 +163,6 @@ class HomePage implements AbstractPage {
       }
       const searchField = selectors[variables.brand].searchField;
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({force: true});
-      cy.get(searchField).click({force: true}).type(SKU + '{enter}');
       cy.get(searchIcon).click({ force: true });
       cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
     },
@@ -197,7 +195,7 @@ class HomePage implements AbstractPage {
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[variables.brand].searchField;
-      cy.get(searchIcon).invoke('show');
+      cy.get(searchIcon).invoke('show').should('be.visible');
     },
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;

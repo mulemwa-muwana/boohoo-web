@@ -54,11 +54,11 @@ describe('Shipping Page Registered user tests', function () {
     cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.click.proceedToBilling();
-      if (variables.brand == 'boohoo.com'){
-        shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
-      } else {
-        shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
-      }
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    } else {
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+    }
   });
 
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
@@ -138,36 +138,38 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
-  //if (variables.brand != 'coastfashion.com') {
-    it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
+  // If (variables.brand != 'coastfashion.com') {
+  it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', () => {
+    shippingPage.click.addNewAddressButton();
+    shippingPage.click.proceedToBilling();
+    if (variables.brand == 'boohoo.com') {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
+    } else {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
+    }
+  });
+
+  // }
+
+  // If (variables.brand != 'coastfashion.com') {
+  it('Verify that "Enter manually" button allows user to enter address details', () => {
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.brand == 'boohoo.com') {
       shippingPage.click.addNewAddressButton();
-      shippingPage.click.proceedToBilling();
-      if (variables.brand == 'boohoo.com') {
-        shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
-      } else {
-        shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
-      }
-    });
-  //}
 
-  //if (variables.brand != 'coastfashion.com') {
-    it('Verify that "Enter manually" button allows user to enter address details', () => {
-      const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-      if (variables.brand == 'boohoo.com') {
-        shippingPage.click.addNewAddressButton();
+      // ShippingPage.click.addAddressManually();
+    } else {
+      shippingPage.click.addNewAddressButton();
+      shippingPage.actions.selectCountry(localeAddress.country);
+      cy.wait(4000);
 
-        // ShippingPage.click.addAddressManually();
-      } else {
-        shippingPage.click.addNewAddressButton();
-        shippingPage.actions.selectCountry(localeAddress.country);
-        cy.wait(4000);
+      // ShippingPage.click.enterManuallyAddressDetails();
+    }
+    shippingPage.actions.selectFirstAddressFromAddressLookup(localeAddress.addrline1);
+    shippingPage.assertions.assertManualAddressFieldsAreDispayed();
+  });
 
-        // ShippingPage.click.enterManuallyAddressDetails();
-      }
-      shippingPage.actions.selectFirstAddressFromAddressLookup(localeAddress.addrline1);
-      shippingPage.assertions.assertManualAddressFieldsAreDispayed();
-    });
-  //}
+  // }
 
   it('Verify that user is able to add address details manually', () => {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');

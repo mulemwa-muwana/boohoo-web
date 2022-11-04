@@ -68,13 +68,15 @@ const selectors: SelectorBrandMap = {
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
-    minicartIcon: '#js-minicart-quantity',
+    minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
-    registrationButton: '.b-registration_benefits > .b-button',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
-    searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
+    registrationButton: 'a[title="Register"]',
+    wishlistIcon: '.wishlist-button',
+    searchField: '.js-header-search-input',
+    wishListIcon: '.header-wishlist > .header-wishlist-link',
     searchIcon: '.js-search-icon',
-    promotion: 'div[class="b-hero_carousel-track"]',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
   },
   'misspap.com': undefined
 };
@@ -89,7 +91,7 @@ class HomePage implements AbstractPage {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }
@@ -115,19 +117,19 @@ class HomePage implements AbstractPage {
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({ force: opts.force });
+      cy.get(searchIcon).click({force: opts.force});
     },
     searchField () {
       const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).click({ force: true });
+      cy.get(searchField).click({force: true});
     },
     wishListIcon () {
       const wishListIcon = selectors[variables.brand].wishListIcon;
-      cy.get(wishListIcon).click({ force: true });
+      cy.get(wishListIcon).click({force: true});
     },
     cartIcon () {
       const minicartIcon = selectors[variables.brand].minicartIcon;
-      cy.get(minicartIcon).click({ force: true });
+      cy.get(minicartIcon).click({force: true});
     },
 
     // MEGA MENU - MAIN NAV
@@ -192,7 +194,7 @@ class HomePage implements AbstractPage {
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[variables.brand].searchField;
-      cy.get(searchIcon).should('be.visible');
+      cy.get(searchIcon).invoke('show').should('be.visible');
     },
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;

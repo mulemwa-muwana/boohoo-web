@@ -1,4 +1,3 @@
-import { contains } from 'cypress/types/jquery';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -31,7 +30,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible: '.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '#WLbanner_1526548622 > [href="javascript:void(0);"]'
+    closePopUP: '[id^=WLbanner] > a'
   },
   'dorothyperkins.com': {
     emailIsDisplayed:'.b-confirmation_header-email',
@@ -76,7 +75,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible: '.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '#WLbanner_2201101815 > a'
+    closePopUP: '[id^=WLbanner] > a'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,

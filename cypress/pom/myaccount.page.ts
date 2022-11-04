@@ -357,7 +357,6 @@ class MyAccountPage implements AbstractPage {
           cy.get('.l-account-main').contains(text)
             .invoke('removeAttr', 'target')
             .then(element => {
-              const href = element.attr('href');
               cy.wrap(element).click({force: true});
               cy.url().then(url => {
                 expect(url).to.contain('delivery');

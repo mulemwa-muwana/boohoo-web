@@ -85,13 +85,12 @@ class HomePage implements AbstractPage {
   goto (options: GotoOptions = null) {
 
     cy.visit(variables.url);
-    cy.intercept('**/NewsletterSubscribe-FirstVisit*', []); // Stops nastygal newsletter popup
+    if (variables.brand == 'nastygal.com') {
+      cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
+    }
 
     if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
       CommonActions.applyMarketingCookies();
-      if (variables.brand == 'nastygal.com') {
-        cy.intercept(/newsletter/i, []); // Don't show Nastygal newsletter popup
-      }
       cy.visit(variables.url);
     }
 

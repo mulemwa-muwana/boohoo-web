@@ -1,7 +1,6 @@
 
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import assertionText from '../helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -124,11 +123,11 @@ class CheckoutPage implements AbstractPage {
     },
     assertPremierTitleIsDisplayed (premierTitleText: string) {
       const premierIsDisplayed = selectors[variables.brand].premierIsDisplayed;
-      cy.get(premierIsDisplayed).should('have.text', assertionText.Premier[variables.language]);
+      cy.get(premierIsDisplayed).should('have.text', premierTitleText);
     },
     assertPremierSubtitleIsDisplayed (premierSubtitleText: string) {
       const premierSubtitle = selectors[variables.brand].premierSubtitle;
-      cy.get(premierSubtitle).should('have.text', assertionText.PremierText[variables.language]);
+      cy.get(premierSubtitle).should('have.text', premierSubtitleText);
     }
   };
 }

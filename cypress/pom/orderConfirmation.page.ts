@@ -128,7 +128,7 @@ class OrderConfirmation implements AbstractPage {
     closeCancellationPopup () {
       cy.get('[rokt-frame-type="plugin-runtime"]', { timeout: 20000 }).then((iframe) => {
         const innerIframe = iframe.contents().find('[id^="rokt-placements-frame"]').contents();
-        cy.wrap(innerIframe).find('[data-e2e="lightboxClose"]').click();
+        cy.wrap(innerIframe, {timeout: 5000}).find('[data-e2e="lightboxClose"]').click();
       });
     }
   };

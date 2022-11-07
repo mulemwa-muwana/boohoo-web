@@ -674,6 +674,7 @@ class BillingPage implements AbstractPage {
         cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
       }
       cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+      cy.wait(1000);
     },
     assertShippingAddressPresent () {
       const shippingAddressSection = selectors[variables.brand].shippingAddressSection;

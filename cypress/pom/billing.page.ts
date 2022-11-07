@@ -793,9 +793,10 @@ class BillingPage implements AbstractPage {
       if (variables.brand == 'nastygal.com') {
         cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');
       } else {
-        cy.intercept(/checkoutshopper/).as('paymentMethodsSection');
+        cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
       }
       cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+      cy.wait(1000);
     },
     assertShippingAddressPresent () {
       const shippingAddressSection = selectors[variables.brand].shippingAddressSection;

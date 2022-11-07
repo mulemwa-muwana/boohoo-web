@@ -63,7 +63,18 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.b-message-copy'
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    loginIcon: '.b-header_login-icon > .i-icon',
+    loginEmail: '[id^=dwfrm_login_username]',
+    loginPassword: '[id^=dwfrm_login_password]',
+    loginButton:'#dwfrm_login .login-page-button',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '.b-dialog-window',
+    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
+    resetPasswordBtn: '.b-dialog-footer > .b-button',
+    loginForm: ':nth-child(1) > .l-service-section_inner',
+    errorLoginMessage: '.b-message-copy'
+  },
   'coastfashion.com': {
     loginIcon: '.user-account',
     loginLink: '.user-links > [title="Log In"]',
@@ -106,7 +117,18 @@ const selectors: SelectorBrandMap = {
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    loginIcon: '.b-header_login-icon > .i-icon',
+    loginEmail: '[id^="dwfrm_login_username"]',
+    loginPassword: '[id^="dwfrm_login_password"]',
+    loginButton:'#dwfrm_login .login-page-button',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '.b-dialog-window',
+    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
+    resetPasswordBtn: '.b-dialog-footer > .b-button',
+    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box',
+    errorLoginMessage: '.b-message-copy'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

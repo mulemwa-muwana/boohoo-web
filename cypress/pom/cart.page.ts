@@ -106,7 +106,27 @@ const selectors: SelectorBrandMap = {
     productName: '.b-cart_product-title > a',
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    productsTable: '.b-cart_products',
+    productImage: '.l-cart_product-image',
+    productPrice: '.m-user_cart > .b-summary_table-value',
+    subtotal: '.m-total > .b-summary_table-value',
+    cartQuantity: '.b-cart_product-qty',
+    editQuantity: '.b-cart_product-edit',
+    updateQuantityBtn: '#quantity',
+    setQuantityDDL: '.b-product_update-button_update',
+    updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
+    premierBlock: '.b-ngvip-details',
+    addPremierToCart: '.b-ngvip-button',
+    PayPalCTA: '.zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button-0',
+    AmazonCTA: '#OffAmazonPaymentsWidgets0',
+    proceedToCheckout: '[class*="js-second-button-checkout"]',
+    clearCart: '.b-cart_product-remove',
+    emptyCartTitle: '.b-cart_empty-title',
+    productDetails: '.l-cart_product-details',
+    productName: '.b-cart_product-title > a',
+  },
   'coastfashion.com': {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
@@ -167,7 +187,26 @@ const selectors: SelectorBrandMap = {
     productDetails: '.variations',
     productName: '.name > a' 
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    productsTable: '.b-cart_products',
+    productImage: '.l-cart_product-image',
+    productPrice: '.l-cart_product-total',
+    subtotal: '.m-total > .b-summary_table-value',
+    cartQuantity: '.b-cart_product-qty',
+    editQuantity: 'button[data-tau="cart_product_edit"]',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
+    premierBlock: '.m-with_actions',
+    addPremierToCart: 'button[data-tau="product_addToCart"]',
+    PayPalCTA: '.zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button-0',
+    AmazonCTA: '#OffAmazonPaymentsWidgets0',
+    proceedToCheckout: '[class*="js-second-button-checkout"]',
+    clearCart: '.b-cart_product-remove',
+    emptyCartTitle: '.b-cart_empty-title',
+    productDetails: '.l-cart_product-details',
+    productName: 'a[class="b-cart_product-name"]',
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

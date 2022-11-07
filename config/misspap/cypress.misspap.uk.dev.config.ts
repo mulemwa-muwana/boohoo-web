@@ -5,12 +5,12 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dev.coastfashion.com/',
-    sku: 'ACC99478-119-18',
-    fullSKU: 'ACC99478-119-18',
-    brand: 'coastfashion.com',
+    url: 'https://storefront:Oreo2022@dev.misspap.com',
+    sku: 'MPP03347-186',
+    fullSKU: 'MPP03347-186-14',
+    brand: 'misspap.com',
     locale: 'UK',
-    language: 'EN',
+    language: 'EN'
   },
 
   viewportHeight: 1080,
@@ -19,11 +19,15 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
-
+  
   e2e: {
-    setupNodeEvents (on, config) {
+    experimentalSessionAndOrigin: true,
+    setupNodeEvents (on) {
       plugins(on);
     },
+
     numTestsKeptInMemory: 0
-  },   
+  },
+
 });
+

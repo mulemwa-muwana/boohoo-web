@@ -334,7 +334,7 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodname: 'div.form-row.delivery-row',
+    shippingMethodname: 'div.form-row.delivery-row'
   },
   'misspap.com': undefined
 };
@@ -421,7 +421,7 @@ class ShippingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         cy.get(enterManually).click({force: true});
       }
     }
@@ -450,11 +450,11 @@ class ShippingPage implements AbstractPage {
     },
     firstNameField (fname: string) {
       const shippingFname = selectors[variables.brand].shippingFname;
-      cy.get(shippingFname).clear().type(fname);
+      cy.get(shippingFname).clear().type(fname, {force: true});
     },
     lastNameField (lname: string) {
       const shippingLname = selectors[variables.brand].shippingLname;
-      cy.get(shippingLname).clear().type(lname);
+      cy.get(shippingLname).clear().type(lname, {force: true});
     },
     countrySelector () {
       cy.get('[id$=addressFields_country][id*="shipping"]'); 

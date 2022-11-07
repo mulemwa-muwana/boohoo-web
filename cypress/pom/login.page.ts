@@ -78,17 +78,32 @@ const selectors: SelectorBrandMap = {
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form'
   },
-  'warehousefashion.com': undefined,
-  'oasis-stores.com': {
-    loginIcon: '.b-header_login-icon > .i-icon',
-    loginEmail: '[id*="login_username"]',
-    loginPassword: '[id*="login_password"]',
-    loginButton:'[name*="dwfrm_login_login"]',
-    forgotPassword: '#password-reset',
+  'warehousefashion.com': {
+    loginIcon: '.user-account',
+    loginLink: '.user-links > [title="Log In"]',
+    loginEmail: '[id^=dwfrm_login_username]',
+    loginPassword: '[id^=dwfrm_login_password]',
+    loginButton:'#dwfrm_login .login-page-button',
+    forgotPassword: '.password-reset',
     forgotPasswordMessage: '#ShowResetPasswordDialog',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
-    resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner',
+    resetPasswordEmailField: '#dwfrm_requestpassword_email',
+    resetPasswordBtn: '.reset-password-btn',
+    loginForm: '#dwfrm_login',
+    wishlistLoginTitle: '.login-title',
+    errorLoginMessage: '.error-form'
+  },
+  'oasis-stores.com': {
+    loginIcon: '.user-account',
+    loginLink: '.user-links > [title="Log In"]',
+    loginEmail: '[id^=dwfrm_login_username]',
+    loginPassword: '[id^=dwfrm_login_password]',
+    loginButton:'#dwfrm_login .login-page-button',
+    forgotPassword: '.password-reset',
+    forgotPasswordMessage: '#ShowResetPasswordDialog',
+    resetPasswordEmailField: '#dwfrm_requestpassword_email',
+    resetPasswordBtn: '.reset-password-btn',
+    loginForm: '#dwfrm_login',
+    wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form'
   },
   'misspap.com': undefined
@@ -110,7 +125,7 @@ class LoginPage implements AbstractPage {
   click = {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(loginIcon).invoke('show');
       } else {
         cy.get(loginIcon).click({ force: true });
@@ -143,7 +158,7 @@ class LoginPage implements AbstractPage {
     },
     assertForgotPasswordMessageisDisplayed (email: string) {
       const forgotPasswordMessage = selectors[variables.brand].forgotPasswordMessage;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(forgotPasswordMessage).should('be.visible');
       } else {
         cy.get(forgotPasswordMessage).should('be.visible').and('contain', email);
@@ -155,7 +170,7 @@ class LoginPage implements AbstractPage {
     login (user: string, pass: string) {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(loginIcon).invoke('show');
         cy.get(loginLink).click({force:true});
       } else {

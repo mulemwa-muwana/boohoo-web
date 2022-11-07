@@ -22,7 +22,7 @@ describe('Order confirmation page for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
@@ -45,7 +45,7 @@ describe('Order confirmation page for guest user', function () {
         shippingPage.actions.selectDate('23', 'May', '2001');
         shippingPage.actions.confirmEmail(credentials.guest);
         shippingPage.click.proceedToBilling();
-        shippingPage.click.proceedToBillingAddressVerification();
+        shippingPage.click.proceedToBillingVerification();
       } else {
         shippingPage.click.proceedToBilling();
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
@@ -96,13 +96,13 @@ describe('Order confirmation page for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' ) {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -119,7 +119,7 @@ describe('Order confirmation page for registered user', function () {
 
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+      shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);

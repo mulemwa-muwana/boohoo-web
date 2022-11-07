@@ -127,25 +127,45 @@ const selectors: SelectorBrandMap = {
     productDetails: '.variations',
     productName: '.name > a',
   },
-  'warehousefashion.com': undefined,
-  'oasis-stores.com': {
-    productPrice: '.m-user_cart > .b-summary_table-value',
-    subtotal: '.m-total > .b-summary_table-value',
-    cartQuantity: '.b-cart_product-qty',
-    editQuantity: '.b-cart_product-edit',
-    updateQuantityBtn: '.b-product_update-button_update',
-    setQuantityDDL: '.b-product_update-button_update',
-    updateQuantityDDL: '#quantity-08630916a2e766c39d1e0c8c70',
-    premierBlock: '.b-ngvip-details',
-    addPremierToCart: '.b-ngvip-button',
-    PayPalCTA: '.zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button-0',
+  'warehousefashion.com': {
+    productsTable: '#cart-table',
+    productImage: '[class*="item-image"] img[class*="product-tile-image"]',
+    productPrice: '[class*="item-price"]',
+    subtotal: '.price-adjusted-total',
+    cartQuantity: '.cart-input-quantity',
+    editQuantity: '.cart-input-quantity',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
+    premierBlock: '[data-itemid="coastvip"]',
+    addPremierToCart: '#quickviewbutton',
+    PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
-    clearCart: '.b-cart_product-remove',
-    emptyCartTitle: '.b-cart_empty-title',
-    productDetails: '.l-cart_product-details',
-    productName: '.b-cart_product-title > a',
+    proceedToCheckout: '[class*="js-second-button-checkout"]',
+    clearCart: '[class*="button-remove"]',
+    emptyCartTitle: '.cart-empty-title',
+    productDetails: '.variations',
+    productName: '.name > a',
+  },
+  'oasis-stores.com': {
+    productsTable: '#cart-table',
+    productImage: '[class*="item-image"] img[class*="product-tile-image"]',
+    productPrice: '[class*="item-price"]',
+    subtotal: '.price-adjusted-total',
+    cartQuantity: '.cart-input-quantity',
+    editQuantity: '.cart-input-quantity',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
+    premierBlock: '[data-itemid="coastvip"]',
+    addPremierToCart: '#quickviewbutton',
+    PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button',
+    AmazonCTA: '#OffAmazonPaymentsWidgets0',
+    proceedToCheckout: '[class*="js-second-button-checkout"]',
+    clearCart: '[class*="button-remove"]',
+    emptyCartTitle: '.cart-empty-title',
+    productDetails: '.variations',
+    productName: '.name > a' 
   },
   'misspap.com': undefined
 };
@@ -266,7 +286,7 @@ class CartPage implements AbstractPage {
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(cartQuantity).should('have.value', quantity);
       } else {
         cy.get(cartQuantity).should('contain', quantity);

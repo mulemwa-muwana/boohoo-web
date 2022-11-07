@@ -29,7 +29,7 @@ describe('Billing page functionality for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
@@ -48,12 +48,13 @@ describe('Billing page functionality for guest user', function () {
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();
-      shippingPage.click.proceedToBillingAddressVerification();
-    } if (variables.locale == 'US') {
+      shippingPage.click.proceedToBillingVerification();
+    } 
+    if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
@@ -81,31 +82,31 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  
-  it('Verify that email field is filled with correct email address', function () {
-    if (variables.brand != 'coastfashion.com') {
+
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+    it('Verify that email field is filled with correct email address', function () {   
       BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
-    }
-  });
+    });
+  }   
 
   /* It('Verify that subscription block is displayed', function () {
     BillingPage.assertions.assertSubscriptionBlockPresent();
   });*/
 
   it('Verify that date of birth form is present and that guest user can select date of birth', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertDateFormIsPresent();
     BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
     } else {
       BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
     }
   });
   it('Verify that guest user cannot place order if email field is empty', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
       BillingPage.actions.emptyEmailField();
       shippingPage.click.proceedToBilling();
@@ -121,7 +122,7 @@ describe('Billing page functionality for guest user', function () {
     }
   });
   it('Verify that guest user cannot place order if date of birth is not selected', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
       BillingPage.actions.selectDate('Day', 'Month', 'Year');
     } else {
@@ -134,14 +135,14 @@ describe('Billing page functionality for guest user', function () {
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that guest user can submit new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
@@ -183,7 +184,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com') && variables.locale == 'UK' || variables.locale == 'AU') {
+    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') && variables.locale == 'UK' || variables.locale == 'AU') {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
     
@@ -193,7 +194,7 @@ describe('Billing page functionality for guest user', function () {
   describe('Verify that guest user can place orders with available payment methods', function () {
 
     beforeEach (function () {
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com') {
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
       }
     });

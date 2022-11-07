@@ -42,7 +42,6 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
-    billingAddressCountry: '',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -305,10 +304,9 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   },
-  'warehousefashion.com': undefined,
-  'oasis-stores.com': {
+  'warehousefashion.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
-    klarnaPayNow:'#billingSubmitButton > span',
+    klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
     shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
@@ -352,7 +350,36 @@ const selectors: SelectorBrandMap = {
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
-    paynowBtnCC:'#billingSubmitButton > span', 
+    paynowBtnCC:'#billingSubmitButton',
+  },
+  'oasis-stores.com': {
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaPayNow:'#billingSubmitButton',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+
+    // Credit card section
+    creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
   'misspap.com': undefined
 };
@@ -378,7 +405,7 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(shippingCheckbox).click();
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
@@ -449,7 +476,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -667,6 +694,7 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertBillingPageIsLoaded () {
+
       // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
       if (variables.brand == 'nastygal.com') {
         cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');

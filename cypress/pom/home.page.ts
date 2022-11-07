@@ -73,7 +73,7 @@ const selectors: SelectorBrandMap = {
     registrationButton: 'a[title="Register"]',
     wishlistIcon: '.wishlist-button',
     searchField: '.js-header-search-input',
-    wishListIcon: '.header-wishlist > .header-wishlist-link',
+    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',

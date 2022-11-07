@@ -52,7 +52,7 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();
-      shippingPage.click.proceedToBillingAddressVerification();
+      shippingPage.click.proceedToBillingVerification();
     } 
     if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);

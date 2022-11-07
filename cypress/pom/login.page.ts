@@ -78,7 +78,20 @@ const selectors: SelectorBrandMap = {
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form'
   },
-  'warehousefashion.com': undefined,
+  'warehousefashion.com': {
+    loginIcon: '.user-account',
+    loginLink: '.user-links > [title="Log In"]',
+    loginEmail: '[id^=dwfrm_login_username]',
+    loginPassword: '[id^=dwfrm_login_password]',
+    loginButton:'#dwfrm_login .login-page-button',
+    forgotPassword: '.password-reset',
+    forgotPasswordMessage: '#ShowResetPasswordDialog',
+    resetPasswordEmailField: '#dwfrm_requestpassword_email',
+    resetPasswordBtn: '.reset-password-btn',
+    loginForm: '#dwfrm_login',
+    wishlistLoginTitle: '.login-title',
+    errorLoginMessage: '.error-form'
+  },
   'oasis-stores.com': {
     loginIcon: '.user-account',
     loginLink: '.user-links > [title="Log In"]',

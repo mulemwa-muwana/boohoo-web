@@ -222,7 +222,7 @@ describe('Shipping Page Guest user tests', function () {
     }
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+      shippingPage.click.proceedToBillingVerification();
       shippingPage.assertions.assertUserProceededToBillingPage();
     } else {
       shippingPage.assertions.assertGuestEmailFieldDisplayed();

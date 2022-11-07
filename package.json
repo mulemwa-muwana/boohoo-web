@@ -27,6 +27,7 @@
       "cy:open:coast:dev": "cypress open --config-file ./config/coast/cypress.coast.uk.dev.config.ts",
       "cy:open:wallis:dev": "cypress open --config-file ./config/wallis/cypress.wallis.uk.dev.config.ts",
       "cy:open:nastygal:dev": "cypress open --config-file ./config/nastygal/cypress.nastygal.uk.dev.config.ts",
+      "cy:open:warehouse:dev": "cypress open --config-file ./config/warehouse/cypress.warehouse.uk.dev.config.ts",
     "//": "CI/CD TESTS",
       "cy:run:boohoo:uk:e2e": "cypress run --config-file ./config/boohoo/cypress.boohoo.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\"  --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
       "cy:run:dorothy:uk:e2e": "cypress run --config-file ./config/dorothyperkins/cypress.dorothyperkins.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\"  --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
@@ -34,7 +35,8 @@
       "cy:run:oasis:uk:e2e": "cypress run --config-file ./config/oasis/cypress.oasis.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
       "cy:run:coast:uk:e2e": "cypress run --config-file ./config/coast/cypress.coast.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
       "cy:run:wallis:uk:e2e": "cypress run --config-file ./config/wallis/cypress.wallis.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
-      "cy:run:nastygal:uk:e2e": "cypress run --config-file ./config/nastygal/cypress.nastygal.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661"
+      "cy:run:nastygal:uk:e2e": "cypress run --config-file ./config/nastygal/cypress.nastygal.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
+      "cy:run:warehouse:uk:e2e": "cypress run --config-file ./config/warehouse/cypress.warehouse.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",

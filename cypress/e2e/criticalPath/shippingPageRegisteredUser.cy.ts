@@ -65,7 +65,7 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.locale != 'IE') {
       shippingPage.click.proceedToBilling();
       if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-        shippingPage.click.proceedToBillingAddressVerification();
+        shippingPage.click.proceedToBillingVerification();
       }
       cy.wait(4000);
       shippingPage.assertions.assertUserProceededToBillingPage();
@@ -89,7 +89,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+      shippingPage.click.proceedToBillingVerification();
     } 
     billingPage.assertions.assertBillingPageIsLoaded();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
@@ -204,7 +204,7 @@ describe('Shipping Page Registered user tests', function () {
     }   
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+      shippingPage.click.proceedToBillingVerification();
     } 
     billingPage.assertions.assertBillingPageIsLoaded();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
@@ -310,7 +310,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+      shippingPage.click.proceedToBillingVerification();
     }
     billingPage.assertions.assertBillingPageIsLoaded();
     shippingPage.assertions.assertUserProceededToBillingPage();

@@ -78,7 +78,21 @@ const selectors: SelectorBrandMap = {
     closePopUP: '[id^=WLbanner] > a'
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    emailIsDisplayed:'.b-confirmation_header-email',
+    orderValueIsDisplayed:'.b-summary_shipping-cost',
+    shippingAddressDetailsName:'[aria-label="Shipping Details"] p.b-address-name',
+    shippingAddressDetailsSummary:'[aria-label="Shipping Details"] p.b-address-summary',
+    orderNumberIsDisplayed:':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName:'[aria-label="Payment Details"] p.b-address-name',
+    billingAddressDetailsSummary:'[aria-label="Payment Details"] p.b-address-summary',
+    shippingMethodIsDisplayed:'b-summary_shipping-name',
+    paymentMethod:'.b-summary_payment',
+    orderTotalIsVisible:'.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '[id^=WLbanner] > a'
+  },
   'coastfashion.com': {
     emailIsDisplayed:'.confirmation-message-info > span',
     orderValueIsDisplayed:'.orderdetails-header-number > span[class="value"]',

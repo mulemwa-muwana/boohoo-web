@@ -73,7 +73,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       AU: 'WorldPay',
       CA: 'WorldPay',
       NZ: 'WorldPay',
-      UK: 'WorldPay',
+      UK: 'Adyen',
       US: 'WorldPay'
     },
     'coastfashion.com': {

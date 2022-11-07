@@ -5,10 +5,10 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dev.misspap.com',
-    sku: 'MPP03347-186',
-    fullSKU: 'MPP03347-186-14',
-    brand: 'misspap.com',
+    url: 'https://storefront:Oreo2022@dev.karenmillen.com',
+    sku: 'AKK99751-294-22',
+    fullSKU: 'AKK99751-294-22',
+    brand: 'karenmillen.com',
     locale: 'UK',
     language: 'EN'
   },

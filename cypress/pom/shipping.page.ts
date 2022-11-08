@@ -202,7 +202,46 @@ const selectors: SelectorBrandMap = {
     shippingMethodname: '.b-option_switch-label',
     cartContainer: '.b-summary_table-name',
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
+    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: '.b-address_selector-button',
+    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    editCart: '.b-summary_order-header > .b-link',
+    addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
+    proceedToBillingVerificationBtn: '.verification-address-button',
+    addNewAddress: 'button[data-tau="add_new_address"]',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
+    promoCodeField: '#dwfrm_coupon_couponCode',
+    addressName: 'b-address-name',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
+    shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
+    shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
+    shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addressLine1Shipping: '[id$=addressFields_address1][id*="shipping"]',
+    addressLine2Shipping: '[id$=addressFields_address2][id*="shipping"]',
+    shippingCityShipping: '[id$=addressFields_city][id*="shipping"]',
+    shippingCounty: '[id$=addressFields_states_stateCode][id*="shipping"]',
+    orderTotal: '.m-total > .b-summary_table-value',
+    allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    coupon: '#dwfrm_coupon_couponCode',
+    shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
+    shippingMethodname: '.b-option_switch-label',
+    cartContainer: '.b-summary_table-name',
+  },
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
@@ -444,12 +483,12 @@ class ShippingPage implements AbstractPage {
       cy.wait(3000);
       cy.get(proceedToBilling).click({force: true});
     },
-    proceedToBillingVerification () {  // Only for SiteGenesis: coast, oasis and warehouse
+    proceedToBillingVerification () { // Only for SiteGenesis: coast, oasis and warehouse
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.get(proceedToBillingVerificationBtn).click({force: true});
     },
-    proceedToBillingVerificationAndWaitBillingPageToLoad () {  // Only for SiteGenesis: coast, oasis and warehouse
+    proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis: coast, oasis and warehouse
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
@@ -461,7 +500,7 @@ class ShippingPage implements AbstractPage {
       cy.get(editSavedAddress).click();
     },
     addAddressManually () {
-      if (!['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com'].includes(variables.brand)) {
+      if (!['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com', 'boohooman.com'].includes(variables.brand)) {
         const addAddressManually = selectors[variables.brand].addAddressManually;
         cy.get(addAddressManually).should('be.visible').click({force:true});
       }

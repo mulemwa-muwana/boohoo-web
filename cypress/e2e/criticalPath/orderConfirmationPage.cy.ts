@@ -54,7 +54,7 @@ describe('Order confirmation page for guest user', function () {
     });
 
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    if (variables.brand == 'boohoo.com'  && (variables.language == 'DE' || variables.language == 'SE')) {
+    if (variables.brand == 'boohoo.com' && (variables.language == 'DE' || variables.language == 'SE')) {
       orderConfirmationPage.click.closeCancellationPopup();
     }
   });
@@ -123,7 +123,7 @@ describe('Order confirmation page for registered user', function () {
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    if (variables.brand == 'boohoo.com'  && (variables.language == 'DE' || variables.language == 'SE')) {
+    if (variables.brand == 'boohoo.com' && (variables.language == 'DE' || variables.language == 'SE')) {
       orderConfirmationPage.click.closeCancellationPopup();
     }
   });

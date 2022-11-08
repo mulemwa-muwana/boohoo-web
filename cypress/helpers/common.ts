@@ -47,7 +47,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       NO: 'Adyen',
       NZ: 'WorldPay',
       SE: 'Adyen',
-      UK: 'WorldPay',
+      UK: 'Adyen',
       IE: 'WorldPay', 
       US: 'WorldPay'
     },

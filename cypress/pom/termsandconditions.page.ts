@@ -21,7 +21,9 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     termsAndConditionsPageTitle: '.cs-terms-of-use > h1',
   },
-  'warehousefashion.com': undefined,
+  'warehousefashion.com': {
+    termsAndConditionsPageTitle: '[class*="content-page-wrapper"] > h1',
+  },
   'oasis-stores.com': {
     termsAndConditionsPageTitle: '#primary > div > h1'
   },

@@ -51,7 +51,15 @@ const selectors: SelectorBrandMap = {
     youtube: '.icon-youtube-2',
     pinterest: '.icon-pinterest-2'
   },
-  'warehousefashion.com': undefined,
+  'warehousefashion.com': {
+    instagramUrl: 'instagram.com/coastfashion/',
+    instagram: '.icon-instagram-2',
+    facebook: '.icon-facebook-2',
+    facebookUrl: 'facebook.com/coaststores',
+    twitter: '.icon-twitter-2',
+    youtube: '',
+    pinterest: '.icon-pinterest'
+  },
   'oasis-stores.com': {
     instagramUrl: 'instagram.com/oasisfashion/',
     instagram: '.icon-instagram-2',
@@ -86,7 +94,7 @@ class SocialsPage implements AbstractPage {
     // Not working for Dorothy Perkins and Wallis 
     assertInstagramIconIsPresent () {
       const instagram = selectors[variables.brand].instagram;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
         cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(instagram).should('be.visible');
       } else {
@@ -95,7 +103,7 @@ class SocialsPage implements AbstractPage {
     },
     assertFacebookIconIsPresent () {
       const facebook = selectors[variables.brand].facebook;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
         cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(facebook).should('be.visible');
       } else {
@@ -107,7 +115,7 @@ class SocialsPage implements AbstractPage {
     },
     assertPinterestIconIsPresent () {
       const pinterest = selectors[variables.brand].pinterest;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
         cy.get(pinterest).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(pinterest).should('be.visible');
       } else {
@@ -120,7 +128,7 @@ class SocialsPage implements AbstractPage {
     },
     assertTwitterIconIsPresent () {
       const twitter = selectors[variables.brand].twitter;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
         cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(twitter).should('be.visible');
       } else {

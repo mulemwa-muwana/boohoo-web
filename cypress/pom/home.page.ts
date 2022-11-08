@@ -66,7 +66,16 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
   },
-  'warehousefashion.com': undefined,
+  'warehousefashion.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.user-account',
+    registrationButton: 'a[title="Register"]',
+    wishListIcon: '.header-wishlist > .header-wishlist-link',
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
+  },
   'oasis-stores.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
@@ -238,7 +247,7 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
-      const wishListIcon = selectors[variables.brand].wishlistIcon;
+      const wishListIcon = selectors[variables.brand].wishListIcon;
       cy.get(wishListIcon).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });

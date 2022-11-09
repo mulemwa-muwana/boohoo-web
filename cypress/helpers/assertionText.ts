@@ -980,7 +980,21 @@ class AssertionText {
     ES: ''
   };
 
-  privacyPolicySiteGenesis: TranslationMap = {
+  privacyPolicyJuly2022: TranslationMap = {
+    EN: 'Privacy Notice - updated July 2022',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  privacyPolicyAugust2022: TranslationMap = {
     EN: 'Privacy Notice - Updated August 2022',
     NL: '',
     DE: '',

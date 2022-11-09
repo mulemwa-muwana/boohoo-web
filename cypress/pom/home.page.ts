@@ -100,7 +100,7 @@ class HomePage implements AbstractPage {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }

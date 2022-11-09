@@ -141,8 +141,8 @@ const selectors: SelectorBrandMap = {
     unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
     paymentOptions: '.footer-payment-method',
     appBanner: '.footer-app-links',
-    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
-    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    footerStickyPromo: '.footer-promo.js-floating-promo',
+    footerPromoLink: '.footer-promo.js-floating-promo .banner-link',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
@@ -299,6 +299,9 @@ class GlobalFooter implements AbstractPage {
       const changeCountryDropdown = selectors[variables.brand].changeCountryDropdown;
       cy.wait(2000);
       cy.get(changeCountryDropdown).select(country);
+    },
+    studentDiscountAcceptCookies () {
+      cy.iframe('.student-beans > iframe').find('#onetrust-accept-btn-handler').click({force:true});
     }
   };
 

@@ -41,7 +41,7 @@ const selectors: SelectorBrandMap = {
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
     cardDeleteConfirmationBtn: 'button[data-event-click\\.prevent="confirm"]',
-    newestOrderHistory: '[data-tau="account_viewOrder"]',
+    newestOrderHistory: '[data-tau="account_viewOrder"]', 
     orderID: '.b-account-title',
     shippingInfo: 'div.b-summary_group:nth-child(1)',
     billingAndPaymentInfo: 'div.b-summary_group:nth-child(2)',
@@ -381,7 +381,12 @@ class MyAccountPage implements AbstractPage {
       },
       accountDetailsLink () {
         const accountDetailsLink = selectors[variables.brand].accountDetailsLink;
-        cy.get(accountDetailsLink).should('be.visible').click({force: true});
+        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+          cy.get('a[class="b-account_nav-item_link m-user"]').should('be.visible').click({force: true});
+        } else {
+          cy.get(accountDetailsLink).should('be.visible').click({force: true});
+        }
+        
       },
       addressesLink () {
         const accountAddresses = selectors[variables.brand].accountAddresses;
@@ -397,11 +402,21 @@ class MyAccountPage implements AbstractPage {
       },
       viewOrderBtn () {
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
-        cy.get(viewOrderBtn).should('be.visible').click({force:true});
+        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+          cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
+        } else {
+          cy.get(viewOrderBtn).should('be.visible').click({force:true});
+        }
+        
       },
       orderHistoryLink () {
         const orderHistoryLink = selectors[variables.brand].orderHistoryLink;
-        cy.get(orderHistoryLink).should('be.visible').click({force:true});
+        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+          cy.get('a[class="b-account_nav-item_link m-history"]').click({force:true});
+        } else {
+          cy.get(orderHistoryLink).should('be.visible').click({force:true});
+        }
+        
       },
     };
 
@@ -409,8 +424,13 @@ class MyAccountPage implements AbstractPage {
     {
       viewNewestOrderHistory () {
         const newestOrderHistory = selectors[variables.brand].newestOrderHistory;
-        cy.get(newestOrderHistory).should('be.visible').click({force:true});
+        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+          cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force:true});
+        } else {
+          cy.get(newestOrderHistory).should('be.visible').click({force:true});
+        }
       },
+        
       updateAccountName (newName: string) {
         const firstNameField = selectors[variables.brand].firstNameField;
         const profileUpdateBtn = selectors[variables.brand].profileUpdateBtn;

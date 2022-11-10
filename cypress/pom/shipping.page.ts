@@ -40,7 +40,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingMethodname: '.b-option_switch-label',
-    shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    stateField: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',

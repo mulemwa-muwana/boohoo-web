@@ -66,7 +66,7 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.actions.openPayPalSandbox(); 
   });
 
-  if (['boohoo.com', 'burton.co.uk', 'nastygal.com', 'coastfashion.com'].includes(variables.brand) && (variables.locale == 'UK'|| variables.locale == 'IE')) {
+  if (['boohoo.com', 'burton.co.uk', 'nastygal.com', 'coastfashion.com'].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
     it('Verify that Klarna CTA is displayed and functional', function () {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox();

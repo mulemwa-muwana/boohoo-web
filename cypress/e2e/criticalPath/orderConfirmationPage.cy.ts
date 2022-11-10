@@ -36,7 +36,7 @@ describe('Order confirmation page for guest user', function () {
       shippingPage.click.addAddressManually();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
-      if (variables.locale == 'US') {
+      if (variables.locale == 'US' || variables.locale == 'AU') {
         shippingPage.actions.selectState(localeAddress.county);
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -53,7 +53,7 @@ describe('Order confirmation page for guest user', function () {
       }
     });
 
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+    BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
     if (variables.brand == 'boohoo.com') {
       orderConfirmationPage.click.closePopUp();
     }
@@ -116,6 +116,9 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+    if (variables.locale == 'AU') {
+      shippingPage.actions.stateField(localeAddress.county);
+    }
 
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
@@ -123,9 +126,10 @@ describe('Order confirmation page for registered user', function () {
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    if (variables.brand == 'boohoo.com') {
+
+    /* If (variables.brand == 'boohoo.com') {
       orderConfirmationPage.click.closePopUp1(assertionText.closePopUp[variables.language]);
-    }
+    }*/
   });
   it('Verify that email, order number, value and order total are visible for registred users', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {

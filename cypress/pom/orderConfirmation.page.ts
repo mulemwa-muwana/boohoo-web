@@ -16,7 +16,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '[id^=WLbanner] > a'
+    closePopUP: 'button[data-e2e="lightboxClose"]'
   },
   'nastygal.com': {
     emailIsDisplayed: '.b-confirmation_header-email',
@@ -124,7 +124,13 @@ class OrderConfirmation implements AbstractPage {
   click = {
     closePopUp () {
       const closePopUP = selectors[variables.brand].closePopUP;
-      cy.get(closePopUP, { timeout: 60000 }).click();
+      cy.get('body').then($body => {
+        if ($body.find(closePopUP).attr('hidden') == 'hidden') {  
+          cy.get(closePopUP).click({force:true});
+        }
+      });
+
+      // Cy.get(closePopUP, { timeout: 60000 }).click();
     },
     closePopUp1 (text: string) {
       cy.contains(text).click();

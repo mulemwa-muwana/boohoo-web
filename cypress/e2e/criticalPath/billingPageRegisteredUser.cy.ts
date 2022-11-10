@@ -169,7 +169,7 @@ describe('Billing page functionality for registered user', function () {
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
       });
     }
-    if (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
+    if (variables.locale == 'UK' || variables.locale == 'AU' && variables.brand != 'burton.co.uk') {
       it('Verify that guest user can place order using Laybuy', function () {
         BillingPage.actions.selectLaybuy();
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();

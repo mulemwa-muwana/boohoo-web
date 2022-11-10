@@ -334,7 +334,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Modern Slavery Statement', () => {
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'NZ')) || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || ['wallis.co.uk', 'dorothyperkins.com',  'burton.co.uk', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'].includes(variables.brand))
+        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'NZ')) || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || ['wallis.co.uk', 'dorothyperkins.com', 'burton.co.uk', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'].includes(variables.brand))
           GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'modern-slavery' });
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Careers', () => {

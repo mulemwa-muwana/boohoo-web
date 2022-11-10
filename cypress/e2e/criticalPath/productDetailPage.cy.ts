@@ -37,7 +37,7 @@ describe('Product Details Page tests', function () {
     PdpPage.click.addToCart();
   });
   it('TC07 Verify if size is not selected user cannot add product to a bag', function () {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSizeSiteGenesis[variables.language]);
     } else {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);
@@ -55,7 +55,7 @@ describe('Product Details Page tests', function () {
     cy.wait(3000);
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
-    } else if (variables.brand == 'coastfashion.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitle[variables.language]);
     } else {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[variables.language]);
@@ -65,11 +65,15 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertProductDescriptionIsPresent();
   });
   it('TC11 Verify that Shipping Info is displayed when configured', function () {
-    if (variables.brand == 'boohoo.com') {
+    if (variables.brand == 'boohoo.com' ) {
       PdpPage.click.shippingInfoButton();
+<<<<<<< HEAD
       PdpPage.assertions.assertDeliveryInfoIsDisplayed();
     } else {
       pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
+=======
+      PdpPage.assertions.assertDeliveryInfoIsDisplayed(assertionText.pdpDeliverylist[variables.language]);
+>>>>>>> master
     }
    
   });

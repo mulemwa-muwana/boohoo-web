@@ -1,11 +1,12 @@
 import { defineConfig } from 'cypress';
+import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
     url: 'https://storefront:Oreo2022@se-dwstg.boohoo.com/',
-    sku: '#DZZ79497',
+    sku: '#PZZ79996',
     brand: 'boohoo.com',
     locale: 'SE',
     language: 'SE',
@@ -15,11 +16,12 @@ export default defineConfig({
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
+  video: false,
+  screenshotOnRunFailure: true,
 
   e2e: {
     setupNodeEvents (on, config) {
-
-      // Implement node event listeners here
+      plugins(on);
     },
   },
   numTestsKeptInMemory: 0

@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@uk-dwstg.boohoo.com/',
-    sku: '#DZZ79497',
+    sku: '#PZZ79996',
     fullSKU: 'DZZ79497-106-18',
     brand: 'boohoo.com',
     locale: 'UK',
@@ -17,6 +17,8 @@ export default defineConfig({
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
+  video: false,
+  screenshotOnRunFailure: true,
   blockHosts: [
     'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
   ],

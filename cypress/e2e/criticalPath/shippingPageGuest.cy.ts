@@ -29,7 +29,7 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(3000);
     HomePage.click.cartIcon();
     cy.wait(3000);
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
       pdpPage.click.miniCartViewCartBtn();
     }
     cartPage.click.proceedToCheckout();
@@ -37,7 +37,7 @@ describe('Shipping Page Guest user tests', function () {
     checkoutPage.click.continueAsGuestBtn();
   });
 
-  if (variables.brand != 'coastfashion.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
     it('Verify that promo code field is dispayed', function () {
       shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     });
@@ -45,24 +45,15 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
-    if (variables.brand != 'coastfashion.com') {
-      shippingPage.click.addAddressManually();
-    }
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-      shippingPage.click.addNewAddressButton();
-    }
-
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
-    
-    if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com') {
-      shippingPage.click.addAddressManually();
-    }   
+    shippingPage.click.enterManuallyAddressDetails();
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+    if (variables.brand == 'boohoo.com') {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    } else {
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
     }
-    shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryPostcodeArcadia[variables.language]);    
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', function () {
@@ -89,7 +80,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
-  if (variables.brand != 'coastfashion.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
     it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
       const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
       if (variables.locale == 'EU') {
@@ -101,18 +92,19 @@ describe('Shipping Page Guest user tests', function () {
     });
   }
 
-  if (variables.brand != 'coastfashion.com') {
-    it('Verify that "Enter manually" button allows guest to enter address details', function () {
-      const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-      if (variables.locale == 'EU') {
-        shippingPage.actions.firstNameField(localeAddress.firstName);
-        shippingPage.actions.lastNameField(localeAddress.lastName);
-        shippingPage.actions.selectCountry(localeAddress.country);
-      }
-      shippingPage.click.addAddressManually();
-      shippingPage.assertions.assertManualAddressFieldsAreDispayed();
-    });
-  }
+  // If (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+  it('Verify that "Enter manually" button allows guest to enter address details', function () {
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.locale == 'EU') {
+      shippingPage.actions.firstNameField(localeAddress.firstName);
+      shippingPage.actions.lastNameField(localeAddress.lastName);
+      shippingPage.actions.selectCountry(localeAddress.country);
+    }
+    shippingPage.click.addAddressManually();
+    shippingPage.assertions.assertManualAddressFieldsAreDispayed();
+  });
+
+  // }
 
   it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
@@ -127,7 +119,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
     }
@@ -152,7 +144,7 @@ describe('Shipping Page Guest user tests', function () {
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
     }
@@ -172,7 +164,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
     }
@@ -220,14 +212,17 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
+    if (variables.locale == 'US' || variables.locale == 'AU') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
     }
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'coastfashion.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      shippingPage.click.proceedToBillingVerification();
       shippingPage.assertions.assertUserProceededToBillingPage();
     } else {
       shippingPage.assertions.assertGuestEmailFieldDisplayed();

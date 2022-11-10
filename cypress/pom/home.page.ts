@@ -6,7 +6,7 @@ const selectors: SelectorBrandMap = {
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     resetPassword: '',
-    wishlistIcon: '.b-header_wishlist-icon',
+    wishListIcon: '.b-header_wishlist-icon',
     registrationButton: '.b-registration_benefits > .b-button',
     minicartIcon: '.b-minicart_icon-link',
     acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
@@ -28,7 +28,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-search_input-submit > .i-icon',
     registrationButton: '#page-body > div.b-miniaccount_panel > div > div > div > div.b-miniaccount-content > div.b-registration_benefits > a',
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
@@ -38,7 +38,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-header_login-icon',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishlistIcon: '.b-header_wishlist-icon',
+    wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
@@ -48,7 +48,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-header_login-icon > .i-icon',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
@@ -60,7 +60,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
-    wishlistIcon: '.header-wishlist > .header-wishlist-link',
+    wishListIcon: '.header-wishlist > .header-wishlist-link',
     searchField: '.js-header-search-input',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
@@ -68,13 +68,15 @@ const selectors: SelectorBrandMap = {
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
-    minicartIcon: '#js-minicart-quantity',
+    minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
-    registrationButton: '.b-registration_benefits > .b-button',
-    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
-    searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
+    registrationButton: 'a[title="Register"]',
+    wishlistIcon: '.wishlist-button',
+    searchField: '.js-header-search-input',
+    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchIcon: '.js-search-icon',
-    promotion: 'div[class="b-hero_carousel-track"]',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
   },
   'misspap.com': undefined
 };
@@ -85,13 +87,12 @@ class HomePage implements AbstractPage {
   goto (options: GotoOptions = null) {
 
     cy.visit(variables.url);
-    cy.intercept('**/NewsletterSubscribe-FirstVisit*', []); // Stops nastygal newsletter popup
+    if (variables.brand == 'nastygal.com') {
+      cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
+    }
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       CommonActions.applyMarketingCookies();
-      if (variables.brand == 'nastygal.com') {
-        cy.intercept(/newsletter/i, []); // Don't show Nastygal newsletter popup
-      }
       cy.visit(variables.url);
     }
 
@@ -116,19 +117,19 @@ class HomePage implements AbstractPage {
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({ force: opts.force });
+      cy.get(searchIcon).click({force: opts.force});
     },
     searchField () {
       const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).click({ force: true });
+      cy.get(searchField).click({force: true});
     },
     wishListIcon () {
       const wishListIcon = selectors[variables.brand].wishListIcon;
-      cy.get(wishListIcon).click({ force: true });
+      cy.get(wishListIcon).click({force: true});
     },
     cartIcon () {
       const minicartIcon = selectors[variables.brand].minicartIcon;
-      cy.get(minicartIcon).click({ force: true });
+      cy.get(minicartIcon).click({force: true});
     },
 
     // MEGA MENU - MAIN NAV
@@ -193,7 +194,7 @@ class HomePage implements AbstractPage {
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[variables.brand].searchField;
-      cy.get(searchIcon).should('be.visible');
+      cy.get(searchIcon).invoke('show').should('be.visible');
     },
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;

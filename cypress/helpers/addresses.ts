@@ -46,7 +46,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'United States',
         city: 'New York',
-        countryCode: 'NY',
+        countryCode: 'US',
         county: 'NY',
         confirmEmail: ''
       },
@@ -60,7 +60,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'United States',
         city: 'New York',
-        countryCode: 'NY',
+        countryCode: 'US',
         county: 'NY',
         confirmEmail: ''
       }
@@ -77,7 +77,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Ireland',
         city: 'Smithfield',
-        countryCode: '',
+        countryCode: 'IE',
         county: 'Dublin',
         confirmEmail: ''
       },
@@ -91,7 +91,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Ireland',
         city: 'Dublin',
-        countryCode: '',
+        countryCode: 'IE',
         county: 'Dublin',
         confirmEmail: ''
       }
@@ -108,7 +108,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Deutschland',
         city: 'Berlin',
-        countryCode: '10785 Berlin',
+        countryCode: 'DE',
         county: 'Berlin',
         confirmEmail: ''
       },
@@ -122,7 +122,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Deutschland',
         city: 'Berlin',
-        countryCode: '',
+        countryCode: 'DE',
         county: '',
         confirmEmail: ''
       }
@@ -139,7 +139,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'France',
         city: 'Paris',
-        countryCode: '',
+        countryCode: 'FR',
         county: '',
         confirmEmail: ''
       },
@@ -153,7 +153,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'France',
         city: ' Paris',
-        countryCode: '',
+        countryCode: 'FR',
         county: '',
         confirmEmail: ''
       }
@@ -170,7 +170,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Italy',
         city: 'Roma',
-        countryCode: 'RM',
+        countryCode: 'IT',
         county: '',
         confirmEmail: ''
       },
@@ -184,7 +184,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Italy',
         city: 'Roma',
-        countryCode: 'RM',
+        countryCode: 'IT',
         county: '',
         confirmEmail: ''
       }
@@ -201,7 +201,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Spain',
         city: 'Barcelona',
-        countryCode: '',
+        countryCode: 'ES',
         county: '',
         confirmEmail: ''
       },
@@ -215,7 +215,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Spain',
         city: 'Barcelona',
-        countryCode: '',
+        countryCode: 'ES',
         county: '',
         confirmEmail: ''
       }
@@ -232,7 +232,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Canada',
         city: '',
-        countryCode: '',
+        countryCode: 'CA',
         county: '',
         confirmEmail: ''
       },
@@ -246,7 +246,7 @@ class Addresses {
         addressName: '',
         country: 'Canada',
         city: '',
-        countryCode: '',
+        countryCode: 'CA',
         county: '',
         confirmEmail: ''
       }
@@ -263,7 +263,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'United Kingdom',
         city: 'Tel Aviv',
-        countryCode: '',
+        countryCode: 'IL',
         county: 'Israel',
         confirmEmail: ''
       },
@@ -277,7 +277,7 @@ class Addresses {
         addressName: '',
         country: '',
         city: '',
-        countryCode: '',
+        countryCode: 'IL',
         county: '',
         confirmEmail: ''
       }
@@ -294,7 +294,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Finland',
         city: 'Helsinki',
-        countryCode: '',
+        countryCode: 'FI',
         county: '',
         confirmEmail: ''
       },
@@ -308,7 +308,7 @@ class Addresses {
         addressName: '',
         country: '',
         city: '',
-        countryCode: '',
+        countryCode: 'FI',
         county: '',
         confirmEmail: ''
       }
@@ -325,7 +325,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Nederland',
         city: 'Amsterdam',
-        countryCode: '',
+        countryCode: 'NL',
         county: '',
         confirmEmail: ''
       },
@@ -339,7 +339,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Nederland',
         city: 'Amsterdam',
-        countryCode: '',
+        countryCode: 'NL',
         county: '',
         confirmEmail: ''
       }
@@ -356,7 +356,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Sverige',
         city: 'Stockholm',
-        countryCode: '',
+        countryCode: 'SE',
         county: '',
         confirmEmail: ''
       },
@@ -370,7 +370,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Sverige',
         city: 'Stockholm',
-        countryCode: '',
+        countryCode: 'SE',
         county: '',
         confirmEmail: ''
       }
@@ -387,7 +387,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Norge',
         city: 'Oslo',
-        countryCode: '',
+        countryCode: 'NO',
         county: '',
         confirmEmail: ''
       },
@@ -401,7 +401,7 @@ class Addresses {
         addressName: '',
         country: 'Norway',
         city: '',
-        countryCode: '',
+        countryCode: 'NO',
         county: '',
         confirmEmail: ''
       }
@@ -418,7 +418,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Denmark',
         city: 'Frederiksberg',
-        countryCode: '',
+        countryCode: 'DK',
         county: '',
         confirmEmail: ''
       },
@@ -432,7 +432,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Denmark',
         city: 'København',
-        countryCode: '',
+        countryCode: 'DK',
         county: '',
         confirmEmail: ''
       }
@@ -463,7 +463,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Аustralia',
         city: '',
-        countryCode: '',
+        countryCode: 'AU',
         county: '',
         confirmEmail: ''
       }
@@ -480,7 +480,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: '',
         city: 'Pinehaven',
-        countryCode: '',
+        countryCode: 'NZ',
         county: 'Upper Hutt',
         confirmEmail: ''
       },
@@ -494,7 +494,7 @@ class Addresses {
         addressName: '',
         country: '',
         city: '',
-        countryCode: '',
+        countryCode: 'NZ',
         county: '',
         confirmEmail: ''
       }
@@ -511,7 +511,7 @@ class Addresses {
         addressName: 'SecondAddress',
         country: 'Austria',
         city: 'Wien',
-        countryCode: '',
+        countryCode: 'AT',
         county: 'Austria',
         confirmEmail: ''
       },
@@ -525,7 +525,7 @@ class Addresses {
         addressName: '',
         country: 'Germany',
         city: 'Berlin',
-        countryCode: '',
+        countryCode: 'DE',
         county: '',
         confirmEmail: ''
       }

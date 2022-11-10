@@ -92,7 +92,7 @@ describe('Shipping Page Guest user tests', function () {
     });
   }
 
-  //if (variables.brand != 'coastfashion.com') {
+  if (variables.brand != 'coastfashion.com') {
     it('Verify that "Enter manually" button allows guest to enter address details', function () {
       const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
       if (variables.locale == 'EU') {
@@ -103,7 +103,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.click.addAddressManually();
       shippingPage.assertions.assertManualAddressFieldsAreDispayed();
     });
- // }
+  }
 
   it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');

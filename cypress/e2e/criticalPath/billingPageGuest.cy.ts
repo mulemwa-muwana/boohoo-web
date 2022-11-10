@@ -19,8 +19,7 @@ describe('Billing page functionality for guest user', function () {
     });
   });
   
-  beforeEach (function () {
-  
+  beforeEach (function () { 
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
@@ -49,7 +48,7 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.stateField(localeAddress.county);
     }
     if (variables.brand == 'coastfashion.com') {
-      shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+      shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();
       shippingPage.click.proceedToBillingAddressVerification();
@@ -57,10 +56,10 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.selectState(localeAddress.county);
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
-      shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
-    } else {
-      shippingPage.click.proceedToBilling();
-    }
+    } 
+    shippingPage.click.proceedToBilling();
+
+    // ShippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
     BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
@@ -97,9 +96,9 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertDateFormIsPresent();
-    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+    BillingPage.actions.selectDate('23', '4', '2001');
     if (variables.brand == 'coastfashion.com') {
-      BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
+      BillingPage.assertions.assertDateIsSelected('23', '04', '2001');
     } else {
       BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
     }
@@ -111,7 +110,7 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
     } else {
       BillingPage.actions.emptyEmailField();
-      BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+      BillingPage.actions.selectDate('23', '2', '2001');
       BillingPage.click.chooseCC();
     }
     if (variables.brand == 'boohoo.com') {
@@ -151,7 +150,7 @@ describe('Billing page functionality for guest user', function () {
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.county);
     }
   });
 
@@ -194,7 +193,7 @@ describe('Billing page functionality for guest user', function () {
 
     beforeEach (function () {
       if (variables.brand != 'coastfashion.com') {
-        BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+        BillingPage.actions.selectDate('23', '2', '2001');
       }
     });
 

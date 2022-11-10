@@ -115,8 +115,11 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.click.addAddressManually();  
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+    if (variables.locale == 'US') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-
+    cy.wait(3000);
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.click.proceedToBillingAddressVerification();

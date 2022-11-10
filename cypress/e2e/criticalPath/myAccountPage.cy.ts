@@ -21,8 +21,10 @@ describe('Account page', function () {
   // Order History test cases
   if (variables.brand != 'coastfashion.com') {
     it('TC01 Verify that user is able to view order details', function () {
-      MyAccountPage.actions.viewNewestOrderHistory();
-      MyAccountPage.assertions.assertOrderDetailsContent();
+      if (variables.brand == 'nastygal.com' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
+        MyAccountPage.actions.viewNewestOrderHistory(); 
+      }
+      MyAccountPage.assertions.assertLoadedOrders();
     });
   }
   it('TC02 Verify that Order history page works as expected', function () {

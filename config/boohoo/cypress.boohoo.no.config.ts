@@ -8,7 +8,7 @@ export default defineConfig({
     sku: '#DZZ79497',
     brand: 'boohoo.com',
     locale: 'NO',
-    language: 'NO',
+    language: 'EN',
   },
 
   viewportHeight: 1080,

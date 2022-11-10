@@ -42,7 +42,6 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
-    billingAddressCountry: '',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -56,11 +55,11 @@ const selectors: SelectorBrandMap = {
   },
   'nastygal.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    klarnaPayNow: '#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
+    klarnaPayNow: '#payment-details-KlarnaUK button',
     paymentMethodCreditCard: '#payment-button-scheme',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
-    paymentMethodKlarna: '[data-method-id="klarna_pay_later"]',
+    paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
     paymentMethodLayBuy: '#payment-button-LAYBUY',
@@ -95,9 +94,9 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '#encryptedCardNumber',
-    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe',
     creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .adyen-checkout__input',
+    creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
@@ -255,8 +254,102 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
-  'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'boohooman.com': {
+    dateError: '#dwfrm_profile_customer_yearofbirth-error',
+    klarnaPayNow:'#billingSubmitButton',
+    shippingAddressSection: '.minicheckout-section',
+    shippingAddress: 'div.minicheckout-value:nth-child(3)',
+    billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
+    billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
+    shippingMethodSelector: '.minicheckout-shipping-option',
+    changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
+    shippingCheckbox: 'div[class*="useAsBillingAddress"]',
+    paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodPayPal: '[for="is-PayPal"]',
+    paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodClearPay: '[for="is-CLEARPAY"]',
+    paymentMethodLayBuy: '[for="is-LAYBUY"]',
+    emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
+    addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    emptyEmailFiledError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    addNewBillingAddress: '.js-edit-address',
+    billingForm: '.js-address-form',
+    billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
+    billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.use-another-address',
+    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
+    dobDate: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
+    dobForm: '.form-birthday-rows-inner',
+
+    // Credit card section
+    creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    paynowBtnCC:'#billingSubmitButton',
+  },
+  'karenmillen.com': {
+    dateError: '#dwfrm_profile_customer_yearofbirth-error',
+    klarnaPayNow:'#billingSubmitButton',
+    shippingAddressSection: '.minicheckout-section',
+    shippingAddress: 'div.minicheckout-value:nth-child(3)',
+    billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
+    billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
+    shippingMethodSelector: '.minicheckout-shipping-option',
+    changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
+    shippingCheckbox: 'div[class*="useAsBillingAddress"]',
+    paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodPayPal: '[for="is-PayPal"]',
+    paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodClearPay: '[for="is-CLEARPAY"]',
+    paymentMethodLayBuy: '[for="is-LAYBUY"]',
+    emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
+    addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    emptyEmailFiledError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    addNewBillingAddress: '.js-edit-address',
+    billingForm: '.js-address-form',
+    billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
+    billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.use-another-address',
+    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
+    dobDate: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
+    dobForm: '.form-birthday-rows-inner',
+
+    // Credit card section
+    creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    paynowBtnCC:'#billingSubmitButton',
+  },
   'coastfashion.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
@@ -305,10 +398,9 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   },
-  'warehousefashion.com': undefined,
-  'oasis-stores.com': {
+  'warehousefashion.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
-    klarnaPayNow:'#billingSubmitButton > span',
+    klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
     shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
@@ -352,9 +444,85 @@ const selectors: SelectorBrandMap = {
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
-    paynowBtnCC:'#billingSubmitButton > span', 
+    paynowBtnCC:'#billingSubmitButton',
   },
-  'misspap.com': undefined
+  'oasis-stores.com': {
+    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaPayNow:'#billingSubmitButton',
+    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
+    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
+    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+
+    // Credit card section
+    creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+  },
+  'misspap.com': {
+    dateError: '#dwfrm_profile_customer_yearofbirth-error',
+    klarnaPayNow:'#billingSubmitButton',
+    shippingAddressSection: '.minicheckout-section',
+    shippingAddress: 'div.minicheckout-value:nth-child(3)',
+    billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
+    billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
+    shippingMethodSelector: '.minicheckout-shipping-option',
+    changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
+    shippingCheckbox: 'div[class*="useAsBillingAddress"]',
+    paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodPayPal: '[for="is-PayPal"]',
+    paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodClearPay: '[for="is-CLEARPAY"]',
+    paymentMethodLayBuy: '[for="is-LAYBUY"]',
+    emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
+    addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    emptyEmailFiledError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    addNewBillingAddress: '.js-edit-address',
+    billingForm: '.js-address-form',
+    billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
+    billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.use-another-address',
+    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
+    dobDate: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
+    dobForm: '.form-birthday-rows-inner',
+
+    // Credit card section
+    creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    paynowBtnCC:'#billingSubmitButton',
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -378,7 +546,7 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         cy.get(shippingCheckbox).click();
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
@@ -416,23 +584,23 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodCreditCard).click({force: true});
       cy.wait(2000);
 
-      cy.get('body').then($body => {
+      cy.get('body').then($body => { // If there is saved Credit Card, click Add new Card button
         if ($body.find('[data-ref="newAdyenCardBlock"]').attr('hidden') == 'hidden') {  
           cy.get('.b-payment_options_group-actions > button').click({force:true});
         }
       });
 
-      cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).should('be.visible').type(cardNo, {force:true});
-      cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).should('be.visible').type(date, {force:true});
-      cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).should('be.visible').type(code, {force:true});
+      cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).type(cardNo, {force:true});
+      cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(date, {force:true});
+      cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(code, {force:true});
       cy.get(creditCardFieldsCardOwner).type(cardOwner, {force:true});
       cy.get(paynowBtnCC).click({force:true});
 
-      if (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
+      /* If (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
         cy.get('.adyen-checkout__iframe', { timeout: 20000 }).should('be.visible');
         cy.iframe('.adyen-checkout__iframe').find('.input-field').type('password');
         cy.iframe('.adyen-checkout__iframe').find('#buttonSubmit').click();
-      }
+      } */
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -449,7 +617,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -472,9 +640,13 @@ class BillingPage implements AbstractPage {
       if (variables.locale == 'AU') {
         cy.get(billingAddressFieldsStateCode).select(state);
       } else {
-        cy.get(billingAddressFieldsStateCode).type(billingAddressFieldsStateCode);
-      }     
-      cy.get(billingPostCode).click({force: true}).type(postcode);
+        cy.get(billingAddressFieldsStateCode).clear().type(state);
+      }
+      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
+      } else {
+        cy.get(billingPostCode).clear().type(postcode);
+      }
     },
     addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
@@ -483,7 +655,12 @@ class BillingPage implements AbstractPage {
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear().type(city);
-      cy.get(billingPostCode).clear().type(postcode);
+      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
+      } else {
+        cy.get(billingPostCode).clear().type(postcode);
+      }
+      
     },
     addPromoCode (promo: string) {
       const couponCode = selectors[variables.brand].couponCode;
@@ -501,12 +678,22 @@ class BillingPage implements AbstractPage {
     selectAddressFromBook () {
       const viewAllBillingAddresses = selectors[variables.brand].viewAllBillingAddresses;
       const billingAddressFromBook = selectors[variables.brand].billingAddressFromBook;
-      cy.get(viewAllBillingAddresses).click({force: true});
+      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.get('button[class="b-button m-link m-width_full"]').click({force: true});
+      } else { 
+        cy.get(viewAllBillingAddresses).click({force: true});
+      }
+      
       cy.get(billingAddressFromBook).click({force: true});
     },
     selectKlarna () {
       const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;
-      cy.get(paymentMethodKlarna).click({force:true});
+      if (variables.locale == 'AU') {
+        cy.get('#payment-button-KlarnaAU').click({force:true});
+      } else {
+        cy.get(paymentMethodKlarna).click({force:true});
+      }
+      
       cy.wait(5000);
       
       // Stub the open method with just a console log to force it not to open a window.
@@ -522,7 +709,6 @@ class BillingPage implements AbstractPage {
         cy.get('#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button').click({force:true});
       } else {
         cy.get(klarnaPayNow).click({force:true});
-      
       }
       
       // Click the Continue button.
@@ -542,32 +728,34 @@ class BillingPage implements AbstractPage {
         cy.wait(12000);
 
         body().then($body => { 
-          cy.wait(5000);
           if ($body.find('#pay_now-pay_now').length) { // If Payment options popup exists select Pay now
             body().find('#pay_now-pay_now').click();
             body().find('button[data-testid="select-payment-category"]').click();
+            cy.wait(5000);
           }
         });
         
         body().then($body => {
-          cy.wait(5000);
-          if ($body.find('button[data-testid="pick-plan"]').length) { // If Continue button on test plan page exists
-            body().find('button[data-testid="pick-plan"]').click({force:true});
-          }
-        });
-        cy.wait(5000);
-
-        body().then($body => {
-          cy.wait(5000);
-          if ($body.find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').length) {
-            body().find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').click({force:true}); // If terms&condition checkbox exists
+          const continueButtonLocator= (variables.brand == 'nastygal.com') ? '[data-cid="btn-primary"]' : 'button[data-testid="pick-plan"]';
+          if ($body.find(continueButtonLocator).length) { // If Continue button on test plan page exists
+            body().find(continueButtonLocator).click({force:true});
+            cy.wait(5000);
           }
         });
         
-        body().find('[testid="confirm-and-pay"]').click({force:true});
+        body().then($body => {
+          if ($body.find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').length) { // If terms&condition checkbox exists
+            body().find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').click({force:true}); 
+            cy.wait(5000);
+          }
+        });
+
+        const payButtonLocator = (variables.brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[testid="confirm-and-pay"]';
+        body().find(payButtonLocator).click({force:true});
 
         body().then($body => {
-          cy.wait(5000);
+
+          // Cy.wait(1000);
           if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) { // If Skip and continue button exists
             body().find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click({force:true});
           }
@@ -667,14 +855,15 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertBillingPageIsLoaded () {
-      if ((variables.brand != 'coastfashion.com') && (variables.brand != 'oasis-stores.com') && (variables.brand != 'nastygal.com')) {
 
-        // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
-        cy.intercept(/checkoutshopper/).as('paymentMethodsSection');
-        cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+      // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
+      if (variables.brand == 'nastygal.com') {
+        cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');
       } else {
-        cy.wait(12000);
+        cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
       }
+      cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+      cy.wait(1000);
     },
     assertShippingAddressPresent () {
       const shippingAddressSection = selectors[variables.brand].shippingAddressSection;
@@ -791,6 +980,8 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (variables.brand == 'coastfashion.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
+      } else if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }     

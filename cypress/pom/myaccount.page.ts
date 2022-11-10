@@ -41,7 +41,7 @@ const selectors: SelectorBrandMap = {
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
     cardDeleteConfirmationBtn: 'button[data-event-click\\.prevent="confirm"]',
-    newestOrderHistory: '[data-tau="account_viewOrder"]',
+    newestOrderHistory: '[data-tau="account_viewOrder"]', 
     orderID: '.b-account-title',
     shippingInfo: 'div.b-summary_group:nth-child(1)',
     billingAndPaymentInfo: 'div.b-summary_group:nth-child(2)',
@@ -315,13 +315,67 @@ const selectors: SelectorBrandMap = {
     orderHistoryLink: '[title="Order History"]'
   },
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    accountLogout: 'a[title="Log out"]',
+    myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
+    ordersLink: 'a[data-tau="navigation_orderHistory"]',
+    wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
+    accountDetails: 'a[data-tau="navigation_editProfile"]',
+    changePassword: 'a[data-tau="navigation_passwordChange"]',
+    contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
+    accountAddresses: 'a[title*="addresses"][href*="addresses"]',
+    paymentDetails: 'a[title$="credit cards"]',
+    viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
+    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    myPremier: 'a[data-tau="navigation_accountPremier"]',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    profileUpdateBtn: '.js-update-details button[value="Update"]',
+    addressCardsList: '.account-page-list',
+    addressDefaultBox: 'li.account-page-list-item.default',
+    addressEditBtn: '.address-edit-link',
+    addressEditForm: '#CreditCardForm',
+    addressField: '#dwfrm_profile_address_address1',
+    addressSubmitBtn: '.apply-button',
+    addAddressBtn: '.address-create',
+    addressFirstNameField: '#dwfrm_profile_address_firstname',
+    addressLastNameField: '#dwfrm_profile_address_lastname',
+    addressPhoneNumberField: '#dwfrm_profile_address_phone',
+    addressCityField: '#dwfrm_profile_address_city',
+    addressPostalCodeField: '#dwfrm_profile_address_postalcodes_postal',
+    addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
+    addressNicknameField: '#dwfrm_profile_address_addressid',
+    proceedToBillingBtn: '.verification-address-button-container .verification-address-button',
+    addressDeleteBtn: '.address-delete-link',
+    creditCardsList: '.account-payments',
+    addCreditCardBtn: '.add-card',
+    addCreditCardNumber: '#encryptedCardNumber',
+    addCreditCardOwner: 'input.adyen-checkout__input',
+    addCreditCardExpDate: '#encryptedExpiryDate',
+    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardSaveBtn: '#add-card-submit',
+    creditCardSection: '.payment-list-item',
+    creditCardDeleteBtn: '.button-delete',
+    orderID: '.order-number > .value',
+    shippingInfo: '.order-date > .value',
+    billingAndPaymentInfo: '.processing',
+    accountDetailsEmailField: '#account-email-input',
+    nameGreeting: '.account-welcome-title',
+    accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
+    addressNameLine: '.mini-address-name',
+    addressSummaryLine: '.mini-address-location-group',
+    loadMoreButton: 'a[data-tau="orders_load_more',
+    startReturnButton: '[href="/delivery-and-returns"]',
+    accountDetailsLink: '.account-nav-content [title*="personal information"]',
+    orderHistoryLink: '[title="Order History"]'
+  },
   'misspap.com': undefined
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
 
 class MyAccountPage implements AbstractPage {
+
+  // Assertions: any;
   goto (): void {
     cy.visit('/myaccount');
   }
@@ -330,7 +384,7 @@ class MyAccountPage implements AbstractPage {
     {
       logOutLink () {
         const accountLogout = selectors[variables.brand].accountLogout;
-        cy.get(accountLogout).should('be.visible').click({force: true});
+        cy.get(accountLogout).should('be.visible').click({ force: true });
       },
       myAccountLink () {
         const myAccountBtn = selectors[variables.brand].myAccountBtn;
@@ -342,11 +396,11 @@ class MyAccountPage implements AbstractPage {
       },
       ordersLink () {
         const ordersLink = selectors[variables.brand].ordersLink;
-        cy.get(ordersLink).should('be.visible').click({force: true});
+        cy.get(ordersLink).should('be.visible').click({ force: true });
       },
       loadMoreButton () {
         const loadMoreButton = selectors[variables.brand].loadMoreButton;
-        cy.get(loadMoreButton).eq(0).click({force: true});
+        cy.get(loadMoreButton).eq(0).click({ force: true });
       },
       startReturnButton (text: string) {
         if (variables.brand == 'nastygal.com') {
@@ -357,7 +411,6 @@ class MyAccountPage implements AbstractPage {
           cy.get('.l-account-main').contains(text)
             .invoke('removeAttr', 'target')
             .then(element => {
-              const href = element.attr('href');
               cy.wrap(element).click({force: true});
               cy.url().then(url => {
                 expect(url).to.contain('delivery');
@@ -365,7 +418,7 @@ class MyAccountPage implements AbstractPage {
             });
           cy.go('back');
         }
-        
+
       },
       wishListLink () {
         const wishListBtn = selectors[variables.brand].wishListBtn;
@@ -381,11 +434,16 @@ class MyAccountPage implements AbstractPage {
       },
       accountDetailsLink () {
         const accountDetailsLink = selectors[variables.brand].accountDetailsLink;
-        cy.get(accountDetailsLink).should('be.visible').click({force: true});
+        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+          cy.get('a[class="b-account_nav-item_link m-user"]').should('be.visible').click({force: true});
+        } else {
+          cy.get(accountDetailsLink).should('be.visible').click({force: true});
+        }
+        
       },
       addressesLink () {
         const accountAddresses = selectors[variables.brand].accountAddresses;
-        cy.get(accountAddresses).should('be.visible').click({force: true});
+        cy.get(accountAddresses).should('be.visible').click({ force: true });
       },
       paymentDetailsLink () {
         const paymentDetails = selectors[variables.brand].paymentDetails;
@@ -397,11 +455,21 @@ class MyAccountPage implements AbstractPage {
       },
       viewOrderBtn () {
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
-        cy.get(viewOrderBtn).should('be.visible').click({force:true});
+        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+          cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
+        } else {
+          cy.get(viewOrderBtn).should('be.visible').click({force:true});
+        }
+        
       },
       orderHistoryLink () {
         const orderHistoryLink = selectors[variables.brand].orderHistoryLink;
-        cy.get(orderHistoryLink).should('be.visible').click({force:true});
+        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+          cy.get('a[class="b-account_nav-item_link m-history"]').click({force:true});
+        } else {
+          cy.get(orderHistoryLink).should('be.visible').click({force:true});
+        }
+        
       },
     };
 
@@ -409,13 +477,18 @@ class MyAccountPage implements AbstractPage {
     {
       viewNewestOrderHistory () {
         const newestOrderHistory = selectors[variables.brand].newestOrderHistory;
-        cy.get(newestOrderHistory).should('be.visible').click({force:true});
+        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+          cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force:true});
+        } else {
+          cy.get(newestOrderHistory).should('be.visible').click({force:true});
+        }
       },
+        
       updateAccountName (newName: string) {
         const firstNameField = selectors[variables.brand].firstNameField;
         const profileUpdateBtn = selectors[variables.brand].profileUpdateBtn;
-        cy.get(firstNameField).clear({force: true}).type(newName);
-        cy.get(profileUpdateBtn).click({force: true});
+        cy.get(firstNameField).clear({ force: true }).type(newName);
+        cy.get(profileUpdateBtn).click({ force: true });
       },
       editDefaultAddress (line1: string) {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
@@ -424,11 +497,11 @@ class MyAccountPage implements AbstractPage {
         const addressField = selectors[variables.brand].addressField;
         const addressSubmitBtn = selectors[variables.brand].addressSubmitBtn;
         const proceedToBillingBtn = selectors[variables.brand].proceedToBillingBtn;
-        cy.get(addressDefaultBox).find(addressEditBtn).click({force: true});
+        cy.get(addressDefaultBox).find(addressEditBtn).click({ force: true });
         cy.get(addressEditForm).should('be.visible');
-        cy.get(addressField).clear({force: true}).type(line1);
-        cy.get(addressSubmitBtn).click({force: true});
-        if (variables.brand == 'coastfashion.com') {
+        cy.get(addressField).clear({ force: true }).type(line1);
+        cy.get(addressSubmitBtn).click({ force: true });
+        if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           cy.get(proceedToBillingBtn).click();
         }
       },
@@ -445,25 +518,25 @@ class MyAccountPage implements AbstractPage {
         const addressNicknameField = selectors[variables.brand].addressNicknameField;
         const proceedToBillingBtn = selectors[variables.brand].proceedToBillingBtn;
         const addressStateCode = selectors[variables.brand].addressStateCode;
-        cy.get(addAddressBtn).should('be.visible').click({force: true});
-        cy.get(addressFirstNameField).should('be.visible').type(address.firstName, {force: true});
-        cy.get(addressLastNameField).should('be.visible').type(address.lastName, {force: true});
-        cy.get(addressPhoneNumberField).type(address.phone, {force: true});
-        if (variables.brand != 'coastfashion.com') {
-          cy.get(addressEnterManualyBtn).click({force: true});
+        cy.get(addAddressBtn).should('be.visible').click({ force: true });
+        cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
+        cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
+        cy.get(addressPhoneNumberField).type(address.phone, { force: true });
+        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+          cy.get(addressEnterManualyBtn).click({ force: true });
         }
-        cy.get(addressField).should('be.visible').type(address.addrline1, {force: true});
-        cy.get(addressCityField).type(address.city, {force: true});
-        cy.get(addressPostalCodeField).type(address.postcode, {force: true});
+        cy.get(addressField).should('be.visible').type(address.addrline1, { force: true });
+        cy.get(addressCityField).type(address.city, { force: true });
+        cy.get(addressPostalCodeField).type(address.postcode, { force: true });
         if (variables.locale == 'AU') {
-          cy.get(addressStateCode).select(address.county, {force: true});
+          cy.get(addressStateCode).select(address.county, { force: true });
         }
-        if (variables.brand == 'coastfashion.com') {
+        if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           cy.get(addressNicknameField).type('test');
-          cy.get(addressSubmitBtn).click({force: true});
+          cy.get(addressSubmitBtn).click({ force: true });
           cy.get(proceedToBillingBtn).click();
         }
-        cy.get(addressSubmitBtn).click({force: true});
+        cy.get(addressSubmitBtn).click({ force: true });
       },
       deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
@@ -477,7 +550,7 @@ class MyAccountPage implements AbstractPage {
         const addCreditCardExpDate = selectors[variables.brand].addCreditCardExpDate;
         const addCreditCardSecurityCode = selectors[variables.brand].addCreditCardSecurityCode;
         const addCreditCardSaveBtn = selectors[variables.brand].addCreditCardSaveBtn;
-        cy.get(addCreditCardBtn).click({force: true});
+        cy.get(addCreditCardBtn).click({ force: true });
         cy.get(addCardEditForm).should('be.visible');
 
         cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(addCreditCardNumber).type(cardNumber);
@@ -493,7 +566,7 @@ class MyAccountPage implements AbstractPage {
         const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
         cy.get(creditCardSection).contains(cardEnd).should('be.visible');
         cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click();
-        if (variables.brand != 'coastfashion.com') {
+        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
           cy.get(cardDeleteConfirmationBtn).click();
         }
       },
@@ -508,11 +581,11 @@ class MyAccountPage implements AbstractPage {
         cy.get('button[data-tau="track_order_submit"]').click();
       }
     };
-    
-  assertions = 
+
+  assertions =
     {
       assertOrderHistoryPageTitle (text: string) {
-        cy.url().should('include', text);  
+        cy.url().should('include', text);
       },
       assertStartReturnPageIsDisplayed () {
         cy.url().should('include', 'delivery');
@@ -573,7 +646,6 @@ class MyAccountPage implements AbstractPage {
       assertOrderCanBeTracked () {
         cy.get('.b-form-message').should('include', 'We found your order');
       },
-
     };
 }
 

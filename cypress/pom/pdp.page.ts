@@ -163,24 +163,30 @@ const selectors: SelectorBrandMap = {
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
+    searchField: '#header-search-input',
     addToCart: '#add-to-cart',
-    addToWishListButton: '.b-button m-info b-product_wishlist-button b-wishlist_button ',
-    returnLink: '',
+    addToWishListButton: '.wishlist-button',
+    shippingInfoButton: '#product-details-btn-shipping',
+    returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
+    shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '#mini-cart > div.mini-cart-content.js-mini-cart-content > div.mini-cart-content-inner.js-mini-cart-content-inner > div.mini-cart-totals > a.button.mini-cart-link-cart',
-    selectColor: '.b-variation_swatch-color_value',
-    sizeVariations: '.size-attribute > .value > .swatches > :nth-child(1) > .swatchanchor',
-    pruductCode: 'span[data-tau="b-product_details-id',
-    productPrice: '.b-product_details-price',
-    colorSwatches: 'div[role="radiogroup"]',
-    productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner > :nth-child(1) > .b-minicart-title',
-    miniCartProductIner: '.b-minicart_product-inner',
-    productDescription: 'div[data-id="descriptions"]',
+    miniCartViewCartBtn: '.mini-cart-link',
+    selectColor: '.swatches.color',
+    sizeVariations: '.swatches.size',
+    productTitle: '.product-detail > h1.product-name',
+    productCode: '.product-number > [itemprop="sku"]',
+    productPrice: '.product-price',
+    colorSwatches: '.swatches.color',
+    productImage: '.primary-image',
+    addToCartTitle: '.mini-cart-header-product-added',
+    miniCartProductIner: '.mini-cart-product',
+    productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
-    productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
+    productReturnsDescription: '#ui-id-5',
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+    productDeliveryInfo: '#product-delivery-info-tab',
   },
   'misspap.com': undefined
 };
@@ -232,7 +238,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
-      cy.get(miniCartViewCartBtn).click({ force: true });
+      cy.get(miniCartViewCartBtn).click({force: true});
     },
     viewCart () {
       const viewCart = selectors[variables.brand].viewCart;
@@ -324,9 +330,16 @@ class PdpPage implements AbstractPage {
     },
     assertDeliveryInfoIsDisplayed (text: string) {
       const productDelivery = selectors[variables.brand].productDelivery;
-      cy.get(productDelivery).should('be.visible');
-      cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
-      cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', text); //  Work only boohoo, other brands redirect to new tab
+     
+      if (variables.brand == 'boohoo.com' && variables.locale != 'UK') {
+        cy.get('.b-product_shipping-delivery').should('be.visible');
+      } else {
+        cy.get(productDelivery).should('be.visible');
+        cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
+        cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n');
+      }
+
+      //  Work only boohoo, other brands redirect to new tab
     },
     assertDeliveryOptionsAreDisplayed () {
       const productDeliveryInfo = selectors[variables.brand].productDeliveryInfo;
@@ -334,7 +347,11 @@ class PdpPage implements AbstractPage {
     },
     assertReturnInfoIsDisplayed () {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
-      cy.get(productReturnsDescription).should('be.visible');
+      if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
+        cy.get('#product-details-btn-shipping').click();
+        cy.get(productReturnsDescription).should('be.visible');
+      }
+      
     },
     assertStartReturnPageIsDisplayed () {
 

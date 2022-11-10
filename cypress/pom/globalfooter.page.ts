@@ -126,7 +126,28 @@ const selectors: SelectorBrandMap = {
     footer: '.footer'
   },
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
+    instagramLink: 'a[href="https://www.instagram.com/oasisfashion/"]', 
+    facebookLink: 'a[href="https://en-gb.facebook.com/oasisfashions/"]',
+    twitterLink: 'a[href="https://twitter.com/oasisfashion"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/oasisfashion/"]',
+    youtubeLink: '',
+    newsletterInputMail: 'input[id^="footer_newsletter_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: '.newsletter-form-group button',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.footer-newsletter-info',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-links',
+    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
+    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
+    footer: '.footer'
+  },
   'misspap.com': undefined
 };
 
@@ -140,15 +161,15 @@ class GlobalFooter implements AbstractPage {
   click = {
     privacyPolicyLink () {
       const privacyPolicyLink = selectors[variables.brand].privacyPolicyLink;
-      cy.get(privacyPolicyLink).click();
+      cy.get(privacyPolicyLink).click({force:true});
     },
     copyrightPrivacyPolicyLink () {
       const copyrightPrivacyPolicyLink = selectors[variables.brand].copyrightPrivacyPolicyLink;
-      cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click();
+      cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click({force:true});
     },
     copyrightTermsAndConditionsLink () {
       const copyrightTermAndCondLink = selectors[variables.brand].copyrightTermAndCondLink;
-      cy.get(copyrightTermAndCondLink).scrollIntoView().click();
+      cy.get(copyrightTermAndCondLink).scrollIntoView().click({force:true});
     },
     instagramLink () {
       const instagramLink = selectors[variables.brand].instagramLink;
@@ -230,9 +251,9 @@ class GlobalFooter implements AbstractPage {
       const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
       const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
       const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
-      if (variables.brand == 'coastfashion.com') {
-        cy.get(newsletterInputMail).type(email);
-        cy.get(subscribeSubmitBtn).click();
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+        cy.get(newsletterInputMail).type(email, {force:true});
+        cy.get(subscribeSubmitBtn).click({force:true});
       } else {
         cy.get(newsletterInputMail).type(email);
         cy.get(agreeToPrivacyCheckbox).check();
@@ -266,7 +287,7 @@ class GlobalFooter implements AbstractPage {
       cy.get(successfulSubscriptionMsg).contains(text);
     },
     assertUnsuccessfulSubscription (text: string) {
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
         cy.get(unsuccessfulSubscriptionMsg).should('be.visible').invoke('text').should('contain', text);
       } else {
@@ -299,7 +320,7 @@ class GlobalFooter implements AbstractPage {
     },
     assertHeaderIsVisible () {
       const headerInner = selectors[variables.brand].headerInner;
-      cy.get(headerInner).should('be.visible');
+      cy.get(headerInner).invoke('show').should('be.visible');
     },
     assertHeaderIsNotVisible () {
       const headerInner = selectors[variables.brand].headerInner;

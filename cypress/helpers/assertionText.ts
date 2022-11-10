@@ -58,7 +58,7 @@ class AssertionText {
 
   WishListIsEmpty: TranslationMap = {
     EN: 'You dont have any items saved for later (yet)',
-    FR: 'Vous n\’avez pas (encore) enregistré d`éléments pour plus tard',
+    FR: 'Vous n’avez pas (encore) enregistré d`éléments pour plus tard',
     NL: 'Je hebt (nog) geen items opgeslagen voor later',
     DE: 'Sie haben (noch) keine Artikel für später gespeichert',
     DK: 'Je hebt (nog) geen items opgeslagen voor later',
@@ -85,8 +85,8 @@ class AssertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
-    EN: 'Don\’t forget about me!',
-    FR: 'Ne m’oubliez pas !',
+    EN: 'Don’t forget about me!',  
+    FR: 'Ne m/’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -100,7 +100,7 @@ class AssertionText {
 
   ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
     EN: 'This field is required.', 
-    FR: 'Ne m\’oublie pas!',
+    FR: 'Ne m’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -113,8 +113,8 @@ class AssertionText {
   };
 
   ShippingMandatoryPostcodeArcadia: TranslationMap = {
-    EN: 'Don\’t forget about me!',
-    FR: 'Ne m\’oublie pas!',
+    EN: 'Don’t forget about me!',
+    FR: 'Ne m’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -337,7 +337,7 @@ class AssertionText {
   };
 
   inStock: TranslationMap = {
-    EN: '\n                YAY! It\’s in stock\n            \n                YAY! It\’s in stock\n            ',
+    EN: '\n                YAY! It’s in stock\n            \n                YAY! It’s in stock\n            ',
     FR: '\n                YAY ! Cet article est en stock\n            \n                YAY ! Cet article est en stock\n            ',
     NL: 'JAAAAA! Het is op voorraad',
     DE: 'YAY! Es ist auf Lager',
@@ -491,10 +491,10 @@ class AssertionText {
   };
 
   assertShippingAddressIsMandatory: TranslationMap = {
-    EN: 'Ooops, something went wrong and we couldn\’t save your shipping address. Please try again',
+    EN: 'Ooops, something went wrong and we couldn’t save your shipping address. Please try again',
     NL: 'Oeps, er is iets misgegaan en we konden je verzendadres niet opslaan. Probeer het opnieuw',
     DE: 'Hoppla, etwas ist schief gelaufen und wir konnten Ihre Lieferadresse nicht speichern. Bitte versuche es erneut',
-    FR: 'Oups, quelque chose s\’est mal passé et nous n\’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
+    FR: 'Oups, quelque chose s’est mal passé et nous n’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
     DK: 'Ups, noget gik galt, og vi kunne ikke gemme din leveringsadresse. Prøv igen',
     FI: 'Hups, jotain meni pieleen, emmekä voineet tallentaa toimitusosoitettasi. Yritä uudelleen',
     NO: 'Beklager, noe gikk galt, og vi kunne ikke lagre leveringsadressen din. Vær så snill, prøv på nytt',
@@ -575,7 +575,7 @@ class AssertionText {
   };
 
   unsuccessfulSubscription: TranslationMap = {
-    EN: 'Hold up! That doesn\’t seem right.',
+    EN: 'Hold up! That doesn’t seem right.',
     NL: 'Wacht! Er gaat iets mis.',
     DE: 'Achtung! Das scheint nicht richtig zu sein.',
     FR: 'Tenir bon! Cela ne semble pas juste.',
@@ -1079,9 +1079,9 @@ class AssertionText {
   };
 
   completeTheLook: TranslationMap = { 
-    EN: '',
+    EN: 'Complete the look',
     NL: 'Maak de look af',
-    DE: '',
+    DE: 'Vervollständige den Look',
     FR: 'Compléter ce look',
     DK: '',
     FI: '',

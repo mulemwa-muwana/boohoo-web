@@ -22,7 +22,7 @@ describe('Order confirmation page for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
@@ -36,7 +36,7 @@ describe('Order confirmation page for guest user', function () {
       shippingPage.click.addAddressManually();
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
-      if (variables.locale == 'US') {
+      if (variables.locale == 'US' || variables.locale == 'AU') {
         shippingPage.actions.selectState(localeAddress.county);
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -45,7 +45,7 @@ describe('Order confirmation page for guest user', function () {
         shippingPage.actions.selectDate('23', 'May', '2001');
         shippingPage.actions.confirmEmail(credentials.guest);
         shippingPage.click.proceedToBilling();
-        shippingPage.click.proceedToBillingAddressVerification();
+        shippingPage.click.proceedToBillingVerification();
       } else {
         shippingPage.click.proceedToBilling();
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
@@ -53,13 +53,13 @@ describe('Order confirmation page for guest user', function () {
       }
     });
 
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    if (variables.brand == 'boohoo.com') {
-      orderConfirmationPage.click.closePopUp();
+    BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+    if (variables.brand == 'boohoo.com' && (variables.language == 'DE' || variables.language == 'SE')) {
+      orderConfirmationPage.click.closeCancellationPopup();
     }
   });
 
-  it('Verify that email address, order number, value and payment method are visible for guest user', function () {
+  it.only('Verify that email address, order number, value and payment method are visible for guest user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
@@ -96,13 +96,13 @@ describe('Order confirmation page for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' ) {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -116,15 +116,22 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+    if (variables.locale == 'AU') {
+      shippingPage.actions.stateField(localeAddress.county);
+    }
 
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-      shippingPage.click.proceedToBillingAddressVerification();
+      shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    if (variables.brand == 'boohoo.com') {
+
+    /* If (variables.brand == 'boohoo.com') {
       orderConfirmationPage.click.closePopUp1(assertionText.closePopUp[variables.language]);
+    }*/
+    if (variables.brand == 'boohoo.com' && (variables.language == 'DE' || variables.language == 'SE')) {
+      orderConfirmationPage.click.closeCancellationPopup();
     }
   });
   it('Verify that email, order number, value and order total are visible for registred users', function () {

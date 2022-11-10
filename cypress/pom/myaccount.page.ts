@@ -434,16 +434,12 @@ class MyAccountPage implements AbstractPage {
       },
       accountDetailsLink () {
         const accountDetailsLink = selectors[variables.brand].accountDetailsLink;
-<<<<<<< HEAD
         if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
           cy.get('a[class="b-account_nav-item_link m-user"]').should('be.visible').click({force: true});
         } else {
           cy.get(accountDetailsLink).should('be.visible').click({force: true});
         }
         
-=======
-        cy.get(accountDetailsLink).should('be.visible').click({ force: true });
->>>>>>> master
       },
       addressesLink () {
         const accountAddresses = selectors[variables.brand].accountAddresses;
@@ -459,7 +455,6 @@ class MyAccountPage implements AbstractPage {
       },
       viewOrderBtn () {
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
-<<<<<<< HEAD
         if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
           cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
         } else {
@@ -475,13 +470,6 @@ class MyAccountPage implements AbstractPage {
           cy.get(orderHistoryLink).should('be.visible').click({force:true});
         }
         
-=======
-        cy.get(viewOrderBtn).should('be.visible').click({ force: true });
-      },
-      orderHistoryLink () {
-        const orderHistoryLink = selectors[variables.brand].orderHistoryLink;
-        cy.get(orderHistoryLink).should('be.visible').click({ force: true });
->>>>>>> master
       },
     };
 
@@ -489,15 +477,11 @@ class MyAccountPage implements AbstractPage {
     {
       viewNewestOrderHistory () {
         const newestOrderHistory = selectors[variables.brand].newestOrderHistory;
-<<<<<<< HEAD
         if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
           cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force:true});
         } else {
           cy.get(newestOrderHistory).should('be.visible').click({force:true});
         }
-=======
-        cy.get(newestOrderHistory).should('be.visible').click({ force: true });
->>>>>>> master
       },
         
       updateAccountName (newName: string) {

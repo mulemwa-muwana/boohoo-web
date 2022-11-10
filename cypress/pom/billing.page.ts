@@ -640,7 +640,6 @@ class BillingPage implements AbstractPage {
       if (variables.locale == 'AU') {
         cy.get(billingAddressFieldsStateCode).select(state);
       } else {
-<<<<<<< HEAD
         cy.get(billingAddressFieldsStateCode).clear().type(state);
       }
       if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
@@ -648,11 +647,6 @@ class BillingPage implements AbstractPage {
       } else {
         cy.get(billingPostCode).clear().type(postcode);
       }
-=======
-        cy.get(billingAddressFieldsStateCode).type(billingAddressFieldsStateCode);
-      }     
-      cy.get(billingPostCode).click({force: true}).type(postcode);
->>>>>>> master
     },
     addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;

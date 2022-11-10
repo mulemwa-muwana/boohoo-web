@@ -179,13 +179,7 @@ class OrderConfirmation implements AbstractPage {
   click = {
     closePopUp () {
       const closePopUP = selectors[variables.brand].closePopUP;
-      cy.get('body').then($body => {
-        if ($body.find(closePopUP).attr('hidden') == 'hidden') {  
-          cy.get(closePopUP).click({force:true});
-        }
-      });
-
-      // Cy.get(closePopUP, { timeout: 60000 }).click();
+      cy.get(closePopUP, { timeout: 60000 }).click();
     },
     closeCancellationPopup () { // Only for Boohoo DE and SE
       cy.get('[rokt-frame-type="plugin-runtime"]', { timeout: 20000 }).then((iframe) => {

@@ -519,14 +519,14 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '306948868',
-        addrline1: 'Gneisenaustraße 193',
+        addrline1: 'Potsdamer Str. 50',
         addrline2: '',
         postcode: '10785 Berlin',
-        addressName: '',
+        addressName: 'SecondAddress',
         country: 'Germany',
         city: 'Berlin',
         countryCode: 'DE',
-        county: '',
+        county: 'Berlin',
         confirmEmail: ''
       }
     }

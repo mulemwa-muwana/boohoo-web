@@ -147,11 +147,11 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode, localeAddress.postcode);
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.county);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.county, localeAddress.postcode);
     }
   });
 

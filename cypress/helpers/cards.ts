@@ -11,8 +11,8 @@ class Cards {
   };
 
   master: CardDetails ={
-    cardNo: '5454545454545454',
-    end: '5454',
+    cardNo: '5555444433331111',
+    end: '1111',
     owner: 'test',
     date: '03/30',
     month: '03',

@@ -5,9 +5,9 @@ class megaMenuLinksLanguages {
     NL: 'KLEDING',
     DE: 'BEKLEIDUNG',
     FR: 'VÊTEMENTS',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'CLOTHING',
+    FI: 'CLOTHING',
+    NO: 'CLOTHING',
     SE: 'ALLA KLÄDER',
     IL: 'כל הבגדים',
     IT: 'TUTTO L/`ABBIGLIAMENTO',
@@ -61,9 +61,9 @@ class megaMenuLinksLanguages {
     NL: 'Nieuw Binnen',
     DE: 'Neu eingetroffen',
     FR: 'Nouveautés',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'New In',
+    FI: 'New In',
+    NO: 'New In',
     SE: 'Nyheter',
     IL: '',
     IT: 'Nuovi arrivi',
@@ -73,11 +73,11 @@ class megaMenuLinksLanguages {
   subnavClothingNewInURL: TranslationMap = {
     EN: 'new',
     NL: 'nieuw-binnen',
-    DE: 'neu-eingetroffen',
+    DE: 'neuheiten',
     FR: 'nouveautés',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'new',
+    FI: 'new',
+    NO: 'new',
     SE: 'nyheter',
     IL: '',
     IT: 'nuovi-arrivi',
@@ -115,15 +115,15 @@ class megaMenuLinksLanguages {
   saleLink: TranslationMap = {
     EN: 'SALE',
     FR: 'PROMOS',
-    NL: '',
+    NL: 'UITVERKOOP',
     DE: 'SALE',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'SALE',
+    FI: 'SALE',
+    NO: 'SALE',
+    SE: 'REA',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'SALDI',
+    ES: 'REBAJAS'
   };
 
   saleLinkArkadia: TranslationMap = {
@@ -145,13 +145,13 @@ class megaMenuLinksLanguages {
     FR: 'Promos vêtements',
     NL: 'Alles uitverkoop',
     DE: 'Alles im Sale',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'All Sale',
+    FI: 'All Sale',
+    NO: 'All Sale',
     SE: 'Alla Reaprodukter',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Tutti i saldi',
+    ES: 'Todas las rebajas'
   };
 
   urlValidationSale: TranslationMap = {
@@ -159,23 +159,23 @@ class megaMenuLinksLanguages {
     FR: 'promotions',
     NL: 'vandaag-nieuw-binnen',
     DE: 'sale',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'sale',
+    FI: 'sale',
+    NO: 'sale',
     SE: 'nyheter',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'sconti',
+    ES: 'rebajas'
   };
 
   urlValidationNewIn: TranslationMap = {
     EN: 'new',
     NL: 'vandaag-nieuw-binnen',
-    DE: 'neu-eingetroffen',
+    DE: 'neuheiten',
     FR: 'nouveautes',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'new',
+    FI: 'new',
+    NO: 'new',
     SE: 'nyheter',
     IL: '',
     IT: 'Nuovi arrivi',

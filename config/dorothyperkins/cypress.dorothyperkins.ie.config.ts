@@ -5,7 +5,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/ie',
-    sku: '#BQQ00474',
+    sku: '#AQQ42330-141',
     brand: 'dorothyperkins.com',
     locale: 'IE',
     language: 'EN',

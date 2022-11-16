@@ -1,18 +1,18 @@
-type shippingMap = Record<string, Record<'shippingMethod1' | 'shippingMethod2' | 'shippingMethod3', ShippingMethods>>
+type ShippingMap = Record<string, Record<'shippingMethod1' | 'shippingMethod2' | 'shippingMethod3', ShippingData>>
 
-class shippingMethod {
+class ShippingMethod {
   
-  public shippingMap: shippingMap = {
+  public shippingMap: ShippingMap = {
     UK: {
       shippingMethod1: {
         shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'nexUKNextDaytday'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
         shippingMethodName: 'UkDPD'
-      },
+      }
     },
     US: {
       shippingMethod1: {
@@ -27,21 +27,21 @@ class shippingMethod {
     },
     EU: {
       shippingMethod1: {
-        shippingMethodName: 'UKstandardShippingMehod'
+        shippingMethodName: 'Germany Standard Delivery'
       },
       shippingMethod2: {
-        shippingMethodName: 'nexUKNextDaytday'
+        shippingMethodName: 'Europe and International Delivery'
       },
       shippingMethod3: {
-        shippingMethodName: 'UkDPD'
+        shippingMethodName: 'Europe and International Delivery'
       },
     },
     AU: {
       shippingMethod1: {
-        shippingMethodName: 'Australia Standard Shipping'
+        shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'Australia Express Shipping'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
         shippingMethodName: 'Australia Saver Shipping'
@@ -49,10 +49,10 @@ class shippingMethod {
     },
     NZ: {
       shippingMethod1: {
-        shippingMethodName: 'New Zealand Standard Shipping'
+        shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'New Zealand Express Shipping'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -60,10 +60,10 @@ class shippingMethod {
     },
     CA: {
       shippingMethod1: {
-        shippingMethodName: 'Canada Express Shipping'
+        shippingMethodName: 'Express'
       },
       shippingMethod2: {
-        shippingMethodName: 'Canada Standard Shipping'
+        shippingMethodName: 'Standard'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -82,10 +82,10 @@ class shippingMethod {
     },
     DE: {
       shippingMethod1: {
-        shippingMethodName: 'Deutschland Standardlieferung'
+        shippingMethodName: 'Standardlieferung'
       },
       shippingMethod2: {
-        shippingMethodName: 'Deutschland Expresslieferung'
+        shippingMethodName: 'Expresslieferung'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -104,13 +104,13 @@ class shippingMethod {
     },
     IE: {
       shippingMethod1: {
-        shippingMethodName: 'Republic of Ireland Standard Delivery'
+        shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'Republic of Ireland Next Day Delivery joanna test'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
-        shippingMethodName: ''
+        shippingMethodName: 'Republic of Ireland Next Day Delivery joanna test'
       },
     },
     DK: {
@@ -140,7 +140,7 @@ class shippingMethod {
         shippingMethodName: 'Norwegian Standard Delivery'
       },
       shippingMethod2: {
-        shippingMethodName: 'NO Super Saver Delivery'
+        shippingMethodName: 'Norwegian Express Delivery'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -199,10 +199,10 @@ class shippingMethod {
    * @returns AddressData type with all the details for an address.
    */
 
-  getShippingMethodByLocale (locale: string, type: 'shippingMethod1' | 'shippingMethod2'): ShippingMethods {
+  getShippingMethodByLocale (locale: string, type: 'shippingMethod1' | 'shippingMethod2'): ShippingData {
     if (typeof this.shippingMap[locale] === 'undefined') throw new Error('Shipping method could not be found with locale ' + locale);
-    return this.shippingMap[locale][type] as ShippingMethods;
+    return this.shippingMap[locale][type] as ShippingData;
   }
 }
 
-export default new shippingMethod();
+export default new ShippingMethod();

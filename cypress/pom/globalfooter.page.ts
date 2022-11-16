@@ -20,9 +20,10 @@ const selectors: SelectorBrandMap = {
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
     paymentOptions: '.b-footer_top',
     appBanner: '.b-app_banner-actions',
-    footerStickyPromo: '#footer-sticky-promo',
+    footerStickyPromo: '#footer-sticky-promo > a',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'nastygal.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -41,6 +42,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.b-app_banner-actions',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'dorothyperkins.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -59,6 +61,7 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'burton.co.uk': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -77,6 +80,7 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'wallis.co.uk': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -95,10 +99,32 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
+    footer: '#footercontent'
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
+    instagramLink: 'a[href="https://www.instagram.com/coastfashion/?hl=en"]',
+    facebookLink: 'a[href="https://www.facebook.com/coaststores/"]',
+    twitterLink: 'a[href="https://twitter.com/CoastFashion"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/coastfashion/"]',
+    youtubeLink: 'a[href="https://www.youtube.com/user/CoastStores"]',
+    newsletterInputMail: 'input[id^="footer_newsletter_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: '.newsletter-form-group button',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.footer-newsletter-info',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-links',
+    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
+    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
+    footer: '.footer'
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
   'misspap.com': undefined
@@ -120,12 +146,9 @@ class GlobalFooter implements AbstractPage {
       const copyrightPrivacyPolicyLink = selectors[variables.brand].copyrightPrivacyPolicyLink;
       cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click();
     },
-    copyrightTermsAndConditionsLink (text: string, options?: { assertionUrl: string }) {
+    copyrightTermsAndConditionsLink () {
       const copyrightTermAndCondLink = selectors[variables.brand].copyrightTermAndCondLink;
       cy.get(copyrightTermAndCondLink).scrollIntoView().click();
-      cy.url().then(url => {
-        expect(url).to.contain(options?.assertionUrl ?? text);
-      });
     },
     instagramLink () {
       const instagramLink = selectors[variables.brand].instagramLink;
@@ -164,7 +187,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     youtubeLink () {
-      const youtubeLink = selectors[variables.brand].youtubeLink; //  Only boohoo
+      const youtubeLink = selectors[variables.brand].youtubeLink; //  Only boohoo and coastfashion
       cy.get(youtubeLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -173,7 +196,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     pintrestLink () {
-      const pintrestLink = selectors[variables.brand].pintrestLink; //  Only boohoo
+      const pintrestLink = selectors[variables.brand].pintrestLink; //  Only boohoo and coastfashion
       cy.get(pintrestLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -191,7 +214,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     footerPromo () {
-      const footerPromoLink = selectors[variables.brand].footerPromoLink; //  Only boohoo
+      const footerPromoLink = selectors[variables.brand].footerPromoLink;
       cy.get(footerPromoLink).then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
@@ -207,14 +230,20 @@ class GlobalFooter implements AbstractPage {
       const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
       const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
       const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
-      cy.get(newsletterInputMail).type(email);
-      cy.get(agreeToPrivacyCheckbox).check();
-      cy.get(subscribeSubmitBtn).click();
+      if (variables.brand == 'coastfashion.com') {
+        cy.get(newsletterInputMail).type(email);
+        cy.get(subscribeSubmitBtn).click();
+      } else {
+        cy.get(newsletterInputMail).type(email);
+        cy.get(agreeToPrivacyCheckbox).check();
+        cy.get(subscribeSubmitBtn).click();
+      }
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
-      //cy.log(`searching for '${text}' in footer`);
+      // Cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
-      cy.get('footer[class="l-page-footer l-footer"]').contains(text)
+      const footer = selectors[variables.brand].footer;
+      cy.get(footer).contains(text)
         .invoke('removeAttr', 'target')
         .then(element => {
           const href = element.attr('href');
@@ -223,7 +252,6 @@ class GlobalFooter implements AbstractPage {
             expect(url).to.contain(options?.assertionUrl ?? href);
           });
         });
-      cy.go('back');
     },
     changeCountry (country: CountryCode) {
       const changeCountryDropdown = selectors[variables.brand].changeCountryDropdown;
@@ -238,8 +266,13 @@ class GlobalFooter implements AbstractPage {
       cy.get(successfulSubscriptionMsg).contains(text);
     },
     assertUnsuccessfulSubscription (text: string) {
-      const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
-      cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
+      if (variables.brand == 'coastfashion.com') {
+        const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').invoke('text').should('contain', text);
+      } else {
+        const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+        cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
+      }
     },
     asssertAlreadySubscribed (text: string) {
       const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
@@ -259,12 +292,11 @@ class GlobalFooter implements AbstractPage {
         expect(json.currencyCode).to.equal(currency);
       });
     },
-
-    /* AssertFooterIsFixedAndPresent () {
+    assertFooterIsFixedAndPresent () {
       const footerStickyPromo = selectors[variables.brand].footerStickyPromo;
       cy.scrollTo('bottom');
-      cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');  //  Onlu NG doesnt have. Should be checked
-    },*/ // This is removed because its config
+      cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');
+    },
     assertHeaderIsVisible () {
       const headerInner = selectors[variables.brand].headerInner;
       cy.get(headerInner).should('be.visible');

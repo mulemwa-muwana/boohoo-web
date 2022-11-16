@@ -64,7 +64,7 @@ const selectors: SelectorBrandMap = {
     sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
-    addToCart: 'div.b-wishlist_tile-actions > button > span',
+    addToCart: '.b-wishlist_tile-action > span',
     wishlistLoginBtn: '.b-button',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
@@ -74,7 +74,20 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    sortItems: 'div.b-wishlist-sorting',
+    sortByDateAddedFromNew: '//*[@id="wishlist-sort"]/option[1]',
+    sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
+    sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
+    sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
+    addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
+    removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
+    wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
+    itemIsAddedToWishlist: '.wishlist-table form',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': undefined,
   'misspap.com': undefined
@@ -109,7 +122,7 @@ class WishListPage implements AbstractPage {
     },
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).eq(0).click;
+      cy.get(addToCart).eq(0).click();
     },
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
@@ -126,7 +139,7 @@ class WishListPage implements AbstractPage {
     showInStockItemsCheckbox () {
       cy.get('.show-in-stock').check();
     },
-    chooseSizeDDL (size: number) {
+    chooseSizeDDL (size: string) {
       const chooseSizeDDL = selectors[variables.brand].chooseSizeDDL;
       cy.get(chooseSizeDDL).select(size);
     },

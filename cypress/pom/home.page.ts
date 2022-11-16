@@ -6,7 +6,7 @@ const selectors: SelectorBrandMap = {
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     resetPassword: '',
-    wishListIcon: '.b-header_wishlist-icon',
+    wishlistIcon: '.b-header_wishlist-icon',
     registrationButton: '.b-registration_benefits > .b-button',
     minicartIcon: '.b-minicart_icon-link',
     acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'nastygal.com': {
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',
     searchField: '#header-search-input',
@@ -28,7 +28,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-search_input-submit > .i-icon',
     registrationButton: '#page-body > div.b-miniaccount_panel > div > div > div > div.b-miniaccount-content > div.b-registration_benefits > a',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
@@ -36,19 +36,19 @@ const selectors: SelectorBrandMap = {
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
+    loginIcon: '.b-header_login-icon',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: '.b-header_wishlist-icon',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
-    loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-header_login-icon > .i-icon',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     promotion: 'div[class="b-hero_carousel-track"]',
@@ -56,17 +56,25 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
-  'coastfashion.com': undefined,
+  'coastfashion.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.user-account',
+    registrationButton: 'a[title="Register"]',
+    wishlistIcon: '.header-wishlist > .header-wishlist-link',
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
+  },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
     minicartIcon: '#js-minicart-quantity',
-    loginIcon: '.b-header_login-icon > .i-icon',
+    loginIcon: '.user-account',
     registrationButton: '.b-registration_benefits > .b-button',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishlistIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchField: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.header-search.js-header-search > form > div > button.js-search-icon.header-search-btn',
     searchIcon: '.js-search-icon',
     promotion: 'div[class="b-hero_carousel-track"]',
-
   },
   'misspap.com': undefined
 };
@@ -77,9 +85,13 @@ class HomePage implements AbstractPage {
   goto (options: GotoOptions = null) {
 
     cy.visit(variables.url);
+    cy.intercept('**/NewsletterSubscribe-FirstVisit*', []); // Stops nastygal newsletter popup
 
-    if (options?.applyCookies) {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com') {
       CommonActions.applyMarketingCookies();
+      if (variables.brand == 'nastygal.com') {
+        cy.intercept(/newsletter/i, []); // Don't show Nastygal newsletter popup
+      }
       cy.visit(variables.url);
     }
 
@@ -88,9 +100,9 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
-    logInIcon (opts = { force: true }) {
+    logInIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      cy.get(loginIcon).invoke('show').click({ force: opts.force });
+      cy.get(loginIcon).invoke('show').click({ force: true });
     },
     forgotPasswordLink () {
       const resetPassword = selectors[variables.brand].resetPassword;
@@ -98,7 +110,7 @@ class HomePage implements AbstractPage {
     },
     registrationButton () {
       const registrationButton = selectors[variables.brand].registrationButton;
-      cy.get(registrationButton).should('be.visible').click();
+      cy.get(registrationButton).click({force:true});
     },
 
     // Objects for search subsystem tests
@@ -150,7 +162,7 @@ class HomePage implements AbstractPage {
       const searchField = selectors[variables.brand].searchField;
       const searchIcon = selectors[variables.brand].searchIcon;
       cy.get(searchIcon).click({ force: true });
-      cy.get(searchField).click({ force: true }).type(SKU + '{enter}');
+      cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
     },
     forgotPassword (email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();
@@ -159,7 +171,15 @@ class HomePage implements AbstractPage {
       cy.get('button[data-tau="forgot_password_submit"]', { timeout: 6000 }).click();
     },
     closeNastygalPopup () {
-      cy.get('#page-body > div.b-dialog.m-welcome_popup.welcome-popup-container.js-welcome-popup-wrapper.popup-template-5.popup-close-position-right.m-opened > div.b-dialog-window.m-top_dialog.m-welcome_popup.welcome-popup.welcome-popup-wrapper > div.b-dialog-header > button').should('be.visible').click();
+
+      // Cy.get('.b-dialog.m-opened, .b-dialog.m-active').should('be.visible').click();
+
+      cy.get('body').then($body => {
+        if ($body.find('.b-dialog.m-opened').length > 0) {
+          cy.get('.b-dialog.m-opened').invoke('attr', 'style', 'visibility:hidden!important;');
+        }
+      });
+
     }
   };
 
@@ -175,7 +195,7 @@ class HomePage implements AbstractPage {
       const searchIcon = selectors[variables.brand].searchField;
       cy.get(searchIcon).should('be.visible');
     },
-    assertSearchFiledPresent () {
+    assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;
       cy.get(searchField).should('be.visible');
     },
@@ -197,7 +217,7 @@ class HomePage implements AbstractPage {
     },
 
     // Counter (header) assertion
-    counterOnHeaderPresent () {
+    assertPromotionPresent () {
       const promotion = selectors[variables.brand].promotion;
       cy.get(promotion).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
@@ -217,26 +237,22 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
-      cy.get('.b-header_wishlist-icon > .i-icon').invoke('show').then(element => {
+      const wishListIcon = selectors[variables.brand].wishlistIcon;
+      cy.get(wishListIcon).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },
     assertCartIconPresent () {
-      cy.get('.b-minicart_icon-link').should('be.visible');
+      const minicartIcon = selectors[variables.brand].minicartIcon;
+      cy.get(minicartIcon).should('be.visible');
     },
     assertAccountIconPresent () {
-      cy.get('.b-header_login-icon').invoke('show').then(element => {
+      const loginIcon = selectors[variables.brand].loginIcon;
+      cy.get(loginIcon).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
     },
 
-    //  Login Attempts
-    assertErrorLoginMessageIsPresent (text: string) {
-      cy.get('.b-message-copy').should('be.visible').and('contain.text', text);
-    },
-    assertForgotPasswordMessageisDisplayed (email: string) {
-      cy.get('.b-dialog-window').should('be.visible').and('contain', email);
-    },
     assertCountryURL (country: string) {
       cy.url().should('include', country);
     },

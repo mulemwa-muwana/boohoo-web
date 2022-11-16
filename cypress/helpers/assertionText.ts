@@ -29,7 +29,7 @@ class AssertionText {
   };
 
   WishlistItemsAddedArkadia: TranslationMap = {
-    EN: 'Saved for later',
+    EN: 'The product is added to wish list',
     FR: '',
     NL: '',
     DE: '',
@@ -45,12 +45,12 @@ class AssertionText {
   WishlistItemsAddedAlert: TranslationMap = {
     EN: 'Product added to wish list',
     FR: 'Produit ajouté à la liste de souhaits',
-    NL: 'Product toegevoegd aan verlanglijst',
+    NL: '\n    \n    Bewaar voor later\n',
     DE: 'Produkt zur Wunschliste hinzugefügt',
     DK: 'Produkt tilføjet til ønskeliste',
     FI: 'Tuote lisätty toivelistaan',
     NO: 'Produkt lagt til ønskeliste',
-    SE: 'Produkten har lagts till på önskelistan',
+    SE: '\n    \n    Sparad\n',
     IL: 'מוצר נוסף לרשימת המשאלות',
     IT: 'Prodotto aggiunto alla lista dei desideri',
     ES: 'Producto añadido a la lista de deseos'
@@ -68,6 +68,20 @@ class AssertionText {
     IL: 'אין לך פריטים שנשמרו למועד מאוחר יותר (עדיין)',
     IT: 'Non hai elementi salvati per dopo (ancora)',
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
+  };
+
+  WishlistLoginTitle: TranslationMap = {
+    EN: '\nWish List\nLog In\n',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
@@ -99,7 +113,7 @@ class AssertionText {
   };
 
   ShippingMandatoryPostcodeArcadia: TranslationMap = {
-    EN: 'Please enter a valid Post Code',  
+    EN: 'This field is required.',  
     FR: '',
     NL: '',
     DE: '',
@@ -128,6 +142,20 @@ class AssertionText {
 
   RegistrationPageExistingEmailArcadia: TranslationMap = {
     EN: 'Email address already taken. Please use a different email address or try to log in with the current one',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  RegistrationPageExistingEmailSiteGenesis: TranslationMap = {
+    EN: 'Email address already taken. Please use different email address or try to log in with current one',
     FR: '',
     NL: '',
     DE: '',
@@ -169,17 +197,17 @@ class AssertionText {
   };
 
   PrivacyPolicyH1: TranslationMap = {
-    EN: '\n                Privacy Notice\n            ',
-    FR: '\n                Avis de confidentialité\n            ',
-    NL: '\n                Privacyverklaring\n            ',
+    EN: 'Privacy Notice',
+    FR: 'Avis de confidentialité',
+    NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
-    DK: '\n                Bekendtgørelse om beskyttelse af personlige oplysninger\n            ',
-    FI: '\n                Tietosuojailmoitus\n            ',
-    NO: '\n                Personvernerklæring\n            ',
-    SE: '\n                Sekretessmeddelande\n            ',
-    IL: '\n                הודעת פרטיות\n            ',
-    IT: '\n                Informativa sulla Privacy\n            ',
-    ES: '\n                Aviso de Privacidad\n            '
+    DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
+    FI: 'Tietosuojailmoitus',
+    NO: 'Personvernerklæring',
+    SE: '\n                Integritetspolicy\n            ',
+    IL: 'הודעת פרטיות',
+    IT: 'Informativa sulla Privacy',
+    ES: 'Aviso de Privacidad'
   };
 
   PrivacyPolicyH1Arcadia: TranslationMap = {
@@ -190,15 +218,57 @@ class AssertionText {
     DK: '\nBekendtgørelse om beskyttelse af personlige oplysninger\n',
     FI: '\nTietosuojailmoitus\n',
     NO: '\nPersonvernerklæring\n',
-    SE: '\nSekretessmeddelande\n',
+    SE: '\n Integritetspolicy\n            ',
     IL: '\nהודעת פרטיות\n',
     IT: '\nInformativa sulla Privacy\n',
     ES: '\nAviso de Privacidad\n'
   };
 
+  TermsAndConditionsH1: TranslationMap = {
+    EN: 'Terms & Conditions',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  TermsAndConditionsArcadiaH1: TranslationMap = {
+    EN: 'IMPORTANT LEGAL NOTICE',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  TermsAndConditionsSiteGenesisH1: TranslationMap = {
+    EN: 'TERMS OF WEBSITE USE',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   Premier: TranslationMap = {
     EN: ' \n\n                        .b-ngvip-title {\n                        \n                            letter-spacing: 10px;\n                        \n                        }\n                        \n                        \n                        PREMIER\n                    ',
-    FR: '\nENSIMMÄINEN\n',
+    FR: 'PREMIER',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
     DK: '\nFØRST\n',
@@ -224,9 +294,37 @@ class AssertionText {
     ES: ''
   };
 
+  AddPremierToCartButton: TranslationMap = {
+    EN: 'PREMIER',
+    FR: 'AJOUTER AU PANIER',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  PremierSiteGenesis: TranslationMap = {
+    EN: 'VIP',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PremierText: TranslationMap = {
     EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
-    FR: '\nLIVRAISON GRATUITE LE LENDEMAIN PENDANT 1 AN !\n',
+    FR: 'LIVRAISON STANDARD ILLIMITÉE PENDANT UN AN!',
     NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
     DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',
     DK: '\nGRATIS NÆSTE DAG LEVERING I 1 ÅR!\n',
@@ -294,6 +392,20 @@ class AssertionText {
     ES: ''
   };
 
+  selectSizeSiteGenesis: TranslationMap = {
+    EN: ' Select UK Size',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   sizeErrorMsg: TranslationMap = {
     EN: 'Oops please select a size',
     FR: '\n                    Oups, veuillez choisir une taille\n                ',
@@ -311,21 +423,35 @@ class AssertionText {
   loginAttempts: TranslationMap = {
     EN: 'You have 4 more login attempts',
     FR: 'Vous avez encore 4 tentatives de connexion',
-    NL: 'U heeft nog 4 inlogpogingen',
+    NL: '\n                    Nog 1 pogingen om in te loggen voor dit account geblokkeerd wordt. \n                ',
     DE: 'Sie haben noch 4 Anmeldeversuche',
     DK: 'Du har 4 flere loginforsøg',
     FI: 'Sinulla on vielä 4 kirjautumisyritystä',
     NO: 'Du har 4 flere påloggingsforsøk',
-    SE: 'Du har 4 inloggningsförsök till',
+    SE: '\n Du har 3 inloggningsförsök innan ditt konto blir låst. \n                ',
     IL: 'יש לך עוד 4 ניסיונות כניסה',
     IT: 'Hai altri 4 tentativi di accesso',
     ES: 'Tienes 4 intentos más de inicio de sesión'
   };
 
+  loginErrorSiteGenesis: TranslationMap = {
+    EN: 'Looks like either your email address or password were incorrect. Please try again.',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   unknownEmail: TranslationMap = {
     EN: "\n                    Sorry, your email or password doesn't match our records. Please check that you have entered them correctly, or \n                ",
     FR: '\n Désolé, votre adresse e-mail ou votre mot de passe ne correspondent pas à nos enregistrements \n                ',
-    NL: ' Sorry, uw e-mailadres of wachtwoord komt niet overeen met onze gegevens',
+    NL: '\n                    Sorry, de opgegeven e-mail en wachtwoord combinatie komt niet voor in ons systeem. Probeer het opnieuw of \n                ',
     DE: ' Entschuldigung, Ihre E-Mail-Adresse oder Ihr Passwort stimmen nicht mit unseren Aufzeichnungen überein',
     DK: ' Beklager, din e-mail eller adgangskode stemmer ikke overens med vores optegnelser',
     FI: ' Valitettavasti sähköpostiosoitteesi tai salasanasi ei vastaa tietojamme',
@@ -393,7 +519,7 @@ class AssertionText {
   };
 
   assertShippingAddressIsMandatoryArkadia: TranslationMap = {
-    EN: 'Oops, looks like you didn’t add an address',
+    EN: 'Oops, looks like you didn\'t add an address',
     FR: '',
     NL: '',
     DE: '',
@@ -418,6 +544,20 @@ class AssertionText {
     IT: 'Carta di credito / debito',
     ES: 'Tarjeta de crédito / débito',
     DE: 'Kredit-/Debitkarte'
+  };
+
+  assertPaymentMethodSiteGenesis: TranslationMap = {
+    EN: 'Card',
+    NL: '',
+    DK: '',
+    FR: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+    DE: ''
   };
 
   addedToCard: TranslationMap = {
@@ -450,13 +590,13 @@ class AssertionText {
 
   unsuccessfulSubscription: TranslationMap = {
     EN: 'Hold up! That doesn’t seem right.',
-    NL: 'Vertraging! Dat lijkt niet juist.',
+    NL: 'Wacht! Er gaat iets mis.',
     DE: 'Achtung! Das scheint nicht richtig zu sein.',
     FR: 'Tenir bon! Cela ne semble pas juste.',
     DK: 'Hold op! Det virker ikke rigtigt.',
     FI: 'Kestä! Se ei vaikuta oikealta.',
     NO: 'Vent! Det virker ikke riktig.',
-    SE: 'Vänta! Det verkar inte rätt.',
+    SE: 'Vänta! Något gick fel.',
     IL: 'המתן! זה לא נראה נכון.',
     IT: 'Sostenere! Non sembra giusto.',
     ES: '¡Sostener! Eso no parece correcto.'
@@ -464,8 +604,22 @@ class AssertionText {
 
   unsuccessfulSubscriptionNG: TranslationMap = {
     EN: 'Please enter a valid email address',
-    NL: '',
+    NL: 'Wacht! Er gaat iets mis.',
     DE: 'Halten! Das scheint nicht richtig zu sein',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'Vänta! Något gick fel.',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  unsuccessfulSubscriptionCoast: TranslationMap = {
+    EN: 'Please enter a valid Email Address.',
+    NL: '',
+    DE: '',
     FR: '',
     DK: '',
     FI: '',
@@ -483,7 +637,7 @@ class AssertionText {
     FR: 'déjà inscrit',
     DK: 'allerede tilmeldt',
     FI: 'jo ilmoittautunut',
-    NO: 'allerede registrert',
+    NO: 'Wacht! Er gaat iets mis.',
     SE: 'redan anmält sig',
     IL: 'כבר נרשמת',
     IT: 'già iscritto',
@@ -492,16 +646,16 @@ class AssertionText {
 
   footerLinkTrackMyOrder: TranslationMap = {
     EN: 'Track My Order',
-    NL: '',
+    NL: 'Volg mijn bestelling',
     DE: 'Bestellung verfolgen',
     FR: 'Suivre ma commande',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Track My Order',
+    FI: 'Track My Order',
+    NO: 'Track My Order',
+    SE: 'Spåra min beställning',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Segui Il Mio Ordine',
+    ES: 'Seguir el estado de mi pedido'
   };
 
   footerLinkTrackMyOrderArcadia: TranslationMap = {
@@ -520,13 +674,13 @@ class AssertionText {
 
   footerHelp: TranslationMap = {
     EN: 'Help',
-    NL: '',
+    NL: 'Klantenservice',
     DE: 'Kundenservice',
     FR: '',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Kundtjänst',
     IL: '',
     IT: '',
     ES: ''
@@ -534,13 +688,13 @@ class AssertionText {
 
   footerLinkDeliveryInfo: TranslationMap = {
     EN: 'Delivery Info',
-    NL: '',
+    NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Leveranser',
     IL: '',
     IT: '',
     ES: ''
@@ -560,10 +714,10 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkAbout: TranslationMap = {
-    EN: 'About boohoo', // Brand name is missing
+  footerLinkDeliveryInfoSiteGenesis: TranslationMap = {
+    EN: 'Delivery Information',
     NL: '',
-    DE: 'Über',
+    DE: '',
     FR: '',
     DK: '',
     FI: '',
@@ -574,10 +728,10 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkSizeGuide: TranslationMap = {
-    EN: 'Size Guide',
+  footerShipping: TranslationMap = {
+    EN: 'Shipping',
     NL: '',
-    DE: 'Größentabelle',
+    DE: '',
     FR: '',
     DK: '',
     FI: '',
@@ -586,31 +740,59 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: ''
+  };
+
+  footerLinkAbout: TranslationMap = {
+    EN: 'About boohoo', // Brand name is missing
+    NL: 'Over boohoo',
+    DE: 'Über',
+    FR: 'En savoir plus sur boohoo',
+    DK: 'About boohoo',
+    FI: 'About boohoo',
+    NO: 'About boohoo',
+    SE: 'Om boohoo',
+    IL: '',
+    IT: 'A proposito di boohoo',
+    ES: 'Sobre boohoo'
+  };
+
+  footerLinkSizeGuide: TranslationMap = {
+    EN: 'Size Guide',
+    NL: 'Maatwijzer',
+    DE: 'Größentabelle',
+    FR: 'Maatwijzer',
+    DK: 'Size Guide',
+    FI: 'Size Guide',
+    NO: 'Size Guide',
+    SE: 'Storleksguide',
+    IL: '',
+    IT: 'Guida taglie boohoo',
+    ES: 'Guía de tallas'
   };
 
   footerLinkTrackApp: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
     NL: '',
     DE: 'boohoo App', // To be consider for multiple brends
-    FR: '',
+    FR: 'Appli boohoo',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'boohoo-appen',
     IL: '',
     IT: '',
     ES: ''
   };
 
   footerLinkPremier: TranslationMap = {
-    EN: 'The boohoo App', // The boohoo App
+    EN: 'boohoo Premier', // The boohoo App
     NL: '',
     DE: '', // Not dispayed
-    FR: '',
+    FR: 'boohoo Premier',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'boohoo-appen',
     IL: '',
     IT: '',
     ES: ''
@@ -618,27 +800,27 @@ class AssertionText {
 
   footerLinkStudentDiscount: TranslationMap = {
     EN: 'Student Discount',
-    NL: '',
+    NL: 'Studentenkorting',
     DE: 'Studentenrabatt',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    FR: 'Réduction étudiant',
+    DK: 'Student Discount',
+    FI: 'Student Discount',
+    NO: 'Student Discount',
+    SE: 'Studentrabatt',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Sconto Studente',
+    ES: 'Descuento para estudiantes'
   };
 
   footerLinkReturns: TranslationMap = {
     EN: 'Returns',
-    NL: '',
+    NL: 'Retourneringen',
     DE: 'Rücksendungen',
     FR: 'Retours',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Returer',
     IL: '',
     IT: '',
     ES: ''
@@ -660,13 +842,13 @@ class AssertionText {
 
   footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
     EN: 'Get Exclusive Offers & Updates',
-    NL: '',
+    NL: 'Ontvang exclusieve aanbiedingen & updates',
     DE: 'Erhalte exklusive Angebote & Updates',
     FR: '',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Få exklusiva erbjudanden & nyheter',
     IL: '',
     IT: '',
     ES: ''
@@ -688,16 +870,16 @@ class AssertionText {
 
   becomeAnAffiliate: TranslationMap = {
     EN: 'Become an Affiliate',
-    NL: '',
-    DE: '', // Not displayed
+    NL: 'Word partner',
+    DE: 'Partner werden',
     FR: 'Affiliez-vous',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Become an Affiliate',
+    FI: 'Become an Affiliate',
+    NO: 'Become an Affiliate',
+    SE: 'Affiliates',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Diventa un affiliato',
+    ES: 'Conviértete en socio'
   };
 
   becomePartner: TranslationMap = {
@@ -708,7 +890,7 @@ class AssertionText {
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Hållbarhet',
     IL: '',
     IT: '',
     ES: ''
@@ -742,32 +924,46 @@ class AssertionText {
     ES: ''
   };
 
+  termsAndCondSiteGenesis: TranslationMap = {
+    EN: 'terms of use',
+    NL: 'Algemene voorwaarden',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'Allmänna villkor',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   termsAndCondFooterLink: TranslationMap = {
     EN: 'terms-and-conditions',
-    NL: '',
+    NL: 'algemene-voorwaarden',
     DE: 'terms-and-conditions',
     FR: 'Conditions générales',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'allmänna-villkor',
     IL: '',
     IT: '',
     ES: ''
   };
 
   privacyPolicy: TranslationMap = {
-    EN: 'Privacy Notice - Updated July 2022',
-    NL: '',
+    EN: 'Privacy Notice - Updated August 2022',
+    NL: 'Privacyverklaring - Bijgewerkt in juli 2022',
     DE: 'Datenschutzbestimmungen', // FAILED
     FR: 'Avis de confidentialité',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Privacy Notice - Updated August 2022',
+    FI: 'Privacy Notice - Updated August 2022',
+    NO: 'Privacy Notice - Updated August 2022',
+    SE: 'Integritetspolicy - uppdaterad Juli 2022',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Politica sulla Privacy - aggiornata in data 26 aprile 2021',
+    ES: 'Política de privacidad - Actualizado 26 abril 2021'
   };
 
   privacyPolicyArcadia: TranslationMap = {
@@ -784,10 +980,10 @@ class AssertionText {
     ES: ''
   };
 
-  investor: TranslationMap = {
-    EN: 'Investor Relations',
+  privacyPolicySiteGenesis: TranslationMap = {
+    EN: 'Privacy Notice - Updated August 2022',
     NL: '',
-    DE: 'Finanzkommunikation', // FAILED
+    DE: '',
     FR: '',
     DK: '',
     FI: '',
@@ -798,10 +994,38 @@ class AssertionText {
     ES: ''
   };
 
+  investor: TranslationMap = {
+    EN: 'Investor Relations',
+    NL: 'Investeerdersrelaties',
+    DE: 'Finanzkommunikation', // FAILED
+    FR: 'Relation avec les investisseurs',
+    DK: 'Investor Relations',
+    FI: 'Investor Relations',
+    NO: 'Investor Relations',
+    SE: 'För investerare',
+    IL: '',
+    IT: 'Relazioni con gli investitori',
+    ES: 'Relaciones con inversores'
+  };
+
   envAndSocResp: TranslationMap = {
     EN: 'Environmental & Social Responsibility',
-    NL: '',
+    NL: 'boohoo Sociale verantwoordelijkheid',
     DE: 'Soziale Verantwortung von boohoo',
+    FR: 'Responsabilité sociale de boohoo',
+    DK: 'boohoo Social Responsibility',
+    FI: 'boohoo Social Responsibility',
+    NO: 'boohoo Social Responsibility',
+    SE: 'Socialt ansvar',
+    IL: '',
+    IT: 'Responsabilità sociale di boohoo',
+    ES: 'Responsabilidad social de boohoo'
+  };
+
+  envAndSocRespSiteGenesis: TranslationMap = {
+    EN: 'Environment & Social Responsibility',
+    NL: '',
+    DE: '',
     FR: '',
     DK: '',
     FI: '',
@@ -814,27 +1038,27 @@ class AssertionText {
 
   careers: TranslationMap = {
     EN: 'Careers',
-    NL: '',
+    NL: 'Loopbanen',
     DE: 'Karriere', // FAILED
     FR: 'Carrières',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Careers',
+    FI: 'Careers',
+    NO: 'Careers',
+    SE: 'Karriär',
     IL: '',
     IT: '',
-    ES: ''
+    ES: 'Carreras'
   };
 
   aboutCookies: TranslationMap = {
     EN: 'About Cookies',
-    NL: '',
+    NL: 'Over cookies',
     DE: 'Über Cookies',
     FR: 'En savoir plus sur les cookies',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Om cookies',
     IL: '',
     IT: '',
     ES: ''
@@ -842,7 +1066,7 @@ class AssertionText {
 
   sitemap: TranslationMap = {
     EN: 'Sitemap',
-    NL: '',
+    NL: 'Sitemap',
     DE: 'Sitemap',
     FR: 'Plan du site',
     DK: '',
@@ -856,13 +1080,41 @@ class AssertionText {
 
   completeTheLook: TranslationMap = { 
     EN: '',
-    NL: '',
+    NL: 'Maak de look af',
     DE: '',
     FR: 'Compléter ce look',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Fixa looken',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  DOBmonth: TranslationMap = { 
+    EN: 'May',
+    NL: 'Mei',
+    DE: 'Mai',
+    FR: 'Mai',
+    DK: '',
+    FI: '',
+    NO: 'May',
+    SE: 'Maj',
+    IL: '',
+    IT: 'Maggio',
+    ES: 'Mayo'
+  };
+
+  closePopUp: TranslationMap = {
+    EN: 'Your order is complete',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'Ja tack',
     IL: '',
     IT: '',
     ES: ''

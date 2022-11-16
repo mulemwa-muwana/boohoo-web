@@ -47,7 +47,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       NO: 'Adyen',
       NZ: 'WorldPay',
       SE: 'Adyen',
-      UK: 'WorldPay',
+      UK: 'Adyen',
       IE: 'WorldPay', 
       US: 'WorldPay'
     },
@@ -65,7 +65,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       NO: 'Adyen',
       NZ: 'WorldPay',
       SE: 'Adyen',
-      UK: 'WorldPay',
+      UK: 'Adyen',
       IE: 'WorldPay',
       US: 'WorldPay'
     },
@@ -73,7 +73,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       AU: 'WorldPay',
       CA: 'WorldPay',
       NZ: 'WorldPay',
-      UK: 'WorldPay',
+      UK: 'Adyen',
       US: 'WorldPay'
     },
     'coastfashion.com': {
@@ -127,7 +127,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       NL: 'WorldPay',
       NO: 'WorldPay',
       SE: 'WorldPay',
-      UK: 'WorldPay',
+      UK: 'Adyen',
       IE: 'WorldPay',
     },
     'misspap.com': {

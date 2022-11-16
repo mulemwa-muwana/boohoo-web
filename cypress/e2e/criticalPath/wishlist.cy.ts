@@ -23,18 +23,15 @@ describe('Wishlist Page tests', function () {
     HomePage.actions.findItemUsingSKU(variables.sku);
     pdpPage.actions.selectSize();
     pdpPage.click.addToWishList(); 
-    if (variables.brand == 'wallis.co.uk' || variables.brand == 'dorothyperkins.com' 
-    || variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com' ) {
+    if (variables.brand == 'boohoo.com' ) {
       WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
     }
+    HomePage.goto();
     HomePage.click.wishListIcon();
     WishListPage.assertions.assertItemIsAddedToWishlist();
   }),
   it('Verify that user can add wishlist item to the cart', () => {
     HomePage.click.wishListIcon();
-    if (variables.brand == 'nastygal.com') {
-      WishListPage.actions.chooseSizeDDL('18');
-    }
     WishListPage.click.addToCart();
   }),
   it.only('Verify that user can remove item from wishlist', () => {

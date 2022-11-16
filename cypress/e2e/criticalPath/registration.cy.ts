@@ -1,3 +1,4 @@
+import assertionText from 'cypress/helpers/assertionText';
 import LoginPage from 'cypress/pom/login.page';
 import * as CommonActions from '../../helpers/common';
 import HomePage from '../../pom/home.page';
@@ -27,13 +28,13 @@ describe('Verify Registration feature', function () {
     cy.fixture('newuser').then((credentials) =>{
       const randomEmail = CommonActions.randomEmail();
       RegistrationPage.actions.startRegistration(randomEmail);
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         RegistrationPage.actions.confirmationCheckbox();
         RegistrationPage.assertions.assertCheckboxIsChecked();
       }
       RegistrationPage.actions.enterNewUserData(credentials.password, credentials.password, credentials.firstname, credentials.lastname);
     
-      RegistrationPage.actions.chooseDate('23', 'June', '1989');
+      RegistrationPage.actions.chooseDate('23', assertionText.DOBmonth[variables.language], '1989');
       RegistrationPage.click.chooseEmailConsent();
       RegistrationPage.click.submitButton();
       RegistrationPage.assertions.assertMyAcountPageIsOpened();
@@ -43,13 +44,13 @@ describe('Verify Registration feature', function () {
   it('Verify that user can not register using email that already has account', function () {
     cy.fixture('newuser').then((credentials) =>{
       RegistrationPage.actions.startRegistration(credentials.username);
-      if (variables.brand != 'coastfashion.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
         RegistrationPage.actions.confirmationCheckbox();
         RegistrationPage.assertions.assertCheckboxIsChecked();
       }
       RegistrationPage.actions.enterNewUserData(credentials.password, credentials.password, credentials.firstname, credentials.lastname);
     });
-    RegistrationPage.actions.chooseDate('23', 'June', '1989');
+    RegistrationPage.actions.chooseDate('23', assertionText.DOBmonth[variables.language], '1989');
     RegistrationPage.click.chooseEmailConsent();
     RegistrationPage.click.submitButton();
     RegistrationPage.assertions.assertErrorMessageExistingEmail();

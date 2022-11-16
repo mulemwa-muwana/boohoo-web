@@ -1,14 +1,14 @@
 class AssertionText {
   
   WishlistItemsAdded: TranslationMap = {
-    EN: '\n\nSaved\n',
-    FR: '\n\nEnregistré\n',
+    EN: 'The product is added to wish list',
+    FR: 'Le produit a été ajouté à la liste des favoris',
     NL: '\n\nOpgeslagen\n',
     DE: '\n\nGerettet\n',
     DK: '\n\nGemt\n',
     FI: '\n\nTallennettu\n',
     NO: '\n\nLagret\n',
-    SE: '\n\nSparad\n',
+    SE: 'The product is added to wish list',
     IL: '\n\nשמור\n',
     IT: '\n\nSalvato\n',
     ES: '\n\nSalvado\n'
@@ -30,7 +30,6 @@ class AssertionText {
 
   WishlistItemsAddedArkadia: TranslationMap = {
     EN: 'The product is added to wish list',
-    FR: '',
     NL: '',
     DE: '',
     DK: '',
@@ -39,18 +38,19 @@ class AssertionText {
     SE: '',
     IL: '',
     IT: '',
-    ES: ''
+    ES: '',
+    FR: ''
   };
 
   WishlistItemsAddedAlert: TranslationMap = {
     EN: 'Product added to wish list',
-    FR: 'Produit ajouté à la liste de souhaits',
-    NL: '\n    \n    Bewaar voor later\n',
+    FR: 'Article ajouté à ta wish list',
+    NL: 'Product added to wish list', // \n    \n    Bewaar voor later\n
     DE: 'Produkt zur Wunschliste hinzugefügt',
     DK: 'Produkt tilføjet til ønskeliste',
     FI: 'Tuote lisätty toivelistaan',
-    NO: 'Produkt lagt til ønskeliste',
-    SE: '\n    \n    Sparad\n',
+    NO: 'Product added to wish list', // Produkt lagt til ønskeliste
+    SE: 'Sparad i önskelistan',
     IL: 'מוצר נוסף לרשימת המשאלות',
     IT: 'Prodotto aggiunto alla lista dei desideri',
     ES: 'Producto añadido a la lista de deseos'
@@ -86,44 +86,44 @@ class AssertionText {
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don’t forget about me!',  
-    FR: 'Ne m’oublie pas!',
+    FR: 'Ne m/’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
     FI: 'Älä unohda minua!',
     NO: 'Ikke glem meg!',
-    SE: 'Glöm inte bort mig!',
+    SE: 'Glöm inte mig!',
     IL: 'אל תשכח ממני!',
     IT: 'Non dimenticarti di me!',
     ES: '¡No te olvides de mí!'
   };
 
   ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
-    EN: 'This field is required.',  
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    EN: 'This field is required.', 
+    FR: 'Ne m’oublie pas!',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
+    DK: 'Glem ikke mig!',
+    FI: 'Älä unohda minua!',
+    NO: 'Ikke glem meg!',
+    SE: 'Glöm inte mig!',
+    IL: 'אל תשכח ממני!',
+    IT: 'Non dimenticarti di me!',
+    ES: '¡No te olvides de mí!'
   };
 
   ShippingMandatoryPostcodeArcadia: TranslationMap = {
-    EN: 'This field is required.',  
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    EN: 'Don’t forget about me!',
+    FR: 'Ne m’oublie pas!',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
+    DK: 'Glem ikke mig!',
+    FI: 'Älä unohda minua!',
+    NO: 'Ikke glem meg!',
+    SE: 'Glöm inte mig!',
+    IL: 'אל תשכח ממני!',
+    IT: 'Non dimenticarti di me!',
+    ES: '¡No te olvides de mí!'
   };
 
   RegistrationPageExistingEmail: TranslationMap = {
@@ -422,13 +422,13 @@ class AssertionText {
   
   loginAttempts: TranslationMap = {
     EN: 'You have 4 more login attempts',
-    FR: 'Vous avez encore 4 tentatives de connexion',
-    NL: '\n                    Nog 1 pogingen om in te loggen voor dit account geblokkeerd wordt. \n                ',
-    DE: 'Sie haben noch 4 Anmeldeversuche',
+    FR: 'Il vous reste 4 tentatives de connexion avant que votre compte ne soit bloqué.',
+    NL: 'Nog 4 pogingen om in te loggen voor dit account geblokkeerd wordt.',
+    DE: 'Du hast noch 4 weitere Anmeldeversuche, bis dein Konto gesperrt wird.',
     DK: 'Du har 4 flere loginforsøg',
     FI: 'Sinulla on vielä 4 kirjautumisyritystä',
     NO: 'Du har 4 flere påloggingsforsøk',
-    SE: '\n Du har 3 inloggningsförsök innan ditt konto blir låst. \n                ',
+    SE: 'Du har 4 inloggningsförsök innan ditt konto blir låst.',
     IL: 'יש לך עוד 4 ניסיונות כניסה',
     IT: 'Hai altri 4 tentativi di accesso',
     ES: 'Tienes 4 intentos más de inicio de sesión'
@@ -449,28 +449,28 @@ class AssertionText {
   };
 
   unknownEmail: TranslationMap = {
-    EN: "\n                    Sorry, your email or password doesn't match our records. Please check that you have entered them correctly, or \n                ",
-    FR: '\n Désolé, votre adresse e-mail ou votre mot de passe ne correspondent pas à nos enregistrements \n                ',
-    NL: '\n                    Sorry, de opgegeven e-mail en wachtwoord combinatie komt niet voor in ons systeem. Probeer het opnieuw of \n                ',
-    DE: ' Entschuldigung, Ihre E-Mail-Adresse oder Ihr Passwort stimmen nicht mit unseren Aufzeichnungen überein',
-    DK: ' Beklager, din e-mail eller adgangskode stemmer ikke overens med vores optegnelser',
-    FI: ' Valitettavasti sähköpostiosoitteesi tai salasanasi ei vastaa tietojamme',
-    NO: ' Beklager, e-postadressen eller passordet ditt samsvarer ikke med opplysningene våre',
-    SE: ' Tyvärr, din e-postadress eller ditt lösenord stämmer inte överens med våra uppgifter',
+    EN: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    FR: ' Nous sommes désolés, votre e-mail ou mot de passe ne correspond pas á notre historique. Veuillez vérifier que vous les avez rentrés correctement, ou',
+    NL: ' Sorry, de opgegeven e-mail en wachtwoord combinatie komt niet voor in ons systeem. Probeer het opnieuw of',
+    DE: ' Es tut uns leid, deine E-Mail oder dein Passwort stimmt nicht mit unseren Daten überein. Bitte überprüfe, ob du sie richtig eingegeben hast oder',
+    DK: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    FI: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    NO: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    SE: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
     IL: ' מצטערים, האימייל או הסיסמה שלך אינם תואמים לרישומים שלנו',
-    IT: ' Siamo spiacenti, la tua email o password non corrispondono ai nostri record',
-    ES: ' Lo sentimos, su correo electrónico o contraseña no coincide con nuestros registros'
+    IT: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    ES: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or'
   };
 
   emptyEmailFieldErrorBillingPage: TranslationMap = {
     EN: '',
-    FR: '',
-    NL: '',
-    DE: '',
+    FR: 'Ne m’oubliez pas !',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Glöm inte mig!',
     IL: '',
     IT: '',
     ES: ''
@@ -691,6 +691,20 @@ class AssertionText {
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
+    DK: 'Shipping Info',
+    FI: 'Shipping Info',
+    NO: 'Shipping Info',
+    SE: 'Leveranser',
+    IL: '',
+    IT: 'Informazioni sulla consegna',
+    ES: 'Información de envío'
+  };
+
+  pdpDeliverylist: TranslationMap = {
+    EN: '\nFewer shipping options\n',
+    NL: 'Bezorginformatie',
+    DE: 'Lieferinformationen',
+    FR: 'Information sur la livraison',
     DK: '',
     FI: '',
     NO: '',
@@ -702,13 +716,13 @@ class AssertionText {
 
   footerLinkDeliveryInfoArcadia: TranslationMap = {
     EN: 'Delivery',
-    NL: '',
+    NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Leveranser',
     IL: '',
     IT: '',
     ES: ''
@@ -733,9 +747,9 @@ class AssertionText {
     NL: '',
     DE: '',
     FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'Shipping Info',
+    FI: 'Shipping Info',
+    NO: 'Shipping Info',
     SE: '',
     IL: '',
     IT: '',
@@ -760,7 +774,7 @@ class AssertionText {
     EN: 'Size Guide',
     NL: 'Maatwijzer',
     DE: 'Größentabelle',
-    FR: 'Maatwijzer',
+    FR: 'Guide des tailles',
     DK: 'Size Guide',
     FI: 'Size Guide',
     NO: 'Size Guide',
@@ -859,10 +873,10 @@ class AssertionText {
     NL: '',
     DE: 'Nachhaltigkeit',
     FR: 'Durabilité',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Sustainability',
+    FI: 'Sustainability',
+    NO: 'Sustainability',
+    SE: 'Hållbarhet',
     IL: '',
     IT: '',
     ES: ''
@@ -898,17 +912,17 @@ class AssertionText {
 
   termsAndCond: TranslationMap = {
     EN: 'T&Cs',
-    NL: '',
+    NL: 'Algemene voorwaarden',
     DE: 'Nutzungsbedingungen',
     FR: 'Conditions générales',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'T&Cs',
+    FI: 'T&Cs',
+    NO: 'T&Cs',
+    SE: 'Allmänna villkor',
     IL: '',
-    IT: '',
-    ES: ''
-  };
+    IT: 'Termini e condizioni',
+    ES: 'TyC'
+    };
 
   termsAndCondArcadia: TranslationMap = {
     EN: 'Terms & Conditions',
@@ -953,13 +967,13 @@ class AssertionText {
   };
 
   privacyPolicy: TranslationMap = {
-    EN: 'Privacy Notice - Updated August 2022',
+    EN: 'Privacy Notice - Updated July 2022',
     NL: 'Privacyverklaring - Bijgewerkt in juli 2022',
-    DE: 'Datenschutzbestimmungen', // FAILED
+    DE: 'Datenschutzerklärung - Zuletzt upgedated Juni 2022', // FAILED
     FR: 'Avis de confidentialité',
-    DK: 'Privacy Notice - Updated August 2022',
-    FI: 'Privacy Notice - Updated August 2022',
-    NO: 'Privacy Notice - Updated August 2022',
+    DK: 'Privacy Notice - Updated July 2022',
+    FI: 'Privacy Notice - Updated July 2022',
+    NO: 'Privacy Notice - Updated July 2022',
     SE: 'Integritetspolicy - uppdaterad Juli 2022',
     IL: '',
     IT: 'Politica sulla Privacy - aggiornata in data 26 aprile 2021',
@@ -1055,9 +1069,9 @@ class AssertionText {
     NL: 'Over cookies',
     DE: 'Über Cookies',
     FR: 'En savoir plus sur les cookies',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'About Cookies',
+    FI: 'About Cookies',
+    NO: 'About Cookies',
     SE: 'Om cookies',
     IL: '',
     IT: '',
@@ -1069,9 +1083,9 @@ class AssertionText {
     NL: 'Sitemap',
     DE: 'Sitemap',
     FR: 'Plan du site',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'Sitemap',
+    FI: 'Sitemap',
+    NO: 'Sitemap',
     SE: 'Sajtkarta',
     IL: '',
     IT: '',
@@ -1079,9 +1093,9 @@ class AssertionText {
   };
 
   completeTheLook: TranslationMap = { 
-    EN: '',
+    EN: 'Complete the look',
     NL: 'Maak de look af',
-    DE: '',
+    DE: 'Vervollständige den Look',
     FR: 'Compléter ce look',
     DK: '',
     FI: '',

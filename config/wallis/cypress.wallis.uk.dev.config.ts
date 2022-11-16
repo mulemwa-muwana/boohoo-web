@@ -1,14 +1,15 @@
 import { defineConfig } from 'cypress';
-import plugins from '../../cypress/plugins';
+import plugins from 'cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@eu-dwstg.boohoo.com/',
-    sku: '#DZZ79497',
-    brand: 'boohoo.com',
-    locale: 'EU',
+    url: 'https://storefront:Oreo2022@dwdev.wallis.co.uk',
+    sku: 'AYY10937-130',
+    fullSKU: 'AYY10937-130-51',
+    brand: 'wallis.co.uk',
+    locale: 'UK',
     language: 'EN',
   },
 
@@ -20,8 +21,11 @@ export default defineConfig({
   screenshotOnRunFailure: true,
 
   e2e: {
-    setupNodeEvents (on, config) {
+    experimentalSessionAndOrigin: true,
+    setupNodeEvents (on) {
       plugins(on);
     },
+
+    numTestsKeptInMemory: 0
   },
 });

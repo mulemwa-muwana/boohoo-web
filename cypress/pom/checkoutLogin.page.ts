@@ -1,7 +1,5 @@
-
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import assertionText from '../helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -56,11 +54,11 @@ const selectors: SelectorBrandMap = {
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
-    guestCheckoutEmail: '[id^=dwfrm_login_username]',
-    userEmailField: '#dwfrm_login_email',
-    passwordField:'#dwfrm_login_password',
+    guestCheckoutEmail: '[id^="dwfrm_login_username"]',
+    userEmailField: '[id^="dwfrm_login_username"]',
+    passwordField:'[id^="dwfrm_login_password"]',
     continueAsGuestBt:'.login-page-button',
-    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button',
+    continueAsRegisteredUser: '.login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
@@ -124,11 +122,11 @@ class CheckoutPage implements AbstractPage {
     },
     assertPremierTitleIsDisplayed (premierTitleText: string) {
       const premierIsDisplayed = selectors[variables.brand].premierIsDisplayed;
-      cy.get(premierIsDisplayed).should('have.text', assertionText.Premier[variables.language]);
+      cy.get(premierIsDisplayed).should('have.text', premierTitleText);
     },
     assertPremierSubtitleIsDisplayed (premierSubtitleText: string) {
       const premierSubtitle = selectors[variables.brand].premierSubtitle;
-      cy.get(premierSubtitle).should('have.text', assertionText.PremierText[variables.language]);
+      cy.get(premierSubtitle).should('have.text', premierSubtitleText);
     }
   };
 }

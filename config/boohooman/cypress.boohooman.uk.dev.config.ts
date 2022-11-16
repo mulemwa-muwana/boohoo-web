@@ -5,11 +5,12 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@fi-dwstg.boohoo.com/',
-    sku: '#DZZ79497',
-    brand: 'boohoo.com',
-    locale: 'FI',
-    language: 'FI',
+    url: 'https://storefront:Oreo2022@dwdev.boohooman.com/', 
+    sku: 'MZZ61184',
+    fullSKU: 'MZZ61184-131-30',
+    brand: 'boohooman.com',
+    locale: 'UK',
+    language: 'EN',
   },
 
   viewportHeight: 1080,
@@ -20,8 +21,9 @@ export default defineConfig({
   screenshotOnRunFailure: true,
 
   e2e: {
-    setupNodeEvents (on, config) {
+    setupNodeEvents (on) {
       plugins(on);
     },
+    numTestsKeptInMemory: 0
   },
 });

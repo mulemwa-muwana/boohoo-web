@@ -89,7 +89,21 @@ const selectors: SelectorBrandMap = {
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   },
   'warehousefashion.com': undefined,
-  'oasis-stores.com': undefined,
+  'oasis-stores.com': {
+    sortItems: 'div.b-wishlist-sorting',
+    sortByDateAddedFromNew: '//*[@id="wishlist-sort"]/option[1]',
+    sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
+    sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
+    sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
+    addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
+    removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
+    wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
+    itemIsAddedToWishlist: '.wishlist-table form',
+    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
+    wishlistIcon: '.wishlist-button'
+  },
   'misspap.com': undefined
 };
 
@@ -127,6 +141,10 @@ class WishListPage implements AbstractPage {
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       cy.get(removeItemFromWishlist).eq(0).click();
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
+        cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({force:true});
+      }
+      
     },
     wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;

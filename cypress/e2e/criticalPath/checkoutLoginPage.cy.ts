@@ -18,14 +18,14 @@ describe('Checkout Page', function () {
     pdpPage.click.addToCart();
     cy.wait(3000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
       pdpPage.click.miniCartViewCartBtn();
     }
     cartPage.click.proceedToCheckout();
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    if (variables.brand == 'coastfashion.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       CheckoutPage.assertions.assertUserEmailField();
     } else {
       CheckoutPage.assertions.assertGuestCheckoutEmail();
@@ -36,21 +36,21 @@ describe('Checkout Page', function () {
 
 
   if (variables.brand != 'coastfashion.com') {
-    it.only('Verify Premier is displayed and can be added to the cart', () => {
-      if (['boohoo.com', 'nastygal.com', 'dorothyperkins.com'].includes(variables.brand) && variables.locale == 'UK'|| variables.locale == 'FR') {
+    it('Verify Premier is displayed and can be added to the cart', () => {
+      if (variables.brand == 'boohoo.com', 'burton.co.uk', 'wallis.co.uk', 'dorothyperkins.com' && variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'FR') {
         CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
         CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
-      } else if ( variables.brand == 'burton.co.uk', 'wallis.co.uk' && variables.locale == 'UK') {
-        CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
+      } else if (variables.brand == 'nastygal.com' && variables.locale == 'UK'|| variables.locale == 'IE' || variables.locale == 'FR') {
+        CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.PremierNG[variables.language]);
         CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
       } 
-    })
+    });
   }; 
 
   it('Verify that registered user is able to login', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);

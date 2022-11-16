@@ -34,7 +34,7 @@ describe('Wishlist Page tests', function () {
     HomePage.click.wishListIcon();
     WishListPage.click.addToCart();
   }),
-  it.only('Verify that user can remove item from wishlist', () => {
+  it('Verify that user can remove item from wishlist', () => {
     HomePage.click.wishListIcon();
     WishListPage.click.removeItemFromWishlist();
   });

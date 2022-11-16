@@ -32,7 +32,7 @@ describe('Product Listing Page tests', function () {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[variables.language]);
     }
   });
-  it.only('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
+  it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
     plpPage.click.loadMoreProducts();
     plpPage.assertions.assertNumberOfItemsTextIsVisible();

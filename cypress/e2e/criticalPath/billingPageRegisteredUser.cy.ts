@@ -125,7 +125,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertGiftCardIsApplied('-£10.00');
   }); */
 
-  it.only('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
+  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
     if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
@@ -151,7 +151,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
       BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
-    it.only('Verify that registered user can place order using Credit Card - Master)', function () {
+    it('Verify that registered user can place order using Credit Card - Master)', function () {
       BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
       BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });

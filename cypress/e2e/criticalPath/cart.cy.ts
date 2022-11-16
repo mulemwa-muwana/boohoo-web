@@ -52,7 +52,7 @@ describe('Cart basic functionality for guest user', function () {
   });
 
   if (variables.brand != 'coastfashion.com') {
-    it.only('Verify that Get Premier slots are visible if Premier is not in the bag', () => {
+    it('Verify that Get Premier slots are visible if Premier is not in the bag', () => {
       if (['boohoo.com', 'nastygal.com', 'dorothyperkins.com'].includes(variables.brand) && variables.locale == 'UK'|| variables.locale == 'FR') {
       CartPage.assertions.assertPremierSlotsAreVisible();
     }  else if ( variables.brand == 'burton.co.uk', 'wallis.co.uk' && variables.locale == 'UK') {

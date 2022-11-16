@@ -40,7 +40,7 @@ describe('Login Functionality tests', function () {
     });
   });
     
-  it.only('Verify that user can log out', function () {
+  it('Verify that user can log out', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {   
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
@@ -49,7 +49,7 @@ describe('Login Functionality tests', function () {
     LoginPage.assertions.assertLoginFormIsPresent();  
   });
 
-  it.only('Verify that user can start process of reseting password using the "Forgot your password?" link', function () {
+  it('Verify that user can start process of reseting password using the "Forgot your password?" link', function () {
     LoginPage.goto();
     LoginPage.click.forgotPasswordLink();
     cy.wait(2000);

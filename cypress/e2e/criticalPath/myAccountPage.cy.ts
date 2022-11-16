@@ -92,7 +92,7 @@ describe('Account page', function () {
     MyAccountPage.click.paymentDetailsLink();
     MyAccountPage.assertions.assertCardDetails(Cards.visa.end);
   });
-  it.only('TC12 Verify that card can be deleted', function () {
+  it('TC12 Verify that card can be deleted', function () {
     MyAccountPage.click.paymentDetailsLink();
     MyAccountPage.actions.deleteCard(Cards.visa.end);
     MyAccountPage.assertions.assertCardNotPresent(Cards.visa.end);

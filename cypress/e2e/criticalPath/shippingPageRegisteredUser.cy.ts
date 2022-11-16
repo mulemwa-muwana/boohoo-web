@@ -210,7 +210,7 @@ describe('Shipping Page Registered user tests', function () {
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
 
-  it.only('Verify that PREMIER can be added to the cart', () => {    
+  it('Verify that PREMIER can be added to the cart', () => {    
     if (variables.brand == 'boohoo.com', 'burton.co.uk', 'wallis.co.uk', 'dorothyperkins.com' && variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'FR') {
       shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);

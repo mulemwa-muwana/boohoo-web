@@ -19,7 +19,7 @@ describe('Verify Registration feature', function () {
     LoginPage.click.loginIcon();
     HomePage.click.registrationButton();
   });
-  it.only('Verify that registration button is visible and it opens registration form', function () {
+  it('Verify that registration button is visible and it opens registration form', function () {
     const randomEmail = CommonActions.randomEmail();
     RegistrationPage.actions.startRegistration(randomEmail);
     RegistrationPage.assertions.assertRegistrarionFormIsPresent();

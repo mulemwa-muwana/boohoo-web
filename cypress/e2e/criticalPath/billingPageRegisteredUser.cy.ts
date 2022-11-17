@@ -20,10 +20,10 @@ describe('Billing page functionality for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    if (variables.brand != 'coastfashion.com') {
+    if (variables.brand !== 'coastfashion.com') {
       PdpPage.click.miniCartViewCartBtn();
     }
-    if (variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
+    if (variables.brand === 'dorothyperkins.com' || variables.brand === 'wallis.co.uk') {
       PdpPage.click.viewCart; 
     }
     CartPage.click.proceedToCheckout();
@@ -44,10 +44,10 @@ describe('Billing page functionality for registered user', function () {
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode); 
-    if (variables.locale == 'AU') {
+    if (variables.locale === 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (variables.locale == 'US') {
+    if (variables.locale === 'US') {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
@@ -99,7 +99,7 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that registered user can add  new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
@@ -128,15 +128,15 @@ describe('Billing page functionality for registered user', function () {
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
     } 
 
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     } 
       
-    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+    if (variables.brand === 'boohoo.com' && variables.locale === 'UK') {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
@@ -163,13 +163,13 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.actions.selectPayPal();
       BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
       it('Verify that guest user can place order using Klarna', function () {
         BillingPage.actions.selectKlarna();
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
       });
     }
-    if (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
+    if (variables.brand !== 'burton.co.uk' && (variables.locale === 'UK' || variables.locale === 'AU')) {
       it('Verify that guest user can place order using Laybuy', function () {
         BillingPage.actions.selectLaybuy();
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();

@@ -62,7 +62,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
-    if (variables.locale != 'IE') {
+    if (variables.locale != 'IE' && variables.locale != 'AU') {
       shippingPage.click.proceedToBilling();
       if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
         shippingPage.click.proceedToBillingVerification();

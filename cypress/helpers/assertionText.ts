@@ -58,7 +58,7 @@ class AssertionText {
 
   WishListIsEmpty: TranslationMap = {
     EN: 'You dont have any items saved for later (yet)',
-    FR: 'Vous n\’avez pas (encore) enregistré d`éléments pour plus tard',
+    FR: 'Vous n’avez pas (encore) enregistré d`éléments pour plus tard',
     NL: 'Je hebt (nog) geen items opgeslagen voor later',
     DE: 'Sie haben (noch) keine Artikel für später gespeichert',
     DK: 'Je hebt (nog) geen items opgeslagen voor later',
@@ -99,8 +99,8 @@ class AssertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
-    EN: 'Don\’t forget about me!',
-    FR: 'Ne m\’oublie pas!',
+    EN: 'Don’t forget about me!',  
+    FR: 'Ne m/’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -114,7 +114,7 @@ class AssertionText {
 
   ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
     EN: 'This field is required.', 
-    FR: 'Ne m\’oublie pas!',
+    FR: 'Ne m’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -127,8 +127,8 @@ class AssertionText {
   };
 
   ShippingMandatoryPostcodeArcadia: TranslationMap = {
-    EN: 'Don\’t forget about me!',
-    FR: 'Ne m\’oublie pas!',
+    EN: 'Don’t forget about me!',
+    FR: 'Ne m’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -380,7 +380,7 @@ class AssertionText {
   };
 
   inStock: TranslationMap = {
-    EN: '\n                YAY! It\’s in stock\n            \n                YAY! It\’s in stock\n            ',
+    EN: '\n                YAY! It’s in stock\n            \n                YAY! It’s in stock\n            ',
     FR: '\n                YAY ! Cet article est en stock\n            \n                YAY ! Cet article est en stock\n            ',
     NL: 'JAAAAA! Het is op voorraad',
     DE: 'YAY! Es ist auf Lager',
@@ -451,13 +451,13 @@ class AssertionText {
   
   loginAttempts: TranslationMap = {
     EN: 'You have 4 more login attempts',
-    FR: 'Vous avez encore 4 tentatives de connexion',
-    NL: '\n                    Nog 1 pogingen om in te loggen voor dit account geblokkeerd wordt. \n                ',
-    DE: 'Sie haben noch 4 Anmeldeversuche',
+    FR: 'Il vous reste 4 tentatives de connexion avant que votre compte ne soit bloqué.',
+    NL: 'Nog 4 pogingen om in te loggen voor dit account geblokkeerd wordt.',
+    DE: 'Du hast noch 4 weitere Anmeldeversuche, bis dein Konto gesperrt wird.',
     DK: 'Du har 4 flere loginforsøg',
     FI: 'Sinulla on vielä 4 kirjautumisyritystä',
     NO: 'Du har 4 flere påloggingsforsøk',
-    SE: '\n Du har 3 inloggningsförsök innan ditt konto blir låst. \n                ',
+    SE: 'Du har 4 inloggningsförsök innan ditt konto blir låst.',
     IL: 'יש לך עוד 4 ניסיונות כניסה',
     IT: 'Hai altri 4 tentativi di accesso',
     ES: 'Tienes 4 intentos más de inicio de sesión'
@@ -492,17 +492,17 @@ class AssertionText {
   };
 
   unknownEmail: TranslationMap = {
-    EN: "\n                    Sorry, your email or password doesn't match our records. Please check that you have entered them correctly, or \n                ",
-    FR: '\n Désolé, votre adresse e-mail ou votre mot de passe ne correspondent pas à nos enregistrements \n                ',
-    NL: '\n                    Sorry, de opgegeven e-mail en wachtwoord combinatie komt niet voor in ons systeem. Probeer het opnieuw of \n                ',
-    DE: ' Entschuldigung, Ihre E-Mail-Adresse oder Ihr Passwort stimmen nicht mit unseren Aufzeichnungen überein',
-    DK: ' Beklager, din e-mail eller adgangskode stemmer ikke overens med vores optegnelser',
-    FI: ' Valitettavasti sähköpostiosoitteesi tai salasanasi ei vastaa tietojamme',
-    NO: ' Beklager, e-postadressen eller passordet ditt samsvarer ikke med opplysningene våre',
-    SE: ' Tyvärr, din e-postadress eller ditt lösenord stämmer inte överens med våra uppgifter',
+    EN: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    FR: ' Nous sommes désolés, votre e-mail ou mot de passe ne correspond pas á notre historique. Veuillez vérifier que vous les avez rentrés correctement, ou',
+    NL: ' Sorry, de opgegeven e-mail en wachtwoord combinatie komt niet voor in ons systeem. Probeer het opnieuw of',
+    DE: ' Es tut uns leid, deine E-Mail oder dein Passwort stimmt nicht mit unseren Daten überein. Bitte überprüfe, ob du sie richtig eingegeben hast oder',
+    DK: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    FI: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    NO: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    SE: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
     IL: ' מצטערים, האימייל או הסיסמה שלך אינם תואמים לרישומים שלנו',
-    IT: ' Siamo spiacenti, la tua email o password non corrispondono ai nostri record',
-    ES: ' Lo sentimos, su correo electrónico o contraseña no coincide con nuestros registros'
+    IT: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
+    ES: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or'
   };
 
   emptyEmailFieldErrorBillingPage: TranslationMap = {
@@ -548,10 +548,10 @@ class AssertionText {
   };
 
   assertShippingAddressIsMandatory: TranslationMap = {
-    EN: 'Ooops, something went wrong and we couldn\’t save your shipping address. Please try again',
+    EN: 'Ooops, something went wrong and we couldn’t save your shipping address. Please try again',
     NL: 'Oeps, er is iets misgegaan en we konden je verzendadres niet opslaan. Probeer het opnieuw',
     DE: 'Hoppla, etwas ist schief gelaufen und wir konnten Ihre Lieferadresse nicht speichern. Bitte versuche es erneut',
-    FR: 'Oups, quelque chose s\’est mal passé et nous n\’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
+    FR: 'Oups, quelque chose s’est mal passé et nous n’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
     DK: 'Ups, noget gik galt, og vi kunne ikke gemme din leveringsadresse. Prøv igen',
     FI: 'Hups, jotain meni pieleen, emmekä voineet tallentaa toimitusosoitettasi. Yritä uudelleen',
     NO: 'Beklager, noe gikk galt, og vi kunne ikke lagre leveringsadressen din. Vær så snill, prøv på nytt',
@@ -632,7 +632,7 @@ class AssertionText {
   };
 
   unsuccessfulSubscription: TranslationMap = {
-    EN: 'Hold up! That doesn\’t seem right.',
+    EN: 'Hold up! That doesn’t seem right.',
     NL: 'Wacht! Er gaat iets mis.',
     DE: 'Achtung! Das scheint nicht richtig zu sein.',
     FR: 'Tenir bon! Cela ne semble pas juste.',
@@ -748,13 +748,13 @@ class AssertionText {
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'Shipping Info',
+    FI: 'Shipping Info',
+    NO: 'Shipping Info',
     SE: 'Leveranser',
     IL: '',
-    IT: '',
-    ES: ''
+    IT: 'Informazioni sulla consegna',
+    ES: 'Información de envío'
   };
 
   pdpDeliverylist: TranslationMap = {
@@ -773,13 +773,13 @@ class AssertionText {
 
   footerLinkDeliveryInfoArcadia: TranslationMap = {
     EN: 'Delivery',
-    NL: '',
+    NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Leveranser',
     IL: '',
     IT: '',
     ES: ''
@@ -804,9 +804,9 @@ class AssertionText {
     NL: '',
     DE: '',
     FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'Shipping Info',
+    FI: 'Shipping Info',
+    NO: 'Shipping Info',
     SE: '',
     IL: '',
     IT: '',
@@ -831,7 +831,7 @@ class AssertionText {
     EN: 'Size Guide',
     NL: 'Maatwijzer',
     DE: 'Größentabelle',
-    FR: 'Maatwijzer',
+    FR: 'Guide des tailles',
     DK: 'Size Guide',
     FI: 'Size Guide',
     NO: 'Size Guide',
@@ -930,10 +930,10 @@ class AssertionText {
     NL: '',
     DE: 'Nachhaltigkeit',
     FR: 'Durabilité',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Sustainability',
+    FI: 'Sustainability',
+    NO: 'Sustainability',
+    SE: 'Hållbarhet',
     IL: '',
     IT: '',
     ES: ''
@@ -969,17 +969,17 @@ class AssertionText {
 
   termsAndCond: TranslationMap = {
     EN: 'T&Cs',
-    NL: '',
+    NL: 'Algemene voorwaarden',
     DE: 'Nutzungsbedingungen',
     FR: 'Conditions générales',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'T&Cs',
+    FI: 'T&Cs',
+    NO: 'T&Cs',
+    SE: 'Allmänna villkor',
     IL: '',
-    IT: '',
-    ES: ''
-  };
+    IT: 'Termini e condizioni',
+    ES: 'TyC'
+    };
 
   termsAndCondArcadia: TranslationMap = {
     EN: 'Terms & Conditions',
@@ -1024,13 +1024,13 @@ class AssertionText {
   };
 
   privacyPolicy: TranslationMap = {
-    EN: 'Privacy Notice - Updated August 2022',
+    EN: 'Privacy Notice - Updated July 2022',
     NL: 'Privacyverklaring - Bijgewerkt in juli 2022',
-    DE: 'Datenschutzbestimmungen', // FAILED
+    DE: 'Datenschutzerklärung - Zuletzt upgedated Juni 2022', // FAILED
     FR: 'Avis de confidentialité',
-    DK: 'Privacy Notice - Updated August 2022',
-    FI: 'Privacy Notice - Updated August 2022',
-    NO: 'Privacy Notice - Updated August 2022',
+    DK: 'Privacy Notice - Updated July 2022',
+    FI: 'Privacy Notice - Updated July 2022',
+    NO: 'Privacy Notice - Updated July 2022',
     SE: 'Integritetspolicy - uppdaterad Juli 2022',
     IL: '',
     IT: 'Politica sulla Privacy - aggiornata in data 26 aprile 2021',
@@ -1126,9 +1126,9 @@ class AssertionText {
     NL: 'Over cookies',
     DE: 'Über Cookies',
     FR: 'En savoir plus sur les cookies',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'About Cookies',
+    FI: 'About Cookies',
+    NO: 'About Cookies',
     SE: 'Om cookies',
     IL: '',
     IT: '',
@@ -1140,9 +1140,9 @@ class AssertionText {
     NL: 'Sitemap',
     DE: 'Sitemap',
     FR: 'Plan du site',
-    DK: '',
-    FI: '',
-    NO: '',
+    DK: 'Sitemap',
+    FI: 'Sitemap',
+    NO: 'Sitemap',
     SE: 'Sajtkarta',
     IL: '',
     IT: '',
@@ -1150,9 +1150,9 @@ class AssertionText {
   };
 
   completeTheLook: TranslationMap = { 
-    EN: '',
+    EN: 'Complete the look',
     NL: 'Maak de look af',
-    DE: '',
+    DE: 'Vervollständige den Look',
     FR: 'Compléter ce look',
     DK: '',
     FI: '',

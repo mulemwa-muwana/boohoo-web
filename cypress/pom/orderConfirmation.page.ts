@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '[id^=WLbanner] > a'
+    closePopUP: 'button[data-e2e="lightboxClose"]'
   },
   'nastygal.com': {
     emailIsDisplayed: '.b-confirmation_header-email',
@@ -77,7 +77,21 @@ const selectors: SelectorBrandMap = {
     thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '[id^=WLbanner] > a'
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    emailIsDisplayed: '.b-confirmation_header-email',
+    orderValueIsDisplayed: '.b-summary_shipping-cost',
+    shippingAddressDetailsName:'[aria-label="Shipping Details"] p.b-address-name',
+    shippingAddressDetailsSummary:'[aria-label="Shipping Details"] p.b-address-summary',
+    orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
+    billingAddressDetailsName:'[aria-label="Payment Details"] p.b-address-name',
+    billingAddressDetailsSummary:'[aria-label="Payment Details"] p.b-address-summary',
+    shippingMethodIsDisplayed: 'b-summary_shipping-name',
+    paymentMethod: '.b-summary_payment',
+    orderTotalIsVisible: '.b-summary_shipping-cost',
+    thatPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpassword',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed: '#dwfrm_newPasswords_newpasswordconfirm',
+    closePopUP: '[id^=WLbanner] > a'
+  },
   'karenmillen.com': {
     emailIsDisplayed:'.b-confirmation_header-email',
     orderValueIsDisplayed:'.b-summary_shipping-cost',
@@ -167,7 +181,7 @@ class OrderConfirmation implements AbstractPage {
       const closePopUP = selectors[variables.brand].closePopUP;
       cy.get(closePopUP, { timeout: 60000 }).click();
     },
-    closeCancellationPopup () {   // Only for Boohoo DE and SE
+    closeCancellationPopup () { // Only for Boohoo DE and SE
       cy.get('[rokt-frame-type="plugin-runtime"]', { timeout: 20000 }).then((iframe) => {
         const innerIframe = iframe.contents().find('[id^="rokt-placements-frame"]').contents();
         cy.wrap(innerIframe, {timeout: 5000}).find('[data-e2e="lightboxClose"]').click();

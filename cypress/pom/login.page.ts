@@ -62,7 +62,18 @@ const selectors: SelectorBrandMap = {
     loginForm: ':nth-child(1) > .l-service-section_inner',
     errorLoginMessage: '.b-message-copy'
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    loginIcon: '.b-header_login-icon > .i-icon',
+    loginEmail: '[id^="dwfrm_login_username"]',
+    loginPassword: '[id^="dwfrm_login_password"]',
+    loginButton:'#dwfrm_login .login-page-button',
+    forgotPassword: '#password-reset',
+    forgotPasswordMessage: '.b-dialog-window',
+    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
+    resetPasswordBtn: '.b-dialog-footer > .b-button',
+    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box',
+    errorLoginMessage: '.b-message-copy'
+  },
   'karenmillen.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     loginEmail: '[id^=dwfrm_login_username]',
@@ -178,8 +189,9 @@ class LoginPage implements AbstractPage {
     //  Login Attempts
     assertErrorLoginMessageIsPresent (text: string) {
       const errorLoginMessage = selectors[variables.brand].errorLoginMessage;
-      cy.get(errorLoginMessage).should('be.visible').and('contain.text', text);
+      cy.get(errorLoginMessage).should('be.visible').and('include.text', text);
     },
+ 
     assertForgotPasswordMessageisDisplayed (email: string) {
       const forgotPasswordMessage = selectors[variables.brand].forgotPasswordMessage;
       if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {

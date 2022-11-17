@@ -254,7 +254,54 @@ const selectors: SelectorBrandMap = {
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    dateError: '#dwfrm_profile_customer_yearofbirth-error',
+    klarnaPayNow:'#billingSubmitButton',
+    shippingAddressSection: '.minicheckout-section',
+    shippingAddress: 'div.minicheckout-value:nth-child(3)',
+    billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
+    addGiftCertificate: '.b-gift_certificate-add',
+    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
+    billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
+    couponCode: '#dwfrm_coupon_couponCode',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
+    shippingMethodSelector: '.minicheckout-shipping-option',
+    changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
+    shippingCheckbox: 'div[class*="useAsBillingAddress"]',
+    paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodPayPal: '[for="is-PayPal"]',
+    paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodClearPay: '[for="is-CLEARPAY"]',
+    paymentMethodLayBuy: '[for="is-LAYBUY"]',
+    emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
+    addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
+    addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
+    emptyEmailFiledError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    addNewBillingAddress: '.js-edit-address',
+    billingForm: '.js-address-form',
+    billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
+    billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.use-another-address',
+    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
+    dobDate: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
+    dobForm: '.form-birthday-rows-inner',
+
+    // Credit card section
+    creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
+    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
+    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    paynowBtnCC:'#billingSubmitButton',
+  },
   'karenmillen.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
@@ -549,11 +596,11 @@ class BillingPage implements AbstractPage {
       cy.get(creditCardFieldsCardOwner).type(cardOwner, {force:true});
       cy.get(paynowBtnCC).click({force:true});
 
-      if (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
+      /* If (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
         cy.get('.adyen-checkout__iframe', { timeout: 20000 }).should('be.visible');
         cy.iframe('.adyen-checkout__iframe').find('.input-field').type('password');
         cy.iframe('.adyen-checkout__iframe').find('#buttonSubmit').click();
-      }
+      } */
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -593,9 +640,13 @@ class BillingPage implements AbstractPage {
       if (variables.locale == 'AU') {
         cy.get(billingAddressFieldsStateCode).select(state);
       } else {
-        cy.get(billingAddressFieldsStateCode).type(billingAddressFieldsStateCode);
-      }     
-      cy.get(billingPostCode).click({force: true}).type(postcode);
+        cy.get(billingAddressFieldsStateCode).clear().type(state);
+      }
+      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
+      } else {
+        cy.get(billingPostCode).clear().type(postcode);
+      }
     },
     addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
@@ -604,7 +655,12 @@ class BillingPage implements AbstractPage {
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear().type(city);
-      cy.get(billingPostCode).clear().type(postcode);
+      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
+      } else {
+        cy.get(billingPostCode).clear().type(postcode);
+      }
+      
     },
     addPromoCode (promo: string) {
       const couponCode = selectors[variables.brand].couponCode;
@@ -622,12 +678,22 @@ class BillingPage implements AbstractPage {
     selectAddressFromBook () {
       const viewAllBillingAddresses = selectors[variables.brand].viewAllBillingAddresses;
       const billingAddressFromBook = selectors[variables.brand].billingAddressFromBook;
-      cy.get(viewAllBillingAddresses).click({force: true});
+      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.get('button[class="b-button m-link m-width_full"]').click({force: true});
+      } else { 
+        cy.get(viewAllBillingAddresses).click({force: true});
+      }
+      
       cy.get(billingAddressFromBook).click({force: true});
     },
     selectKlarna () {
       const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;
-      cy.get(paymentMethodKlarna).click({force:true});
+      if (variables.locale == 'AU') {
+        cy.get('#payment-button-KlarnaAU').click({force:true});
+      } else {
+        cy.get(paymentMethodKlarna).click({force:true});
+      }
+      
       cy.wait(5000);
       
       // Stub the open method with just a console log to force it not to open a window.
@@ -688,7 +754,8 @@ class BillingPage implements AbstractPage {
         body().find(payButtonLocator).click({force:true});
 
         body().then($body => {
-          cy.wait(5000);
+
+          // Cy.wait(1000);
           if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) { // If Skip and continue button exists
             body().find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click({force:true});
           }
@@ -913,6 +980,8 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (variables.brand == 'coastfashion.com' || variables.brand == 'misspap.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
+      } else if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }     

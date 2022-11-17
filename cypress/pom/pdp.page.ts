@@ -188,7 +188,32 @@ const selectors: SelectorBrandMap = {
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    searchField: '#header-search-input',
+    addToCart: '#add-to-cart',
+    addToWishListButton: '.wishlist-button',
+    shippingInfoButton: '#product-details-btn-shipping',
+    returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
+    shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.mini-cart-link',
+    selectColor: '.swatches.color',
+    sizeVariations: '.swatches.size',
+    productTitle: '#product-content > .product-name',
+    productCode: '.product-number > [itemprop="sku"]',
+    productPrice: '.product-price',
+    colorSwatches: '.swatches.color',
+    productImage: '.primary-image',
+    addToCartTitle: '.mini-cart-link',
+    miniCartProductIner: '.mini-cart-product',
+    productDescription: '.product-care-info',
+    productDelivery: '.b-product_delivery',
+    productReturnsDescription: '.product-returns-link > .product-info-link-text',
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+    productDeliveryInfo: '.product-delivery-link > .product-info-link-text'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -257,7 +282,7 @@ class PdpPage implements AbstractPage {
     },
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com' || variables.brand == 'misspap.com') {
         cy.get(sizeVariations).find('li > span').each(($element) => {
           if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');

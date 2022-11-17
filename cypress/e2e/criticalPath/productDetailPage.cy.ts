@@ -37,11 +37,11 @@ describe('Product Details Page tests', function () {
     PdpPage.click.addToCart();
   });
   it('TC07 Verify if size is not selected user cannot add product to a bag', function () {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSizeSiteGenesis[variables.language]);
     } else {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);
-    }
+    } 
   });   
   it('TC08 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
@@ -57,6 +57,8 @@ describe('Product Details Page tests', function () {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitle[variables.language]);
+    } else if (variables.brand == 'misspap.com') {
+      LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitleMisspap[variables.language]);
     } else {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[variables.language]);
     }
@@ -83,5 +85,4 @@ describe('Product Details Page tests', function () {
       PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
     });
   }
- 
 }); 

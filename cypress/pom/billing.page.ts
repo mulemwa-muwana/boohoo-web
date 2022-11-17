@@ -499,7 +499,7 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
         cy.get(shippingCheckbox).click();
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
@@ -570,7 +570,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com'  && variables.brand != 'misspap.com') {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -684,7 +684,7 @@ class BillingPage implements AbstractPage {
           }
         });
 
-        const payButtonLocator = (variables.brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[testid="confirm-and-pay"]';
+        const payButtonLocator = (variables.brand == 'nastygal.com' || variables.brand == 'misspap.com') ? 'button[id*="purchase-review-continue-button"]' : '[testid="confirm-and-pay"]';
         body().find(payButtonLocator).click({force:true});
 
         body().then($body => {
@@ -838,7 +838,7 @@ class BillingPage implements AbstractPage {
     },
     assertSameAsShippingIsChecked () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'misspap.com') {
         cy.get(shippingCheckbox).should('have.class', 'is-checked');
       } else {
         cy.get(shippingCheckbox).should('be.checked');
@@ -911,7 +911,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (variables.brand == 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com' || variables.brand == 'misspap.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');

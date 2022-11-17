@@ -84,6 +84,20 @@ class AssertionText {
     ES: ''
   };
 
+  WishlistLoginTitleMisspap: TranslationMap = {
+    EN: '\nWishlist\nLog In\n',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don\’t forget about me!',
     FR: 'Ne m\’oublie pas!',
@@ -210,6 +224,20 @@ class AssertionText {
     ES: 'Aviso de Privacidad'
   };
 
+  PrivacyNoticeMisspap: TranslationMap = {
+    EN: 'privacy notice',
+    FR: 'Avis de confidentialité',
+    NL: 'Privacyverklaring',
+    DE: 'Datenschutzrichtlinien',
+    DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
+    FI: 'Tietosuojailmoitus',
+    NO: 'Personvernerklæring',
+    SE: '\n                Integritetspolicy\n            ',
+    IL: 'הודעת פרטיות',
+    IT: 'Informativa sulla Privacy',
+    ES: 'Aviso de Privacidad'
+  };
+
   PrivacyPolicyH1Arcadia: TranslationMap = {
     EN: 'Privacy',
     FR: '\nAvis de confidentialité\n',
@@ -265,6 +293,21 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  TermsAndConditionsSiteMisspap: TranslationMap = {
+    EN: 'Help & info',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
 
   Premier: TranslationMap = {
     EN: ' \n\n                        .b-ngvip-title {\n                        \n                            letter-spacing: 10px;\n                        \n                        }\n                        \n                        \n                        PREMIER\n                    ',
@@ -422,6 +465,20 @@ class AssertionText {
 
   loginErrorSiteGenesis: TranslationMap = {
     EN: 'Looks like either your email address or password were incorrect. Please try again.',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  loginErrorSiteMisspap: TranslationMap = {
+    EN: 'Current customer is not found, please check your spelling, or try to reset the password',
     FR: '',
     NL: '',
     DE: '',
@@ -597,6 +654,20 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'Vänta! Något gick fel.',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  unsuccessfulSubscriptionMsg: TranslationMap = {
+    EN: 'Please enter a valid Email Address.',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''

@@ -8,6 +8,7 @@
       "cy:open:coast": "cypress open --config-file ./config/coast/cypress.coast.uk.config.ts",
       "cy:open:wallis": "cypress open --config-file ./config/wallis.cypress.wallis.uk.config.ts",
       "cy:open:nastygal": "cypress open --config-file ./config/nastygal/cypress.nastygal.uk.config.ts",
+      "cy:open:misspap": "cypress open --config-file ./config/misspap/cypress.misspap.uk.config.ts",
     "//": "CYPRESS RUN",
       "cy:run:boohoo": "cypress run --config-file ./config//boohoo/cypress.boohoo.uk.config.ts",
       "cy:run:dorothy": "cypress run --config-file ./config/dorothyperkins/cypress.dorothyperkins.uk.config.ts",

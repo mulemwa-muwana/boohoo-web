@@ -63,7 +63,16 @@ const selectors: SelectorBrandMap = {
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    guestCheckoutEmail: '[id^="dwfrm_login_username"]',
+    userEmailField: '[id^="dwfrm_login_username"]',
+    passwordField:'[id^="dwfrm_login_password"]',
+    continueAsGuestBt:'.login-page-button',
+    continueAsRegisteredUser: '.login-page-button',
+    premierAddToCart:'button[class="b-ngvip-button b-button"]',
+    premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

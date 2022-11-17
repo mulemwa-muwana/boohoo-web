@@ -29,7 +29,7 @@ describe('Shipping Page Registered user tests', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       checkoutPage.actions.userEmailField(credentials.username);
 
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
         checkoutPage.click.continueAsRegisteredUser();
       }
       checkoutPage.actions.passwordField(credentials.password);
@@ -37,7 +37,7 @@ describe('Shipping Page Registered user tests', function () {
     });
   });
   
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com'  && variables.brand != 'misspap.com') {
     it('Verify that promo code field is dispayed', () => {
       shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     });
@@ -64,7 +64,7 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
     if (variables.locale != 'IE') {
       shippingPage.click.proceedToBilling();
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
         shippingPage.click.proceedToBillingVerification();
       }
       cy.wait(4000);
@@ -191,7 +191,7 @@ describe('Shipping Page Registered user tests', function () {
       if (variables.locale == 'AU') {
         shippingPage.actions.stateField(localeAddress.county);
       }
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -203,7 +203,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }   
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
       shippingPage.click.proceedToBillingVerification();
     } 
     billingPage.assertions.assertBillingPageIsLoaded();

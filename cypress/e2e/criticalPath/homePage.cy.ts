@@ -91,7 +91,7 @@ describe('Home Page', function () {
       } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
-      } else if (variables.brand == 'nastygal.com'){
+      } else if (variables.brand == 'nastygal.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
       } else {
@@ -229,7 +229,7 @@ describe('Home Page', function () {
           
       it('Verify that App Banner is present as content slot.', () => {
         if (!((variables.brand == 'boohoo.com' && (variables.locale == 'EU' || variables.locale == 'NL' || variables.locale == 'NO' || variables.locale == 'DK' || variables.locale == 'FI' || variables.locale == 'IT' || variables.locale == 'ES')) || (variables.brand == 'nastygal.com' && variables.locale == 'EU'))) {
-        GlobalFooter.assertions.assertAppBannerPresent();
+          GlobalFooter.assertions.assertAppBannerPresent();
         }
       });
     });
@@ -249,7 +249,7 @@ describe('Home Page', function () {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
-        if (variables.brand == 'boohoo.com' && (variables.locale != 'EU' && variables.locale != 'AU' && variables.locale != 'NZ' && variables.locale != 'US'  && variables.locale != 'CA')) {
+        if (variables.brand == 'boohoo.com' && (variables.locale != 'EU' && variables.locale != 'AU' && variables.locale != 'NZ' && variables.locale != 'US' && variables.locale != 'CA')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
         } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoSiteGenesis[variables.language]);

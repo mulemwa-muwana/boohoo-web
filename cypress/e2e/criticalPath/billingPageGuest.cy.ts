@@ -19,8 +19,7 @@ describe('Billing page functionality for guest user', function () {
     });
   });
   
-  beforeEach (function () {
-  
+  beforeEach (function () { 
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
@@ -58,10 +57,8 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.selectState(localeAddress.county);
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
-      shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
-    } else {
-      shippingPage.click.proceedToBilling();
-    }
+    } 
+    shippingPage.click.proceedToBilling();
     BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
@@ -112,7 +109,7 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
     } else {
       BillingPage.actions.emptyEmailField();
-      BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+      BillingPage.actions.selectDate('23', '2', '2001');
       BillingPage.click.chooseCC();
     }
     if (variables.brand == 'boohoo.com') {
@@ -148,11 +145,11 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode, localeAddress.postcode);
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.county, localeAddress.postcode);
     }
   });
 

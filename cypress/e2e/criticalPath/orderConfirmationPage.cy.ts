@@ -59,7 +59,7 @@ describe('Order confirmation page for guest user', function () {
     }
   });
 
-  it.only('Verify that email address, order number, value and payment method are visible for guest user', function () {
+  it('Verify that email address, order number, value and payment method are visible for guest user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
@@ -115,6 +115,9 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.click.addAddressManually();  
     shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+    if (variables.locale == 'US') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);

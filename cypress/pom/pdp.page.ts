@@ -359,10 +359,12 @@ class PdpPage implements AbstractPage {
     },
     assertDeliveryInfoIsDisplayed (text: string) {
       const productDelivery = selectors[variables.brand].productDelivery;
-      cy.get(productDelivery).should('be.visible');
-      if (variables.brand == 'boohoo.com') {
-        cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click(); //  Work only boohoo, other brands redirect to new tab
-        cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', text); 
+      if (variables.brand == 'boohoo.com' && variables.locale != 'UK') {
+        cy.get('.b-product_shipping-delivery').should('be.visible');
+      } else {
+        cy.get(productDelivery).should('be.visible');
+        cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
+        cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n');
       }
     },
     assertDeliveryOptionsAreDisplayed () {
@@ -376,6 +378,10 @@ class PdpPage implements AbstractPage {
         cy.get(productReturnsInfoButton).click();
       }
       cy.get(productReturnsDescription).should('be.visible');
+      if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
+        cy.get('#product-details-btn-shipping').click();
+        cy.get(productReturnsDescription).should('be.visible');
+      }
     },
     assertStartReturnPageIsDisplayed () {
 

@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
-    closePopUP: '[id^=WLbanner] > a'
+    closePopUP: 'button[data-e2e="lightboxClose"]'
   },
   'nastygal.com': {
     emailIsDisplayed: '.b-confirmation_header-email',

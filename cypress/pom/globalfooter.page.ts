@@ -285,7 +285,7 @@ class GlobalFooter implements AbstractPage {
       // Cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       const footer = selectors[variables.brand].footer;
-      cy.get(footer).contains(text)
+      cy.get(footer).contains(text, { matchCase: false })
         .invoke('removeAttr', 'target')
         .then(element => {
           const href = element.attr('href');

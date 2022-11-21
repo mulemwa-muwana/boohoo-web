@@ -68,7 +68,7 @@ describe('Product Details Page tests', function () {
       PdpPage.click.shippingInfoButton();
       PdpPage.assertions.assertDeliveryInfoIsDisplayed(assertionText.pdpDeliverylist[variables.language]);
     }
-    pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
+   
   });
   it('TC12 Verify that Returns Info carousel is displayed when configured', function () {
     if (variables.brand == 'dorothyperkins.com' || variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk') {

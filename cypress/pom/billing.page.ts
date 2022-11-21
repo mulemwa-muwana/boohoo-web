@@ -986,7 +986,7 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (variables.brand == 'coastfashion.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+      } else {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       }  
     },

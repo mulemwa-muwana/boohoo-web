@@ -10,8 +10,8 @@ describe('Product Listing Page tests', function () {
   beforeEach(() => {
     HomePage.goto();
     HomePage.actions.closeNastygalPopup();
-    HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
     if (variables.brand == 'nastygal.com') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
     }
     if (variables.brand == 'boohoo.com') {

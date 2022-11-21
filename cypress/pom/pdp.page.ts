@@ -27,8 +27,9 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '.b-product_shipping-returns',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     addedToWishlistMsg: '.b-message',
-    wishListIcon: '.b-header_wishlist'
-    
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
+
     // ViewCart: '.b-minicart-actions > .m-outline',
   },
   'nastygal.com': {
@@ -54,7 +55,8 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_delivery',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'dorothyperkins.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -80,7 +82,8 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
@@ -106,7 +109,8 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'wallis.co.uk': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -131,7 +135,8 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'boohooman.com': undefined,
   'karenmillen.com': undefined,
@@ -160,6 +165,7 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'warehousefashion.com': undefined,
   'oasis-stores.com': {
@@ -187,6 +193,7 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'misspap.com': undefined
 };
@@ -312,7 +319,9 @@ class PdpPage implements AbstractPage {
     },
     assertAddToCartBtnIsNotAvailable (msg: string) {
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).should('be.visible').contains(msg);
+      const cartValidation = selectors[variables.brand].cartValidation;
+      cy.get(addToCart).click();
+      cy.get(cartValidation).contains(msg);
     },
     assertMiniCartIsDisplayed () {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;

@@ -47,18 +47,20 @@ describe('Billing page functionality for registered user', function () {
     if (variables.locale === 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (variables.locale === 'US') {
+    if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);
-    }
+      shippingPage.click.proceedToBilling();
+    } 
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);
-    shippingPage.click.proceedToBilling();
+    // ShippingPage.click.proceedToBilling();
     if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
       shippingPage.click.proceedToBillingVerification();
     }
-    BillingPage.assertions.assertBillingPageIsLoaded();
+
+    // BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   it('Verify that shipping address block is filled with data', function () {

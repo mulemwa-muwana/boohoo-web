@@ -385,7 +385,7 @@ class Addresses {
         addrline2: '',
         postcode: '0164',
         addressName: 'SecondAddress',
-        country: 'Norge',
+        country: 'Norway',
         city: 'Oslo',
         countryCode: 'NO',
         county: '',
@@ -461,10 +461,10 @@ class Addresses {
         addrline2: '',
         postcode: '2602',
         addressName: 'SecondAddress',
-        country: 'Аustralia',
-        city: '',
+        country: 'Australia',
+        city: 'Sydney',
         countryCode: 'AU',
-        county: '',
+        county: 'ACT',
         confirmEmail: ''
       }
     },

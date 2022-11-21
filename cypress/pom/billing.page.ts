@@ -1,4 +1,3 @@
-import cards from 'cypress/helpers/cards';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -632,21 +631,11 @@ class BillingPage implements AbstractPage {
     addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
-      const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
       const billingPostCode = selectors[variables.brand].billingPostCode;
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
-      if (variables.locale == 'AU') {
-        cy.get(billingAddressFieldsStateCode).select(state);
-      } else {
-        cy.get(billingAddressFieldsStateCode).clear().type(state);
-      }
-      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
-        cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
-      } else {
-        cy.get(billingPostCode).clear().type(postcode);
-      }
+      cy.get(billingPostCode).type(postcode);
     },
     addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;

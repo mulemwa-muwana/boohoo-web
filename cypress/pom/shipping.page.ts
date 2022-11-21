@@ -41,6 +41,14 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingMethodname: '.b-option_switch-label',
     stateField: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    dobDay: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearOfBirth',
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -84,6 +92,9 @@ const selectors: SelectorBrandMap = {
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearOfBirth',
+    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -123,6 +134,10 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
     cartContainer: '.b-summary_table-name',
+    allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
   },
   'burton.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -162,6 +177,10 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
     cartContainer: '.b-summary_table-name',
+    allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
   },
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -201,6 +220,10 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
     cartContainer: '.b-summary_table-name',
+    allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
   },
   'boohooman.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -716,7 +739,10 @@ class ShippingPage implements AbstractPage {
       cy.get(orderTotal).should('not.be.empty');
     },
     assertAddressDetailsAreMandatory (text: string) {
-      cy.get('[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message').should('contain.text', text);
+      const cityDetailsAreMandatory = selectors[variables.brand].cityDetailsAreMandatory;
+      const address1DetailsAreMandatory = selectors[variables.brand].address1DetailsAreMandatory;
+      cy.get(cityDetailsAreMandatory).should('contain.text', text);
+      cy.get(address1DetailsAreMandatory).should('contain.text', text);
     },
     assertPostcodeLookupIsVisible () {
       const PostcodeLookup = selectors[variables.brand].PostcodeLookup;

@@ -27,7 +27,7 @@ class ShippingMethod {
     },
     EU: {
       shippingMethod1: {
-        shippingMethodName: 'Germany Standard Delivery'
+        shippingMethodName: 'Europe and International Delivery'
       },
       shippingMethod2: {
         shippingMethodName: 'Europe and International Delivery'

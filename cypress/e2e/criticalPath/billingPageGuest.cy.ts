@@ -59,8 +59,6 @@ describe('Billing page functionality for guest user', function () {
       cy.wait(3000);
     } 
     shippingPage.click.proceedToBilling();
-
-    // ShippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
     BillingPage.assertions.assertBillingPageIsLoaded();
   });
 

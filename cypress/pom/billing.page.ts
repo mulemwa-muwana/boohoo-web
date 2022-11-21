@@ -986,11 +986,9 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (variables.brand == 'coastfashion.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+      } else (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');
-      } else {
-        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
-      }     
+      }  
     },
     assertEmailFieldCantBeChanged () {
       cy.get('#dwfrm_billing_contactInfoFields_email').should('have.attr', 'disabled');

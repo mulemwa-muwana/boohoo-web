@@ -908,7 +908,7 @@ class AssertionText {
     IL: '',
     IT: 'Termini e condizioni',
     ES: 'TyC'
-    };
+  };
 
   termsAndCondArcadia: TranslationMap = {
     EN: 'Terms & Conditions',

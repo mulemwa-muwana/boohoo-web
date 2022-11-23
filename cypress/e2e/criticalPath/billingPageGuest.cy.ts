@@ -142,7 +142,7 @@ describe('Billing page functionality for guest user', function () {
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
-  it.only('Verify that guest user can submit new billing address', function () {
+  it('Verify that guest user can submit new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.click.changeShippingAddress();

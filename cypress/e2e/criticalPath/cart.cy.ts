@@ -5,6 +5,7 @@ import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
+const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 describe('Cart basic functionality for guest user', function () {
   beforeEach(() => {
@@ -15,7 +16,7 @@ describe('Cart basic functionality for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(2000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+    if (!siteGenesisBrands.includes(variables.brand)) {
       PdpPage.click.miniCartViewCartBtn();
     }
   });
@@ -38,7 +39,7 @@ describe('Cart basic functionality for guest user', function () {
     if (variables.brand == 'boohoo.com') {
       CartPage.actions.editCartQuantity('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    } else if (siteGenesisBrands.includes(variables.brand)) {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
     } else {
@@ -52,11 +53,14 @@ describe('Cart basic functionality for guest user', function () {
   });
 
   it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
-    const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-    const includededBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
-      CartPage.assertions.assertPremierSlotsAreVisible();
-    } else if (includededBrands.includes(variables.brand) && variables.locale == 'UK') {
+    const internationalBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com'];
+    const internationalLocales: Array<Locale> = ['UK', 'FR', 'IE'];
+    const internationalBrandsAndLocales: boolean = internationalBrands.includes(variables.brand) && internationalLocales.includes(variables.locale);
+
+    const brandsUK: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk', ...siteGenesisBrands];
+    const brandsAndLocaleUK: boolean = brandsUK.includes(variables.brand) && variables.locale == 'UK';
+
+    if (internationalBrandsAndLocales || brandsAndLocaleUK) {
       CartPage.assertions.assertPremierSlotsAreVisible();
     }
   });
@@ -70,7 +74,7 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPayPalCTAisVisible();
     CartPage.actions.openPayPalSandbox();
   });
-  if (['boohoo.com', 'burton.co.uk', 'nastygal.com', 'coastfashion.com', 'oasis-stores.com'].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
+  if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
     it('Verify that Klarna CTA is displayed and functional', function () {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox();

@@ -36,7 +36,6 @@ describe('Shipping Page Registered user tests', function () {
       checkoutPage.click.continueAsRegisteredUser();
     });
   });
-
   
   if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
     it('Verify that promo code field is dispayed', () => {
@@ -210,7 +209,6 @@ describe('Shipping Page Registered user tests', function () {
     billingPage.assertions.assertBillingPageIsLoaded();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
-
 
   if (variables.brand != 'oasis-stores.com') {
     it('Verify that PREMIER can be added to the cart', () => {

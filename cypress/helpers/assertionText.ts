@@ -225,7 +225,7 @@ class AssertionText {
   };
 
   TermsAndConditionsH1: TranslationMap = {
-    EN: 'Terms & Conditions',
+    EN: '\n                Terms & conditions\n            ',
     FR: '',
     NL: '',
     DE: '',
@@ -922,7 +922,7 @@ class AssertionText {
     IL: '',
     IT: 'Termini e condizioni',
     ES: 'TyC'
-    };
+  };
 
   termsAndCondArcadia: TranslationMap = {
     EN: 'Terms & Conditions',

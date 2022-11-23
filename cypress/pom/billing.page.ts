@@ -1,4 +1,3 @@
-import cards from 'cypress/helpers/cards';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -42,6 +41,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingAddressCountry: '',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -90,6 +91,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -141,6 +143,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -192,6 +195,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -243,6 +247,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -629,7 +634,7 @@ class BillingPage implements AbstractPage {
       const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string, countryCode: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
       const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
@@ -647,6 +652,7 @@ class BillingPage implements AbstractPage {
       } else {
         cy.get(billingPostCode).clear().type(postcode);
       }
+      
     },
     addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
@@ -980,11 +986,9 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (variables.brand == 'coastfashion.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
-        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       } else {
-        cy.url({timeout: 30000}).should('include', 'order-confirmation');
-      }     
+        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
+      }  
     },
     assertEmailFieldCantBeChanged () {
       cy.get('#dwfrm_billing_contactInfoFields_email').should('have.attr', 'disabled');

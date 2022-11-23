@@ -356,12 +356,12 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
-        const australiaLocale: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
-        const otherBrands: GroupBrands[] = ['nastygal.com', 'oasis-stores.com', 'warehousefashion.com'];
+        const australianLocales: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
+        const siteGenesisBrands: Array<GroupBrands> = ['nastygal.com', 'oasis-stores.com', 'warehousefashion.com'];
         
-        if ((variables.brand == 'boohoo.com' && !australiaLocale) || otherBrands.includes(variables.brand)) {
+        if ((variables.brand == 'boohoo.com' && !australianLocales) || siteGenesisBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[variables.language]);
-        }  else if ((variables.brand == 'boohoo.com' && australiaLocale) || variables.brand == 'coastfashion.com') {
+        } else if ((variables.brand == 'boohoo.com' && australianLocales) || variables.brand == 'coastfashion.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);

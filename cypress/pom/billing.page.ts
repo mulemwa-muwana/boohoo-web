@@ -866,7 +866,8 @@ class BillingPage implements AbstractPage {
         if (!error.message.includes('paymentMethodsSection')) {
           throw error;
         }
-      })
+      });
+
       // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
       if (variables.brand == 'nastygal.com') {
         cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');

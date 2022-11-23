@@ -14,6 +14,20 @@ class AssertionText {
     ES: '\n\nSalvado\n'
   };
 
+  startAReturnButtonText: TranslationMap = {
+    EN: 'return',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   startAReturnURLvalidation: TranslationMap = {
     EN: 'return',
     FR: '\n\nEnregistré\n',

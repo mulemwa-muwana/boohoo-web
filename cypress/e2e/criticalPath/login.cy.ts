@@ -4,6 +4,7 @@ import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
+const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 describe('Login Functionality tests', function () {
 
@@ -21,8 +22,8 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with invalid credentials', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, 'invalid12345');
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
+      if (siteGenesisBrands.includes(variables.brand)) {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[variables.language]);
       } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
       }
@@ -32,9 +33,11 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with non-registered mail address', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
-      } else {
+      if (variables.brand == 'coastfashion.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[variables.language]);
+      } else if (variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisCustomer[variables.language]);
+      }else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
       }
     });

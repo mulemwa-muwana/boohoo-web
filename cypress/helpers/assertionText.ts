@@ -448,7 +448,21 @@ class AssertionText {
     ES: 'Tienes 4 intentos más de inicio de sesión'
   };
 
-  loginErrorSiteGenesis: TranslationMap = {
+  loginErrorSiteGenesisCustomer: TranslationMap = {
+    EN: 'Current customer is not found, please check your spelling, or try to reset the password',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  loginErrorSiteGenesisEmailOrPassword: TranslationMap = {
     EN: 'Looks like either your email address or password were incorrect. Please try again.',
     FR: '',
     NL: '',

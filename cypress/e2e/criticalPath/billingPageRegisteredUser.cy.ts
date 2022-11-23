@@ -7,6 +7,7 @@ import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
+import { kebabCase } from 'cypress/types/lodash';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -20,7 +21,7 @@ describe('Billing page functionality for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    if (variables.brand !== 'coastfashion.com') {
+    if (variables.brand !== 'coastfashion.com' && variables.brand != 'karenmillen.com') {
       PdpPage.click.miniCartViewCartBtn();
     }
     if (variables.brand === 'dorothyperkins.com' || variables.brand === 'wallis.co.uk') {
@@ -29,7 +30,7 @@ describe('Billing page functionality for registered user', function () {
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
+      if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand === 'karenmillen.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -55,7 +56,7 @@ describe('Billing page functionality for registered user', function () {
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);
     shippingPage.click.proceedToBilling();
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
+    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand === 'karenmillen.com') {
       shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
@@ -77,7 +78,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
   it('Verify that email address is displayed and it cannot be changed', function () {
-    if (variables.brand !== 'coastfashion.com' && variables.brand !=='oasis-stores.com') {
+    if (variables.brand !== 'coastfashion.com' && variables.brand !=='oasis-stores.com' && variables.brand != 'karenmillen.com') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         BillingPage.assertions.assertEmailIsCorrect(credentials.username);
       });
@@ -85,13 +86,13 @@ describe('Billing page functionality for registered user', function () {
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
+    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
+    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.click.uncheckShippingCheckbox();
@@ -99,7 +100,7 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that registered user can add  new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
+    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();

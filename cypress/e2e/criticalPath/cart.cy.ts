@@ -15,7 +15,7 @@ describe('Cart basic functionality for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(2000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
       PdpPage.click.miniCartViewCartBtn();
     }
   }); 
@@ -38,7 +38,7 @@ describe('Cart basic functionality for guest user', function () {
     if (variables.brand == 'boohoo.com') {
       CartPage.actions.editCartQuantity('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'karenmillen.com') {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
     } else {
@@ -65,7 +65,7 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPayPalCTAisVisible();
     CartPage.actions.openPayPalSandbox(); 
   });
-  if (['boohoo.com', 'burton.co.uk', 'nastygal.com', 'coastfashion.com', 'oasis-stores.com'].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
+  if (['boohoo.com', 'burton.co.uk', 'nastygal.com', 'coastfashion.com', 'oasis-stores.com', 'karenmillen.com'].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
     it('Verify that Klarna CTA is displayed and functional', function () {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox();

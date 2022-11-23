@@ -84,6 +84,20 @@ class AssertionText {
     ES: ''
   };
 
+  WishlistLoginTitleKarenMillen: TranslationMap = {
+    EN: 'Wish List Log In',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don’t forget about me!',  
     FR: 'Ne m/’oublie pas!',
@@ -982,6 +996,20 @@ class AssertionText {
 
   privacyPolicySiteGenesis: TranslationMap = {
     EN: 'Privacy Notice - Updated August 2022',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  privacyPolicySiteKarenMillen: TranslationMap = {
+    EN: 'Privacy Notice - updated August 2022',
     NL: '',
     DE: '',
     FR: '',

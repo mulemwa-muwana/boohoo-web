@@ -546,7 +546,7 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
         cy.get(shippingCheckbox).click();
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
@@ -617,7 +617,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -827,7 +827,7 @@ class BillingPage implements AbstractPage {
       cy.get('button[data-test-id="payment-complete-order-button"]').click();
     },
     selectClearpay () {
-      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });
         cy.get('#billingSubmitButton').click({ force: true });
       } else {
@@ -905,7 +905,7 @@ class BillingPage implements AbstractPage {
     },
     assertSameAsShippingIsChecked () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
         cy.get(shippingCheckbox).should('have.class', 'is-checked');
       } else {
         cy.get(shippingCheckbox).should('be.checked');
@@ -978,7 +978,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (variables.brand == 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

@@ -172,7 +172,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
   });
 
-  it('Verify that PUDO locations are dispayed', function () {
+  it.skip('Verify that PUDO locations are dispayed', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     if (variables.brand == 'boohoo.com') {
       shippingPage.click.addNewAddress();

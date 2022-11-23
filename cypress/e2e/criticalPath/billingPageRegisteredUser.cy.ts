@@ -131,7 +131,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
     if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-    } 
+    }
 
     if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();

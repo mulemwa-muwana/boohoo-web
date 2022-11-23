@@ -7,7 +7,7 @@ import PdpPage from '../../pom/pdp.page';
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Cart basic functionality for guest user', function () {
-  beforeEach (() =>{
+  beforeEach(() => {
 
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
@@ -18,8 +18,8 @@ describe('Cart basic functionality for guest user', function () {
     if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
       PdpPage.click.miniCartViewCartBtn();
     }
-  }); 
-  it('Verify the presence of table with all products added to cart', function () {   
+  });
+  it('Verify the presence of table with all products added to cart', function () {
     CartPage.assertions.assertTableWithProductIsVisible();
   });
   it('Verify that Product Image is visible', function () {
@@ -51,11 +51,16 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertCartIsEmpty();
   });
 
-  if (['boohoo.com', 'nastygal.com', 'dorothyperkins.com', 'coastfashion.com'].includes(variables.brand) && variables.locale == 'UK') {
-    it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
+  it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
+    const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
+    const includededBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
       CartPage.assertions.assertPremierSlotsAreVisible();
-    });
-  }
+    } else if (includededBrands.includes(variables.brand) && variables.locale == 'UK') {
+      CartPage.assertions.assertPremierSlotsAreVisible();
+    }
+  });
+  
   it('Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
     cy.wait(5000);
     CartPage.click.proceedToCheckout();
@@ -63,7 +68,7 @@ describe('Cart basic functionality for guest user', function () {
   });
   it('Verify that PayPal CTA is displayed and functional', function () {
     CartPage.assertions.assertPayPalCTAisVisible();
-    CartPage.actions.openPayPalSandbox(); 
+    CartPage.actions.openPayPalSandbox();
   });
   if (['boohoo.com', 'burton.co.uk', 'nastygal.com', 'coastfashion.com', 'oasis-stores.com', 'karenmillen.com'].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
     it('Verify that Klarna CTA is displayed and functional', function () {
@@ -81,25 +86,25 @@ describe('Cart basic functionality for guest user', function () {
 });
 
 describe('Cart page for Registered user', function () {
-  beforeEach (()=>{
+  beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;
 
     HomePage.goto();
 
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      LoginPage.actions.login(credentials.username, credentials.password); 
+      LoginPage.actions.login(credentials.username, credentials.password);
       cy.wait(5000);
 
       // HomePage.click.cartIcon();  
       // CartPage.click.clearCart();
     });
-  
+
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize();
     PdpPage.click.addToCart();
     HomePage.click.cartIcon();
-  }); 
+  });
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
     CartPage.click.proceedToCheckout();
     CheckoutPage.assertions.assertUserProceededToShippingPage();

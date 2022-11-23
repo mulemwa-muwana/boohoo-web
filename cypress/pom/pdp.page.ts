@@ -353,7 +353,7 @@ class PdpPage implements AbstractPage {
       const productDescription = selectors[variables.brand].productDescription;
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
-    assertDeliveryInfoIsDisplayed (text: string) {
+    assertDeliveryInfoIsDisplayed () {
       const productDelivery = selectors[variables.brand].productDelivery;
      
       if (variables.brand == 'boohoo.com' && variables.locale != 'UK') {

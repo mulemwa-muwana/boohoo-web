@@ -7,7 +7,7 @@ import assertionText from 'cypress/helpers/assertionText';
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Checkout Page', function () {
-  
+
   beforeEach(() => {
     const variables = Cypress.env() as EnvironmentVariables;
     HomePage.goto();
@@ -36,11 +36,15 @@ describe('Checkout Page', function () {
 
   if (variables.brand != 'coastfashion.com') {
     it('Verify Premier is displayed and can be added to the cart', () => {
-      if (variables.brand == 'boohoo.com') {
+      const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
+      const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+      if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
         CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
         CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
-      } else if (variables.brand == 'nastygal.com' && variables.locale == 'UK') {
-        CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
+
+      } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
+        CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.PremierNG[variables.language]);
+        CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
       }
     });
   }
@@ -62,6 +66,5 @@ describe('Checkout Page', function () {
       CheckoutPage.click.continueAsGuestBtn();
     });
   });
-
 });
 

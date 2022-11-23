@@ -7,7 +7,6 @@ import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
-import { kebabCase } from 'cypress/types/lodash';
 
 const variables = Cypress.env() as EnvironmentVariables;
 

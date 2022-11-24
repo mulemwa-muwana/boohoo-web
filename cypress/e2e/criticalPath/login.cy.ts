@@ -21,7 +21,7 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with invalid credentials', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, 'invalid12345');
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
       } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
@@ -32,7 +32,7 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with non-registered mail address', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
       } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);

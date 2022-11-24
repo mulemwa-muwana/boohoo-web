@@ -47,6 +47,11 @@ describe('Billing page functionality for guest user', function () {
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
+    if (variables.brand == 'karenmillen.com') {
+      shippingPage.actions.selectDate('23', 'May', '2001');
+      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.click.proceedToBilling();
+    }
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);

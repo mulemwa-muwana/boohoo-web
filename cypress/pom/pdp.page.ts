@@ -134,7 +134,32 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.b-header_wishlist'
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    searchField: '#header-search-input',
+    addToCart: '#add-to-cart',
+    addToWishListButton: '.wishlist-button',
+    shippingInfoButton: '#product-details-btn-shipping',
+    returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
+    shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
+    selectColor: '.swatches.color',
+    sizeVariations: '.swatches.size',
+    productTitle: '.product-detail > h1.product-name',
+    productCode: '.product-number > [itemprop="sku"]',
+    productPrice: '.product-price',
+    colorSwatches: '.swatches.color',
+    productImage: '#product-image-0',
+    addToCartTitle: '.mini-cart-header-product-added',
+    miniCartProductIner: '.mini-cart-product',
+    productDescription: '#ui-id-2 > p',
+    productDelivery: '.b-product_delivery',
+    productReturnsDescription: '#ui-id-5',
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+    productDeliveryInfo: '#product-delivery-info-tab'
+  },
   'coastfashion.com': {
     searchField: '#header-search-input',
     addToCart: '#add-to-cart',
@@ -257,7 +282,7 @@ class PdpPage implements AbstractPage {
     },
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
         cy.get(sizeVariations).find('li > span').each(($element) => {
           if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');

@@ -128,7 +128,30 @@ const selectors: SelectorBrandMap = {
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    lengthRefinement: '#searchRefineBarAccordionItemBtn-length > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: '.search-result-options [title="Next"]',
+    numberOfPagesTextIsVisible: '.search-result-options select[class*="pagination-select"]',
+    productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
+    newProductPriceIsDispayed: '.product-pricing .product-sales-price',
+    productPriceIsDispayed: '.product-pricing .product-standard-price',
+    productImageIsDisplayed: '.thumb-link img',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    productNameIsDisplayed: '.product-tile-name > .name-link',
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
+  },
   'coastfashion.com': {
     styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
     sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
@@ -301,7 +324,7 @@ class PlpPage implements AbstractPage {
     },
     assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
         const numberOfPagesTextIsVisible = selectors[variables.brand].numberOfPagesTextIsVisible;
         cy.get(numberOfPagesTextIsVisible).should('be.visible');
       } else {

@@ -28,8 +28,6 @@ const selectors: SelectorBrandMap = {
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     addedToWishlistMsg: '.b-message',
     wishListIcon: '.b-header_wishlist'
-    
-    // ViewCart: '.b-minicart-actions > .m-outline',
   },
   'nastygal.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',

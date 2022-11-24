@@ -13,6 +13,7 @@ describe('Cart basic functionality for guest user', function () {
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize();
+    cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(2000);
     HomePage.click.cartIcon();
@@ -36,14 +37,11 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
   it('Verify that user can update quantity of products', function () {
-    if (variables.brand == 'boohoo.com') {
-      CartPage.actions.editCartQuantity('3');
-      CartPage.assertions.assertQuantityIsDisplayed('3');
-    } else if (siteGenesisBrands.includes(variables.brand)) {
+    if (siteGenesisBrands.includes(variables.brand)) {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
     } else {
-      CartPage.actions.editCartQuantityArkadia(2);
+      CartPage.actions.editCartQuantity('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
     }
   });

@@ -101,7 +101,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.selectCountry(localeAddress.country);
     }
     shippingPage.click.addAddressManually();
-    shippingPage.assertions.assertManualAddressFieldsAreDispayed();
+    shippingPage.assertions.assertManualAddressFieldsAreDisplayed();
   });
 
   // }

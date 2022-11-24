@@ -39,7 +39,7 @@ describe('Boohoo order placement', () => {
     if (['oasis-stores.com', 'coastfashion.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com', 'boohooman.com'].includes(variables.brand)) {
       ShippingPage.click.proceedToBillingVerificationAndWaitBillingPageToLoad();
     } else {
-      BillingPage.assertions.assertBillingPageIsLoaded();
+      BillingPage.actions.waitPageToLoad();
     }
   });
 

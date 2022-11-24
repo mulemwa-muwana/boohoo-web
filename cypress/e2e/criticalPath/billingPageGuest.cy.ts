@@ -59,7 +59,7 @@ describe('Billing page functionality for guest user', function () {
       cy.wait(3000);
     } 
     shippingPage.click.proceedToBilling();
-    BillingPage.assertions.assertBillingPageIsLoaded();
+    BillingPage.actions.waitPageToLoad();
   });
 
   it('Verify that shipping address block is filled with data', function () {

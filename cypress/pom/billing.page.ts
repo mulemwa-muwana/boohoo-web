@@ -565,6 +565,9 @@ class BillingPage implements AbstractPage {
   };
 
   actions = {
+    waitPageToLoad () {
+      cy.wait(12000);
+    },
     selectDate (day: string, month: string, year: string) {
       const dobDate = selectors[variables.brand].dobDate;
       const dobMonth = selectors[variables.brand].dobMonth;
@@ -859,24 +862,6 @@ class BillingPage implements AbstractPage {
   };
 
   assertions = {
-    assertBillingPageIsLoaded () {
-
-      // If cy.wait() fails - continue with test
-      cy.on('fail', (error) => {
-        if (!error.message.includes('paymentMethodsSection')) {
-          throw error;
-        }
-      });
-
-      // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
-      if (variables.brand == 'nastygal.com') {
-        cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');
-      } else {
-        cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
-      }
-      cy.wait('@paymentMethodsSection', { timeout: 12000 }).its('response.statusCode').should('eq', 200);
-      cy.wait(1000);
-    },
     assertShippingAddressPresent () {
       const shippingAddressSection = selectors[variables.brand].shippingAddressSection;
       cy.get(shippingAddressSection).should('be.visible').and('not.be.empty');

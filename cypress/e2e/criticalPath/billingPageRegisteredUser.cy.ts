@@ -58,7 +58,7 @@ describe('Billing page functionality for registered user', function () {
     if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
       shippingPage.click.proceedToBillingVerification();
     }
-    BillingPage.assertions.assertBillingPageIsLoaded();
+    BillingPage.actions.waitPageToLoad();
   });
 
   it('Verify that shipping address block is filled with data', function () {

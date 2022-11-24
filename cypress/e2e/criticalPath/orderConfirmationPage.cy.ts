@@ -49,7 +49,7 @@ describe('Order confirmation page for guest user', function () {
       } else {
         shippingPage.click.proceedToBilling();
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-        BillingPage.assertions.assertBillingPageIsLoaded();
+        BillingPage.actions.waitPageToLoad();
       }
     });
 
@@ -127,7 +127,7 @@ describe('Order confirmation page for registered user', function () {
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.click.proceedToBillingVerification();
     }
-    BillingPage.assertions.assertBillingPageIsLoaded();
+    BillingPage.actions.waitPageToLoad();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
 
     /* If (variables.brand == 'boohoo.com') {

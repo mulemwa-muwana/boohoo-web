@@ -336,6 +336,20 @@ class AssertionText {
     ES: ''
   };
 
+  PremierWarehouse: TranslationMap = {
+    EN: 'WAREHOUSE LIMITLESS',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PremierText: TranslationMap = {
     EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
     FR: 'LIVRAISON STANDARD ILLIMITÉE PENDANT UN AN!',

@@ -56,7 +56,7 @@ describe('Billing page functionality for registered user', function () {
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);
     // ShippingPage.click.proceedToBilling();
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com') {
+    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand === 'karenmillen.com') {
       shippingPage.click.proceedToBillingVerification();
     }
 

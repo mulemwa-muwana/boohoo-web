@@ -17,7 +17,9 @@ const selectors: SelectorBrandMap = {
     termsAndConditionsPageTitle: '.l-static_page-title',
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    termsAndConditionsPageTitle: '#primary > div > h1',
+  },
   'coastfashion.com': {
     termsAndConditionsPageTitle: '.cs-terms-of-use > h1',
   },

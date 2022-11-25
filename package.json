@@ -10,6 +10,7 @@
       "cy:open:nastygal": "cypress open --config-file ./config/nastygal/cypress.nastygal.uk.config.ts",
       "cy:open:misspap": "cypress open --config-file ./config/misspap/cypress.misspap.uk.config.ts",
       "cy:open:boohooman": "cypress open --config-file ./config/boohooman/cypress.boohooman.uk.config.ts",
+      "cy:open:karenmillen": "cypress open --config-file ./config/karenmillen/cypress.karenmillen.uk.config.ts",
 
     "//": "CYPRESS RUN",
       "cy:run:boohoo": "cypress run --config-file ./config//boohoo/cypress.boohoo.uk.config.ts",
@@ -21,6 +22,7 @@
       "cy:run:nastygal": "cypress run --config-file ./config/nastygal/cypress.nastygal.uk.config.ts",
       "cy:run:misspap": "cypress run --config-file ./config/misspap/cypress.misspap.uk.config.ts",
       "cy:run:boohooman": "cypress run --config-file ./config/boohooman/cypress.boohooman.uk.config.ts",
+      "cy:run:karenmillen": "cypress run --config-file ./config/karenmillen/cypress.karenmillen.uk.config.ts",
     "//": "LINT",
       "lint": "eslint . --ext .ts",
       "lint:fix": "eslint . --ext .ts --fix",

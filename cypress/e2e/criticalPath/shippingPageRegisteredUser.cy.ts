@@ -11,8 +11,8 @@ import billingPage from 'cypress/pom/billing.page';
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Shipping Page Registered user tests', function () {
-  
-  beforeEach (()=>{
+
+  beforeEach(() => {
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     cy.wait(3000);
@@ -22,29 +22,28 @@ describe('Shipping Page Registered user tests', function () {
     cy.wait(3000);
     HomePage.click.cartIcon();
     cy.wait(3000);
-    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
       pdpPage.click.miniCartViewCartBtn();
     }
     cartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       checkoutPage.actions.userEmailField(credentials.username);
-
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
         checkoutPage.click.continueAsRegisteredUser();
       }
       checkoutPage.actions.passwordField(credentials.password);
       checkoutPage.click.continueAsRegisteredUser();
     });
   });
-  
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com'  && variables.brand != 'misspap.com') {
+
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com'  && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
     it('Verify that promo code field is dispayed', () => {
       shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     });
   }
-  
+
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'AU') {
       shippingPage.actions.selectCountry(localeAddress.countryCode); // Can't select
@@ -64,16 +63,16 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
     if (variables.locale != 'IE' && variables.locale != 'AU') {
       shippingPage.click.proceedToBilling();
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
         shippingPage.click.proceedToBillingVerification();
       }
       cy.wait(4000);
       shippingPage.assertions.assertUserProceededToBillingPage();
-    }   
+    }
   });
 
   it('Verify that user can edit saved shipping address', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.editAddress();
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
@@ -88,9 +87,9 @@ describe('Shipping Page Registered user tests', function () {
     }
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       shippingPage.click.proceedToBillingVerification();
-    } 
+    }
     billingPage.assertions.assertBillingPageIsLoaded();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
@@ -101,7 +100,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that Add new address button allows user to add address details', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'IE') {
       shippingPage.actions.selectCountry(localeAddress.country);
@@ -111,28 +110,28 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
@@ -153,7 +152,7 @@ describe('Shipping Page Registered user tests', function () {
 
   // If (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
   it('Verify that "Enter manually" button allows user to enter address details', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     if (variables.brand == 'boohoo.com') {
       shippingPage.click.addNewAddressButton();
 
@@ -172,7 +171,7 @@ describe('Shipping Page Registered user tests', function () {
   // }
 
   it('Verify that user is able to add address details manually', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -191,7 +190,7 @@ describe('Shipping Page Registered user tests', function () {
       if (variables.locale == 'AU') {
         shippingPage.actions.stateField(localeAddress.county);
       }
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -201,31 +200,35 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
-    }   
+    }
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       shippingPage.click.proceedToBillingVerification();
-    } 
+    }
     billingPage.assertions.assertBillingPageIsLoaded();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
 
-  it('Verify that PREMIER can be added to the cart', () => {
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.click.addPremierToCartFromShippingPage();
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
-    } else if (variables.brand == 'nastygal.com' && variables.locale == 'UK') {
-      shippingPage.click.addPremierToCartFromShippingPage();
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
-    } else if (variables.brand == 'coastfashion.com'|| variables.brand != 'oasis-stores.com') {
-      shippingPage.click.addPremierToCartFromShippingPage();
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
-    }
-  });
+  if (variables.brand != 'oasis-stores.com') {
+    it('Verify that PREMIER can be added to the cart', () => {
+      const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
+      const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+      if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
+        shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
+        shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
+      } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
+        shippingPage.click.addPremierToCartFromShippingPage();
+        shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
+      } else if (variables.brand == 'coastfashion.com' || variables.brand != 'karenmillen.com') {
+        shippingPage.click.addPremierToCartFromShippingPage();
+        shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
+      }
+    });
+  }
 
   it('Verify that user is able to select standard shipping method', () => {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -244,7 +247,7 @@ describe('Shipping Page Registered user tests', function () {
       if (variables.locale == 'AU') {
         shippingPage.actions.stateField(localeAddress.county);
       }
-    } else if (variables.brand == 'coastfashion.com' || variables.brand != 'oasis-stores.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -254,7 +257,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
-    } 
+    }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
     billingPage.assertions.assertBillingPageIsLoaded();
@@ -276,7 +279,7 @@ describe('Shipping Page Registered user tests', function () {
 
   it('Verify that user is able to proceed to billing page', () => {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -295,15 +298,15 @@ describe('Shipping Page Registered user tests', function () {
       if (variables.locale == 'AU') {
         shippingPage.actions.stateField(localeAddress.county);
       }
-    } else if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' && variables.locale != 'EU') {
+    } else if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'karenmillen.com' && variables.locale != 'EU') {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       shippingPage.actions.adressLine1(localeAddress.addrline1);
       shippingPage.actions.cityField(localeAddress.city);
-    
+
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
     }

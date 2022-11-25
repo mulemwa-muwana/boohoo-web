@@ -5,11 +5,12 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@no-dwstg.boohoo.com/',
-    sku: '#DZZ79497',
-    brand: 'boohoo.com',
-    locale: 'NO',
-    language: 'EN',
+    url: 'https://storefront:Oreo2022@stg.karenmillen.com', 
+    sku: 'AKK99751-152',
+    fullSKU: 'AKK99751-152-22',
+    brand: 'karenmillen.com',
+    locale: 'UK',
+    language: 'EN'
   },
 
   viewportHeight: 1080,
@@ -18,11 +19,15 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
-
+  
   e2e: {
-    setupNodeEvents (on, config) {
+    experimentalSessionAndOrigin: true,
+    setupNodeEvents (on) {
       plugins(on);
     },
+
+    numTestsKeptInMemory: 0
   },
-  numTestsKeptInMemory: 0
+
 });
+

@@ -18,7 +18,9 @@ const selectors: SelectorBrandMap = {
     privacyNoticyPageTitle: '.l-static_page-title',
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    privacyNoticyPageTitle: 'h1 > strong',
+  },
   'coastfashion.com': {
     privacyNoticyPageTitle: 'h1 > strong',
   },

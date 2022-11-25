@@ -75,16 +75,16 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.b-message-copy'
   },
   'karenmillen.com': {
-    loginIcon: '.b-header_login-icon > .i-icon',
+    loginIcon: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.js-header-right-box.header-right-box > div.header-customerinfo.hidden-on-mobile.js-appshell-uncached-headercustomerinfo-container > div > div > div > div > a:nth-child(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
-    forgotPassword: '#password-reset',
+    forgotPassword: '.password-reset', 
     forgotPasswordMessage: '.b-dialog-window',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
+    resetPasswordEmailField: '#dwfrm_requestpassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner',
-    errorLoginMessage: '.b-message-copy'
+    loginForm: '#dwfrm_login',
+    errorLoginMessage: '.error-form'
   },
   'coastfashion.com': {
     loginIcon: '.user-account',
@@ -160,7 +160,7 @@ class LoginPage implements AbstractPage {
   click = {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
         cy.get(loginIcon).invoke('show');
       } else {
         cy.get(loginIcon).click({ force: true });
@@ -194,7 +194,7 @@ class LoginPage implements AbstractPage {
  
     assertForgotPasswordMessageisDisplayed (email: string) {
       const forgotPasswordMessage = selectors[variables.brand].forgotPasswordMessage;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
         cy.get(forgotPasswordMessage).should('be.visible');
       } else {
         cy.get(forgotPasswordMessage).should('be.visible').and('contain', email);

@@ -84,6 +84,20 @@ class AssertionText {
     ES: ''
   };
 
+  WishlistLoginTitleKarenMillen: TranslationMap = {
+    EN: 'Wish List Log In',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don’t forget about me!',  
     FR: 'Ne m/’oublie pas!',
@@ -225,7 +239,7 @@ class AssertionText {
   };
 
   TermsAndConditionsH1: TranslationMap = {
-    EN: 'Terms & Conditions',
+    EN: '\n                Terms & conditions\n            ',
     FR: '',
     NL: '',
     DE: '',
@@ -268,7 +282,7 @@ class AssertionText {
 
   Premier: TranslationMap = {
     EN: ' \n\n                        .b-ngvip-title {\n                        \n                            letter-spacing: 10px;\n                        \n                        }\n                        \n                        \n                        PREMIER\n                    ',
-    FR: '\nENSIMMÄINEN\n',
+    FR: 'PREMIER',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
     DK: '\nFØRST\n',
@@ -283,6 +297,20 @@ class AssertionText {
   PremierNG: TranslationMap = {
     EN: 'NGVIP',
     FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  AddPremierToCartButton: TranslationMap = {
+    EN: 'PREMIER',
+    FR: 'AJOUTER AU PANIER',
     NL: '',
     DE: '',
     DK: '',
@@ -310,7 +338,7 @@ class AssertionText {
 
   PremierText: TranslationMap = {
     EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
-    FR: '\nLIVRAISON GRATUITE LE LENDEMAIN PENDANT 1 AN !\n',
+    FR: 'LIVRAISON STANDARD ILLIMITÉE PENDANT UN AN!',
     NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
     DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',
     DK: '\nGRATIS NÆSTE DAG LEVERING I 1 ÅR!\n',
@@ -996,6 +1024,20 @@ class AssertionText {
 
   privacyPolicySiteGenesis: TranslationMap = {
     EN: 'Privacy Notice - Updated August 2022',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  privacyPolicySiteKarenMillen: TranslationMap = {
+    EN: 'Privacy Notice - updated August 2022',
     NL: '',
     DE: '',
     FR: '',

@@ -47,7 +47,7 @@ class Addresses {
         country: 'United States',
         city: 'New York',
         countryCode: 'US',
-        county: 'NY',
+        county: 'Alabama',
         confirmEmail: ''
       },
       secondaryAddress:  {

@@ -19,15 +19,17 @@ describe('Account page', function () {
   });
 
   // Order History test cases
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
     it('TC01 Verify that user is able to view order details', function () {
-      MyAccountPage.actions.viewNewestOrderHistory();
-      MyAccountPage.assertions.assertOrderDetailsContent();
+      if (variables.brand == 'nastygal.com' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
+        MyAccountPage.actions.viewNewestOrderHistory(); 
+      }
+      MyAccountPage.assertions.assertLoadedOrders();
     });
   }
   it('TC02 Verify that Order history page works as expected', function () {
     MyAccountPage.click.orderHistoryLink();
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       MyAccountPage.assertions.assertOrderHistoryPageTitle('order-history');
     } else {
       MyAccountPage.assertions.assertOrderHistoryPageTitle('orders');
@@ -39,7 +41,7 @@ describe('Account page', function () {
   });
 
   // My Acount Details test cases
-  if (variables.brand != 'coastfashion.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'karenmillen.com') {
     it('TC04 Verify that account details display correct email', function () {
       MyAccountPage.click.accountDetailsLink();
       cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -50,7 +52,7 @@ describe('Account page', function () {
   it('TC05 Verify that account details are editable', function () {
     MyAccountPage.click.accountDetailsLink();
     MyAccountPage.actions.updateAccountName('Test');
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       MyAccountPage.assertions.assertAccountEditedSuccessfulPopup();
     } else {
       MyAccountPage.assertions.assertNameGreetingMessage('TEST');

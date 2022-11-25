@@ -55,7 +55,16 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.user-account',
+    registrationButton: 'a[title="Register"]',
+    wishListIcon: '.icon-wishlist-bold',
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link'
+  },
   'coastfashion.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
@@ -91,7 +100,7 @@ class HomePage implements AbstractPage {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }

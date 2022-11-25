@@ -19,8 +19,7 @@ describe('Billing page functionality for guest user', function () {
     });
   });
   
-  beforeEach (function () {
-  
+  beforeEach (function () { 
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
@@ -48,6 +47,11 @@ describe('Billing page functionality for guest user', function () {
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
+    if (variables.brand == 'karenmillen.com') {
+      shippingPage.actions.selectDate('23', 'May', '2001');
+      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.click.proceedToBilling();
+    }
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
@@ -58,12 +62,18 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.selectState(localeAddress.county);
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
+<<<<<<< HEAD
       shippingPage.actions.selectDate('23', '3', '2001');
     } else {
       shippingPage.click.proceedToBilling();
     }
 
     // BillingPage.assertions.assertBillingPageIsLoaded();  // removed because of US locale, will uncomment after it starts working
+=======
+    } 
+    shippingPage.click.proceedToBilling();
+    BillingPage.assertions.assertBillingPageIsLoaded();
+>>>>>>> master
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -113,9 +123,14 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
     } else {
       BillingPage.actions.emptyEmailField();
+<<<<<<< HEAD
       BillingPage.actions.selectDate('23', '4', '2001');
 
       // BillingPage.click.chooseCC(); // removed because of US locale, will uncomment after it starts working
+=======
+      BillingPage.actions.selectDate('23', '2', '2001');
+      BillingPage.click.chooseCC();
+>>>>>>> master
     }
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[variables.language]);
@@ -151,14 +166,18 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode, localeAddress.postcode);
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
+<<<<<<< HEAD
       BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
       if (variables.locale == 'US' || variables.locale == 'AU') {
         shippingPage.actions.selectState(localeAddress.county);
       }
+=======
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.county, localeAddress.postcode);
+>>>>>>> master
     }
   });
 

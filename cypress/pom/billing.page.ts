@@ -41,6 +41,8 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingAddressCountry: '',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -89,6 +91,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -140,6 +143,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -191,6 +195,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -242,6 +247,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
+    billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -545,7 +551,7 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
         cy.get(shippingCheckbox).click();
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
@@ -616,7 +622,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -628,14 +634,25 @@ class BillingPage implements AbstractPage {
       const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string, countryCode: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
       const billingPostCode = selectors[variables.brand].billingPostCode;
+      const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
-      cy.get(billingPostCode).type(postcode);
+      if (variables.locale == 'AU') {
+        cy.get(billingAddressFieldsStateCode).select(state);
+      } else {
+        cy.get(billingAddressFieldsStateCode).clear().type(state);
+      }
+      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
+      } else {
+        cy.get(billingPostCode).clear().type(postcode);
+      }
+      
     },
     addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
@@ -816,7 +833,7 @@ class BillingPage implements AbstractPage {
       cy.get('button[data-test-id="payment-complete-order-button"]').click();
     },
     selectClearpay () {
-      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });
         cy.get('#billingSubmitButton').click({ force: true });
       } else {
@@ -894,7 +911,7 @@ class BillingPage implements AbstractPage {
     },
     assertSameAsShippingIsChecked () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
         cy.get(shippingCheckbox).should('have.class', 'is-checked');
       } else {
         cy.get(shippingCheckbox).should('be.checked');
@@ -967,13 +984,11 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (variables.brand == 'coastfashion.com') {
+      } else if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
-        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       } else {
-        cy.url({timeout: 30000}).should('include', 'order-confirmation');
-      }     
+        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
+      }  
     },
     assertEmailFieldCantBeChanged () {
       cy.get('#dwfrm_billing_contactInfoFields_email').should('have.attr', 'disabled');

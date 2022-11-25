@@ -129,7 +129,7 @@ class HomePage implements AbstractPage {
     },
     registrationButton () {
       const registrationButton = selectors[variables.brand].registrationButton;
-      if(variables.brand == 'misspap.com') {
+      if (variables.brand == 'misspap.com') {
         cy.get('#dwfrm_login_register > fieldset > .form-row > .login-page-button').click({force:true});
       }
       cy.get(registrationButton).click({force:true});

@@ -622,7 +622,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com'  && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
+      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
         cy.get(enterManually).click({force: true});
       }
     },

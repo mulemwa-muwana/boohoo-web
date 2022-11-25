@@ -36,7 +36,7 @@ describe('Shipping Page Registered user tests', function () {
     });
   });
 
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com'  && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
     it('Verify that promo code field is dispayed', () => {
       shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     });

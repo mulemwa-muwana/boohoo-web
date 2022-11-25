@@ -634,7 +634,7 @@ class BillingPage implements AbstractPage {
       const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, countryCode: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
       const billingPostCode = selectors[variables.brand].billingPostCode;

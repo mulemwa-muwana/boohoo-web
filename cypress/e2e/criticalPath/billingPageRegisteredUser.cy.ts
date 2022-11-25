@@ -29,7 +29,7 @@ describe('Billing page functionality for registered user', function () {
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand === 'karenmillen.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -55,7 +55,7 @@ describe('Billing page functionality for registered user', function () {
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);
     shippingPage.click.proceedToBilling();
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand === 'karenmillen.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.assertions.assertBillingPageIsLoaded();
@@ -77,7 +77,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
   it('Verify that email address is displayed and it cannot be changed', function () {
-    if (variables.brand !== 'coastfashion.com' && variables.brand !=='oasis-stores.com' && variables.brand != 'karenmillen.com') {
+    if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com' && variables.brand !='misspap.com' && variables.brand != 'karenmillen.com') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         BillingPage.assertions.assertEmailIsCorrect(credentials.username);
       });
@@ -85,13 +85,13 @@ describe('Billing page functionality for registered user', function () {
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.click.uncheckShippingCheckbox();

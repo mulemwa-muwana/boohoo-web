@@ -206,24 +206,25 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a' 
   },
   'misspap.com': {
-    productsTable: '.b-cart_products',
-    productImage: '.l-cart_product-image',
-    productPrice: '.l-cart_product-total',
-    subtotal: '.m-total > .b-summary_table-value',
-    cartQuantity: '.b-cart_product-qty',
-    editQuantity: 'button[data-tau="cart_product_edit"]',
+    productsTable: '#cart-table',
+    productImage: '[class*="item-image"] img[class*="product-tile-image"]',
+    productPrice: '[class*="item-price"]',
+    subtotal: '.order-subtotal > :nth-child(2)',
+    cartQuantity: '.cart-input-quantity',
+    editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
-    premierBlock: '.m-with_actions',
-    addPremierToCart: 'button[data-tau="product_addToCart"]',
-    PayPalCTA: '.zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button-0',
+    premierBlock: '[data-itemid="coastvip"]',
+    addPremierToCart: '#quickviewbutton',
+    PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
-    clearCart: '.b-cart_product-remove',
-    emptyCartTitle: '.b-cart_empty-title',
-    productDetails: '.l-cart_product-details',
-    productName: 'a[class="b-cart_product-name"]',
+    clearCart: '[class*="button-remove"]',
+    emptyCartTitle: '.cart-empty-title',
+    productDetails: '.variations',
+    productName: '.name > a',
+    updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63'
   }
 };
 
@@ -343,7 +344,7 @@ class CartPage implements AbstractPage {
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'karenmillen.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'karenmillen.com') {
         cy.get(cartQuantity).should('have.value', quantity);
       } else {
         cy.get(cartQuantity).should('contain', quantity);

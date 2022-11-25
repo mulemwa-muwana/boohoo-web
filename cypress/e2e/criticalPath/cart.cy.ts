@@ -38,7 +38,7 @@ describe('Cart basic functionality for guest user', function () {
     if (variables.brand == 'boohoo.com') {
       CartPage.actions.editCartQuantity('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'karenmillen.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'karenmillen.com') {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
     } else {

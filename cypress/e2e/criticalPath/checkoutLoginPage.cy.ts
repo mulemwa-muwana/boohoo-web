@@ -25,7 +25,7 @@ describe('Checkout Page', function () {
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       CheckoutPage.assertions.assertUserEmailField();
     } else {
       CheckoutPage.assertions.assertGuestCheckoutEmail();

@@ -225,7 +225,7 @@ class AssertionText {
   };
 
   PrivacyNoticeMisspap: TranslationMap = {
-    EN: 'privacy notice',
+    EN: 'Privacy & Security',
     FR: 'Avis de confidentialité',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
@@ -293,21 +293,6 @@ class AssertionText {
     IT: '',
     ES: ''
   };
-
-  TermsAndConditionsSiteMisspap: TranslationMap = {
-    EN: 'Help & info',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
 
   Premier: TranslationMap = {
     EN: ' \n\n                        .b-ngvip-title {\n                        \n                            letter-spacing: 10px;\n                        \n                        }\n                        \n                        \n                        PREMIER\n                    ',

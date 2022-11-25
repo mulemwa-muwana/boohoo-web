@@ -170,13 +170,10 @@ describe('Home Page', function () {
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsH1[variables.language]);
           TermsAndConditionsPage.assertions.assertOnPage('terms-and-conditions');
-        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsSiteGenesisH1[variables.language]);
           TermsAndConditionsPage.assertions.assertOnPage('terms-of-use');
-        } else if(variables.brand == 'misspap.com') {
-          TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsSiteMisspap[variables.brand]);
-          TermsAndConditionsPage.assertions.assertOnPage('terms-of-use');
-        }else {
+        } else {
           TermsAndConditionsPage.assertions.assertTermsAndConditionsPageOpens(assertionText.TermsAndConditionsArcadiaH1[variables.language]);
           TermsAndConditionsPage.assertions.assertOnPage('cs-terms-and-conditions');
         }

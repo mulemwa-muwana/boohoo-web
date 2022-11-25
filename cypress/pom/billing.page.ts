@@ -411,7 +411,7 @@ const selectors: SelectorBrandMap = {
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
-    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
+    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
     billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
@@ -531,6 +531,7 @@ const selectors: SelectorBrandMap = {
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
+const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 class BillingPage implements AbstractPage {
   goto (): void {
     cy.visit('/checkout?step=billing');
@@ -551,8 +552,8 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-        cy.get(shippingCheckbox).click();
+      if (siteGenesisBrands.includes(variables.brand)) {
+        cy.get(shippingCheckbox).click({force:true});
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
       }
@@ -625,7 +626,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+      if (!siteGenesisBrands.includes(variables.brand)) {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -820,7 +821,7 @@ class BillingPage implements AbstractPage {
     },
     selectLaybuy () {
       cy.wait(5000);
-      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
+      if (siteGenesisBrands.includes(variables.brand)) {
         cy.get('[for="is-LAYBUY"]', { timeout: 30000 }).should('be.visible').click({ force: true });
         cy.get('#billingSubmitButton', { timeout: 30000 }).click({ force: true });
       } else {
@@ -835,7 +836,7 @@ class BillingPage implements AbstractPage {
       cy.get('button[data-test-id="payment-complete-order-button"]').click();
     },
     selectClearpay () {
-      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com') {
+      if (siteGenesisBrands.includes(variables.brand)) {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });
         cy.get('#billingSubmitButton').click({ force: true });
       } else {
@@ -902,7 +903,7 @@ class BillingPage implements AbstractPage {
     },
     assertSameAsShippingIsChecked () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (variables.brand == 'coastfashion.com') {
+      if (siteGenesisBrands.includes(variables.brand)) {
         cy.get(shippingCheckbox).should('have.class', 'is-checked');
       } else {
         cy.get(shippingCheckbox).should('be.checked');
@@ -917,7 +918,7 @@ class BillingPage implements AbstractPage {
       cy.get(newBillingAddressForm).should('be.visible').and('include.text', address);
     },
     assertGiftCertificateFormIsPresent () {
-      if (variables.brand != 'coastfashion.com') {
+      if (!siteGenesisBrands.includes(variables.brand)) {
         cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
       }
     },
@@ -975,7 +976,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (variables.brand == 'coastfashion.com') {
+      } else if (siteGenesisBrands.includes(variables.brand)) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

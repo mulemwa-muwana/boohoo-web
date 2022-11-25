@@ -45,21 +45,21 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
+
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
-    }
-    if (siteGenesisBrands.includes(variables.brand)) {
+    } else if (variables.locale == 'US') {
+      shippingPage.actions.selectState(localeAddress.county);
+    } 
+
+    if (siteGenesisBrands.includes(variables.brand)) {  // For Site Genesis brand select Date Of Birth and enter Confirm Email
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();
       shippingPage.click.proceedToBillingVerification();
-    } 
-    if (variables.locale == 'US') {
-      shippingPage.actions.selectState(localeAddress.county);
+    } else {
       shippingPage.click.proceedToBilling();
-      cy.wait(3000);
-    } 
-    shippingPage.click.proceedToBilling();
+    }
     BillingPage.actions.waitPageToLoad();
   });
 
@@ -96,7 +96,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertDateFormIsPresent();
-    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
     if (siteGenesisBrands.includes(variables.brand)) {
       BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
     } else {
@@ -144,6 +144,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
+      cy.wait(2000)
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
       BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode, localeAddress.postcode);
@@ -170,30 +171,28 @@ describe('Billing page functionality for guest user', function () {
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
-      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-    } 
 
     if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
-    } 
+    }
     
     if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if ((variables.brand == 'nastygal.com' || siteGenesisBrands.includes(variables.brand)) && variables.locale == 'UK' || variables.locale == 'AU') {
+    } else if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'AU')) {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
     
     // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
   });
 
-  describe('Verify that guest user can place orders with available payment methods', function () {
+  describe.only('Verify that guest user can place orders with available payment methods', function () {
 
     beforeEach (function () {
       if (!siteGenesisBrands.includes(variables.brand)) {
-        BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+        BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
       }
     });
 

@@ -217,6 +217,7 @@ const selectors: SelectorBrandMap = {
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
+const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 class PdpPage implements AbstractPage {
   goto (): void {
@@ -282,7 +283,7 @@ class PdpPage implements AbstractPage {
     },
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      if (variables.brand == 'oasis-stores.com' || variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
+      if (siteGenesisBrands.includes(variables.brand)) {
         cy.get(sizeVariations).find('li > span').each(($element) => {
           if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');

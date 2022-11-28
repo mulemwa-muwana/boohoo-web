@@ -60,7 +60,9 @@ describe('Billing page functionality for registered user', function () {
       shippingPage.click.proceedToBillingVerification();
     }
 
-    // BillingPage.assertions.assertBillingPageIsLoaded();
+    if (variables.locale == 'US') {
+      BillingPage.assertions.assertBillingPageIsLoaded(); // Removed because of US locale, will uncomment after it starts working
+    }
   });
 
   it('Verify that shipping address block is filled with data', function () {

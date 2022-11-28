@@ -67,7 +67,9 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
     }
 
-    // BillingPage.assertions.assertBillingPageIsLoaded();  // removed because of US locale, will uncomment after it starts working
+    if (variables.locale == 'US') {
+      BillingPage.assertions.assertBillingPageIsLoaded(); // Removed because of US locale, will uncomment after it starts working
+    }
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -119,7 +121,10 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.emptyEmailField();
       BillingPage.actions.selectDate('23', '4', '2001');
 
-      // BillingPage.click.chooseCC(); // removed because of US locale, will uncomment after it starts working
+      if (variables.locale == 'US') {
+        BillingPage.click.chooseCC(); // Removed because of US locale, will uncomment after it starts working
+      }
+    
     }
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[variables.language]);
@@ -133,7 +138,9 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.selectDate('Day', 'Month', 'Year');
     } else {
 
-      // BillingPage.click.chooseCC(); // removed because of US locale, will uncomment after it starts working
+      if (variables.locale == 'US') {
+        BillingPage.assertions.assertBillingPageIsLoaded(); // Removed because of US locale, will uncomment after it starts working
+      }
     }
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
@@ -155,7 +162,7 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
@@ -198,7 +205,9 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
     
-    // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
+    if (variables.locale == 'US') {
+      BillingPage.assertions.assertBillingPageIsLoaded(); // Removed because of US locale, will uncomment after it starts working
+    }
   });
 
   describe('Verify that guest user can place orders with available payment methods', function () {

@@ -59,9 +59,7 @@ describe('Billing page functionality for registered user', function () {
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       shippingPage.click.proceedToBillingVerification();
     }
-
     BillingPage.assertions.assertBillingPageIsLoaded();
-
   });
 
   it('Verify that shipping address block is filled with data', function () {

@@ -861,15 +861,17 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertBillingPageIsLoaded () {
+      if (variables.locale != 'US') {
 
-      // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
-      if (variables.brand == 'nastygal.com') {
-        cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');
-      } else {
-        cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
+        // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
+        if (variables.brand == 'nastygal.com') {
+          cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');
+        } else {
+          cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
+        }
+        cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+        cy.wait(1000);
       }
-      cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
-      cy.wait(1000);
     },
     assertShippingAddressPresent () {
       const shippingAddressSection = selectors[variables.brand].shippingAddressSection;

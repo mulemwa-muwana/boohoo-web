@@ -67,9 +67,8 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
     }
 
-    if (variables.locale == 'US') {
-      BillingPage.assertions.assertBillingPageIsLoaded(); // Removed because of US locale, will uncomment after it starts working
-    }
+    BillingPage.assertions.assertBillingPageIsLoaded();
+    
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -121,9 +120,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.emptyEmailField();
       BillingPage.actions.selectDate('23', '4', '2001');
 
-      if (variables.locale == 'US') {
-        BillingPage.click.chooseCC(); // Removed because of US locale, will uncomment after it starts working
-      }
+      BillingPage.click.chooseCC();
     
     }
     if (variables.brand == 'boohoo.com') {
@@ -138,9 +135,8 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.selectDate('Day', 'Month', 'Year');
     } else {
 
-      if (variables.locale == 'US') {
-        BillingPage.assertions.assertBillingPageIsLoaded(); // Removed because of US locale, will uncomment after it starts working
-      }
+      BillingPage.assertions.assertBillingPageIsLoaded(); 
+
     }
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
@@ -205,9 +201,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
     
-    if (variables.locale == 'US') {
-      BillingPage.assertions.assertBillingPageIsLoaded(); // Removed because of US locale, will uncomment after it starts working
-    }
+    BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   describe('Verify that guest user can place orders with available payment methods', function () {

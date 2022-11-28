@@ -92,7 +92,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.proceedToBillingVerification();
     } 
 
-    // BillingPage.assertions.assertBillingPageIsLoaded(); // commented because US tests fail, will remove as soon as US payment starts working
+    billingPage.assertions.assertBillingPageIsLoaded();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
 
@@ -293,7 +293,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
 
-    // BillingPage.assertions.assertBillingPageIsLoaded();  // commented because US tests fail, will remove as soon as US payment starts working
+    billingPage.assertions.assertBillingPageIsLoaded();
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
   });
 
@@ -351,7 +351,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.proceedToBillingVerification();
     }
 
-    // BillingPage.assertions.assertBillingPageIsLoaded(); // commented because US tests fail, will remove as soon as US payment starts working
+    billingPage.assertions.assertBillingPageIsLoaded();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 

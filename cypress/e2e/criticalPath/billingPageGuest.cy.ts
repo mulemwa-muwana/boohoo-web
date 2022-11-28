@@ -52,7 +52,7 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.selectState(localeAddress.county);
     } 
 
-    if (siteGenesisBrands.includes(variables.brand)) {  // For Site Genesis brand select Date Of Birth and enter Confirm Email
+    if (siteGenesisBrands.includes(variables.brand)) { // For Site Genesis brand select Date Of Birth and enter Confirm Email
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();
@@ -144,7 +144,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
-      cy.wait(2000)
+      cy.wait(2000);
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
       BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode, localeAddress.postcode);
@@ -188,7 +188,7 @@ describe('Billing page functionality for guest user', function () {
     // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
   });
 
-  describe.only('Verify that guest user can place orders with available payment methods', function () {
+  describe('Verify that guest user can place orders with available payment methods', function () {
 
     beforeEach (function () {
       if (!siteGenesisBrands.includes(variables.brand)) {

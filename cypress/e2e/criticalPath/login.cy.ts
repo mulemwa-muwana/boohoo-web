@@ -37,7 +37,7 @@ describe('Login Functionality tests', function () {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[variables.language]);
       } else if (variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisCustomer[variables.language]);
-      }else {
+      } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
       }
     });

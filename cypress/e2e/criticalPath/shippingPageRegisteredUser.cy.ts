@@ -140,9 +140,8 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
-
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {  // Address Lookup isn't mandatory for Site Genesis websites
+    if (siteGenesisBrands.includes(variables.brand)) { // Address Lookup isn't mandatory for Site Genesis websites
       this.skip();
     }
 
@@ -156,8 +155,8 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that "Enter manually" button allows user to enter address details', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {  // Site Genesis websites have all fields displayed, no Enter Manually button
-    this.skip();
+    if (siteGenesisBrands.includes(variables.brand)) { // Site Genesis websites have all fields displayed, no Enter Manually button
+      this.skip();
     }
 
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');

@@ -5,6 +5,7 @@ import CheckoutPage from '../../pom/checkoutLogin.page';
 import assertionText from 'cypress/helpers/assertionText';
 
 const variables = Cypress.env() as EnvironmentVariables;
+const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 describe('Checkout Page', function () {
 
@@ -18,14 +19,14 @@ describe('Checkout Page', function () {
     pdpPage.click.addToCart();
     cy.wait(3000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+    if (!siteGenesisBrands.includes(variables.brand)) {
       pdpPage.click.miniCartViewCartBtn();
     }
     cartPage.click.proceedToCheckout();
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (siteGenesisBrands.includes(variables.brand)) {
       CheckoutPage.assertions.assertUserEmailField();
     } else {
       CheckoutPage.assertions.assertGuestCheckoutEmail();
@@ -34,7 +35,7 @@ describe('Checkout Page', function () {
     }
   });
 
-  if (variables.brand != 'coastfashion.com') {
+  if (!siteGenesisBrands.includes(variables.brand)) {
     it('Verify Premier is displayed and can be added to the cart', () => {
       const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
       const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
@@ -52,7 +53,7 @@ describe('Checkout Page', function () {
   it('Verify that registered user is able to login', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+      if (siteGenesisBrands.includes(variables.brand)) {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);

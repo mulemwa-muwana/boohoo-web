@@ -461,10 +461,10 @@ class Addresses {
         addrline2: '',
         postcode: '2602',
         addressName: 'SecondAddress',
-        country: 'Аustralia',
-        city: '',
+        country: 'Australia',
+        city: 'Sydney',
         countryCode: 'AU',
-        county: '',
+        county: 'ACT',
         confirmEmail: ''
       }
     },

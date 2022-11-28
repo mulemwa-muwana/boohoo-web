@@ -421,13 +421,13 @@ class AssertionText {
   };
 
   selectSize: TranslationMap = {
-    EN: ' Select Size',
+    EN: 'OOPS PLEASE SELECT A SIZE',
     FR: '',
     NL: '',
     DE: '',
     DK: '',
     FI: '',
-    NO: '',
+    NO: 'OOPS PLEASE SELECT A SIZE',
     SE: '',
     IL: '',
     IT: '',
@@ -562,12 +562,12 @@ class AssertionText {
 
   assertShippingAddressIsMandatory: TranslationMap = {
     EN: 'Ooops, something went wrong and we couldn’t save your shipping address. Please try again',
-    NL: 'Oeps, er is iets misgegaan en we konden je verzendadres niet opslaan. Probeer het opnieuw',
-    DE: 'Hoppla, etwas ist schief gelaufen und wir konnten Ihre Lieferadresse nicht speichern. Bitte versuche es erneut',
-    FR: 'Oups, quelque chose s’est mal passé et nous n’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
+    FR: 'Ne m’oubliez pas !',
     DK: 'Ups, noget gik galt, og vi kunne ikke gemme din leveringsadresse. Prøv igen',
     FI: 'Hups, jotain meni pieleen, emmekä voineet tallentaa toimitusosoitettasi. Yritä uudelleen',
-    NO: 'Beklager, noe gikk galt, og vi kunne ikke lagre leveringsadressen din. Vær så snill, prøv på nytt',
+    NO: 'Don’t forget about me!',
     SE: 'Oj, något gick fel och vi kunde inte spara din leveransadress. Var god försök igen',
     IL: 'אופס, משהו השתבש ולא הצלחנו לשמור את כתובת המשלוח שלך. בבקשה נסה שוב',
     IT: 'Spiacenti, qualcosa è andato storto e non siamo riusciti a salvare il tuo indirizzo di spedizione. Per favore riprova',
@@ -576,6 +576,20 @@ class AssertionText {
 
   assertShippingAddressIsMandatoryArkadia: TranslationMap = {
     EN: 'Oops, looks like you didn\'t add an address',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  assertShippingAddressIsMandatoryNG: TranslationMap = {
+    EN: 'This field is required.',
     FR: '',
     NL: '',
     DE: '',
@@ -1037,7 +1051,7 @@ class AssertionText {
   };
 
   privacyPolicy: TranslationMap = {
-    EN: 'Privacy Notice - Updated July 2022',
+    EN: 'Privacy Notice - Updated ',
     NL: 'Privacyverklaring - Bijgewerkt in juli 2022',
     DE: 'Datenschutzerklärung - Zuletzt upgedated Juni 2022', // FAILED
     FR: 'Avis de confidentialité',

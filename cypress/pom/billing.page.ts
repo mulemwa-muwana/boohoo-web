@@ -634,11 +634,11 @@ class BillingPage implements AbstractPage {
       const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, countryCode: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
-      const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
       const billingPostCode = selectors[variables.brand].billingPostCode;
+      const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
@@ -861,15 +861,17 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertBillingPageIsLoaded () {
+      if (variables.locale != 'US') {
 
-      // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
-      if (variables.brand == 'nastygal.com') {
-        cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');
-      } else {
-        cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
+        // Wait for payment methods to load on a page - that indicates the billing page is fully loaded
+        if (variables.brand == 'nastygal.com') {
+          cy.intercept('https://checkoutshopper-test.adyen.com/checkoutshopper/assets/html/**').as('paymentMethodsSection');
+        } else {
+          cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
+        }
+        cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
+        cy.wait(1000);
       }
-      cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
-      cy.wait(1000);
     },
     assertShippingAddressPresent () {
       const shippingAddressSection = selectors[variables.brand].shippingAddressSection;

@@ -47,9 +47,10 @@ describe('Billing page functionality for registered user', function () {
     if (variables.locale === 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (variables.locale === 'US') {
+    if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);
-    }
+      shippingPage.click.proceedToBilling();
+    } 
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     
     // If (variables.locale == 'IE') {

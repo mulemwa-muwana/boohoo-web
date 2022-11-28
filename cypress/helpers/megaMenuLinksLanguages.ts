@@ -7,7 +7,7 @@ class megaMenuLinksLanguages {
     FR: 'VÊTEMENTS',
     DK: 'CLOTHING',
     FI: 'CLOTHING',
-    NO: 'CLOTHING',
+    NO: 'ALL CLOTHING',
     SE: 'ALLA KLÄDER',
     IL: 'כל הבגדים',
     IT: 'TUTTO L/`ABBIGLIAMENTO',

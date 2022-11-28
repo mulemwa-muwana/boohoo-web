@@ -62,9 +62,13 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.actions.selectState(localeAddress.county);
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
-    } 
-    shippingPage.click.proceedToBilling();
+      shippingPage.actions.selectDate('23', '3', '2001');
+    } else {
+      shippingPage.click.proceedToBilling();
+    }
+
     BillingPage.assertions.assertBillingPageIsLoaded();
+    
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -100,7 +104,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertDateFormIsPresent();
-    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.locale], '2001');
+    BillingPage.actions.selectDate('23', '4', '2001');
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
     } else {
@@ -114,8 +118,10 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
     } else {
       BillingPage.actions.emptyEmailField();
-      BillingPage.actions.selectDate('23', '2', '2001');
+      BillingPage.actions.selectDate('23', '4', '2001');
+
       BillingPage.click.chooseCC();
+    
     }
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[variables.language]);
@@ -128,7 +134,9 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.changeShippingAddress();
       BillingPage.actions.selectDate('Day', 'Month', 'Year');
     } else {
-      BillingPage.click.chooseCC();
+
+      BillingPage.assertions.assertBillingPageIsLoaded(); 
+
     }
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
@@ -150,11 +158,14 @@ describe('Billing page functionality for guest user', function () {
       shippingPage.click.proceedToBilling();
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.county, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      if (variables.locale == 'US' || variables.locale == 'AU') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }
     }
   });
 
@@ -190,7 +201,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
     
-    // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
+    BillingPage.assertions.assertBillingPageIsLoaded();
   });
 
   describe('Verify that guest user can place orders with available payment methods', function () {

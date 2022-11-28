@@ -69,7 +69,15 @@ const selectors: SelectorBrandMap = {
     youtube: '',
     pinterest: '.icon-pinterest'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    instagramUrl: 'instagram.com/misspap/',
+    instagram: ' .icon-instagram',
+    facebook: '.icon-facebook',
+    facebookUrl: 'facebook.com/MisspapOfficial/',
+    twitter: '.icon-twitter',
+    youtube: '.icon-youtube',
+    pinterest: '.icon-pinterest'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -94,7 +102,7 @@ class SocialsPage implements AbstractPage {
     // Not working for Dorothy Perkins and Wallis 
     assertInstagramIconIsPresent () {
       const instagram = selectors[variables.brand].instagram;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
         cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(instagram).should('be.visible');
       } else {
@@ -103,7 +111,7 @@ class SocialsPage implements AbstractPage {
     },
     assertFacebookIconIsPresent () {
       const facebook = selectors[variables.brand].facebook;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
         cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(facebook).should('be.visible');
       } else {
@@ -128,7 +136,7 @@ class SocialsPage implements AbstractPage {
     },
     assertTwitterIconIsPresent () {
       const twitter = selectors[variables.brand].twitter;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
         cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(twitter).should('be.visible');
       } else {

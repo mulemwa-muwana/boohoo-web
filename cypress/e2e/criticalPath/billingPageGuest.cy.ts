@@ -47,7 +47,7 @@ describe('Billing page functionality for guest user', function () {
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (variables.brand == 'karenmillen.com') {
+    if (variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();

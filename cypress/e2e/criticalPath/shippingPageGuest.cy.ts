@@ -36,8 +36,7 @@ describe('Shipping Page Guest user tests', function () {
     checkoutPage.actions.guestCheckoutEmail(this.guestEmail);
     checkoutPage.click.continueAsGuestBtn();
   });
-
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
     it('Verify that promo code field is dispayed', function () {
       shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     });
@@ -80,7 +79,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com') {
+  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com') {
     it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
       const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
       if (variables.locale == 'EU') {
@@ -217,12 +216,13 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
     }
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
       shippingPage.click.proceedToBillingVerification();
       shippingPage.assertions.assertUserProceededToBillingPage();
     } else {

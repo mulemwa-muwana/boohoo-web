@@ -420,7 +420,60 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    accountLogout: '.account-logout > .button',
+    myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
+    ordersLink: 'a[data-tau="navigation_orderHistory"]',
+    wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
+    accountDetails: 'a[data-tau="navigation_editProfile"]',
+    changePassword: 'a[data-tau="navigation_passwordChange"]',
+    contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
+    accountAddresses: 'a[title*="addresses"][href*="addresses"]',
+    paymentDetails: 'a[title$="credit cards"]',
+    viewOrderBtn: '#primary > div > div.account-box.account-order-history.clearfix.fright > h3 > a',
+    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    myPremier: 'a[data-tau="navigation_accountPremier"]',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    profileUpdateBtn: '.js-update-details button[value="Update"]',
+    addressCardsList: '.account-page-list',
+    addressDefaultBox: 'li.account-page-list-item.default',
+    addressEditBtn: '.address-edit-link',
+    addressEditForm: '#CreditCardForm',
+    addressField: '#dwfrm_profile_address_address1',
+    addressSubmitBtn: '.apply-button',
+    addAddressBtn: '.address-create',
+    addressFirstNameField: '#dwfrm_profile_address_firstname',
+    addressLastNameField: '#dwfrm_profile_address_lastname',
+    addressPhoneNumberField: '#dwfrm_profile_address_phone',
+    addressCityField: '#dwfrm_profile_address_city',
+    addressPostalCodeField: '#dwfrm_profile_address_postalcodes_postal',
+    addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
+    addressNicknameField: '#dwfrm_profile_address_addressid',
+    proceedToBillingBtn: '.verification-address-button-container .verification-address-button',
+    addressDeleteBtn: '.address-delete-link',
+    creditCardsList: '.account-payments',
+    addCreditCardBtn: '.add-card',
+    addCreditCardNumber: '#encryptedCardNumber',
+    addCreditCardOwner: 'input.adyen-checkout__input',
+    addCreditCardExpDate: '#encryptedExpiryDate',
+    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardSaveBtn: '#add-card-submit',
+    creditCardSection: '.payment-list-item',
+    creditCardDeleteBtn: '.button-delete',
+    orderID: '.order-number > .value',
+    shippingInfo: '.order-date > .value',
+    billingAndPaymentInfo: '.processing',
+    accountDetailsEmailField: '#account-email-input',
+    nameGreeting: '.account-welcome-title',
+    accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
+    addressNameLine: '.mini-address-name',
+    addressSummaryLine: '.mini-address-location-group',
+    loadMoreButton: 'a[data-tau="orders_load_more',
+    startReturnButton: '[href="/delivery-and-returns"]',
+    accountDetailsLink: '.account-nav-content [title*="personal information"]',
+    orderHistoryLink: '[title="Order History"]',
+    newestOrderHistory: '[data-tau="account_viewOrder"]',
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -574,7 +627,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
         cy.get(addressPhoneNumberField).type(address.phone, { force: true });
-        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
+        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
           cy.get(addressEnterManualyBtn).click({ force: true });
         }
         cy.get(addressField).should('be.visible').type(address.addrline1, { force: true });
@@ -583,7 +636,7 @@ class MyAccountPage implements AbstractPage {
         if (variables.locale == 'AU') {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
-        if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+        if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
           cy.get(addressNicknameField).type('test');
           cy.get(addressSubmitBtn).click({ force: true });
           cy.get(proceedToBillingBtn).click();
@@ -618,7 +671,7 @@ class MyAccountPage implements AbstractPage {
         const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
         cy.get(creditCardSection).contains(cardEnd).should('be.visible');
         cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click();
-        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
+        if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
           cy.get(cardDeleteConfirmationBtn).click();
         }
       },

@@ -27,7 +27,9 @@ const selectors: SelectorBrandMap = {
   'oasis-stores.com': {
     termsAndConditionsPageTitle: '#primary > div > h1'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    termsAndConditionsPageTitle: '#secondary > :nth-child(1)',
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -35,7 +37,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 class TermsAndConditionsPage implements AbstractPage {
 
   goto () {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
       cy.visit(variables.url + '/page/terms-of-use.html');
     } else {
       cy.visit(variables.url + '/page/terms-and-conditions.html');
@@ -54,8 +56,8 @@ class TermsAndConditionsPage implements AbstractPage {
     },
     assertTermsAndConditionsPageOpens (text: string) {
       const termsAndConditionsPageTitle = selectors[variables.brand].termsAndConditionsPageTitle;
-      cy.get(termsAndConditionsPageTitle).should('contains.text', text);
-    }
+      cy.get(termsAndConditionsPageTitle).should('contains.text', text);      
+    } 
   };
 }
 

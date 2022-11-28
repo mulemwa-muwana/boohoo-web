@@ -98,6 +98,20 @@ class AssertionText {
     ES: ''
   };
 
+  WishlistLoginTitleMisspap: TranslationMap = {
+    EN: '\nWishlist\nLog In\n',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don’t forget about me!',  
     FR: 'Ne m/’oublie pas!',
@@ -212,6 +226,20 @@ class AssertionText {
 
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
+    FR: 'Avis de confidentialité',
+    NL: 'Privacyverklaring',
+    DE: 'Datenschutzrichtlinien',
+    DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
+    FI: 'Tietosuojailmoitus',
+    NO: 'Personvernerklæring',
+    SE: '\n                Integritetspolicy\n            ',
+    IL: 'הודעת פרטיות',
+    IT: 'Informativa sulla Privacy',
+    ES: 'Aviso de Privacidad'
+  };
+
+  PrivacyNoticeMisspap: TranslationMap = {
+    EN: 'Privacy & Security',
     FR: 'Avis de confidentialité',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
@@ -462,6 +490,20 @@ class AssertionText {
     ES: ''
   };
 
+  loginErrorSiteMisspap: TranslationMap = {
+    EN: 'Current customer is not found, please check your spelling, or try to reset the password',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   unknownEmail: TranslationMap = {
     EN: ' Sorry, your email or password doesn\'t match our records. Please check that you have entered them correctly, or',
     FR: ' Nous sommes désolés, votre e-mail ou mot de passe ne correspond pas á notre historique. Veuillez vérifier que vous les avez rentrés correctement, ou',
@@ -639,6 +681,20 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'Vänta! Något gick fel.',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  unsuccessfulSubscriptionMsg: TranslationMap = {
+    EN: 'Please enter a valid Email Address.',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''

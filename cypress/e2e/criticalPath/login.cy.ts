@@ -34,6 +34,8 @@ describe('Login Functionality tests', function () {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
       if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
+      } else if (variables.brand == 'misspap.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteMisspap[variables.language]);
       } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
       }

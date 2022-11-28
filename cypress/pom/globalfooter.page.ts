@@ -169,7 +169,29 @@ const selectors: SelectorBrandMap = {
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright',
+    instagramLink: 'a[href="https://www.instagram.com/misspap/"]', 
+    facebookLink: 'a[href="https://www.facebook.com/MisspapOfficial/"]',
+    twitterLink: 'a[href="https://twitter.com/misspap"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/oasisfashion/"]',
+    tiktokLink: 'a[href="https://www.tiktok.com/@misspap?lang=en"]',
+    youtubeLink: 'a[href="https://www.youtube.com/channel/UC-fFPC-ggIM_EcHsfoDMbjg"]',
+    newsletterInputMail: 'input[id^="footer_newsletter_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: '.newsletter-form-group button',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.footer-newsletter-info',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-links',
+    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
+    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
+    footer: '.footer'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -272,7 +294,7 @@ class GlobalFooter implements AbstractPage {
       const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
       const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
       const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
         cy.get(newsletterInputMail).type(email, {force:true});
         cy.get(subscribeSubmitBtn).click({force:true});
       } else {

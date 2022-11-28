@@ -28,7 +28,9 @@ const selectors: SelectorBrandMap = {
   'oasis-stores.com': {
     privacyNoticyPageTitle: 'h1 > strong'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    privacyNoticyPageTitle: 'h1 > strong'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

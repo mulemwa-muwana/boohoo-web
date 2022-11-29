@@ -517,12 +517,12 @@ class ShippingPage implements AbstractPage {
       cy.wait(3000);
       cy.get(proceedToBilling).click({force: true});
     },
-    proceedToBillingVerification () { // Only for SiteGenesis: coast, oasis and warehouse
+    proceedToBillingVerification () { // Only for SiteGenesis brands
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.get(proceedToBillingVerificationBtn).click({force: true});
     },
-    proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis: coast, oasis and warehouse
+    proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis brands
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');

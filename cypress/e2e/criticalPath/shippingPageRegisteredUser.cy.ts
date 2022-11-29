@@ -147,8 +147,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
-
-  it('Verify that ADDRESS LOOKUP field is dispayed and functional', function() {
+  it('Verify that ADDRESS LOOKUP field is dispayed and functional', function () {
     if (isSiteGenesisBrand()) { // Address Lookup isn't mandatory on Site Genesis websites
       this.skip();
     }

@@ -275,7 +275,6 @@ const selectors: SelectorBrandMap = {
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
-const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 class PdpPage implements AbstractPage {
   goto (): void {

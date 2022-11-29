@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -122,24 +123,24 @@ const selectors: SelectorBrandMap = {
     productName: 'a[class="b-cart_product-name"]',
   },
   'karenmillen.com': {
-    productsTable: '.b-cart_products',
-    productImage: '.l-cart_product-image',
-    productPrice: '.m-user_cart > .b-summary_table-value',
-    subtotal: '.m-total > .b-summary_table-value',
-    cartQuantity: '.b-cart_product-qty',
-    editQuantity: 'button[data-tau="cart_product_edit"]',
+    productsTable: '#cart-table',
+    productImage: '[class*="item-image"] img[class*="product-tile-image"]',
+    productPrice: '[class*="item-price"]',
+    subtotal: '.order-subtotal > :nth-child(2)',
+    cartQuantity: '.cart-input-quantity',
+    editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
-    setQuantity: 'select[id^="quantity"]',
-    premierBlock: '.b-ngvip-details',
-    addPremierToCart: '.b-ngvip-button',
-    PayPalCTA: '.zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button-0',
+    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
+    premierBlock: '[data-itemid="coastvip"]',
+    addPremierToCart: '#quickviewbutton',
+    PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button-1',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
-    clearCart: '.b-cart_product-remove',
-    emptyCartTitle: '.b-cart_empty-title',
-    productDetails: '.l-cart_product-details',
-    productName: '.b-cart_product-title > a',
+    clearCart: '[class*="button-remove"]',
+    emptyCartTitle: '.cart-empty-title',
+    productDetails: '.variations',
+    productName: '.name > a',
   },
   'coastfashion.com': {
     productsTable: '#cart-table',
@@ -202,24 +203,25 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a' 
   },
   'misspap.com': {
-    productsTable: '.b-cart_products',
-    productImage: '.l-cart_product-image',
-    productPrice: '.l-cart_product-total',
-    subtotal: '.m-total > .b-summary_table-value',
-    cartQuantity: '.b-cart_product-qty',
-    editQuantity: 'button[data-tau="cart_product_edit"]',
+    productsTable: '#cart-table',
+    productImage: '[class*="item-image"] img[class*="product-tile-image"]',
+    productPrice: '[class*="item-price"]',
+    subtotal: '.order-subtotal > :nth-child(2)',
+    cartQuantity: '.cart-input-quantity',
+    editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
-    setQuantity: 'select[id^="quantity"]',
-    premierBlock: '.m-with_actions',
-    addPremierToCart: 'button[data-tau="product_addToCart"]',
-    PayPalCTA: '.zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button-0',
+    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
+    premierBlock: '[data-itemid="coastvip"]',
+    addPremierToCart: '#quickviewbutton',
+    PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
-    clearCart: '.b-cart_product-remove',
-    emptyCartTitle: '.b-cart_empty-title',
-    productDetails: '.l-cart_product-details',
-    productName: 'a[class="b-cart_product-name"]',
+    clearCart: '[class*="button-remove"]',
+    emptyCartTitle: '.cart-empty-title',
+    productDetails: '.variations',
+    productName: '.name > a',
+    updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63'
   }
 };
 
@@ -330,7 +332,7 @@ class CartPage implements AbstractPage {
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand() || variables.brand == 'dorothyperkins.com') {
         cy.get(cartQuantity).should('have.value', quantity);
       } else {
         cy.get(cartQuantity).should('contain', quantity);

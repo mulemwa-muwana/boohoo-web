@@ -1,12 +1,12 @@
 import assertionText from 'cypress/helpers/assertionText';
 import LoginPage from 'cypress/pom/login.page';
 import * as CommonActions from '../../helpers/common';
+import { isSiteGenesisBrand } from '../../helpers/common';
 import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import RegistrationPage from '../../pom/registration.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
-const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 describe('Verify Registration feature', function () {
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('Verify Registration feature', function () {
     cy.fixture('newuser').then((credentials) =>{
       const randomEmail = CommonActions.randomEmail();
       RegistrationPage.actions.startRegistration(randomEmail);
-      if (!siteGenesisBrands.includes(variables.brand)) {
+      if (!isSiteGenesisBrand()) {
         RegistrationPage.actions.confirmationCheckbox();
         RegistrationPage.assertions.assertCheckboxIsChecked();
       }
@@ -45,7 +45,7 @@ describe('Verify Registration feature', function () {
   it('Verify that user can not register using email that already has account', function () {
     cy.fixture('newuser').then((credentials) =>{
       RegistrationPage.actions.startRegistration(credentials.username);
-      if (!siteGenesisBrands.includes(variables.brand)) {
+      if (!isSiteGenesisBrand()) {
         RegistrationPage.actions.confirmationCheckbox();
         RegistrationPage.assertions.assertCheckboxIsChecked();
       }

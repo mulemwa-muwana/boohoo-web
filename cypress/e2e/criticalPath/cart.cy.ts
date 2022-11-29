@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
 import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
@@ -5,7 +6,6 @@ import LoginPage from '../../pom/login.page';
 import PdpPage from '../../pom/pdp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
-const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 describe('Cart basic functionality for guest user', function () {
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe('Cart basic functionality for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(2000);
     HomePage.click.cartIcon();
-    if (!siteGenesisBrands.includes(variables.brand)) {
+    if (!isSiteGenesisBrand()) {
       PdpPage.click.miniCartViewCartBtn();
     }
   });
@@ -37,7 +37,10 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
   it('Verify that user can update quantity of products', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (variables.brand == 'boohoo.com') {
+      CartPage.actions.editCartQuantity('3');
+      CartPage.assertions.assertQuantityIsDisplayed('3');
+    } else if (isSiteGenesisBrand() || variables.brand == 'dorothyperkins.com') {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
     } else {

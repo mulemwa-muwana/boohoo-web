@@ -8,9 +8,9 @@ import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 const variables = Cypress.env() as EnvironmentVariables;
-const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 describe('Billing page functionality for guest user', function () {
 
@@ -29,7 +29,7 @@ describe('Billing page functionality for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();
-    if (!siteGenesisBrands.includes(variables.brand)) {
+    if (!isSiteGenesisBrand()) {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
@@ -45,21 +45,25 @@ describe('Billing page functionality for guest user', function () {
     shippingPage.actions.adressLine1(localeAddress.addrline1);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
-
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
-    } else if (variables.locale == 'US') {
-      shippingPage.actions.selectState(localeAddress.county);
-    } 
-
-    if (siteGenesisBrands.includes(variables.brand)) { // For Site Genesis brand select Date Of Birth and enter Confirm Email
+    }
+    if (isSiteGenesisBrand()) {
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
       shippingPage.click.proceedToBilling();
       shippingPage.click.proceedToBillingVerification();
+    } 
+    
+    if (variables.locale == 'US') {
+      shippingPage.actions.selectState(localeAddress.county);
+      shippingPage.click.proceedToBilling();
+      cy.wait(3000);
+      shippingPage.actions.selectDate('23', '3', '2001');
     } else {
       shippingPage.click.proceedToBilling();
     }
+
     BillingPage.actions.waitPageToLoad();
   });
 
@@ -81,7 +85,7 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
 
-  if (!siteGenesisBrands.includes(variables.brand)) {
+  if (!isSiteGenesisBrand()) {
     it('Verify that email field is filled with correct email address', function () {   
       BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
     });
@@ -92,26 +96,28 @@ describe('Billing page functionality for guest user', function () {
   });*/
 
   it('Verify that date of birth form is present and that guest user can select date of birth', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertDateFormIsPresent();
-    BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-    if (siteGenesisBrands.includes(variables.brand)) {
+    BillingPage.actions.selectDate('23', '4', '2001');
+    if (isSiteGenesisBrand()) {
       BillingPage.assertions.assertDateIsSelected('23', '05', '2001');
     } else {
       BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
     }
   });
   it('Verify that guest user cannot place order if email field is empty', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       BillingPage.click.changeShippingAddress();
       BillingPage.actions.emptyEmailField();
       shippingPage.click.proceedToBilling();
     } else {
       BillingPage.actions.emptyEmailField();
-      BillingPage.actions.selectDate('23', '2', '2001');
+      BillingPage.actions.selectDate('23', '4', '2001');
+
       BillingPage.click.chooseCC();
+    
     }
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[variables.language]);
@@ -120,11 +126,11 @@ describe('Billing page functionality for guest user', function () {
     }
   });
   it('Verify that guest user cannot place order if date of birth is not selected', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       BillingPage.click.changeShippingAddress();
       BillingPage.actions.selectDate('Day', 'Month', 'Year');
     } else {
-      BillingPage.click.chooseCC();
+      BillingPage.actions.waitPageToLoad(); 
     }
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
@@ -133,25 +139,28 @@ describe('Billing page functionality for guest user', function () {
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that guest user can submit new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
       cy.wait(2000);
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.county, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      if (variables.locale == 'US' || variables.locale == 'AU') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }
     }
   });
 
@@ -185,13 +194,13 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
     
-    // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
+    BillingPage.actions.waitPageToLoad();
   });
 
   describe('Verify that guest user can place orders with available payment methods', function () {
 
     beforeEach (function () {
-      if (!siteGenesisBrands.includes(variables.brand)) {
+      if (!isSiteGenesisBrand()) {
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
       }
     });

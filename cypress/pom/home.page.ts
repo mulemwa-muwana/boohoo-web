@@ -1,5 +1,6 @@
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
+import { isSiteGenesisBrand } from '../helpers/common';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -55,7 +56,16 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.user-account',
+    registrationButton: 'a[title="Register"]',
+    wishListIcon: '.icon-wishlist-bold',
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link'
+  },
   'coastfashion.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
@@ -87,7 +97,16 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.link-item-login',
+    registrationButton: '.form-row-button > .button',
+    wishListIcon: '.icon-wishlist-header',
+    searchField: 'form > fieldset > input',
+    searchIcon: '.icon-search',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -100,7 +119,8 @@ class HomePage implements AbstractPage {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || isSiteGenesisBrand()) {
+
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }
@@ -120,6 +140,9 @@ class HomePage implements AbstractPage {
     },
     registrationButton () {
       const registrationButton = selectors[variables.brand].registrationButton;
+      if (variables.brand == 'misspap.com') {
+        cy.get('#dwfrm_login_register > fieldset > .form-row > .login-page-button').click({force:true});
+      }
       cy.get(registrationButton).click({force:true});
     },
 

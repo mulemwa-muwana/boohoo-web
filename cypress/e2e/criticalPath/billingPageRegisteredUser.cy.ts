@@ -7,9 +7,9 @@ import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 const variables = Cypress.env() as EnvironmentVariables;
-const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 describe('Billing page functionality for registered user', function () {
   beforeEach (()=>{
@@ -20,8 +20,8 @@ describe('Billing page functionality for registered user', function () {
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
-    HomePage.click.cartIcon();  
-    if (!siteGenesisBrands.includes(variables.brand)) {
+    HomePage.click.cartIcon();
+    if (!isSiteGenesisBrand()) {
       PdpPage.click.miniCartViewCartBtn();
     }
     if (variables.brand === 'dorothyperkins.com' || variables.brand === 'wallis.co.uk') {
@@ -31,7 +31,7 @@ describe('Billing page functionality for registered user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       cy.wait(2000);
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -49,15 +49,16 @@ describe('Billing page functionality for registered user', function () {
     if (variables.locale === 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (variables.locale === 'US') {
+    if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);
-    }
+      shippingPage.click.proceedToBilling();
+    } 
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);
     shippingPage.click.proceedToBilling();
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.actions.waitPageToLoad();
@@ -79,7 +80,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
   it('Verify that email address is displayed and it cannot be changed', function () {
-    if (!siteGenesisBrands.includes(variables.brand)) {
+    if (!isSiteGenesisBrand()) {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         BillingPage.assertions.assertEmailIsCorrect(credentials.username);
       });
@@ -87,13 +88,13 @@ describe('Billing page functionality for registered user', function () {
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.click.uncheckShippingCheckbox();
@@ -101,7 +102,7 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that registered user can add  new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (siteGenesisBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand()) {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();

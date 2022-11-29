@@ -98,6 +98,34 @@ class AssertionText {
     ES: ''
   };
 
+  WishlistLoginTitleKarenMillen: TranslationMap = {
+    EN: 'Wish List Log In',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  WishlistLoginTitleMisspap: TranslationMap = {
+    EN: '\nWishlist\nLog In\n',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
     EN: 'Don’t forget about me!',  
     FR: 'Ne m/’oublie pas!',
@@ -212,6 +240,20 @@ class AssertionText {
 
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
+    FR: 'Avis de confidentialité',
+    NL: 'Privacyverklaring',
+    DE: 'Datenschutzrichtlinien',
+    DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
+    FI: 'Tietosuojailmoitus',
+    NO: 'Personvernerklæring',
+    SE: '\n                Integritetspolicy\n            ',
+    IL: 'הודעת פרטיות',
+    IT: 'Informativa sulla Privacy',
+    ES: 'Aviso de Privacidad'
+  };
+
+  PrivacyNoticeMisspap: TranslationMap = {
+    EN: 'Privacy & Security',
     FR: 'Avis de confidentialité',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
@@ -407,13 +449,13 @@ class AssertionText {
   };
 
   selectSize: TranslationMap = {
-    EN: ' Select Size',
+    EN: 'OOPS PLEASE SELECT A SIZE',
     FR: '',
     NL: '',
     DE: '',
     DK: '',
     FI: '',
-    NO: '',
+    NO: 'OOPS PLEASE SELECT A SIZE',
     SE: '',
     IL: '',
     IT: '',
@@ -548,12 +590,12 @@ class AssertionText {
 
   assertShippingAddressIsMandatory: TranslationMap = {
     EN: 'Ooops, something went wrong and we couldn’t save your shipping address. Please try again',
-    NL: 'Oeps, er is iets misgegaan en we konden je verzendadres niet opslaan. Probeer het opnieuw',
-    DE: 'Hoppla, etwas ist schief gelaufen und wir konnten Ihre Lieferadresse nicht speichern. Bitte versuche es erneut',
-    FR: 'Oups, quelque chose s’est mal passé et nous n’avons pas pu enregistrer votre adresse de livraison. Veuillez réessayer',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
+    FR: 'Ne m’oubliez pas !',
     DK: 'Ups, noget gik galt, og vi kunne ikke gemme din leveringsadresse. Prøv igen',
     FI: 'Hups, jotain meni pieleen, emmekä voineet tallentaa toimitusosoitettasi. Yritä uudelleen',
-    NO: 'Beklager, noe gikk galt, og vi kunne ikke lagre leveringsadressen din. Vær så snill, prøv på nytt',
+    NO: 'Don’t forget about me!',
     SE: 'Oj, något gick fel och vi kunde inte spara din leveransadress. Var god försök igen',
     IL: 'אופס, משהו השתבש ולא הצלחנו לשמור את כתובת המשלוח שלך. בבקשה נסה שוב',
     IT: 'Spiacenti, qualcosa è andato storto e non siamo riusciti a salvare il tuo indirizzo di spedizione. Per favore riprova',
@@ -562,6 +604,20 @@ class AssertionText {
 
   assertShippingAddressIsMandatoryArkadia: TranslationMap = {
     EN: 'Oops, looks like you didn\'t add an address',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  assertShippingAddressIsMandatoryNG: TranslationMap = {
+    EN: 'This field is required.',
     FR: '',
     NL: '',
     DE: '',
@@ -653,6 +709,20 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'Vänta! Något gick fel.',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  unsuccessfulSubscriptionMsg: TranslationMap = {
+    EN: 'Please enter a valid Email Address.',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''
@@ -1049,7 +1119,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
-  
+
   investor: TranslationMap = {
     EN: 'Investor Relations',
     NL: 'Investeerdersrelaties',

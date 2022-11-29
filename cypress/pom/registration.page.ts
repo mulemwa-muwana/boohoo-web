@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import assertionText from '../helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
 
@@ -88,7 +89,23 @@ const selectors: SelectorBrandMap = {
     emailError: '#dwfrm_profile_customer_email-error'
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    registrationForm: '#RegistrationForm',
+    passwordField: '[id^="dwfrm_profile_login_password"]:not([class*="passwordconfirm"])',
+    passwordConfirmField: '[id^="dwfrm_profile_login_passwordconfirm"]',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    lastNameField: '#dwfrm_profile_customer_lastname',
+    dayOfBirth: '#dwfrm_profile_customer_dayofbirth',
+    monthOfBirth: '#dwfrm_profile_customer_monthofbirth',
+    yearOfBirth: '#dwfrm_profile_customer_yearofbirth',
+    emailConsent: '.form-row.isemailsubscribed > .form-label',
+    postConsent: '.form-row.ispostalsubscribed > .form-label',
+    smsConsent: '.form-row.issmssubscribed > .form-label',
+    thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
+    submitButton: '.form-row-button > .button',
+    myAccountUrl: 'myaccount?registration=true',
+    emailError: '#dwfrm_profile_customer_emailconfirm-error'
+  },
   'coastfashion.com': {
     registrationForm: '#RegistrationForm',
     passwordField: '[id^="dwfrm_profile_login_password"]:not([class*="passwordconfirm"])',
@@ -140,11 +157,26 @@ const selectors: SelectorBrandMap = {
     myAccountUrl: 'myaccount?registration=true',
     emailError: 'div[class^="error error-message"]'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    registrationForm: '#RegistrationForm',
+    passwordField: '[id^="dwfrm_profile_login_password"]:not([class*="passwordconfirm"])',
+    passwordConfirmField: '[id^="dwfrm_profile_login_passwordconfirm"]',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    lastNameField: '#dwfrm_profile_customer_lastname',
+    dayOfBirth: '#dwfrm_profile_customer_dayofbirth',
+    monthOfBirth: '#dwfrm_profile_customer_monthofbirth',
+    yearOfBirth: '#dwfrm_profile_customer_yearofbirth',
+    emailConsent: '.form-row.isemailsubscribed > .form-label',
+    postConsent: '.form-row.ispostalsubscribed > .form-label',
+    smsConsent: '.form-row.issmssubscribed > .form-label',
+    thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
+    submitButton: '.form-row-button > .button',
+    myAccountUrl: 'myaccount?registration=true',
+    emailError: 'div[class^="error error-message"]'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
-const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 class RegistrationPage implements AbstractPage {
 
@@ -178,8 +210,7 @@ class RegistrationPage implements AbstractPage {
   actions = {
     startRegistration (randomEmail: string) {
       cy.get('#dwfrm_profile_customer_email').click({force: true}).type(randomEmail);
-
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get('#dwfrm_profile_customer_emailconfirm').click({force: true}).type(randomEmail);
       }
       
@@ -188,7 +219,7 @@ class RegistrationPage implements AbstractPage {
       }
     },
     confirmationCheckbox () {
-      if (variables.brand == 'burton.co.uk'|| variables.brand == 'dorothyperkins.com'||variables.brand == 'wallis.co.uk') {
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' ||variables.brand == 'wallis.co.uk') {
         cy.get('#dwfrm_profile_customer_emailregistationconfirm').check({force:true});
       } else {
         cy.get('#dwfrm_profile_customer_emailregistationconfirm').check();
@@ -233,7 +264,7 @@ class RegistrationPage implements AbstractPage {
       const emailError = selectors[variables.brand].emailError;
       if (variables.brand == 'boohoo.com') {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail[variables.language]);
-      } else if (siteGenesisBrands.includes(variables.brand)) {
+      } else if (isSiteGenesisBrand()) {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailSiteGenesis[variables.language]);
       } else {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailArcadia[variables.language]);

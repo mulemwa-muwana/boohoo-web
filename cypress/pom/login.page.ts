@@ -1,5 +1,6 @@
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
+import { isSiteGenesisBrand } from '../helpers/common';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -75,16 +76,16 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.b-message-copy'
   },
   'karenmillen.com': {
-    loginIcon: '.b-header_login-icon > .i-icon',
+    loginIcon: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.js-header-right-box.header-right-box > div.header-customerinfo.hidden-on-mobile.js-appshell-uncached-headercustomerinfo-container > div > div > div > div > a:nth-child(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
-    forgotPassword: '#password-reset',
+    forgotPassword: '.password-reset', 
     forgotPasswordMessage: '.b-dialog-window',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
+    resetPasswordEmailField: '#dwfrm_requestpassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner',
-    errorLoginMessage: '.b-message-copy'
+    loginForm: '#dwfrm_login',
+    errorLoginMessage: '.error-form'
   },
   'coastfashion.com': {
     loginIcon: '.user-account',
@@ -129,21 +130,22 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.error-form'
   },
   'misspap.com': {
-    loginIcon: '.b-header_login-icon > .i-icon',
+    loginIcon: '.link-item-login',
+    loginLink: '.user-links > [title="Log In"]',
     loginEmail: '[id^="dwfrm_login_username"]',
     loginPassword: '[id^="dwfrm_login_password"]',
     loginButton:'#dwfrm_login .login-page-button',
-    forgotPassword: '#password-reset',
-    forgotPasswordMessage: '.b-dialog-window',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
-    resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box',
-    errorLoginMessage: '.b-message-copy'
+    forgotPassword: '.password-reset',
+    forgotPasswordMessage: '#ShowResetPasswordDialog',
+    resetPasswordEmailField: '#dwfrm_requestpassword_email',
+    resetPasswordBtn: '.reset-password-btn',
+    loginForm: '#dwfrm_login',
+    wishlistLoginTitle: '.login-title',
+    errorLoginMessage: '.error-form'
   }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
-const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 
 class LoginPage implements AbstractPage {
 
@@ -159,7 +161,7 @@ class LoginPage implements AbstractPage {
   click = {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get(loginIcon).invoke('show');
       } else {
         cy.get(loginIcon).click({ force: true });
@@ -193,7 +195,7 @@ class LoginPage implements AbstractPage {
  
     assertForgotPasswordMessageisDisplayed (email: string) {
       const forgotPasswordMessage = selectors[variables.brand].forgotPasswordMessage;
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get(forgotPasswordMessage).should('be.visible');
       } else {
         cy.get(forgotPasswordMessage).should('be.visible').and('contain', email);
@@ -205,7 +207,7 @@ class LoginPage implements AbstractPage {
     login (user: string, pass: string) {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get(loginIcon).invoke('show');
         cy.get(loginLink).click({force:true});
       } else {

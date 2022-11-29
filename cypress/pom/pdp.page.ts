@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -27,7 +28,8 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '.b-product_shipping-returns',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     addedToWishlistMsg: '.b-message',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'nastygal.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -52,7 +54,8 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_delivery',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'dorothyperkins.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -78,7 +81,8 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
@@ -104,7 +108,8 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'wallis.co.uk': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -129,10 +134,36 @@ const selectors: SelectorBrandMap = {
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
-    wishListIcon: '.b-header_wishlist'
+    wishListIcon: '.b-header_wishlist',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    searchField: '#header-search-input',
+    addToCart: '#add-to-cart',
+    addToWishListButton: '.wishlist-button',
+    shippingInfoButton: '#product-details-btn-shipping',
+    returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
+    shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
+    selectColor: '.swatches.color',
+    sizeVariations: '.swatches.size',
+    productTitle: '.product-detail > h1.product-name',
+    productCode: '.product-number > [itemprop="sku"]',
+    productPrice: '.product-price',
+    colorSwatches: '.swatches.color',
+    productImage: '#product-image-0',
+    addToCartTitle: '.mini-cart-header-product-added',
+    miniCartProductIner: '.mini-cart-product',
+    productDescription: '#ui-id-2 > p',
+    productDelivery: '.b-product_delivery',
+    productReturnsDescription: '#ui-id-5',
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+    productDeliveryInfo: '#product-delivery-info-tab'
+  },
   'coastfashion.com': {
     searchField: '#header-search-input',
     addToCart: '#add-to-cart',
@@ -186,6 +217,7 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '.product-returns-info',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.product-delivery-info a',
+    cartValidation: '.b-product_actions-error_msg',
   },
   'oasis-stores.com': {
     searchField: '#header-search-input',
@@ -212,8 +244,34 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '.product-returns-info',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
+    cartValidation: '.b-product_actions-error_msg',
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    searchField: '#header-search-input',
+    addToCart: '#add-to-cart',
+    addToWishListButton: '.wishlist-button',
+    shippingInfoButton: '#product-details-btn-shipping',
+    returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
+    shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.mini-cart-link',
+    selectColor: '.swatches.color',
+    sizeVariations: '.swatches.size',
+    productTitle: '#product-content > .product-name',
+    productCode: '.product-number > [itemprop="sku"]',
+    productPrice: '.product-price',
+    colorSwatches: '.swatches.color',
+    productImage: '.primary-image',
+    addToCartTitle: '.mini-cart-link',
+    miniCartProductIner: '.mini-cart-product',
+    productDescription: '.product-care-info',
+    productDelivery: '.b-product_delivery',
+    productReturnsDescription: '.product-returns-link > .product-info-link-text',
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+    productDeliveryInfo: '.product-delivery-link > .product-info-link-text'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -283,7 +341,7 @@ class PdpPage implements AbstractPage {
     },
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get(sizeVariations).find('li > span').each(($element) => {
           if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');
@@ -340,7 +398,9 @@ class PdpPage implements AbstractPage {
     },
     assertAddToCartBtnIsNotAvailable (msg: string) {
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).should('be.visible').contains(msg);
+      const cartValidation = selectors[variables.brand].cartValidation;
+      cy.get(addToCart).click();
+      cy.get(cartValidation).contains(msg);
     },
     assertMiniCartIsDisplayed () {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;

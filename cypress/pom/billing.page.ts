@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -531,7 +532,6 @@ const selectors: SelectorBrandMap = {
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
-const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com'];
 class BillingPage implements AbstractPage {
   goto (): void {
     cy.visit('/checkout?step=billing');
@@ -552,7 +552,7 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get(shippingCheckbox).click({force:true});
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
@@ -626,7 +626,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (!siteGenesisBrands.includes(variables.brand)) {
+      if (!isSiteGenesisBrand()) {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -638,11 +638,11 @@ class BillingPage implements AbstractPage {
       const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, countryCode: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
-      const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
       const billingPostCode = selectors[variables.brand].billingPostCode;
+      const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
@@ -760,7 +760,7 @@ class BillingPage implements AbstractPage {
           }
         });
 
-        const payButtonLocator = (variables.brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[testid="confirm-and-pay"]';
+        const payButtonLocator = (variables.brand == 'nastygal.com' || variables.brand == 'misspap.com') ? 'button[id*="purchase-review-continue-button"]' : '[testid="confirm-and-pay"]';
         body().find(payButtonLocator).click({force:true});
 
         body().then($body => {
@@ -821,7 +821,7 @@ class BillingPage implements AbstractPage {
     },
     selectLaybuy () {
       cy.wait(5000);
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get('[for="is-LAYBUY"]', { timeout: 30000 }).should('be.visible').click({ force: true });
         cy.get('#billingSubmitButton', { timeout: 30000 }).click({ force: true });
       } else {
@@ -836,7 +836,7 @@ class BillingPage implements AbstractPage {
       cy.get('button[data-test-id="payment-complete-order-button"]').click();
     },
     selectClearpay () {
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });
         cy.get('#billingSubmitButton').click({ force: true });
       } else {
@@ -903,7 +903,7 @@ class BillingPage implements AbstractPage {
     },
     assertSameAsShippingIsChecked () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (siteGenesisBrands.includes(variables.brand)) {
+      if (isSiteGenesisBrand()) {
         cy.get(shippingCheckbox).should('have.class', 'is-checked');
       } else {
         cy.get(shippingCheckbox).should('be.checked');
@@ -918,7 +918,7 @@ class BillingPage implements AbstractPage {
       cy.get(newBillingAddressForm).should('be.visible').and('include.text', address);
     },
     assertGiftCertificateFormIsPresent () {
-      if (!siteGenesisBrands.includes(variables.brand)) {
+      if (!isSiteGenesisBrand()) {
         cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
       }
     },
@@ -976,7 +976,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (siteGenesisBrands.includes(variables.brand)) {
+      } else if (isSiteGenesisBrand()) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

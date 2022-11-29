@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -102,7 +103,28 @@ const selectors: SelectorBrandMap = {
     footer: '#footercontent'
   },
   'boohooman.com': undefined,
-  'karenmillen.com': undefined,
+  'karenmillen.com': {
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
+    instagramLink: 'a[href="https://www.instagram.com/karen_millen/"]',
+    facebookLink: 'a[href="https://www.facebook.com/karenmillen"]',
+    twitterLink: 'a[href="https://twitter.com/karenmillen"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/karenmillen/"]', 
+    youtubeLink: 'a[href="https://www.youtube.com/user/KarenMillen10"]',
+    newsletterInputMail: 'input[id^="footer_newsletter_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: '.newsletter-form-group button',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.footer-newsletter-info',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-links',
+    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
+    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
+    footer: '.footer'
+  },
   'coastfashion.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
@@ -169,7 +191,29 @@ const selectors: SelectorBrandMap = {
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
-  'misspap.com': undefined
+  'misspap.com': {
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright',
+    instagramLink: 'a[href="https://www.instagram.com/misspap/"]', 
+    facebookLink: 'a[href="https://www.facebook.com/MisspapOfficial/"]',
+    twitterLink: 'a[href="https://twitter.com/misspap"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/oasisfashion/"]',
+    tiktokLink: 'a[href="https://www.tiktok.com/@misspap?lang=en"]',
+    youtubeLink: 'a[href="https://www.youtube.com/channel/UC-fFPC-ggIM_EcHsfoDMbjg"]',
+    newsletterInputMail: 'input[id^="footer_newsletter_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: '.newsletter-form-group button',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.footer-newsletter-info',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-links',
+    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
+    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    headerInner: '.b-header_utility-inner',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
+    footer: '.footer'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;
@@ -272,7 +316,7 @@ class GlobalFooter implements AbstractPage {
       const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
       const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
       const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
+      if (isSiteGenesisBrand()) {
         cy.get(newsletterInputMail).type(email, {force:true});
         cy.get(subscribeSubmitBtn).click({force:true});
       } else {
@@ -311,7 +355,7 @@ class GlobalFooter implements AbstractPage {
       cy.get(successfulSubscriptionMsg).contains(text);
     },
     assertUnsuccessfulSubscription (text: string) {
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
+      if (isSiteGenesisBrand()) {
         const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
         cy.get(unsuccessfulSubscriptionMsg).should('be.visible').invoke('text').should('contain', text);
       } else {

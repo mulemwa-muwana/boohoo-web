@@ -344,7 +344,7 @@ class GlobalFooter implements AbstractPage {
       cy.wait(2000);
       cy.get(changeCountryDropdown).select(country);
     },
-    studentDiscountAcceptCookies () {
+    studentDiscountAcceptCookiesOnPopup () {
       cy.iframe('.student-beans > iframe').find('#onetrust-accept-btn-handler').click({force:true});
     }
   };

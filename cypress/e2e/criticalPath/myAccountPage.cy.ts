@@ -40,11 +40,11 @@ describe('Account page', function () {
   });
   it('TC03 Verify that returns option links to correct page', function () {
     if (isSiteGenesisBrand()) {
-      MyAccountPage.click.startReturnButton(assertionText.startAReturnButtonText[variables.language]);
+      MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
       MyAccountPage.assertions.assertUrlContains('return');
     } else {
       MyAccountPage.click.viewOrderBtn();
-      MyAccountPage.click.startReturnButton(assertionText.startAReturnButtonText[variables.language]);
+      MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
       MyAccountPage.assertions.assertUrlContains('delivery');
     }
   });

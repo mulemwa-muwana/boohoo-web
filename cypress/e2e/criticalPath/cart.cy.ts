@@ -37,10 +37,7 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
   it('Verify that user can update quantity of products', function () {
-    if (variables.brand == 'boohoo.com') {
-      CartPage.actions.editCartQuantity('3');
-      CartPage.assertions.assertQuantityIsDisplayed('3');
-    } else if (isSiteGenesisBrand() || variables.brand == 'dorothyperkins.com') {
+    if (isSiteGenesisBrand() || variables.brand == 'dorothyperkins.com') {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
     } else {

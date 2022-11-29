@@ -14,7 +14,7 @@ class AssertionText {
     ES: '\n\nSalvado\n'
   };
 
-  startAReturnButtonText: TranslationMap = {
+  startReturnButtonText: TranslationMap = {
     EN: 'return',
     FR: '',
     NL: '',

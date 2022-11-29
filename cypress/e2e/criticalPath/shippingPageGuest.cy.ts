@@ -92,19 +92,20 @@ describe('Shipping Page Guest user tests', function () {
     });
   }
 
-  if (!isSiteGenesisBrand()) {
-    it('Verify that "Enter manually" button allows guest to enter address details', function () {
-      const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-      if (variables.locale == 'EU') {
-        shippingPage.actions.firstNameField(localeAddress.firstName);
-        shippingPage.actions.lastNameField(localeAddress.lastName);
-        shippingPage.actions.selectCountry(localeAddress.country);
-      }
-      shippingPage.click.addAddressManually();
-      shippingPage.assertions.assertManualAddressFieldsAreDisplayed();
-    });
-
-  }
+  it('Verify that "Enter manually" button allows guest to enter address details', function () {
+    if (isSiteGenesisBrand()) { // Site Genesis websites have all fields displayed, no Enter Manually button
+      this.skip();
+    }
+    
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.locale == 'EU') {
+      shippingPage.actions.firstNameField(localeAddress.firstName);
+      shippingPage.actions.lastNameField(localeAddress.lastName);
+      shippingPage.actions.selectCountry(localeAddress.country);
+    }
+    shippingPage.click.addAddressManually();
+    shippingPage.assertions.assertManualAddressFieldsAreDisplayed();
+  });
 
   it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');

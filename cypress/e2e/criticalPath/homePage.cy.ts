@@ -279,7 +279,7 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', () => {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[variables.language]);
         if (variables.brand == 'warehousefashion.com') {
-          GlobalFooter.actions.studentDiscountAcceptCookies();
+          GlobalFooter.actions.studentDiscountAcceptCookiesOnPopup();  // Needed for continuing cypress tests execution
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Discount & Promo Codes', () => {
@@ -287,7 +287,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
-        if ((variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES')) || variables.brand == 'nastygal.com' || isSiteGenesisBrand())
+        if ((variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES' && variables.locale != 'NO')) || variables.brand == 'nastygal.com' || isSiteGenesisBrand())
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
       });
 
@@ -320,7 +320,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US') || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com')
+        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US'))
           GlobalFooter.actions.checkFooterLinkByText('Laybuy');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {

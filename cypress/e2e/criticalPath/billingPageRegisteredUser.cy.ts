@@ -143,7 +143,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if ((variables.brand == 'nastygal.com') && variables.locale == 'UK' || variables.locale == 'AU') {
+    } else if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'AU')) {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
 

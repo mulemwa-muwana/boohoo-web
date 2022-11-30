@@ -552,7 +552,7 @@ class BillingPage implements AbstractPage {
     },
     uncheckShippingCheckbox () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get(shippingCheckbox).click({force:true});
       } else {
         cy.get(shippingCheckbox).should('be.checked').uncheck();
@@ -626,7 +626,7 @@ class BillingPage implements AbstractPage {
     },
     enterManuallyAddressDetails () {
       const enterManually = selectors[variables.brand].enterManually;
-      if (!isSiteGenesisBrand()) {
+      if (!isSiteGenesisBrand) {
         cy.get(enterManually).click({force: true});
       }
     },
@@ -821,7 +821,7 @@ class BillingPage implements AbstractPage {
     },
     selectLaybuy () {
       cy.wait(5000);
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get('[for="is-LAYBUY"]', { timeout: 30000 }).should('be.visible').click({ force: true });
         cy.get('#billingSubmitButton', { timeout: 30000 }).click({ force: true });
       } else {
@@ -836,7 +836,7 @@ class BillingPage implements AbstractPage {
       cy.get('button[data-test-id="payment-complete-order-button"]').click();
     },
     selectClearpay () {
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });
         cy.get('#billingSubmitButton').click({ force: true });
       } else {
@@ -903,7 +903,7 @@ class BillingPage implements AbstractPage {
     },
     assertSameAsShippingIsChecked () {
       const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get(shippingCheckbox).should('have.class', 'is-checked');
       } else {
         cy.get(shippingCheckbox).should('be.checked');
@@ -918,7 +918,7 @@ class BillingPage implements AbstractPage {
       cy.get(newBillingAddressForm).should('be.visible').and('include.text', address);
     },
     assertGiftCertificateFormIsPresent () {
-      if (!isSiteGenesisBrand()) {
+      if (!isSiteGenesisBrand) {
         cy.get('button[data-event-click="showGiftCertificateForm"]').should('be.visible');
       }
     },
@@ -976,7 +976,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (isSiteGenesisBrand()) {
+      } else if (isSiteGenesisBrand) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

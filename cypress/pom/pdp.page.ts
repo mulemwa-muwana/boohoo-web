@@ -340,7 +340,7 @@ class PdpPage implements AbstractPage {
     },
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get(sizeVariations).find('li > span').each(($element) => {
           if (!$element.attr('title').includes('not available')) { // If size is available
             $element.trigger('click');

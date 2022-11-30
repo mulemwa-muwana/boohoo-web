@@ -37,7 +37,7 @@ describe('Product Details Page tests', function () {
     PdpPage.click.addToCart();
   });
   it('TC07 Verify if size is not selected user cannot add product to a bag', function () {
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSizeSiteGenesis[variables.language]);
     } else {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);

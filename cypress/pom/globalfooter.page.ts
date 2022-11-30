@@ -316,7 +316,7 @@ class GlobalFooter implements AbstractPage {
       const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
       const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
       const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get(newsletterInputMail).type(email, {force:true});
         cy.get(subscribeSubmitBtn).click({force:true});
       } else {
@@ -355,7 +355,7 @@ class GlobalFooter implements AbstractPage {
       cy.get(successfulSubscriptionMsg).contains(text);
     },
     assertUnsuccessfulSubscription (text: string) {
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
         cy.get(unsuccessfulSubscriptionMsg).should('be.visible').invoke('text').should('contain', text);
       } else {

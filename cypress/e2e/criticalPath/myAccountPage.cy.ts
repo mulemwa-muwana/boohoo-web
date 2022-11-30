@@ -21,25 +21,25 @@ describe('Account page', function () {
 
   // Order History test cases
   it('TC01 Verify that user is able to view order details', function () {
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       MyAccountPage.click.orderHistoryLink();
     }
     const includededBrands: Array<GroupBrands> = ['nastygal.com', 'burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk'];
-    if (includededBrands.includes(variables.brand) || isSiteGenesisBrand()) {
+    if (includededBrands.includes(variables.brand) || isSiteGenesisBrand) {
       MyAccountPage.click.viewNewestOrderHistory(); 
     }
     MyAccountPage.assertions.assertLoadedOrders();
   });
   it('TC02 Verify that Order history page works as expected', function () {
     MyAccountPage.click.orderHistoryLink();
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand()) {
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
       MyAccountPage.assertions.assertUrlContains('order-history');
     } else {
       MyAccountPage.assertions.assertUrlContains('orders');
     }
   });
   it('TC03 Verify that returns option links to correct page', function () {
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
       MyAccountPage.assertions.assertUrlContains('return');
     } else {
@@ -51,7 +51,7 @@ describe('Account page', function () {
 
   // My Acount Details test cases
   it('TC04 Verify that account details display correct email', function () {
-    if (!isSiteGenesisBrand()) {
+    if (!isSiteGenesisBrand) {
       MyAccountPage.click.accountDetailsLink();
     }
     cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -61,7 +61,7 @@ describe('Account page', function () {
   it('TC05 Verify that account details are editable', function () {
     MyAccountPage.click.accountDetailsLink();
     MyAccountPage.actions.updateAccountName('Test');
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       MyAccountPage.assertions.assertAccountEditedSuccessfulPopup();
     } else {
       MyAccountPage.assertions.assertNameGreetingMessage('TEST');

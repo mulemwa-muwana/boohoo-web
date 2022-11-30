@@ -230,7 +230,4 @@ export function isBrandSupportingPaymentMethod (brand: GroupBrands, paymentMetho
 
 const variables = Cypress.env() as EnvironmentVariables;
 export const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com'];
-
-export function isSiteGenesisBrand (): boolean {
-  return siteGenesisBrands.includes(variables.brand) as boolean;
-}
+export const isSiteGenesisBrand: boolean = siteGenesisBrands.includes(variables.brand);

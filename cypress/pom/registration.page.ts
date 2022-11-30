@@ -210,7 +210,7 @@ class RegistrationPage implements AbstractPage {
   actions = {
     startRegistration (randomEmail: string) {
       cy.get('#dwfrm_profile_customer_email').click({force: true}).type(randomEmail);
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get('#dwfrm_profile_customer_emailconfirm').click({force: true}).type(randomEmail);
       }
       
@@ -264,7 +264,7 @@ class RegistrationPage implements AbstractPage {
       const emailError = selectors[variables.brand].emailError;
       if (variables.brand == 'boohoo.com') {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail[variables.language]);
-      } else if (isSiteGenesisBrand()) {
+      } else if (isSiteGenesisBrand) {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailSiteGenesis[variables.language]);
       } else {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailArcadia[variables.language]);

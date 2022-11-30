@@ -17,7 +17,7 @@ describe('Cart basic functionality for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(2000);
     HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand()) {
+    if (!isSiteGenesisBrand) {
       PdpPage.click.miniCartViewCartBtn();
     }
   });
@@ -37,7 +37,7 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
   });
   it('Verify that user can update quantity of products', function () {
-    if (isSiteGenesisBrand() || variables.brand == 'dorothyperkins.com') {
+    if (isSiteGenesisBrand || variables.brand == 'dorothyperkins.com') {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
     } else {

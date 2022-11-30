@@ -21,7 +21,7 @@ describe('Billing page functionality for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand()) {
+    if (!isSiteGenesisBrand) {
       PdpPage.click.miniCartViewCartBtn();
     }
     if (variables.brand === 'dorothyperkins.com' || variables.brand === 'wallis.co.uk') {
@@ -31,7 +31,7 @@ describe('Billing page functionality for registered user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       cy.wait(2000);
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -58,7 +58,7 @@ describe('Billing page functionality for registered user', function () {
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.actions.waitPageToLoad();
@@ -80,7 +80,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
   it('Verify that email address is displayed and it cannot be changed', function () {
-    if (!isSiteGenesisBrand()) {
+    if (!isSiteGenesisBrand) {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         BillingPage.assertions.assertEmailIsCorrect(credentials.username);
       });
@@ -88,13 +88,13 @@ describe('Billing page functionality for registered user', function () {
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.click.uncheckShippingCheckbox();
@@ -102,7 +102,7 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that registered user can add  new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();

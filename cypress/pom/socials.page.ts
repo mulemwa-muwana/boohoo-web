@@ -111,7 +111,7 @@ class SocialsPage implements AbstractPage {
     // Not working for Dorothy Perkins and Wallis 
     assertInstagramIconIsPresent () {
       const instagram = selectors[variables.brand].instagram;
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(instagram).should('be.visible');
       } else {
@@ -120,7 +120,7 @@ class SocialsPage implements AbstractPage {
     },
     assertFacebookIconIsPresent () {
       const facebook = selectors[variables.brand].facebook;
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(facebook).should('be.visible');
       } else {
@@ -132,7 +132,7 @@ class SocialsPage implements AbstractPage {
     },
     assertPinterestIconIsPresent () {
       const pinterest = selectors[variables.brand].pinterest;
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get(pinterest).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(pinterest).should('be.visible');
       } else {
@@ -145,7 +145,7 @@ class SocialsPage implements AbstractPage {
     },
     assertTwitterIconIsPresent () {
       const twitter = selectors[variables.brand].twitter;
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(twitter).should('be.visible');
       } else {

@@ -19,14 +19,14 @@ describe('Checkout Page', function () {
     pdpPage.click.addToCart();
     cy.wait(3000);
     HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand()) {
+    if (!isSiteGenesisBrand) {
       pdpPage.click.miniCartViewCartBtn();
     }
     cartPage.click.proceedToCheckout();
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       CheckoutPage.assertions.assertUserEmailField();
     } else {
       CheckoutPage.assertions.assertGuestCheckoutEmail();
@@ -35,7 +35,7 @@ describe('Checkout Page', function () {
     }
   });
 
-  if (!isSiteGenesisBrand()) {
+  if (!isSiteGenesisBrand) {
     it('Verify Premier is displayed and can be added to the cart', () => {
       const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
       const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
@@ -53,7 +53,7 @@ describe('Checkout Page', function () {
   it('Verify that registered user is able to login', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);

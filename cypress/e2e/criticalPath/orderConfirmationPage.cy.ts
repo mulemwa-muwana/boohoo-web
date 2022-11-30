@@ -23,7 +23,7 @@ describe('Order confirmation page for guest user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand()) {
+    if (!isSiteGenesisBrand) {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
@@ -42,7 +42,7 @@ describe('Order confirmation page for guest user', function () {
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         shippingPage.actions.selectDate('23', 'May', '2001');
         shippingPage.actions.confirmEmail(credentials.guest);
         shippingPage.click.proceedToBilling();
@@ -65,7 +65,7 @@ describe('Order confirmation page for guest user', function () {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
       orderConfirmationPage.assertions.assertOrderValueIsDisplayed();
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
       } else {
         orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
@@ -97,13 +97,13 @@ describe('Order confirmation page for registered user', function () {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();  
-    if (!isSiteGenesisBrand()) {
+    if (!isSiteGenesisBrand) {
       PdpPage.click.miniCartViewCartBtn();
     }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -125,7 +125,7 @@ describe('Order confirmation page for registered user', function () {
     }
 
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand()) {
+    if (isSiteGenesisBrand) {
       shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.actions.waitPageToLoad();
@@ -143,7 +143,7 @@ describe('Order confirmation page for registered user', function () {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
       orderConfirmationPage.assertions.assertOrderTotalIsVisible();
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
       } else {
         orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);

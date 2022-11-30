@@ -573,7 +573,7 @@ class ShippingPage implements AbstractPage {
       cy.get(PUDOlocations).click();
     },
     enterManuallyAddressDetails () {
-      if (!isSiteGenesisBrand()) {
+      if (!isSiteGenesisBrand) {
         const enterManually = selectors[variables.brand].enterManually;
         cy.get(enterManually).click({force: true});
       }

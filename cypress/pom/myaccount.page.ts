@@ -574,7 +574,7 @@ class MyAccountPage implements AbstractPage {
       startReturnButton (text: string) {
         if (variables.brand == 'nastygal.com') {
           cy.get('.b-order_item-button').click();
-        } else if (isSiteGenesisBrand()) {
+        } else if (isSiteGenesisBrand) {
           cy.log(`searching for '${text}' in account nav panel on the left side`);
           cy.get('.secondary-navigation').contains(text, {matchCase: false})
             .invoke('removeAttr', 'target')
@@ -665,7 +665,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressEditForm).should('be.visible');
         cy.get(addressField).clear({ force: true }).type(line1);
         cy.get(addressSubmitBtn).click({ force: true });
-        if (isSiteGenesisBrand()) {
+        if (isSiteGenesisBrand) {
           cy.get(proceedToBillingBtn).click({ force: true });
         }
       },
@@ -686,7 +686,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
         cy.get(addressPhoneNumberField).type(address.phone, { force: true });
-        if (!isSiteGenesisBrand()) {
+        if (!isSiteGenesisBrand) {
           cy.get(addressEnterManualyBtn).click({ force: true });
         }
         cy.get(addressField).should('be.visible').type(address.addrline1, { force: true });
@@ -695,7 +695,7 @@ class MyAccountPage implements AbstractPage {
         if (variables.locale == 'AU') {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
-        if (isSiteGenesisBrand()) {
+        if (isSiteGenesisBrand) {
           cy.get(addressNicknameField).type('test');
           cy.get(addressSubmitBtn).click({ force: true });
           cy.get(proceedToBillingBtn).click({ force: true });
@@ -730,7 +730,7 @@ class MyAccountPage implements AbstractPage {
         const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
         cy.get(creditCardSection).contains(cardEnd).should('be.visible');
         cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click();
-        if (!isSiteGenesisBrand()) {
+        if (!isSiteGenesisBrand) {
           cy.get(cardDeleteConfirmationBtn).click();
         }
       },
@@ -764,7 +764,7 @@ class MyAccountPage implements AbstractPage {
       },
       assertAccountEmail (email: string) {
         const accountDetailsEmailField = selectors[variables.brand].accountDetailsEmailField;
-        if (isSiteGenesisBrand()) {
+        if (isSiteGenesisBrand) {
           cy.get(accountDetailsEmailField).invoke('text').then((text) => expect(text.trim()).equal(email));
         } else {
           cy.get(accountDetailsEmailField).invoke('attr', 'value').should('contain', email);

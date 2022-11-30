@@ -371,7 +371,7 @@ class PlpPage implements AbstractPage {
     },
     assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');
-      if (isSiteGenesisBrand()) {
+      if (isSiteGenesisBrand) {
         const numberOfPagesTextIsVisible = selectors[variables.brand].numberOfPagesTextIsVisible;
         cy.get(numberOfPagesTextIsVisible).should('be.visible');
       } else {

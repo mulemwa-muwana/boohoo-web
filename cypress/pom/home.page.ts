@@ -55,7 +55,18 @@ const selectors: SelectorBrandMap = {
     promotion: 'div[class="b-hero_carousel-track"]',
     logo: '.b-logo',
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    resetPassword: '',
+    wishListIcon: '.header-wishlist > .header-wishlist-link',
+    registrationButton: '.b-registration_benefits > .b-button',
+    minicartIcon: '.b-minicart_icon-link',
+    acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
+    promotion: '.js-offer-promo-2 > a > .main-promo-text',
+    loginIcon: '.user-account',
+    logo: ' div.primary-logo-wrap.js-appshell-uncached-headerlogo-container > div > a'
+  },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',

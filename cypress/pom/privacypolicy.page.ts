@@ -17,7 +17,9 @@ const selectors: SelectorBrandMap = {
   'wallis.co.uk': {
     privacyNoticyPageTitle: '.l-static_page-title',
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    privacyNoticyPageTitle: 'h1 > strong'
+  },
   'karenmillen.com': {
     privacyNoticyPageTitle: 'h1 > strong',
   },

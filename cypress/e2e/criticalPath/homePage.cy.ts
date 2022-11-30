@@ -99,7 +99,12 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       }
-      homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[variables.language]);
+
+      if(variables.brand == 'boohooman.com') {
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
+      } else {
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[variables.language]);
+      }
     });
 
   });
@@ -349,7 +354,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[variables.language], { assertionUrl: 'https://careers.boohoogroup.com/' });
       });
       it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {
-        if (variables.brand == 'boohoo.com' ) {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCond[variables.language]);
         } else if (isSiteGenesisBrand) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondSiteGenesis[variables.language]);
@@ -359,7 +364,7 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
         const australianLocales: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
-        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com'];
+        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
         const augustPrivacyPolicyBrands: Array<GroupBrands> = ['coastfashion.com', 'karenmillen.com'];
         
         if ((variables.brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(variables.brand)) {

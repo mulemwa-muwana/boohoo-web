@@ -128,7 +128,35 @@ const selectors: SelectorBrandMap = {
     productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    priceRefinements: '#searchRefineBarAccordionItemBtn-price > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    occassionRefinement: '#searchRefineBarAccordionItemBtn-occasion > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantColour: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    
+    // SelectRefinementVariantCategory: '#searchRefineBarAccordionItemBtn-catégorie', // FR
+    SelectRefinementVariantCategory: '#searchRefineBarAccordionItemBtn-category',
+    selectRefinementVariantOccassion: '#searchRefineBarAccordionItemInner-occasion',
+    selectRefinementVariantShopByPrice: '#searchRefineBarAccordionItemInner-price',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: 'div.b-load_more > a',
+    numberOfItemsTextIsVisible: 'div.b-load_progress > span',
+    productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
+    newProductPriceIsDispayed: '.m-new',
+    productPriceIsDispayed: '.b-price-item',
+    productImageIsDisplayed: '.b-product_tile-image > .null',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link'
+  },
   'karenmillen.com': {
     styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
     sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',

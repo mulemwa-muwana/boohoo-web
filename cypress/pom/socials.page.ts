@@ -41,7 +41,16 @@ const selectors: SelectorBrandMap = {
     facebookUrl: 'facebook.com/Wallis',
     twitter: '#footercontent > div.l-footer-content > div.l-footer-signup > div.l-footer-follow > div.b-footer_social > div > section > div > a:nth-child(2)'
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    instagramUrl: 'instagram.com/boohoo',
+    instagram: '.icon-instagram',
+    facebook: '.icon-facebook',
+    facebookUrl: 'facebook.com/BoohooMAN',
+    twitter: '.icon-twitter',
+    tiktok: '.tiktok-icon > a > span',
+    youtube: '.icon-youtube-text',
+    pinterest: ''
+  },
   'karenmillen.com': {
     instagramUrl: 'instagram.com/karen_millen/', 
     instagram: '.icon-instagram-2',

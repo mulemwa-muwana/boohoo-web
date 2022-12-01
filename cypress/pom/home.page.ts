@@ -56,16 +56,14 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'boohooman.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.user-account',
+    registrationButton: 'a[title="Register"]',
+    wishListIcon: '.header-wishlist > .header-wishlist-link',
     searchField: '.js-header-search-input',
     searchIcon: '.js-search-icon',
-    resetPassword: '',
-    wishListIcon: '.header-wishlist > .header-wishlist-link',
-    registrationButton: '.b-registration_benefits > .b-button',
-    minicartIcon: '.b-minicart_icon-link',
-    acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
-    promotion: '.js-offer-promo-2 > a > .main-promo-text',
-    loginIcon: '.user-account',
-    logo: ' div.primary-logo-wrap.js-appshell-uncached-headerlogo-container > div > a'
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',

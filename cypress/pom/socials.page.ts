@@ -42,7 +42,7 @@ const selectors: SelectorBrandMap = {
     twitter: '#footercontent > div.l-footer-content > div.l-footer-signup > div.l-footer-follow > div.b-footer_social > div > section > div > a:nth-child(2)'
   },
   'boohooman.com': {
-    instagramUrl: 'instagram.com/boohoo',
+    instagramUrl: 'instagram.com/boohoomanofficial/',
     instagram: '.icon-instagram',
     facebook: '.icon-facebook',
     facebookUrl: 'facebook.com/BoohooMAN',

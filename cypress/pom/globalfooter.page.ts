@@ -103,27 +103,26 @@ const selectors: SelectorBrandMap = {
     footer: '#footercontent'
   },
   'boohooman.com': {
-    privacyPolicyLink: 'div[class="footer-copyright-wrapper clearfix"] a:nth-child(2)',
-    copyrightPrivacyPolicyLink: '#wrapper > div.footer > div.footer-container > div.footer-copy-wrapper.footer-item > div > div > div.column-65.touch-column-60.mobile-column-100.footer-copyright',
-    instagramLink: 'a[href="https://www.instagram.com/boohoomanofficial/"]',
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
+    instagramLink: 'a[href="https://www.instagram.com/boohoomanofficial"]',
     facebookLink: 'a[href="https://www.facebook.com/BoohooMAN"]',
     twitterLink: 'a[href="https://twitter.com/boohooMAN"]',
-    tiktokLink: 'a[href="https://www.tiktok.com/@boohooman?lang=en"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/coastfashion/"]',
     youtubeLink: 'a[href="https://www.youtube.com/boohooMAN"]',
-    pintrestLink: 'a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]',
-    theFixLink: 'a[href="https://thefix.boohoo.com/"]',
-    footerPromoLink: '#footer-sticky-promo > a',
+    tiktokLink: 'a[href="https://www.tiktok.com/@boohooman?lang=en"]',
     newsletterInputMail: 'input[id^="footer_newsletter_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
-    subscribeSubmitBtn: '.newslettersubscribe-button-text',
+    subscribeSubmitBtn: '.newsletter-form-group button',
     changeCountryDropdown: '.b-country-select',
     successfulSubscriptionMsg: '.footer-newsletter-info',
-    unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
-    paymentOptions: '.column-35 > .hidden-on-mobile',
-    appBanner: '.b-app_banner-actions',
-    footerStickyPromo: '#footer-sticky-promo > a',
-    headerInner: '.b-header_utility-inner',
-    copyrightTermAndCondLink: '#wrapper > div.footer > div.footer-container > div.footer-copy-wrapper.footer-item > div > div > div.column-65.touch-column-60.mobile-column-100.footer-copyright > a:nth-child(1)',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-links',
+    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
+    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    headerInner: '.sticky-header',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
   'karenmillen.com': {
@@ -144,7 +143,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
@@ -166,7 +165,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
@@ -188,7 +187,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.footer-promo.js-floating-promo',
     footerPromoLink: '.footer-promo.js-floating-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
@@ -210,7 +209,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
@@ -233,7 +232,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   }
@@ -416,7 +415,6 @@ class GlobalFooter implements AbstractPage {
     assertHeaderIsNotVisible () {
       const headerInner = selectors[variables.brand].headerInner;
       cy.get(headerInner).should('not.be.visible');
-
     }
   };
 

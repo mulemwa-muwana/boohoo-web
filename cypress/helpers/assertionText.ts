@@ -840,20 +840,6 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkDeliveryInfoSiteGenesis: TranslationMap = {
-    EN: 'Delivery Information',
-    NL: '',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
   footerShipping: TranslationMap = {
     EN: 'Shipping',
     NL: '',
@@ -1045,20 +1031,6 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
-  termsAndCondSiteGenesis: TranslationMap = {
-    EN: 'terms of use',
-    NL: 'Algemene voorwaarden',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: 'Allmänna villkor',
     IL: '',
     IT: '',
     ES: ''

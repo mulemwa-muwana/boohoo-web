@@ -118,7 +118,7 @@ const selectors: SelectorBrandMap = {
     successfulSubscriptionMsg: '.footer-newsletter-info',
     unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
     paymentOptions: '.footer-payment-method',
-    appBanner: '.footer-app-links',
+    appBanner: '.footer-app-block',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
@@ -395,7 +395,7 @@ class GlobalFooter implements AbstractPage {
     },
     assertAppBannerPresent () {
       const appBanner = selectors[variables.brand].appBanner;
-      cy.get(appBanner).scrollIntoView().should('be.visible'); //  It was div[class="b-app_banner"], only visible on BH and NG
+      cy.get(appBanner).scrollIntoView().should('be.visible');
     },
     assertCurrencyByPageContext (currency: string) { //  N/A
       cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {

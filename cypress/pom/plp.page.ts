@@ -142,7 +142,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
-    loadMoreProducts: '.search-result-options [title="Next"]',
+    loadMoreProducts: '.search-result-options:not([class*="js-search-result-options"]) [title="Next"]',
     numberOfPagesTextIsVisible: '.search-result-options > div > ul.pagination-list',
     productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
     newProductPriceIsDispayed: '.product-pricing .product-sales-price',

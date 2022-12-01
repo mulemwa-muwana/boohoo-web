@@ -14,7 +14,7 @@ describe('Product Listing Page tests', function () {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
     }
-    if (variables.brand == 'boohoo.com') {
+    if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
@@ -60,7 +60,10 @@ describe('Product Listing Page tests', function () {
         plpPage.assertions.assertItemIsAddedToWishlistColorChange();
       }  
     });
-    it('Verify that product color is dispayed', () => {
+    it('Verify that product color is dispayed', function () {
+      if (variables.brand == 'boohooman.com') {     // No product colors on Plp page for this brand
+        this.skip();
+      }
       plpPage.assertions.assertProductColorIsDisplayedOnPLP();
     });
   });

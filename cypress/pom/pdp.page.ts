@@ -156,7 +156,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-product-added',
-    miniCartProductIner: '.mini-cart-product',
+    miniCartProductIner: '.mini-cart-content-inner',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.del-table',
     productReturnsInfoButton: '#product-returns-info-tab',
@@ -429,7 +429,9 @@ class PdpPage implements AbstractPage {
     },
     assertMiniCartIsDisplayed () {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
-      cy.get(addToCartTitle).should('be.visible');
+      if (variables.brand != 'boohooman.com') {
+        cy.get(addToCartTitle).should('be.visible');
+      }
       const miniCartProductIner = selectors[variables.brand].miniCartProductIner;
       cy.get(miniCartProductIner).should('be.visible');
     },
@@ -461,12 +463,11 @@ class PdpPage implements AbstractPage {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
       if (variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
         cy.get(productReturnsInfoButton).click();
-      }
-      cy.get(productReturnsDescription).should('be.visible');
-      if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
+      } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
         cy.get('#product-details-btn-shipping').click();
-        cy.get(productReturnsDescription).should('be.visible');
       }
+      
+      cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {
 

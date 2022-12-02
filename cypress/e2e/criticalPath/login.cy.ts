@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import assertionText from '../../helpers/assertionText';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
@@ -21,8 +22,8 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with invalid credentials', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, 'invalid12345');
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
+      if (isSiteGenesisBrand) {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[variables.language]);
       } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
       }
@@ -32,10 +33,10 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with non-registered mail address', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesis[variables.language]);
-      } else if (variables.brand == 'misspap.com') {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteMisspap[variables.language]);
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[variables.language]);
+      } else if (variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'misspap.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisCustomer[variables.language]);
       } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
       }

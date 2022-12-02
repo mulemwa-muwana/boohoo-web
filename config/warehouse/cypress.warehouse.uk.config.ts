@@ -5,11 +5,12 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@uk-dwstg.boohoo.com/',
-    sku: '#PZZ79996',
-    brand: 'boohoo.com',
+    url: 'https://storefront:Oreo2022@dwstg.warehousefashion.com',
+    sku: 'BWW00233-105-14',
+    fullSKU: 'BWW00233-105-14',
+    brand: 'warehousefashion.com',
     locale: 'UK',
-    language: 'EN',
+    language: 'EN'
   },
 
   viewportHeight: 1080,
@@ -17,10 +18,6 @@ export default defineConfig({
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,
-  screenshotOnRunFailure: true,
-  blockHosts: [
-    'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
-  ],
   
   e2e: {
     experimentalSessionAndOrigin: true,

@@ -14,6 +14,20 @@ class AssertionText {
     ES: '\n\nSalvado\n'
   };
 
+  startReturnButtonText: TranslationMap = {
+    EN: 'return',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   startAReturnURLvalidation: TranslationMap = {
     EN: 'return',
     FR: '\n\nEnregistré\n',
@@ -364,6 +378,20 @@ class AssertionText {
     ES: ''
   };
 
+  PremierWarehouse: TranslationMap = {
+    EN: 'WAREHOUSE LIMITLESS',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PremierText: TranslationMap = {
     EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
     FR: 'LIVRAISON STANDARD ILLIMITÉE PENDANT UN AN!',
@@ -476,8 +504,8 @@ class AssertionText {
     ES: 'Tienes 4 intentos más de inicio de sesión'
   };
 
-  loginErrorSiteGenesis: TranslationMap = {
-    EN: 'Looks like either your email address or password were incorrect. Please try again.',
+  loginErrorSiteGenesisCustomer: TranslationMap = {
+    EN: 'Current customer is not found, please check your spelling, or try to reset the password',
     FR: '',
     NL: '',
     DE: '',
@@ -490,8 +518,8 @@ class AssertionText {
     ES: ''
   };
 
-  loginErrorSiteMisspap: TranslationMap = {
-    EN: 'Current customer is not found, please check your spelling, or try to reset the password',
+  loginErrorSiteGenesisEmailOrPassword: TranslationMap = {
+    EN: 'Looks like either your email address or password were incorrect. Please try again.',
     FR: '',
     NL: '',
     DE: '',
@@ -1050,8 +1078,8 @@ class AssertionText {
     ES: ''
   };
 
-  privacyPolicy: TranslationMap = {
-    EN: 'Privacy Notice - Updated ',
+  privacyPolicyJuly2022: TranslationMap = {
+    EN: 'Privacy Notice - Updated July 2022',
     NL: 'Privacyverklaring - Bijgewerkt in juli 2022',
     DE: 'Datenschutzerklärung - Zuletzt upgedated Juni 2022', // FAILED
     FR: 'Avis de confidentialité',
@@ -1064,21 +1092,7 @@ class AssertionText {
     ES: 'Política de privacidad - Actualizado 26 abril 2021'
   };
 
-  privacyPolicyArcadia: TranslationMap = {
-    EN: 'Privacy Policy',
-    NL: '',
-    DE: 'Datenschutzbestimmungen', // FAILED
-    FR: 'Avis de confidentialité',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
-  privacyPolicySiteGenesis: TranslationMap = {
+  privacyPolicyAugust2022: TranslationMap = {
     EN: 'Privacy Notice - Updated August 2022',
     NL: '',
     DE: '',
@@ -1092,11 +1106,11 @@ class AssertionText {
     ES: ''
   };
 
-  privacyPolicySiteKarenMillen: TranslationMap = {
-    EN: 'Privacy Notice - updated August 2022',
+  privacyPolicyArcadia: TranslationMap = {
+    EN: 'Privacy Policy',
     NL: '',
-    DE: '',
-    FR: '',
+    DE: 'Datenschutzbestimmungen', // FAILED
+    FR: 'Avis de confidentialité',
     DK: '',
     FI: '',
     NO: '',

@@ -282,6 +282,8 @@ const selectors: SelectorBrandMap = {
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     paymentMethodLayBuy: '[for="is-LAYBUY"]',
+    emailField: '#dwfrm_billing_billingAddress_email_emailAddress',
+    confirmEmailField: '#dwfrm_billing_billingAddress_email_emailConfirm',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -637,6 +639,14 @@ class BillingPage implements AbstractPage {
     billingLastNameField (lastName: string) {
       const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
+    },
+    billingEmailField (email: string) { // Only for boohooman
+      const emailField = selectors[variables.brand].emailField;
+      cy.get(emailField).clear().type(email);
+    },
+    billingConfirmEmailField (email: string) { // Only for boohooman
+      const confirmEmailField = selectors[variables.brand].confirmEmailField;
+      cy.get(confirmEmailField).clear().type(email);
     },
     addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;

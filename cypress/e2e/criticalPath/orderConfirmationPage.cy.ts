@@ -9,6 +9,7 @@ import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import assertionText from '../../helpers/assertionText';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import billingPage from '../../pom/billing.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -42,11 +43,20 @@ describe('Order confirmation page for guest user', function () {
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
+
       if (isSiteGenesisBrand) {
         shippingPage.actions.selectDate('23', 'May', '2001');
-        shippingPage.actions.confirmEmail(credentials.guest);
-        shippingPage.click.proceedToBilling();
-        shippingPage.click.proceedToBillingVerification();
+        if (variables.brand == 'boohooman.com') {
+          shippingPage.click.proceedToBilling();
+          shippingPage.click.proceedToBillingVerification();
+          billingPage.actions.billingEmailField(credentials.guest);
+          billingPage.actions.billingConfirmEmailField(credentials.guest);
+        } else {
+          shippingPage.actions.confirmEmail(credentials.guest);
+          shippingPage.click.proceedToBilling();
+          shippingPage.click.proceedToBillingVerification();
+        }
+
       } else {
         shippingPage.click.proceedToBilling();
         BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
@@ -85,9 +95,9 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
   });
 });
+
 describe('Order confirmation page for registered user', function () {
   beforeEach (()=>{
-    const variables = Cypress.env() as EnvironmentVariables;
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
@@ -103,13 +113,15 @@ describe('Order confirmation page for registered user', function () {
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
-    shippingPage.click.addNewAddressButton();
+    if (variables.brand != 'boohooman.com') {
+      shippingPage.click.addNewAddressButton();
+    }
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     cy.wait(5000);

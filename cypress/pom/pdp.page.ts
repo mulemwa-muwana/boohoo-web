@@ -367,16 +367,22 @@ class PdpPage implements AbstractPage {
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       if (isSiteGenesisBrand) {
-        cy.get(sizeVariations).find('li > span').each(($element) => {
-          if (!$element.attr('title').includes('not available')) { // If size is available
-            $element.trigger('click');
+        cy.get(sizeVariations).find('li').each(($element) => {
+          if ($element.hasClass('selectable')) { // If size is available(selectable) 
+            if (!$element.hasClass('selected')) { // If size not already selected
+              $element.find('span').trigger('click');
+              return false;
+            } 
             return false;
           }
         });
       } else {
         cy.get(sizeVariations).find('button').each(($element) => {
           if (!$element.attr('title').includes('not available')) { // If size is available
-            $element.trigger('click');
+            if ($element.attr('data-attr-is-selected').includes('false')) { // If size not already selected
+              $element.trigger('click');
+              return false;
+            } 
             return false;
           }
         });

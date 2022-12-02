@@ -48,20 +48,24 @@ describe('Billing page functionality for guest user', function () {
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
+
     if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      if (variables.brand != 'boohooman.com') {
+        shippingPage.actions.confirmEmail(this.guestEmail);
+      }
       shippingPage.click.proceedToBilling();
       shippingPage.click.proceedToBillingVerification();
-    } 
-    
-    if (variables.locale == 'US') {
-      shippingPage.actions.selectState(localeAddress.county);
-      shippingPage.click.proceedToBilling();
-      cy.wait(3000);
-      shippingPage.actions.selectDate('23', '3', '2001');
+
     } else {
-      shippingPage.click.proceedToBilling();
+      if (variables.locale == 'US') {
+        shippingPage.actions.selectState(localeAddress.county);
+        shippingPage.click.proceedToBilling();
+        cy.wait(3000);
+        shippingPage.actions.selectDate('23', '3', '2001');
+      } else {
+        shippingPage.click.proceedToBilling();
+      }
     }
 
     BillingPage.actions.waitPageToLoad();

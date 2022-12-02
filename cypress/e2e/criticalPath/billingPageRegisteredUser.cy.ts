@@ -102,8 +102,8 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.click.uncheckShippingCheckbox();
     BillingPage.actions.selectAddressFromBook();
   });
-  it.only('Verify that registered user can add  new billing address', function () {
-    if(variables.brand == 'boohooman.com') {
+  it('Verify that registered user can add  new billing address', function () {
+    if (variables.brand == 'boohooman.com') {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');

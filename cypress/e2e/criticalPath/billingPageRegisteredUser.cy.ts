@@ -7,6 +7,7 @@ import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -19,8 +20,8 @@ describe('Billing page functionality for registered user', function () {
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
-    HomePage.click.cartIcon();  
-    if (variables.brand !== 'coastfashion.com' && variables.brand != 'karenmillen.com') {
+    HomePage.click.cartIcon();
+    if (!isSiteGenesisBrand) {
       PdpPage.click.miniCartViewCartBtn();
     }
     if (variables.brand === 'dorothyperkins.com' || variables.brand === 'wallis.co.uk') {
@@ -28,8 +29,9 @@ describe('Billing page functionality for registered user', function () {
     }
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
+      cy.wait(2000);
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
+      if (isSiteGenesisBrand) {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -56,10 +58,10 @@ describe('Billing page functionality for registered user', function () {
     // If (variables.locale == 'IE') {
     //   ShippingPage.actions.countyField(localeAddress.county);
     shippingPage.click.proceedToBilling();
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
+    if (isSiteGenesisBrand) {
       shippingPage.click.proceedToBillingVerification();
     }
-    BillingPage.assertions.assertBillingPageIsLoaded();
+    BillingPage.actions.waitPageToLoad();
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -78,7 +80,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
   it('Verify that email address is displayed and it cannot be changed', function () {
-    if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com' && variables.brand !='misspap.com' && variables.brand != 'karenmillen.com') {
+    if (!isSiteGenesisBrand) {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         BillingPage.assertions.assertEmailIsCorrect(credentials.username);
       });
@@ -86,13 +88,13 @@ describe('Billing page functionality for registered user', function () {
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
+    if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
+    if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.click.uncheckShippingCheckbox();
@@ -100,7 +102,7 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that registered user can add  new billing address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (variables.brand === 'coastfashion.com' || variables.brand === 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+    if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
@@ -141,7 +143,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if ((variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') && variables.locale == 'UK' || variables.locale == 'AU') {
+    } else if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'AU')) {
       BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
 

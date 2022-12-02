@@ -1,6 +1,7 @@
 import assertionText from 'cypress/helpers/assertionText';
 import LoginPage from 'cypress/pom/login.page';
 import * as CommonActions from '../../helpers/common';
+import { isSiteGenesisBrand } from '../../helpers/common';
 import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import RegistrationPage from '../../pom/registration.page';
@@ -22,13 +23,13 @@ describe('Verify Registration feature', function () {
   it('Verify that registration button is visible and it opens registration form', function () {
     const randomEmail = CommonActions.randomEmail();
     RegistrationPage.actions.startRegistration(randomEmail);
-    RegistrationPage.assertions.assertRegistrarionFormIsPresent();
+    RegistrationPage.assertions.assertRegistrationFormIsPresent();
   });
   it('Verify that user can register new account using valid credentials', function () {
     cy.fixture('newuser').then((credentials) =>{
       const randomEmail = CommonActions.randomEmail();
       RegistrationPage.actions.startRegistration(randomEmail);
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
+      if (!isSiteGenesisBrand) {
         RegistrationPage.actions.confirmationCheckbox();
         RegistrationPage.assertions.assertCheckboxIsChecked();
       }
@@ -44,7 +45,7 @@ describe('Verify Registration feature', function () {
   it('Verify that user can not register using email that already has account', function () {
     cy.fixture('newuser').then((credentials) =>{
       RegistrationPage.actions.startRegistration(credentials.username);
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
+      if (!isSiteGenesisBrand) {
         RegistrationPage.actions.confirmationCheckbox();
         RegistrationPage.assertions.assertCheckboxIsChecked();
       }

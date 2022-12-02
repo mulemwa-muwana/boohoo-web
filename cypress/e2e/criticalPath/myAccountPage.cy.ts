@@ -4,6 +4,7 @@ import MyAccountPage from '../../pom/myaccount.page';
 import Cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 import assertionText from 'cypress/helpers/assertionText';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -19,41 +20,48 @@ describe('Account page', function () {
   });
 
   // Order History test cases
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
-    it('TC01 Verify that user is able to view order details', function () {
-      if (variables.brand == 'nastygal.com' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
-        MyAccountPage.actions.viewNewestOrderHistory(); 
-      }
-      MyAccountPage.assertions.assertLoadedOrders();
-    });
-  }
+  it('TC01 Verify that user is able to view order details', function () {
+    if (isSiteGenesisBrand) {
+      MyAccountPage.click.orderHistoryLink();
+    }
+    const includededBrands: Array<GroupBrands> = ['nastygal.com', 'burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk'];
+    if (includededBrands.includes(variables.brand) || isSiteGenesisBrand) {
+      MyAccountPage.click.viewNewestOrderHistory(); 
+    }
+    MyAccountPage.assertions.assertLoadedOrders();
+  });
   it('TC02 Verify that Order history page works as expected', function () {
     MyAccountPage.click.orderHistoryLink();
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
-      MyAccountPage.assertions.assertOrderHistoryPageTitle('order-history');
+    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
+      MyAccountPage.assertions.assertUrlContains('order-history');
     } else {
-      MyAccountPage.assertions.assertOrderHistoryPageTitle('orders');
+      MyAccountPage.assertions.assertUrlContains('orders');
     }
   });
   it('TC03 Verify that returns option links to correct page', function () {
-    MyAccountPage.click.viewOrderBtn();
-    MyAccountPage.click.startReturnButton(assertionText.startAReturnURLvalidation[variables.language]);
+    if (isSiteGenesisBrand) {
+      MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
+      MyAccountPage.assertions.assertUrlContains('return');
+    } else {
+      MyAccountPage.click.viewOrderBtn();
+      MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
+      MyAccountPage.assertions.assertUrlContains('delivery');
+    }
   });
 
   // My Acount Details test cases
-
-  if (variables.brand != 'coastfashion.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
-    it('TC04 Verify that account details display correct email', function () {
+  it('TC04 Verify that account details display correct email', function () {
+    if (!isSiteGenesisBrand) {
       MyAccountPage.click.accountDetailsLink();
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        MyAccountPage.assertions.assertAccountDetails(credentials.username);
-      });
+    }
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      MyAccountPage.assertions.assertAccountEmail(credentials.username);
     });
-  }
+  });
   it('TC05 Verify that account details are editable', function () {
     MyAccountPage.click.accountDetailsLink();
     MyAccountPage.actions.updateAccountName('Test');
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
+    if (isSiteGenesisBrand) {
       MyAccountPage.assertions.assertAccountEditedSuccessfulPopup();
     } else {
       MyAccountPage.assertions.assertNameGreetingMessage('TEST');

@@ -1,5 +1,6 @@
 import AbstractPage from './abstract/abstract.page';
 import * as CommonActions from '../helpers/common';
+import { isSiteGenesisBrand } from '../helpers/common';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -75,7 +76,16 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
   },
-  'warehousefashion.com': undefined,
+  'warehousefashion.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: '.user-account',
+    registrationButton: 'a[title="Register"]',
+    wishListIcon: '.header-wishlist > .header-wishlist-link',
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link',
+  },
   'oasis-stores.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
@@ -109,7 +119,7 @@ class HomePage implements AbstractPage {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || isSiteGenesisBrand) {
       CommonActions.applyMarketingCookies();
       cy.visit(variables.url);
     }
@@ -259,7 +269,7 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
-      const wishListIcon = selectors[variables.brand].wishlistIcon;
+      const wishListIcon = selectors[variables.brand].wishListIcon;
       cy.get(wishListIcon).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });

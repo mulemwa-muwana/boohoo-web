@@ -3,6 +3,7 @@ import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import assertionText from 'cypress/helpers/assertionText';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -18,14 +19,14 @@ describe('Checkout Page', function () {
     pdpPage.click.addToCart();
     cy.wait(3000);
     HomePage.click.cartIcon();
-    if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'karenmillen.com') {
+    if (!isSiteGenesisBrand) {
       pdpPage.click.miniCartViewCartBtn();
     }
     cartPage.click.proceedToCheckout();
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'karenmillen.com') {
+    if (isSiteGenesisBrand) {
       CheckoutPage.assertions.assertUserEmailField();
     } else {
       CheckoutPage.assertions.assertGuestCheckoutEmail();
@@ -34,7 +35,7 @@ describe('Checkout Page', function () {
     }
   });
 
-  if (variables.brand != 'coastfashion.com') {
+  if (!isSiteGenesisBrand) {
     it('Verify Premier is displayed and can be added to the cart', () => {
       const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
       const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
@@ -52,7 +53,7 @@ describe('Checkout Page', function () {
   it('Verify that registered user is able to login', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+      if (isSiteGenesisBrand) {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);

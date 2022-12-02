@@ -24,7 +24,9 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     privacyNoticyPageTitle: 'h1 > strong',
   },
-  'warehousefashion.com': undefined,
+  'warehousefashion.com': {
+    privacyNoticyPageTitle: 'h1 > strong',
+  },
   'oasis-stores.com': {
     privacyNoticyPageTitle: 'h1 > strong'
   },

@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -361,7 +362,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
-    editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    editAddress: ':nth-child(1) > .address-radios-label .js-address-radios-edit',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -516,12 +517,12 @@ class ShippingPage implements AbstractPage {
       cy.wait(3000);
       cy.get(proceedToBilling).click({force: true});
     },
-    proceedToBillingVerification () { // Only for SiteGenesis: coast, oasis and warehouse
+    proceedToBillingVerification () { // Only for SiteGenesis brands
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.get(proceedToBillingVerificationBtn).click({force: true});
     },
-    proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis: coast, oasis and warehouse
+    proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis brands
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
@@ -533,7 +534,8 @@ class ShippingPage implements AbstractPage {
       cy.get(editSavedAddress).click();
     },
     addAddressManually () {
-      if (!['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com', 'boohooman.com'].includes(variables.brand)) {
+      const excludedBrands: Array<GroupBrands> = ['misspap.com', 'karenmillen.com', 'boohooman.com', ...siteGenesisBrands];
+      if (!excludedBrands.includes(variables.brand)) {
         const addAddressManually = selectors[variables.brand].addAddressManually;
         cy.get(addAddressManually).should('be.visible').click({force:true});
       }
@@ -571,8 +573,8 @@ class ShippingPage implements AbstractPage {
       cy.get(PUDOlocations).click();
     },
     enterManuallyAddressDetails () {
-      const enterManually = selectors[variables.brand].enterManually;
-      if (variables.brand != 'coastfashion.com' && variables.brand != 'oasis-stores.com' && variables.brand != 'misspap.com' && variables.brand != 'karenmillen.com') {
+      if (!isSiteGenesisBrand) {
+        const enterManually = selectors[variables.brand].enterManually;
         cy.get(enterManually).click({force: true});
       }
     }
@@ -735,7 +737,7 @@ class ShippingPage implements AbstractPage {
       const guestEmailField = selectors[variables.brand].guestEmailField;
       cy.get(guestEmailField).should('be.visible');
     },
-    assertManualAddressFieldsAreDispayed () {
+    assertManualAddressFieldsAreDisplayed () {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
       const addressLine2Shipping = selectors[variables.brand].addressLine2Shipping;
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;

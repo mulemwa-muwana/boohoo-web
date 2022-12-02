@@ -1,3 +1,4 @@
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -9,7 +10,7 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
     updateQuantity: '.b-product_update-button_update',
-    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
+    setQuantity: 'select[id^="quantity"]',
     premierBlock: '.m-with_actions',
     addPremierToCart: 'button[data-tau="product_addToCart"]',
     PayPalCTA: '.zoid-component-frame',
@@ -28,9 +29,8 @@ const selectors: SelectorBrandMap = {
     subtotal: 'tr[class="b-summary_table-item m-total"]',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
-    updateQuantityDDL: '#quantity-29baf2a29909dbdb2daa4f029e',
-    updateQuantityBtn: '.b-product_update-button_update',
-    setQuantity: '.b-product_update-button_update',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: 'select[id^="quantity"]',
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -48,10 +48,9 @@ const selectors: SelectorBrandMap = {
     productPrice: '.m-user_cart > .b-summary_table-value',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
-    editQuantity: '.b-cart_product-edit',
-    updateQuantityBtn: '.b-product_update-button_update',
-    setQuantityDDL: '.b-product_update-button_update',
-    updateQuantityDDL: '#quantity-08630916a2e766c39d1e0c8c70',
+    editQuantity: 'button[data-tau="cart_product_edit"]',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
     addPremierToCart: '.b-ngvip-button',
     PayPalCTA: '.zoid-component-frame',
@@ -69,10 +68,9 @@ const selectors: SelectorBrandMap = {
     productPrice: '.m-user_cart > .b-summary_table-value',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
-    editQuantity: '.b-cart_product-edit',
-    updateQuantityBtn: '#quantity',
-    setQuantityDDL: '.b-product_update-button_update',
-    updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
+    editQuantity: 'button[data-tau="cart_product_edit"]',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
     addPremierToCart: '.b-ngvip-button',
     PayPalCTA: '.zoid-component-frame',
@@ -90,10 +88,9 @@ const selectors: SelectorBrandMap = {
     productPrice: '.m-user_cart > .b-summary_table-value',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
-    editQuantity: '.b-cart_product-edit',
-    updateQuantityBtn: '.b-product_update-button_update',
-    setQuantityDDL: '.b-product_update-button_update',
-    updateQuantityDDL: '#quantity-5df24a2f64f926342fa1dc64be',
+    editQuantity: 'button[data-tau="cart_product_edit"]',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
     addPremierToCart: '.b-ngvip-button',
     PayPalCTA: '.zoid-component-frame',
@@ -113,7 +110,7 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
     updateQuantity: '.b-product_update-button_update',
-    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
+    setQuantity: 'select[id^="quantity"]',
     premierBlock: '.m-with_actions',
     addPremierToCart: 'button[data-tau="product_addToCart"]',
     PayPalCTA: '.zoid-component-frame',
@@ -154,8 +151,8 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
-    premierBlock: '[data-itemid="coastvip"]',
-    addPremierToCart: '#quickviewbutton',
+    premierBlock: 'div.premier-box-main',
+    addPremierToCart: '#add-to-cart',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -169,15 +166,15 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    subtotal: '.price-adjusted-total',
+    subtotal: '.cart-cell.item-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
-    premierBlock: '[data-itemid="coastvip"]',
-    addPremierToCart: '#quickviewbutton',
-    PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button',
+    premierBlock: 'div#cart-limitless',
+    addPremierToCart: '#add-to-cart',
+    PayPalCTA: '.cart-action-checkout .zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
@@ -194,8 +191,8 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
-    premierBlock: '[data-itemid="coastvip"]',
-    addPremierToCart: '#quickviewbutton',
+    premierBlock: '#cart-unlimited',
+    addPremierToCart: '#add-to-cart',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -271,14 +268,9 @@ class CartPage implements AbstractPage {
       cy.wait(8000);
       cy.get('.paypal-checkout-sandbox-iframe').should('be.visible');
     },
-    openKlarnaSandbox () {
-      
-      if (variables.brand == 'burton.co.uk') {
-        cy.get('#klarna-express-button-0').click({force: true});
-      } else {
-        cy.get('#klarna-express-button-0').click();
-      }
-
+    openKlarnaSandbox () { 
+      cy.get('#klarna-express-button-0').click({force: true});
+     
       // Stub the open method with just a console log to force it not to open a window.
       cy.window().then((window: Cypress.AUTWindow) => {
         cy.stub(window, 'open').callsFake(() => {
@@ -294,25 +286,20 @@ class CartPage implements AbstractPage {
       const editQuantity = selectors[variables.brand].editQuantity;
       const setQuantity = selectors[variables.brand].setQuantity;
       const updateQuantity = selectors[variables.brand].updateQuantity;
-      cy.get(editQuantity).click();
-      cy.get(setQuantity).select(quantity);
-      cy.get(updateQuantity).click();
-    },
-
-    editCartQuantityArkadia (quantity: number) {
-      const editQuantity = selectors[variables.brand].editQuantity;
-      const updateQuantityBtn = selectors[variables.brand].updateQuantityBtn;
-      const updateQuantityDDL = selectors[variables.brand].updateQuantityDDL;
-      cy.get(editQuantity).click({force: true});
-      cy.get(updateQuantityDDL).select(quantity,{force: true});
-      cy.get(updateQuantityBtn).click({force: true});
+      cy.get(editQuantity).eq(0).click({force: true});
+      cy.get(setQuantity).eq(0).select(quantity,{force: true});
+      
+      cy.intercept(/Cart-UpdateProductLineItem/).as('updateCartProduct');
+      cy.get(updateQuantity).eq(0).click({force: true});
+      cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
     },
 
     editCartQuantitySiteGenesis (quantity: string) {
       const editQuantity = selectors[variables.brand].editQuantity;
       cy.get(editQuantity).clear().type(quantity);
-      cy.get(editQuantity).blur();
+
       cy.intercept('**/cart').as('cartPage');
+      cy.get(editQuantity).blur();
       cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
     }
   };
@@ -344,7 +331,7 @@ class CartPage implements AbstractPage {
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'karenmillen.com') {
+      if (isSiteGenesisBrand || variables.brand == 'dorothyperkins.com') {
         cy.get(cartQuantity).should('have.value', quantity);
       } else {
         cy.get(cartQuantity).should('contain', quantity);

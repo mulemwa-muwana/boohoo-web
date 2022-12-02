@@ -31,14 +31,16 @@ describe('Billing page functionality for registered user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       cy.wait(2000);
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    shippingPage.click.addNewAddressButton();
+    if (variables.brand != 'boohooman.com') {
+      shippingPage.click.addNewAddressButton();
+    }
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     cy.wait(5000);
@@ -100,7 +102,10 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.click.uncheckShippingCheckbox();
     BillingPage.actions.selectAddressFromBook();
   });
-  it('Verify that registered user can add  new billing address', function () {
+  it.only('Verify that registered user can add  new billing address', function () {
+    if(variables.brand == 'boohooman.com') {
+      this.skip();
+    }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();

@@ -78,7 +78,7 @@ const selectors: SelectorBrandMap = {
     sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
-    addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
+    addToCart: '.button-fancy-small',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
     itemIsAddedToWishlist: '.wishlist-table form',

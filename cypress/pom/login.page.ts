@@ -65,7 +65,7 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': {
     loginIcon: '.user-account',
-    loginLink: '.user-links > [title="Log In"]',
+    loginLink: '.user-links > [title="Login"]',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',

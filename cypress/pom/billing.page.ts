@@ -276,7 +276,7 @@ const selectors: SelectorBrandMap = {
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
-    shippingCheckbox: 'div[class*="useAsBillingAddress"]',
+    shippingCheckbox: '[for="dwfrm_singleshipping_shippingAddress_useAsBillingAddress"]',
     paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
@@ -762,7 +762,6 @@ class BillingPage implements AbstractPage {
             cy.wait(5000);
           }
         });
-        
         body().then($body => {
           if ($body.find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').length) { // If terms&condition checkbox exists
             body().find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').click({force:true}); 
@@ -770,7 +769,7 @@ class BillingPage implements AbstractPage {
           }
         });
 
-        const payButtonLocator = (variables.brand == 'nastygal.com' || variables.brand == 'misspap.com') ? 'button[id*="purchase-review-continue-button"]' : '[testid="confirm-and-pay"]';
+        const payButtonLocator = (variables.brand == 'nastygal.com' || variables.brand == 'misspap.com') ? 'button[id*="purchase-review-continue-button"]' : '[data-testid="confirm-and-pay"]';
         body().find(payButtonLocator).click({force:true});
 
         body().then($body => {

@@ -299,6 +299,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -347,6 +348,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -395,6 +397,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -443,6 +446,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -472,6 +476,7 @@ const selectors: SelectorBrandMap = {
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -520,6 +525,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -993,7 +999,12 @@ class BillingPage implements AbstractPage {
     },
     assertEmailFieldCantBeChanged () {
       cy.get('#dwfrm_billing_contactInfoFields_email').should('have.attr', 'disabled');
-    }
+    },
+    // METHODS ONLY FOR SITE GENESIS BRANDS //
+    assertPromoCodeFieldIsDisplayed () {
+      const promoCodeField = selectors[variables.brand].promoCodeField;
+      cy.get(promoCodeField).should('be.visible');
+    },
   };
 }
 

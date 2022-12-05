@@ -90,8 +90,8 @@ describe('Billing page functionality for guest user', function () {
   });
 
   it('Verify that email field is filled with correct email address', function () {   
-    if (isSiteGenesisBrand) { // No email field on Billing page for Site Genesis brands. TODO: Add this test on Shipping page
-      this.skip();
+    if (isSiteGenesisBrand) { 
+      this.skip();  // Email field for Site Genesis brands is on Shipping page.
     }
     BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
   });
@@ -102,7 +102,7 @@ describe('Billing page functionality for guest user', function () {
 
   it('Verify that date of birth form is present and that guest user can select date of birth', function () {
     if (isSiteGenesisBrand) {
-      this.skip(); // Date of birth form is on Shipping page for Site Genesis brands - TODO: Add this test on Shipping page
+      this.skip(); // Date of birth form for Site Genesis brands is on Shipping page.
     }
     BillingPage.assertions.assertDateFormIsPresent();
     BillingPage.actions.selectDate('23', '4', '2001');
@@ -110,9 +110,8 @@ describe('Billing page functionality for guest user', function () {
   });
   it('Verify that guest user cannot place order if email field is empty', function () {
     if (isSiteGenesisBrand) {
-      this.skip(); // Email field is on Shipping page for Site Genesis brands - TODO: Add this test on Shipping page
+      this.skip(); // Email field for Site Genesis brands is on Shipping page.
     }
-
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', '4', '2001');
     BillingPage.click.chooseCC();
@@ -125,9 +124,8 @@ describe('Billing page functionality for guest user', function () {
   });
   it('Verify that guest user cannot place order if date of birth is not selected', function () {
     if (isSiteGenesisBrand) {
-      this.skip(); // Date of birth form is on Shipping page for Site Genesis brands - TODO: Add this test on Shipping page
+      this.skip(); // Date of birth form for Site Genesis brands is on Shipping page.
     }
-
     BillingPage.click.chooseCC();
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);

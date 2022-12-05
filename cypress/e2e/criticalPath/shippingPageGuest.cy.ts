@@ -232,4 +232,34 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
+  //  TESTS FOR SITE GENESIS BRANDS:  //
+  it.only('Verify that email field is filled with correct email address', function () {   
+    if (!isSiteGenesisBrand || variables.brand == 'boohooman.com') { // Email field only for Site Genesis brands is on Shipping page.
+      this.skip();
+    }
+    shippingPage.assertions.assertEmailIsCorrect(this.guestEmail);
+  });
+  it.only('Verify that date of birth form is present and that guest user can select date of birth', function () {
+    if (!isSiteGenesisBrand) {
+      this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
+    }
+    shippingPage.assertions.assertDateFormIsPresent();
+    shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+    shippingPage.assertions.assertDateIsSelected('23', '05', '2001');
+  });
+  it.only('Verify that guest user cannot proceed to billing page if email field is empty', function () {
+    if (!isSiteGenesisBrand || variables.brand == 'boohooman.com') {
+      this.skip();  // Email field only for Site Genesis brands is on Shipping page.
+    }
+    shippingPage.actions.emptyEmailField();
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertEmptyEmailFieldError(assertionText.assertMandatoryFieldErrorSiteGenesis[variables.language]);
+  });
+  it.only('Verify that guest user cannot proceed to billing page if date of birth is not selected', function () {
+    if (!isSiteGenesisBrand) {
+      this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
+    }
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertEmptyDateFieldError(assertionText.assertMandatoryFieldErrorSiteGenesis[variables.language]);
+  });
 });

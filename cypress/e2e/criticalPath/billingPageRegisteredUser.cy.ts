@@ -34,6 +34,7 @@ describe('Billing page functionality for registered user', function () {
       if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
+      cy.wait(1000);
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
@@ -152,6 +153,7 @@ describe('Billing page functionality for registered user', function () {
 
     // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
   });
+
   describe('Verify that registered user can place orders with available payment methods', function () {
     it('Verify that registered user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
@@ -182,4 +184,13 @@ describe('Billing page functionality for registered user', function () {
       });
     }
   });
+  
+  //  TESTS FOR SITE GENESIS BRANDS:  //
+  it('Verify that promo code field is displayed', function () {
+    if (!isSiteGenesisBrand) {
+      this.skip();  // Promo code field only for Site Genesis brands is displayed on Billing Page.
+    }
+    BillingPage.assertions.assertPromoCodeFieldIsDisplayed();
+  });
+
 });

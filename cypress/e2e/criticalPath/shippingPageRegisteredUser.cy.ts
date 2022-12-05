@@ -38,23 +38,24 @@ describe('Shipping Page Registered user tests', function () {
     });
   });
 
-  it('Verify that promo code field is dispayed', function () {
+  it('Verify that promo code field is displayed', function () {
     if (isSiteGenesisBrand) {
-      this.skip();  // Promo code field is displayed on Billing Page for Site Genesis. TODO: Add this test in Billing page
+      this.skip();  // Promo code field for Site Genesis brands is displayed on Billing Page.
     }
     shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
 
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
-    if (variables.brand == 'boohooman.com') {
-      this.skip();
-    }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'AU') {
       shippingPage.actions.selectCountry(localeAddress.countryCode); // Can't select
     } else {
       shippingPage.actions.selectCountry(localeAddress.country);
+    }
+    if(variables.brand == 'boohooman.com') {
+      shippingPage.actions.addressLine1Clear();
+      shippingPage.actions.cityFieldClear();
     }
     cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();

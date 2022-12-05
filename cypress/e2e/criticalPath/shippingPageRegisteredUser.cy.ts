@@ -29,7 +29,7 @@ describe('Shipping Page Registered user tests', function () {
     cartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       checkoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
         checkoutPage.click.continueAsRegisteredUser();
       }
       checkoutPage.actions.passwordField(credentials.password);
@@ -38,13 +38,17 @@ describe('Shipping Page Registered user tests', function () {
     });
   });
 
-  if (!isSiteGenesisBrand) {
-    it('Verify that promo code field is dispayed', () => {
-      shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
-    });
-  }
+  it('Verify that promo code field is dispayed', function () {
+    if (isSiteGenesisBrand) {
+      this.skip();  // Promo code field is displayed on Billing Page for Site Genesis. TODO: Add this test in Billing page
+    }
+    shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
+  });
 
-  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
+    if (variables.brand == 'boohooman.com') {
+      this.skip();
+    }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'AU') {
@@ -97,12 +101,18 @@ describe('Shipping Page Registered user tests', function () {
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
 
-  it('Verify that user can cancel editing shipping address', () => {
+  it('Verify that user can cancel editing shipping address', function () {
+    if (variables.brand == 'boohooman.com') {
+      this.skip();
+    }
     shippingPage.click.addNewAddressButton();
     shippingPage.click.cancelAddingNewAddressForRegisteredUser();
   });
 
-  it('Verify that Add new address button allows user to add address details', () => {
+  it('Verify that Add new address button allows user to add address details', function () {
+    if (variables.brand == 'boohooman.com') {
+      this.skip();
+    }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'IE') {
@@ -223,10 +233,10 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.stateField(localeAddress.county);
       }
     } else if (isSiteGenesisBrand) {
-      shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityField(localeAddress.city);
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-      shippingPage.actions.phoneNumberField(localeAddress.phone);
+      shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+      shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+      shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+      shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
@@ -287,10 +297,10 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.stateField(localeAddress.county);
       }
     } else if (isSiteGenesisBrand) {
-      shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityField(localeAddress.city);
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-      shippingPage.actions.phoneNumberField(localeAddress.phone);
+      shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+      shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+      shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+      shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
@@ -346,10 +356,10 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     } else if (isSiteGenesisBrand) {
-      shippingPage.actions.adressLine1(localeAddress.addrline1);
-      shippingPage.actions.cityField(localeAddress.city);
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-      shippingPage.actions.phoneNumberField(localeAddress.phone);
+      shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+      shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
+      shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+      shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();

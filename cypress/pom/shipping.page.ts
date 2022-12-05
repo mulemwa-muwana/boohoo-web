@@ -264,11 +264,14 @@ const selectors: SelectorBrandMap = {
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
-    orderTotal: '.order-total',
+    orderTotal: '.order-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
+    postcodeDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodname: 'div.form-row.delivery-row',
+    shippingMethodname: '.js-shipping-method-list div.js-form-row',
   },
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -549,12 +552,16 @@ class ShippingPage implements AbstractPage {
       cy.get(editCart).should('be.visible').click();
     },
     editAddress () {
-      const editAddress = selectors[variables.brand].editAddress;
-      cy.get(editAddress).click({force: true});
+      if (variables.brand != 'boohooman.com') {
+        const editAddress = selectors[variables.brand].editAddress;
+        cy.get(editAddress).click({force: true});
+      }
     },
     addNewAddressButton () {
-      const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
-      cy.get(addNewAddressButton).click();
+      if (variables.brand != 'boohooman.com') {
+        const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
+        cy.get(addNewAddressButton).click();
+      }
     },
     editExistingAddressButton () {
       const editExistingAddressButton = selectors[variables.brand].editExistingAddressButton;

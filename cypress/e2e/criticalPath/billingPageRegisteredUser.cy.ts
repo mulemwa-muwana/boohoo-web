@@ -39,7 +39,9 @@ describe('Billing page functionality for registered user', function () {
       CheckoutPage.click.continueAsRegisteredUser();
     });
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    shippingPage.click.addNewAddressButton();
+    if (variables.brand != 'boohooman.com') {
+      shippingPage.click.addNewAddressButton();
+    }
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     cy.wait(5000);

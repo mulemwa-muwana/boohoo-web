@@ -120,7 +120,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (isSiteGenesisBrand) {
+    if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
     }
@@ -146,10 +146,10 @@ describe('Shipping Page Guest user tests', function () {
     if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-    if (isSiteGenesisBrand) {
+    if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
-    }
+    } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
   });
@@ -166,7 +166,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (isSiteGenesisBrand) {
+    if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
       shippingPage.actions.confirmEmail(this.guestEmail);
     }

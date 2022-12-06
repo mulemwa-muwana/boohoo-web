@@ -114,7 +114,7 @@ const selectors: SelectorBrandMap = {
     premierBlock: 'div.premier-box-main',
     addPremierToCart: '#add-to-cart',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button',
+    KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',

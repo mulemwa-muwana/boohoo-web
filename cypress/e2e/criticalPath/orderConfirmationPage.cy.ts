@@ -119,7 +119,9 @@ describe('Order confirmation page for registered user', function () {
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
-    shippingPage.click.addNewAddressButton();
+    if (variables.brand != 'boohooman.com') {
+      shippingPage.click.addNewAddressButton();
+    }
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     cy.wait(5000);

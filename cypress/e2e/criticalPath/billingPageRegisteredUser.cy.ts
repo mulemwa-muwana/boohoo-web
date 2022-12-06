@@ -188,7 +188,7 @@ describe('Billing page functionality for registered user', function () {
   //  TESTS FOR SITE GENESIS BRANDS:  //
   it('Verify that promo code field is displayed', function () {
     if (!isSiteGenesisBrand) {
-      this.skip();  // Promo code field only for Site Genesis brands is displayed on Billing Page.
+      this.skip(); // Promo code field only for Site Genesis brands is displayed on Billing Page.
     }
     BillingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });

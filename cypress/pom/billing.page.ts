@@ -1000,6 +1000,7 @@ class BillingPage implements AbstractPage {
     assertEmailFieldCantBeChanged () {
       cy.get('#dwfrm_billing_contactInfoFields_email').should('have.attr', 'disabled');
     },
+
     // METHODS ONLY FOR SITE GENESIS BRANDS //
     assertPromoCodeFieldIsDisplayed () {
       const promoCodeField = selectors[variables.brand].promoCodeField;

@@ -40,7 +40,7 @@ describe('Shipping Page Registered user tests', function () {
 
   it('Verify that promo code field is displayed', function () {
     if (isSiteGenesisBrand) {
-      this.skip();  // Promo code field for Site Genesis brands is displayed on Billing Page.
+      this.skip(); // Promo code field for Site Genesis brands is displayed on Billing Page.
     }
     shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
@@ -53,7 +53,7 @@ describe('Shipping Page Registered user tests', function () {
     } else {
       shippingPage.actions.selectCountry(localeAddress.country);
     }
-    if(variables.brand == 'boohooman.com') {
+    if (variables.brand == 'boohooman.com') {
       shippingPage.actions.addressLine1Clear();
       shippingPage.actions.cityFieldClear();
     }

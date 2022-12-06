@@ -661,13 +661,13 @@ class ShippingPage implements AbstractPage {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
       cy.get(addressLine1Shipping).type(address1);
     },
-    addressLine1Clear() {
+    addressLine1Clear () {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
       cy.get(addressLine1Shipping).clear({force: true});
     },
-    cityFieldClear() {
+    cityFieldClear () {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
-      cy.get(shippingCityShipping).clear({force: true})
+      cy.get(shippingCityShipping).clear({force: true});
     },
     clearAdressLine1AndAddNewOne (address1: string) {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
@@ -819,7 +819,7 @@ class ShippingPage implements AbstractPage {
       });
     },
 
-     // METHODS ONLY FOR SITE GENESIS BRANDS //
+    // METHODS ONLY FOR SITE GENESIS BRANDS //
     assertEmailIsCorrect (email: string) {
       cy.get('#dwfrm_singleshipping_shippingAddress_email_emailAddress').should('have.value', email);
     },

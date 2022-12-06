@@ -91,7 +91,7 @@ describe('Billing page functionality for guest user', function () {
 
   it('Verify that email field is filled with correct email address', function () {   
     if (isSiteGenesisBrand) { 
-      this.skip();  // Email field for Site Genesis brands is on Shipping page.
+      this.skip(); // Email field for Site Genesis brands is on Shipping page.
     }
     BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
   });

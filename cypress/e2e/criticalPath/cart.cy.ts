@@ -73,7 +73,7 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.actions.openPayPalSandbox();
   });
   if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
-    it.only('Verify that Klarna CTA is displayed and functional', function () {
+    it('Verify that Klarna CTA is displayed and functional', function () {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox();
     });

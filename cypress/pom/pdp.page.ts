@@ -430,7 +430,7 @@ class PdpPage implements AbstractPage {
     assertAddToCartBtnIsNotAvailable (msg: string) {
       const addToCart = selectors[variables.brand].addToCart;
       const cartValidation = selectors[variables.brand].cartValidation;
-      cy.get(addToCart).click();
+      cy.get(addToCart).click({force: true} );
       cy.get(cartValidation).contains(msg);
     },
     assertMiniCartIsDisplayed () {

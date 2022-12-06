@@ -654,7 +654,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(firstNameField).clear({ force: true }).type(newName);
         cy.get(profileUpdateBtn).click({ force: true });
       },
-      editDefaultAddress (line1: string) {
+      editDefaultAddress (line1: string, country: string) {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         const addressEditBtn = selectors[variables.brand].addressEditBtn;
         const addressEditForm = selectors[variables.brand].addressEditForm;
@@ -664,6 +664,9 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressDefaultBox).find(addressEditBtn).click({ force: true });
         cy.get(addressEditForm).should('be.visible');
         cy.get(addressField).clear({ force: true }).type(line1);
+        if (variables.brand == 'nastygal.com' && variables.locale == 'IE') {
+          cy.get('#dwfrm_address_country').select(country).invoke('show');
+        }
         cy.get(addressSubmitBtn).click({ force: true });
         if (isSiteGenesisBrand) {
           cy.get(proceedToBillingBtn).click({ force: true });

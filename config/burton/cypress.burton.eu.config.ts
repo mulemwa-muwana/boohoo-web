@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.burton-menswear.com/eu',
-    sku: 'BBB01461-2',
+    sku: 'BBB01398-265',
     brand: 'burton.co.uk',
     locale: 'EU',
     language: 'EN',

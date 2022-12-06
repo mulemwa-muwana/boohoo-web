@@ -591,7 +591,7 @@ class BillingPage implements AbstractPage {
 
       const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
       cy.get(paymentMethodCreditCard).click({force: true});
-      cy.wait(2000);
+      cy.wait(4000);
 
       cy.get('body').then($body => { // If there is saved Credit Card, click Add new Card button
         if ($body.find('[data-ref="newAdyenCardBlock"]').attr('hidden') == 'hidden') {  
@@ -859,7 +859,16 @@ class BillingPage implements AbstractPage {
       cy.get('[data-testid="login-password-button"]', { timeout: 30000 }).click();
       cy.get('[data-testid="summary-button"]', { timeout: 30000 }).click();
     },
-  
+
+    payUsingKlarnaPaymentMthod () {
+      if (variables.locale == 'AU') {
+        cy.get('#payment-button-KlarnaAU').click({force : true});
+      } else if (variables.locale == 'IE') {
+        cy.get('#payment-button-KlarnaIE').click({force : true});
+      } else if (variables.locale == 'UK') {
+        cy.get('#payment-button-KlarnaUK').click({force : true});
+      }
+    },
   };
 
   assertions = {
@@ -935,11 +944,12 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodPayPal).should('be.visible');
     },
     assertPaymentMethodKlarnaIsDisplayed () {
-      const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;
       if (variables.locale == 'AU') {
         cy.get('#payment-button-KlarnaAU').should('be.visible');
-      } else {
-        cy.get(paymentMethodKlarna).should('be.visible');
+      } else if (variables.locale == 'IE') {
+        cy.get('#payment-button-KlarnaIE').should('be.visible');
+      } else if (variables.locale == 'UK') {
+        cy.get('#payment-button-KlarnaUK').should('be.visible');
       }
     },
       
@@ -947,7 +957,7 @@ class BillingPage implements AbstractPage {
       const paymentMethodClearPay = selectors[variables.brand].paymentMethodClearPay;
       if (variables.locale == 'AU' || variables.locale == 'US') {
         cy.get('#payment-button-AFTERPAY').should('be.visible');
-      } else {
+      } else if (variables.locale == 'UK') {
         cy.get(paymentMethodClearPay).should('be.visible');
       }
       

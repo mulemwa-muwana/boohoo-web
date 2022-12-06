@@ -200,8 +200,8 @@ describe('Billing page functionality for guest user', function () {
   describe('Verify that guest user can place orders with available payment methods', function () {
 
     beforeEach (function () {
-      if (!isSiteGenesisBrand) {
-        BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+      if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com') {
+        BillingPage.actions.selectDate('23', '3', '2001');
       }
     });
 
@@ -223,7 +223,7 @@ describe('Billing page functionality for guest user', function () {
     });
     if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
       it('Verify that guest user can place order using Klarna', function () {
-        BillingPage.actions.selectKlarna();
+        BillingPage.actions.payUsingKlarnaPaymentMthod();
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
       });
     }

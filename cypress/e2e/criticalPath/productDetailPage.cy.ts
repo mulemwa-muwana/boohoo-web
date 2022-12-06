@@ -39,7 +39,7 @@ describe('Product Details Page tests', function () {
   it('TC07 Verify if size is not selected user cannot add product to a bag', function () {
     if (isSiteGenesisBrand) {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSizeSiteGenesis[variables.language]);
-    } else {
+    } else if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);
     } 
   });   

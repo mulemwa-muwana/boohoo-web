@@ -85,7 +85,7 @@ describe('Account page', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
-    MyAccountPage.actions.editDefaultAddress('Old Bond St');
+    MyAccountPage.actions.editDefaultAddress('Old Bond St', localeAddress.country);
     MyAccountPage.assertions.assertDefaultAddressData(localeAddress.firstName, 'Old Bond St');
   });
   it('TC09 Verify that address can be deleted', function () {

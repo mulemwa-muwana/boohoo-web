@@ -9,6 +9,9 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
+  ], 
+  "plugins": [
+    "mocha"
   ],
   "rules": {
     "brace-style": [2, "1tbs", { "allowSingleLine": true }],
@@ -16,6 +19,7 @@
     "space-before-blocks": "error",
     "no-multi-spaces": ["error"],
     "semi": [2, "always"],                                                  // Warns when missing a semi colon at the end.
+    "mocha/no-exclusive-tests": "error",
     "lines-between-class-members": [                                        // Requires empty line between class members.
       "error", 
       "always", 

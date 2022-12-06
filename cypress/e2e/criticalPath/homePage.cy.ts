@@ -100,7 +100,7 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       }
 
-      if(variables.brand == 'boohooman.com') {
+      if (variables.brand == 'boohooman.com') {
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
       } else {
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[variables.language]);
@@ -398,7 +398,7 @@ describe('Home Page', function () {
     describe('Verify that the global header is displayed.', () => {
       it('Check global header is visible when scrolling down.', () => {
         const excludedBrands: Array<GroupBrands> = ['nastygal.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com'];
-        if (excludedBrands.includes(variables.brand)) {    // For these brands header retracts(hides) on scroll down
+        if (excludedBrands.includes(variables.brand)) { // For these brands header retracts(hides) on scroll down
           cy.scrollTo('bottom');
           GlobalFooter.assertions.assertHeaderIsNotVisible();
         } else {
@@ -407,7 +407,7 @@ describe('Home Page', function () {
         }
       });
       it('Check global header displays.', () => {
-          GlobalFooter.assertions.assertHeaderIsVisible();
+        GlobalFooter.assertions.assertHeaderIsVisible();
       });
     });
 

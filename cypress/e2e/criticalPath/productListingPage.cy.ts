@@ -61,7 +61,7 @@ describe('Product Listing Page tests', function () {
       }  
     });
     it('Verify that product color is dispayed', function () {
-      if (variables.brand == 'boohooman.com') {     // No product colors on Plp page for this brand
+      if (variables.brand == 'boohooman.com') { // No product colors on Plp page for this brand
         this.skip();
       }
       plpPage.assertions.assertProductColorIsDisplayedOnPLP();

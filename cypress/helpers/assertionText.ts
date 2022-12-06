@@ -616,6 +616,20 @@ class AssertionText {
     ES: ''
   };
 
+  assertMandatoryFieldErrorSiteGenesis: TranslationMap = {
+    EN: 'This field is required.',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   assertPaymentMethod: TranslationMap = {
     EN: 'Credit Card',
     NL: 'Creditcard / betaalkaart',

@@ -197,7 +197,7 @@ describe('Billing page functionality for guest user', function () {
   describe('Verify that guest user can place orders with available payment methods', function () {
 
     beforeEach (function () {
-      if (variables.brand != 'coastfashion.com' && variables.brand !='oasis-stores.com') {
+      if (!isSiteGenesisBrand) {
         BillingPage.actions.selectDate('23', '3', '2001');
       }
       if (variables.brand == 'boohooman.com') {

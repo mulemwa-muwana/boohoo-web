@@ -276,12 +276,14 @@ const selectors: SelectorBrandMap = {
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
-    shippingCheckbox: 'div[class*="useAsBillingAddress"]',
+    shippingCheckbox: '.useAsBillingAddress.form-row-checkbox',
     paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     paymentMethodLayBuy: '[for="is-LAYBUY"]',
+    emailField: '#dwfrm_billing_billingAddress_email_emailAddress',
+    confirmEmailField: '#dwfrm_billing_billingAddress_email_emailConfirm',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -291,12 +293,13 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
-    viewAllBillingAddresses: '.use-another-address',
-    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
+    viewAllBillingAddresses: '#dwfrm_singleshipping_addressList',
+    billingAddressFromBook: '#dwfrm_singleshipping_addressList > option:nth-child(3)',
     dobDate: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -345,6 +348,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -393,6 +397,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -441,6 +446,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -470,6 +476,7 @@ const selectors: SelectorBrandMap = {
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -518,6 +525,7 @@ const selectors: SelectorBrandMap = {
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
+    promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -638,6 +646,14 @@ class BillingPage implements AbstractPage {
       const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
     },
+    billingEmailField (email: string) { // Only for boohooman
+      const emailField = selectors[variables.brand].emailField;
+      cy.get(emailField).clear().type(email);
+    },
+    billingConfirmEmailField (email: string) { // Only for boohooman
+      const confirmEmailField = selectors[variables.brand].confirmEmailField;
+      cy.get(confirmEmailField).clear().type(email);
+    },
     addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
@@ -752,7 +768,6 @@ class BillingPage implements AbstractPage {
             cy.wait(5000);
           }
         });
-        
         body().then($body => {
           if ($body.find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').length) { // If terms&condition checkbox exists
             body().find('#root > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(6) > div > label > div:nth-child(2)').click({force:true}); 
@@ -760,7 +775,7 @@ class BillingPage implements AbstractPage {
           }
         });
 
-        const payButtonLocator = (variables.brand == 'nastygal.com' || variables.brand == 'misspap.com') ? 'button[id*="purchase-review-continue-button"]' : '[testid="confirm-and-pay"]';
+        const payButtonLocator = (variables.brand == 'nastygal.com' || variables.brand == 'misspap.com') ? 'button[id*="purchase-review-continue-button"]' : '[data-testid="confirm-and-pay"]';
         body().find(payButtonLocator).click({force:true});
 
         body().then($body => {
@@ -994,7 +1009,13 @@ class BillingPage implements AbstractPage {
     },
     assertEmailFieldCantBeChanged () {
       cy.get('#dwfrm_billing_contactInfoFields_email').should('have.attr', 'disabled');
-    }
+    },
+
+    // METHODS ONLY FOR SITE GENESIS BRANDS //
+    assertPromoCodeFieldIsDisplayed () {
+      const promoCodeField = selectors[variables.brand].promoCodeField;
+      cy.get(promoCodeField).should('be.visible');
+    },
   };
 }
 

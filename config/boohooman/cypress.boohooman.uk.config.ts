@@ -5,9 +5,9 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@stg.misspap.com/',
-    sku: 'MPP99798-105-24',
-    brand: 'misspap.com',
+    url: 'https://storefront:Oreo2022@dwstg.boohooman.com/gb',
+    sku: 'BMM26351-105-37',
+    brand: 'boohooman.com',
     locale: 'UK',
     language: 'EN',
   },
@@ -20,9 +20,9 @@ export default defineConfig({
   screenshotOnRunFailure: true,
 
   e2e: {
-    setupNodeEvents (on, config) {
+    setupNodeEvents (on) {
       plugins(on);
     },
     numTestsKeptInMemory: 0
-  },   
+  },
 });

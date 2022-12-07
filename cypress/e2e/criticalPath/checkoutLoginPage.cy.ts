@@ -35,29 +35,31 @@ describe('Checkout Page', function () {
     }
   });
 
-  if (!isSiteGenesisBrand) {
-    it('Verify Premier is displayed and can be added to the cart', () => {
-      const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-      const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
-      if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
-        CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
-        CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
+  it('Verify Premier is displayed and can be added to the cart', function () {
+    if (isSiteGenesisBrand) {
+      this.skip();
+    }
+    const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
+    const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+    if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
+      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
+      CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
 
-      } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
-        CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.PremierNG[variables.language]);
-        CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
-      }
-    });
-  }
+    } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
+      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.PremierNG[variables.language]);
+      CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
+    }
+  });
 
   it('Verify that registered user is able to login', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
+      CheckoutPage.assertions.assertUserProceededToShippingPage();
     });
   });
 

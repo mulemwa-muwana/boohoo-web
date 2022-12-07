@@ -31,14 +31,17 @@ describe('Billing page functionality for registered user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       cy.wait(2000);
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
+      cy.wait(1000);
       CheckoutPage.actions.passwordField(credentials.password);
       CheckoutPage.click.continueAsRegisteredUser();
     });
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    shippingPage.click.addNewAddressButton();
+    if (variables.brand != 'boohooman.com') {
+      shippingPage.click.addNewAddressButton();
+    }
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
     cy.wait(5000);
@@ -94,13 +97,15 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that registered user can submit new billing address from address book', function () {
-    if (isSiteGenesisBrand) {
-      BillingPage.click.changeShippingAddress();
+    if (!isSiteGenesisBrand) {
+      BillingPage.click.uncheckShippingCheckbox();
     }
-    BillingPage.click.uncheckShippingCheckbox();
     BillingPage.actions.selectAddressFromBook();
   });
   it('Verify that registered user can add  new billing address', function () {
+    if (variables.brand == 'boohooman.com') {
+      this.skip();
+    }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
@@ -149,6 +154,7 @@ describe('Billing page functionality for registered user', function () {
 
     // BillingPage.assertions.assertPaymentMethodIsDisplayed(method.zipPay); -Not available anymore
   });
+
   describe('Verify that registered user can place orders with available payment methods', function () {
     it('Verify that registered user can place order using Credit Card - Visa)', function () {
       BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
@@ -179,4 +185,13 @@ describe('Billing page functionality for registered user', function () {
       });
     }
   });
+  
+  //  TESTS FOR SITE GENESIS BRANDS:  //
+  it('Verify that promo code field is displayed', function () {
+    if (!isSiteGenesisBrand) {
+      this.skip(); // Promo code field only for Site Genesis brands is displayed on Billing Page.
+    }
+    BillingPage.assertions.assertPromoCodeFieldIsDisplayed();
+  });
+
 });

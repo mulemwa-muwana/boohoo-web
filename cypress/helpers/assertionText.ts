@@ -98,20 +98,6 @@ class AssertionText {
     ES: ''
   };
 
-  WishlistLoginTitleKarenMillen: TranslationMap = {
-    EN: 'Wish List Log In',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
   WishlistLoginTitleMisspap: TranslationMap = {
     EN: '\nWishlist\nLog In\n',
     FR: '',
@@ -630,6 +616,20 @@ class AssertionText {
     ES: ''
   };
 
+  assertMandatoryFieldErrorSiteGenesis: TranslationMap = {
+    EN: 'This field is required.',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   assertPaymentMethod: TranslationMap = {
     EN: 'Credit Card',
     NL: 'Creditcard / betaalkaart',
@@ -840,20 +840,6 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkDeliveryInfoSiteGenesis: TranslationMap = {
-    EN: 'Delivery Information',
-    NL: '',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
   footerShipping: TranslationMap = {
     EN: 'Shipping',
     NL: '',
@@ -1045,20 +1031,6 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
-  termsAndCondSiteGenesis: TranslationMap = {
-    EN: 'terms of use',
-    NL: 'Algemene voorwaarden',
-    DE: '',
-    FR: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: 'Allmänna villkor',
     IL: '',
     IT: '',
     ES: ''

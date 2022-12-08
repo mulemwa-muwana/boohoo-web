@@ -51,8 +51,6 @@ describe('Boohoo order placement', () => {
 
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
-    OrderConfirmationPage.click.closePopUp();
-
     generateArtefact(variables.brand, paymentMethod);
   });
 
@@ -63,8 +61,6 @@ describe('Boohoo order placement', () => {
     }
 
     BillingPage.actions.selectKlarna();
-    OrderConfirmationPage.click.closePopUp();
-
     generateArtefact(variables.brand, paymentMethod);
   });
 
@@ -75,8 +71,6 @@ describe('Boohoo order placement', () => {
     }
 
     BillingPage.actions.selectPayPal();
-    OrderConfirmationPage.click.closePopUp();
-
     generateArtefact(variables.brand, paymentMethod);
   });
 
@@ -87,8 +81,6 @@ describe('Boohoo order placement', () => {
     }
 
     BillingPage.actions.selectLaybuy();
-    OrderConfirmationPage.click.closePopUp();
-
     generateArtefact(variables.brand, paymentMethod);
   });
 
@@ -99,8 +91,6 @@ describe('Boohoo order placement', () => {
     }
 
     BillingPage.actions.selectClearpay();
-    OrderConfirmationPage.click.closePopUp();
-
     generateArtefact(variables.brand, paymentMethod);
   });
 

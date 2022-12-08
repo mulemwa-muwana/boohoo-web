@@ -65,12 +65,6 @@ describe('Home Page', function () {
       homePage.assertions.assertCartIconPresent();
     });
 
-    if (!isSiteGenesisBrand) {
-      it('Verify header Counter present', () => {
-        homePage.assertions.assertPromotionPresent();
-      });
-    }
-
     it('Verify Mega Menu - Sale link opens', () => {
       if (variables.brand == 'boohoo.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
@@ -261,16 +255,23 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - About boohoo', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - About Boohoo', () => {
         if (variables.brand == 'boohoo.com')
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAbout[variables.language]);
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAboutBoohoo[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - About NastyGal', () => {
+        if (variables.brand == 'nastygal.com')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkAboutNastyGal[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[variables.language]);
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - The boohoo App', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - The boohoo/nastygal App', () => {
         if (variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'FR' || variables.locale == 'IE' || variables.locale == 'AU' || variables.locale == 'US' || variables.locale == 'DE'))
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackApp[variables.language]);
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppBHO[variables.language]);
+        else if (variables.brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppNG[variables.language]);
+        }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - boohoo Premier', () => {
         if (variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'FR' || variables.locale == 'IE'))
@@ -285,10 +286,17 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Discount & Promo Codes', () => {
         if (variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'AU' || variables.locale == 'IE'))
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[variables.language]);
+        else if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'AU' || variables.locale == 'IE'))
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromoNG[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', () => {
         if ((variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES' && variables.locale != 'NO')) || variables.brand == 'nastygal.com' || isSiteGenesisBrand)
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
+      });
+
+      it('Verify that Footer Navigation Component is present and Links are functional - Gift Cards', () => {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' && variables.locale != 'UK')
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGiftCard[variables.language]);
       });
 
       /*
@@ -319,6 +327,10 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('Clearpay');
         }
       });
+      it('Verify that Footer Navigation Component is present and Links are functional - PayPal', () => {
+        if (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE' )
+          GlobalFooter.actions.checkFooterLinkByText('PayPal');
+      });
       it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
         if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US'))
           GlobalFooter.actions.checkFooterLinkByText('Laybuy');
@@ -326,6 +338,16 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {
         if (variables.brand == 'boohoo.com' || variables.brand == 'warehousefashion.com')
           GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[variables.language]);
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Nasty Galaxy', () => {
+        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'EU' || variables.locale == 'CA' || variables.locale == 'US')) {
+          GlobalFooter.actions.checkFooterLinkByText('Nasty Galaxy'); 
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Become A Brand Ambassador', () => {
+        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'EU' || variables.locale == 'CA' || variables.locale == 'US')) {
+          GlobalFooter.actions.checkFooterLinkByText('Become A Brand Ambassador'); 
+        }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Environmental & Social Responsibility', () => {
         if (variables.brand == 'boohoo.com' && (variables.locale == 'EU' || variables.locale == 'CA' || variables.locale == 'AU' || variables.locale == 'US'|| variables.locale == 'IE')) {
@@ -336,7 +358,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespSiteGenesis[variables.language]);
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
+      it.skip('Verify that Footer Navigation Component is present and Links are functional - BCI Membership', () => {
         if (variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'NZ'))
           GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
       });

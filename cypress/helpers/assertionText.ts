@@ -240,7 +240,7 @@ class AssertionText {
 
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
-    FR: 'Avis de confidentialité',
+    FR: '\n                        Politique de confidentialité\n                    ',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
@@ -788,7 +788,7 @@ class AssertionText {
     EN: 'Help',
     NL: 'Klantenservice',
     DE: 'Kundenservice',
-    FR: '',
+    FR: 'Aide',
     DK: '',
     FI: '',
     NO: '',
@@ -858,7 +858,7 @@ class AssertionText {
     EN: 'Shipping',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Informations De Livraison',
     DK: 'Shipping Info',
     FI: 'Shipping Info',
     NO: 'Shipping Info',
@@ -868,7 +868,7 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkAbout: TranslationMap = {
+  footerLinkAboutBoohoo: TranslationMap = {
     EN: 'About boohoo', // Brand name is missing
     NL: 'Over boohoo',
     DE: 'Über',
@@ -880,6 +880,20 @@ class AssertionText {
     IL: '',
     IT: 'A proposito di boohoo',
     ES: 'Sobre boohoo'
+  };
+  
+  footerLinkAboutNastyGal: TranslationMap = {
+    EN: 'About Nasty Gal',
+    NL: '',
+    DE: '',
+    FR: 'Appli Nasty Gal',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   footerLinkSizeGuide: TranslationMap = {
@@ -896,7 +910,7 @@ class AssertionText {
     ES: 'Guía de tallas'
   };
 
-  footerLinkTrackApp: TranslationMap = {
+  footerLinkTrackAppBHO: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
     NL: '',
     DE: 'boohoo App', // To be consider for multiple brends
@@ -905,6 +919,20 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'boohoo-appen',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkTrackAppNG: TranslationMap = {
+    EN: 'Nasty Gal App', 
+    NL: '',
+    DE: '', // To be consider for multiple brends
+    FR: 'Appli Nasty Gal',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''
@@ -966,6 +994,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkDiscountPromoNG: TranslationMap = {
+    EN: 'Discount + Promo Codes',
+    NL: '',
+    DE: 'boohoo Rabattcodes',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
     EN: 'Get Exclusive Offers & Updates',
     NL: 'Ontvang exclusieve aanbiedingen & updates',
@@ -975,6 +1017,20 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'Få exklusiva erbjudanden & nyheter',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkGiftCard: TranslationMap = {
+    EN: 'Gift Cards',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''
@@ -1149,10 +1205,10 @@ class AssertionText {
   };
 
   envAndSocRespSiteGenesis: TranslationMap = {
-    EN: 'Environment & Social Responsibility',
+    EN: 'Environment And Social',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Environnement Et Responsabilité Sociale',
     DK: '',
     FI: '',
     NO: '',

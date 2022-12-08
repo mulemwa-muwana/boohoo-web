@@ -102,7 +102,29 @@ const selectors: SelectorBrandMap = {
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
     footer: '#footercontent'
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
+    instagramLink: 'a[href="https://www.instagram.com/boohoomanofficial"]',
+    facebookLink: 'a[href="https://www.facebook.com/BoohooMAN"]',
+    twitterLink: 'a[href="https://twitter.com/boohooMAN"]',
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/coastfashion/"]',
+    youtubeLink: 'a[href="https://www.youtube.com/boohooMAN"]',
+    tiktokLink: 'a[href="https://www.tiktok.com/@boohooman?lang=en"]',
+    newsletterInputMail: 'input[id^="footer_newsletter_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: '.newsletter-form-group button',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.footer-newsletter-info',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-block',
+    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
+    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    headerInner: '.sticky-header',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
+    footer: '.footer'
+  },
   'karenmillen.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
@@ -121,7 +143,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
@@ -143,7 +165,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
@@ -165,7 +187,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.footer-promo.js-floating-promo',
     footerPromoLink: '.footer-promo.js-floating-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
@@ -187,7 +209,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   },
@@ -210,7 +232,7 @@ const selectors: SelectorBrandMap = {
     appBanner: '.footer-app-links',
     footerStickyPromo: '.header-banner-timer-inner .footer-promo',
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
-    headerInner: '.b-header_utility-inner',
+    headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
   }
@@ -373,7 +395,7 @@ class GlobalFooter implements AbstractPage {
     },
     assertAppBannerPresent () {
       const appBanner = selectors[variables.brand].appBanner;
-      cy.get(appBanner).scrollIntoView().should('be.visible'); //  It was div[class="b-app_banner"], only visible on BH and NG
+      cy.get(appBanner).scrollIntoView().should('be.visible');
     },
     assertCurrencyByPageContext (currency: string) { //  N/A
       cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {
@@ -393,7 +415,6 @@ class GlobalFooter implements AbstractPage {
     assertHeaderIsNotVisible () {
       const headerInner = selectors[variables.brand].headerInner;
       cy.get(headerInner).should('not.be.visible');
-
     }
   };
 

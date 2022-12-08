@@ -137,7 +137,33 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    searchField: '#header-search-input',
+    addToCart: '#add-to-cart',
+    addToWishListButton: '.wishlist-button',
+    shippingInfoButton: '#product-delivery-info-tab',
+    returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
+    shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
+    selectColor: '.swatches.color',
+    sizeVariations: '.swatches.size',
+    productTitle: '.product-detail > h1.product-name',
+    productCode: '.product-number > [itemprop="sku"]',
+    productPrice: '.product-price',
+    colorSwatches: '.swatches.color',
+    productImage: '#product-image-0',
+    addToCartTitle: '.mini-cart-header-product-added',
+    miniCartProductIner: '.mini-cart-content-inner',
+    productDescription: '#ui-id-2 > p',
+    productDelivery: '.del-table',
+    productReturnsInfoButton: '#product-returns-info-tab',
+    productReturnsDescription: '#ui-id-5',
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+    productDeliveryInfo: '.product-delivery-info a',
+  },
   'karenmillen.com': {
     searchField: '#header-search-input',
     addToCart: '#add-to-cart',
@@ -341,16 +367,22 @@ class PdpPage implements AbstractPage {
     selectSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       if (isSiteGenesisBrand) {
-        cy.get(sizeVariations).find('li > span').each(($element) => {
-          if (!$element.attr('title').includes('not available')) { // If size is available
-            $element.trigger('click');
+        cy.get(sizeVariations).find('li').each(($element) => {
+          if ($element.hasClass('selectable')) { // If size is available(selectable) 
+            if (!$element.hasClass('selected')) { // If size not already selected
+              $element.find('span').trigger('click');
+              return false;
+            } 
             return false;
           }
         });
       } else {
         cy.get(sizeVariations).find('button').each(($element) => {
           if (!$element.attr('title').includes('not available')) { // If size is available
-            $element.trigger('click');
+            if ($element.attr('data-attr-is-selected').includes('false')) { // If size not already selected
+              $element.trigger('click');
+              return false;
+            } 
             return false;
           }
         });
@@ -403,7 +435,9 @@ class PdpPage implements AbstractPage {
     },
     assertMiniCartIsDisplayed () {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
-      cy.get(addToCartTitle).should('be.visible');
+      if (variables.brand != 'boohooman.com') {
+        cy.get(addToCartTitle).should('be.visible');
+      }
       const miniCartProductIner = selectors[variables.brand].miniCartProductIner;
       cy.get(miniCartProductIner).should('be.visible');
     },
@@ -435,12 +469,11 @@ class PdpPage implements AbstractPage {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
       if (variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
         cy.get(productReturnsInfoButton).click();
-      }
-      cy.get(productReturnsDescription).should('be.visible');
-      if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
+      } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
         cy.get('#product-details-btn-shipping').click();
-        cy.get(productReturnsDescription).should('be.visible');
       }
+      
+      cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {
 

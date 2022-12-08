@@ -228,43 +228,52 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
-    PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
+    addPremierToCartFromShippingPage: '#add-to-cart',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
-    cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
+    cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
-    addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    editCart: '.b-summary_order-header > .b-link',
-    addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    addNewAddressButton: 'span.button.add-new-address',
+    editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    editCart: '.section-header-note',
+    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
     proceedToBillingVerificationBtn: '.verification-address-button',
-    addNewAddress: 'button[data-tau="add_new_address"]',
+    addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
-    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
-    postcodeFiled: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    postcodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    cartContainer: '.summary-inner',
+    postcodeFiled: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
+    postcodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     promoCodeField: '#dwfrm_coupon_couponCode',
-    addressName: 'b-address-name',
+    addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
-    shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
-    shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
-    shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
-    shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
+    shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
+    shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
+    shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
     guestEmailField: '#dwfrm_billing_contactInfoFields_email',
-    addressLine1Shipping: '[id$=addressFields_address1][id*="shipping"]',
-    addressLine2Shipping: '[id$=addressFields_address2][id*="shipping"]',
-    shippingCityShipping: '[id$=addressFields_city][id*="shipping"]',
-    shippingCounty: '[id$=addressFields_states_stateCode][id*="shipping"]',
-    orderTotal: '.m-total > .b-summary_table-value',
+    confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
+    addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
+    addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
+    shippingCityShipping: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
+    shippingCounty: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    dobDay: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
+    orderTotal: '.order-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
+    postcodeDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodname: '.b-option_switch-label',
-    cartContainer: '.b-summary_table-name',
+    shippingMethodname: '.js-shipping-method-list div.js-form-row',
+    dateOfBirthForm: '.form-birthday-rows-inner',
+    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
   },
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -295,7 +304,7 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
-    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
@@ -308,7 +317,10 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodname: 'div.form-row.delivery-row'
+    shippingMethodname: 'div.form-row.delivery-row',
+    dateOfBirthForm: '.form-birthday-rows-inner',
+    emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -339,7 +351,7 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
-    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
@@ -353,6 +365,9 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodname: 'div.form-row.delivery-row',
+    dateOfBirthForm: '.form-birthday-rows-inner',
+    emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
   },
   'warehousefashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -383,7 +398,7 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
-    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
@@ -397,6 +412,9 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodname: 'div.form-row.delivery-row',
+    dateOfBirthForm: '.form-birthday-rows-inner',
+    emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
   },
   'oasis-stores.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -427,7 +445,7 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
-    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
@@ -440,7 +458,10 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodname: 'div.form-row.delivery-row'
+    shippingMethodname: 'div.form-row.delivery-row',
+    dateOfBirthForm: '.form-birthday-rows-inner',
+    emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
   },
   'misspap.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -471,7 +492,7 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
-    guestEmailField: '#dwfrm_billing_contactInfoFields_email',
+    guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
@@ -484,7 +505,10 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodname: 'div.form-row.delivery-row'
+    shippingMethodname: 'div.form-row.delivery-row',
+    dateOfBirthForm: '.form-birthday-rows-inner',
+    emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
   }
 };
 
@@ -545,12 +569,16 @@ class ShippingPage implements AbstractPage {
       cy.get(editCart).should('be.visible').click();
     },
     editAddress () {
-      const editAddress = selectors[variables.brand].editAddress;
-      cy.get(editAddress).click({force: true});
+      if (variables.brand != 'boohooman.com') {
+        const editAddress = selectors[variables.brand].editAddress;
+        cy.get(editAddress).click({force: true});
+      }
     },
     addNewAddressButton () {
-      const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
-      cy.get(addNewAddressButton).click();
+      if (variables.brand != 'boohooman.com') {
+        const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
+        cy.get(addNewAddressButton).click();
+      }
     },
     editExistingAddressButton () {
       const editExistingAddressButton = selectors[variables.brand].editExistingAddressButton;
@@ -633,6 +661,14 @@ class ShippingPage implements AbstractPage {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
       cy.get(addressLine1Shipping).type(address1);
     },
+    addressLine1Clear () {
+      const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
+      cy.get(addressLine1Shipping).clear({force: true});
+    },
+    cityFieldClear () {
+      const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
+      cy.get(shippingCityShipping).clear({force: true});
+    },
     clearAdressLine1AndAddNewOne (address1: string) {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
       cy.get(addressLine1Shipping).clear({force: true}).type(address1);
@@ -678,7 +714,9 @@ class ShippingPage implements AbstractPage {
         cy.contains(shippingMethod).click({force: true});
       });
     },
-    selectDate (day: string, month: string, year: string) { // Only for Site Genesis brands
+
+    // METHODS ONLY FOR SITE GENESIS BRANDS //
+    selectDate (day: string, month: string, year: string) {
       const dobDay = selectors[variables.brand].dobDay;
       const dobMonth = selectors[variables.brand].dobMonth;
       const dobYear = selectors[variables.brand].dobYear;
@@ -686,9 +724,13 @@ class ShippingPage implements AbstractPage {
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
     },
-    confirmEmail (email: string) { // Only for Site Genesis brands
+    confirmEmail (email: string) {
       const confirmEmail = selectors[variables.brand].confirmEmail;
       cy.get(confirmEmail).type(email);
+    },
+    emptyEmailField () {
+      const guestEmailField = selectors[variables.brand].guestEmailField;
+      cy.get(guestEmailField).clear();
     },
 
   };
@@ -775,7 +817,32 @@ class ShippingPage implements AbstractPage {
       cy.get(cartContainer).each(() => {
         cy.contains(shippingMethod.trim());
       });
-    }
+    },
+
+    // METHODS ONLY FOR SITE GENESIS BRANDS //
+    assertEmailIsCorrect (email: string) {
+      cy.get('#dwfrm_singleshipping_shippingAddress_email_emailAddress').should('have.value', email);
+    },
+    assertDateFormIsPresent () {
+      const dateOfBirthForm = selectors[variables.brand].dateOfBirthForm;
+      cy.get(dateOfBirthForm).should('be.visible');
+    },
+    assertDateIsSelected (day: string, month: string, year: string) {
+      const dobDay = selectors[variables.brand].dobDay;
+      const dobMonth = selectors[variables.brand].dobMonth;
+      const dobYear = selectors[variables.brand].dobYear;
+      cy.get(dobDay).should('have.have.value', day);
+      cy.get(dobMonth).should('have.value', month);
+      cy.get(dobYear).should('have.value', year);
+    },
+    assertEmptyEmailFieldError (errorMsg: string) {
+      const emptyEmailFieldError = selectors[variables.brand].emptyEmailFieldError;
+      cy.get(emptyEmailFieldError).should('be.visible').and('contain.text', errorMsg);
+    },
+    assertEmptyDateFieldError (errorMsg: string) {
+      const emptyDateFieldError = selectors[variables.brand].emptyDateFieldError;
+      cy.get(emptyDateFieldError).should('be.visible').and('contain.text', errorMsg);
+    },
   };
 
 }

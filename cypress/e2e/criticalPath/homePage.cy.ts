@@ -284,7 +284,12 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkPremier[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', () => {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[variables.language]);
+        if (variables.brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromoNG[variables.language]);
+        }
+        else { 
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[variables.language]);
+        }
         if (variables.brand == 'warehousefashion.com') {
           GlobalFooter.actions.studentDiscountAcceptCookiesOnPopup(); // Needed for continuing cypress tests execution
         }
@@ -338,7 +343,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', () => {
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US'))
+        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US' && variables.locale != 'FR'))
           GlobalFooter.actions.checkFooterLinkByText('Laybuy');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', () => {
@@ -397,7 +402,12 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - About Cookies', () => {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.aboutCookies[variables.language]);
+        if (variables.brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.aboutCookiesNG[variables.language]);
+        }
+        else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.aboutCookies[variables.language]);
+        }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Sitemap', () => {
         if (variables.brand == 'boohoo.com' || isSiteGenesisBrand)

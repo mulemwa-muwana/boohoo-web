@@ -86,6 +86,8 @@ describe('Boohoo order placement', () => {
   // Method for generating artefact on OrderConfirmation page for back end tests.
   function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
     const variables = Cypress.env() as EnvironmentVariables;
+
+    cy.url({timeout: 60000}).should('include', 'confirm');
     
     if (isSiteGenesisBrand) {
       cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');

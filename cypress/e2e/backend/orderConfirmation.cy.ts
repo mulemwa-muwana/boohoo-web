@@ -1,8 +1,7 @@
-import { getCardProviderByBrand, isBrandSupportingPaymentMethod } from 'cypress/helpers/common';
+import { getCardProviderByBrand, isBrandSupportingPaymentMethod, isSiteGenesisBrand } from 'cypress/helpers/common';
 import Addresses from 'cypress/helpers/addresses';
 import BillingPage from 'cypress/pom/billing.page';
 import LoginPage from 'cypress/pom/login.page';
-import OrderConfirmationPage from 'cypress/pom/orderConfirmation.page';
 import Cards from '../../helpers/cards';
 import ShippingPage from 'cypress/pom/shipping.page';
 import CartPage from 'cypress/pom/cart.page';
@@ -36,7 +35,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.click.proceedToBilling();
-    if (['oasis-stores.com', 'coastfashion.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com', 'boohooman.com'].includes(variables.brand)) {
+    if (isSiteGenesisBrand) {
       ShippingPage.click.proceedToBillingVerificationAndWaitBillingPageToLoad();
     } else {
       BillingPage.actions.waitPageToLoad();
@@ -64,23 +63,13 @@ describe('Boohoo order placement', () => {
     generateArtefact(variables.brand, paymentMethod);
   });
 
-  it('can select PayPal as payment method and generate an artefact', function () {
+  it.skip('can select PayPal as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'PayPal';
     if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
       this.skip();
     }
 
     BillingPage.actions.selectPayPal();
-    generateArtefact(variables.brand, paymentMethod);
-  });
-
-  it.skip('can select Laybuy as payment method and generate an artefact', function () {
-    const paymentMethod: PaymentMethod = 'LayBuy';
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
-      this.skip();
-    }
-
-    BillingPage.actions.selectLaybuy();
     generateArtefact(variables.brand, paymentMethod);
   });
 
@@ -98,7 +87,7 @@ describe('Boohoo order placement', () => {
   function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
     const variables = Cypress.env() as EnvironmentVariables;
     
-    if (['oasis-stores.com', 'coastfashion.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com', 'boohooman.com'].includes(variables.brand)) {
+    if (isSiteGenesisBrand) {
       cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
       cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
       cy.get('.sku > span:nth-child(2)').invoke('text').then(text => text.trim()).as('fullSku');

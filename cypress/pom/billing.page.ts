@@ -781,7 +781,7 @@ class BillingPage implements AbstractPage {
         body().then($body => {
           cy.wait(5000);
           if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) { // If 'Skip and continue' button exists
-            body().find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click({force:true});
+            $body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click();
           }
         });
       });

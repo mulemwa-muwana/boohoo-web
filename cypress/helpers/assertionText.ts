@@ -1177,6 +1177,20 @@ class AssertionText {
   };
 
   envAndSocRespSiteGenesis: TranslationMap = {
+    EN: 'Environment & Social Responsibility',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  envAndSocRespNG: TranslationMap = {
     EN: 'Environment And Social',
     NL: '',
     DE: '',

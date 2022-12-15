@@ -98,8 +98,7 @@ describe('Home Page', function () {
       } else {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
-      }
-
+      }    
       if (variables.brand == 'boohooman.com') {
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
       } else {
@@ -205,7 +204,7 @@ describe('Home Page', function () {
       });
       
       it('YouTube', () => {
-        const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'karenmillen.com', 'misspap.com'];
+        const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'karenmillen.com', 'misspap.com', 'boohoomena.com'];
         if (includedBrands.includes(variables.brand)) {
           SocialsPage.assertions.assertYouTubeIconIsPresent();
           GlobalFooter.click.youtubeLink();
@@ -213,7 +212,7 @@ describe('Home Page', function () {
       });
       
       it('Pintrest', () => {
-        const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com'];
+        const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com', 'boohoomena.com'];
         if (includedBrands.includes(variables.brand)) {
           SocialsPage.assertions.assertPinterestIconIsPresent();
           GlobalFooter.click.pintrestLink();
@@ -364,7 +363,7 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
         const australianLocales: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
-        const augustPrivacyPolicyBrands: Array<GroupBrands> = ['coastfashion.com', 'karenmillen.com'];
+        const augustPrivacyPolicyBrands: Array<GroupBrands> = ['coastfashion.com', 'karenmillen.com', 'boohoomena.com'];
         
         if ((variables.brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[variables.language]);

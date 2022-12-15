@@ -182,6 +182,20 @@ class megaMenuLinksLanguages {
     ES: 'Novedades',
   };
 
+  urlValidationNewInToday: TranslationMap = {
+    EN: 'newintoday',
+    NL: 'vandaag-nieuw-binnen',
+    DE: 'neuheiten',
+    FR: 'nouveautes',
+    DK: 'new',
+    FI: 'new',
+    NO: 'new',
+    SE: 'nyheter',
+    IL: '',
+    IT: 'Nuovi arrivi',
+    ES: 'Novedades',
+  };
+
 }
 
 export default new megaMenuLinksLanguages();

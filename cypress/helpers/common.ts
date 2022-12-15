@@ -137,7 +137,11 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       UK: 'Adyen',
       IE: 'WorldPay',
       US: 'Adyen'
-    }
+    },
+    'boohoomena.com': {
+      UK: 'Adyen',
+      IE: 'Adyen'
+    },
   };
 
   const localeTable = paymentLookupTable[brand] ?? {};
@@ -222,6 +226,13 @@ export function isBrandSupportingPaymentMethod (brand: GroupBrands, paymentMetho
       'Clearpay',
       'Klarna',
       'LayBuy',
+    ],
+    'boohoomena.com': [
+      'Adyen',
+      'PayPal',
+      'Clearpay',
+      'Klarna',
+      'LayBuy',
     ]
   };
 
@@ -229,5 +240,5 @@ export function isBrandSupportingPaymentMethod (brand: GroupBrands, paymentMetho
 }
 
 const variables = Cypress.env() as EnvironmentVariables;
-export const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com', 'boohooman.com'];
+export const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com', 'boohooman.com', 'boohoomena.com'];
 export const isSiteGenesisBrand: boolean = siteGenesisBrands.includes(variables.brand);

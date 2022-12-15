@@ -21,6 +21,7 @@ export function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType):
     'burton.co.uk': process.env.BURTON_CUSTOMER_MANAGER_APIKEY,
     'wallis.co.uk': process.env.WALLIS_CUSTOMER_MANAGER_APIKEY,
     'misspap.com': process.env.MISSPAP_CUSTOMER_MANAGER_APIKEY,
+    'boohoomena.com': process.env.BOOHOOMENA_CUSTOMER_MANAGER_APIKEY
   };
 
   // This is basically a Map<Map<EnvKey>>, we may want to scale up to more types of keys.

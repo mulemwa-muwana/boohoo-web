@@ -166,7 +166,8 @@ const selectors: SelectorBrandMap = {
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '[id^=WLbanner] > a'
-  }
+  },
+  'boohoomena.com': {}
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

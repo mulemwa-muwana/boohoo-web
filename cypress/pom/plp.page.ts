@@ -271,6 +271,30 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
+  },
+  'boohoomena.com': {
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
+    colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
+    shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
+    lengthRefinement: '#searchRefineBarAccordionItemBtn-length > span',
+    sortProducts: '#plp-sort-desktop',
+    priceVariant: '',
+    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
+    selectRefinementVariantColor: '#searchRefineBarAccordionItemInner-colour',
+    selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
+    selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
+    wishlistPlpIcon: '.b-wishlist_button-icon',
+    loadMoreProducts: ':nth-child(6) > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link > .pagination-item-link-text',
+    numberOfPagesTextIsVisible: ':nth-child(6) > .pagination > .pagination-list',
+    productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
+    newProductPriceIsDispayed: '.product-pricing .product-sales-price',
+    productPriceIsDispayed: '.product-pricing .product-standard-price',
+    productImageIsDisplayed: '.thumb-link img',
+    itemIsAddedToWishlist: '.b-header_wishlist-count',
+    productNameIsDisplayed: '.product-tile-name > .name-link',
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
   }
 };
 

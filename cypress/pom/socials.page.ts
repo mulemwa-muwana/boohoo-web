@@ -95,6 +95,15 @@ const selectors: SelectorBrandMap = {
     twitter: '.icon-twitter',
     youtube: '.icon-youtube',
     pinterest: '.icon-pinterest'
+  },
+  'boohoomena.com': {
+    instagramUrl: 'instagram.com/oasisfashion/',
+    instagram: '.icon-instagram-2',
+    facebook: '.icon-facebook-2',
+    facebookUrl: 'facebook.com/oasisfashions',
+    twitter: '.icon-twitter-2',
+    youtube: '.icon-youtube-2',
+    pinterest: '.icon-pinterest'
   }
 };
 

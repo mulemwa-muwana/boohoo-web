@@ -35,7 +35,8 @@ describe('Shipping Page Guest user tests', function () {
     }
     cartPage.click.proceedToCheckout();
     checkoutPage.actions.guestCheckoutEmail(this.guestEmail);
-    checkoutPage.click.continueAsGuestBtn();
+    checkoutPage.click.continueAsGuestBtn();   
+    
   });
   if (!isSiteGenesisBrand) {
     it('Verify that promo code field is dispayed', function () {

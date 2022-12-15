@@ -529,8 +529,38 @@ class Addresses {
         county: 'Berlin',
         confirmEmail: ''
       }
-    }
+    },
 
+    SA: {
+      primaryAddress: {
+        firstName: 'New',
+        lastName: 'Test',
+        phone: '14245353',
+        addrline1: 'Unit: A2, King Abdul Aziz Rd',
+        addrline2: '',
+        postcode: '',
+        addressName: 'PrimaryAddress',
+        country: 'Saudi Arabia',
+        city: 'Jeddah',
+        countryCode: 'SA',
+        county: 'Eastern Province',
+        confirmEmail: ''
+      },
+      secondaryAddress: {
+        firstName: 'Test',
+        lastName: 'Test',
+        phone: '14245353',
+        addrline1: 'Unit: A2, King Abdul Aziz Rd',
+        addrline2: '',
+        postcode: '',
+        addressName: 'PrimaryAddress',
+        country: 'Saudi Arabia',
+        city: 'Jeddah',
+        countryCode: 'SA',
+        county: 'Saudi Arabia',
+        confirmEmail: ''
+      }
+    }
   };
 
   /**

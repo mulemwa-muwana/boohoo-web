@@ -309,10 +309,8 @@ describe('Home Page', function () {
       });
 
       it('Verify that Footer Navigation Component is present and Links are functional - Gift Cards', () => {
-        if (variables.brand == 'boohoo.com') {
+        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK')) || (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US'))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGiftCard[variables.language]);         
-        } else if (variables.brand == 'nastygal.com' && variables.locale == 'UK' || variables.locale == 'US') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGiftCard[variables.language]);
         } else if (variables.brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGiftVoucher[variables.language]);
         }

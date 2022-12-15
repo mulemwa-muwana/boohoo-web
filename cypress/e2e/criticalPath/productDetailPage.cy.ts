@@ -58,12 +58,10 @@ describe('Product Details Page tests', function () {
     cy.wait(3000);
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com') {
       LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitle[variables.language]);
     } else if (variables.brand == 'misspap.com') {
       LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitleMisspap[variables.language]);
-    } else if (variables.brand == 'karenmillen.com') {
-      LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitleKarenMillen[variables.language]);
     } else {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[variables.language]);
     }

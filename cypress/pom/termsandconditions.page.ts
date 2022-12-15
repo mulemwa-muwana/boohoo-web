@@ -16,7 +16,9 @@ const selectors: SelectorBrandMap = {
   'wallis.co.uk': {
     termsAndConditionsPageTitle: '.l-static_page-title',
   },
-  'boohooman.com': undefined,
+  'boohooman.com': {
+    termsAndConditionsPageTitle: '.termsuse > h1'
+  },
   'karenmillen.com': {
     termsAndConditionsPageTitle: '#primary > div > h1',
   },

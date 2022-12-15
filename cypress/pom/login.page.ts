@@ -64,16 +64,18 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.b-message-copy'
   },
   'boohooman.com': {
-    loginIcon: '.b-header_login-icon > .i-icon',
-    loginEmail: '[id^="dwfrm_login_username"]',
-    loginPassword: '[id^="dwfrm_login_password"]',
+    loginIcon: '.user-account',
+    loginLink: ' div > div.mini-header-rightside > ul > li.user-info.js-appshell-uncached-headercustomerinfo-container > div > div > div > a:nth-child(1)',
+    loginEmail: '[id^=dwfrm_login_username]',
+    loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
-    forgotPassword: '#password-reset',
-    forgotPasswordMessage: '.b-dialog-window',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
-    resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box',
-    errorLoginMessage: '.b-message-copy'
+    forgotPassword: '.password-reset',
+    forgotPasswordMessage: '#ShowResetPasswordDialog',
+    resetPasswordEmailField: '#dwfrm_requestpassword_email',
+    resetPasswordBtn: '.reset-password-btn',
+    loginForm: '#dwfrm_login',
+    wishlistLoginTitle: '.login-title',
+    errorLoginMessage: '.error-form'
   },
   'karenmillen.com': {
     loginIcon: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.js-header-right-box.header-right-box > div.header-customerinfo.hidden-on-mobile.js-appshell-uncached-headercustomerinfo-container > div > div > div > div > a:nth-child(1)',

@@ -8,7 +8,7 @@ export default defineConfig({
     url: 'https://storefront:Oreo2022@stgmena.boohoo.com/en',
     sku: 'FZZ54497-104-18',
     brand: 'boohoomena.com',
-    locale: 'UK',
+    locale: 'SA',
     language: 'EN', 
   },
 

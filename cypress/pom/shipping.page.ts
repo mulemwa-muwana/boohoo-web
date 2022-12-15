@@ -522,7 +522,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
+    proceedToBilling: '.js-checkout-next-step-btn',
     proceedToBillingVerificationBtn: '.verification-address-button',
     addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
@@ -536,7 +536,8 @@ const selectors: SelectorBrandMap = {
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
-    shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
+    shippingPhoneCode: '#dwfrm_phonedetails_phonecode',
+    shippingPhoneNumber: '#dwfrm_phonedetails_phonenumber',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
     guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
@@ -544,18 +545,20 @@ const selectors: SelectorBrandMap = {
     addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     shippingCityShipping: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    shippingCounty: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    shippingCounty: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
-    orderTotal: '.order-total',
+    orderTotal: '.order-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodname: 'div.form-row.delivery-row',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
-    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error'
+    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
+    cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
   }
 };
 
@@ -590,10 +593,10 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if(variables.brand != 'boohoomena.com') {
-      const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
-      cy.wait(1000);
-      cy.get(proceedToBillingVerificationBtn).click({force: true});
-    }
+        const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
+        cy.wait(1000);
+        cy.get(proceedToBillingVerificationBtn).click({force: true});
+      }
     },
     proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis brands
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
@@ -691,15 +694,27 @@ class ShippingPage implements AbstractPage {
     clearPhoneNumberFieldAndAddNewOne (phone: string) {
       cy.wait(1000);
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).clear().type(phone);
+      if (variables.brand == 'boohoomena.com') {
+        const shippingPhoneCode = selectors[variables.brand].shippingPhoneCode;
+        cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
+      } else {
+        cy.get(shippingPhoneNumber).clear().type(phone);
+      }
     },
     phoneNumberField (phone: string) {
       cy.wait(1000);
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).type(phone);
+      if (variables.brand == 'boohoomena.com') {
+        const shippingPhoneCode = selectors[variables.brand].shippingPhoneCode;
+        cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        cy.get(shippingPhoneNumber).type(phone.slice(2));
+      } else {
+        cy.get(shippingPhoneNumber).type(phone);
+      }
     },
     selectCountry (country: string) {
-      if( variables.brand != 'boohoomena.com') {
+      if(variables.brand != 'boohoomena.com') {  // Country cannot be changed on Shipping page for this brand
         const shippingCountry = selectors[variables.brand].shippingCountry;
         cy.get(shippingCountry).select(country).invoke('show');
       }
@@ -738,7 +753,11 @@ class ShippingPage implements AbstractPage {
     },
     clearCityFieldAndAddNewOne (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
-      cy.get(shippingCityShipping).clear({force: true}).type(city);
+      if (variables.brand == 'boohoomena.com') {
+        cy.get(shippingCityShipping).select(city);
+      } else {
+        cy.get(shippingCityShipping).clear({force: true}).type(city);
+      }
     },
     countyField (county: string) {
       const shippingCounty = selectors[variables.brand].shippingCounty;

@@ -535,10 +535,10 @@ class Addresses {
       primaryAddress: {
         firstName: 'New',
         lastName: 'Test',
-        phone: '14245353',
+        phone: '5014245353',
         addrline1: 'Unit: A2, King Abdul Aziz Rd',
         addrline2: '',
-        postcode: '',
+        postcode: '12467',
         addressName: 'PrimaryAddress',
         country: 'Saudi Arabia',
         city: 'Jeddah',
@@ -549,15 +549,15 @@ class Addresses {
       secondaryAddress: {
         firstName: 'Test',
         lastName: 'Test',
-        phone: '14245353',
+        phone: '5014245353',
         addrline1: 'Unit: A2, King Abdul Aziz Rd',
         addrline2: '',
-        postcode: '',
-        addressName: 'PrimaryAddress',
+        postcode: '12467',
+        addressName: 'SecondaryAddress',
         country: 'Saudi Arabia',
         city: 'Jeddah',
         countryCode: 'SA',
-        county: 'Saudi Arabia',
+        county: 'Eastern Province',
         confirmEmail: ''
       }
     }

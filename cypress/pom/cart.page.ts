@@ -222,7 +222,27 @@ const selectors: SelectorBrandMap = {
     productDetails: '.variations',
     productName: '.name > a',
     updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63'
-  }
+  },
+  'boohoomena.com': {
+    productsTable: '#cart-table',
+    productImage: '[class*="item-image"] img[class*="product-tile-image"]',
+    productPrice: '[class*="item-price"]',
+    subtotal: '.price-adjusted-total',
+    cartQuantity: '.cart-input-quantity',
+    editQuantity: '.cart-input-quantity',
+    updateQuantity: '.b-product_update-button_update',
+    setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
+    premierBlock: 'div.premier-box-main',
+    addPremierToCart: '#add-to-cart',
+    PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    KlarnaCTA: '#klarna-express-button',
+    AmazonCTA: '#OffAmazonPaymentsWidgets0',
+    proceedToCheckout: '[class*="js-second-button-checkout"]',
+    clearCart: '[class*="button-remove"]',
+    emptyCartTitle: '.cart-empty-title',
+    productDetails: '.variations',
+    productName: '.name > a',
+  },
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

@@ -157,7 +157,8 @@ const selectors: SelectorBrandMap = {
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
     wishlistIcon: '.wishlist-button'
-  }
+  },
+  'boohoomena.com': {}
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

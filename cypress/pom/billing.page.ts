@@ -540,6 +540,8 @@ const selectors: SelectorBrandMap = {
   'boohoomena.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#billingSubmitButton',
+    shippingAddressSection: 'div.address',
+    shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',

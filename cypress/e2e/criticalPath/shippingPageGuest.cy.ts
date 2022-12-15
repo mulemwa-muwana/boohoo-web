@@ -19,8 +19,10 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   beforeEach(function () {
-    
-    // Const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    if (variables.brand == 'boohoomena.com') {
+      this.skip();  // BoohooMena brand doesn't support guest users, only registered ones
+    }
+
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
     cy.wait(3000);
@@ -36,15 +38,16 @@ describe('Shipping Page Guest user tests', function () {
     cartPage.click.proceedToCheckout();
     checkoutPage.actions.guestCheckoutEmail(this.guestEmail);
     checkoutPage.click.continueAsGuestBtn();   
-    
   });
-  if (!isSiteGenesisBrand) {
-    it('Verify that promo code field is dispayed', function () {
-      shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
-    });
-  }
+  
+  it('Verify that promo code field is dispayed', function () {
+    if (isSiteGenesisBrand) {
+      this.skip();  // Promo code field is on Billing page for Site Genesis brands
+    }
+    shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
+  });
 
-  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
+  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
@@ -81,17 +84,18 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
-  if (!isSiteGenesisBrand) {
-    it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
-      const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-      if (variables.locale == 'EU') {
-        shippingPage.actions.firstNameField(localeAddress.firstName);
-        shippingPage.actions.lastNameField(localeAddress.lastName);
-        shippingPage.actions.selectCountry(localeAddress.country);
-      }
-      shippingPage.assertions.assertPostcodeLookupIsVisible();
-    });
-  }
+  it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
+    if (isSiteGenesisBrand) {
+      this.skip();
+    }
+    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    if (variables.locale == 'EU') {
+      shippingPage.actions.firstNameField(localeAddress.firstName);
+      shippingPage.actions.lastNameField(localeAddress.lastName);
+      shippingPage.actions.selectCountry(localeAddress.country);
+    }
+    shippingPage.assertions.assertPostcodeLookupIsVisible();
+  });
 
   it('Verify that "Enter manually" button allows guest to enter address details', function () {
     if (isSiteGenesisBrand) { // Site Genesis websites have all fields displayed, no Enter Manually button

@@ -99,7 +99,7 @@ class AssertionText {
   };
 
   WishlistLoginTitleKarenMillen: TranslationMap = {
-    EN: 'Wish List Log In',
+    EN: '\nWish List\nLog In\n',
     FR: '',
     NL: '',
     DE: '',
@@ -449,7 +449,7 @@ class AssertionText {
   };
 
   selectSize: TranslationMap = {
-    EN: 'OOPS PLEASE SELECT A SIZE',
+    EN: '\n                    Oops please select a size\n                ',
     FR: '',
     NL: '',
     DE: '',

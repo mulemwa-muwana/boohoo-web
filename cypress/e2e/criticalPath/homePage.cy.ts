@@ -192,7 +192,10 @@ describe('Home Page', function () {
       });
       
       it('TikTok', () => {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'boohooman.com') {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
+          SocialsPage.assertions.assertTikTokIconIsPresent();
+          GlobalFooter.click.tiktokLink();
+        } else if (variables.brand == 'nastygal.com' && variables.locale !='FR') {
           SocialsPage.assertions.assertTikTokIconIsPresent();
           GlobalFooter.click.tiktokLink();
         }
@@ -275,7 +278,7 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - The boohoo/nastygal App', () => {
         if (variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'FR' || variables.locale == 'IE' || variables.locale == 'AU' || variables.locale == 'US' || variables.locale == 'DE'))
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppBHO[variables.language]);
-        else if (variables.brand == 'nastygal.com') {
+        else if (variables.brand == 'nastygal.com' && variables.locale != 'EU') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppNG[variables.language]);
         }
       });
@@ -306,8 +309,13 @@ describe('Home Page', function () {
       });
 
       it('Verify that Footer Navigation Component is present and Links are functional - Gift Cards', () => {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' && variables.locale != 'UK')
+        if (variables.brand == 'boohoo.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGiftCard[variables.language]);         
+        } else if (variables.brand == 'nastygal.com' && variables.locale == 'UK' || variables.locale == 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGiftCard[variables.language]);
+        } else if (variables.brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGiftVoucher[variables.language]);
+        }
       });
 
       /*
@@ -356,7 +364,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Become A Brand Ambassador', () => {
-        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'EU' || variables.locale == 'CA' || variables.locale == 'US')) {
+        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'CA' || variables.locale == 'US')) {
           GlobalFooter.actions.checkFooterLinkByText('Become A Brand Ambassador'); 
         }
       });

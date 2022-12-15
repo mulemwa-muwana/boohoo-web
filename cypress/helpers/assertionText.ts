@@ -1022,6 +1022,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkGiftVoucher: TranslationMap = {
+    EN: 'Gift Vouchers',
+    NL: '',
+    DE: '',
+    FR: 'Bons-Cadeaux',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   sustainability: TranslationMap = {
     EN: 'Sustainability',
     NL: '',

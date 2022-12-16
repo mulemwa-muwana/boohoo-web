@@ -610,8 +610,7 @@ class ShippingPage implements AbstractPage {
       cy.get(editSavedAddress).click();
     },
     addAddressManually () {
-      const excludedBrands: Array<GroupBrands> = ['misspap.com', 'karenmillen.com', 'boohooman.com', ...siteGenesisBrands];
-      if (!excludedBrands.includes(variables.brand)) {
+      if (!isSiteGenesisBrand) {
         const addAddressManually = selectors[variables.brand].addAddressManually;
         cy.get(addAddressManually).should('be.visible').click({force:true});
       }

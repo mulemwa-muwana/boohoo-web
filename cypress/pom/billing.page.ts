@@ -538,25 +538,42 @@ const selectors: SelectorBrandMap = {
     paynowBtnCC:'#billingSubmitButton',
   }, 
   'boohoomena.com': {
-    dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
-    shippingAddressSection: 'div.address',
+    shippingAddressSection: '.minicheckout-section',
     shippingAddress: 'div.minicheckout-value:nth-child(3)',
-    billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
-    billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
+    billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
+    billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
-    billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
-    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
+    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
+    billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
-    changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
-    changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
-    shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
-    emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
-    addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
+    changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
+    shippingMethodSelector: '.minicheckout-shipping-option',
+    changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
+    shippingCheckbox: 'div[class*="useAsBillingAddress"]',
+    paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodPayPal: '[for="is-PayPal"]',
+    paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodClearPay: '[for="is-CLEARPAY"]',
+    paymentMethodLayBuy: '[for="is-LAYBUY"]',
+    emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
+    addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
-    emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
+    emptyEmailFiledError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    addNewBillingAddress: '.js-edit-address',
+    billingForm: '.js-address-form',
+    billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
+    billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
+    newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
+    viewAllBillingAddresses: '.use-another-address',
+    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
+    dobDate: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
+    dobForm: '.form-birthday-rows-inner',
     promoCodeField: '#dwfrm_billing_couponCode',
 
     // Credit card section
@@ -567,7 +584,7 @@ const selectors: SelectorBrandMap = {
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
-    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button'
+    paynowBtnCC:'#billingSubmitButton',
   }
 };
 
@@ -706,17 +723,24 @@ class BillingPage implements AbstractPage {
       }
       
     },
-    addBillingAddressRegisteredUser (line1: string, city: string, postcode: string) {
+    addBillingAddressRegisteredUser (localeAddress: AddressData) {
       const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
       const billingPostCode = selectors[variables.brand].billingPostCode;
       this.enterManuallyAddressDetails ();
-      cy.get(billingAddressFieldsAddress1).clear().type(line1);
-      cy.get(billingAddressFieldCity).clear().type(city);
-      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
-        cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
+      cy.get(billingAddressFieldsAddress1).clear().type(localeAddress.addrline1);
+      if (variables.brand == 'boohoomena.com') {
+        cy.get(billingAddressFieldCity).select(localeAddress.city);
+        cy.get('#dwfrm_billing_billingAddress_addressFields_states_state').select(localeAddress.county);
+        cy.get('#dwfrm_phonedetails_phonecode').select(localeAddress.phone.slice(0, 2));
+        cy.get('#dwfrm_phonedetails_phonenumber').clear().type(localeAddress.phone.slice(2));
       } else {
-        cy.get(billingPostCode).clear().type(postcode);
+        cy.get(billingAddressFieldCity).clear().type(localeAddress.city);
+      }
+      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(localeAddress.postcode);
+      } else {
+        cy.get(billingPostCode).clear().type(localeAddress.postcode);
       }
       
     },

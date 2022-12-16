@@ -14,8 +14,11 @@ import billingPage from '../../pom/billing.page';
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Order confirmation page for guest user', function () {
-  beforeEach (() => {
-    const variables = Cypress.env() as EnvironmentVariables;
+  beforeEach (function () {
+    if (variables.brand == 'boohoomena.com') {
+      this.skip();  // BoohooMena brand doesn't support guest users, only registered ones
+    }
+    
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
@@ -96,7 +99,7 @@ describe('Order confirmation page for guest user', function () {
   });
 });
 
-describe('Order confirmation page for registered user', function () {
+describe.only('Order confirmation page for registered user', function () {
   beforeEach (()=>{
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();
@@ -113,7 +116,7 @@ describe('Order confirmation page for registered user', function () {
     CartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -130,14 +133,15 @@ describe('Order confirmation page for registered user', function () {
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
     if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);
-    }
-    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-    if (variables.locale == 'AU') {
+    } else if (variables.locale == 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
     }
-
+    if (variables.brand == 'boohoomena.com') {
+      shippingPage.actions.countyField(localeAddress.county);
+    }
+    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
+    if (isSiteGenesisBrand && variables.brand != 'boohoomena.com') {
       shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.actions.waitPageToLoad();

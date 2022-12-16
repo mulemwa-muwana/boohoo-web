@@ -167,7 +167,21 @@ const selectors: SelectorBrandMap = {
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',
     closePopUP: '[id^=WLbanner] > a'
   },
-  'boohoomena.com': {}
+  'boohoomena.com': {
+    emailIsDisplayed:'.confirmation-message-info > span',
+    orderValueIsDisplayed:'.orderdetails-header-number > span[class="value"]',
+    shippingAddressDetailsName:'.minicheckout-name',
+    shippingAddressDetailsSummary:'.address',
+    orderNumberIsDisplayed:'.orderdetails-header-number',
+    billingAddressDetailsName:'.mini-address-name',
+    billingAddressDetailsSummary:'.mini-address-location-group',
+    shippingMethodIsDisplayed:'tr.order-shipping',
+    paymentMethod:'.payment-type',
+    orderTotalIsVisible:'.order-value',
+    thatPasswordFieldForGuestUserIsDisplayed:'[id^="dwfrm_profile_login_password"]:not([class*="passwordconfirm"]',
+    thatConfirmPasswordFieldForGuestUserIsDisplayed:'[id^="dwfrm_profile_login_passwordconfirm"]',
+    closePopUP: '[id^=WLbanner] > a'
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

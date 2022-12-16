@@ -102,8 +102,8 @@ const selectors: SelectorBrandMap = {
   }, 
   'boohoomena.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
-    userEmailField: '[id^="dwfrm_login_username"]',
-    passwordField:'[id^="dwfrm_login_password"]',
+    userEmailField: 'input[id^="dwfrm_login_username"]',
+    passwordField:'input[id^="dwfrm_login_password"]',
     continueAsGuestBt:'#dwfrm_login > fieldset > .form-row-button > .login-page-button',
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',

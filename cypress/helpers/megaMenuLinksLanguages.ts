@@ -18,7 +18,7 @@ class megaMenuLinksLanguages {
     EN: 'New',
     NL: 'Alles Bekijken',
     DE: '',
-    FR: '',
+    FR: 'Nouveau',
     DK: '',
     FI: '',
     NO: '',

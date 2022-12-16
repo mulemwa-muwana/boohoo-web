@@ -22,7 +22,7 @@ describe('Billing page functionality for guest user', function () {
   
   beforeEach (function () { 
     if (variables.brand == 'boohoomena.com') {
-      this.skip();  // BoohooMena brand doesn't support guest users, only registered ones
+      this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');

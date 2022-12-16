@@ -138,7 +138,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', function () {
-    if (variables.brand == 'boohoomena.com') {  // Country cannot be changed on Shipping page for this brand
+    if (variables.brand == 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
@@ -259,7 +259,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that PREMIER can be added to the cart', function () {
-    if (variables.brand == 'boohoomena.com') {  // No Premier/VIP for this brand
+    if (variables.brand == 'boohoomena.com') { // No Premier/VIP for this brand
       this.skip();
     }
     const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
@@ -278,7 +278,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierWarehouse[variables.language]);
     } else {
-      throw new Error("This brand is to be covered yet");
+      throw new Error('This brand is to be covered yet');
     }
   });
 

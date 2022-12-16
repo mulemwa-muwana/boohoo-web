@@ -16,7 +16,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Order confirmation page for guest user', function () {
   beforeEach (function () {
     if (variables.brand == 'boohoomena.com') {
-      this.skip();  // BoohooMena brand doesn't support guest users, only registered ones
+      this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
     
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
@@ -99,7 +99,7 @@ describe('Order confirmation page for guest user', function () {
   });
 });
 
-describe.only('Order confirmation page for registered user', function () {
+describe('Order confirmation page for registered user', function () {
   beforeEach (()=>{
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     HomePage.goto();

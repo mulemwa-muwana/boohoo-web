@@ -190,7 +190,7 @@ const selectors: SelectorBrandMap = {
     myAccountUrl: 'myaccount?registration=true',
     emailError: 'div[class^="error error-message"]'
   },
-   'boohoomena.com': {
+  'boohoomena.com': {
     registrationForm: '#RegistrationForm',
     passwordField: '[id^="dwfrm_profile_login_password"]:not([class*="passwordconfirm"])',
     passwordConfirmField: '[id^="dwfrm_profile_login_passwordconfirm"]',
@@ -206,7 +206,7 @@ const selectors: SelectorBrandMap = {
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
     emailError: 'div[class^="error error-message"]'
-   }
+  }
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

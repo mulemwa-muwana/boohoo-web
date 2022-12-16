@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -592,7 +592,7 @@ class ShippingPage implements AbstractPage {
       cy.get(proceedToBilling).click({force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
-      if(variables.brand != 'boohoomena.com') {
+      if (variables.brand != 'boohoomena.com') {
         const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
         cy.wait(1000);
         cy.get(proceedToBillingVerificationBtn).click({force: true});
@@ -713,7 +713,7 @@ class ShippingPage implements AbstractPage {
       }
     },
     selectCountry (country: string) {
-      if(variables.brand != 'boohoomena.com') {  // Country cannot be changed on Shipping page for this brand
+      if (variables.brand != 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
         const shippingCountry = selectors[variables.brand].shippingCountry;
         cy.get(shippingCountry).select(country).invoke('show');
       }

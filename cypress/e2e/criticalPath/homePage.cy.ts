@@ -288,8 +288,7 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', () => {
         if (variables.brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromoNG[variables.language]);
-        }
-        else { 
+        } else { 
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[variables.language]);
         }
         if (variables.brand == 'warehousefashion.com') {
@@ -411,8 +410,7 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - About Cookies', () => {
         if (variables.brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.aboutCookiesNG[variables.language]);
-        }
-        else {
+        } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.aboutCookies[variables.language]);
         }
       });

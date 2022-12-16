@@ -20,7 +20,7 @@ describe('Shipping Page Guest user tests', function () {
 
   beforeEach(function () {
     if (variables.brand == 'boohoomena.com') {
-      this.skip();  // BoohooMena brand doesn't support guest users, only registered ones
+      this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
     HomePage.goto();
@@ -42,7 +42,7 @@ describe('Shipping Page Guest user tests', function () {
   
   it('Verify that promo code field is dispayed', function () {
     if (isSiteGenesisBrand) {
-      this.skip();  // Promo code field is on Billing page for Site Genesis brands
+      this.skip(); // Promo code field is on Billing page for Site Genesis brands
     }
     shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });

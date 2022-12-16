@@ -120,9 +120,8 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: '.js-header-right-box [title="Register"]',
-    wishlistIcon: '.wishlist-button',
+    wishListIcon: '.icon-wishlist',
     searchField: '.js-header-search-input',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link'

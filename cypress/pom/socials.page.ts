@@ -97,10 +97,10 @@ const selectors: SelectorBrandMap = {
     pinterest: '.icon-pinterest'
   },
   'boohoomena.com': {
-    instagramUrl: 'instagram.com/oasisfashion/',
+    instagramUrl: 'instagram.com/boohoomena/',
     instagram: '.icon-instagram-2',
     facebook: '.icon-facebook-2',
-    facebookUrl: 'facebook.com/oasisfashions',
+    facebookUrl: 'facebook.com/boohoo.com',
     twitter: '.icon-twitter-2',
     youtube: '.icon-youtube-2',
     pinterest: '.icon-pinterest'
@@ -172,7 +172,7 @@ class SocialsPage implements AbstractPage {
     },
     assertYouTubeIconIsPresent () {
       const youtube = selectors[variables.brand].youtube;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohoomena.com') {
         cy.get(youtube).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(youtube).should('be.visible');
       } else {

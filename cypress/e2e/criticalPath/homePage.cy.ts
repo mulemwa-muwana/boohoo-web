@@ -80,7 +80,7 @@ describe('Home Page', function () {
     });
  
     it('Verify Mega Menu - NewIn link opens', () => {
-      if (variables.brand == 'boohoo.com') {
+      if (variables.brand == 'boohoo.com' || variables.brand == 'boohoomena.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
@@ -190,41 +190,49 @@ describe('Home Page', function () {
         GlobalFooter.click.twitterLink();
       });
       
-      it('TikTok', () => {
+      it('TikTok', function () {
         if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
           SocialsPage.assertions.assertTikTokIconIsPresent();
           GlobalFooter.click.tiktokLink();
         } else if (variables.brand == 'nastygal.com' && variables.locale !='FR') {
           SocialsPage.assertions.assertTikTokIconIsPresent();
           GlobalFooter.click.tiktokLink();
+        } else {
+          this.skip();
         }
       });
       
-      it('YouTube', () => {
+      it('YouTube', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'karenmillen.com', 'misspap.com', 'boohoomena.com'];
         if (includedBrands.includes(variables.brand)) {
           SocialsPage.assertions.assertYouTubeIconIsPresent();
           GlobalFooter.click.youtubeLink();
+        } else {
+          this.skip();
         }
       });
       
-      it('Pintrest', () => {
+      it('Pintrest', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com', 'boohoomena.com'];
         if (includedBrands.includes(variables.brand)) {
           SocialsPage.assertions.assertPinterestIconIsPresent();
           GlobalFooter.click.pintrestLink();
+        } else {
+          this.skip();
         }
       });
       
-      it('TheFix', () => {
+      it('TheFix', function () {
         if (variables.brand == 'boohoo.com') {
           SocialsPage.assertions.assertTheFixIconIsPresent();
           GlobalFooter.click.theFixLink();
+        } else {
+          this.skip();
         }
       });
     });
       
-    describe('Verify Footer Payment providers and mobile App Banners', () => {
+    describe.only('Verify Footer Payment providers and mobile App Banners', () => {
       it('Verify that Payment and Delivery Providers are present as content slot.', () => {
         GlobalFooter.assertions.assertPaymentOptionsArePresent();
       });

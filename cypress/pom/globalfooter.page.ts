@@ -252,8 +252,8 @@ const selectors: SelectorBrandMap = {
     unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
     paymentOptions: '.footer-payment-method',
     appBanner: '.footer-app-links',
-    footerStickyPromo: '.header-banner-timer-inner .footer-promo',
-    footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
+    footerStickyPromo: '.footer-promo',
+    footerPromoLink: '.banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'

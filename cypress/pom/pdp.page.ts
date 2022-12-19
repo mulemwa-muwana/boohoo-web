@@ -320,7 +320,8 @@ const selectors: SelectorBrandMap = {
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
-    productReturnsDescription: '.product-returns-info',
+    productReturnsInfoButton: '#product-returns-info-tab',
+    productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
     cartValidation: '.b-product_actions-error_msg'
@@ -494,7 +495,7 @@ class PdpPage implements AbstractPage {
     assertReturnInfoIsDisplayed () {
       const productReturnsInfoButton = selectors[variables.brand].productReturnsInfoButton;
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'boohoomena.com') {
         cy.get(productReturnsInfoButton).click();
       } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
         cy.get('#product-details-btn-shipping').click();

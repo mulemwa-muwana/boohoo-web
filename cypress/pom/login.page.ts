@@ -146,8 +146,8 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.error-form'
   },
   'boohoomena.com': {
-    loginIcon: '.user-account',
-    loginLink: '.user-links > [title="LOG IN"]',
+    loginIcon: 'span.user-account',
+    loginLink: '.user-links > [title="Log In"]',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',

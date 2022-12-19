@@ -55,7 +55,7 @@ describe('Product Details Page tests', function () {
     cy.wait(3000);
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com') {
       LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitle[variables.language]);
     } else if (variables.brand == 'misspap.com') {
       LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitleMisspap[variables.language]);
@@ -80,9 +80,11 @@ describe('Product Details Page tests', function () {
       PdpPage.assertions.assertReturnInfoIsDisplayed(); 
     }
   });
-  if (variables.brand == 'boohoo.com') {
-    it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
+  it('TC13 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
+    if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
-    });
-  }
+    } else {
+      this.skip();
+    }
+  });
 }); 

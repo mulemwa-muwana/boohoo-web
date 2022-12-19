@@ -299,7 +299,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkPremier[variables.language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', function () {
-        if(variables.brand == 'boohoomena.com') {
+        if (variables.brand == 'boohoomena.com') {
           this.skip();
         }
         if (variables.brand == 'nastygal.com') {
@@ -411,7 +411,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'modern-slavery' });
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Careers', () => {
-        if (!(variables.brand == 'boohoo.com' && variables.locale == 'IT') && !(variables.brand == 'nastygal.com' && variables.locale == 'FR')  && variables.brand != 'boohoomena.com')
+        if (!(variables.brand == 'boohoo.com' && variables.locale == 'IT') && !(variables.brand == 'nastygal.com' && variables.locale == 'FR') && variables.brand != 'boohoomena.com')
           GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[variables.language], { assertionUrl: 'https://careers.boohoogroup.com/' });
       });
       it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {

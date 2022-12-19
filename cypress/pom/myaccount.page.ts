@@ -645,7 +645,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '.account-order-history a'
+    orderHistoryLink: '[title="Order History"]'
   }
 };
 

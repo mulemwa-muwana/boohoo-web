@@ -35,7 +35,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
+    if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
       ShippingPage.click.proceedToBillingVerificationAndWaitBillingPageToLoad();
     } else {
       BillingPage.actions.waitPageToLoad();

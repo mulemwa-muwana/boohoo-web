@@ -9,6 +9,10 @@ import CartPage from 'cypress/pom/cart.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
+Cypress._.times(10, () => {
+
+})
+
 describe('Boohoo order placement', () => {
 
   beforeEach(() => {
@@ -51,54 +55,6 @@ describe('Boohoo order placement', () => {
 
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
-    OrderConfirmationPage.click.closePopUp();
-
-    generateArtefact(variables.brand, paymentMethod);
-  });
-
-  it('can select Klarna as payment method and generate an artefact', function () {
-    const paymentMethod: PaymentMethod = 'Klarna';
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
-      this.skip();
-    }
-
-    BillingPage.actions.selectKlarna();
-    OrderConfirmationPage.click.closePopUp();
-
-    generateArtefact(variables.brand, paymentMethod);
-  });
-
-  it('can select PayPal as payment method and generate an artefact', function () {
-    const paymentMethod: PaymentMethod = 'PayPal';
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
-      this.skip();
-    }
-
-    BillingPage.actions.selectPayPal();
-    OrderConfirmationPage.click.closePopUp();
-
-    generateArtefact(variables.brand, paymentMethod);
-  });
-
-  it.skip('can select Laybuy as payment method and generate an artefact', function () {
-    const paymentMethod: PaymentMethod = 'LayBuy';
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
-      this.skip();
-    }
-
-    BillingPage.actions.selectLaybuy();
-    OrderConfirmationPage.click.closePopUp();
-
-    generateArtefact(variables.brand, paymentMethod);
-  });
-
-  it.skip('can select Clearpay as payment method and generate an artefact', function () {
-    const paymentMethod: PaymentMethod = 'Clearpay';
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
-      this.skip();
-    }
-
-    BillingPage.actions.selectClearpay();
     OrderConfirmationPage.click.closePopUp();
 
     generateArtefact(variables.brand, paymentMethod);

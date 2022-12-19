@@ -2,6 +2,7 @@ import plpPage from '../../pom/plp.page';
 import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
+import assertionText from 'cypress/helpers/assertionText';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -69,18 +70,30 @@ describe('Product Listing Page tests', function () {
   });
 
   describe('Product refinements', () => {
-    it.skip('Verify category refinement is applied', () => {
+    it('Verify category refinement is applied', () => {
       if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
         plpPage.click.categoryRefinement();
+        plpPage.click.selectRefinementVariantCategory(productVariations.productAccessories[variables.language]);
+      } else if (variables.brand == 'boohoo.com' && variables.locale == 'FR') {
+        cy.get('#searchRefineBarAccordionItemBtn-' + (assertionText.category[variables.language])).click();
+        cy.get('#searchRefineBarAccordionItemInner-' + (assertionText.category[variables.language])).contains(productVariations.productAccessories[variables.language]).click({force: true});
       }
-      plpPage.click.selectRefinementVariantCategory();
+      cy.wait(3000);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.productAccessories[variables.language]);
     });
-    it.skip('Verify size refinement is applied', () => {
+    it('Verify size refinement is applied', () => {
+      if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+        plpPage.click.sizeRefinement();
+        plpPage.click.selectRefinementVariantSize('12');
+        cy.wait(3000);
+        plpPage.assertions.assertProductSizeIsDisplayedOnPLP('12');
+      } else if (variables.brand == 'boohoo.com' && variables.locale == 'FR') {
+        cy.get('#searchRefineBarAccordionItemBtn-' + (assertionText.size[variables.language])).click();
+        cy.get('#refinementAttributesList-' + (assertionText.size[variables.language])).contains('38').click({force: true});
+        cy.wait(3000);
+        plpPage.assertions.assertProductSizeIsDisplayedOnPLP('?prefn1=sizeRefinement&prefv1=38');
+      }
 
-      // PlpPage.click.sizeRefinement();
-      plpPage.click.selectRefinementVariantSize();
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.Size[variables.locale]);
     });
     it.skip('Verify style refinement is applied', () => {
 

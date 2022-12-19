@@ -1316,6 +1316,34 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  category: TranslationMap = {
+    EN: 'category',
+    NL: '',
+    DE: '',
+    FR: 'catégorie',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  size: TranslationMap = {
+    EN: 'size',
+    NL: '',
+    DE: '',
+    FR: 'taille',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 }
 
 export default new AssertionText();

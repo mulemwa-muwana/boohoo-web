@@ -53,7 +53,7 @@ class productVariations {
     EN: 'Accessories',
     NL: '',
     DE: 'Oberteile',
-    FR: '',
+    FR: 'Accessoires',
     DK: '',
     FI: '',
     NO: '',

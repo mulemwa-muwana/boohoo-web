@@ -17,8 +17,8 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantColour: '#searchRefineBarAccordionItemInner-colour',
     selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
     selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
-    
-    // SelectRefinementVariantCategory: '#searchRefineBarAccordionItemBtn-catégorie', // FR
+    selectRefinementVariantCategory: '#refinementAttributesList-category',
+    selectRefinementVariantCategoryOtherLanguages: '#searchRefineBarAccordionItemBtn-', 
     SelectRefinementVariantCategory: '#searchRefineBarAccordionItemBtn-category',
     selectRefinementVariantOccassion: '#searchRefineBarAccordionItemInner-occasion',
     selectRefinementVariantShopByPrice: '#searchRefineBarAccordionItemInner-price',
@@ -345,14 +345,24 @@ class PlpPage implements AbstractPage {
       cy.get(selectRefinementVariantStyle).click({force: true});
     },
 
-    selectRefinementVariantSize () {
+    selectRefinementVariantSize (size: string) {
       const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
-      cy.get(selectRefinementVariantSize).click({force: true});
+      cy.get(selectRefinementVariantSize).contains(size).click({force: true});
     },
 
-    selectRefinementVariantCategory () {
+    selectRefinementVariantSizePerLanguages (size: string) {
+      const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
+      cy.get(selectRefinementVariantSize).contains(size).click({force: true});
+    },
+
+    selectRefinementVariantCategory (category: string) {
       const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
-      cy.get(selectRefinementVariantCategory).click({force: true});
+      cy.get(selectRefinementVariantCategory).contains(category).click({force: true});
+    },
+
+    selectCategoryPerLanguages (language: string) {
+      const selectRefinementVariantCategoryOtherLanguages = selectors[variables.brand].selectRefinementVariantCategoryOtherLanguages;
+      cy.get(selectRefinementVariantCategoryOtherLanguages + language).click({force: true});
     },
 
     selectRefinementVariantOccassion () {
@@ -437,6 +447,9 @@ class PlpPage implements AbstractPage {
     },
     assertProductVariantIsApplied (text: string) {
       cy.url().should('include', text);
+    },
+    assertProductSizeIsDisplayedOnPLP (text: string) {
+      cy.url().should('contain', text);
     },
     assertItemIsAddedToWishlistColorChange () {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;

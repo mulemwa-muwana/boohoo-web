@@ -56,7 +56,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_delivery',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
-    disabledAddToCard: '[data-widget="processButton"]'
+    disabledAddToCart: '[data-widget="processButton"]'
   },
   'dorothyperkins.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -84,7 +84,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
-    disabledAddToCard: '[data-widget="processButton"]'
+    disabledAddToCart: '[data-widget="processButton"]'
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
@@ -112,7 +112,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
-    disabledAddToCard: '[data-widget="processButton"]'
+    disabledAddToCart: '[data-widget="processButton"]'
   },
   'wallis.co.uk': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -139,7 +139,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
-    disabledAddToCard: '[data-widget="processButton"]'
+    disabledAddToCart: '[data-widget="processButton"]'
   },
   'boohooman.com': {
     searchField: '#header-search-input',
@@ -445,8 +445,8 @@ class PdpPage implements AbstractPage {
         const addToCart = selectors[variables.brand].addToCart;
         cy.get(addToCart).should('have.attr', 'disabled');
       } else {
-        const disabledAddToCard = selectors[variables.brand].disabledAddToCard;
-        cy.get(disabledAddToCard).should('have.attr', 'disabled');  
+        const disabledAddToCart = selectors[variables.brand].disabledAddToCart;
+        cy.get(disabledAddToCart).should('have.attr', 'disabled');  
       }
       
     },

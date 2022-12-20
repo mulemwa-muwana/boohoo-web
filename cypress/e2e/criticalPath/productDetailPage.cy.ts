@@ -49,7 +49,10 @@ describe('Product Details Page tests', function () {
   it('TC06 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize();
-    PdpPage.click.addToCart(); // Burton is not working, but manually everything is ok
+    if (variables.brand == 'burton.co.uk'){
+      cy.wait(3000);
+    }
+    PdpPage.click.addToCart(); 
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
   it('TC07 Verify that save for later (heart icon) is functional when selected', function () {

@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stg.misspap.com/',
-    sku: 'MPP99798-105-24',
+    sku: 'MPP99796-1',
     brand: 'misspap.com',
     locale: 'UK',
     language: 'EN',

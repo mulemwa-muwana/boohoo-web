@@ -435,7 +435,7 @@ class AssertionText {
   };
 
   selectSize: TranslationMap = {
-    EN: 'OOPS PLEASE SELECT A SIZE',
+    EN: '\n                    Oops please select a size\n                ',
     FR: '',
     NL: '',
     DE: '',

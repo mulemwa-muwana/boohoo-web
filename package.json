@@ -52,7 +52,8 @@
       "cy:run:warehouse:uk:e2e": "cypress run --config-file ./config/warehouse/cypress.warehouse.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
       "cy:run:misspap:uk:e2e": "cypress run --config-file ./config/misspap/cypress.misspap.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
       "cy:run:karenmillen:uk:e2e": "cypress run --config-file ./config/karenmillen/cypress.karenmillen.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
-      "cy:run:boohooman:uk:e2e": "cypress run --config-file ./config/boohooman/cypress.boohooman.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661"
+      "cy:run:boohooman:uk:e2e": "cypress run --config-file ./config/boohooman/cypress.boohooman.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661",
+      "cy:run:brand:temp": "cypress run --config-file ./config/misspap/cypress.misspap.uk.dev.temp.config.ts --spec \"cypress/e2e/backend_temp/orderConfirmation.cy.ts\" --record --key 0de4a7b7-3477-4e8c-9148-84e79e7c4661"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",

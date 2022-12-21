@@ -1334,8 +1334,22 @@ class AssertionText {
   size: TranslationMap = {
     EN: 'size',
     NL: '',
-    DE: '',
+    DE: 'größe',
     FR: 'taille',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  price: TranslationMap = {
+    EN: 'price',
+    NL: '',
+    DE: '',
+    FR: 'prix',
     DK: '',
     FI: '',
     NO: '',

@@ -610,15 +610,17 @@ const selectors: SelectorBrandMap = {
     addressCardsList: '.account-page-list',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
-    addressEditForm: '#CreditCardForm',
+    addressEditForm: '#primary > .edit-address',
     addressField: '#dwfrm_profile_address_address1',
     addressSubmitBtn: '.apply-button',
     addAddressBtn: '.address-create',
     addressFirstNameField: '#dwfrm_profile_address_firstname',
     addressLastNameField: '#dwfrm_profile_address_lastname',
-    addressPhoneNumberField: '#dwfrm_profile_address_phone',
+    addressPhoneCode: '#dwfrm_phonedetails_phonecode',
+    addressPhoneNumberField: '#dwfrm_phonedetails_phonenumber',
     addressCityField: '#dwfrm_profile_address_city',
     addressPostalCodeField: '#dwfrm_profile_address_postalcodes_postal',
+    addressStateCode: '#dwfrm_profile_address_states_state',
     addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
     addressNicknameField: '#dwfrm_profile_address_addressid',
     proceedToBillingBtn: '.verification-address-button-container .verification-address-button',
@@ -645,7 +647,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '[title="Order History"]'
+    orderHistoryLink: '.account-nav-content [title="Order History"]'
   }
 };
 
@@ -777,7 +779,7 @@ class MyAccountPage implements AbstractPage {
           cy.get('#dwfrm_address_country').select(country).invoke('show');
         }
         cy.get(addressSubmitBtn).click({ force: true });
-        if (isSiteGenesisBrand) {
+        if (isSiteGenesisBrand && variables.brand != 'boohoomena.com') {
           cy.get(proceedToBillingBtn).click({ force: true });
         }
       },
@@ -797,20 +799,34 @@ class MyAccountPage implements AbstractPage {
         cy.get(addAddressBtn).should('be.visible').click({ force: true });
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
-        cy.get(addressPhoneNumberField).type(address.phone, { force: true });
+        
+        if (variables.brand == 'boohoomena.com') {
+          const addressPhoneCode = selectors[variables.brand].addressPhoneCode;
+          cy.get(addressPhoneCode).select(address.phone.slice(0, 2));
+          cy.get(addressPhoneNumberField).clear().type(address.phone.slice(2));
+        } else {
+          cy.get(addressPhoneNumberField).type(address.phone, { force: true });
+        }
+
         if (!isSiteGenesisBrand) {
           cy.get(addressEnterManualyBtn).click({ force: true });
         }
         cy.get(addressField).should('be.visible').type(address.addrline1, { force: true });
-        cy.get(addressCityField).type(address.city, { force: true });
+        if (variables.brand == 'boohoomena.com') {
+          cy.get(addressCityField).select(address.city);
+        } else {
+          cy.get(addressCityField).type(address.city, { force: true });
+        }
         cy.get(addressPostalCodeField).type(address.postcode, { force: true });
-        if (variables.locale == 'AU') {
+        if (variables.locale == 'AU' || variables.brand == 'boohoomena.com') {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {
           cy.get(addressNicknameField).type('test');
           cy.get(addressSubmitBtn).click({ force: true });
-          cy.get(proceedToBillingBtn).click({ force: true });
+          if (variables.brand != 'boohoomena.com') {
+            cy.get(proceedToBillingBtn).click({ force: true });
+          }
         }
         cy.get(addressSubmitBtn).click({ force: true });
       },

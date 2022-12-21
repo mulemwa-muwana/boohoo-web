@@ -150,10 +150,10 @@ declare type TranslationMap = { [key in Language]: string };
 declare type Sizes = 'UK' | 'US';
     
 declare type SizesMap = { [key in Sizes]: string };
+
+declare type Currencies = '£' | '€' | '$' ;
     
-declare type Currencies = 'GBP' | 'EUR' | 'USD' ;
-    
-declare type PriceMap = { [key in Currencies]: string };
+declare type PriceMap = { [key in CountryCode]: string};
     
 declare type AddressMapAddressLine1 = {[key in Locale]: string}
 declare type AddressMapAddressLine2 = {[key in Locale]: string}

@@ -370,9 +370,9 @@ class PlpPage implements AbstractPage {
       cy.get(selectRefinementVariantOccassion).click({force: true});
     },
 
-    selectRefinementVariantShopByPrice () {
+    selectRefinementVariantShopByPrice (price: string) {
       const selectRefinementVariantShopByPrice = selectors[variables.brand].selectRefinementVariantShopByPrice;
-      cy.get(selectRefinementVariantShopByPrice).click({force: true});
+      cy.get(selectRefinementVariantShopByPrice).contains(price).click({force: true});
     },
 
     // Load more products
@@ -433,9 +433,9 @@ class PlpPage implements AbstractPage {
       const productNameIsDisplayed = selectors[variables.brand].productNameIsDisplayed;
       cy.get(productNameIsDisplayed).eq(0).should('have.css', 'font-family');
     },
-    assertProductPriceIsDispayed () {
+    assertProductPriceIsDispayed (range: string) {
       const productPriceIsDispayed = selectors[variables.brand].productPriceIsDispayed;
-      cy.get(productPriceIsDispayed).eq(1).should('be.visible').should('not.be.empty');
+      cy.get(productPriceIsDispayed).eq(1).should('be.visible').should('contain', range);
     },
     assertNewProductPriceIsDispayed () {
       const newProductPriceIsDispayed = selectors[variables.brand].newProductPriceIsDispayed;
@@ -448,9 +448,22 @@ class PlpPage implements AbstractPage {
     assertProductVariantIsApplied (text: string) {
       cy.url().should('include', text);
     },
-    assertProductSizeIsDisplayedOnPLP (text: string) {
-      cy.url().should('contain', text);
+    assertProductSizeIsDisplayedOnPLP (size: string) {
+      //cy.url().should('contain', text);
+      const url = homePage.goto+'/new-season?prefn1=sizeRefinement&prefv1=38';
+      const arr = url.split('/?')[1].split('&');
+      const paramObj = {};
+      arr.forEach(param => {
+        const [ key, value ] = param.split('=');
+        paramObj[key] = value;
+      });
+
+      cy
+        .wrap(paramObj)
+        .its('prefn1=sizeRefinement&prefv1')
+        .should('eq', size);
     },
+
     assertItemIsAddedToWishlistColorChange () {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');

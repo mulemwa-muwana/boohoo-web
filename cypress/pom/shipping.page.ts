@@ -628,7 +628,7 @@ class ShippingPage implements AbstractPage {
     addNewAddressButton () {
       if (variables.brand != 'boohooman.com') {
         const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
-        cy.get(addNewAddressButton).click();
+        cy.get(addNewAddressButton).click({force:true});
       }
     },
     editExistingAddressButton () {

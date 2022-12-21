@@ -118,7 +118,7 @@ const selectors: SelectorBrandMap = {
   },
   'boohoomena.com': {
     minicartIcon: '.mini-cart-link',
-    loginIcon: '.user-account',
+    loginIcon: ' span.user-account',
     registrationButton: '.js-header-right-box [title="Register"]',
     wishListIcon: '.icon-wishlist',
     searchField: '.js-header-search-input',

@@ -375,7 +375,7 @@ class CartPage implements AbstractPage {
       const KlarnaCTA = selectors[variables.brand].KlarnaCTA;
       cy.get(KlarnaCTA).should('be.visible');
     },
-    assertAmazonPazCTAisVisible () {
+    assertAmazonPayCTAisVisible () {
       const AmazonCTA = selectors[variables.brand].AmazonCTA;
       cy.get(AmazonCTA).should('be.visible');
     }

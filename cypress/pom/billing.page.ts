@@ -775,8 +775,6 @@ class BillingPage implements AbstractPage {
       } else if (variables.locale == 'IE') {
         cy.get('#payment-button-KlarnaIE').click({force : true});
       } else if (variables.locale == 'UK') {
-        cy.get('#payment-button-KlarnaUK').click({force : true});
-      } else {
         cy.get(paymentMethodKlarna).click({force:true});
       }
       

@@ -1,5 +1,5 @@
 class priceVariations {
-
+ 
   plpPriceRange: PriceMap = {
     GBP: '£',
     EUR: '€',

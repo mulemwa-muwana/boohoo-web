@@ -49,7 +49,7 @@ describe('Product Details Page tests', function () {
   it('TC06 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize();
-    if (variables.brand == 'burton.co.uk'){
+    if (variables.brand == 'burton.co.uk') {
       cy.wait(3000);
     }
     PdpPage.click.addToCart(); 

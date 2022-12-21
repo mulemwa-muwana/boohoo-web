@@ -178,12 +178,14 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.actions.selectPayPal();
       BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
-    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
-      it('Verify that guest user can place order using Klarna', function () {
+    it('Verify that guest user can place order using Klarna', function () {
+      if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
         BillingPage.actions.selectKlarna();
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-      });
-    }
+      } else {
+        this.skip();
+      }
+    });
     it('Verify that guest user can place order using Laybuy', function () {
       if (variables.brand == 'boohoomena.com' || (variables.brand == 'burton.co.uk' && (variables.locale === 'UK' || variables.locale === 'AU'))) {
         this.skip();

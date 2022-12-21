@@ -771,7 +771,11 @@ class BillingPage implements AbstractPage {
     selectKlarna () {
       const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;
       if (variables.locale == 'AU') {
-        cy.get('#payment-button-KlarnaAU').click({force:true});
+        cy.get('#payment-button-KlarnaAU').click({force : true});
+      } else if (variables.locale == 'IE') {
+        cy.get('#payment-button-KlarnaIE').click({force : true});
+      } else if (variables.locale == 'UK') {
+        cy.get('#payment-button-KlarnaUK').click({force : true});
       } else {
         cy.get(paymentMethodKlarna).click({force:true});
       }
@@ -929,16 +933,6 @@ class BillingPage implements AbstractPage {
       cy.get('[data-testid="login-password-input"]', { timeout: 30000 }).type('Boohoo!23');
       cy.get('[data-testid="login-password-button"]', { timeout: 30000 }).click();
       cy.get('[data-testid="summary-button"]', { timeout: 30000 }).click();
-    },
-
-    payUsingKlarnaPaymentMthod () {
-      if (variables.locale == 'AU') {
-        cy.get('#payment-button-KlarnaAU').click({force : true});
-      } else if (variables.locale == 'IE') {
-        cy.get('#payment-button-KlarnaIE').click({force : true});
-      } else if (variables.locale == 'UK') {
-        cy.get('#payment-button-KlarnaUK').click({force : true});
-      }
     },
   };
 

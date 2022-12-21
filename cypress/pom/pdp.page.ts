@@ -56,6 +56,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_delivery',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
+    disabledAddToCart: '[data-widget="processButton"]'
   },
   'dorothyperkins.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -83,6 +84,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
+    disabledAddToCart: '[data-widget="processButton"]'
   },
   'burton.co.uk': {
     addToCart: '.b-product_addtocard-availability',
@@ -110,6 +112,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
+    disabledAddToCart: '[data-widget="processButton"]'
   },
   'wallis.co.uk': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -136,6 +139,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_tabs-list',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
+    disabledAddToCart: '[data-widget="processButton"]'
   },
   'boohooman.com': {
     searchField: '#header-search-input',
@@ -188,7 +192,8 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    productDeliveryInfo: '#product-delivery-info-tab'
+    productDeliveryInfo: '#product-delivery-info-tab',
+    productReturnsInfoButton: '#ui-id-5'
   },
   'coastfashion.com': {
     searchField: '#header-search-input',
@@ -210,7 +215,7 @@ const selectors: SelectorBrandMap = {
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-product-added',
     miniCartProductIner: '.mini-cart-product',
-    productDescription: '#ui-id-2 > p',
+    productDescription: '#ui-id-3',
     productDelivery: '.del-table',
     productReturnsInfoButton: '#product-returns-info-tab',
     productReturnsDescription: '#ui-id-5',
@@ -271,6 +276,7 @@ const selectors: SelectorBrandMap = {
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
     cartValidation: '.b-product_actions-error_msg',
+    productReturnsInfoButton: '#product-returns-info-tab'
   },
   'misspap.com': {
     searchField: '#header-search-input',
@@ -296,7 +302,8 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    productDeliveryInfo: '.product-delivery-link > .product-info-link-text'
+    productDeliveryInfo: '.product-delivery-link > .product-info-link-text',
+    productReturnsInfoButton: '.product-returns-link > .product-info-link-text'
   }
 };
 
@@ -431,7 +438,17 @@ class PdpPage implements AbstractPage {
       const addToCart = selectors[variables.brand].addToCart;
       const cartValidation = selectors[variables.brand].cartValidation;
       cy.get(addToCart).click({force: true} );
-      cy.get(cartValidation).contains(msg);
+      cy.get(cartValidation).should('contain.text', msg);
+    },
+    assertAddToCartBtnDisabled () {
+      if (isSiteGenesisBrand) {
+        const addToCart = selectors[variables.brand].addToCart;
+        cy.get(addToCart).should('have.attr', 'disabled');
+      } else {
+        const disabledAddToCart = selectors[variables.brand].disabledAddToCart;
+        cy.get(disabledAddToCart).should('have.attr', 'disabled');  
+      }
+      
     },
     assertMiniCartIsDisplayed () {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
@@ -454,11 +471,15 @@ class PdpPage implements AbstractPage {
       
       if (variables.brand == 'boohoo.com' && variables.locale != 'UK') {
         cy.get('.b-product_shipping-delivery').should('be.visible');
+      } else if (isSiteGenesisBrand) {
+        cy.get(productDelivery).should('be.visible');
+        
       } else {
         cy.get(productDelivery).should('be.visible');
         cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
         cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n');
       }
+      
     },
     assertDeliveryOptionsAreDisplayed () {
       const productDeliveryInfo = selectors[variables.brand].productDeliveryInfo;
@@ -467,7 +488,7 @@ class PdpPage implements AbstractPage {
     assertReturnInfoIsDisplayed () {
       const productReturnsInfoButton = selectors[variables.brand].productReturnsInfoButton;
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
+      if (isSiteGenesisBrand) {
         cy.get(productReturnsInfoButton).click();
       } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
         cy.get('#product-details-btn-shipping').click();

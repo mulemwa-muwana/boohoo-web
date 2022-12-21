@@ -87,7 +87,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordEmailField: '#dwfrm_requestpassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
     loginForm: '#dwfrm_login',
-    errorLoginMessage: '.error-form'
+    errorLoginMessage: '.error-form',
+    wishlistLoginTitle: '.login-title'
   },
   'coastfashion.com': {
     loginIcon: '.user-account',

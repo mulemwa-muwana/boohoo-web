@@ -842,7 +842,11 @@ class ShippingPage implements AbstractPage {
     },
     assertPhoneNumberFieldIsPopulated (text: string) {
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).should('contain.value', text);
+      if (variables.brand == 'boohoomena.com') {
+        cy.get(shippingPhoneNumber).should('contain.value', text.slice(2));
+      } else {
+        cy.get(shippingPhoneNumber).should('contain.value', text);
+      }
     },
     assertGuestEmailFieldDisplayed () {
       const guestEmailField = selectors[variables.brand].guestEmailField;

@@ -82,7 +82,7 @@ describe('Product Listing Page tests', function () {
       cy.wait(3000);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.productAccessories[variables.language]);
     });
-    it('Verify size refinement is applied', () => {
+    it.only('Verify size refinement is applied', () => {
       if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
         plpPage.click.sizeRefinement();
         plpPage.click.selectRefinementVariantSize('12');

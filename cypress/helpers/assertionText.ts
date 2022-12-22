@@ -1344,6 +1344,34 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  style: TranslationMap = {
+    EN: 'style',
+    NL: 'stijl',
+    DE: 'style',
+    FR: 'style',
+    DK: 'style',
+    FI: 'style',
+    NO: 'style',
+    SE: 'modell',
+    IL: '',
+    IT: 'stile',
+    ES: 'estilo'
+  };
+
+  colour: TranslationMap = {
+    EN: 'colour',
+    NL: 'kleur',
+    DE: 'farbe',
+    FR: 'couleur',
+    DK: 'colour',
+    FI: 'colour',
+    NO: 'colour',
+    SE: 'färg',
+    IL: '',
+    IT: 'colore',
+    ES: 'color'
+  };
 }
 
 export default new AssertionText();

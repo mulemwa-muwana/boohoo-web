@@ -12,10 +12,9 @@ describe('Product Listing Page tests', function () {
     HomePage.goto();
     HomePage.actions.closeNastygalPopup();
     if (variables.brand == 'nastygal.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
-    }
-    if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
+       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
+       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
+    } else if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
@@ -85,26 +84,35 @@ describe('Product Listing Page tests', function () {
       if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
         plpPage.click.sizeRefinement();
         plpPage.click.selectRefinementVariantSize('12');
-        cy.wait(3000);
+        cy.wait(4000);
         plpPage.assertions.assertProductSizeIsDisplayedOnPLP('12');
       } else if (variables.brand == 'boohoo.com' && variables.locale == 'FR') {
         cy.get('#searchRefineBarAccordionItemBtn-' + (assertionText.size[variables.language])).click();
         cy.get('#refinementAttributesList-' + (assertionText.size[variables.language])).contains('38').click({force: true});
-        cy.wait(3000);
+        cy.wait(4000);
         plpPage.assertions.assertProductSizeIsDisplayedOnPLP('?prefn1=sizeRefinement&prefv1=38');
       }
 
     });
-    it.skip('Verify style refinement is applied', () => {
+    it.only('Verify style refinement is applied', function() {
 
       // PlpPage.click.styleRefinement();
-      plpPage.click.selectRefinementVariantStyle();
-      plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle[variables.language]);
+      const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU','US','CA'];
+      if (variables.brand == 'nastygal.com' && !nastygalLocalesExcludedStyle.includes(variables.locale) ) {
+				this.skip();
+      } else {
+        cy.get('button[id*="-' + (assertionText.style[variables.language] + '"]')).click({force: true});
+        cy.get('#refinementAttributesList-' + (assertionText.style[variables.language])).contains(productVariations.productShopByStyle[variables.language]).click({force: true});
+        cy.wait(4000);
+        plpPage.assertions.assertProductVariantIsApplied(productVariations.productShopByStyle[variables.language]);  // can be hard coded
+      }
     });
-    it.skip('Verify colour refinement is applied', () => {
+    it.only('Verify colour refinement is applied', () => {
 
       // PlpPage.click.colorRefinement();
-      plpPage.click.selectRefinementVariantColour();
+      cy.get('button[id*="-' + (assertionText.colour[variables.language] + '"]')).click({force: true});
+      cy.get('#refinementAttributesList-' + (assertionText.colour[variables.language])).contains(productVariations.ColorBlack[variables.language]).click({force: true});
+      cy.wait(4000);
       plpPage.assertions.assertProductVariantIsApplied(productVariations.ColorBlack[variables.language]);
     });
     it.skip('Verify price refinement is applied', () => {

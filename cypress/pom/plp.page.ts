@@ -6,7 +6,7 @@ const selectors: SelectorBrandMap = {
   'boohoo.com': {
     categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
     sizeRefinement: '#searchRefineBarAccordionItemBtn-size > span',
-    styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
+    styleRefinement: '#searchRefineBarAccordionItemBtn-style',
     colorRefinement: '#searchRefineBarAccordionItemBtn-colour > span',
     priceRefinements: '#searchRefineBarAccordionItemBtn-price > span',
     shopByFitRefinements: '#searchRefineBarAccordionItemBtn-shop-by-fit > span',
@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     priceVariant: '',
     selectRefinementVariantShopByFit: '#searchRefineBarAccordionItemInner-shop-by-fit',
     selectRefinementVariantColour: '#searchRefineBarAccordionItemInner-colour',
-    selectRefinementVariantStyle: '#searchRefineBarAccordionItemInner-style',
+    selectRefinementVariantStyle: '#refinementAttributesList-style',
     selectRefinementVariantSize: '#searchRefineBarAccordionItemInner-size',
     selectRefinementVariantCategory: '#refinementAttributesList-category',
     selectRefinementVariantCategoryOtherLanguages: '#searchRefineBarAccordionItemBtn-', 
@@ -340,9 +340,9 @@ class PlpPage implements AbstractPage {
       cy.get(selectRefinementVariantColour).click({force: true});
     },
 
-    selectRefinementVariantStyle () {
+    selectRefinementVariantStyle (style: string) {
       const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
-      cy.get(selectRefinementVariantStyle).click({force: true});
+      cy.get(selectRefinementVariantStyle).contains(style).click({force: true});
     },
 
     selectRefinementVariantSize (size: string) {

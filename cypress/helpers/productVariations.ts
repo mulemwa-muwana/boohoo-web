@@ -92,17 +92,17 @@ class productVariations {
   };
 
   productShopByStyle: TranslationMap = {
-    EN: 'Blouses',
-    NL: 'Blouses',
-    DE: 'Blusen',
-    FR: 'Chemisiers',
-    DK: 'Bluser',
-    FI: 'Puserot',
-    NO: 'Bluser',
-    SE: 'Blusar',
+    EN: 'Jeans',
+    NL: 'Jurken',
+    DE: 'Jeans',
+    FR: 'Jeans',
+    DK: 'Jeans',
+    FI: 'Jeans',
+    NO: 'Jeans',
+    SE: 'Jeans',
     IL: 'חולצות',
-    IT: 'Camicette',
-    ES: 'Blusas',
+    IT: 'Jeans',
+    ES: 'Jeans',
   };
 
   priceRangePLPrefinements = {

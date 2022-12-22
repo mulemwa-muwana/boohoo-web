@@ -229,10 +229,6 @@ export function isBrandSupportingPaymentMethod (brand: GroupBrands, paymentMetho
     ],
     'boohoomena.com': [
       'Adyen',
-      'PayPal',
-      'Clearpay',
-      'Klarna',
-      'LayBuy',
     ]
   };
 

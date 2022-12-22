@@ -122,10 +122,8 @@ class CheckoutPage implements AbstractPage {
 
   click = {
     continueAsGuestBtn () {  
-      if (variables.brand != 'boohoo.com') {
-        const continueAsGuestBt = selectors[variables.brand].continueAsGuestBt; 
-        cy.get(continueAsGuestBt).click({force:true});
-      }
+      const continueAsGuestBt = selectors[variables.brand].continueAsGuestBt; 
+      cy.get(continueAsGuestBt).click({force:true});
     },
     continueAsRegisteredUser () {  
       const continueAsRegisteredUser = selectors[variables.brand].continueAsRegisteredUser; 

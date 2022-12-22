@@ -59,7 +59,7 @@ describe('Billing page functionality for registered user', function () {
     }
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand && variables.brand != 'boohoomena.com') {
+    if (isSiteGenesisBrand) {
       shippingPage.click.proceedToBillingVerification();
     }
     BillingPage.actions.waitPageToLoad();

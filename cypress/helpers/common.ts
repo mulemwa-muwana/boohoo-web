@@ -139,8 +139,7 @@ export function getCardProviderByBrand (brand: GroupBrands, locale: Locale): Pay
       US: 'Adyen'
     },
     'boohoomena.com': {
-      UK: 'Adyen',
-      IE: 'Adyen'
+      SA: 'Adyen',
     },
   };
 

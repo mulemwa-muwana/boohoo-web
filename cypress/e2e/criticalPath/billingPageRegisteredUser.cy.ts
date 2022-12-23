@@ -14,8 +14,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Billing page functionality for registered user', function () {
   beforeEach (()=>{
     HomePage.goto();
-    const itemSKU = variables.sku;
-    HomePage.actions.findItemUsingSKU(itemSKU);
+    HomePage.actions.findItemUsingSKU(variables.sku);
     PdpPage.actions.selectSize();
     cy.wait(2000);
     PdpPage.click.addToCart();
@@ -31,7 +30,7 @@ describe('Billing page functionality for registered user', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       cy.wait(2000);
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       cy.wait(1000);
@@ -51,15 +50,14 @@ describe('Billing page functionality for registered user', function () {
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode); 
     if (variables.locale === 'AU') {
       shippingPage.actions.stateField(localeAddress.county);
-    }
-    if (variables.locale == 'US') {
+    } else if (variables.locale == 'US') {
       shippingPage.actions.selectState(localeAddress.county);
       shippingPage.click.proceedToBilling();
-    } 
+    }
+    if (variables.brand == 'boohoomena.com') {
+      shippingPage.actions.countyField(localeAddress.county);
+    }
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-    
-    // If (variables.locale == 'IE') {
-    //   ShippingPage.actions.countyField(localeAddress.county);
     shippingPage.click.proceedToBilling();
     if (isSiteGenesisBrand) {
       shippingPage.click.proceedToBillingVerification();
@@ -83,12 +81,13 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
   it('Verify that email address is displayed and it cannot be changed', function () {
-    if (!isSiteGenesisBrand) {
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        BillingPage.assertions.assertEmailIsCorrect(credentials.username);
-      });
-      BillingPage.assertions.assertEmailFieldCantBeChanged();
+    if (isSiteGenesisBrand) {
+      this.skip(); // Email is not displayed on Billing page for Site Genesis brands
     }
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      BillingPage.assertions.assertEmailIsCorrect(credentials.username);
+      BillingPage.assertions.assertEmailFieldCantBeChanged();
+    });
   });
   it('Verify that billing address can be same as shipping address', function () {
     if (isSiteGenesisBrand) {
@@ -107,16 +106,16 @@ describe('Billing page functionality for registered user', function () {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (isSiteGenesisBrand) {
+    if (isSiteGenesisBrand && variables.brand != 'boohoomena.com') {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressRegisteredUser(localeAddress.addrline1, localeAddress.city, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressRegisteredUser(localeAddress);
     } else {
       BillingPage.click.addNewBilingAddress();
-      BillingPage.actions.addBillingAddressRegisteredUser(localeAddress.addrline1, localeAddress.city, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressRegisteredUser(localeAddress);
     }
   });
 
@@ -134,6 +133,10 @@ describe('Billing page functionality for registered user', function () {
   }); */
 
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
+    if (variables.brand == 'boohoomena.com') {
+      BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
+      return; // Only credit card as payment option for this brand
+    }
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
     if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
@@ -169,21 +172,27 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
     it('Verify that registered user can place order using PayPal', function () {
+      if (variables.brand == 'boohoomena.com') {
+        this.skip(); // Only credit card as payment option for this brand
+      }
       BillingPage.actions.selectPayPal();
       BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     });
-    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
-      it('Verify that guest user can place order using Klarna', function () {
+    it('Verify that guest user can place order using Klarna', function () {
+      if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
         BillingPage.actions.selectKlarna();
         BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-      });
-    }
-    if (variables.brand !== 'burton.co.uk' && (variables.locale === 'UK' || variables.locale === 'AU')) {
-      it('Verify that guest user can place order using Laybuy', function () {
-        BillingPage.actions.selectLaybuy();
-        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-      });
-    }
+      } else {
+        this.skip();
+      }
+    });
+    it('Verify that guest user can place order using Laybuy', function () {
+      if (variables.brand == 'boohoomena.com' || (variables.brand == 'burton.co.uk' && (variables.locale === 'UK' || variables.locale === 'AU'))) {
+        this.skip();
+      }
+      BillingPage.actions.selectLaybuy();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    });
   });
   
   //  TESTS FOR SITE GENESIS BRANDS:  //

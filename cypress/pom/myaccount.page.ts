@@ -591,6 +591,63 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
+  },
+  'boohoomena.com': {
+    accountLogout: 'a[title="Log out"]',
+    myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
+    ordersLink: 'a[data-tau="navigation_orderHistory"]',
+    wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
+    accountDetails: 'a[data-tau="navigation_editProfile"]',
+    changePassword: 'a[data-tau="navigation_passwordChange"]',
+    contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
+    accountAddresses: 'a[title*="addresses"][href*="addresses"]',
+    paymentDetails: 'a[title$="credit cards"]',
+    viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
+    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    myPremier: 'a[data-tau="navigation_accountPremier"]',
+    firstNameField: '#dwfrm_profile_customer_firstname',
+    profileUpdateBtn: '.js-update-details button[value="Update"]',
+    addressCardsList: '.account-page-list',
+    addressDefaultBox: 'li.account-page-list-item.default',
+    addressEditBtn: '.address-edit-link',
+    addressEditForm: '#primary > .edit-address',
+    addressField: '#dwfrm_profile_address_address1',
+    addressSubmitBtn: '.apply-button',
+    addAddressBtn: '.address-create',
+    addressFirstNameField: '#dwfrm_profile_address_firstname',
+    addressLastNameField: '#dwfrm_profile_address_lastname',
+    addressPhoneCode: '#dwfrm_phonedetails_phonecode',
+    addressPhoneNumberField: '#dwfrm_phonedetails_phonenumber',
+    addressCityField: '#dwfrm_profile_address_city',
+    addressPostalCodeField: '#dwfrm_profile_address_postalcodes_postal',
+    addressStateCode: '#dwfrm_profile_address_states_state',
+    addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
+    addressNicknameField: '#dwfrm_profile_address_addressid',
+    proceedToBillingBtn: '.verification-address-button-container .verification-address-button',
+    addressDeleteBtn: '.address-delete-link',
+    creditCardsList: '.account-payments',
+    addCreditCardBtn: '.add-card',
+    addCardEditForm: '#CreditCardForm',
+    addCreditCardNumber: '#encryptedCardNumber',
+    addCreditCardOwner: 'input.adyen-checkout__input',
+    addCreditCardExpDate: '#encryptedExpiryDate',
+    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardSaveBtn: '#add-card-submit',
+    creditCardSection: '.payment-list-item',
+    creditCardDeleteBtn: '.button-delete',
+    newestOrderHistory: 'li.order-history-item:nth-child(1) button',
+    orderID: '.order-number > .value',
+    shippingInfo: '.order-date > .value',
+    billingAndPaymentInfo: '.processing',
+    accountDetailsEmailField: '.account-email',
+    nameGreeting: '.account-welcome-title',
+    accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
+    addressNameLine: '.mini-address-name',
+    addressSummaryLine: '.mini-address-location-group',
+    loadMoreButton: 'a[data-tau="orders_load_more',
+    startReturnButton: '[href="/delivery-and-returns"]',
+    accountDetailsLink: '.account-nav-content [title*="personal information"]',
+    orderHistoryLink: '.account-nav-content [title="Order History"]'
   }
 };
 
@@ -722,7 +779,7 @@ class MyAccountPage implements AbstractPage {
           cy.get('#dwfrm_address_country').select(country).invoke('show');
         }
         cy.get(addressSubmitBtn).click({ force: true });
-        if (isSiteGenesisBrand) {
+        if (isSiteGenesisBrand && variables.brand != 'boohoomena.com') {
           cy.get(proceedToBillingBtn).click({ force: true });
         }
       },
@@ -742,20 +799,34 @@ class MyAccountPage implements AbstractPage {
         cy.get(addAddressBtn).should('be.visible').click({ force: true });
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
-        cy.get(addressPhoneNumberField).type(address.phone, { force: true });
+        
+        if (variables.brand == 'boohoomena.com') {
+          const addressPhoneCode = selectors[variables.brand].addressPhoneCode;
+          cy.get(addressPhoneCode).select(address.phone.slice(0, 2));
+          cy.get(addressPhoneNumberField).clear().type(address.phone.slice(2));
+        } else {
+          cy.get(addressPhoneNumberField).type(address.phone, { force: true });
+        }
+
         if (!isSiteGenesisBrand) {
           cy.get(addressEnterManualyBtn).click({ force: true });
         }
         cy.get(addressField).should('be.visible').type(address.addrline1, { force: true });
-        cy.get(addressCityField).type(address.city, { force: true });
+        if (variables.brand == 'boohoomena.com') {
+          cy.get(addressCityField).select(address.city);
+        } else {
+          cy.get(addressCityField).type(address.city, { force: true });
+        }
         cy.get(addressPostalCodeField).type(address.postcode, { force: true });
-        if (variables.locale == 'AU') {
+        if (variables.locale == 'AU' || variables.brand == 'boohoomena.com') {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {
           cy.get(addressNicknameField).type('test');
           cy.get(addressSubmitBtn).click({ force: true });
-          cy.get(proceedToBillingBtn).click({ force: true });
+          if (variables.brand != 'boohoomena.com') {
+            cy.get(proceedToBillingBtn).click({ force: true });
+          }
         }
         cy.get(addressSubmitBtn).click({ force: true });
       },

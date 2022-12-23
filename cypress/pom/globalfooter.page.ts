@@ -235,6 +235,28 @@ const selectors: SelectorBrandMap = {
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer'
+  },
+  'boohoomena.com': {
+    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
+    instagramLink: '[title="Instagram"]', 
+    facebookLink: '[title="Facebook"]',
+    twitterLink: '[title="Twitter"]',
+    pintrestLink: '[title="Pinterest"]', 
+    youtubeLink: '[title="YouTube"]',
+    newsletterInputMail: 'input[id^="footer_newsletter_email"]',
+    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    subscribeSubmitBtn: '.newsletter-form-group button',
+    changeCountryDropdown: '.b-country-select',
+    successfulSubscriptionMsg: '.footer-newsletter-info',
+    unsuccessfulSubscriptionMsg: '[id^=footer_newsletter_email][class="error"]',
+    paymentOptions: '.footer-payment-method',
+    appBanner: '.footer-app-links',
+    footerStickyPromo: '.footer-promo',
+    footerPromoLink: '.banner-link',
+    headerInner: '.sticky-header',
+    copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
+    footer: '.footer'
   }
 };
 

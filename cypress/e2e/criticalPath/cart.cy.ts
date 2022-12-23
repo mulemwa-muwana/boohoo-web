@@ -60,6 +60,8 @@ describe('Cart basic functionality for guest user', function () {
 
     if (internationalBrandsAndLocales || brandsAndLocaleUK) {
       CartPage.assertions.assertPremierSlotsAreVisible();
+    } else {
+      this.skip();
     }
   });
   
@@ -72,18 +74,22 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPayPalCTAisVisible();
     CartPage.actions.openPayPalSandbox();
   });
-  if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
-    it('Verify that Klarna CTA is displayed and functional', function () {
+  it('Verify that Klarna CTA is displayed and functional', function () {
+    if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale)) {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox();
-    });
-  }
-  if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
-    it('Verify that AmazonPay CTA is displayed and functional', function () {
-      CartPage.assertions.assertAmazonPazCTAisVisible();
+    } else {
+      this.skip();
+    }
+  });
+  it('Verify that AmazonPay CTA is displayed and functional', function () {
+    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
+      CartPage.assertions.assertAmazonPayCTAisVisible();
       CartPage.actions.openAmazonSandbox();
-    });
-  }
+    } else {
+      this.skip();
+    }
+  });
 
 });
 

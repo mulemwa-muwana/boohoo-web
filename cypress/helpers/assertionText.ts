@@ -226,7 +226,7 @@ class AssertionText {
 
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
-    FR: 'Avis de confidentialité',
+    FR: '\n                        Politique de confidentialité\n                    ',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
@@ -435,7 +435,7 @@ class AssertionText {
   };
 
   selectSize: TranslationMap = {
-    EN: 'OOPS PLEASE SELECT A SIZE',
+    EN: '\n                    Oops please select a size\n                ',
     FR: '',
     NL: '',
     DE: '',
@@ -788,7 +788,7 @@ class AssertionText {
     EN: 'Help',
     NL: 'Klantenservice',
     DE: 'Kundenservice',
-    FR: '',
+    FR: 'Aide',
     DK: '',
     FI: '',
     NO: '',
@@ -844,7 +844,7 @@ class AssertionText {
     EN: 'Shipping',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Informations De Livraison',
     DK: 'Shipping Info',
     FI: 'Shipping Info',
     NO: 'Shipping Info',
@@ -854,7 +854,7 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkAbout: TranslationMap = {
+  footerLinkAboutBoohoo: TranslationMap = {
     EN: 'About boohoo', // Brand name is missing
     NL: 'Over boohoo',
     DE: 'Über',
@@ -866,6 +866,20 @@ class AssertionText {
     IL: '',
     IT: 'A proposito di boohoo',
     ES: 'Sobre boohoo'
+  };
+  
+  footerLinkAboutNastyGal: TranslationMap = {
+    EN: 'About Nasty Gal',
+    NL: '',
+    DE: '',
+    FR: 'Appli Nasty Gal',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   footerLinkSizeGuide: TranslationMap = {
@@ -882,7 +896,7 @@ class AssertionText {
     ES: 'Guía de tallas'
   };
 
-  footerLinkTrackApp: TranslationMap = {
+  footerLinkTrackAppBHO: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
     NL: '',
     DE: 'boohoo App', // To be consider for multiple brends
@@ -891,6 +905,20 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'boohoo-appen',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkTrackAppNG: TranslationMap = {
+    EN: 'Nasty Gal App', 
+    NL: '',
+    DE: '', // To be consider for multiple brends
+    FR: 'Appli Nasty Gal',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''
@@ -914,7 +942,7 @@ class AssertionText {
     EN: 'Student Discount',
     NL: 'Studentenkorting',
     DE: 'Studentenrabatt',
-    FR: 'Réduction étudiant',
+    FR: 'Réduction Étudiante',
     DK: 'Student Discount',
     FI: 'Student Discount',
     NO: 'Student Discount',
@@ -952,15 +980,57 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkDiscountPromoNG: TranslationMap = {
+    EN: 'Discount + Promo Codes',
+    NL: '',
+    DE: 'boohoo Rabattcodes',
+    FR: 'Nasty Gal Codes Promo',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
     EN: 'Get Exclusive Offers & Updates',
     NL: 'Ontvang exclusieve aanbiedingen & updates',
     DE: 'Erhalte exklusive Angebote & Updates',
-    FR: '',
+    FR: 'Profite D’offres Exclusives & Mises À Jour',
     DK: '',
     FI: '',
     NO: '',
     SE: 'Få exklusiva erbjudanden & nyheter',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkGiftCard: TranslationMap = {
+    EN: 'Gift Cards',
+    NL: '',
+    DE: '',
+    FR: 'Bons-Cadeaux',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkGiftVoucher: TranslationMap = {
+    EN: 'Gift Vouchers',
+    NL: '',
+    DE: '',
+    FR: 'Bons-Cadeaux',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''
@@ -1054,7 +1124,7 @@ class AssertionText {
     EN: 'Privacy Notice - Updated July 2022',
     NL: 'Privacyverklaring - Bijgewerkt in juli 2022',
     DE: 'Datenschutzerklärung - Zuletzt upgedated Juni 2022', // FAILED
-    FR: 'Avis de confidentialité',
+    FR: 'Politique De Confidentialité - Mise À Jour En Juin 2022',
     DK: 'Privacy Notice - Updated July 2022',
     FI: 'Privacy Notice - Updated July 2022',
     NO: 'Privacy Notice - Updated July 2022',
@@ -1134,6 +1204,20 @@ class AssertionText {
     ES: ''
   };
 
+  envAndSocRespNG: TranslationMap = {
+    EN: 'Environment And Social',
+    NL: '',
+    DE: '',
+    FR: 'Environnement Et Responsabilité Sociale',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   careers: TranslationMap = {
     EN: 'Careers',
     NL: 'Loopbanen',
@@ -1153,6 +1237,20 @@ class AssertionText {
     NL: 'Over cookies',
     DE: 'Über Cookies',
     FR: 'En savoir plus sur les cookies',
+    DK: 'About Cookies',
+    FI: 'About Cookies',
+    NO: 'About Cookies',
+    SE: 'Om cookies',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+  
+  aboutCookiesNG: TranslationMap = {
+    EN: 'About Cookies',
+    NL: 'Over cookies',
+    DE: 'Über Cookies',
+    FR: 'À Propos Des Cookies',
     DK: 'About Cookies',
     FI: 'About Cookies',
     NO: 'About Cookies',

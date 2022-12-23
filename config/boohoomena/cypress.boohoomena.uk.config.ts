@@ -5,11 +5,11 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwstg.burton.co.uk/',
-    sku: '#BBB01461-2', // Needs hashtag for assertation on PDP
-    brand: 'burton.co.uk',
-    locale: 'UK',
-    language: 'EN',
+    url: 'https://storefront:Oreo2022@stgmena.boohoo.com/en',
+    sku: 'FZZ54497-104-18',
+    brand: 'boohoomena.com',
+    locale: 'SA',
+    language: 'EN', 
   },
 
   viewportHeight: 1080,

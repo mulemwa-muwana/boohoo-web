@@ -49,7 +49,7 @@ describe('Product Details Page tests', function () {
   it('TC06 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize();
-    if (variables.brand == 'burton.co.uk'){
+    if (variables.brand == 'burton.co.uk') {
       cy.wait(3000);
     }
     PdpPage.click.addToCart(); 
@@ -61,7 +61,7 @@ describe('Product Details Page tests', function () {
     cy.wait(3000);
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com') {
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com') {
       LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitle[variables.language]);
     } else if (variables.brand == 'misspap.com') {
       LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitleMisspap[variables.language]);
@@ -83,9 +83,11 @@ describe('Product Details Page tests', function () {
 
     // We need to instal plugin for continuing after failed assertation just in case
   });
-  if (variables.brand == 'boohoo.com') {
-    it('TC09 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
+  it('TC09 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
+    if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
-    });
-  }
+    } else {
+      this.skip();
+    }
+  });
 }); 

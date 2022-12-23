@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -509,6 +509,56 @@ const selectors: SelectorBrandMap = {
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
+  },
+  'boohoomena.com': {
+    promoCodeBtn: 'button[data-tau="coupon_submit"]',
+    PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
+    addPremierToCartFromShippingPage: '#add-to-cart',
+    viewAllAddressesLink: '.b-address_selector-actions > .m-link',
+    cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
+    editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
+    addNewAddressButton: 'span.button.add-new-address',
+    editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    editCart: '.section-header-note',
+    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    proceedToBilling: '.js-checkout-next-step-btn',
+    proceedToBillingVerificationBtn: '.verification-address-button',
+    addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    cancelAddingNewAddress: '.b-button m-link b-address_form-back',
+    PostcodeLookup: '#LoqateAutocomplete',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    cartContainer: '.summary-inner',
+    postcodeFiled: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
+    postcodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
+    promoCodeField: '#dwfrm_coupon_couponCode',
+    addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
+    shippingPhoneCode: '#dwfrm_phonedetails_phonecode',
+    shippingPhoneNumber: '#dwfrm_phonedetails_phonenumber',
+    shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
+    shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
+    guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
+    confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
+    addressLine1Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
+    addressLine2Shipping: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
+    shippingCityShipping: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
+    shippingCounty: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    dobDay: '#dwfrm_profile_customer_dayofbirth',
+    dobMonth: '#dwfrm_profile_customer_monthofbirth',
+    dobYear: '#dwfrm_profile_customer_yearofbirth',
+    orderTotal: '.order-value',
+    allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    coupon: '#dwfrm_coupon_couponCode',
+    shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
+    shippingMethodname: 'div.form-row.delivery-row',
+    dateOfBirthForm: '.form-birthday-rows-inner',
+    emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
+    emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
+    cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
   }
 };
 
@@ -542,9 +592,11 @@ class ShippingPage implements AbstractPage {
       cy.get(proceedToBilling).click({force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
-      const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
-      cy.wait(1000);
-      cy.get(proceedToBillingVerificationBtn).click({force: true});
+      if (variables.brand != 'boohoomena.com') {
+        const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
+        cy.wait(1000);
+        cy.get(proceedToBillingVerificationBtn).click({force: true});
+      }
     },
     proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis brands
       const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
@@ -558,8 +610,7 @@ class ShippingPage implements AbstractPage {
       cy.get(editSavedAddress).click();
     },
     addAddressManually () {
-      const excludedBrands: Array<GroupBrands> = ['misspap.com', 'karenmillen.com', 'boohooman.com', ...siteGenesisBrands];
-      if (!excludedBrands.includes(variables.brand)) {
+      if (!isSiteGenesisBrand) {
         const addAddressManually = selectors[variables.brand].addAddressManually;
         cy.get(addAddressManually).should('be.visible').click({force:true});
       }
@@ -577,7 +628,7 @@ class ShippingPage implements AbstractPage {
     addNewAddressButton () {
       if (variables.brand != 'boohooman.com') {
         const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
-        cy.get(addNewAddressButton).click();
+        cy.get(addNewAddressButton).click({force:true});
       }
     },
     editExistingAddressButton () {
@@ -642,16 +693,30 @@ class ShippingPage implements AbstractPage {
     clearPhoneNumberFieldAndAddNewOne (phone: string) {
       cy.wait(1000);
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).clear().type(phone);
+      if (variables.brand == 'boohoomena.com') {
+        const shippingPhoneCode = selectors[variables.brand].shippingPhoneCode;
+        cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
+      } else {
+        cy.get(shippingPhoneNumber).clear().type(phone);
+      }
     },
     phoneNumberField (phone: string) {
       cy.wait(1000);
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).type(phone);
+      if (variables.brand == 'boohoomena.com') {
+        const shippingPhoneCode = selectors[variables.brand].shippingPhoneCode;
+        cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        cy.get(shippingPhoneNumber).type(phone.slice(2));
+      } else {
+        cy.get(shippingPhoneNumber).type(phone);
+      }
     },
     selectCountry (country: string) {
-      const shippingCountry = selectors[variables.brand].shippingCountry;
-      cy.get(shippingCountry).select(country).invoke('show');
+      if (variables.brand != 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
+        const shippingCountry = selectors[variables.brand].shippingCountry;
+        cy.get(shippingCountry).select(country).invoke('show');
+      }
     },
     selectState (state: string) {
       const shippingState = selectors[variables.brand].shippingState;
@@ -687,7 +752,11 @@ class ShippingPage implements AbstractPage {
     },
     clearCityFieldAndAddNewOne (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
-      cy.get(shippingCityShipping).clear({force: true}).type(city);
+      if (variables.brand == 'boohoomena.com') {
+        cy.get(shippingCityShipping).select(city);
+      } else {
+        cy.get(shippingCityShipping).clear({force: true}).type(city);
+      }
     },
     countyField (county: string) {
       const shippingCounty = selectors[variables.brand].shippingCounty;
@@ -773,7 +842,11 @@ class ShippingPage implements AbstractPage {
     },
     assertPhoneNumberFieldIsPopulated (text: string) {
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).should('contain.value', text);
+      if (variables.brand == 'boohoomena.com') {
+        cy.get(shippingPhoneNumber).should('contain.value', text.slice(2));
+      } else {
+        cy.get(shippingPhoneNumber).should('contain.value', text);
+      }
     },
     assertGuestEmailFieldDisplayed () {
       const guestEmailField = selectors[variables.brand].guestEmailField;

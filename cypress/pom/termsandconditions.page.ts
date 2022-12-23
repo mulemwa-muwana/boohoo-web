@@ -33,6 +33,9 @@ const selectors: SelectorBrandMap = {
   },
   'misspap.com': {
     termsAndConditionsPageTitle: '#secondary > :nth-child(1)',
+  },
+  'boohoomena.com': {
+    termsAndConditionsPageTitle: '#primary > div > h1'
   }
 };
 
@@ -41,7 +44,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 class TermsAndConditionsPage implements AbstractPage {
 
   goto () {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'boohoomena.com') {
       cy.visit(variables.url + '/page/terms-of-use.html');
     } else {
       cy.visit(variables.url + '/page/terms-and-conditions.html');

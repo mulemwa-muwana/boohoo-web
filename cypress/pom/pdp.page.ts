@@ -304,6 +304,34 @@ const selectors: SelectorBrandMap = {
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.product-delivery-link > .product-info-link-text',
     productReturnsInfoButton: '.product-returns-link > .product-info-link-text'
+  },
+  'boohoomena.com': {
+    searchField: '#header-search-input',
+    addToCart: '#add-to-cart',
+    addToWishListButton: '.wishlist-button',
+    shippingInfoButton: '#product-details-btn-shipping',
+    returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
+    shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
+    minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
+    miniCartIcon: '.b-minicart_icon-link',
+    miniCartViewCartBtn: '.mini-cart-link',
+    selectColor: '.swatches.color',
+    sizeVariations: '.swatches.size',
+    productTitle: '.product-detail > h1.product-name',
+    productCode: '.product-number > [itemprop="sku"]',
+    productPrice: '.product-price',
+    colorSwatches: '.swatches.color',
+    productImage: '.primary-image',
+    addToCartTitle: '.mini-cart-header-product-added',
+    miniCartProductIner: '.mini-cart-product',
+    productDescription: '#ui-id-2 > p',
+    productDelivery: '.b-product_delivery',
+    productReturnsInfoButton: '#product-returns-info-tab',
+    productReturnsDescription: '#ui-id-5',
+    completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
+    productDeliveryInfo: '#product-delivery-info-tab',
+    cartValidation: '.b-product_actions-error_msg'
   }
 };
 

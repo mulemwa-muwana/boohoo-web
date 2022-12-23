@@ -34,6 +34,9 @@ const selectors: SelectorBrandMap = {
   },
   'misspap.com': {
     privacyNoticyPageTitle: 'h1 > strong'
+  },
+  'boohoomena.com': {
+    privacyNoticyPageTitle: 'h1 > strong'
   }
 };
 

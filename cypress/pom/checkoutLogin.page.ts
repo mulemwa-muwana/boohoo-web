@@ -99,6 +99,16 @@ const selectors: SelectorBrandMap = {
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+  }, 
+  'boohoomena.com': {
+    guestCheckoutEmail: '[id^="dwfrm_login_username"]',
+    userEmailField: 'input[id^="dwfrm_login_username"]',
+    passwordField:'input[id^="dwfrm_login_password"]',
+    continueAsGuestBt:'#dwfrm_login > fieldset > .form-row-button > .login-page-button',
+    continueAsRegisteredUser: '#dwfrm_login .login-page-button',
+    premierAddToCart:'button[class="b-ngvip-button b-button"]',
+    premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
   }
 };
 

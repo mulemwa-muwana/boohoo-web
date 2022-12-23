@@ -35,11 +35,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     ShippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
-      ShippingPage.click.proceedToBillingVerificationAndWaitBillingPageToLoad();
-    } else {
-      BillingPage.actions.waitPageToLoad();
-    }
+    BillingPage.actions.waitPageToLoad();
   });
 
   it('can select Credit Card as payment method and generate an artefact', function () {

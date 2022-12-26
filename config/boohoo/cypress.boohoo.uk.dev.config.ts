@@ -23,7 +23,15 @@ export default defineConfig({
   e2e: {
     experimentalSessionAndOrigin: true,
     setupNodeEvents (on) {
-      plugins(on);
+      plugins(on),
+
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (browser.family === 'chromium') {
+          launchOptions.args.push("excludeSwitches: [enable-automation]");
+          launchOptions.args.push("excludeSwitches: [enable-logging]");
+        }
+      return launchOptions
+    })
     },
 
     numTestsKeptInMemory: 0

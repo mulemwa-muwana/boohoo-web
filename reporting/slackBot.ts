@@ -137,6 +137,15 @@ async function GenerateAndPostReport(report: any) {
     }
 }
 
+
+/** 
+ *  TODO: Either run each time after a test runs, or run once and iterate through all folders
+ * Idealy run after each test. 
+ * So run this with CLI parameter like: `ts-node reporting/slackBot.ts boohoo`
+ * This will go look in the config/boohoo folder and print out the platform as boohoo.
+ * Probably the best as this is where the results file will outputted to.
+**/ 
+
 (async function () {
     // Get the file first.
     try {

@@ -115,7 +115,18 @@ const selectors: SelectorBrandMap = {
     searchIcon: '.icon-search',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link'
+  },
+  'boohoomena.com': {
+    minicartIcon: '.mini-cart-link',
+    loginIcon: ' span.user-account',
+    registrationButton: '.js-header-right-box [title="Register"]',
+    wishListIcon: '.icon-wishlist',
+    searchField: '.js-header-search-input',
+    searchIcon: '.js-search-icon',
+    promotion: 'div.product-category-slider',
+    logo: '.primary-logo-link'
   }
+  
 };
 
 const variables = Cypress.env() as EnvironmentVariables;

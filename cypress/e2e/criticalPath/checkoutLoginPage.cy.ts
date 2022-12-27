@@ -36,12 +36,14 @@ describe('Checkout Page', function () {
   });
 
   it('Verify Premier is displayed and can be added to the cart', function () {
-    if (isSiteGenesisBrand) {
+    const arcadiaBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+    if (isSiteGenesisBrand || arcadiaBrands.includes(variables.brand)) {
       this.skip();
     }
     const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-    const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
-    if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
+
+
+    if (variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
       CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
       CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
 

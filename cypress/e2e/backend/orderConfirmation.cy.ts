@@ -94,7 +94,7 @@ describe('Boohoo order placement', () => {
       cy.get('.m-total, .order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
       cy.get('.b-minicart_product-inner').invoke('attr', 'data-tau-product-id').as('fullSku');
     }
-    cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim().split("\n")[0]).as('orderEmail')
+    cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim().split('\n')[0]).as('orderEmail')
       .then(function () {
 
         const testArtefactObject: TestArtefact = {

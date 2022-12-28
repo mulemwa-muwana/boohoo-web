@@ -9,7 +9,9 @@ type JWTResponse = {
 async function getJWTToken (brand: GroupBrands, locale: TLocale, username: string, password: string, apiKey: string): Promise<JWTResponse> {
 
   const prefix = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
-  const endpoint = `https://${prefix}.${brand}/${locale}/customers/auth`;
+  var endpoint = `https://${prefix}.${brand}/${locale}/customers/auth`;
+
+  if (brand == 'boohoomena.com') endpoint = `https://dev-mobile-mena-gateway.boohoo.com/sa/customers/auth`;
 
   // Send request.
   const response = await axios.post(endpoint, { type: 'credentials' },

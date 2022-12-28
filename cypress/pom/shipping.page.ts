@@ -748,7 +748,11 @@ class ShippingPage implements AbstractPage {
     },
     cityField (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
-      cy.get(shippingCityShipping).type(city);
+      if (variables.brand == 'boohoomena.com') {
+        cy.get(shippingCityShipping).select(city);
+      } else {
+        cy.get(shippingCityShipping).type(city);
+      }
     },
     clearCityFieldAndAddNewOne (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;

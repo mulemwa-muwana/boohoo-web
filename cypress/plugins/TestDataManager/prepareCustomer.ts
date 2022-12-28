@@ -18,7 +18,9 @@ export default async function (credentials: NewCustomerCredentials, brand: Group
 
   // Make the call to the customer API.
   const prefix = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
-  const endpoint = `https://${prefix}.${brand}/${locale}/baskets/${basketId}/items`;
+  var endpoint = `https://${prefix}.${brand}/${locale}/baskets/${basketId}/items`;
+
+  if (brand == 'boohoomena.com') endpoint = `https://dev-mobile-mena-gateway.boohoo.com/sa/baskets/${basketId}/items`;
 
   const response = await axios.post(endpoint, 
     [{

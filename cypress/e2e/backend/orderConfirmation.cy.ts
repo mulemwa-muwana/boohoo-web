@@ -34,6 +34,9 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.adressLine1(localeAddress.addrline1);
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
+    if (variables.brand == 'boohoomena.com') {
+      ShippingPage.actions.countyField(localeAddress.county);
+    }
     ShippingPage.click.proceedToBilling();
     BillingPage.actions.waitPageToLoad();
   });

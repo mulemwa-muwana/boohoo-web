@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.validateStatus = () => { return true; };
 
 function generateRandomEmail () {
-  return `testemail${Date.now()}${Math.floor(Math.random() * 100)}@boohoo.com`;
+  return `euboohoo+testemail${Date.now()}${Math.floor(Math.random() * 100)}@gmail.com`;
 }
 
 export function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType): string {

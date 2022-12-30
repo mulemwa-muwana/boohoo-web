@@ -1,4 +1,4 @@
-import priceVariations from './priceVariations';
+const variables = Cypress.env() as EnvironmentVariables;
 
 class productVariations {
 
@@ -48,19 +48,19 @@ class productVariations {
     IT: 'Cime',
     ES: 'Tops',
   };
-  
+
   productAccessories: TranslationMap = {
     EN: 'Accessories',
-    NL: '',
+    NL: 'Accessoires',
     DE: 'Oberteile',
     FR: 'Accessoires',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
+    DK: 'Accessoires',
+    FI: 'Accessoires',
+    NO: 'Accessoires',
+    SE: 'Accessoarer',
     IL: '',
-    IT: '',
-    ES: '',
+    IT: 'Accessori',
+    ES: 'Accesorios',
   };
 
   productShopByFitRefinementTall: TranslationMap = {
@@ -92,7 +92,7 @@ class productVariations {
   };
 
   productShopByStyle: TranslationMap = {
-    EN: 'Jeans',
+    EN: 'Jacket',
     NL: 'Jurken',
     DE: 'Jeans',
     FR: 'Jeans',
@@ -105,14 +105,6 @@ class productVariations {
     ES: 'Jeans',
   };
 
-  priceRangePLPrefinements = {
-    'range0to5':  priceVariations.plpPriceRange.GBP +'0 - '+ priceVariations.plpPriceRange.GBP +'5',
-    'range5to10': priceVariations.plpPriceRange.GBP +'5 - '+ priceVariations.plpPriceRange.GBP +'10',
-    'range10to20': priceVariations.plpPriceRange.GBP +'10 - '+ priceVariations.plpPriceRange.GBP +'20',
-    'range20to30': priceVariations.plpPriceRange.GBP +'20 - '+ priceVariations.plpPriceRange.GBP +'30',
-    'range30to50': priceVariations.plpPriceRange.GBP +'30 - '+ priceVariations.plpPriceRange.GBP +'50',
-    'range50to250': priceVariations.plpPriceRange.GBP +'50 - '+ priceVariations.plpPriceRange.GBP +'250',
-  };
 }
 
 export default new productVariations();

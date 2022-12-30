@@ -11,7 +11,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 Cypress._.times(10, () => {
 
-})
+});
 
 describe('Boohoo order placement', () => {
 

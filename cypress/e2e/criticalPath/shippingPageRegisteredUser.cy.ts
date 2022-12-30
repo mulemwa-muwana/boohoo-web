@@ -29,7 +29,7 @@ describe('Shipping Page Registered user tests', function () {
     cartPage.click.proceedToCheckout();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       checkoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
         checkoutPage.click.continueAsRegisteredUser();
       }
       checkoutPage.actions.passwordField(credentials.password);
@@ -45,7 +45,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
 
-  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'AU') {
@@ -137,7 +137,10 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
-  it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', function () {
+    if (variables.brand == 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
+      this.skip();
+    }
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     cy.wait(3000);
@@ -238,6 +241,9 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
       shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
       shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
+      if (variables.brand == 'boohoomena.com') {
+        shippingPage.actions.countyField(localeAddress.county);
+      }
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
@@ -252,26 +258,29 @@ describe('Shipping Page Registered user tests', function () {
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
   });
 
-  if (variables.brand != 'oasis-stores.com') {
-    it('Verify that PREMIER can be added to the cart', () => {
-      const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-      const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+  it('Verify that PREMIER can be added to the cart', function () {
+    if (variables.brand == 'boohoomena.com') { // No Premier/VIP for this brand
+      this.skip();
+    }
+    const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
+    const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
 
-      if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
-        shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
-        shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
-      } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
-        shippingPage.click.addPremierToCartFromShippingPage();
-        shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
-      } else if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
-        shippingPage.click.addPremierToCartFromShippingPage();
-        shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
-      } else if (variables.brand == 'warehousefashion.com') {
-        shippingPage.click.addPremierToCartFromShippingPage();
-        shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierWarehouse[variables.language]);
-      }
-    });
-  }
+    if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
+      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
+    } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
+      shippingPage.click.addPremierToCartFromShippingPage();
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
+      shippingPage.click.addPremierToCartFromShippingPage();
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
+    } else if (variables.brand == 'warehousefashion.com') {
+      shippingPage.click.addPremierToCartFromShippingPage();
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierWarehouse[variables.language]);
+    } else {
+      throw new Error('This brand is to be covered yet');
+    }
+  });
 
   it('Verify that user is able to select standard shipping method', () => {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
@@ -302,6 +311,9 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
       shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
       shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
+      if (variables.brand == 'boohoomena.com') {
+        shippingPage.actions.countyField(localeAddress.county);
+      }
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
@@ -361,6 +373,9 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
       shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
       shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
+      if (variables.brand == 'boohoomena.com') {
+        shippingPage.actions.countyField(localeAddress.county);
+      }
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();

@@ -23,6 +23,7 @@ declare type CountryCode = AustralasiaCountryCode | NorthAmericaCountryCode | Eu
 type GroupBrands =
     | 'boohoo.com'
     | 'boohooman.com'
+    | 'boohoomena.com'
     | 'nastygal.com'
     | 'karenmillen.com'
     | 'coastfashion.com'
@@ -144,17 +145,17 @@ declare type SKU = {
 }
     
 declare type Language = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
-declare type Locale = 'UK' | 'EU' | 'US' |'CA' | 'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE';
+declare type Locale = 'UK' | 'EU' | 'US' |'CA' | 'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE' | 'SA';
     
 declare type TranslationMap = { [key in Language]: string };
     
 declare type Sizes = 'UK' | 'US';
     
 declare type SizesMap = { [key in Sizes]: string };
-
-declare type Currencies = '£' | '€' | '$' ;
     
-declare type PriceMap = { [key in CountryCode]: string};
+declare type Currencies = 'GBP' | 'EUR' | 'USD' | 'SAR' ;
+    
+declare type PriceMap = { [key in Currencies]: string };
     
 declare type AddressMapAddressLine1 = {[key in Locale]: string}
 declare type AddressMapAddressLine2 = {[key in Locale]: string}

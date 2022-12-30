@@ -190,6 +190,17 @@ class ShippingMethod {
         shippingMethodName: 'משלוח אקספרס לישראל'
       },
     },
+    SA: {
+      shippingMethod1: {
+        shippingMethodName: 'Saudi Arabia Express Delivery'
+      },
+      shippingMethod2: {
+        shippingMethodName: ''
+      },
+      shippingMethod3: {
+        shippingMethodName: ''
+      },
+    },
   };
 
   /**

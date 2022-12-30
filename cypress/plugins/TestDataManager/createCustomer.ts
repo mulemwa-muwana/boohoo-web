@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.validateStatus = () => { return true; };
 
 function generateRandomEmail () {
-  return `testemail${Date.now()}${Math.floor(Math.random() * 100)}@boohoo.com`;
+  return `euboohoo+testemail${Date.now()}${Math.floor(Math.random() * 100)}@gmail.com`;
 }
 
 export function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType): string {
@@ -21,6 +21,7 @@ export function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType):
     'burton.co.uk': process.env.BURTON_CUSTOMER_MANAGER_APIKEY,
     'wallis.co.uk': process.env.WALLIS_CUSTOMER_MANAGER_APIKEY,
     'misspap.com': process.env.MISSPAP_CUSTOMER_MANAGER_APIKEY,
+    'boohoomena.com': process.env.BOOHOO_CUSTOMER_MANAGER_APIKEY
   };
 
   // This is basically a Map<Map<EnvKey>>, we may want to scale up to more types of keys.
@@ -36,9 +37,13 @@ export function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType):
 
 export async function getBearerAuth (brand: GroupBrands, realm: TLocale): Promise<string> {
   const prefix = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
+  var endpoint = `https://${prefix}.${brand}/${realm}/customers/auth`;
+
+  if (brand == 'boohoomena.com') endpoint = `https://dev-mobile-mena-gateway.boohoo.com/sa/customers/auth`;
+
   const brandCustomerManagerKey = getCustomerKeyByBrand(brand, 'Customer');
 
-  const response = await axios.post(`https://${prefix}.${brand}/${realm}/customers/auth`, { type: 'guest' }, {
+  const response = await axios.post(endpoint, { type: 'guest' }, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -113,7 +118,9 @@ export default async function createCustomer (brand: GroupBrands, realm: TLocale
 
   // Make the call to the customer API.
   const prefix = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
-  const endpoint = `https://${prefix}.${brand}/${realm}/customers`;
+  var endpoint = `https://${prefix}.${brand}/${realm}/customers`;
+
+  if (brand == 'boohoomena.com') endpoint = `https://dev-mobile-mena-gateway.boohoo.com/sa/customers`;
 
   const response = await axios.post(endpoint, body, {
     method: 'POST',

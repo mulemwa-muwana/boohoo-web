@@ -8,9 +8,9 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '08082580300',
-        addrline1: 'Piccadilly',
+        addrline1: '85 Piccadilly',
         addrline2: '',
-        postcode: 'W1J 9HS',
+        postcode: 'W1J 7NB',
         addressName: 'PrimaryAddress',
         country: 'United Kingdom',
         city: 'London',
@@ -529,8 +529,38 @@ class Addresses {
         county: 'Berlin',
         confirmEmail: ''
       }
-    }
+    },
 
+    SA: {
+      primaryAddress: {
+        firstName: 'New',
+        lastName: 'Test',
+        phone: '5014245353',
+        addrline1: 'Unit: A2, King Abdul Aziz Rd',
+        addrline2: '',
+        postcode: '12467',
+        addressName: 'PrimaryAddress',
+        country: 'Saudi Arabia',
+        city: 'Jeddah',
+        countryCode: 'SA',
+        county: 'Eastern Province',
+        confirmEmail: ''
+      },
+      secondaryAddress: {
+        firstName: 'Test',
+        lastName: 'Test',
+        phone: '5014245353',
+        addrline1: 'Unit: A2, King Abdul Aziz Rd',
+        addrline2: '',
+        postcode: '12467',
+        addressName: 'SecondaryAddress',
+        country: 'Saudi Arabia',
+        city: 'Jeddah',
+        countryCode: 'SA',
+        county: 'Eastern Province',
+        confirmEmail: ''
+      }
+    }
   };
 
   /**

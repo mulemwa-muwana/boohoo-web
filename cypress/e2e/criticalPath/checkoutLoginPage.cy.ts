@@ -54,7 +54,7 @@ describe('Checkout Page', function () {
   it('Verify that registered user is able to login', () => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
+      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);
@@ -63,7 +63,10 @@ describe('Checkout Page', function () {
     });
   });
 
-  it('Verify that user is able to proceed as guest', () => {
+  it('Verify that user is able to proceed as guest', function () {
+    if (variables.brand == 'boohoomena.com') {
+      this.skip(); // No guest users are allowed for this brand, only registered ones
+    }
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
       CheckoutPage.click.continueAsGuestBtn();

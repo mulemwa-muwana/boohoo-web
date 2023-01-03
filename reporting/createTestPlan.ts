@@ -1,24 +1,24 @@
 import * as fs from 'fs';
 
 async function main (file: string) {
-    const readFile = fs.readFileSync(file, 'utf-8')
-    const splitByNewLine = readFile.split('\n').map(line => line.replace('\r', ''))//.map(line => line.replace(/\"/ig, "''"));
-    const describeBlocks = [...new Set(readFile.match(/(?<=describe\()(.*)(?=\,)/ig))]
-    const itBlocks = [...new Set(readFile.match(/(?<=it\()(.*)(?=\,)/ig))]
+    const readFile = fs.readFileSync(file, 'utf-8');
+    const splitByNewLine = readFile.split('\n').map(line => line.replace('\r', ''));
+    const describeBlocks = [...new Set(readFile.match(/(?<=describe\()(.*)(?=\,)/ig))];
+    const itBlocks = [...new Set(readFile.match(/(?<=it\()(.*)(?=\,)/ig))];
 
     const potentialTests = findPotentialTests(describeBlocks, itBlocks)
     const commentedTests = findTestSteps(splitByNewLine, potentialTests);
     
     const directory = file.split('\\').splice(-1).join().split('.')[0];
 
-    fs.mkdirSync(directory, { recursive: true })
+    fs.mkdirSync(directory, { recursive: true });
     fs.writeFileSync('reporting\\' + directory + '.json', JSON.stringify(commentedTests, null, 4));
 
     console.log('\x1b[32m\nFound Documentation\x1b[0m');
     Object.keys(commentedTests).forEach(key => {
         console.log('\n' + key);
         commentedTests[key].forEach(steps => {
-            console.log('•', steps)
+            console.log('•', steps);
         })
     })
 };

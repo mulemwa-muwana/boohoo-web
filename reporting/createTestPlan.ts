@@ -9,6 +9,11 @@ async function main (file: string) {
     const potentialTests = findPotentialTests(describeBlocks, itBlocks)
     const commentedTests = findTestSteps(splitByNewLine, potentialTests);
     
+    const directory = file.split('\\').splice(-1).join().split('.')[0];
+
+    fs.mkdirSync(directory, { recursive: true })
+    fs.writeFileSync('reporting\\' + directory + '.json', JSON.stringify(commentedTests, null, 4));
+
     console.log('\x1b[32m\nFound Documentation\x1b[0m');
     Object.keys(commentedTests).forEach(key => {
         console.log('\n' + key);

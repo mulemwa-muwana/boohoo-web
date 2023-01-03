@@ -50,11 +50,6 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
 
-  /** [Test Steps]
-   * Log in
-   * Go to delivery information
-   * Check it's displayed
-   */
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();

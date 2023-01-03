@@ -6,8 +6,8 @@ async function main (file: string) {
     const describeBlocks = [...new Set(readFile.match(/(?<=describe\()(.*)(?=\,)/ig))]
     const itBlocks = [...new Set(readFile.match(/(?<=it\()(.*)(?=\,)/ig))]
 
-    const potentialTests = await findPotentialTests(describeBlocks, itBlocks)
-    const commentedTests = await findTestSteps(splitByNewLine, potentialTests);
+    const potentialTests = findPotentialTests(describeBlocks, itBlocks)
+    const commentedTests = findTestSteps(splitByNewLine, potentialTests);
     
     console.log('\x1b[32m\nFound Documentation\x1b[0m');
     Object.keys(commentedTests).forEach(key => {
@@ -18,7 +18,7 @@ async function main (file: string) {
     })
 };
 
-async function findPotentialTests (describeBlocks: string[], itBlocks: string[]): Promise<{describe: string, it: string}[]> {
+function findPotentialTests (describeBlocks: string[], itBlocks: string[]): {describe: string, it: string}[] {
     let potentialTests = [];
     for (let i = 0; i < describeBlocks.length; i++) {
         const describe = describeBlocks[i];
@@ -43,7 +43,7 @@ function replaceCharactersAtStartAndEndIfTheyreQuotes(str: string) {
     return str;
 }
 
-async function findTestSteps (fileByLine: string[], potentialTests: {describe: string, it: string}[]) {
+function findTestSteps (fileByLine: string[], potentialTests: {describe: string, it: string}[]) {
     const commentedTests: Record<string, string[]> = {};
     for (let i = 0; i < potentialTests.length; i++) {
         const potentialTest = potentialTests[i];

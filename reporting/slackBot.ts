@@ -129,7 +129,7 @@ async function GenerateAndPostReport(report: any) {
                 type: 'section',
                 text: {
                     type: 'mrkdwn',
-                    text: '*Failing Tests:*\n' + failures
+                    text: '*Failing Tests (This list excludes skipped tests):*\n' + failures
                 }
                 },
 
@@ -155,7 +155,7 @@ async function GenerateAndPostReport(report: any) {
         await app.client.chat.postMessage({
             token: process.env.SLACK_BOT_OAUTH,
             channel: process.env.SLACK_CHANNEL,
-            text: `Continued list of failed tests:`,
+            text: `Continued list of failed tests (This list excludes skipped tests):`,
             attachments: [
                 {
                     blocks: [

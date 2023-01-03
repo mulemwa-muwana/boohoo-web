@@ -29,9 +29,11 @@ async function GenerateAndPostReport(report: any) {
     const skippedPercentage = parseFloat(((skipped / tests) * 100).toFixed(2));
 
     const platformRelease = process.env.PLATFORM || 'Generic Test Run';
+    const env = 'Staging'
 
     // Failures
     let failures = ''
+    let secondMessageOfFailures = ''
     let i = 1;
     const reportKeys = Object.keys(report);
     reportKeys.forEach(key => {
@@ -41,7 +43,13 @@ async function GenerateAndPostReport(report: any) {
             suiteKeys.forEach(testName => {
                 const result = suite[testName];
                 if (result === 'failed') {
-                    failures = failures + `${i}. ${testName}\n`;
+                    // Check if adding the failure would push it over 2500 characters.
+                    if ((failures + `${i}. ${testName}\n`).length > 2500) {
+                        secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
+                    } else {
+                        // Apply failures to the failure list.
+                        failures = failures + `${i}. ${testName}\n`;
+                    }
                     i++
                 }
             })
@@ -56,7 +64,7 @@ async function GenerateAndPostReport(report: any) {
         await app.client.chat.postMessage({
         token: process.env.SLACK_BOT_OAUTH,
         channel: process.env.SLACK_CHANNEL,
-        text: `Web build detected for ${passed} out of ${failed} tests passed.`,
+        text: `Web build detected for ${passed} out of ${tests} tests passed.`,
         blocks: [
 
             // Title Block
@@ -104,7 +112,18 @@ async function GenerateAndPostReport(report: any) {
                     },
                 ]
                 },
-            
+                {
+                type: 'section',
+                fields: [
+                    {
+                    type:'mrkdwn',
+                    text: '*Environment*\n' + env
+                    }
+                ]
+                },
+                {
+                    "type": "divider"
+                },
                 // Failing Tests Section
                 {
                 type: 'section',
@@ -132,6 +151,26 @@ async function GenerateAndPostReport(report: any) {
             }
         ]
         });
+
+        await app.client.chat.postMessage({
+            token: process.env.SLACK_BOT_OAUTH,
+            channel: process.env.SLACK_CHANNEL,
+            text: `Continued list of failed tests:`,
+            attachments: [
+                {
+                    blocks: [
+                        // Extra fails
+                        {
+                            type: 'section',
+                            text: {
+                                type: 'mrkdwn',
+                                text: secondMessageOfFailures
+                            }
+                        },
+                    ]
+                }
+            ]
+        });
     } finally {
         app.stop();
     }
@@ -147,9 +186,11 @@ async function GenerateAndPostReport(report: any) {
 **/ 
 
 (async function () {
+    const brand = process.argv.slice(2)[0];
+
     // Get the file first.
     try {
-        const file = fs.readFileSync('reporting/results.json', 'utf-8')
+        const file = fs.readFileSync(`config/${brand}/results.json`, 'utf-8')
         const report = JSON.parse(file);
         GenerateAndPostReport(report);
     } catch {

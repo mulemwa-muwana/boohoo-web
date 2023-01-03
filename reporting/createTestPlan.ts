@@ -3,16 +3,19 @@ import * as fs from 'fs';
 async function main (file: string) {
     const readFile = fs.readFileSync(file, 'utf-8')
     const splitByNewLine = readFile.split('\n').map(line => line.replace('\r', ''))//.map(line => line.replace(/\"/ig, "''"));
-    const describeBlocks = [...new Set(readFile.match(/(?<=describe\()(.*)(?=\,)/ig))].map((val) => {
-        return val
-    })
-    const itBlocks = [...new Set(readFile.match(/(?<=it\()(.*)(?=\,)/ig))].map((val) => {
-        return val
-    })
+    const describeBlocks = [...new Set(readFile.match(/(?<=describe\()(.*)(?=\,)/ig))]
+    const itBlocks = [...new Set(readFile.match(/(?<=it\()(.*)(?=\,)/ig))]
 
     const potentialTests = await findPotentialTests(describeBlocks, itBlocks)
     const commentedTests = await findTestSteps(splitByNewLine, potentialTests);
-    console.log('\x1b[32m\nFound Documentation\x1b[0m', commentedTests)
+    
+    console.log('\x1b[32m\nFound Documentation\x1b[0m');
+    Object.keys(commentedTests).forEach(key => {
+        console.log('\n' + key);
+        commentedTests[key].forEach(steps => {
+            console.log('•', steps)
+        })
+    })
 };
 
 async function findPotentialTests (describeBlocks: string[], itBlocks: string[]): Promise<{describe: string, it: string}[]> {
@@ -44,7 +47,7 @@ async function findTestSteps (fileByLine: string[], potentialTests: {describe: s
     const commentedTests: Record<string, string[]> = {};
     for (let i = 0; i < potentialTests.length; i++) {
         const potentialTest = potentialTests[i];
-        console.log(`\nChecking for test "${potentialTest.it}"`)
+        console.log(`\nChecking for test ${potentialTest.it}`)
 
         for (let x = 0; x < fileByLine.length; x++) {
             const line = fileByLine[x];
@@ -74,7 +77,7 @@ async function findTestSteps (fileByLine: string[], potentialTests: {describe: s
                     }
                     // Doesnt have docs.
                     if (!reversedLine.startsWith('*/') && !reversedLine.startsWith('*')) {
-                        console.log(`\x1b[31mNo docs found for: "${potentialTest.it}"\x1b[0m`); 
+                        console.log(`\x1b[31mNo docs found for: ${potentialTest.it}\x1b[0m`); 
                         break;
                     }
                 }

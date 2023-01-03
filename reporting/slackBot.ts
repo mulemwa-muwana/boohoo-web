@@ -23,10 +23,10 @@ async function GenerateAndPostReport(report: any) {
     const currentDate = new Date();
 
     // Get result statistics.
-    const { tests, passed, failed, skipped } = report.totals;
+    const { tests, passed, failed, skipped, pending } = report.totals;
     const passedPercentage = parseFloat(((passed / tests) * 100).toFixed(2));
     const failedPercentage = parseFloat(((failed / tests) * 100).toFixed(2));
-    const skippedPercentage = parseFloat(((skipped / tests) * 100).toFixed(2));
+    const skippedPercentage = parseFloat((((skipped + pending) / tests) * 100).toFixed(2));
 
     const platformRelease = process.env.PLATFORM || 'Generic Test Run';
     const env = 'Staging'
@@ -175,15 +175,6 @@ async function GenerateAndPostReport(report: any) {
         app.stop();
     }
 }
-
-
-/** 
- *  TODO: Either run each time after a test runs, or run once and iterate through all folders
- * Idealy run after each test. 
- * So run this with CLI parameter like: `ts-node reporting/slackBot.ts boohoo`
- * This will go look in the config/boohoo folder and print out the platform as boohoo.
- * Probably the best as this is where the results file will outputted to.
-**/ 
 
 (async function () {
     const brand = process.argv.slice(2)[0];

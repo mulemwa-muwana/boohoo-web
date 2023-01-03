@@ -38,6 +38,11 @@ describe('Shipping Page Registered user tests', function () {
     });
   });
 
+  /** [Test Steps]
+   * Log in
+   * Go to promo field
+   * Check it's displayed
+   */
   it('Verify that promo code field is displayed', function () {
     if (isSiteGenesisBrand) {
       this.skip(); // Promo code field for Site Genesis brands is displayed on Billing Page.
@@ -45,6 +50,11 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
 
+  /** [Test Steps]
+   * Log in
+   * Go to delivery information
+   * Check it's displayed
+   */
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();
@@ -67,6 +77,11 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
+  /** [Test Steps]
+   * Log in
+   * Go to billing 
+   * Check it's displayed
+   */
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
     if (variables.locale != 'IE' && variables.locale != 'AU') {
       shippingPage.click.proceedToBilling();

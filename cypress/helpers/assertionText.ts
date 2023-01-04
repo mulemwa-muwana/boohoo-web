@@ -336,37 +336,9 @@ class AssertionText {
     ES: ''
   };
 
-  Unlimited: TranslationMap = {
-    EN: 'UNLIMITED',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
   AddPremierToCartButton: TranslationMap = {
     EN: 'PREMIER',
     FR: 'AJOUTER AU PANIER',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
-  AddUnlimitedToCartButton: TranslationMap = {
-    EN: 'UNLIMITED',
-    FR: '',
     NL: '',
     DE: '',
     DK: '',

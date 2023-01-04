@@ -42,7 +42,6 @@ describe('Checkout Page', function () {
     }
     const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
 
-
     if (variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
       CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
       CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);

@@ -279,9 +279,9 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
     } else if ( variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
-      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);  // User has PREMIER account
+      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]); // User has PREMIER account
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
-    }  else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
+    } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {

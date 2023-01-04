@@ -472,6 +472,11 @@ const selectors: SelectorBrandMap = {
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
     shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
+    paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodPayPal: '[for="is-PayPal"]',
+    paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodClearPay: '[for="is-CLEARPAY"]',
+    paymentMethodLayBuy: '[for="is-LAYBUY"]',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -486,7 +491,7 @@ const selectors: SelectorBrandMap = {
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: '#encryptedSecurityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
-    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+    paynowBtnCC:'#billingSubmitButton',
   },
   'misspap.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -833,13 +838,13 @@ class BillingPage implements AbstractPage {
           }
         });
 
-        const payButtonLocator = (variables.brand == 'nastygal.com' || variables.brand == 'misspap.com') ? 'button[id*="purchase-review-continue-button"]' : '[data-testid="confirm-and-pay"]';
+        const payButtonLocator = (variables.brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[data-testid="confirm-and-pay"]';
         body().find(payButtonLocator).click({force:true});
 
         body().then($body => {
           cy.wait(5000);
           if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) { // If 'Skip and continue' button exists
-            body().find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click({force:true});
+            $body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click();
           }
         });
       });

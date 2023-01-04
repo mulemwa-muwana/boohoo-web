@@ -748,7 +748,11 @@ class ShippingPage implements AbstractPage {
     },
     cityField (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
-      cy.get(shippingCityShipping).type(city);
+      if (variables.brand == 'boohoomena.com') {
+        cy.get(shippingCityShipping).select(city);
+      } else {
+        cy.get(shippingCityShipping).type(city);
+      }
     },
     clearCityFieldAndAddNewOne (city: string) {
       const shippingCityShipping = selectors[variables.brand].shippingCityShipping;
@@ -765,7 +769,7 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
-      cy.get(shippingPostcode).type(postcode);
+      cy.get(shippingPostcode).type(postcode).blur();
     },
     stateField (state: string) {
       cy.wait(1000);

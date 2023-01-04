@@ -5,12 +5,12 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@uk-dwdev.boohoo.com',
-    sku: '#DZZ01081',
-    fullSKU: 'DZZ01081-105-16',
-    brand: 'boohoo.com',
-    locale: 'UK',
-    language: 'EN'
+    url: 'https://storefront:Oreo2022@devmena.boohoo.com/en', 
+    sku: 'AZZ00912',
+    fullSKU: 'AZZ00912-148-20',
+    brand: 'boohoomena.com',
+    locale: 'SA',
+    language: 'EN',
   },
 
   viewportHeight: 1080,
@@ -19,15 +19,11 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
-  
+
   e2e: {
-    experimentalSessionAndOrigin: true,
     setupNodeEvents (on) {
       plugins(on);
     },
-
     numTestsKeptInMemory: 0
   },
-
 });
-

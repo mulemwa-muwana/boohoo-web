@@ -273,10 +273,13 @@ describe('Shipping Page Registered user tests', function () {
       this.skip();
     }
     const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-    const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+    const includededBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk']; // Boohoo is different than Arcadia
 
     if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
+    } else if ( variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
+      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]); // User has PREMIER account
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
     } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierToCartFromShippingPage();

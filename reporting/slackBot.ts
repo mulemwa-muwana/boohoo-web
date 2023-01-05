@@ -1,4 +1,4 @@
-import { App } from '@slack/bolt';
+import { App, KnownBlock, Block } from '@slack/bolt';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 
@@ -59,6 +59,75 @@ async function GenerateAndPostReport (report: any) {
     }
   });
 
+  const attachmentBlocks: any = {
+    // Extra Info Section
+    blocks: [
+      {
+        type: 'section',
+        fields: [
+          {
+            type:'mrkdwn',
+            text: '*Platform*\n' + platformRelease
+          },
+          {
+            type:'mrkdwn',
+            text: '*Tests*\n' + tests
+          },
+        ]
+      },
+      {
+        type: 'section',
+        fields: [
+          {
+            type:'mrkdwn',
+            text: '*Environment*\n' + env
+          }
+        ]
+      }
+    ]
+  }
+
+  // Add failed tests block to the block object.
+  if (failures.length > 0) {
+    attachmentBlocks.blocks.push({
+      'type': 'divider'
+    })
+    attachmentBlocks.blocks.push({
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        text: '*Failing Tests (This list excludes skipped tests):*\n' + failures
+      }
+    })
+
+    // If there's no second message for extra failures, put the button here.
+    if (secondMessageOfFailures.length <= 0) {
+      attachmentBlocks.blocks.push({
+        type: 'actions',
+        elements: [{
+          type: 'button',
+          text: {
+            type: 'plain_text',
+            text: 'Test Results'
+          },
+          url: `${linkToReport}`
+        }]
+      })
+    } 
+  } else {
+    attachmentBlocks.blocks.push({
+      type: 'actions',
+      elements: [{
+        type: 'button',
+        text: {
+          type: 'plain_text',
+          text: 'Test Results'
+        },
+        url: `${linkToReport}`
+      }]
+    })
+  }
+
   await app.start(process.env.PORT || 3000);
 
   try {
@@ -68,9 +137,9 @@ async function GenerateAndPostReport (report: any) {
       token: process.env.SLACK_BOT_OAUTH,
       channel: process.env.SLACK_CHANNEL,
       text: `Web build detected for ${passed} out of ${tests} tests passed.`,
-      blocks: [
 
-        // Title Block
+      // Title block.
+      blocks: [
         {
           type: 'section',
           text: {
@@ -78,7 +147,6 @@ async function GenerateAndPostReport (report: any) {
             text: `Web build - ${brand.toUpperCase()} - Test Summary\n*${currentDate.toUTCString()}*`,
           }
         },
-
       ],
 
       // Pass and Fail Results
@@ -98,84 +166,46 @@ async function GenerateAndPostReport (report: any) {
           'color': '#f6f6f6',
           'author_name': skippedPercentage + '% Skipped',
         },
-        {
+        attachmentBlocks
+      ]
+    });
 
-          // Extra Info Section
-          blocks: [
-            {
-              type: 'section',
-              fields: [
-                {
-                  type:'mrkdwn',
-                  text: '*Platform*\n' + platformRelease
-                },
-                {
-                  type:'mrkdwn',
-                  text: '*Tests*\n' + tests
-                },
-              ]
-            },
-            {
-              type: 'section',
-              fields: [
-                {
-                  type:'mrkdwn',
-                  text: '*Environment*\n' + env
-                }
-              ]
-            },
-            {
-              'type': 'divider'
-            },
-
-            // Failing Tests Section
-            {
-              type: 'section',
-              text: {
-                type: 'mrkdwn',
-                text: '*Failing Tests (This list excludes skipped tests):*\n' + failures
-              }
-            },
-
-            // Button at bottom of post.
-            {
-              type: 'actions',
-              elements: [{
-                type: 'button',
+    // Dont post if there's no messages to post.
+    if (secondMessageOfFailures.length > 0) {
+      await app.client.chat.postMessage({
+        token: process.env.SLACK_BOT_OAUTH,
+        channel: process.env.SLACK_CHANNEL,
+        text: 'Continued list of failed tests (This list excludes skipped tests)',
+        blocks: [],
+        attachments: [
+          {
+            blocks: [
+  
+              // Extra fails
+              {
+                type: 'section',
                 text: {
-                  type: 'plain_text',
-                  text: 'Test Results'
-                },
-                url: `${linkToReport}`
-              }]
-            }
-
-            // End of attachments
-          ]
-        }
-      ]
-    });
-
-    await app.client.chat.postMessage({
-      token: process.env.SLACK_BOT_OAUTH,
-      channel: process.env.SLACK_CHANNEL,
-      text: 'Continued list of failed tests (This list excludes skipped tests):',
-      attachments: [
-        {
-          blocks: [
-
-            // Extra fails
-            {
-              type: 'section',
-              text: {
-                type: 'mrkdwn',
-                text: secondMessageOfFailures
+                  type: 'mrkdwn',
+                  text: secondMessageOfFailures
+                }
+              },
+              {
+                type: 'actions',
+                elements: [{
+                  type: 'button',
+                  text: {
+                    type: 'plain_text',
+                    text: 'Test Results'
+                  },
+                  url: `${linkToReport}`
+                }]
               }
-            },
-          ]
-        }
-      ]
-    });
+            ]
+          }
+        ]
+      });
+    }
+
   } finally {
     app.stop();
   }

@@ -21,7 +21,7 @@ export default async function (on: Cypress.PluginEvents): Promise<void> {
   require('cypress-json-results')({
     on,
     filename: 'results.json'
-  })
+  });
 
   on('task', {
 

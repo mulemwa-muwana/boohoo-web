@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 
 dotenv.config();
+const brand = process.argv.slice(2)[0];
 
 // Build new app.
 const app = new App({
@@ -14,166 +15,170 @@ const app = new App({
 });
 
 // Start the report.
-async function GenerateAndPostReport(report: any) {
+async function GenerateAndPostReport (report: any) {
 
-    // Store reference link.
-    const linkToReport = 'https://cloud.cypress.io/projects/i6d3n8/runs'
+  // Store reference link.
+  const linkToReport = 'https://cloud.cypress.io/projects/i6d3n8/runs';
 
-    // Find timings.
-    const currentDate = new Date();
+  // Find timings.
+  const currentDate = new Date();
 
-    // Get result statistics.
-    const { tests, passed, failed, skipped, pending } = report.totals;
-    const passedPercentage = parseFloat(((passed / tests) * 100).toFixed(2));
-    const failedPercentage = parseFloat(((failed / tests) * 100).toFixed(2));
-    const skippedPercentage = parseFloat((((skipped + pending) / tests) * 100).toFixed(2));
+  // Get result statistics.
+  const { tests, passed, failed, skipped, pending } = report.totals;
+  const passedPercentage = parseFloat(((passed / tests) * 100).toFixed(2));
+  const failedPercentage = parseFloat(((failed / tests) * 100).toFixed(2));
+  const skippedPercentage = parseFloat((((skipped + pending) / tests) * 100).toFixed(2));
 
-    const platformRelease = process.env.PLATFORM || 'Generic Test Run';
-    const env = 'Staging'
+  const platformRelease = process.env.PLATFORM || 'Generic Test Run';
+  const env = 'Staging';
 
-    // Failures
-    let failures = ''
-    let secondMessageOfFailures = ''
-    let i = 1;
-    const reportKeys = Object.keys(report);
-    reportKeys.forEach(key => {
-        if (key !== 'totals') {
-            const suite = report[key] as Record<string, 'failed' | 'passed'>;
-            const suiteKeys = Object.keys(suite);
-            suiteKeys.forEach(testName => {
-                const result = suite[testName];
-                if (result === 'failed') {
-                    // Check if adding the failure would push it over 2500 characters.
-                    if ((failures + `${i}. ${testName}\n`).length > 2500) {
-                        secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
-                    } else {
-                        // Apply failures to the failure list.
-                        failures = failures + `${i}. ${testName}\n`;
-                    }
-                    i++
-                }
-            })
+  // Failures
+  let failures = '';
+  let secondMessageOfFailures = '';
+  let i = 1;
+  const reportKeys = Object.keys(report);
+  reportKeys.forEach(key => {
+    if (key !== 'totals') {
+      const suite = report[key] as Record<string, 'failed' | 'passed'>;
+      const suiteKeys = Object.keys(suite);
+      suiteKeys.forEach(testName => {
+        const result = suite[testName];
+        if (result === 'failed') {
+
+          // Check if adding the failure would push it over 2500 characters.
+          if ((failures + `${i}. ${testName}\n`).length > 2500) {
+            secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
+          } else {
+
+            // Apply failures to the failure list.
+            failures = failures + `${i}. ${testName}\n`;
+          }
+          i++;
         }
-    })
-
-    await app.start(process.env.PORT || 3000);
-
-    try {
-
-        // Post message
-        await app.client.chat.postMessage({
-        token: process.env.SLACK_BOT_OAUTH,
-        channel: process.env.SLACK_CHANNEL,
-        text: `Web build detected for ${passed} out of ${tests} tests passed.`,
-        blocks: [
-
-            // Title Block
-            {
-            type: 'section',
-            text: {
-                type: 'mrkdwn',
-                text: `Detected a mobile build - Test Summary\n*${currentDate.toUTCString()}*`,
-            }
-            },
-
-        ],
-
-        // Pass and Fail Results
-        attachments: [
-            {
-                "fallback": "Oopsie, error occured.",
-                "color": "#23c552",
-                "author_name": passedPercentage + "% Passed",
-            },
-            {
-                "fallback": "Oopsie, error occured.",
-                "color": "#f84f31",
-                "author_name": failedPercentage + "% Failed",
-            },
-            {
-                "fallback": "Oopsie, error occured.",
-                "color": "#f6f6f6",
-                "author_name": skippedPercentage + "% Skipped",
-            },
-            {
-
-            // Extra Info Section
-            blocks: [
-                {
-                type: 'section',
-                fields: [
-                    {
-                    type:'mrkdwn',
-                    text: '*Platform*\n' + platformRelease
-                    },
-                    {
-                    type:'mrkdwn',
-                    text: '*Tests*\n' + tests
-                    },
-                ]
-                },
-                {
-                type: 'section',
-                fields: [
-                    {
-                    type:'mrkdwn',
-                    text: '*Environment*\n' + env
-                    }
-                ]
-                },
-                {
-                    "type": "divider"
-                },
-                // Failing Tests Section
-                {
-                type: 'section',
-                text: {
-                    type: 'mrkdwn',
-                    text: '*Failing Tests (This list excludes skipped tests):*\n' + failures
-                }
-                },
-
-                // Button at bottom of post.
-                {
-                type: 'actions',
-                elements: [{
-                    type: 'button',
-                    text: {
-                    type: 'plain_text',
-                    text: 'Test Results'
-                    },
-                    url: `${linkToReport}`
-                }]
-                }
-
-                // End of attachments
-            ]
-            }
-        ]
-        });
-
-        await app.client.chat.postMessage({
-            token: process.env.SLACK_BOT_OAUTH,
-            channel: process.env.SLACK_CHANNEL,
-            text: `Continued list of failed tests (This list excludes skipped tests):`,
-            attachments: [
-                {
-                    blocks: [
-                        // Extra fails
-                        {
-                            type: 'section',
-                            text: {
-                                type: 'mrkdwn',
-                                text: secondMessageOfFailures
-                            }
-                        },
-                    ]
-                }
-            ]
-        });
-    } finally {
-        app.stop();
+      });
     }
+  });
+
+  await app.start(process.env.PORT || 3000);
+
+  try {
+
+    // Post message
+    await app.client.chat.postMessage({
+      token: process.env.SLACK_BOT_OAUTH,
+      channel: process.env.SLACK_CHANNEL,
+      text: `Web build detected for ${passed} out of ${tests} tests passed.`,
+      blocks: [
+
+        // Title Block
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `Web build - ${brand.toUpperCase()} - Test Summary\n*${currentDate.toUTCString()}*`,
+          }
+        },
+
+      ],
+
+      // Pass and Fail Results
+      attachments: [
+        {
+          'fallback': 'Oopsie, error occured.',
+          'color': '#23c552',
+          'author_name': passedPercentage + '% Passed',
+        },
+        {
+          'fallback': 'Oopsie, error occured.',
+          'color': '#f84f31',
+          'author_name': failedPercentage + '% Failed',
+        },
+        {
+          'fallback': 'Oopsie, error occured.',
+          'color': '#f6f6f6',
+          'author_name': skippedPercentage + '% Skipped',
+        },
+        {
+
+          // Extra Info Section
+          blocks: [
+            {
+              type: 'section',
+              fields: [
+                {
+                  type:'mrkdwn',
+                  text: '*Platform*\n' + platformRelease
+                },
+                {
+                  type:'mrkdwn',
+                  text: '*Tests*\n' + tests
+                },
+              ]
+            },
+            {
+              type: 'section',
+              fields: [
+                {
+                  type:'mrkdwn',
+                  text: '*Environment*\n' + env
+                }
+              ]
+            },
+            {
+              'type': 'divider'
+            },
+
+            // Failing Tests Section
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: '*Failing Tests (This list excludes skipped tests):*\n' + failures
+              }
+            },
+
+            // Button at bottom of post.
+            {
+              type: 'actions',
+              elements: [{
+                type: 'button',
+                text: {
+                  type: 'plain_text',
+                  text: 'Test Results'
+                },
+                url: `${linkToReport}`
+              }]
+            }
+
+            // End of attachments
+          ]
+        }
+      ]
+    });
+
+    await app.client.chat.postMessage({
+      token: process.env.SLACK_BOT_OAUTH,
+      channel: process.env.SLACK_CHANNEL,
+      text: 'Continued list of failed tests (This list excludes skipped tests):',
+      attachments: [
+        {
+          blocks: [
+
+            // Extra fails
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: secondMessageOfFailures
+              }
+            },
+          ]
+        }
+      ]
+    });
+  } finally {
+    app.stop();
+  }
 }
 
 async function StartUpMessage (tag: string) {
@@ -187,25 +192,25 @@ async function StartUpMessage (tag: string) {
 }
 
 (async function () {
-    const brand = process.argv.slice(2)[0];
+    const arg = process.argv.slice(2)[0];
     const tag = process.argv.slice(2)[1];
 
-    if (brand === 'startup') {
+    if (arg === 'startup') {
         if (tag) {
-            await StartUpMessage(tag)
+            StartUpMessage(tag)
+            return;
         } else {
-            throw new Error('No build name was specified, try using `ts-node slackBot.ts startup TagNameHere`')
+            throw new Error('No tag was specified, try using `ts-node reporting/slackBot.ts startup TagName`')
         }
-        return;
     }
 
     // Get the file first.
     try {
-        const file = fs.readFileSync(`config/${brand}/results.json`, 'utf-8')
+        const file = fs.readFileSync(`config/${arg}/results.json`, 'utf-8')
         const report = JSON.parse(file);
-        await GenerateAndPostReport(report);
+        GenerateAndPostReport(report);
     } catch {
-        console.error('No file found, or no brand was specified.');
+        console.error('No file found, or not brand was specified.')
     }
 })();
 

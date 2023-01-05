@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 
 dotenv.config();
+const brand = process.argv.slice(2)[0];
 
 // Build new app.
 const app = new App({
@@ -74,7 +75,7 @@ async function GenerateAndPostReport (report: any) {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `Detected a mobile build - Test Summary\n*${currentDate.toUTCString()}*`,
+            text: `Web build - ${brand.toUpperCase()} - Test Summary\n*${currentDate.toUTCString()}*`,
           }
         },
 
@@ -181,7 +182,6 @@ async function GenerateAndPostReport (report: any) {
 }
 
 (async function () {
-  const brand = process.argv.slice(2)[0];
 
   // Get the file first.
   try {

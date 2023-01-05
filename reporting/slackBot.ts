@@ -176,16 +176,36 @@ async function GenerateAndPostReport(report: any) {
     }
 }
 
+async function StartUpMessage (tag: string) {
+    await app.start(process.env.PORT || 3000);
+    await app.client.chat.postMessage({
+        token: process.env.SLACK_BOT_OAUTH,
+        channel: process.env.SLACK_CHANNEL,
+        text: `A web automation build for ${tag} has started, expect reports soon.`,
+    });
+    app.stop();
+}
+
 (async function () {
     const brand = process.argv.slice(2)[0];
+    const tag = process.argv.slice(2)[1];
+
+    if (brand === 'startup') {
+        if (tag) {
+            await StartUpMessage(tag)
+        } else {
+            throw new Error('No build name was specified, try using `ts-node slackBot.ts startup TagNameHere`')
+        }
+        return;
+    }
 
     // Get the file first.
     try {
         const file = fs.readFileSync(`config/${brand}/results.json`, 'utf-8')
         const report = JSON.parse(file);
-        GenerateAndPostReport(report);
+        await GenerateAndPostReport(report);
     } catch {
-        console.error('No file found.')
+        console.error('No file found, or no brand was specified.');
     }
 })();
 

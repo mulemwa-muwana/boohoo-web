@@ -132,14 +132,17 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 class HomePage implements AbstractPage {
 
-  goto () {
+  goto (options: GotoOptions = null) {
 
     if (variables.brand == 'nastygal.com') {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
-    CommonActions.applyMarketingCookies();
-    cy.visit(variables.url);
+    if (options?.applyCookies || variables.brand == 'boohoo.com' || isSiteGenesisBrand) {
+      CommonActions.applyMarketingCookies();
+      cy.visit(variables.url);
+    }
+
   }
 
   click = {

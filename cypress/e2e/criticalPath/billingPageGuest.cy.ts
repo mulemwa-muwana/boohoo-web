@@ -39,6 +39,7 @@ describe('Billing page functionality for guest user', function () {
     CartPage.click.proceedToCheckout();
 
     CheckoutPage.actions.guestCheckoutEmail(this.guestEmail);
+    cy.wait(1000);
     CheckoutPage.click.continueAsGuestBtn();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);

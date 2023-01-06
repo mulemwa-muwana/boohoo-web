@@ -103,7 +103,7 @@ async function GenerateAndPostReport (report: any) {
     }
 
   } catch (e) {
-    throw e // We still want to throw the error, but stop the bot in the process.
+    console.error(e) // We still want to log the error, but stop the bot in the process.
   } finally {
     app.stop();
   }

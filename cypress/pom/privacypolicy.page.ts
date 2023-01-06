@@ -44,12 +44,8 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 class PrivacyPolicyPage implements AbstractPage {
 
-  goto (options: GotoOptions = null) {
+  goto () {
     cy.visit('page/privacy-notice.html');
-    if (options?.applyCookies) {
-      CommonActions.applyMarketingCookies();
-      cy.visit('/');
-    }
   }
 
   click = {

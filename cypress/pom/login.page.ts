@@ -65,7 +65,7 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': {
     loginIcon: '.user-account',
-    loginLink: '.user-links > [title="Log In"]',
+    loginLink: '.user-links > [title="Login"]',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -78,17 +78,18 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.error-form'
   },
   'karenmillen.com': {
-    loginIcon: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > div > div.js-header-right-box.header-right-box > div.header-customerinfo.hidden-on-mobile.js-appshell-uncached-headercustomerinfo-container > div > div > div > div > a:nth-child(1)',
+    loginIcon: '.user-account',
+    loginLink: '.user-links > [title="Log In"]',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
-    forgotPassword: '.password-reset', 
-    forgotPasswordMessage: '.b-dialog-window',
+    forgotPassword: '.password-reset',
+    forgotPasswordMessage: '#ShowResetPasswordDialog',
     resetPasswordEmailField: '#dwfrm_requestpassword_email',
-    resetPasswordBtn: '.b-dialog-footer > .b-button',
+    resetPasswordBtn: '.reset-password-btn',
     loginForm: '#dwfrm_login',
-    errorLoginMessage: '.error-form',
-    wishlistLoginTitle: '.login-title'
+    wishlistLoginTitle: '.login-title',
+    errorLoginMessage: '.error-form'
   },
   'coastfashion.com': {
     loginIcon: '.user-account',
@@ -166,19 +167,16 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 class LoginPage implements AbstractPage {
 
-  goto (options: GotoOptions = null): void {
+  goto (): void {
+    CommonActions.applyMarketingCookies();
     const url = variables.url + '/login';
     cy.visit(url);
-    if (options?.applyCookies) {
-      CommonActions.applyMarketingCookies();
-      cy.visit(url);
-    }
   }
 
   click = {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
         cy.get(loginIcon).invoke('show');
       } else {
         cy.get(loginIcon).click({ force: true });
@@ -224,7 +222,7 @@ class LoginPage implements AbstractPage {
     login (user: string, pass: string) {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
         cy.get(loginIcon).invoke('show');
         cy.get(loginLink).click({force:true});
       } else {

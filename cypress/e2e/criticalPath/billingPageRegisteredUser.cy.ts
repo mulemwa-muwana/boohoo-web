@@ -57,11 +57,7 @@ describe('Billing page functionality for registered user', function () {
     if (variables.brand == 'boohoomena.com') {
       shippingPage.actions.countyField(localeAddress.county);
     }
-    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
-      shippingPage.click.proceedToBillingVerification();
-    }
     BillingPage.actions.waitPageToLoad();
   });
 

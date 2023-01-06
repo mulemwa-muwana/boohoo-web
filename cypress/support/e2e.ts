@@ -20,10 +20,6 @@ beforeEach(() => {
   cy.viewport(1920, 1080);
 });
 
-before(() => {
-  HomePage.goto({ applyCookies: true });
-});
-
 // Here we're just hiding the XHR requests from the Cypress GUI.
 const app = window.top;
 if (!app.document.head.querySelector('[data-hide-command-log-request]')) {

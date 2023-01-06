@@ -779,7 +779,7 @@ class ShippingPage implements AbstractPage {
     clearPostcodeFieldAndAddNewOne (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({force: true}).type(postcode);
+      cy.get(shippingPostcode).clear({force: true}).type(postcode).blur();
     },
     selectShippingMethod (shippingMethod: string) {
       const shippingMethodname = selectors[variables.brand].shippingMethodname;

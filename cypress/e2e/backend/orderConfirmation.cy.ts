@@ -15,7 +15,7 @@ describe('Boohoo order placement', () => {
       cy.log(credentials.email, credentials.password);
 
       cy.prepareUser(credentials, variables.brand, variables.fullSKU);
-      LoginPage.goto();
+      LoginPage.goto({ applyCookies: true });
       LoginPage.actions.loginViaPage(credentials.email, credentials.password);
       cy.wait(2000);
       CartPage.goto();

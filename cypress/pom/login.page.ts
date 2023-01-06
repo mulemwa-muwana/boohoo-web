@@ -167,10 +167,13 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 class LoginPage implements AbstractPage {
 
-  goto (): void {
-    CommonActions.applyMarketingCookies();
+  goto (options: GotoOptions = null): void {
     const url = variables.url + '/login';
     cy.visit(url);
+    if (options?.applyCookies) {
+      CommonActions.applyMarketingCookies();
+      cy.visit(url);
+    }
   }
 
   click = {

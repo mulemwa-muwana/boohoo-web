@@ -109,7 +109,7 @@ const selectors: SelectorBrandMap = {
   'misspap.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.link-item-login',
-    registrationButton: '.form-row-button > .button',
+    registrationButton: 'button.login-page-button[value="Create Account"]',
     wishListIcon: '.icon-wishlist-header',
     searchField: 'form > fieldset > input',
     searchIcon: '.icon-search',
@@ -132,18 +132,14 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 class HomePage implements AbstractPage {
 
-  goto (options: GotoOptions = null) {
+  goto () {
 
-    cy.visit(variables.url);
     if (variables.brand == 'nastygal.com') {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || isSiteGenesisBrand) {
-      CommonActions.applyMarketingCookies();
-      cy.visit(variables.url);
-    }
-
+    CommonActions.applyMarketingCookies();
+    cy.visit(variables.url);
   }
 
   click = {
@@ -159,9 +155,6 @@ class HomePage implements AbstractPage {
     },
     registrationButton () {
       const registrationButton = selectors[variables.brand].registrationButton;
-      if (variables.brand == 'misspap.com') {
-        cy.get('#dwfrm_login_register > fieldset > .form-row > .login-page-button').click({force:true});
-      }
       cy.get(registrationButton).click({force:true});
     },
 

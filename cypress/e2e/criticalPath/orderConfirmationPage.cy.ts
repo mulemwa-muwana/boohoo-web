@@ -51,13 +51,11 @@ describe('Order confirmation page for guest user', function () {
         shippingPage.actions.selectDate('23', 'May', '2001');
         if (variables.brand == 'boohooman.com') {
           shippingPage.click.proceedToBilling();
-          shippingPage.click.proceedToBillingVerification();
           billingPage.actions.billingEmailField(credentials.guest);
           billingPage.actions.billingConfirmEmailField(credentials.guest);
         } else {
           shippingPage.actions.confirmEmail(credentials.guest);
           shippingPage.click.proceedToBilling();
-          shippingPage.click.proceedToBillingVerification();
         }
 
       } else {
@@ -141,9 +139,6 @@ describe('Order confirmation page for registered user', function () {
     }
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
-      shippingPage.click.proceedToBillingVerification();
-    }
     BillingPage.actions.waitPageToLoad();
     BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
 

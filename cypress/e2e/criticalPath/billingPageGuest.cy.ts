@@ -59,7 +59,6 @@ describe('Billing page functionality for guest user', function () {
         shippingPage.actions.confirmEmail(this.guestEmail);
       }
       shippingPage.click.proceedToBilling();
-      shippingPage.click.proceedToBillingVerification();
 
     } else {
       if (variables.locale == 'US') {

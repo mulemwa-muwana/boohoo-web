@@ -56,7 +56,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'boohooman.com': {
-    minicartIcon: '.mini-cart-link',
+    minicartIcon: '#mini-cart .mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
@@ -134,6 +134,7 @@ class HomePage implements AbstractPage {
 
   goto (options: GotoOptions = null) {
 
+    cy.visit(variables.url);
     if (variables.brand == 'nastygal.com') {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }

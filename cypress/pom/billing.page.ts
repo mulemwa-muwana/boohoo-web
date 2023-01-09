@@ -854,11 +854,19 @@ class BillingPage implements AbstractPage {
 
         const payButtonLocator = (variables.brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[data-testid="confirm-and-pay"]';
         body().find(payButtonLocator).click({force:true});
+        cy.wait(5000);
 
         body().then($body => {
-          cy.wait(5000);
           if ($body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').length) { // If 'Skip and continue' button exists
             $body.find('#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]').click();
+            cy.wait(2000);
+          }
+        });
+        
+        body().then($body => {
+          if ($body.find('[data-testid="SmoothCheckoutPopUp\\:skip"]').length) { // If 'Faster checkout' popup exists
+            $body.find('[data-testid="SmoothCheckoutPopUp\\:skip"]').click();
+            cy.wait(5000);
           }
         });
       });

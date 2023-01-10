@@ -28,7 +28,8 @@ async function GenerateAndPostReport (report: any) {
   const { tests, passed, failed, skipped, pending } = report.totals;
   const passedPercentage = parseFloat(((passed / tests) * 100).toFixed(2));
   const failedPercentage = parseFloat(((failed / tests) * 100).toFixed(2));
-  const skippedPercentage = parseFloat((((skipped + pending) / tests) * 100).toFixed(2));
+  const skippedPercentage = parseFloat(((skipped / tests) * 100).toFixed(2));
+  const pendingPercentage = parseFloat(((pending / tests) * 100).toFixed(2));
 
   const platformRelease = process.env.PLATFORM || 'Generic Test Run';
   const env = 'Staging';
@@ -70,11 +71,21 @@ async function GenerateAndPostReport (report: any) {
     passedPercentage,
     failedPercentage,
     skippedPercentage,
+    pendingPercentage,
   });
 
   await app.start(process.env.PORT || 3000);
 
   try {
+
+    if (isNaN(passedPercentage) || isNaN(failedPercentage)) {
+      await app.client.chat.postMessage({
+        token: process.env.SLACK_BOT_OAUTH,
+        channel: process.env.SLACK_CHANNEL,
+        text: `There has been an issue generating a Slack report for ${brand.toUpperCase()}.\nTo find more information, log into the TeamCity server and check the build artefacts.`,
+      })
+      return;
+    }
 
     // Post message
     await app.client.chat.postMessage({

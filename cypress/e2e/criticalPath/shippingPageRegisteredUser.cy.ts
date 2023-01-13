@@ -1,41 +1,18 @@
-import HomePage from '../../pom/home.page';
-import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import shippingPage from '../../pom/shipping.page';
-import checkoutPage from '../../pom/checkoutLogin.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 import billingPage from 'cypress/pom/billing.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    cy.wait(3000);
-    pdpPage.actions.selectSize();
-    cy.wait(3000);
-    pdpPage.click.addToCart();
-    cy.wait(3000);
-    HomePage.click.cartIcon();
-    cy.wait(3000);
-    if (!isSiteGenesisBrand) {
-      pdpPage.click.miniCartViewCartBtn();
-    }
-    cartPage.click.proceedToCheckout();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      checkoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
-        checkoutPage.click.continueAsRegisteredUser();
-      }
-      checkoutPage.actions.passwordField(credentials.password);
-      cy.wait(1000);
-      checkoutPage.click.continueAsRegisteredUser();
-    });
+    Navigate.toShippingPage('RegisteredUser');
   });
 
   /** [Test Steps]

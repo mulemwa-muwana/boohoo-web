@@ -162,3 +162,4 @@ declare type AddressMapAddressLine2 = {[key in Locale]: string}
 declare type AddressMapPostcode = {[key in Locale]: string}
 declare type AddressMapPhoneNumber = {[key in Locale]: string}
 
+declare type UserType = 'GuestUser' | 'RegisteredUser'

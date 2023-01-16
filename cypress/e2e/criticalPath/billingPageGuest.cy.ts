@@ -1,14 +1,11 @@
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import BillingPage from '../../pom/billing.page';
-import CartPage from '../../pom/cart.page';
-import CheckoutPage from '../../pom/checkoutLogin.page';
-import HomePage from '../../pom/home.page';
-import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -25,54 +22,7 @@ describe('Billing page functionality for guest user', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize();
-    cy.wait(2000);
-    PdpPage.click.addToCart();
-    cy.wait(7000);
-    HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand) {
-      PdpPage.click.miniCartViewCartBtn();
-    }
-    CartPage.click.proceedToCheckout();
-
-    CheckoutPage.actions.guestCheckoutEmail(this.guestEmail);
-    cy.wait(1000);
-    CheckoutPage.click.continueAsGuestBtn();
-    shippingPage.actions.firstNameField(localeAddress.firstName);
-    shippingPage.actions.lastNameField(localeAddress.lastName);
-    shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.actions.phoneNumberField(localeAddress.phone);
-    cy.wait(5000);
-    shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityField(localeAddress.city);
-    shippingPage.actions.postcodeField(localeAddress.postcode);
-    if (variables.locale == 'AU') {
-      shippingPage.actions.stateField(localeAddress.county);
-    }
-
-    if (isSiteGenesisBrand) {
-      shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-      if (variables.brand != 'boohooman.com') {
-        shippingPage.actions.confirmEmail(this.guestEmail);
-      }
-      shippingPage.click.proceedToBilling();
-
-    } else {
-      if (variables.locale == 'US') {
-        shippingPage.actions.selectState(localeAddress.county);
-        shippingPage.click.proceedToBilling();
-        cy.wait(3000);
-        shippingPage.actions.selectDate('23', '3', '2001');
-      } else {
-        shippingPage.click.proceedToBilling();
-      }
-    }
-
-    BillingPage.actions.waitPageToLoad();
+    Navigate.toBillingPage('GuestUser');
   });
 
   it('Verify that shipping address block is filled with data', function () {

@@ -21,9 +21,9 @@ describe('Shipping Page Guest user tests', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
-    Navigate.toShippingPage('GuestUser');
+    Navigate.toShippingPageWithSession('GuestUser');
   });
-  
+
   it('Verify that promo code field is dispayed', function () {
     if (isSiteGenesisBrand) {
       this.skip(); // Promo code field is on Billing page for Site Genesis brands
@@ -111,7 +111,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.actions.confirmEmailField(this.guestEmail);
     }
     shippingPage.click.proceedToBilling();
   });
@@ -137,7 +137,7 @@ describe('Shipping Page Guest user tests', function () {
     }
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.actions.confirmEmailField(this.guestEmail);
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
@@ -157,7 +157,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.actions.confirmEmailField(this.guestEmail);
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
@@ -209,7 +209,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.actions.confirmEmailField(this.guestEmail);
     }
     shippingPage.click.proceedToBilling();
     if (isSiteGenesisBrand) {

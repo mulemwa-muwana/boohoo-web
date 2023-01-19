@@ -643,7 +643,9 @@ class BillingPage implements AbstractPage {
 
   actions = {
     waitPageToLoad () {
-      cy.wait(12000);
+      if (!isSiteGenesisBrand) {
+        cy.wait(12000);
+      }
     },
     selectDate (day: string, month: string, year: string) {
       const dobDate = selectors[variables.brand].dobDate;

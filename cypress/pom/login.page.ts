@@ -1,5 +1,4 @@
 import AbstractPage from './abstract/abstract.page';
-import * as CommonActions from '../helpers/common';
 import { isSiteGenesisBrand } from '../helpers/common';
 
 const selectors: SelectorBrandMap = {
@@ -167,13 +166,8 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 class LoginPage implements AbstractPage {
 
-  goto (options: GotoOptions = null): void {
-    const url = variables.url + '/login';
-    cy.visit(url);
-    if (options?.applyCookies) {
-      CommonActions.applyMarketingCookies();
-      cy.visit(url);
-    }
+  goto (): void {
+    cy.visit(variables.url + '/login');
   }
 
   click = {

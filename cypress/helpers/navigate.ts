@@ -10,21 +10,20 @@ import assertionText from './assertionText';
 import Addresses from './addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
-
 const variables = Cypress.env() as EnvironmentVariables;
 
 class Navigate {
   
-  toHomePage() {
+  toHomePage () {
     HomePage.goto();
-  };
+  }
 
-  toProductDetailsPage() {
+  toProductDetailsPage () {
     this.toHomePage();
     HomePage.actions.findItemUsingSKU(variables.sku);
-  };
+  }
 
-  toCartPage() {
+  toCartPage () {
     this.toProductDetailsPage();
     PdpPage.actions.selectSize();
     cy.wait(2000);
@@ -34,14 +33,14 @@ class Navigate {
     if (!isSiteGenesisBrand) {
       PdpPage.click.miniCartViewCartBtn();
     }
-  };
+  }
 
-  toCheckoutLoginPage() {
+  toCheckoutLoginPage () {
     this.toCartPage();
     CartPage.click.proceedToCheckout();
-  };
+  }
 
-  toShippingPage(userType: UserType) {
+  toShippingPage (userType: UserType) {
     this.toCheckoutLoginPage();
 
     // GUEST USER //
@@ -65,12 +64,12 @@ class Navigate {
       });
     }
     cy.wait(2000);
-  };
+  }
 
-  toBillingPage(userType: UserType) {
+  toBillingPage (userType: UserType) {
     this.toShippingPage(userType);
 
-      // GUEST USER //
+    // GUEST USER //
     if (userType === 'GuestUser') {
       const primaryAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
       cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -89,10 +88,7 @@ class Navigate {
         if (isSiteGenesisBrand) {
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
           if (variables.brand != 'boohooman.com') {
-            shippingPage.actions.confirmEmail(credentials.guest);
-            // shippingPage.click.proceedToBilling();
-            // BillingPage.actions.billingEmailField(credentials.guest);
-            // BillingPage.actions.billingConfirmEmailField(credentials.guest);
+            shippingPage.actions.confirmEmailField(credentials.guest);
           } 
           shippingPage.click.proceedToBilling();
           
@@ -127,16 +123,210 @@ class Navigate {
       shippingPage.click.proceedToBilling();
       BillingPage.actions.waitPageToLoad();
     }
-  };
+  }
 
-  toOrderConfirmationPage(userType: UserType, creditCard: CardDetails = cards.master) {
+  toOrderConfirmationPage (userType: UserType, creditCard: CardDetails = cards.master) {
     this.toBillingPage(userType);
 
     BillingPage.actions.selectCreditCard(creditCard.cardNo, creditCard.owner, creditCard.date, creditCard.code);
     if (variables.brand == 'boohoo.com' && (variables.language == 'DE' || variables.language == 'SE')) {
       orderConfirmationPage.click.closeCancellationPopup();
     }
-  };
+  }
+
+  // ////////////////////////////////////////////////////////////// SESSION //////////////////////
+  toShippingSession (userType: UserType) {
+    cy.session('item-session', () => {
+
+      HomePage.goto();
+      HomePage.actions.findItemUsingSKU(variables.sku);
+
+      PdpPage.actions.selectSize();
+      cy.wait(2000);
+      PdpPage.click.addToCart();
+      cy.wait(7000);
+    
+      HomePage.click.cartIcon();
+      if (!isSiteGenesisBrand) {
+        PdpPage.click.miniCartViewCartBtn();
+      }
+      CartPage.click.proceedToCheckout();
+
+      // GUEST USER //
+      if (userType === 'GuestUser') {  
+        cy.fixture('users').then((credentials: LoginCredentials) => {
+          CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+          CheckoutPage.click.continueAsGuestBtn();
+        });
+    
+        // REGISTERED USER //
+      } else {
+        cy.fixture('users').then((credentials: LoginCredentials) => {
+          cy.wait(2000);
+          CheckoutPage.actions.userEmailField(credentials.username);
+          if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
+            CheckoutPage.click.continueAsRegisteredUser();
+          }
+          cy.wait(1000);
+          CheckoutPage.actions.passwordField(credentials.password);
+          CheckoutPage.click.continueAsRegisteredUser();
+        });
+      }
+
+      // GUEST USER //
+      if (userType === 'GuestUser') {
+        const primaryAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+        cy.fixture('users').then((credentials: LoginCredentials) => {
+          shippingPage.actions.firstNameField(primaryAddress.firstName);
+          shippingPage.actions.lastNameField(primaryAddress.lastName);
+          shippingPage.actions.selectCountry(primaryAddress.country);
+          shippingPage.click.addAddressManually();
+          shippingPage.actions.adressLine1(primaryAddress.addrline1);
+          shippingPage.actions.cityField(primaryAddress.city);
+          if (variables.locale == 'US' || variables.locale == 'AU') {
+            shippingPage.actions.selectState(primaryAddress.county);
+          }
+          shippingPage.actions.postcodeField(primaryAddress.postcode);
+          shippingPage.actions.phoneNumberField(primaryAddress.phone);
+
+          if (isSiteGenesisBrand) {
+            shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+            if (variables.brand != 'boohooman.com') {
+              shippingPage.actions.confirmEmailField(credentials.guest);
+            } 
+            shippingPage.click.proceedToBilling();
+          } else {
+            shippingPage.click.proceedToBilling();
+          }
+        });
+
+        // REGISTERED USER //
+      } else {
+        const primaryAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+        if (variables.brand != 'boohooman.com') {
+          shippingPage.click.addNewAddressButton();
+        }
+
+        // ShippingPage.actions.firstNameField(primaryAddress.firstName);
+        // ShippingPage.actions.lastNameField(primaryAddress.lastName);
+        shippingPage.actions.selectCountry(primaryAddress.country);
+        shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(primaryAddress.phone);
+        cy.wait(5000);
+        shippingPage.click.addAddressManually();  
+        shippingPage.actions.clearAdressLine1AndAddNewOne(primaryAddress.addrline1);
+        shippingPage.actions.clearCityFieldAndAddNewOne(primaryAddress.city);
+        if (variables.locale == 'US') {
+          shippingPage.actions.selectState(primaryAddress.county);
+        } else if (variables.locale == 'AU') {
+          shippingPage.actions.stateField(primaryAddress.county);
+        }
+        if (variables.brand == 'boohoomena.com') {
+          shippingPage.actions.countyField(primaryAddress.county);
+        }
+        shippingPage.actions.clearPostcodeFieldAndAddNewOne(primaryAddress.postcode);
+        shippingPage.click.proceedToBilling();
+      }
+
+    });
+  }
+
+  toShippingPageWithSession (userType: UserType) {
+    this.toShippingSession(userType);
+
+    // Session end
+
+    HomePage.goto();
+    HomePage.click.cartIcon();
+    if (!isSiteGenesisBrand) {
+      PdpPage.click.miniCartViewCartBtn();
+    }
+
+    CartPage.click.proceedToCheckout();
+
+    // GUEST USER //
+    if ((userType === 'GuestUser') && (variables.brand !== 'boohoo.com')) {
+      cy.fixture('users').then((credentials: LoginCredentials) => {
+        CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+        CheckoutPage.click.continueAsGuestBtn();
+      });
+    } 
+
+    // REGISTERED USER WHEN NAVIGATED TO CHECKOUT PAGE GOES TO SHIPPING PAGE DIRECTLY //
+
+    if (isSiteGenesisBrand) {
+      if (userType === 'GuestUser') {
+        shippingPage.click.editAddress();
+      } else {
+        shippingPage.click.addNewAddressButton();
+        const primaryAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+        shippingPage.actions.firstNameField(primaryAddress.firstName);
+        shippingPage.actions.lastNameField(primaryAddress.lastName);
+      }
+    } else {
+      if (variables.brand == 'boohoo.com') {
+        shippingPage.click.addNewAddressButton();
+      } else {
+        shippingPage.click.addNewAddress();
+      }
+      shippingPage.click.addAddressManually();
+    }
+  }
+
+  toBillingPageWithSession (userType: UserType) {
+
+    this.toShippingSession(userType);
+
+    // Session end
+
+    HomePage.goto();
+    HomePage.click.cartIcon();
+    if (!isSiteGenesisBrand) {
+      PdpPage.click.miniCartViewCartBtn();
+    }
+    CartPage.click.proceedToCheckout();
+
+    // GUEST USER //
+    if (userType === 'GuestUser') {
+      cy.fixture('users').then((credentials: LoginCredentials) => {
+        CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+        CheckoutPage.click.continueAsGuestBtn();
+      });
+    }
+
+    // REGISTERED USER WHEN NAVIGATED TO CHECKOUT PAGE GOES TO SHIPPING PAGE DIRECTLY //
+
+    // GUEST USER //
+    if (userType === 'GuestUser') {
+      const primaryAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+      cy.fixture('users').then((credentials: LoginCredentials) => {
+
+        if (isSiteGenesisBrand) {
+          shippingPage.actions.firstNameField(primaryAddress.firstName);
+          shippingPage.actions.lastNameField(primaryAddress.lastName);
+          shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+          shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(primaryAddress.phone);
+          if (variables.brand != 'boohooman.com') {
+
+            // ShippingPage.actions.emailField(credentials.guest);
+            shippingPage.actions.confirmEmailField(credentials.guest);
+          } 
+          shippingPage.click.proceedToBilling();
+        
+        } else {
+          shippingPage.click.proceedToBilling();
+          BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+
+        // BillingPage.actions.waitPageToLoad();
+        }
+      });
+
+    // REGISTERED USER //
+    } else {
+      shippingPage.click.proceedToBilling();
+      BillingPage.actions.waitPageToLoad();
+    }
+
+  }
 }
 
 export default new Navigate();

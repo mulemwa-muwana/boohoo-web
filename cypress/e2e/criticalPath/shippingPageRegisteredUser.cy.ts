@@ -12,7 +12,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
-    Navigate.toShippingPage('RegisteredUser');
+    Navigate.toShippingPageWithSession('RegisteredUser');
   });
 
   /** [Test Steps]
@@ -369,9 +369,6 @@ describe('Shipping Page Registered user tests', function () {
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
-      shippingPage.click.proceedToBillingVerification();
-    }
     billingPage.actions.waitPageToLoad();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });

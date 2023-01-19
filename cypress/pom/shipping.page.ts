@@ -148,12 +148,12 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    editAddress: '[data-tau="edit_address"]',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: 'button[data-tau="add_new_address"]',
+    addNewAddress: '.b-address_selector-button[data-tau="add_new_address"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
@@ -283,7 +283,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
-    editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    editAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -471,13 +471,13 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
-    editAddress: '.js-address-radios-edit',
+    editAddress: '.js-edit-address',
     editCart: '.section-header-note',
-    addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
+    addAddressManually: '.add-new-address',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
     proceedToBillingVerificationBtn: '#dwfrm_singleshipping_shippingAddress > fieldset.address-container > fieldset:nth-child(3) > div > div > button > span',
-    addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    addNewAddress: '.add-new-address',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     PostcodeLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
@@ -577,7 +577,7 @@ class ShippingPage implements AbstractPage {
     },
     addNewAddress () {
       const addNewAddress = selectors[variables.brand].addNewAddress;
-      cy.get(addNewAddress).click({force: true});
+      cy.get(addNewAddress, {timeout: 30000}).click({force: true});
     },
     addPremierByButtonName (text: string) {
       cy.contains(text).click({force: true});
@@ -620,7 +620,7 @@ class ShippingPage implements AbstractPage {
       cy.get(editCart).should('be.visible').click();
     },
     editAddress () {
-      if (variables.brand != 'boohooman.com') {
+      if (isSiteGenesisBrand && (variables.brand != 'boohooman.com')) {
         const editAddress = selectors[variables.brand].editAddress;
         cy.get(editAddress).click({force: true});
       }
@@ -797,7 +797,11 @@ class ShippingPage implements AbstractPage {
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
     },
-    confirmEmail (email: string) {
+    emailField (email: string) {
+      const guestEmailField = selectors[variables.brand].guestEmailField;
+      cy.get(guestEmailField).type(email);
+    },
+    confirmEmailField (email: string) {
       const confirmEmail = selectors[variables.brand].confirmEmail;
       cy.get(confirmEmail).type(email);
     },

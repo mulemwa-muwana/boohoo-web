@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.burton.co.uk/',
-    sku: '#BBB01461-2', // Needs hashtag for assertation on PDP
+    sku: '#BBB02759-2', // Needs hashtag for assertation on PDP
     brand: 'burton.co.uk',
     locale: 'UK',
     language: 'EN',
@@ -23,6 +23,7 @@ export default defineConfig({
     setupNodeEvents (on) {
       plugins(on);
     },
-    numTestsKeptInMemory: 0
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },
 });

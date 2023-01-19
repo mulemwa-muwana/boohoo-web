@@ -1,6 +1,4 @@
 import AbstractPage from './abstract/abstract.page';
-import * as CommonActions from '../helpers/common';
-import { isSiteGenesisBrand } from '../helpers/common';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -132,18 +130,12 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 class HomePage implements AbstractPage {
 
-  goto (options: GotoOptions = null) {
-
-    cy.visit(variables.url);
+  goto () {
     if (variables.brand == 'nastygal.com') {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
-
-    if (options?.applyCookies || variables.brand == 'boohoo.com' || isSiteGenesisBrand) {
-      CommonActions.applyMarketingCookies();
-      cy.visit(variables.url);
-    }
-
+    
+    cy.visit(variables.url);
   }
 
   click = {

@@ -3,6 +3,7 @@ import assertionText from '../../helpers/assertionText';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
+import cards from 'cypress/helpers/cards';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -12,7 +13,7 @@ describe('Order confirmation page for guest user', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
     
-    Navigate.toOrderConfirmationPage('GuestUser');
+    Navigate.toOrderConfirmationPage('GuestUser', cards.master);
   });
 
   it('Verify that email address, order number, value and payment method are visible for guest user', function () {
@@ -44,7 +45,7 @@ describe('Order confirmation page for guest user', function () {
 describe('Order confirmation page for registered user', function () {
   
   beforeEach (()=>{
-    Navigate.toOrderConfirmationPage('RegisteredUser');
+    Navigate.toOrderConfirmationPage('RegisteredUser', cards.visa);
   });
 
   it('Verify that email, order number, value and order total are visible for registred users', function () {

@@ -23,7 +23,7 @@ export default defineConfig({
     setupNodeEvents (on, config) {
       plugins(on);
     },
-
-    numTestsKeptInMemory: 0
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },
 });

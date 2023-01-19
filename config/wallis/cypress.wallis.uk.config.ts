@@ -24,6 +24,7 @@ export default defineConfig({
       plugins(on);
     },
 
-    numTestsKeptInMemory: 0
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },
 });

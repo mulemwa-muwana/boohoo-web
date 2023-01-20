@@ -12,10 +12,15 @@ describe('Login Functionality tests', function () {
     HomePage.goto();
   });
     
-  it('Verify that user can login with valid credentials', function () {
+  it('Verify that user can login with valid credentials and log out', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
+
+      cy.wait(3000);
+
+      MyAccountPage.click.logOutLink();
+      LoginPage.assertions.assertLoginFormIsPresent();  
     });
   });
   
@@ -29,8 +34,8 @@ describe('Login Functionality tests', function () {
       }
     });
   });
-  
-  it('Verify that user can not login with non-registered mail address', function () {
+
+  it('Verify that user can not login with non-registered mail address and that user can start process of reseting password using the "Forgot your password?" link', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
       if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com') {
@@ -41,19 +46,6 @@ describe('Login Functionality tests', function () {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
       }
     });
-  });
-    
-  it('Verify that user can log out', function () {
-    cy.fixture('users').then((credentials: LoginCredentials) => {   
-      LoginPage.actions.login(credentials.username, credentials.password);
-      MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
-    });
-    MyAccountPage.click.logOutLink();
-    LoginPage.assertions.assertLoginFormIsPresent();  
-  });
-
-  it('Verify that user can start process of reseting password using the "Forgot your password?" link', function () {
-    LoginPage.goto();
     LoginPage.click.forgotPasswordLink();
     cy.wait(2000);
     LoginPage.actions.resetPasswordEmail('jelenaboohoo@gmail.com');

@@ -24,7 +24,6 @@ describe('Shipping Page Guest user tests', function () {
     Navigate.toShippingPage('GuestUser');
   });
   
-  // eslint-disable-next-line mocha/no-exclusive-tests
   it('Verify that order total and promo code are displayed', function () {
     shippingPage.assertions.assertOrderTotalIsDisplayed();
     if (!isSiteGenesisBrand) {

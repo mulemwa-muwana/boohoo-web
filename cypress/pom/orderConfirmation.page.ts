@@ -11,7 +11,7 @@ const selectors: SelectorBrandMap = {
     billingAddressDetailsName:'[aria-label="Payment Details"] p.b-address-name',
     billingAddressDetailsSummary:'[aria-label="Payment Details"] p.b-address-summary',
     shippingMethodIsDisplayed:'b-summary_shipping-name',
-    paymentMethod:'.b-summary_payment-name',
+    paymentMethod:'.b-summary_payment-item',
     orderTotalIsVisible:'.b-summary_shipping-cost',
     thatPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpassword',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'#dwfrm_newPasswords_newpasswordconfirm',

@@ -644,6 +644,23 @@ class AssertionText {
     DE: 'Kredit-/Debitkarte'
   };
 
+
+  assertPaymentMethodPayPal: TranslationMap = {
+    EN: 'PayPal',
+    NL: 'PayPal',
+    DK: 'PayPal',
+    FR: 'PayPal',
+    FI: 'PayPal',
+    NO: 'PayPal',
+    SE: 'PayPal',
+    IL: 'PayPal',
+    IT: 'PayPal',
+    ES: 'PayPal',
+    DE: 'PayPal'
+  };
+
+
+
   assertPaymentMethodSiteGenesis: TranslationMap = {
     EN: 'Card',
     NL: '',

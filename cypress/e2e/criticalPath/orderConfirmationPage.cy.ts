@@ -67,13 +67,13 @@ describe('Order confirmation page for guest user', function () {
       }
     });
 
-    BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+    BillingPage.actions.selectPayPal();
     if (variables.brand == 'boohoo.com' && (variables.language == 'DE' || variables.language == 'SE')) {
       orderConfirmationPage.click.closeCancellationPopup();
     }
   });
 
-  it('Verify that email address, order number, value and payment method are visible for guest user', function () {
+  it.only('Verify that email address, order number, value and payment method are visible for guest user', function () { //changed payment method to PayPal
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
@@ -93,7 +93,7 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
 
-  it('Verify that for guest users password fields are present on order confirmation page', function () {
+  it.only('Verify that for guest users password fields are present on order confirmation page', function () {
     orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
     orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
   });

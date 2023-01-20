@@ -1,12 +1,10 @@
-import HomePage from '../../pom/home.page';
-import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
-import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -23,21 +21,7 @@ describe('Shipping Page Guest user tests', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    cy.wait(3000);
-    pdpPage.actions.selectSize();
-    cy.wait(3000);
-    pdpPage.click.addToCart();
-    cy.wait(3000);
-    HomePage.click.cartIcon();
-    cy.wait(3000);
-    if (!isSiteGenesisBrand) {
-      pdpPage.click.miniCartViewCartBtn();
-    }
-    cartPage.click.proceedToCheckout();
-    checkoutPage.actions.guestCheckoutEmail(this.guestEmail);
-    checkoutPage.click.continueAsGuestBtn();   
+    Navigate.toShippingPage('GuestUser');
   });
   
   it('Verify that promo code field is dispayed', function () {

@@ -4,6 +4,7 @@ import { join } from 'path';
 
 export default async function (on: Cypress.PluginEvents): Promise<void> {
 
+  // This will import any .env file env variables.
   try {
     const configWithDotenv = (await import('dotenv')).config({ 
       path: join(__dirname, '..', '..', '.env'),
@@ -15,6 +16,12 @@ export default async function (on: Cypress.PluginEvents): Promise<void> {
   } catch {
     console.warn('No env file found.');
   }
+
+  // This will ensure that JSON reports will be created.
+  require('cypress-json-results')({
+    on,
+    filename: 'results.json'
+  });
 
   on('task', {
 

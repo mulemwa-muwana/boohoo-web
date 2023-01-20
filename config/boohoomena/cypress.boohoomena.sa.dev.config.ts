@@ -5,10 +5,11 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@stg.coastfashion.com/',
-    sku: 'BCC02130-2',
-    brand: 'coastfashion.com',
-    locale: 'UK',
+    url: 'https://storefront:Oreo2022@devmena.boohoo.com/en', 
+    sku: 'AZZ00912',
+    fullSKU: 'AZZ00912-148-20',
+    brand: 'boohoomena.com',
+    locale: 'SA',
     language: 'EN',
   },
 
@@ -20,9 +21,9 @@ export default defineConfig({
   screenshotOnRunFailure: true,
 
   e2e: {
-    setupNodeEvents (on, config) {
+    setupNodeEvents (on) {
       plugins(on);
     },
     numTestsKeptInMemory: 0
-  },   
+  },
 });

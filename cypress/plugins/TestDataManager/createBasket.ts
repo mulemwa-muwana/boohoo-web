@@ -4,11 +4,16 @@ export default async function (credentials: NewCustomerCredentials, brand: Group
 
   // Buidl URL.
   const prefix = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
-  const endpoint = `https://${prefix}.${brand}/${locale}/baskets?locale=en-GB`;
+  let endpoint = `https://${prefix}.${brand}/${locale}/baskets?locale=en-GB`;
+
+  if (brand == 'boohoomena.com') endpoint = 'https://dev-mobile-mena-gateway.boohoo.com/sa/baskets?locale=en-SA';
   
+  let currency = 'GBP';
+  if (brand == 'boohoomena.com') currency = 'SAR';
+
   // Send request.
   const response = await axios.post(endpoint, {
-    currency: 'GBP'
+    currency: currency
   }, {
     headers: {
       'Content-Type': 'application/json',

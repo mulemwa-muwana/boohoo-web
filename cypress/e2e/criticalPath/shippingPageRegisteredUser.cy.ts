@@ -1,43 +1,25 @@
-import HomePage from '../../pom/home.page';
-import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import shippingPage from '../../pom/shipping.page';
-import checkoutPage from '../../pom/checkoutLogin.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 import billingPage from 'cypress/pom/billing.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    cy.wait(3000);
-    pdpPage.actions.selectSize();
-    cy.wait(3000);
-    pdpPage.click.addToCart();
-    cy.wait(3000);
-    HomePage.click.cartIcon();
-    cy.wait(3000);
-    if (!isSiteGenesisBrand) {
-      pdpPage.click.miniCartViewCartBtn();
-    }
-    cartPage.click.proceedToCheckout();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      checkoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
-        checkoutPage.click.continueAsRegisteredUser();
-      }
-      checkoutPage.actions.passwordField(credentials.password);
-      cy.wait(1000);
-      checkoutPage.click.continueAsRegisteredUser();
-    });
+    Navigate.toShippingPage('RegisteredUser');
   });
 
+  /** [Test Steps]
+   * Log in
+   * Go to promo field
+   * Check it's displayed
+   */
   it('Verify that promo code field is displayed', function () {
     if (isSiteGenesisBrand) {
       this.skip(); // Promo code field for Site Genesis brands is displayed on Billing Page.
@@ -67,6 +49,11 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
+  /** [Test Steps]
+   * Log in
+   * Go to billing 
+   * Check it's displayed
+   */
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
     if (variables.locale != 'IE' && variables.locale != 'AU') {
       shippingPage.click.proceedToBilling();
@@ -263,10 +250,13 @@ describe('Shipping Page Registered user tests', function () {
       this.skip();
     }
     const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-    const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+    const includededBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk']; // Boohoo is different than Arcadia
 
     if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
+    } else if ( variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
+      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]); // User has PREMIER account
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
     } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierToCartFromShippingPage();

@@ -1,68 +1,17 @@
 import shippingMethods from '../../helpers/shippingMethods';
 import BillingPage from '../../pom/billing.page';
-import CartPage from '../../pom/cart.page';
-import CheckoutPage from '../../pom/checkoutLogin.page';
-import HomePage from '../../pom/home.page';
-import PdpPage from '../../pom/pdp.page';
 import shippingPage from '../../pom/shipping.page';
 import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Billing page functionality for registered user', function () {
-  beforeEach (()=>{
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize();
-    cy.wait(2000);
-    PdpPage.click.addToCart();
-    cy.wait(7000);
-    HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand) {
-      PdpPage.click.miniCartViewCartBtn();
-    }
-    if (variables.brand === 'dorothyperkins.com' || variables.brand === 'wallis.co.uk') {
-      PdpPage.click.viewCart; 
-    }
-    CartPage.click.proceedToCheckout();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      cy.wait(2000);
-      CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
-        CheckoutPage.click.continueAsRegisteredUser();
-      }
-      cy.wait(1000);
-      CheckoutPage.actions.passwordField(credentials.password);
-      CheckoutPage.click.continueAsRegisteredUser();
-    });
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (variables.brand != 'boohooman.com') {
-      shippingPage.click.addNewAddressButton();
-    }
-    shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
-    cy.wait(5000);
-    shippingPage.click.addAddressManually();  
-    shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-    shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
-    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode); 
-    if (variables.locale === 'AU') {
-      shippingPage.actions.stateField(localeAddress.county);
-    } else if (variables.locale == 'US') {
-      shippingPage.actions.selectState(localeAddress.county);
-      shippingPage.click.proceedToBilling();
-    }
-    if (variables.brand == 'boohoomena.com') {
-      shippingPage.actions.countyField(localeAddress.county);
-    }
-    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-    shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
-      shippingPage.click.proceedToBillingVerification();
-    }
-    BillingPage.actions.waitPageToLoad();
+
+  beforeEach (() => {
+    Navigate.toBillingPage('RegisteredUser');
   });
 
   it('Verify that shipping address block is filled with data', function () {

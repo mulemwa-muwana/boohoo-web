@@ -14,7 +14,6 @@ describe('Account page', function () {
   beforeEach(() => {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      HomePage.goto();
       LoginPage.actions.login(credentials.username, credentials.password);
     });
   });

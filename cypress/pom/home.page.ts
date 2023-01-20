@@ -56,7 +56,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'boohooman.com': {
-    minicartIcon: '.mini-cart-link',
+    minicartIcon: '#mini-cart .mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
@@ -109,7 +109,7 @@ const selectors: SelectorBrandMap = {
   'misspap.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.link-item-login',
-    registrationButton: '.form-row-button > .button',
+    registrationButton: 'button.login-page-button[value="Create Account"]',
     wishListIcon: '.icon-wishlist-header',
     searchField: 'form > fieldset > input',
     searchIcon: '.icon-search',
@@ -159,9 +159,6 @@ class HomePage implements AbstractPage {
     },
     registrationButton () {
       const registrationButton = selectors[variables.brand].registrationButton;
-      if (variables.brand == 'misspap.com') {
-        cy.get('#dwfrm_login_register > fieldset > .form-row > .login-page-button').click({force:true});
-      }
       cy.get(registrationButton).click({force:true});
     },
 

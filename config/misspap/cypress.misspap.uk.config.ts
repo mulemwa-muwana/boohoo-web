@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stg.misspap.com/',
-    sku: 'MPP99796-1',
+    sku: 'MPP02428-1',
     brand: 'misspap.com',
     locale: 'UK',
     language: 'EN',
@@ -24,6 +24,6 @@ export default defineConfig({
       plugins(on);
     },
     experimentalSessionAndOrigin: true,
-    numTestsKeptInMemory: 0,
+    numTestsKeptInMemory: 0
   },   
 });

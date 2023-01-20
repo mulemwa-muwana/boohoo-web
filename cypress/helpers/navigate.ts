@@ -91,12 +91,11 @@ class Navigate {
             shippingPage.actions.confirmEmailField(credentials.guest);
           } 
           shippingPage.click.proceedToBilling();
-          
         } else {
           shippingPage.click.proceedToBilling();
           BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-          BillingPage.actions.waitPageToLoad();
         }
+        BillingPage.actions.waitPageToLoad();
       });
 
     // REGISTERED USER //
@@ -136,77 +135,28 @@ class Navigate {
 
   toShippingPageWithSession (userType: UserType) {
 
-    cy.session('item-session', () => {
+    cy.session('shipping-page-session', () => {
       this.toShippingPage(userType);
     });
 
-    HomePage.goto();
-    HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand) {
-      PdpPage.click.miniCartViewCartBtn();
+    if (isSiteGenesisBrand) {
+      cy.visit(variables.url + '/shipping');
+    } else {
+      cy.visit(variables.url + '/checkout?step=shipping');
     }
-
-    CartPage.click.proceedToCheckout();
-
-    // GUEST USER //
-    if ((userType === 'GuestUser') && (variables.brand !== 'boohoo.com')) {
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-        CheckoutPage.click.continueAsGuestBtn();
-      });
-    } 
-    // REGISTERED USER WHEN NAVIGATED TO CHECKOUT PAGE GOES TO SHIPPING PAGE DIRECTLY //
 
   }
 
   toBillingPageWithSession (userType: UserType) {
-
-    cy.session('item-session', () => {
+    
+    cy.session('billing-page-session', () => {
       this.toBillingPage(userType);
     });
 
-    HomePage.goto();
-    HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand) {
-      PdpPage.click.miniCartViewCartBtn();
-    }
-    CartPage.click.proceedToCheckout();
-
-    // GUEST USER //
-    if (userType === 'GuestUser') {
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-        CheckoutPage.click.continueAsGuestBtn();
-      });
-    }
-    // REGISTERED USER WHEN NAVIGATED TO CHECKOUT PAGE GOES TO SHIPPING PAGE DIRECTLY //
-
-    
-    // GUEST USER //
-    if (userType === 'GuestUser') {
-      const primaryAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-
-        if (isSiteGenesisBrand) {
-          shippingPage.actions.firstNameField(primaryAddress.firstName);
-          shippingPage.actions.lastNameField(primaryAddress.lastName);
-          shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-          shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(primaryAddress.phone);
-          if (variables.brand != 'boohooman.com') {
-            shippingPage.actions.confirmEmailField(credentials.guest);
-          } 
-          shippingPage.click.proceedToBilling();
-        
-        } else {
-          shippingPage.click.proceedToBilling();
-          BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-        }
-      });
-
-    // REGISTERED USER //
+    if (isSiteGenesisBrand) {
+      cy.visit(variables.url + '/billing-continue');
     } else {
-      shippingPage.click.proceedToBilling();
-      BillingPage.actions.waitPageToLoad();
+      cy.visit(variables.url + '/checkout?step=billing');
     }
 
   }

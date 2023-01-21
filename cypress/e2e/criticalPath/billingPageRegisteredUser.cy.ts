@@ -11,7 +11,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Billing page functionality for registered user', function () {
 
   beforeEach (() => {
-    Navigate.toBillingPageWithSession('RegisteredUser');
+    Navigate.toBillingPageUsingSession('RegisteredUser');
   });
 
   it('Verify that shipping address block is filled with data', function () {

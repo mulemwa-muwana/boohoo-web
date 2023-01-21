@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stg.coastfashion.com/',
-    sku: 'BCC01567-2',
+    sku: 'BCC03538',
     brand: 'coastfashion.com',
     locale: 'UK',
     language: 'EN',
@@ -23,6 +23,9 @@ export default defineConfig({
     setupNodeEvents (on, config) {
       plugins(on);
     },
+    excludeSpecPattern: [
+      '**/backend*/**'  // Skip backend tests
+    ],
     experimentalSessionAndOrigin: true,
     numTestsKeptInMemory: 0,
   },   

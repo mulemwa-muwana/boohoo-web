@@ -22,7 +22,7 @@ describe('Billing page functionality for guest user', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
-    Navigate.toBillingPageWithSession('GuestUser');
+    Navigate.toBillingPageUsingSession('GuestUser');
   });
 
   it('Verify that shipping address block is filled with data', function () {

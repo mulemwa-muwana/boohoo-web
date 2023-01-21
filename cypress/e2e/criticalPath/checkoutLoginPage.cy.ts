@@ -1,28 +1,18 @@
 import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
+import LoginPage from '../../pom/login.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import assertionText from 'cypress/helpers/assertionText';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Checkout Page', function () {
 
   beforeEach(() => {
-    const variables = Cypress.env() as EnvironmentVariables;
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    cy.wait(3000);
-    pdpPage.actions.selectSize();
-    cy.wait(3000);
-    pdpPage.click.addToCart();
-    cy.wait(3000);
-    HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand) {
-      pdpPage.click.miniCartViewCartBtn();
-    }
-    cartPage.click.proceedToCheckout();
+    Navigate.toCheckoutLoginPageUsingSession();
   });
 
   it('Verify is checkout login / guest displayed', () => {
@@ -52,7 +42,21 @@ describe('Checkout Page', function () {
     }
   });
 
+  it('Verify that user is able to proceed as guest', function () {
+    if (variables.brand == 'boohoomena.com') {
+      this.skip(); // No guest users are allowed for this brand, only registered ones
+    }
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+      CheckoutPage.click.continueAsGuestBtn();
+      CheckoutPage.assertions.assertUserProceededToShippingPage();
+    });
+  });
+
   it('Verify that registered user is able to login', () => {
+    Navigate.clearSessionCookies();
+    Navigate.toCheckoutLoginPage();
+
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
       if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
@@ -64,14 +68,5 @@ describe('Checkout Page', function () {
     });
   });
 
-  it('Verify that user is able to proceed as guest', function () {
-    if (variables.brand == 'boohoomena.com') {
-      this.skip(); // No guest users are allowed for this brand, only registered ones
-    }
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-      CheckoutPage.click.continueAsGuestBtn();
-    });
-  });
 });
 

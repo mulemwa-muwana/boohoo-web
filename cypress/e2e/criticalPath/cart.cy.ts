@@ -1,4 +1,5 @@
 import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
@@ -8,19 +9,11 @@ import PdpPage from '../../pom/pdp.page';
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Cart basic functionality for guest user', function () {
+  
   beforeEach(() => {
-
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize();
-    cy.wait(2000);
-    PdpPage.click.addToCart();
-    cy.wait(2000);
-    HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand) {
-      PdpPage.click.miniCartViewCartBtn();
-    }
+    Navigate.toCartPageUsingSession();
   });
+
   it('Verify the presence of table with all products added to cart and that product name, image color/size/qty and price are visible', function () {
     CartPage.assertions.assertTableWithProductIsVisible();
     CartPage.assertions.assertProductImageIsDisplayed();
@@ -33,14 +26,12 @@ describe('Cart basic functionality for guest user', function () {
     if (isSiteGenesisBrand || variables.brand == 'dorothyperkins.com') {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
+      CartPage.actions.editCartQuantitySiteGenesis('1');
     } else {
       CartPage.actions.editCartQuantity('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
+      CartPage.actions.editCartQuantity('1');
     }
-  });
-  it('Verify that user can remove product from cart', function () {
-    CartPage.click.clearCart();
-    CartPage.assertions.assertCartIsEmpty();
   });
 
   it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
@@ -83,28 +74,23 @@ describe('Cart basic functionality for guest user', function () {
       this.skip();
     }
   });
+  it('Verify that user can remove product from cart', function () {
+    CartPage.click.clearCart();
+    CartPage.assertions.assertCartIsEmpty();
+  });
 
 });
 
 describe('Cart page for Registered user', function () {
   beforeEach(() => {
-    const variables = Cypress.env() as EnvironmentVariables;
 
     HomePage.goto();
-
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, credentials.password);
       cy.wait(5000);
-
-      // HomePage.click.cartIcon();  
-      // CartPage.click.clearCart();
     });
 
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    PdpPage.actions.selectSize();
-    PdpPage.click.addToCart();
-    HomePage.click.cartIcon();
+    Navigate.toCartPage();
   });
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
     CartPage.click.proceedToCheckout();

@@ -12,7 +12,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
-    Navigate.toShippingPageWithSession('RegisteredUser');
+    Navigate.toShippingPageUsingSession('RegisteredUser');
   });
 
   /** [Test Steps]

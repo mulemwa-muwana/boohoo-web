@@ -21,7 +21,7 @@ describe('Shipping Page Guest user tests', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
-    Navigate.toShippingPageWithSession('GuestUser');
+    Navigate.toShippingPageUsingSession('GuestUser');
   });
 
   it('Verify that promo code field is dispayed', function () {

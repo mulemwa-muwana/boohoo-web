@@ -23,6 +23,9 @@ export default defineConfig({
   ],
   
   e2e: {
+    excludeSpecPattern: [
+      '**/backend*/**'  // Skip backend tests
+    ],
     setupNodeEvents (on) {
       plugins(on);
     },

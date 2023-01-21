@@ -2,6 +2,7 @@ import BillingPage from '../pom/billing.page';
 import CartPage from '../pom/cart.page';
 import CheckoutPage from '../pom/checkoutLogin.page';
 import HomePage from '../pom/home.page';
+import LoginPage from '../pom/login.page';
 import PdpPage from '../pom/pdp.page';
 import shippingPage from '../pom/shipping.page';
 import cards from './cards';
@@ -133,8 +134,31 @@ class Navigate {
     }
   };
 
-  toShippingPageWithSession (userType: UserType) {
+  toMyAccountPage () {
+    HomePage.goto();
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      LoginPage.actions.login(credentials.username, credentials.password);
+    });
+  };
 
+  // NAVIGATE TO PAGES USING SESSIONS
+  toCartPageUsingSession () {
+    cy.session('cart-page-session', () => {
+      this.toCartPage();
+    });
+
+    cy.visit(variables.url + '/cart');
+  };
+
+  toCheckoutLoginPageUsingSession () {
+    cy.session('checkout-login-page-session', () => {
+      this.toCheckoutLoginPage();
+    });
+
+    cy.visit(variables.url + '/checkout-login');
+  };
+
+  toShippingPageUsingSession (userType: UserType) {
     cy.session('shipping-page-session', () => {
       this.toShippingPage(userType);
     });
@@ -144,11 +168,9 @@ class Navigate {
     } else {
       cy.visit(variables.url + '/checkout?step=shipping');
     }
+  };
 
-  }
-
-  toBillingPageWithSession (userType: UserType) {
-    
+  toBillingPageUsingSession (userType: UserType) {
     cy.session('billing-page-session', () => {
       this.toBillingPage(userType);
     });
@@ -158,8 +180,20 @@ class Navigate {
     } else {
       cy.visit(variables.url + '/checkout?step=billing');
     }
+  };
 
-  }
+  toMyAccountPageUsingSession () {
+    cy.session('myaccount-page-session', () => {
+      this.toMyAccountPage();
+      cy.wait(7000);
+    });
+    cy.visit(variables.url + '/myaccount')
+  };
+
+  clearSessionCookies () {
+    cy.clearCookies();
+  };
+
 }
 
 export default new Navigate();

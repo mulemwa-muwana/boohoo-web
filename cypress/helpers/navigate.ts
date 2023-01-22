@@ -105,6 +105,8 @@ class Navigate {
       if (variables.brand != 'boohooman.com') {
         shippingPage.click.addNewAddressButton();
       }
+      shippingPage.actions.firstNameField(primaryAddress.firstName);
+      shippingPage.actions.lastNameField(primaryAddress.lastName);
       shippingPage.actions.selectCountry(primaryAddress.country);
       shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(primaryAddress.phone);
       cy.wait(5000);

@@ -5,7 +5,7 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@stg.karenmillen.com/ie?locale=en_IE', 
+    url: 'https://storefront:Oreo2022@stg.karenmillen.com/ie', 
     sku: 'AKK99751-152',
     fullSKU: 'AKK99751-152-22',
     brand: 'karenmillen.com',

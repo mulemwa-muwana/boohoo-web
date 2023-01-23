@@ -1,7 +1,3 @@
-import HomePage from '../../pom/home.page';
-import pdpPage from '../../pom/pdp.page';
-import cartPage from '../../pom/cart.page';
-import LoginPage from '../../pom/login.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import assertionText from 'cypress/helpers/assertionText';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';

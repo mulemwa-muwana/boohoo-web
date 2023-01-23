@@ -622,7 +622,7 @@ class ShippingPage implements AbstractPage {
     editAddress () {
       if (isSiteGenesisBrand && (variables.brand != 'boohooman.com')) {
         const editAddress = selectors[variables.brand].editAddress;
-        cy.get('body').then($body => {  // If Edit Address is visible
+        cy.get('body').then($body => { // If Edit Address is visible
           if ($body.find(editAddress).length) {  
             cy.get(editAddress).click({force:true});
           }

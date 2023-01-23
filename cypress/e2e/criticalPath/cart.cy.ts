@@ -4,7 +4,6 @@ import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
-import PdpPage from '../../pom/pdp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 

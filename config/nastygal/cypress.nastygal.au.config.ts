@@ -22,7 +22,7 @@ export default defineConfig({
       plugins(on);
     },
     excludeSpecPattern: [
-      '**/backend*/**'  // Skip backend tests
+      '**/backend*/**' // Skip backend tests
     ],
     experimentalSessionAndOrigin: true,
     numTestsKeptInMemory: 0,

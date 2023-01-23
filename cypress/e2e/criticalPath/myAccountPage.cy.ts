@@ -1,5 +1,3 @@
-import LoginPage from '../../pom/login.page';
-import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import Cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';

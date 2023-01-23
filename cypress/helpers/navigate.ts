@@ -17,12 +17,12 @@ class Navigate {
   
   toHomePage () {
     HomePage.goto();
-  };
+  }
 
   toProductDetailsPage () {
     this.toHomePage();
     HomePage.actions.findItemUsingSKU(variables.sku);
-  };
+  }
 
   toCartPage () {
     this.toProductDetailsPage();
@@ -34,12 +34,12 @@ class Navigate {
     if (!isSiteGenesisBrand) {
       PdpPage.click.miniCartViewCartBtn();
     }
-  };
+  }
 
   toCheckoutLoginPage () {
     this.toCartPage();
     CartPage.click.proceedToCheckout();
-  };
+  }
 
   toShippingPage (userType: UserType) {
     this.toCheckoutLoginPage();
@@ -65,7 +65,7 @@ class Navigate {
       });
     }
     cy.wait(2000);
-  };
+  }
 
   toBillingPage (userType: UserType) {
     this.toShippingPage(userType);
@@ -125,7 +125,7 @@ class Navigate {
       shippingPage.click.proceedToBilling();
       BillingPage.actions.waitPageToLoad();
     }
-  };
+  }
 
   toOrderConfirmationPage (userType: UserType, creditCard: CardDetails = cards.master) {
     this.toBillingPage(userType);
@@ -134,14 +134,14 @@ class Navigate {
     if (variables.brand == 'boohoo.com' && (variables.language == 'DE' || variables.language == 'SE')) {
       orderConfirmationPage.click.closeCancellationPopup();
     }
-  };
+  }
 
   toMyAccountPage () {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, credentials.password);
     });
-  };
+  }
 
   // NAVIGATE TO PAGES USING SESSIONS
   toCartPageUsingSession () {
@@ -150,7 +150,7 @@ class Navigate {
     });
 
     cy.visit(variables.url + '/cart');
-  };
+  }
 
   toCheckoutLoginPageUsingSession () {
     cy.session('checkout-login-page-session', () => {
@@ -158,7 +158,7 @@ class Navigate {
     });
 
     cy.visit(variables.url + '/checkout-login');
-  };
+  }
 
   toShippingPageUsingSession (userType: UserType) {
     cy.session('shipping-page-session', () => {
@@ -170,7 +170,7 @@ class Navigate {
     } else {
       cy.visit(variables.url + '/checkout?step=shipping');
     }
-  };
+  }
 
   toBillingPageUsingSession (userType: UserType) {
     cy.session('billing-page-session', () => {
@@ -182,19 +182,19 @@ class Navigate {
     } else {
       cy.visit(variables.url + '/checkout?step=billing');
     }
-  };
+  }
 
   toMyAccountPageUsingSession () {
     cy.session('myaccount-page-session', () => {
       this.toMyAccountPage();
       cy.wait(7000);
     });
-    cy.visit(variables.url + '/myaccount')
-  };
+    cy.visit(variables.url + '/myaccount');
+  }
 
   clearSessionCookies () {
     cy.clearCookies();
-  };
+  }
 
 }
 

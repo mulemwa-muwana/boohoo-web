@@ -23,12 +23,12 @@ describe('Shipping Page Guest user tests', function () {
 
     Navigate.toShippingPageUsingSession('GuestUser');
   });
-
-  it('Verify that promo code field is dispayed', function () {
-    if (isSiteGenesisBrand) {
-      this.skip(); // Promo code field is on Billing page for Site Genesis brands
+  
+  it('Verify that order total and promo code are displayed', function () {
+    shippingPage.assertions.assertOrderTotalIsDisplayed();
+    if (!isSiteGenesisBrand) {
+      shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     }
-    shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
 
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
@@ -44,26 +44,17 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add first name', function () {
+  it('Verify that in "DELIVERY INFORMATION" user can add first name, last name, select country from drop down list, add phone number', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.assertions.assertFirstNameFieldIsPopulated(localeAddress.firstName);
-  });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add last name', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
-  });
 
-  it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
-  });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add phone number', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
@@ -179,10 +170,6 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.OpenPUDOlocations();
 
     // PUDO OPTIONS ARE MISSING FOR GUEST, need to check with Trupti
-  });
-
-  it('Verify that order total is displayed', function () {
-    shippingPage.assertions.assertOrderTotalIsDisplayed();
   });
 
   it('Verify that guest user can Edit cart from shipping page', function () {

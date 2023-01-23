@@ -44,7 +44,6 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
-  // eslint-disable-next-line mocha/no-exclusive-tests
   it('Verify that in "DELIVERY INFORMATION" user can add first name, last name, select country from drop down list, add phone number', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.firstNameField(localeAddress.firstName);

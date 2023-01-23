@@ -13,7 +13,7 @@ describe('Product Details Page tests', function () {
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
   });  
-  // eslint-disable-next-line mocha/no-exclusive-tests
+
   it('TC01 Verify that Product name, price and code is showing',function () {  
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();

@@ -15,7 +15,7 @@ describe('Order confirmation page for guest user', function () {
     Navigate.toOrderConfirmationPage('GuestUser');
   });
 
-  it.only('Verify that email address, order number, value and payment method are visible for guest user', function () { //changed payment method to PayPal
+  it('Verify that email address, order number, value and payment method are visible for guest user', function () { //changed payment method to PayPal
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
@@ -35,7 +35,7 @@ describe('Order confirmation page for guest user', function () {
     orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
   });
 
-  it.only('Verify that for guest users password fields are present on order confirmation page', function () {
+  it('Verify that for guest users password fields are present on order confirmation page', function () {
     orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
     orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
   });

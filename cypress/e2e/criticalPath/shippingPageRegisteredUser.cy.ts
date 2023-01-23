@@ -22,11 +22,9 @@ describe('Shipping Page Registered user tests', function () {
    */
   it('Verify that order total and promo code are displayed', function () {
     shippingPage.assertions.assertOrderTotalIsDisplayed();
-    if (isSiteGenesisBrand) {
-      this.skip(); // Promo code field for Site Genesis brands is displayed on Billing Page.
+    if (!isSiteGenesisBrand) {
+      shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     }
-    shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
-
   });
 
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    

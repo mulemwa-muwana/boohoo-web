@@ -112,7 +112,6 @@ describe('Home Page', function () {
       }
     });
       
-    // eslint-disable-next-line mocha/no-exclusive-tests
     it('Verify correct error message is displayed - newsletter subscription footer', () => {
       HomePage.goto();
       GlobalFooter.actions.subscribeToNewsletter('euboohoo@gmail.com');

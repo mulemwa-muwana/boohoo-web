@@ -35,34 +35,25 @@ describe('Home Page', function () {
        
   // HEADER
   describe('Header verifications', () => {
-    it('Header Logo', () => {
+    it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
-    });
-    
-    it('Verify search icon is present', () => {
-      HomePage.click.searchIcon();
+
       HomePage.assertions.assertSearchIconPresent();
-    });
-    it('Verify search field is present', () => {
+
       HomePage.click.searchIcon();
       HomePage.assertions.assertSearchFieldPresent();
+
+      homePage.assertions.assertAccountIconPresent();
+
+      homePage.assertions.assertWishListIconPresent();
+
+      homePage.assertions.assertCartIconPresent();
     });
+    
     it('Verify search results page opens', () => {
       HomePage.click.searchIcon();
       HomePage.actions.findItemUsingSKU(variables.sku);
       HomePage.assertions.assertSearchResultPage(variables.sku);
-    });  
-    
-    it('Verify header icon Account present', () => {
-      homePage.assertions.assertAccountIconPresent();
-    });
-
-    it('Verify header icon Wish List present', () => {
-      homePage.assertions.assertWishListIconPresent();
-    });
-
-    it('Verify header icon Cart present', () => {
-      homePage.assertions.assertCartIconPresent();
     });
 
     it('Verify Mega Menu - Sale link opens', () => {
@@ -121,6 +112,7 @@ describe('Home Page', function () {
       }
     });
       
+    // eslint-disable-next-line mocha/no-exclusive-tests
     it('Verify correct error message is displayed - newsletter subscription footer', () => {
       HomePage.goto();
       GlobalFooter.actions.subscribeToNewsletter('euboohoo@gmail.com');

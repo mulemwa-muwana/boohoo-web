@@ -10,12 +10,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Verify Registration feature', function () {
   beforeEach(() => {
-
     HomePage.goto();
-
-    /* If (variables.brand == 'nastygal.com') {
-      cy.get('#page-body > div.b-dialog.m-welcome_popup.welcome-popup-container.js-welcome-popup-wrapper.popup-template-5.popup-close-position-right.m-opened > div.b-dialog-window.m-top_dialog.m-welcome_popup.welcome-popup.welcome-popup-wrapper > div.b-dialog-header > button').should('be.visible').click();
-    }*/
     
     LoginPage.click.loginIcon();
     HomePage.click.registrationButton();

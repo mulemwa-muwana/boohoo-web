@@ -1,4 +1,3 @@
-import * as CommonActions from '../helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -44,12 +43,8 @@ const variables = Cypress.env() as EnvironmentVariables;
 
 class PrivacyPolicyPage implements AbstractPage {
 
-  goto (options: GotoOptions = null) {
-    cy.visit('page/privacy-notice.html');
-    if (options?.applyCookies) {
-      CommonActions.applyMarketingCookies();
-      cy.visit('/');
-    }
+  goto () {
+    cy.visit( variables.url + 'privacy-notice.html');
   }
 
   click = {

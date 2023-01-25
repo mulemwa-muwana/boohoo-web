@@ -1,21 +1,16 @@
-import LoginPage from '../../pom/login.page';
-import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import Cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 import assertionText from 'cypress/helpers/assertionText';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Account page', function () {
 
-  // This will execute before every single test, we're going to the baseURL and Login.
   beforeEach(() => {
-    HomePage.goto();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      LoginPage.actions.login(credentials.username, credentials.password);
-    });
+    Navigate.toMyAccountPageUsingSession();
   });
 
   // Order History test cases

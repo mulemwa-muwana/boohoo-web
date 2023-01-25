@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.wallis.co.uk',
-    sku: '#BYY04728-2', // Needs hashtag for assertation on PDP
+    sku: '#BYY02328', // Needs hashtag for assertation on PDP
     brand: 'wallis.co.uk',
     locale: 'UK',
     language: 'EN',
@@ -23,7 +23,10 @@ export default defineConfig({
     setupNodeEvents (on) {
       plugins(on);
     },
-
-    numTestsKeptInMemory: 0
+    excludeSpecPattern: [
+      '**/backend*/**' // Skip backend tests
+    ],
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },
 });

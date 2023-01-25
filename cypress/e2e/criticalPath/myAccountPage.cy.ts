@@ -40,7 +40,7 @@ describe('Account page', function () {
   });
 
   // My Acount Details test cases
-  it.only('TC03 Verify that account details display correct email and that account details are editable', function () {
+  it('TC03 Verify that account details display correct email and that account details are editable', function () {
     if (!isSiteGenesisBrand) {
       MyAccountPage.click.accountDetailsLink();
     }
@@ -57,7 +57,7 @@ describe('Account page', function () {
     }
   });
 
-  it('TC08 Verify that addresses are editable; user can add and delete new address', function () {
+  it('TC04 Verify that addresses are editable; user can add and delete new address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
@@ -74,23 +74,14 @@ describe('Account page', function () {
     MyAccountPage.actions.deleteAddress();
     MyAccountPage.assertions.assertAddressNotPresent(localeAddress.firstName);
   });
-  it.skip('TC09 Verify that address can be deleted', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    MyAccountPage.click.addressesLink();
-    MyAccountPage.actions.deleteAddress();
-    MyAccountPage.assertions.assertAddressNotPresent(localeAddress.firstName);
-  });
-  it('TC10 Verify that new card can be saved', function () {
-    MyAccountPage.click.paymentDetailsLink();
-    MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.date, Cards.visa.code);
-    MyAccountPage.assertions.assertCardDetails(Cards.visa.end);  
-  });
-  it('TC11 Verify that payment details show correct saved card details', function () {
+
+  it('TC05 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();
     MyAccountPage.assertions.assertCardDetails(Cards.visa.end);
-  });
-  it('TC12 Verify that card can be deleted', function () {
-    MyAccountPage.click.paymentDetailsLink();
+
+    MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.date, Cards.visa.code);
+    MyAccountPage.assertions.assertCardDetails(Cards.visa.end);
+
     MyAccountPage.actions.deleteCard(Cards.visa.end);
     MyAccountPage.assertions.assertCardNotPresent(Cards.visa.end);
   });

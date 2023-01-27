@@ -2,18 +2,19 @@ import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
     resetPassword: '',
     wishListIcon: '.b-header_wishlist-icon',
     registrationButton: '.b-registration_benefits > .b-button',
     minicartIcon: '.b-minicart_icon-link',
-    acceptCookies: '.b-notification_panel-controls > [data-event-click="accept"]',
     promotion: '#promotion_slide-0 > div > div > a',
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
   },
   'nastygal.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',
@@ -24,6 +25,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'dorothyperkins.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-search_input-submit > .i-icon',
     registrationButton: '#page-body > div.b-miniaccount_panel > div > div > div > div.b-miniaccount-content > div.b-registration_benefits > a',
@@ -34,6 +36,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'burton.co.uk': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-header_login-icon',
     registrationButton: '.b-registration_benefits > .b-button',
@@ -44,6 +47,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'wallis.co.uk': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-header_login-icon > .i-icon',
     registrationButton: '.b-registration_benefits > .b-button',
@@ -54,6 +58,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
   },
   'boohooman.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '#mini-cart .mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
@@ -64,6 +69,7 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
   },
   'karenmillen.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
@@ -74,6 +80,7 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link'
   },
   'coastfashion.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
@@ -84,6 +91,7 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
   },
   'warehousefashion.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
@@ -94,6 +102,7 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
   },
   'oasis-stores.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
@@ -105,6 +114,7 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
   },
   'misspap.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.mini-cart-link',
     loginIcon: '.link-item-login',
     registrationButton: 'button.login-page-button[value="Create Account"]',
@@ -115,6 +125,7 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link'
   },
   'boohoomena.com': {
+    acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.mini-cart-link',
     loginIcon: ' span.user-account',
     registrationButton: '.js-header-right-box [title="Register"]',
@@ -134,6 +145,11 @@ class HomePage implements AbstractPage {
     if (variables.brand == 'nastygal.com') {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
+
+    cy.session('accept-cookies', () => {
+      cy.visit(variables.url);
+      this.click.acceptCookies();
+    })
     
     cy.visit(variables.url);
   }

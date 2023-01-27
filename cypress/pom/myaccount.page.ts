@@ -581,7 +581,7 @@ const selectors: SelectorBrandMap = {
     orderID: '.order-number > .value',
     shippingInfo: '.order-date > .value',
     billingAndPaymentInfo: '.processing',
-    accountDetailsEmailField: '#account-email-input',
+    accountDetailsEmailField: '.account-details > .account-box-content > .account-box-item',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
     addressNameLine: '.mini-address-name',

@@ -2,7 +2,6 @@ import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import BillingPage from '../../pom/billing.page';
 import shippingPage from '../../pom/shipping.page';
-import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';

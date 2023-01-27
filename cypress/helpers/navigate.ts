@@ -5,8 +5,6 @@ import HomePage from '../pom/home.page';
 import LoginPage from '../pom/login.page';
 import PdpPage from '../pom/pdp.page';
 import shippingPage from '../pom/shipping.page';
-import cards from './cards';
-import orderConfirmationPage from '../pom/orderConfirmation.page';
 import assertionText from './assertionText';
 import Addresses from './addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';

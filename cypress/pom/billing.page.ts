@@ -25,7 +25,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
-    paymentMethodLayBuy: '#payment-button-LAYBUY',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -64,7 +63,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
-    paymentMethodLayBuy: '#payment-button-LAYBUY',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
     changeShippingAddress: '#checkout-main > div > div > main > section:nth-child(3) > section.b-checkout_step-item.m-summary > div > div > section:nth-child(1) > h3 > button',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
@@ -127,7 +125,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
-    paymentMethodLayBuy: '#payment-button-LAYBUY',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -179,7 +176,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
-    paymentMethodLayBuy: '#payment-button-LAYBUY',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -231,7 +227,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
-    paymentMethodLayBuy: '#payment-button-LAYBUY',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -281,7 +276,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
-    paymentMethodLayBuy: '[for="is-LAYBUY"]',
     emailField: '#dwfrm_billing_billingAddress_email_emailAddress',
     confirmEmailField: '#dwfrm_billing_billingAddress_email_emailConfirm',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
@@ -332,7 +326,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
-    paymentMethodLayBuy: '[for="is-LAYBUY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -381,7 +374,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
-    paymentMethodLayBuy: '[for="is-LAYBUY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -430,7 +422,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
-    paymentMethodLayBuy: '[for="is-LAYBUY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -479,7 +470,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
-    paymentMethodLayBuy: '[for="is-LAYBUY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -528,7 +518,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
-    paymentMethodLayBuy: '[for="is-LAYBUY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -577,7 +566,6 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
-    paymentMethodLayBuy: '[for="is-LAYBUY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -681,11 +669,6 @@ class BillingPage implements AbstractPage {
       cy.get(creditCardFieldsCardOwner).type(cardOwner, {force:true});
       cy.get(paynowBtnCC).click({force:true});
 
-      /* If (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
-        cy.get('.adyen-checkout__iframe', { timeout: 20000 }).should('be.visible');
-        cy.iframe('.adyen-checkout__iframe').find('.input-field').type('password');
-        cy.iframe('.adyen-checkout__iframe').find('#buttonSubmit').click();
-      } */
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -919,22 +902,6 @@ class BillingPage implements AbstractPage {
 
       });
     },
-    selectLaybuy () {
-      cy.wait(5000);
-      if (isSiteGenesisBrand) {
-        cy.get('[for="is-LAYBUY"]', { timeout: 30000 }).should('be.visible').click({ force: true });
-        cy.get('#billingSubmitButton', { timeout: 30000 }).click({ force: true });
-      } else {
-        cy.get('#payment-button-LAYBUY', { timeout: 30000 }).should('be.visible').click({ force: true });
-        cy.get('#payment-details-LAYBUY > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button', { timeout: 30000 }).click();
-      }
-      cy.get('.sc-himrzO', { timeout: 30000 }).click();
-      cy.get('input[type="email"]', { timeout: 30000 }).clear().type('euboohoo+uklaybuy@gmail.com');
-      cy.get('input[type="password"]', { timeout: 30000 }).clear().type('Boohoo123$');
-      cy.get('button[type="submit"]', { timeout: 30000 }).click();
-      cy.get('button[data-test-id="payment-complete-order-button"]', { timeout: 60000 }).should('not.have.attr', 'disabled');
-      cy.get('button[data-test-id="payment-complete-order-button"]').click();
-    },
     selectClearpay () {
       if (isSiteGenesisBrand) {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });
@@ -1055,10 +1022,6 @@ class BillingPage implements AbstractPage {
     assertPaymentMethodAmazonPayIsDisplayed () {
       const paymentMethodAmazonPay = selectors[variables.brand].paymentMethodAmazonPay;
       cy.get(paymentMethodAmazonPay).should('be.visible');
-    },
-    assertPaymentMethodLayBuyIsDisplayed () {
-      const paymentMethodLayBuy = selectors[variables.brand].paymentMethodLayBuy;
-      cy.get(paymentMethodLayBuy).should('be.visible');
     },
     assertPromoCodeIsApplied (promoName: string) {
       cy.get('.success coupon-item-name').should('be.visible');

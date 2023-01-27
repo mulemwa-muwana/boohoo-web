@@ -12,7 +12,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Billing page functionality for registered user', function () {
 
   beforeEach (() => {
-    Navigate.toBillingPage('RegisteredUser');
+    Navigate.toBillingPageUsingSession('RegisteredUser');
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -68,20 +68,6 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.actions.addBillingAddressRegisteredUser(localeAddress);
     }
   });
-
-  /* This can be tested only if Promo code is available and Gift card 
-  
-   it('Verify that guest user can enter promo code and that is applied to order summary', function (){
-    BillingPage.actions.selectDate('23', 'May', '2001');
-    BillingPage.actions.addPromoCode('EXTRA');
-    BillingPage.assertions.assertPromoCodeIsApplied('EXTRA 5% OFF EVERYTHING');
-  });
-  it('Verify that guest user can enter gift card and that is applied to order summary', function (){
-    BillingPage.actions.selectDate('23', 'May', '2001');
-    BillingPage.actions.addGiftCard('CALRYTIZDOROMYOW');
-    BillingPage.assertions.assertGiftCardIsApplied('-£10.00');
-  }); */
-
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     if (variables.brand == 'boohoomena.com') {
       BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
@@ -91,28 +77,22 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
     if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-    }
-
-    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
-    } 
+    }
       
     if (variables.brand === 'boohoo.com' && variables.locale === 'UK') {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
-      BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'AU')) {
-      BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
     }
 
   });
   
   //  TESTS FOR SITE GENESIS BRANDS:  //
   it('Verify that promo code field is displayed', function () {
-    if (!isSiteGenesisBrand) {
+    if (isSiteGenesisBrand) {
+      BillingPage.assertions.assertPromoCodeFieldIsDisplayed();
+    } else {
       this.skip(); // Promo code field only for Site Genesis brands is displayed on Billing Page.
     }
-    BillingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
-
 });

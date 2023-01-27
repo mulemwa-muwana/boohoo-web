@@ -69,3 +69,10 @@ Cypress.Commands.overwrite('log', (log, message, ...args) => {
   log(message, ...args);
   cy.task('log', [message, ...args].join(', '), { log: false });
 });
+
+/**
+ * Appends ?noredirect=true flag to the url when doing cy.visit(url) - stops 302 redirects and resolves 401 unauthorized errors
+ */
+Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
+  return originalFn({url : url + '?noredirect=true'});
+});

@@ -6,6 +6,7 @@ import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import cards from '../../helpers/cards';
 
+
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Order confirmation page for guest user', function () {
@@ -53,7 +54,8 @@ describe('Order confirmation page for registered user', function () {
   it('Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('RegisteredUser');
     billingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-    billingPage.assertions.assertOrderConfirmationPageIsDisplayed();cy.fixture('users').then((credentials: LoginCredentials) => {
+    billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
       orderConfirmationPage.assertions.assertOrderTotalIsVisible();

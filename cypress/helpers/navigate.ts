@@ -2,6 +2,7 @@ import BillingPage from '../pom/billing.page';
 import CartPage from '../pom/cart.page';
 import CheckoutPage from '../pom/checkoutLogin.page';
 import HomePage from '../pom/home.page';
+import LoginPage from '../pom/login.page';
 import PdpPage from '../pom/pdp.page';
 import shippingPage from '../pom/shipping.page';
 import cards from './cards';
@@ -88,25 +89,18 @@ class Navigate {
         if (isSiteGenesisBrand) {
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
           if (variables.brand != 'boohooman.com') {
-            shippingPage.actions.confirmEmail(credentials.guest);
-
-            // ShippingPage.click.proceedToBilling();
-            // BillingPage.actions.billingEmailField(credentials.guest);
-            // BillingPage.actions.billingConfirmEmailField(credentials.guest);
+            shippingPage.actions.confirmEmailField(credentials.guest);
           } 
           shippingPage.click.proceedToBilling();
-          
         } else {
           shippingPage.click.proceedToBilling();
           BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-          BillingPage.actions.waitPageToLoad();
         }
-
         if (variables.brand == 'boohooman.com') {
           BillingPage.actions.billingEmailField(credentials.guest);
           BillingPage.actions.billingConfirmEmailField(credentials.guest);
         }
-
+        BillingPage.actions.waitPageToLoad();
       });
 
     // REGISTERED USER //
@@ -115,6 +109,8 @@ class Navigate {
       if (variables.brand != 'boohooman.com') {
         shippingPage.click.addNewAddressButton();
       }
+      shippingPage.actions.firstNameField(primaryAddress.firstName);
+      shippingPage.actions.lastNameField(primaryAddress.lastName);
       shippingPage.actions.selectCountry(primaryAddress.country);
       shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(primaryAddress.phone);
       cy.wait(5000);
@@ -133,6 +129,66 @@ class Navigate {
       shippingPage.click.proceedToBilling();
       BillingPage.actions.waitPageToLoad();
     }
+  }
+
+  toMyAccountPage () {
+    HomePage.goto();
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      LoginPage.actions.login(credentials.username, credentials.password);
+    });
+  }
+
+  // NAVIGATE TO PAGES USING SESSIONS
+  toCartPageUsingSession () {
+    cy.session('cart-page-session', () => {
+      this.toCartPage();
+    });
+
+    cy.visit(variables.url + '/cart');
+  }
+
+  toCheckoutLoginPageUsingSession () {
+    cy.session('checkout-login-page-session', () => {
+      this.toCheckoutLoginPage();
+    });
+
+    cy.visit(variables.url + '/checkout-login');
+  }
+
+  toShippingPageUsingSession (userType: UserType) {
+    cy.session('shipping-page-session', () => {
+      this.toShippingPage(userType);
+    });
+
+    if (isSiteGenesisBrand) {
+      cy.visit(variables.url + '/shipping');
+    } else {
+      cy.visit(variables.url + '/checkout?step=shipping');
+    }
+  }
+
+  toBillingPageUsingSession (userType: UserType) {
+    cy.session('billing-page-session', () => {
+      this.toBillingPage(userType);
+    });
+
+    if (isSiteGenesisBrand) {
+      cy.visit(variables.url + '/billing-continue');
+    } else {
+      cy.visit(variables.url + '/checkout?step=billing');
+    }
+  }
+
+  toMyAccountPageUsingSession () {
+    cy.session('myaccount-page-session', () => {
+      this.toMyAccountPage();
+      cy.wait(7000);
+    });
+    cy.visit(variables.url + '/myaccount');
+  }
+
+  clearSessionCookies () {
+    cy.clearCookies();
   }
 
 }

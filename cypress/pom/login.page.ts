@@ -202,7 +202,7 @@ class LoginPage implements AbstractPage {
     //  Login Attempts
     assertErrorLoginMessageIsPresent (text: string) {
       const errorLoginMessage = selectors[variables.brand].errorLoginMessage;
-      cy.get(errorLoginMessage).should('be.visible').and('include.text', text);
+      cy.get(errorLoginMessage).should('be.visible').and('contain.text', text);
     },
  
     assertForgotPasswordMessageisDisplayed (email: string) {

@@ -12,7 +12,7 @@ const variables = Cypress.env() as EnvironmentVariables;
 describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
-    Navigate.toShippingPage('RegisteredUser');
+    Navigate.toShippingPageUsingSession('RegisteredUser');
   });
 
   /** [Test Steps]
@@ -294,6 +294,5 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
   });
-
+  
 });
-

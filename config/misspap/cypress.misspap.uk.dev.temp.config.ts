@@ -21,12 +21,11 @@ export default defineConfig({
   screenshotOnRunFailure: true,
   
   e2e: {
-    experimentalSessionAndOrigin: true,
     setupNodeEvents (on) {
       plugins(on);
     },
-
-    numTestsKeptInMemory: 0
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },
 
 });

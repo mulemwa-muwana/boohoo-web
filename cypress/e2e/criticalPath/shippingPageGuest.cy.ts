@@ -21,13 +21,13 @@ describe('Shipping Page Guest user tests', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
-    Navigate.toShippingPage('GuestUser');
+    Navigate.toShippingPageUsingSession('GuestUser');
   });
   
   it('Verify that order total and promo code are displayed', function () {
     shippingPage.assertions.assertOrderTotalIsDisplayed();
     if (!isSiteGenesisBrand) {
-      shippingPage.assertions.assertPromoCodeFieldIsDisplayed(); 
+      shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     }
   });
 
@@ -102,7 +102,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.actions.confirmEmailField(this.guestEmail);
     }
     shippingPage.click.proceedToBilling();
   });
@@ -128,7 +128,7 @@ describe('Shipping Page Guest user tests', function () {
     }
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.actions.confirmEmailField(this.guestEmail);
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
@@ -148,7 +148,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.actions.confirmEmailField(this.guestEmail);
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
@@ -196,7 +196,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmail(this.guestEmail);
+      shippingPage.actions.confirmEmailField(this.guestEmail);
     }
     shippingPage.click.proceedToBilling();
     if (isSiteGenesisBrand) {

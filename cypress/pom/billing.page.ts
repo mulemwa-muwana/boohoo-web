@@ -681,11 +681,6 @@ class BillingPage implements AbstractPage {
       cy.get(creditCardFieldsCardOwner).type(cardOwner, {force:true});
       cy.get(paynowBtnCC).click({force:true});
 
-      /* If (cardNo == cards.master.cardNo) { // Adyen test simulator page appears for MasterCard
-        cy.get('.adyen-checkout__iframe', { timeout: 20000 }).should('be.visible');
-        cy.iframe('.adyen-checkout__iframe').find('.input-field').type('password');
-        cy.iframe('.adyen-checkout__iframe').find('#buttonSubmit').click();
-      } */
     },
     emptyEmailField () {
       const emptyEmailField = selectors[variables.brand].emptyEmailField;
@@ -1079,7 +1074,7 @@ class BillingPage implements AbstractPage {
       } else if (isSiteGenesisBrand) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else {
-        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
+        cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }  
     },
     assertEmailFieldCantBeChanged () {

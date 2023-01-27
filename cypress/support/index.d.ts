@@ -8,10 +8,6 @@ declare namespace Cypress {
     }
 }
 
-declare type GotoOptions = {
-    applyCookies: boolean;
-}
-
 // These are for selecting on the website, if you want to use back end locale codes then please use the type "Locale"
 type AustralasiaCountryCode = 'AU' | 'NZ';
 type NorthAmericaCountryCode = 'US' | 'CA';

@@ -22,7 +22,7 @@ describe('Billing page functionality for guest user', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
-    Navigate.toBillingPage('GuestUser');
+    Navigate.toBillingPageUsingSession('GuestUser');
   });
 
   it('Verify that shipping address block is filled with data', function () {
@@ -49,11 +49,6 @@ describe('Billing page functionality for guest user', function () {
     }
     BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
   });
-
-  /* It('Verify that subscription block is displayed', function () {
-    BillingPage.assertions.assertSubscriptionBlockPresent();
-  });*/
-
   it('Verify that date of birth form is present and that guest user can select date of birth', function () {
     if (isSiteGenesisBrand) {
       this.skip(); // Date of birth form for Site Genesis brands is on Shipping page.
@@ -114,20 +109,6 @@ describe('Billing page functionality for guest user', function () {
       }
     }
   });
-
-  /* This can be tested only if Promo code is available and Gift card 
-  
-   it('Verify that guest user can enter promo code and that is applied to order summary', function (){
-    BillingPage.actions.selectDate('23', 'May', '2001');
-    BillingPage.actions.addPromoCode('EXTRA');
-    BillingPage.assertions.assertPromoCodeIsApplied('EXTRA 5% OFF EVERYTHING');
-  });
-  it('Verify that guest user can enter gift card and that is applied to order summary', function (){
-    BillingPage.actions.selectDate('23', 'May', '2001');
-    BillingPage.actions.addGiftCard('CALRYTIZDOROMYOW');
-    BillingPage.assertions.assertGiftCardIsApplied('-£10.00');
-  }); */
-
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
@@ -148,49 +129,43 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.actions.waitPageToLoad();
   });
 
-  describe('Verify that guest user can place orders with available payment methods', function () {
+});
 
-    beforeEach (function () {
-      if (!isSiteGenesisBrand) {
-        BillingPage.actions.selectDate('23', '3', '2001');
-      }
-      if (variables.brand == 'boohooman.com') {
-        cy.fixture('users').then((credentials: LoginCredentials) => {
-          BillingPage.actions.billingEmailField(credentials.guest);
-          BillingPage.actions.billingConfirmEmailField(credentials.guest);
-        });
-      }
-    });
+describe('Verify that guest user can place orders with available payment methods', function () {
 
-    it('Verify that guest user can place order using Credit Card - Visa)', function () {
-      BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that guest user can place order using Credit Card - Master)', function () {
-      BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that guest user can place order using Credit Card - Amex)', function () {
-      BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that guest user can place order using PayPal', function () {
-      BillingPage.actions.selectPayPal();
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that guest user can place order using Klarna', function () {
-      if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
-        BillingPage.actions.selectKlarna();
-        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-      } else {
-        this.skip();
-      }
-    });
-    if (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
-      it('Verify that guest user can place order using Laybuy', function () {
-        BillingPage.actions.selectLaybuy();
-        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  beforeEach (function () {
+    Navigate.toBillingPage('GuestUser');
+
+    if (variables.brand == 'boohooman.com') {
+      cy.fixture('users').then((credentials: LoginCredentials) => {
+        BillingPage.actions.billingEmailField(credentials.guest);
+        BillingPage.actions.billingConfirmEmailField(credentials.guest);
       });
+    }
+  });
+    
+  it('Verify that guest user can place order using Credit Card - Visa)', function () {
+    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  });
+  it('Verify that guest user can place order using Credit Card - Master)', function () {
+    BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  });
+  it('Verify that guest user can place order using Credit Card - Amex)', function () {
+    BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  });
+  it('Verify that guest user can place order using PayPal', function () {
+    BillingPage.actions.selectPayPal();
+    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  });
+  it('Verify that guest user can place order using Klarna', function () {
+    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+      BillingPage.actions.selectKlarna();
+      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    } else {
+      this.skip();
     }
   });
 });

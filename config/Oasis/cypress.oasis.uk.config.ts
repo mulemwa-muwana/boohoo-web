@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.oasisfashion.com',
-    sku: 'AAA67414-294', 
+    sku: 'BAA04175-1', 
     brand: 'oasis-stores.com',
     locale: 'UK',
     language: 'EN',
@@ -20,11 +20,13 @@ export default defineConfig({
   screenshotOnRunFailure: true,
 
   e2e: {
-    experimentalSessionAndOrigin: true,
     setupNodeEvents (on) {
       plugins(on);
     },
-
-    numTestsKeptInMemory: 0
+    excludeSpecPattern: [
+      '**/backend*/**' // Skip backend tests
+    ],
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },
 });

@@ -77,7 +77,6 @@ describe('Account page', function () {
 
   it('TC05 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();
-    MyAccountPage.assertions.assertCardDetails(Cards.visa.end);
 
     MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.date, Cards.visa.code);
     MyAccountPage.assertions.assertCardDetails(Cards.visa.end);

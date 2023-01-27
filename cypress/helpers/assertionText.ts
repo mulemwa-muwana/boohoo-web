@@ -477,17 +477,17 @@ class AssertionText {
   };
   
   loginAttempts: TranslationMap = {
-    EN: 'You have 4 more login attempts',
-    FR: 'Il vous reste 4 tentatives de connexion avant que votre compte ne soit bloqué.',
-    NL: 'Nog 4 pogingen om in te loggen voor dit account geblokkeerd wordt.',
-    DE: 'Du hast noch 4 weitere Anmeldeversuche, bis dein Konto gesperrt wird.',
-    DK: 'Du har 4 flere loginforsøg',
-    FI: 'Sinulla on vielä 4 kirjautumisyritystä',
-    NO: 'Du har 4 flere påloggingsforsøk',
-    SE: 'Du har 4 inloggningsförsök innan ditt konto blir låst.',
-    IL: 'יש לך עוד 4 ניסיונות כניסה',
-    IT: 'Hai altri 4 tentativi di accesso',
-    ES: 'Tienes 4 intentos más de inicio de sesión'
+    EN: 'login attempts',
+    FR: 'tentatives de connexion',
+    NL: 'pogingen om in te loggen',
+    DE: 'weitere Anmeldeversuche',
+    DK: 'flere loginforsøg',
+    FI: 'kirjautumisyritystä',
+    NO: 'flere påloggingsforsøk',
+    SE: 'inloggningsförsök',
+    IL: 'ניסיונות כניסה',
+    IT: 'tentativi di accesso',
+    ES: 'intentos más de inicio de sesión'
   };
 
   loginErrorSiteGenesisCustomer: TranslationMap = {

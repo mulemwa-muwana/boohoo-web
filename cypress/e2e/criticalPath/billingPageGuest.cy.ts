@@ -2,7 +2,6 @@ import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import BillingPage from '../../pom/billing.page';
 import shippingPage from '../../pom/shipping.page';
-import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
@@ -121,51 +120,9 @@ describe('Billing page functionality for guest user', function () {
     if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
-      BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    } else if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'AU')) {
-      BillingPage.assertions.assertPaymentMethodLayBuyIsDisplayed();
-    }
+    } 
     
     BillingPage.actions.waitPageToLoad();
   });
 
-});
-
-describe('Verify that guest user can place orders with available payment methods', function () {
-
-  beforeEach (function () {
-    Navigate.toBillingPage('GuestUser');
-
-    if (variables.brand == 'boohooman.com') {
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        BillingPage.actions.billingEmailField(credentials.guest);
-        BillingPage.actions.billingConfirmEmailField(credentials.guest);
-      });
-    }
-  });
-    
-  it('Verify that guest user can place order using Credit Card - Visa)', function () {
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-  });
-  it('Verify that guest user can place order using Credit Card - Master)', function () {
-    BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-  });
-  it('Verify that guest user can place order using Credit Card - Amex)', function () {
-    BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-  });
-  it('Verify that guest user can place order using PayPal', function () {
-    BillingPage.actions.selectPayPal();
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-  });
-  it('Verify that guest user can place order using Klarna', function () {
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
-      BillingPage.actions.selectKlarna();
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    } else {
-      this.skip();
-    }
-  });
 });

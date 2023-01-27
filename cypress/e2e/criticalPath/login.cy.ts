@@ -29,8 +29,7 @@ describe('Login Functionality tests', function () {
       LoginPage.actions.login(credentials.username, 'invalid12345');
       if (variables.brand == 'misspap.com') {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
-      }
-      else if (isSiteGenesisBrand) {
+      } else if (isSiteGenesisBrand) {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[variables.language]);
       } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);

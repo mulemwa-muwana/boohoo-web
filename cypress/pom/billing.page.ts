@@ -1079,7 +1079,7 @@ class BillingPage implements AbstractPage {
       } else if (isSiteGenesisBrand) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else {
-        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
+        cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }  
     },
     assertEmailFieldCantBeChanged () {

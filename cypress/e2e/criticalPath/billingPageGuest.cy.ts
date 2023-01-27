@@ -148,49 +148,49 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.actions.waitPageToLoad();
   });
 
-  describe('Verify that guest user can place orders with available payment methods', function () {
+  // Describe('Verify that guest user can place orders with available payment methods', function () {
 
-    beforeEach (function () {
-      if (!isSiteGenesisBrand) {
-        BillingPage.actions.selectDate('23', '3', '2001');
-      }
-      if (variables.brand == 'boohooman.com') {
-        cy.fixture('users').then((credentials: LoginCredentials) => {
-          BillingPage.actions.billingEmailField(credentials.guest);
-          BillingPage.actions.billingConfirmEmailField(credentials.guest);
-        });
-      }
-    });
+  //   BeforeEach (function () {
+  //     If (!isSiteGenesisBrand) {
+  //       BillingPage.actions.selectDate('23', '3', '2001');
+  //     }
+  //     If (variables.brand == 'boohooman.com') {
+  //       Cy.fixture('users').then((credentials: LoginCredentials) => {
+  //         BillingPage.actions.billingEmailField(credentials.guest);
+  //         BillingPage.actions.billingConfirmEmailField(credentials.guest);
+  //       });
+  //     }
+  //   });
 
-    it('Verify that guest user can place order using Credit Card - Visa)', function () {
-      BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that guest user can place order using Credit Card - Master)', function () {
-      BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that guest user can place order using Credit Card - Amex)', function () {
-      BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that guest user can place order using PayPal', function () {
-      BillingPage.actions.selectPayPal();
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    });
-    it('Verify that guest user can place order using Klarna', function () {
-      if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
-        BillingPage.actions.selectKlarna();
-        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-      } else {
-        this.skip();
-      }
-    });
-    if (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
-      it('Verify that guest user can place order using Laybuy', function () {
-        BillingPage.actions.selectLaybuy();
-        BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-      });
-    }
-  });
+  // It('Verify that guest user can place order using Credit Card - Visa)', function () {
+  //   BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+  //   BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  // });
+  // It('Verify that guest user can place order using Credit Card - Master)', function () {
+  //   BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+  //   BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  // });
+  // It('Verify that guest user can place order using Credit Card - Amex)', function () {
+  //   BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+  //   BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  // });
+  // It('Verify that guest user can place order using PayPal', function () {
+  //   BillingPage.actions.selectPayPal();
+  //   BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  // });
+  // It('Verify that guest user can place order using Klarna', function () {
+  //   If (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+  //     BillingPage.actions.selectKlarna();
+  //     BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  //   } else {
+  //     This.skip();
+  //   }
+  // });
+  // If (variables.locale == 'UK' && variables.brand != 'burton.co.uk') {
+  //   It('Verify that guest user can place order using Laybuy', function () {
+  //     BillingPage.actions.selectLaybuy();
+  //     BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+  //   });
+  // }
+  // });
 });

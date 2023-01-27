@@ -37,16 +37,13 @@ describe('Home Page', function () {
   describe('Header verifications', () => {
     it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
-
       HomePage.assertions.assertSearchIconPresent();
 
       HomePage.click.searchIcon();
       HomePage.assertions.assertSearchFieldPresent();
 
       homePage.assertions.assertAccountIconPresent();
-
       homePage.assertions.assertWishListIconPresent();
-
       homePage.assertions.assertCartIconPresent();
     });
     

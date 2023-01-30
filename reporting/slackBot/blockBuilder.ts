@@ -5,10 +5,10 @@ type Attachments = {
     env: string;
     secondMessageOfFailures: string;
     linkToReport: string;
-    passedPercentage: number;
-    failedPercentage: number;
-    skippedPercentage: number;
-    pendingPercentage: number;
+    passed: number;
+    failed: number;
+    skipped: number;
+    pending: number;
 }
 
 export function buildBlocks (input: Array<['section', string]>) {
@@ -28,9 +28,9 @@ export function buildBlocks (input: Array<['section', string]>) {
 export function buildAttachments (input: Attachments) {
 
   // Default any undefines.
-  if (isNaN(input.skippedPercentage)) input.skippedPercentage = 0;
-  if (isNaN(input.failedPercentage)) input.failedPercentage = 0;
-  if (isNaN(input.pendingPercentage)) input.pendingPercentage = 0;
+  if (isNaN(input.skipped)) input.skipped = 0;
+  if (isNaN(input.failed)) input.failed = 0;
+  if (isNaN(input.pending)) input.pending = 0;
 
   const attachments: any = {
 
@@ -106,22 +106,22 @@ export function buildAttachments (input: Attachments) {
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#23c552',
-      'author_name': input.passedPercentage + '% Passed'
+      'author_name': input.passed + ' Passed'
     },
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#f84f31',
-      'author_name': input.failedPercentage + '% Failed'
+      'author_name': input.failed + ' Failed'
     },
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#f6f6f6',
-      'author_name': input.skippedPercentage + '% Skipped'
+      'author_name': input.skipped + ' Skipped'
     },
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#f6f6f6',
-      'author_name': input.pendingPercentage + '% Pending'
+      'author_name': input.pending + ' Pending'
     },
     attachments
   ];

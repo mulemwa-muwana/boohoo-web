@@ -5,8 +5,6 @@ import HomePage from '../pom/home.page';
 import LoginPage from '../pom/login.page';
 import PdpPage from '../pom/pdp.page';
 import shippingPage from '../pom/shipping.page';
-import cards from './cards';
-import orderConfirmationPage from '../pom/orderConfirmation.page';
 import assertionText from './assertionText';
 import Addresses from './addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
@@ -96,6 +94,10 @@ class Navigate {
           shippingPage.click.proceedToBilling();
           BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
         }
+        if (variables.brand == 'boohooman.com') {
+          BillingPage.actions.billingEmailField(credentials.guest);
+          BillingPage.actions.billingConfirmEmailField(credentials.guest);
+        }
         BillingPage.actions.waitPageToLoad();
       });
 
@@ -124,15 +126,6 @@ class Navigate {
       shippingPage.actions.clearPostcodeFieldAndAddNewOne(primaryAddress.postcode);
       shippingPage.click.proceedToBilling();
       BillingPage.actions.waitPageToLoad();
-    }
-  }
-
-  toOrderConfirmationPage (userType: UserType, creditCard: CardDetails = cards.master) {
-    this.toBillingPage(userType);
-
-    BillingPage.actions.selectCreditCard(creditCard.cardNo, creditCard.owner, creditCard.date, creditCard.code);
-    if (variables.brand == 'boohoo.com' && (variables.language == 'DE' || variables.language == 'SE')) {
-      orderConfirmationPage.click.closeCancellationPopup();
     }
   }
 

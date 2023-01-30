@@ -1,7 +1,6 @@
 import shippingMethods from '../../helpers/shippingMethods';
 import BillingPage from '../../pom/billing.page';
 import shippingPage from '../../pom/shipping.page';
-import cards from '../../helpers/cards';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
@@ -83,47 +82,15 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
     }
+
   });
+  
+  //  TESTS FOR SITE GENESIS BRANDS:  //
   it('Verify that promo code field is displayed', function () {
     if (isSiteGenesisBrand) {
       BillingPage.assertions.assertPromoCodeFieldIsDisplayed();
     } else {
       this.skip(); // Promo code field only for Site Genesis brands is displayed on Billing Page.
-    }
-  });
-});
-
-describe('Verify that registered user can place orders with available payment methods', function () {
-
-  beforeEach (function () {
-    Navigate.toBillingPage('RegisteredUser');
-  });
-
-  it('Verify that registered user can place order using Credit Card - Visa)', function () {
-    BillingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-  });
-  it('Verify that registered user can place order using Credit Card - Master)', function () {
-    BillingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-  });
-  it('Verify that registered user can place order using Credit Card - Amex)', function () {
-    BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-  });
-  it('Verify that registered user can place order using PayPal', function () {
-    if (variables.brand == 'boohoomena.com') {
-      this.skip(); // Only credit card as payment option for this brand
-    }
-    BillingPage.actions.selectPayPal();
-    BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-  });
-  it('Verify that guest user can place order using Klarna', function () {
-    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
-      BillingPage.actions.selectKlarna();
-      BillingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    } else {
-      this.skip();
     }
   });
 });

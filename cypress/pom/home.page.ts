@@ -149,7 +149,7 @@ class HomePage implements AbstractPage {
     cy.session('accept-cookies', () => {
       cy.visit(variables.url);
       this.click.acceptCookies();
-    })
+    });
     
     cy.visit(variables.url);
   }

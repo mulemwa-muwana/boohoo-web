@@ -8,7 +8,7 @@ export default defineConfig({
     url: 'https://storefront:Oreo2022@dwstg.warehousefashion.com/eu',
     sku: 'BWW04329',
     brand: 'warehousefashion.com',
-    locale: 'UK',
+    locale: 'EU',
     language: 'EN'
   },
 

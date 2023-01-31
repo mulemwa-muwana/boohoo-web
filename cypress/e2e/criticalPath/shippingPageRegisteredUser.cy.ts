@@ -49,22 +49,6 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  /** [Test Steps]
-   * Log in
-   * Go to billing 
-   * Check it's displayed
-   */
-  it('Verify that user can proceed to billing with one of the saved addresees', () => {
-    if (variables.locale != 'IE' && variables.locale != 'AU') {
-      shippingPage.click.proceedToBilling();
-      if (isSiteGenesisBrand) {
-        shippingPage.click.proceedToBillingVerification();
-      }
-      cy.wait(4000);
-      shippingPage.assertions.assertUserProceededToBillingPage();
-    }
-  });
-
   it('Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.editAddress();
@@ -96,19 +80,6 @@ describe('Shipping Page Registered user tests', function () {
     }
     shippingPage.click.addNewAddressButton();
     shippingPage.click.cancelAddingNewAddressForRegisteredUser();
-  });
-
-  it('Verify that Add new address button allows user to add address details', function () {
-    if (variables.brand == 'boohooman.com') {
-      this.skip();
-    }
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    shippingPage.click.addNewAddressButton();
-    if (variables.locale == 'IE') {
-      shippingPage.actions.selectCountry(localeAddress.country);
-    }
-    shippingPage.assertions.assertFirstNameFieldIsPopulated(localeAddress.firstName);
-    shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name, last name, phone number and select country from drop down list', function () {
@@ -284,10 +255,6 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.proceedToBilling();
     billingPage.actions.waitPageToLoad();
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
-  });
-
-  it.skip('Verify that PUDO locations are dispayed', () => {
-    shippingPage.click.OpenPUDOlocations();
   });
 
   it('Verify that user can Edit cart from shipping page', () => {

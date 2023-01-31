@@ -134,44 +134,6 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
   });
 
-  it.skip('Verify that user is able to select DPD shipping method', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod2');
-    shippingPage.actions.firstNameField(localeAddress.firstName);
-    shippingPage.actions.lastNameField(localeAddress.lastName);
-    shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.addAddressManually();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.adressLine2(localeAddress.addrline2);
-    shippingPage.actions.cityField(localeAddress.city);
-    shippingPage.actions.postcodeField(localeAddress.postcode);
-    shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
-      shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmailField(this.guestEmail);
-    }
-    shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
-    shippingPage.click.proceedToBilling();
-  });
-
-  it.skip('Verify that PUDO locations are dispayed', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.click.addNewAddress();
-    }
-    shippingPage.actions.firstNameField(localeAddress.firstName);
-    shippingPage.actions.lastNameField(localeAddress.lastName);
-    shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.enterManuallyAddressDetails();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
-    shippingPage.actions.cityField(localeAddress.city);
-    shippingPage.actions.postcodeField(localeAddress.postcode);
-    shippingPage.actions.phoneNumberField(localeAddress.phone);
-    shippingPage.click.OpenPUDOlocations();
-
-    // PUDO OPTIONS ARE MISSING FOR GUEST, need to check with Trupti
-  });
-
   it('Verify that guest user can Edit cart from shipping page', function () {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
@@ -209,13 +171,13 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   //  TESTS FOR SITE GENESIS BRANDS:  //
-  it('Verify that email field is filled with correct email address', function () {   
+  it('SG: Verify that email field is filled with correct email address', function () {   
     if (!isSiteGenesisBrand || variables.brand == 'boohooman.com') { // Email field only for Site Genesis brands is on Shipping page.
       this.skip();
     }
     shippingPage.assertions.assertEmailIsCorrect(this.guestEmail);
   });
-  it('Verify that date of birth form is present and that guest user can select date of birth', function () {
+  it('SG: Verify that date of birth form is present and that guest user can select date of birth', function () {
     if (!isSiteGenesisBrand) {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
@@ -223,7 +185,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
     shippingPage.assertions.assertDateIsSelected('23', '05', '2001');
   });
-  it('Verify that guest user cannot proceed to billing page if email field is empty', function () {
+  it('SG: Verify that guest user cannot proceed to billing page if email field is empty', function () {
     if (!isSiteGenesisBrand || variables.brand == 'boohooman.com') {
       this.skip(); // Email field only for Site Genesis brands is on Shipping page.
     }
@@ -231,7 +193,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyEmailFieldError(assertionText.assertMandatoryFieldErrorSiteGenesis[variables.language]);
   });
-  it('Verify that guest user cannot proceed to billing page if date of birth is not selected', function () {
+  it('SG: Verify that guest user cannot proceed to billing page if date of birth is not selected', function () {
     if (!isSiteGenesisBrand) {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }

@@ -26,10 +26,6 @@ async function GenerateAndPostReport (report: any) {
 
   // Get result statistics.
   const { tests, passed, failed, skipped, pending } = report.totals;
-  const passedPercentage = parseFloat(((passed / tests) * 100).toFixed(2));
-  const failedPercentage = parseFloat(((failed / tests) * 100).toFixed(2));
-  const skippedPercentage = parseFloat(((skipped / tests) * 100).toFixed(2));
-  const pendingPercentage = parseFloat(((pending / tests) * 100).toFixed(2));
 
   const platformRelease = process.env.PLATFORM || 'Generic Test Run';
   const env = 'Staging';
@@ -68,17 +64,17 @@ async function GenerateAndPostReport (report: any) {
     env,
     secondMessageOfFailures,
     linkToReport,
-    passedPercentage,
-    failedPercentage,
-    skippedPercentage,
-    pendingPercentage,
+    passed,
+    failed,
+    skipped,
+    pending,
   });
 
   await app.start(process.env.PORT || 3000);
 
   try {
 
-    if (isNaN(passedPercentage) || isNaN(failedPercentage)) {
+    if (isNaN(passed) || isNaN(failed)) {
       await app.client.chat.postMessage({
         token: process.env.SLACK_BOT_OAUTH,
         channel: process.env.SLACK_CHANNEL,

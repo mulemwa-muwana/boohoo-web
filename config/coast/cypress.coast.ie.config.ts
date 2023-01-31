@@ -8,7 +8,7 @@ export default defineConfig({
     url: 'https://storefront:Oreo2022@stg.coastfashion.com/ie',
     sku: 'BCC03538',
     brand: 'coastfashion.com',
-    locale: 'UK',
+    locale: 'IE',
     language: 'EN',
   },
 

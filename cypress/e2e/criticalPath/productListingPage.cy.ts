@@ -43,11 +43,7 @@ describe('Product Listing Page tests', function () {
       plpPage.assertions.assertProductNameIsDisplayed();
       plpPage.assertions.assertProductPriceIsDispayed();
     });
-    
-    it.skip('Verify new product price is displayed', () => {
-        
-      // To be discussed is it needed because many products dont have it (maybe looping)
-    });
+
     it('Verify add to wishlist is displayed', () => {
       if (variables.brand == 'boohoo.com') {
         plpPage.click.wishlistOnPlpImage();

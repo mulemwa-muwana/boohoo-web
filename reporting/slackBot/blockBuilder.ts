@@ -5,6 +5,7 @@ type Attachments = {
     env: string;
     secondMessageOfFailures: string;
     linkToReport: string;
+    duration: string;
     passes: number;
     failures: number;
     skipped: number;
@@ -55,6 +56,10 @@ export function buildAttachments (input: Attachments) {
           {
             type:'mrkdwn',
             text: '*Environment*\n' + input.env
+          },
+          {
+            type:'mrkdwn',
+            text: '*Duration h/m/s*\n' + input.duration
           }
         ]
       }

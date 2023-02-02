@@ -29,6 +29,7 @@ async function GenerateAndPostReport (report: any) {
 
   const platformRelease = process.env.PLATFORM || 'Generic Test Run';
   const env = 'Staging';
+  const duration = new Date(report.stats.duration).toISOString().slice(11, 19);
 
   // Failures
   let failed = '';
@@ -87,6 +88,7 @@ async function GenerateAndPostReport (report: any) {
     env,
     secondMessageOfFailures,
     linkToReport,
+    duration,
     passes,
     failures,
     skipped,

@@ -431,7 +431,7 @@ class GlobalFooter implements AbstractPage {
       cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');
     },
     assertHeaderIsVisible () {
-      if (variables.brand == 'burton.co.uk' || variables.locale != 'UK') {
+      if (variables.brand == 'burton.co.uk' && variables.locale != 'UK') {
         cy.get('.l-header-inner').invoke('show').should('be.visible');
       } else {
         const headerInner = selectors[variables.brand].headerInner;

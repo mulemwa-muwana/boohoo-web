@@ -25,47 +25,70 @@ async function GenerateAndPostReport (report: any) {
   const currentDate = new Date();
 
   // Get result statistics.
-  const { tests, passed, failed, skipped, pending } = report.totals;
+  const { tests, passes, failures, skipped, pending } = report.stats;
 
   const platformRelease = process.env.PLATFORM || 'Generic Test Run';
   const env = 'Staging';
 
   // Failures
-  let failures = '';
+  let failed = '';
   let secondMessageOfFailures = '';
   let i = 1;
   const reportKeys = Object.keys(report);
   reportKeys.forEach(key => {
-    if (key !== 'totals') {
-      const suite = report[key] as Record<string, 'failed' | 'passed'>;
-      const suiteKeys = Object.keys(suite);
-      suiteKeys.forEach(testName => {
-        const result = suite[testName];
-        if (result === 'failed') {
+    // if (key !== 'totals') {
+    //   const suite = report[key] as Record<string, 'failed' | 'passed'>;
+    //   const suiteKeys = Object.keys(suite);
+    //   suiteKeys.forEach(testName => {
+    //     const result = suite[testName];
+    //     if (result === 'failed') {
 
-          // Check if adding the failure would push it over 2500 characters.
-          if ((failures + `${i}. ${testName}\n`).length > 2500) {
-            secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
-          } else {
+    //       // Check if adding the failure would push it over 2500 characters.
+    //       if ((failed + `${i}. ${testName}\n`).length > 2500) {
+    //         secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
+    //       } else {
 
-            // Apply failures to the failure list.
-            failures = failures + `${i}. ${testName}\n`;
-          }
-          i++;
-        }
-      });
-    }
+    //         // Apply failed to the failure list.
+    //         failed = failed + `${i}. ${testName}\n`;
+    //       }
+    //       i++;
+    //     }
+    //   });
+    // }
+
+    //////////////////////////////
+    // if (key === 'results') {
+    //   const suite = report[key] as Record<string, 'failed' | 'passed'>;
+    //   const suiteKeys = Object.keys(suite);
+    //   suiteKeys.forEach(testName => {
+    //     const result = suite[testName];
+    //     if (result === 'failed') {
+
+    //       // Check if adding the failure would push it over 2500 characters.
+    //       if ((failed + `${i}. ${testName}\n`).length > 2500) {
+    //         secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
+    //       } else {
+
+    //         // Apply failed to the failure list.
+    //         failed = failed + `${i}. ${testName}\n`;
+    //       }
+    //       i++;
+    //     }
+    //   });
+    // }
+
+
   });
 
   const attachmentBlocks: any = buildAttachments({
     platformRelease,
     tests,
-    failures,
+    failed,
     env,
     secondMessageOfFailures,
     linkToReport,
-    passed,
-    failed,
+    passes,
+    failures,
     skipped,
     pending,
   });
@@ -74,7 +97,7 @@ async function GenerateAndPostReport (report: any) {
 
   try {
 
-    if (isNaN(passed) || isNaN(failed)) {
+    if (isNaN(passes) || isNaN(failures)) {
       await app.client.chat.postMessage({
         token: process.env.SLACK_BOT_OAUTH,
         channel: process.env.SLACK_CHANNEL,
@@ -87,7 +110,7 @@ async function GenerateAndPostReport (report: any) {
     await app.client.chat.postMessage({
       token: process.env.SLACK_BOT_OAUTH,
       channel: process.env.SLACK_CHANNEL,
-      text: `Web build detected for ${passed} out of ${tests} tests passed.`,
+      text: `Web build detected for ${passes} out of ${tests} tests passed.`,
 
       // Title block.
       blocks: buildBlocks([

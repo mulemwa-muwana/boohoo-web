@@ -1,12 +1,12 @@
 type Attachments = {
     platformRelease: string;
     tests: string;
-    failures: string;
+    failed: string;
     env: string;
     secondMessageOfFailures: string;
     linkToReport: string;
-    passed: number;
-    failed: number;
+    passes: number;
+    failures: number;
     skipped: number;
     pending: number;
 }
@@ -29,7 +29,7 @@ export function buildAttachments (input: Attachments) {
 
   // Default any undefines.
   if (isNaN(input.skipped)) input.skipped = 0;
-  if (isNaN(input.failed)) input.failed = 0;
+  if (isNaN(input.failures)) input.failures = 0;
   if (isNaN(input.pending)) input.pending = 0;
 
   const attachments: any = {
@@ -62,7 +62,7 @@ export function buildAttachments (input: Attachments) {
   };
 
   // Add failed tests block to the block object.
-  if (input.failures.length > 0) {
+  if (input.failed.length > 0) {
     attachments.blocks.push({
       'type': 'divider'
     });
@@ -106,7 +106,7 @@ export function buildAttachments (input: Attachments) {
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#23c552',
-      'author_name': input.passed + ' Passed'
+      'author_name': input.passes + ' Passed'
     },
     {
       'fallback': 'Oopsie, error occured.',

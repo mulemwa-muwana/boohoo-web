@@ -18,10 +18,10 @@ export default async function (on: Cypress.PluginEvents): Promise<void> {
   }
 
   // This will ensure that JSON reports will be created.
-  require('cypress-json-results')({
-    on,
-    filename: 'results.json'
-  });
+  // require('cypress-json-results')({
+  //   on,
+  //   filename: 'results.json'
+  // }, '');
 
   on('task', {
 

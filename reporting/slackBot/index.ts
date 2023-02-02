@@ -32,11 +32,45 @@ async function GenerateAndPostReport (report: any) {
   const duration = new Date(report.stats.duration).toISOString().slice(11, 19);
 
   // Failures
-  let failed = '';
+  let failedTitles = '';
   let secondMessageOfFailures = '';
   let i = 1;
-  const reportKeys = Object.keys(report);
-  reportKeys.forEach(key => {
+
+  // Parse through results[].suites[].tests[]
+  report.results.forEach(result => {
+    result.suites.forEach(suite => {
+      suite.tests.forEach(test => {
+        if (test.state === 'failed') {
+          // Check if adding the failure would push it over 2500 characters.
+            if ((failedTitles + `${i}. ${test.title}\n`).length > 2500) {
+              secondMessageOfFailures = secondMessageOfFailures + `${i}. ${test.title}\n`;
+            } else {
+              // Apply failed to the failure list.
+              failedTitles = failedTitles + `${i}. ${test.title}\n`;
+            }
+          i++;
+        }
+    })
+  });
+  });
+
+
+    // report.results[0].suites[0].tests.forEach(test => {
+    //   if (test.state === 'failed') {
+    //     // Check if adding the failure would push it over 2500 characters.
+    //       if ((failedTitles + `${i}. ${test.title}\n`).length > 2500) {
+    //         secondMessageOfFailures = secondMessageOfFailures + `${i}. ${test.title}\n`;
+    //       } else {
+    //         // Apply failed to the failure list.
+    //         failedTitles = failedTitles + `${i}. ${test.title}\n`;
+    //       }
+    //     i++;
+    //   }
+
+    // });
+
+  // const reportKeys = Object.keys(report);
+  // reportKeys.forEach(key => {
     // if (key !== 'totals') {
     //   const suite = report[key] as Record<string, 'failed' | 'passed'>;
     //   const suiteKeys = Object.keys(suite);
@@ -79,16 +113,15 @@ async function GenerateAndPostReport (report: any) {
     // }
 
 
-  });
+  // });
 
   const attachmentBlocks: any = buildAttachments({
     platformRelease,
     tests,
-    failed,
+    failedTitles,
     env,
     secondMessageOfFailures,
     linkToReport,
-    duration,
     passes,
     failures,
     skipped,
@@ -166,7 +199,7 @@ async function StartUpMessage (tag: string) {
 
   // Get the file first.
   try {
-    const file = fs.readFileSync(`config/${arg}/results.json`, 'utf-8');
+    const file = fs.readFileSync(`config/${arg}/results/results.json`, 'utf-8');
     const report = JSON.parse(file);
     GenerateAndPostReport(report);
   } catch {

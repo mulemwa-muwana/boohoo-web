@@ -1,11 +1,10 @@
 type Attachments = {
     platformRelease: string;
     tests: string;
-    failed: string;
+    failedTitles: string;
     env: string;
     secondMessageOfFailures: string;
     linkToReport: string;
-    duration: string;
     passes: number;
     failures: number;
     skipped: number;
@@ -56,10 +55,6 @@ export function buildAttachments (input: Attachments) {
           {
             type:'mrkdwn',
             text: '*Environment*\n' + input.env
-          },
-          {
-            type:'mrkdwn',
-            text: '*Duration h/m/s*\n' + input.duration
           }
         ]
       }
@@ -67,7 +62,7 @@ export function buildAttachments (input: Attachments) {
   };
 
   // Add failed tests block to the block object.
-  if (input.failed.length > 0) {
+  if (input.failedTitles.length > 0) {
     attachments.blocks.push({
       'type': 'divider'
     });
@@ -75,7 +70,7 @@ export function buildAttachments (input: Attachments) {
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text: '*Failing Tests (This list excludes skipped tests):*\n' + input.failures
+        text: '*Failing Tests (This list excludes skipped tests):*\n' + input.failedTitles
       }
     });
 
@@ -116,7 +111,7 @@ export function buildAttachments (input: Attachments) {
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#f84f31',
-      'author_name': input.failed + ' Failed'
+      'author_name': input.failures + ' Failed'
     },
     {
       'fallback': 'Oopsie, error occured.',

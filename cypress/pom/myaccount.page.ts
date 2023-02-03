@@ -266,7 +266,7 @@ const selectors: SelectorBrandMap = {
     orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
   },
   'boohooman.com': {
-    accountLogout: 'a[title="Log out"]',
+    accountLogout: '.button.simple.js-logout',
     myAccountBtn: 'a[data-tau="navigation_accountOverview"]',
     ordersLink: 'a[data-tau="navigation_orderHistory"]',
     wishListBtn: 'a[data-tau="navigation_wishlistShow"]',

@@ -21,6 +21,14 @@ export default defineConfig({
   blockHosts: [
     'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
   ],
+
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'config/wallis/results',
+    overwrite: false,
+    html: false,
+    json: true,
+  },
   
   e2e: {
     excludeSpecPattern: [

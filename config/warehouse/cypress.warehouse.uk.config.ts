@@ -18,6 +18,14 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
+
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'config/wallis/results',
+    overwrite: false,
+    html: false,
+    json: true,
+  },
   
   e2e: {
     setupNodeEvents (on) {

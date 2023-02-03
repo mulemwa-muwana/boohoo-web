@@ -17,12 +17,6 @@ export default async function (on: Cypress.PluginEvents): Promise<void> {
     console.warn('No env file found.');
   }
 
-  // This will ensure that JSON reports will be created.
-  // require('cypress-json-results')({
-  //   on,
-  //   filename: 'results.json'
-  // }, '');
-
   on('task', {
 
     // Creates a user and returns you the credentials with its JWT token for later requests.

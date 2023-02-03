@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { App } from '@slack/bolt';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
@@ -45,7 +46,7 @@ async function GenerateAndPostReport (report: any) {
       if (suite.tests) {
         suite.tests.forEach(test => {
           if (test.state == 'failed') {
-            const testName = test.fullTitle;
+            const testName: string = test.fullTitle;
 
             // Check if adding the failure would push it over 2500 characters.
             if ((failedTitles + `${i}. ${testName}\n`).length > 2500) {

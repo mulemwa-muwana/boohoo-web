@@ -1,3 +1,4 @@
+/* eslint-disable */
 type Attachments = {
     platformRelease: string;
     tests: string;

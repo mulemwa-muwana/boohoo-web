@@ -37,14 +37,15 @@ describe('Home Page', function () {
   describe('Header verifications', () => {
     it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
-      HomePage.assertions.assertSearchIconPresent();
-
-      HomePage.click.searchIcon();
-      HomePage.assertions.assertSearchFieldPresent();
 
       homePage.assertions.assertAccountIconPresent();
       homePage.assertions.assertWishListIconPresent();
       homePage.assertions.assertCartIconPresent();
+
+      HomePage.click.searchIcon();
+      HomePage.assertions.assertSearchIconPresent();
+
+      HomePage.assertions.assertSearchFieldPresent();
     });
     
     it('Verify search results page opens', () => {
@@ -111,7 +112,7 @@ describe('Home Page', function () {
       
     it('Verify correct error message is displayed - newsletter subscription footer', () => {
       HomePage.goto();
-      GlobalFooter.actions.subscribeToNewsletter('euboohoo@gmail.com');
+      GlobalFooter.actions.subscribeToNewsletter('euboohoo@gmail.com'); // Bug fixed on DEV still on STG
       GlobalFooter.assertions.asssertAlreadySubscribed(assertionText.alreadySubscribed[variables.language]);
     });
 
@@ -295,7 +296,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', function () {
-        if (variables.brand == 'boohoomena.com') {
+        if (variables.brand == 'boohoomena.com' || (variables.brand == 'burton.co.uk' && variables.locale != 'UK')) {
           this.skip();
         }
         if (variables.brand == 'nastygal.com') {

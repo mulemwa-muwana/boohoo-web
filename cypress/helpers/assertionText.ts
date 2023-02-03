@@ -1,5 +1,5 @@
 class AssertionText {
-  
+
   WishlistItemsAdded: TranslationMap = {
     EN: 'The product is added to wish list',
     FR: 'Le produit a été ajouté à la liste des favoris',
@@ -113,7 +113,7 @@ class AssertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
-    EN: 'Don’t forget about me!',  
+    EN: 'Don’t forget about me!',
     FR: 'Ne m/’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
@@ -127,7 +127,7 @@ class AssertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
-    EN: 'This field is required.', 
+    EN: 'This field is required.',
     FR: 'Ne m’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
@@ -267,7 +267,7 @@ class AssertionText {
   };
 
   TermsAndConditionsH1: TranslationMap = {
-    EN: '\n                Terms & conditions\n            ',
+    EN: '\n                Terms & Conditions\n            ',
     FR: '',
     NL: '',
     DE: '',
@@ -417,7 +417,7 @@ class AssertionText {
     SE: 'JIPPIE! Den finns i lager',
     IL: 'יש! זה במלאי',
     IT: 'SÌÌ! È in magazzino',
-    ES: '¡HURRA! esta en stock' 
+    ES: '¡HURRA! esta en stock'
   };
 
   inStockArkadia: TranslationMap = {
@@ -431,7 +431,7 @@ class AssertionText {
     SE: 'JIPPIE! Den finns i lager',
     IL: 'יש! זה במלאי',
     IT: 'SÌÌ! È in magazzino',
-    ES: '¡HURRA! esta en stock' 
+    ES: '¡HURRA! esta en stock'
   };
 
   selectSize: TranslationMap = {
@@ -475,7 +475,7 @@ class AssertionText {
     IT: 'Ops, seleziona una taglia',
     ES: 'Oops por favor seleccione un tamaño'
   };
-  
+
   loginAttempts: TranslationMap = {
     EN: 'login attempts',
     FR: 'tentatives de connexion',
@@ -671,7 +671,7 @@ class AssertionText {
     IT: '\nAggiunto al tuo carrello\n',
     ES: '\nAgregado a tu carrito\n'
   };
-  
+
   successfulSubscription: TranslationMap = {
     EN: 'Thanks for ',
     NL: 'Bedankt voor ',
@@ -867,7 +867,7 @@ class AssertionText {
     IT: 'A proposito di boohoo',
     ES: 'Sobre boohoo'
   };
-  
+
   footerLinkAboutNastyGal: TranslationMap = {
     EN: 'About Nasty Gal',
     NL: '',
@@ -911,7 +911,7 @@ class AssertionText {
   };
 
   footerLinkTrackAppNG: TranslationMap = {
-    EN: 'Nasty Gal App', 
+    EN: 'Nasty Gal App',
     NL: '',
     DE: '', // To be consider for multiple brends
     FR: 'Appli Nasty Gal',
@@ -1245,7 +1245,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
-  
+
   aboutCookiesNG: TranslationMap = {
     EN: 'About Cookies',
     NL: 'Over cookies',
@@ -1274,7 +1274,7 @@ class AssertionText {
     ES: ''
   };
 
-  completeTheLook: TranslationMap = { 
+  completeTheLook: TranslationMap = {
     EN: 'Complete the look',
     NL: 'Maak de look af',
     DE: 'Vervollständige den Look',
@@ -1288,7 +1288,7 @@ class AssertionText {
     ES: ''
   };
 
-  DOBmonth: TranslationMap = { 
+  DOBmonth: TranslationMap = {
     EN: 'May',
     NL: 'Mei',
     DE: 'Mai',
@@ -1314,6 +1314,104 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: ''
+  };
+
+  category: TranslationMap = {
+    EN: 'category',
+    NL: 'categorie',
+    DE: 'kategorie',
+    FR: 'catégorie',
+    DK: 'category',
+    FI: 'category',
+    NO: 'category',
+    SE: 'kategori',
+    IL: '',
+    IT: 'categoria',
+    ES: 'categoría'
+  };
+
+  size: TranslationMap = {
+    EN: 'size',
+    NL: 'grootte',
+    DE: 'größe',
+    FR: 'taille',
+    DK: 'size',
+    FI: 'size',
+    NO: 'size',
+    SE: 'storlek',
+    IL: '',
+    IT: 'taglia',
+    ES: 'talla'
+  };
+
+  price: TranslationMap = {
+    EN: 'price',
+    NL: 'prijs',
+    DE: 'preis',
+    FR: 'prix',
+    DK: 'price',
+    FI: 'price',
+    NO: 'price',
+    SE: 'pris',
+    IL: '',
+    IT: 'prezzo',
+    ES: 'precio'
+  };
+
+  style: TranslationMap = {
+    EN: 'style',
+    NL: 'stijl',
+    DE: 'style',
+    FR: 'style',
+    DK: 'style',
+    FI: 'style',
+    NO: 'style',
+    SE: 'modell',
+    IL: '',
+    IT: 'stile',
+    ES: 'estilo'
+  };
+
+  colour: TranslationMap = {
+    EN: 'colour',
+    NL: 'kleur',
+    DE: 'farbe',
+    FR: 'couleur',
+    DK: 'colour',
+    FI: 'colour',
+    NO: 'colour',
+    SE: 'färg',
+    IL: '',
+    IT: 'colore',
+    ES: 'color'
+  };
+
+  occasion: TranslationMap = {
+    EN: 'occasion',
+    NL: 'gelegenheid',
+    DE: 'anlass',
+    FR: 'occasion',
+    DK: 'occasion',
+    FI: 'occasion',
+    NO: 'occasion',
+    SE: 'tillfälle',
+    IL: '',
+    IT: 'occasione',
+    ES: 'acontecimiento'
+  };
+
+  shopByFit: TranslationMap = {
+    EN: 'shop-by-fit',
+    NL: 'shop-op-pasvorm',
+    DE: 'shoppe-nach-maß',
+    FR: 'shopper-par-coupe',
+    DK: 'shop-by-fit',
+    FI: 'shop-by-fit',
+    NO: 'shop-by-fit',
+    SE: 'shoppa-passform',
+    IL: '',
+    IT: 'acquista-per-fit',
+    ES: 'comprar-por-ajuste'
   };
 }
 

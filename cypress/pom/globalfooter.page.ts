@@ -69,7 +69,7 @@ const selectors: SelectorBrandMap = {
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/burton_menswear/"]',
     facebookLink: 'a[href="https://www.facebook.com/BurtonMenswear/"]',
-    twitterLink: 'a[href="https://twitter.com/messages/1326555588-978546536232685568"]',
+    twitterLink: '[data-tau="social_twitter"]',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: 'button[data-id="submitButton"]',
@@ -431,8 +431,12 @@ class GlobalFooter implements AbstractPage {
       cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');
     },
     assertHeaderIsVisible () {
-      const headerInner = selectors[variables.brand].headerInner;
-      cy.get(headerInner).invoke('show').should('be.visible');
+      if (variables.brand == 'burton.co.uk' && variables.locale != 'UK') {
+        cy.get('.l-header-inner').invoke('show').should('be.visible');
+      } else {
+        const headerInner = selectors[variables.brand].headerInner;
+        cy.get(headerInner).invoke('show').should('be.visible');
+      }
     },
     assertHeaderIsNotVisible () {
       const headerInner = selectors[variables.brand].headerInner;

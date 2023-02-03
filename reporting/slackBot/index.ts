@@ -26,10 +26,6 @@ async function GenerateAndPostReport (report: any) {
 
   // Get result statistics.
   const { tests, passed, failed, skipped, pending } = report.totals;
-  const passedPercentage = parseFloat(((passed / tests) * 100).toFixed(2));
-  const failedPercentage = parseFloat(((failed / tests) * 100).toFixed(2));
-  const skippedPercentage = parseFloat(((skipped / tests) * 100).toFixed(2));
-  const pendingPercentage = parseFloat(((pending / tests) * 100).toFixed(2));
 
   const platformRelease = process.env.PLATFORM || 'Generic Test Run';
   const env = 'Staging';
@@ -68,22 +64,22 @@ async function GenerateAndPostReport (report: any) {
     env,
     secondMessageOfFailures,
     linkToReport,
-    passedPercentage,
-    failedPercentage,
-    skippedPercentage,
-    pendingPercentage,
+    passed,
+    failed,
+    skipped,
+    pending,
   });
 
   await app.start(process.env.PORT || 3000);
 
   try {
 
-    if (isNaN(passedPercentage) || isNaN(failedPercentage)) {
+    if (isNaN(passed) || isNaN(failed)) {
       await app.client.chat.postMessage({
         token: process.env.SLACK_BOT_OAUTH,
         channel: process.env.SLACK_CHANNEL,
         text: `There has been an issue generating a Slack report for ${brand.toUpperCase()}.\nTo find more information, log into the TeamCity server and check the build artefacts.`,
-      })
+      });
       return;
     }
 
@@ -114,42 +110,42 @@ async function GenerateAndPostReport (report: any) {
     }
 
   } catch (e) {
-    console.error(e) // We still want to log the error, but stop the bot in the process.
+    console.error(e); // We still want to log the error, but stop the bot in the process.
   } finally {
     app.stop();
   }
 }
 
 async function StartUpMessage (tag: string) {
-    await app.start(process.env.PORT || 3000);
-    await app.client.chat.postMessage({
-        token: process.env.SLACK_BOT_OAUTH,
-        channel: process.env.SLACK_CHANNEL,
-        text: `A web automation build for ${tag} has started, expect reports soon.`,
-    });
-    app.stop();
+  await app.start(process.env.PORT || 3000);
+  await app.client.chat.postMessage({
+    token: process.env.SLACK_BOT_OAUTH,
+    channel: process.env.SLACK_CHANNEL,
+    text: `A web automation build for ${tag} has started, expect reports soon.`,
+  });
+  app.stop();
 }
 
 (async function () {
-    const arg = process.argv.slice(2)[0];
-    const tag = process.argv.slice(2)[1];
+  const arg = process.argv.slice(2)[0];
+  const tag = process.argv.slice(2)[1];
 
-    if (arg === 'startup') {
-        if (tag) {
-            StartUpMessage(tag)
-            return;
-        } else {
-            throw new Error('No tag was specified, try using `ts-node reporting/slackBot.ts startup TagName`')
-        }
+  if (arg === 'startup') {
+    if (tag) {
+      StartUpMessage(tag);
+      return;
+    } else {
+      throw new Error('No tag was specified, try using `ts-node reporting/slackBot.ts startup TagName`');
     }
+  }
 
-    // Get the file first.
-    try {
-        const file = fs.readFileSync(`config/${arg}/results.json`, 'utf-8')
-        const report = JSON.parse(file);
-        GenerateAndPostReport(report);
-    } catch {
-        console.error('No file found, or not brand was specified.')
-    }
+  // Get the file first.
+  try {
+    const file = fs.readFileSync(`config/${arg}/results.json`, 'utf-8');
+    const report = JSON.parse(file);
+    GenerateAndPostReport(report);
+  } catch {
+    console.error('No file found, or not brand was specified.');
+  }
 })();
 

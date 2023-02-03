@@ -5,12 +5,11 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.warehousefashion.com',
-    sku: 'AWW36169-109-22',
-    fullSKU: 'AWW36169-109-22',
-    brand: 'warehousefashion.com',
-    locale: 'UK',
-    language: 'EN'
+    url: 'https://storefront:Oreo2022@stg.coastfashion.com/eu',
+    sku: 'BCC03538',
+    brand: 'coastfashion.com',
+    locale: 'EU',
+    language: 'EN',
   },
 
   viewportHeight: 1080,
@@ -19,14 +18,15 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
-  
+
   e2e: {
-    setupNodeEvents (on) {
+    setupNodeEvents (on, config) {
       plugins(on);
     },
+    excludeSpecPattern: [
+      '**/backend*/**' // Skip backend tests
+    ],
     experimentalSessionAndOrigin: true,
     numTestsKeptInMemory: 0,
-  },
-
+  },   
 });
-

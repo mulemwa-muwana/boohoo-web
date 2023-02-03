@@ -63,9 +63,23 @@ Cypress.Commands.add('createArtefactTemp', (testArtefact: TestArtefact, brand: s
 });
 
 /**
- * Outputs everything from cy.log() out to the console terminal as well
+ * Outputs everything from cy.log() to the Cypress open runner and console terminal as well
  */
 Cypress.Commands.overwrite('log', (log, message, ...args) => {
   log(message, ...args);
   cy.task('log', [message, ...args].join(', '), { log: false });
 });
+
+/**
+ * Appends ?noredirect=true or &noredirect=true flag to the url when doing cy.visit(url) - stops 302 redirects and resolves 401 unauthorized errors
+ */
+Cypress.Commands.overwrite('visit', function (originalFn, url) {
+    let urlPath = url as unknown as string;
+    if (urlPath.includes('?')) {
+      urlPath += '&noredirect=true'
+    } else {
+      urlPath += '?noredirect=true'
+    }
+    
+    return originalFn({ url: urlPath });
+  });

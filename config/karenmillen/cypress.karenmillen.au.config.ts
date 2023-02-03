@@ -5,11 +5,10 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.warehousefashion.com',
-    sku: 'AWW36169-109-22',
-    fullSKU: 'AWW36169-109-22',
-    brand: 'warehousefashion.com',
-    locale: 'UK',
+    url: 'https://storefront:Oreo2022@stg.karenmillen.com/au', 
+    sku: 'BKK02508-1',
+    brand: 'karenmillen.com',
+    locale: 'AU',
     language: 'EN'
   },
 
@@ -24,6 +23,9 @@ export default defineConfig({
     setupNodeEvents (on) {
       plugins(on);
     },
+    excludeSpecPattern: [
+      '**/backend*/**' // Skip backend tests
+    ],
     experimentalSessionAndOrigin: true,
     numTestsKeptInMemory: 0,
   },

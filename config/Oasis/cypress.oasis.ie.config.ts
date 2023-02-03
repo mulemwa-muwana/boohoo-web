@@ -1,16 +1,15 @@
 import { defineConfig } from 'cypress';
-import plugins from '../../cypress/plugins';
+import plugins from 'cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwdev.warehousefashion.com',
-    sku: 'AWW36169-109-22',
-    fullSKU: 'AWW36169-109-22',
-    brand: 'warehousefashion.com',
-    locale: 'UK',
-    language: 'EN'
+    url: 'https://storefront:Oreo2022@dwstg.oasisfashion.com/ie',
+    sku: 'BAA04175-1', 
+    brand: 'oasis-stores.com',
+    locale: 'IE',
+    language: 'EN',
   },
 
   viewportHeight: 1080,
@@ -19,14 +18,15 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
-  
+
   e2e: {
     setupNodeEvents (on) {
       plugins(on);
     },
+    excludeSpecPattern: [
+      '**/backend*/**' // Skip backend tests
+    ],
     experimentalSessionAndOrigin: true,
     numTestsKeptInMemory: 0,
   },
-
 });
-

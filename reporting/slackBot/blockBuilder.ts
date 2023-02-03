@@ -5,77 +5,78 @@ type Attachments = {
     env: string;
     secondMessageOfFailures: string;
     linkToReport: string;
-    passedPercentage: number;
-    failedPercentage: number;
-    skippedPercentage: number;
-    pendingPercentage: number;
+    passed: number;
+    failed: number;
+    skipped: number;
+    pending: number;
 }
 
-export function buildBlocks(input: ['section', string][]) {
-    const blocks = []
-    input.forEach(tuple => {
-        blocks.push({
-            type: tuple[0],
-            text: {
-              type: 'mrkdwn',
-              text: tuple[1],
-            }
-          })
-    })
-    return blocks;
+export function buildBlocks (input: Array<['section', string]>) {
+  const blocks = [];
+  input.forEach(tuple => {
+    blocks.push({
+      type: tuple[0],
+      text: {
+        type: 'mrkdwn',
+        text: tuple[1],
+      }
+    });
+  });
+  return blocks;
 }
 
-export function buildAttachments(input: Attachments) {
+export function buildAttachments (input: Attachments) {
 
-    // Default any undefines.
-    if (isNaN(input.skippedPercentage)) input.skippedPercentage = 0
-    if (isNaN(input.failedPercentage)) input.failedPercentage = 0
-    if (isNaN(input.pendingPercentage)) input.pendingPercentage = 0
+  // Default any undefines.
+  if (isNaN(input.skipped)) input.skipped = 0;
+  if (isNaN(input.failed)) input.failed = 0;
+  if (isNaN(input.pending)) input.pending = 0;
 
-    const attachments: any = {
-        // Extra Info Section
-        blocks: [
+  const attachments: any = {
+
+    // Extra Info Section
+    blocks: [
+      {
+        type: 'section',
+        fields: [
           {
-            type: 'section',
-            fields: [
-              {
-                type:'mrkdwn',
-                text: '*Platform*\n' + input.platformRelease
-              },
-              {
-                type:'mrkdwn',
-                text: '*Tests*\n' + input.tests
-              },
-            ]
+            type:'mrkdwn',
+            text: '*Platform*\n' + input.platformRelease
           },
           {
-            type: 'section',
-            fields: [
-              {
-                type:'mrkdwn',
-                text: '*Environment*\n' + input.env
-              }
-            ]
+            type:'mrkdwn',
+            text: '*Tests*\n' + input.tests
+          },
+        ]
+      },
+      {
+        type: 'section',
+        fields: [
+          {
+            type:'mrkdwn',
+            text: '*Environment*\n' + input.env
           }
         ]
       }
+    ]
+  };
 
-      // Add failed tests block to the block object.
+  // Add failed tests block to the block object.
   if (input.failures.length > 0) {
     attachments.blocks.push({
       'type': 'divider'
-    })
+    });
     attachments.blocks.push({
       type: 'section',
       text: {
         type: 'mrkdwn',
         text: '*Failing Tests (This list excludes skipped tests):*\n' + input.failures
       }
-    })
+    });
 
     // If there's no second message for extra failures, put the button here.
     if (input.secondMessageOfFailures.length <= 0) {
-        attachments.blocks.push({
+      attachments.blocks.push({
         type: 'actions',
         elements: [{
           type: 'button',
@@ -85,7 +86,7 @@ export function buildAttachments(input: Attachments) {
           },
           url: `${input.linkToReport}`
         }]
-      })
+      });
     } 
   } else {
     attachments.blocks.push({
@@ -98,58 +99,59 @@ export function buildAttachments(input: Attachments) {
         },
         url: `${input.linkToReport}`
       }]
-    })
+    });
   }
 
   return [
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#23c552',
-      'author_name': input.passedPercentage + '% Passed'
+      'author_name': input.passed + ' Passed'
     },
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#f84f31',
-      'author_name': input.failedPercentage + '% Failed'
+      'author_name': input.failed + ' Failed'
     },
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#f6f6f6',
-      'author_name': input.skippedPercentage + '% Skipped'
+      'author_name': input.skipped + ' Skipped'
     },
     {
       'fallback': 'Oopsie, error occured.',
       'color': '#f6f6f6',
-      'author_name': input.pendingPercentage + '% Pending'
+      'author_name': input.pending + ' Pending'
     },
     attachments
-  ]
+  ];
 }
 
-export function secondSetOfMessagesAttachments(secondMessageOfFailures: string, linkToReport: string) {
-    return [
+export function secondSetOfMessagesAttachments (secondMessageOfFailures: string, linkToReport: string) {
+  return [
+    {
+      blocks: [
+
+        // Extra fails
         {
-          blocks: [
-            // Extra fails
-            {
-              type: 'section',
-              text: {
-                type: 'mrkdwn',
-                text: secondMessageOfFailures
-              }
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: secondMessageOfFailures
+          }
+        },
+        {
+          type: 'actions',
+          elements: [{
+            type: 'button',
+            text: {
+              type: 'plain_text',
+              text: 'Test Results'
             },
-            {
-              type: 'actions',
-              elements: [{
-                type: 'button',
-                text: {
-                  type: 'plain_text',
-                  text: 'Test Results'
-                },
-                url: `${linkToReport}`
-              }]
-            }
-          ]
+            url: `${linkToReport}`
+          }]
         }
       ]
+    }
+  ];
 }

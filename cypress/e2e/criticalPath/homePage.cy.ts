@@ -35,34 +35,23 @@ describe('Home Page', function () {
        
   // HEADER
   describe('Header verifications', () => {
-    it('Header Logo', () => {
+    it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
-    });
-    
-    it('Verify search icon is present', () => {
+
+      homePage.assertions.assertAccountIconPresent();
+      homePage.assertions.assertWishListIconPresent();
+      homePage.assertions.assertCartIconPresent();
+
       HomePage.click.searchIcon();
       HomePage.assertions.assertSearchIconPresent();
-    });
-    it('Verify search field is present', () => {
-      HomePage.click.searchIcon();
+
       HomePage.assertions.assertSearchFieldPresent();
     });
+    
     it('Verify search results page opens', () => {
       HomePage.click.searchIcon();
       HomePage.actions.findItemUsingSKU(variables.sku);
       HomePage.assertions.assertSearchResultPage(variables.sku);
-    });  
-    
-    it('Verify header icon Account present', () => {
-      homePage.assertions.assertAccountIconPresent();
-    });
-
-    it('Verify header icon Wish List present', () => {
-      homePage.assertions.assertWishListIconPresent();
-    });
-
-    it('Verify header icon Cart present', () => {
-      homePage.assertions.assertCartIconPresent();
     });
 
     it('Verify Mega Menu - Sale link opens', () => {
@@ -123,7 +112,7 @@ describe('Home Page', function () {
       
     it('Verify correct error message is displayed - newsletter subscription footer', () => {
       HomePage.goto();
-      GlobalFooter.actions.subscribeToNewsletter('euboohoo@gmail.com');
+      GlobalFooter.actions.subscribeToNewsletter('euboohoo@gmail.com'); // Bug fixed on DEV still on STG
       GlobalFooter.assertions.asssertAlreadySubscribed(assertionText.alreadySubscribed[variables.language]);
     });
 
@@ -307,7 +296,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', function () {
-        if (variables.brand == 'boohoomena.com') {
+        if (variables.brand == 'boohoomena.com' || (variables.brand == 'burton.co.uk' && variables.locale != 'UK')) {
           this.skip();
         }
         if (variables.brand == 'nastygal.com') {

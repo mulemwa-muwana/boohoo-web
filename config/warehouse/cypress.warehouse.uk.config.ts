@@ -6,8 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.warehousefashion.com',
-    sku: 'BWW03501-2',
-    fullSKU: 'BWW03501-105-14',
+    sku: 'BWW04329',
     brand: 'warehousefashion.com',
     locale: 'UK',
     language: 'EN'
@@ -21,12 +20,14 @@ export default defineConfig({
   screenshotOnRunFailure: true,
   
   e2e: {
-    experimentalSessionAndOrigin: true,
     setupNodeEvents (on) {
       plugins(on);
     },
-
-    numTestsKeptInMemory: 0
+    excludeSpecPattern: [
+      '**/backend*/**' // Skip backend tests
+    ],
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },
 
 });

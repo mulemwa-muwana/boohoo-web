@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stg.coastfashion.com/',
-    sku: 'ACC99998-105-20',
+    sku: 'ACC99223-5',
     brand: 'coastfashion.com',
     locale: 'UK',
     language: 'EN',
@@ -23,6 +23,10 @@ export default defineConfig({
     setupNodeEvents (on, config) {
       plugins(on);
     },
-    numTestsKeptInMemory: 0
+    excludeSpecPattern: [
+      '**/backend*/**' // Skip backend tests
+    ],
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },   
 });

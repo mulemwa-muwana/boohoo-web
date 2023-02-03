@@ -29,91 +29,43 @@ async function GenerateAndPostReport (report: any) {
 
   const platformRelease = process.env.PLATFORM || 'Generic Test Run';
   const env = 'Staging';
-  const duration = new Date(report.stats.duration).toISOString().slice(11, 19);
 
   // Failures
   let failedTitles = '';
   let secondMessageOfFailures = '';
   let i = 1;
 
-  // Parse through results[].suites[].tests[]
-  report.results.forEach(result => {
-    result.suites.forEach(suite => {
-      suite.tests.forEach(test => {
-        if (test.state === 'failed') {
-          // Check if adding the failure would push it over 2500 characters.
-            if ((failedTitles + `${i}. ${test.title}\n`).length > 2500) {
-              secondMessageOfFailures = secondMessageOfFailures + `${i}. ${test.title}\n`;
+  // Find all Tests inside Suites
+  const recursive = arr => {
+    arr.forEach(suite => {
+      if (suite.suites) {
+        recursive(suite.suites);
+      }
+      
+      if (suite.tests) {
+        suite.tests.forEach(test => {
+          if (test.state == 'failed') {
+            const testName = test.fullTitle;
+
+            // Check if adding the failure would push it over 2500 characters.
+            if ((failedTitles + `${i}. ${testName}\n`).length > 2500) {
+              secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
             } else {
+
               // Apply failed to the failure list.
-              failedTitles = failedTitles + `${i}. ${test.title}\n`;
+              failedTitles = failedTitles + `${i}. ${testName}\n`;
             }
-          i++;
-        }
-    })
+            i++;
+          }
+        });
+      }
+    });
+  };
+
+  // Parse all Suites for Tests
+  report.results.forEach(result => {
+    recursive(result.suites);
   });
-  });
-
-
-    // report.results[0].suites[0].tests.forEach(test => {
-    //   if (test.state === 'failed') {
-    //     // Check if adding the failure would push it over 2500 characters.
-    //       if ((failedTitles + `${i}. ${test.title}\n`).length > 2500) {
-    //         secondMessageOfFailures = secondMessageOfFailures + `${i}. ${test.title}\n`;
-    //       } else {
-    //         // Apply failed to the failure list.
-    //         failedTitles = failedTitles + `${i}. ${test.title}\n`;
-    //       }
-    //     i++;
-    //   }
-
-    // });
-
-  // const reportKeys = Object.keys(report);
-  // reportKeys.forEach(key => {
-    // if (key !== 'totals') {
-    //   const suite = report[key] as Record<string, 'failed' | 'passed'>;
-    //   const suiteKeys = Object.keys(suite);
-    //   suiteKeys.forEach(testName => {
-    //     const result = suite[testName];
-    //     if (result === 'failed') {
-
-    //       // Check if adding the failure would push it over 2500 characters.
-    //       if ((failed + `${i}. ${testName}\n`).length > 2500) {
-    //         secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
-    //       } else {
-
-    //         // Apply failed to the failure list.
-    //         failed = failed + `${i}. ${testName}\n`;
-    //       }
-    //       i++;
-    //     }
-    //   });
-    // }
-
-    //////////////////////////////
-    // if (key === 'results') {
-    //   const suite = report[key] as Record<string, 'failed' | 'passed'>;
-    //   const suiteKeys = Object.keys(suite);
-    //   suiteKeys.forEach(testName => {
-    //     const result = suite[testName];
-    //     if (result === 'failed') {
-
-    //       // Check if adding the failure would push it over 2500 characters.
-    //       if ((failed + `${i}. ${testName}\n`).length > 2500) {
-    //         secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
-    //       } else {
-
-    //         // Apply failed to the failure list.
-    //         failed = failed + `${i}. ${testName}\n`;
-    //       }
-    //       i++;
-    //     }
-    //   });
-    // }
-
-
-  // });
 
   const attachmentBlocks: any = buildAttachments({
     platformRelease,

@@ -203,7 +203,7 @@ class WishListPage implements AbstractPage {
     },
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).eq(0).click();
+      cy.get(addToCart).eq(0).click({force: true});
     },
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;

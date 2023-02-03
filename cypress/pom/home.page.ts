@@ -61,7 +61,7 @@ const selectors: SelectorBrandMap = {
     acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '#mini-cart .mini-cart-link',
     loginIcon: '.user-account',
-    registrationButton: 'a[title="Register"]',
+    registrationButton: '.user-links > a:nth-child(2)',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
     searchField: '.js-header-search-input',
     searchIcon: '.js-search-icon',

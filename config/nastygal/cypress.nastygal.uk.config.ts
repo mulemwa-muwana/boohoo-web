@@ -21,7 +21,7 @@ export default defineConfig({
 
   reporter: 'mochawesome',
   reporterOptions: {
-    reportDir: 'config/wallis/results',
+    reportDir: 'config/nastygal/results',
     overwrite: false,
     html: false,
     json: true,

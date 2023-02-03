@@ -266,10 +266,24 @@ class AssertionText {
     ES: '\nAviso de Privacidad\n'
   };
 
+  PrivacyPolicyH1BHM: TranslationMap = {
+    EN: 'privacy',
+    FR: 'avis de confidentialité',
+    NL: 'privacyverklaring',
+    DE: 'datenschutzerklärung',
+    DK: 'bekendtgørelse om beskyttelse af personlige oplysninger',
+    FI: 'tietosuojailmoitus',
+    NO: 'personvernerklæring',
+    SE: 'integritetspolicy',
+    IL: '',
+    IT: 'ninformativa sulla Privacy',
+    ES: 'naviso de Privacidad'
+  };
+
   TermsAndConditionsH1: TranslationMap = {
     EN: '\n                Terms & conditions\n            ',
     FR: '',
-    NL: '',
+    NL: 'ALGEMENE GEBRUIKSVOORWAARDEN',
     DE: '',
     DK: '',
     FI: '',
@@ -297,7 +311,7 @@ class AssertionText {
   TermsAndConditionsSiteGenesisH1: TranslationMap = {
     EN: 'TERMS OF WEBSITE USE',
     FR: '',
-    NL: '',
+    NL: 'ALGEMENE GEBRUIKSVOORWAARDEN',
     DE: '',
     DK: '',
     FI: '',
@@ -828,7 +842,7 @@ class AssertionText {
 
   footerLinkDeliveryInfoArcadia: TranslationMap = {
     EN: 'Delivery',
-    NL: 'Bezorginformatie',
+    NL: 'Leveringsopties',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
     DK: '',
@@ -884,7 +898,7 @@ class AssertionText {
 
   footerLinkSizeGuide: TranslationMap = {
     EN: 'Size Guide',
-    NL: 'Maatwijzer',
+    NL: 'Maatgids',
     DE: 'Größentabelle',
     FR: 'Guide des tailles',
     DK: 'Size Guide',
@@ -954,7 +968,7 @@ class AssertionText {
 
   footerLinkReturns: TranslationMap = {
     EN: 'Returns',
-    NL: 'Retourneringen',
+    NL: 'Retourzendingen',
     DE: 'Rücksendungen',
     FR: 'Retours',
     DK: '',
@@ -1038,9 +1052,9 @@ class AssertionText {
 
   sustainability: TranslationMap = {
     EN: 'Sustainability',
-    NL: '',
+    NL: 'Duurzaamheid',
     DE: 'Nachhaltigkeit',
-    FR: 'Durabilité',
+    FR: 'Stratégie De Développement Durable',
     DK: 'Sustainability',
     FI: 'Sustainability',
     NO: 'Sustainability',
@@ -1166,7 +1180,7 @@ class AssertionText {
     EN: 'Investor Relations',
     NL: 'Investeerdersrelaties',
     DE: 'Finanzkommunikation', // FAILED
-    FR: 'Relation avec les investisseurs',
+    FR: 'Relations avec les investisseurs',
     DK: 'Investor Relations',
     FI: 'Investor Relations',
     NO: 'Investor Relations',

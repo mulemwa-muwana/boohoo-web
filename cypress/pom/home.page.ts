@@ -146,7 +146,7 @@ class HomePage implements AbstractPage {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
-    //TODO: When Accept Cookies popup is added for these brands, remove constant and 'if' conditional
+    // TODO: When Accept Cookies popup is added for these brands, remove constant and 'if' conditional
     const brandsWithoutPopup: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk', 'burton.co.uk'];
     if (!brandsWithoutPopup.includes(variables.brand)) {
       cy.session('accept-cookies', () => {

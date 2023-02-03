@@ -60,6 +60,9 @@ describe('Home Page', function () {
       } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
+      } else if (variables.brand == 'boohooman.com') {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkBHM[variables.language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSaleBHM[variables.language]);
       } else {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
@@ -134,7 +137,10 @@ describe('Home Page', function () {
     
       it('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
         GlobalFooter.click.copyrightPrivacyPolicyLink();
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
+        if (variables.brand == 'boohooman.com') {
+          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1BHM[variables.language]);
+          PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyArcadiaURL[variables.language]
+        } else if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
         } else if (variables.brand == 'misspap.com') {
@@ -179,7 +185,7 @@ describe('Home Page', function () {
       });
       
       it('TikTok', function () {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
+        if (variables.brand == 'boohoo.com') {
           SocialsPage.assertions.assertTikTokIconIsPresent();
           GlobalFooter.click.tiktokLink();
         } else if (variables.brand == 'nastygal.com' && variables.locale !='FR') {
@@ -317,7 +323,9 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', function () {
-        if ((variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES' && variables.locale != 'NO')) || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
+        if (variables.brand == 'boohooman.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'DE')) {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
+        } else if ((variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES' && variables.locale != 'NO')) || variables.brand == 'nastygal.com' || isSiteGenesisBrand && variables.brand != 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
         } else {
           this.skip();
@@ -340,7 +348,7 @@ describe('Home Page', function () {
         });
         */
       it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', function () {
-        if (variables.brand == 'boohoo.com' || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com' || variables.brand == 'boohooman.com') {
+        if (variables.brand == 'boohoo.com' || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com' || (variables.brand == 'boohooman.com' != (variables.locale == 'NL' || variables.locale == 'DE'|| variables.locale == 'FR'))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[variables.language]);
         } else {
           this.skip();

@@ -27,7 +27,7 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     acceptCookies: '#onetrust-accept-btn-handler',
     minicartIcon: '.b-minicart_icon-link',
-    loginIcon: '.b-search_input-submit > .i-icon',
+    loginIcon: '.i-icon.i-icon-user',
     registrationButton: '#page-body > div.b-miniaccount_panel > div > div > div > div.b-miniaccount-content > div.b-registration_benefits > a',
     wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',

@@ -1,9 +1,36 @@
 class priceVariations {
-
-  plpPriceRange: PriceMap = {
-    GBP: '£',
-    EUR: '€',
-    USD: '$'
+ 
+  Currencies: PriceMap = {
+    AU: '',
+    NZ: '',
+    US: '',
+    CA: '',
+    GB: '£',
+    FR: '€',
+    IE: '',
+    EUR: '',
+    NL: '',
+    DE: '',
+    ES: '',
+    SK: '',
+    IT: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    RU: '',
+    IL: '',
+    AE: '',
+    BH: '',
+    JO: '',
+    KW: '',
+    OM: '',
+    QA: '',
+    SA: '',
+    HK: '',
+    TW: '',
+    JP: '',
+    SG: '',
+    KR: ''
   };
 
 }

@@ -327,121 +327,121 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 
 class PlpPage implements AbstractPage {
-  goto(): void {
+  goto (): void {
     homePage.goto();
   }
 
   click = {
 
     // Refinements
-    categoryRefinement() {
+    categoryRefinement () {
       const categoryRefinement = selectors[variables.brand].categoryRefinement;
       cy.get(categoryRefinement).click({ force: true });
     },
-    sizeRefinement() {
+    sizeRefinement () {
       const sizeRefinement = selectors[variables.brand].sizeRefinement;
       cy.get(sizeRefinement).click({ force: true });
     },
-    styleRefinement() {
+    styleRefinement () {
       const styleRefinement = selectors[variables.brand].styleRefinement;
       cy.get(styleRefinement).click({ force: true });
     },
-    colorRefinement() {
+    colorRefinement () {
       const colorRefinement = selectors[variables.brand].colorRefinement;
       cy.get(colorRefinement).click({ force: true });
     },
-    priceRefinements() {
+    priceRefinements () {
       const priceRefinements = selectors[variables.brand].priceRefinements;
       cy.get(priceRefinements).click({ force: true });
     },
-    shopByFitRefinements() {
+    shopByFitRefinements () {
       const shopByFitRefinements = selectors[variables.brand].shopByFitRefinements;
       cy.get(shopByFitRefinements).click({ force: true });
     },
-    fitRefinements() {
+    fitRefinements () {
       const fitRefinements = selectors[variables.brand].fitRefinements;
       cy.get(fitRefinements).click({ force: true });
     },
-    occassionRefinement() {
+    occassionRefinement () {
       const occassionRefinement = selectors[variables.brand].occassionRefinement;
       cy.get(occassionRefinement).click({ force: true });
     },
-    sortProducts() {
+    sortProducts () {
       const sortProducts = selectors[variables.brand].sortProducts;
       cy.get(sortProducts).click({ force: true });
     },
-    priceVariant() {
+    priceVariant () {
       const priceVariant = selectors[variables.brand].priceVariant;
       cy.get(priceVariant).click({ force: true });
     },
 
-    selectRefinementVariantShopByFit(classification: string) {
+    selectRefinementVariantShopByFit (classification: string) {
       const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
       cy.get(selectRefinementVariantShopByFit).contains(classification).click({ force: true });
     },
 
-    selectRefinementVariantFit() {
+    selectRefinementVariantFit () {
       const selectRefinementVariantFit = selectors[variables.brand].selectRefinementVariantFit;
       cy.get(selectRefinementVariantFit).click({ force: true });
     },
 
-    selectRefinementVariantColor(color: string) {
+    selectRefinementVariantColor (color: string) {
       const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
       cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
     },
 
-    selectRefinementVariantStyle(style: string) {
+    selectRefinementVariantStyle (style: string) {
       const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
       cy.get(selectRefinementVariantStyle).contains(style).click({ force: true });
     },
 
-    selectRefinementVariantSize() {
+    selectRefinementVariantSize () {
       const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
       cy.get(selectRefinementVariantSize).find('li').each(($element) => {
         if ($element.attr('data-value')) {
           $element.find('span').trigger('click');
           return false;
         }
-      })
+      });
     },
 
-    selectRefinementVariantSizePerLanguages() {
+    selectRefinementVariantSizePerLanguages () {
       const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
       cy.get(selectRefinementVariantSize).find('li').each(($element) => {
         if ($element.attr('data-value')) {
           $element.find('span').trigger('click');
           return false;
         }
-      })
+      });
     },
 
-    selectRefinementVariantCategory(category: string) {
+    selectRefinementVariantCategory (category: string) {
       const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
       cy.get(selectRefinementVariantCategory).contains(category).click({ force: true });
     },
 
-    selectCategoryPerLanguages(language: string) {
+    selectCategoryPerLanguages (language: string) {
       const selectRefinementVariantCategoryOtherLanguages = selectors[variables.brand].selectRefinementVariantCategoryOtherLanguages;
       cy.get(selectRefinementVariantCategoryOtherLanguages + language).click({ force: true });
     },
 
-    selectRefinementVariantOccasion(occasion: string) {
+    selectRefinementVariantOccasion (occasion: string) {
       const selectRefinementVariantOccasion = selectors[variables.brand].selectRefinementVariantOccasion;
       cy.get(selectRefinementVariantOccasion).contains(occasion).click({ force: true });
     },
 
-    selectRefinementVariantPrice() {
+    selectRefinementVariantPrice () {
       const selectRefinementVariantPrice = selectors[variables.brand].selectRefinementVariantPrice;
       cy.get(selectRefinementVariantPrice).find('li').each(($element) => {
         if ($element.attr('data-value')) {
           $element.find('span').trigger('click');
           return false;
         }
-      })
+      });
     },
 
     // Load more products
-    loadMoreProducts() {
+    loadMoreProducts () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       cy.get(loadMoreProducts).click({ force: true });
@@ -449,7 +449,7 @@ class PlpPage implements AbstractPage {
     },
 
     // Product details (image, name, price, wishlist, quickview)
-    wishlistOnPlpImage() {
+    wishlistOnPlpImage () {
       const brand: GroupBrands = 'boohoo.com';
       const wishlistPlpIcon = selectors[brand].wishlistPlpIcon;
       cy.get(wishlistPlpIcon).eq(1).click({ force: true });
@@ -462,12 +462,12 @@ class PlpPage implements AbstractPage {
   };
 
   assertions = {
-    assertOnPage(text: string) {
+    assertOnPage (text: string) {
       cy.url().then(currentUrl => {
         expect(currentUrl).to.contain(text);
       });
     },
-    assertNumberOfItemsTextIsVisible() {
+    assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');
       if (isSiteGenesisBrand) {
         const numberOfPagesTextIsVisible = selectors[variables.brand].numberOfPagesTextIsVisible;
@@ -477,12 +477,12 @@ class PlpPage implements AbstractPage {
         cy.get(numberOfItemsTextIsVisible).should('be.visible');
       }
     },
-    assertLoadMoreBtnIsVisible() {
+    assertLoadMoreBtnIsVisible () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       cy.get(loadMoreProducts).should('be.visible');
     },
-    assertProductImageIsDisplayed() {
+    assertProductImageIsDisplayed () {
       const productImageIsDisplayed = selectors[variables.brand].productImageIsDisplayed;
       if (variables.brand == 'nastygal.com') {
         cy.get(productImageIsDisplayed).should('be.visible').and('have.prop', 'naturalWidth').should('be.greaterThan', 0);
@@ -490,47 +490,47 @@ class PlpPage implements AbstractPage {
         cy.get(productImageIsDisplayed).eq(1).should('be.visible').should('have.attr', 'src');
       }
     },
-    assertItemIsAddedToWishlist() {
+    assertItemIsAddedToWishlist () {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
       cy.get(itemIsAddedToWishlist).should('contain', '01');
     },
-    assertProductNameIsDisplayed() {
+    assertProductNameIsDisplayed () {
       const productNameIsDisplayed = selectors[variables.brand].productNameIsDisplayed;
       cy.get(productNameIsDisplayed).eq(0).should('have.css', 'font-family');
     },
-    assertProductPriceIsDispayed() {
+    assertProductPriceIsDispayed () {
       const productPriceIsDispayed = selectors[variables.brand].productPriceIsDispayed;
       cy.get(productPriceIsDispayed).eq(1).should('be.visible').and('not.be.null');
     },
-    assertNewProductPriceIsDispayed() {
+    assertNewProductPriceIsDispayed () {
       const newProductPriceIsDispayed = selectors[variables.brand].newProductPriceIsDispayed;
       cy.get(newProductPriceIsDispayed).eq(1).should('be.visible').should('have.css', 'font-family');
     },
-    assertProductColorIsDisplayedOnPLP() {
+    assertProductColorIsDisplayedOnPLP () {
       const productColorIsDisplayedOnPLP = selectors[variables.brand].productColorIsDisplayedOnPLP;
       cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'src');
     },
-    assertProductVariantIsApplied(typeOfPrefn: string, productVariations: string) {
+    assertProductVariantIsApplied (typeOfPrefn: string, productVariations: string) {
       cy.location('search')
         .should('contains', '?prefn1=' + typeOfPrefn + '&prefv1=')
         .then((s) => new URLSearchParams(s))
         .invoke('get', 'prefv1')
-        .should('contains', productVariations)
+        .should('contains', productVariations);
     },
-    assertProductSizeIsDisplayedOnPLP(selectedSize: string) {
+    assertProductSizeIsDisplayedOnPLP (selectedSize: string) {
       cy.location('search')
         .should('contains', '?prefn1=sizeRefinement&prefv1=')
         .then((s) => new URLSearchParams(s))
         .invoke('get', 'prefv1')
-        .should('eq', selectedSize)
+        .should('eq', selectedSize);
     },
-    assertProductPriceIsDisplayedOnPLP() {
+    assertProductPriceIsDisplayedOnPLP () {
       cy.location('search')
         .should('contains', 'pmax')
-        .should('contains', 'pmin')
+        .should('contains', 'pmin');
     },
 
-    assertItemIsAddedToWishlistColorChange() {
+    assertItemIsAddedToWishlistColorChange () {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
     }

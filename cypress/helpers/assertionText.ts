@@ -1246,7 +1246,6 @@ class AssertionText {
     ES: ''
   };
 
-
   aboutCookiesNG: TranslationMap = {
     EN: 'About Cookies',
     NL: 'Over cookies',

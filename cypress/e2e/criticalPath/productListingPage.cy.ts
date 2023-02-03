@@ -89,7 +89,7 @@ describe('Product Listing Page tests', function () {
             $element.find('span').trigger('click');
             return false;
           }
-        })
+        });
         cy.intercept(/size/).as('updateRefinement');
         cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
         cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]').invoke('attr', 'aria-label').as('selectedSize').then(function () {
@@ -102,7 +102,7 @@ describe('Product Listing Page tests', function () {
       if (variables.brand == 'nastygal.com' && !nastygalLocalesExcludedStyle.includes(variables.locale)) {
         this.skip();
       } else if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language])
+        plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
       } else {
         cy.get('button[id*="-' + (assertionText.style[variables.language] + '"]')).click({ force: true });
         cy.get('#refinementAttributesList-' + (assertionText.style[variables.language])).contains(productVariations.productShopByStyle[variables.language]).click({ force: true });
@@ -113,7 +113,7 @@ describe('Product Listing Page tests', function () {
     });
     it('Verify color refinement is applied', () => {
       if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[variables.language])
+        plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[variables.language]);
       } else {
         cy.get('button[id*="-' + (assertionText.colour[variables.language] + '"]')).click({ force: true });
         cy.get('#refinementAttributesList-' + (assertionText.colour[variables.language])).contains(productVariations.ColorBlack[variables.language]).click({ force: true });
@@ -135,7 +135,7 @@ describe('Product Listing Page tests', function () {
             $element.find('span').trigger('click');
             return false;
           }
-        })
+        });
       }
       cy.intercept(/pmin=/).as('updateRefinement');
       cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
@@ -145,7 +145,7 @@ describe('Product Listing Page tests', function () {
       if (variables.brand == 'burton.co.uk') {
         this.skip();
       } else if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantShopByFit('Petite')
+        plpPage.click.selectRefinementVariantShopByFit('Petite');
       } else if (variables.brand == 'dorothyperkins.com') {
         cy.get('button[id*="-shop-by-body-fit"]').click({ force: true });
         cy.get('#refinementAttributesList-shop-by-body-fit').contains('Petite').click({ force: true });

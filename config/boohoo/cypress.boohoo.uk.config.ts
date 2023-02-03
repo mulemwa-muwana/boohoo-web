@@ -10,7 +10,6 @@ export default defineConfig({
     brand: 'boohoo.com',
     locale: 'UK',
     language: 'EN',
-    currency: '£'
   },
 
   viewportHeight: 1080,

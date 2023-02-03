@@ -39,16 +39,13 @@ describe('Product Listing Page tests', function () {
     plpPage.click.loadMoreProducts();
     plpPage.assertions.assertNumberOfItemsTextIsVisible();
   });
-  describe('Products details are displayed', () => {
-    it('Verify product image is displayed', () => {
+  describe('Products details are displayed', () => {  
+    it('Verify product image, name and price are displayed', () => {
       plpPage.assertions.assertProductImageIsDisplayed();
-    });
-    it('Verify product name is displayed', () => {
       plpPage.assertions.assertProductNameIsDisplayed();
+      plpPage.assertions.assertProductPriceIsDispayed();
     });
-    it('Verify product price is displayed', () => {
-      //plpPage.assertions.assertProductPriceIsDispayed();
-    });
+    
     it.skip('Verify new product price is displayed', () => {
 
       // To be discussed is it needed because many products dont have it (maybe looping)

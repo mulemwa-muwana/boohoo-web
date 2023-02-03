@@ -346,8 +346,8 @@ class PdpPage implements AbstractPage {
 
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart, {timeout: 10000}).should('not.have.attr', 'disabled');
-      cy.get(addToCart, {timeout: 10000}).should('not.have.attr', 'data-is-out-of-stock');
+      cy.get(addToCart, {timeout: 15000}).should('not.have.attr', 'disabled');
+      cy.get(addToCart, {timeout: 15000}).should('not.have.attr', 'data-is-out-of-stock');
       cy.get(addToCart).click({force: true});
     },
     addToWishList () {

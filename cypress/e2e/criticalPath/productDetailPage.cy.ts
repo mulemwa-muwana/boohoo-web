@@ -13,15 +13,14 @@ describe('Product Details Page tests', function () {
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
   });  
+
   it('TC01 Verify that Product name, price and code is showing',function () {  
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
     PdpPage.assertions.assertProductCodeIsDisplayed(variables.sku);
 
     // We need to instal plugin for continuing after failed assertation just in case
-    
-  });
-  it('TC02 Verify that images are displayed',function () {
+
     if (isSiteGenesisBrand) {
       PdpPage.assertions.assertImageIsDisplayed('.thumb-image');
     } else {
@@ -32,21 +31,22 @@ describe('Product Details Page tests', function () {
 
     // PdpPage.assertions.assertImageIsDisplayed('#product-image-3');  some products have only 3 images
   });
-  it('TC03 Verify that colour swatches are displayed',function () {
+  
+  it('TC02 Verify that colour swatches are displayed',function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
   });
-  it('TC04 Verify that it is possible to select a size when available', function () {
+  it('TC03 Verify that it is possible to select a size when available', function () {
     PdpPage.actions.selectSize();  
     PdpPage.click.addToCart();
   });
-  it('TC05 Verify if size is not selected user cannot add product to a bag', function () {
+  it('TC04 Verify if size is not selected user cannot add product to a bag', function () {
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);
     } else {
       PdpPage.assertions.assertAddToCartBtnDisabled();
     }
   });   
-  it('TC06 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
+  it('TC05 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColor(0);
     PdpPage.actions.selectSize();
     if (variables.brand == 'burton.co.uk') {
@@ -55,7 +55,7 @@ describe('Product Details Page tests', function () {
     PdpPage.click.addToCart(); 
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
-  it('TC07 Verify that save for later (heart icon) is functional when selected', function () {
+  it('TC06 Verify that save for later (heart icon) is functional when selected', function () {
     PdpPage.actions.selectSize();
     PdpPage.click.addToWishList();
     cy.wait(3000);
@@ -69,7 +69,7 @@ describe('Product Details Page tests', function () {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[variables.language]);
     }
   });
-  it('TC08 Verify that Style Notes, Shipping & Return Info are displayed when configured', function () {
+  it('TC07 Verify that Style Notes, Shipping & Return Info are displayed when configured', function () {
     PdpPage.assertions.assertProductDescriptionIsPresent();
     if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
       PdpPage.click.shippingInfoButton();
@@ -83,7 +83,7 @@ describe('Product Details Page tests', function () {
 
     // We need to instal plugin for continuing after failed assertation just in case
   });
-  it('TC09 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
+  it('TC08 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
     if (variables.brand == 'boohoo.com') {
       PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
     } else {

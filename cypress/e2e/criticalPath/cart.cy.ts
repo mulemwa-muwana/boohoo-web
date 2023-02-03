@@ -21,20 +21,13 @@ describe('Cart basic functionality for guest user', function () {
       PdpPage.click.miniCartViewCartBtn();
     }
   });
-  it('Verify the presence of table with all products added to cart', function () {
+  it('Verify the presence of table with all products added to cart and that product name, image color/size/qty and price are visible', function () {
     CartPage.assertions.assertTableWithProductIsVisible();
-  });
-  it('Verify that Product Image is visible', function () {
     CartPage.assertions.assertProductImageIsDisplayed();
-  });
-  it('Verify that Product name is visible', function () {
     CartPage.assertions.assertProductTitleIsVisible();
-  });
-  it('Verify that Product Color, size and quantity are visible', function () {
     CartPage.assertions.assertProductDetailsAreVisible();
-  });
-  it('Verify that Price (plus total) is visible', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
+
   });
   it('Verify that user can update quantity of products', function () {
     if (isSiteGenesisBrand || variables.brand == 'dorothyperkins.com') {

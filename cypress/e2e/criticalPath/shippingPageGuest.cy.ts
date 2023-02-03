@@ -1,12 +1,10 @@
-import HomePage from '../../pom/home.page';
-import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
-import checkoutPage from '../../pom/checkoutLogin.page';
 import shippingPage from '../../pom/shipping.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -23,28 +21,14 @@ describe('Shipping Page Guest user tests', function () {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    cy.wait(3000);
-    pdpPage.actions.selectSize();
-    cy.wait(3000);
-    pdpPage.click.addToCart();
-    cy.wait(3000);
-    HomePage.click.cartIcon();
-    cy.wait(3000);
-    if (!isSiteGenesisBrand) {
-      pdpPage.click.miniCartViewCartBtn();
-    }
-    cartPage.click.proceedToCheckout();
-    checkoutPage.actions.guestCheckoutEmail(this.guestEmail);
-    checkoutPage.click.continueAsGuestBtn();   
+    Navigate.toShippingPage('GuestUser');
   });
   
-  it('Verify that promo code field is dispayed', function () {
-    if (isSiteGenesisBrand) {
-      this.skip(); // Promo code field is on Billing page for Site Genesis brands
+  it('Verify that order total and promo code are displayed', function () {
+    shippingPage.assertions.assertOrderTotalIsDisplayed();
+    if (!isSiteGenesisBrand) {
+      shippingPage.assertions.assertPromoCodeFieldIsDisplayed(); 
     }
-    shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
 
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
@@ -60,26 +44,17 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add first name', function () {
+  it('Verify that in "DELIVERY INFORMATION" user can add first name, last name, select country from drop down list, add phone number', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.assertions.assertFirstNameFieldIsPopulated(localeAddress.firstName);
-  });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add last name', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
-  });
 
-  it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
-  });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add phone number', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
@@ -195,10 +170,6 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.OpenPUDOlocations();
 
     // PUDO OPTIONS ARE MISSING FOR GUEST, need to check with Trupti
-  });
-
-  it('Verify that order total is displayed', function () {
-    shippingPage.assertions.assertOrderTotalIsDisplayed();
   });
 
   it('Verify that guest user can Edit cart from shipping page', function () {

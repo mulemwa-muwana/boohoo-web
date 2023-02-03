@@ -3,13 +3,14 @@ import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
-  
+
   env: {
-    url: 'https://storefront:Oreo2022@uk-dwstg.boohoo.com/',
-    sku: '#PZZ79996',
-    brand: 'boohoo.com',
+    url: 'https://storefront:Oreo2022@stg.karenmillen.com/ie', 
+    sku: 'AKK99751-152',
+    fullSKU: 'AKK99751-152-22',
+    brand: 'karenmillen.com',
     locale: 'UK',
-    language: 'EN',
+    language: 'EN'
   },
 
   viewportHeight: 1080,
@@ -18,12 +19,8 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
-  blockHosts: [
-    'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
-  ],
   
   e2e: {
-    specPattern: '**/*.test.cy.ts',
     experimentalSessionAndOrigin: true,
     setupNodeEvents (on) {
       plugins(on);

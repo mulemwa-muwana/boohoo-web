@@ -37,9 +37,9 @@ export function getCustomerKeyByBrand (brand: GroupBrands, keyType: APIKeyType):
 
 export async function getBearerAuth (brand: GroupBrands, realm: TLocale): Promise<string> {
   const prefix = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
-  var endpoint = `https://${prefix}.${brand}/${realm}/customers/auth`;
+  let endpoint = `https://${prefix}.${brand}/${realm}/customers/auth`;
 
-  if (brand == 'boohoomena.com') endpoint = `https://dev-mobile-mena-gateway.boohoo.com/sa/customers/auth`;
+  if (brand == 'boohoomena.com') endpoint = 'https://dev-mobile-mena-gateway.boohoo.com/sa/customers/auth';
 
   const brandCustomerManagerKey = getCustomerKeyByBrand(brand, 'Customer');
 
@@ -118,9 +118,9 @@ export default async function createCustomer (brand: GroupBrands, realm: TLocale
 
   // Make the call to the customer API.
   const prefix = process.env.PRODUCTION ? 'mobile-gateway' : 'dev-mobile-gateway';
-  var endpoint = `https://${prefix}.${brand}/${realm}/customers`;
+  let endpoint = `https://${prefix}.${brand}/${realm}/customers`;
 
-  if (brand == 'boohoomena.com') endpoint = `https://dev-mobile-mena-gateway.boohoo.com/sa/customers`;
+  if (brand == 'boohoomena.com') endpoint = 'https://dev-mobile-mena-gateway.boohoo.com/sa/customers';
 
   const response = await axios.post(endpoint, body, {
     method: 'POST',

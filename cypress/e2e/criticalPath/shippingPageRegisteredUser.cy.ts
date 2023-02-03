@@ -1,48 +1,30 @@
-import HomePage from '../../pom/home.page';
-import pdpPage from '../../pom/pdp.page';
 import cartPage from '../../pom/cart.page';
 import shippingPage from '../../pom/shipping.page';
-import checkoutPage from '../../pom/checkoutLogin.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 import billingPage from 'cypress/pom/billing.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import Navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
-    HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    cy.wait(3000);
-    pdpPage.actions.selectSize();
-    cy.wait(3000);
-    pdpPage.click.addToCart();
-    cy.wait(3000);
-    HomePage.click.cartIcon();
-    cy.wait(3000);
-    if (!isSiteGenesisBrand) {
-      pdpPage.click.miniCartViewCartBtn();
-    }
-    cartPage.click.proceedToCheckout();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      checkoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
-        checkoutPage.click.continueAsRegisteredUser();
-      }
-      checkoutPage.actions.passwordField(credentials.password);
-      cy.wait(1000);
-      checkoutPage.click.continueAsRegisteredUser();
-    });
+    Navigate.toShippingPage('RegisteredUser');
   });
 
-  it('Verify that promo code field is displayed', function () {
-    if (isSiteGenesisBrand) {
-      this.skip(); // Promo code field for Site Genesis brands is displayed on Billing Page.
+  /** [Test Steps]
+   * Log in
+   * Go to promo field
+   * Check it's displayed
+   */
+  it('Verify that order total and promo code are displayed', function () {
+    shippingPage.assertions.assertOrderTotalIsDisplayed();
+    if (!isSiteGenesisBrand) {
+      shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     }
-    shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
   });
 
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
@@ -67,6 +49,11 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
+  /** [Test Steps]
+   * Log in
+   * Go to billing 
+   * Check it's displayed
+   */
   it('Verify that user can proceed to billing with one of the saved addresees', () => {
     if (variables.locale != 'IE' && variables.locale != 'AU') {
       shippingPage.click.proceedToBilling();
@@ -100,6 +87,7 @@ describe('Shipping Page Registered user tests', function () {
     }
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
+    
   });
 
   it('Verify that user can cancel editing shipping address', function () {
@@ -123,25 +111,22 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
   });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add first name', () => {
+  it('Verify that in "DELIVERY INFORMATION" user can add first name, last name, phone number and select country from drop down list', function () {
+    if (variables.brand == 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
+      this.skip();
+    }
+    
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.assertions.assertFirstNameFieldIsPopulated(localeAddress.firstName);
-  });
 
-  it('Verify that in "DELIVERY INFORMATION" user can add last name', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    shippingPage.click.addNewAddressButton();
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.assertions.assertLastNameFieldIsPopulated(localeAddress.lastName);
-  });
 
-  it('Verify that in "DELIVERY INFORMATION" user can select country from drop down list', function () {
-    if (variables.brand == 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
-      this.skip();
-    }
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
+    shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
+
     shippingPage.click.addNewAddressButton();
     cy.wait(3000);
     if (variables.locale == 'US') {
@@ -152,13 +137,6 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.selectCountry(localeAddress.country);
     }
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
-  });
-
-  it('Verify that in "DELIVERY INFORMATION" user can add phone number', () => {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    shippingPage.click.addNewAddressButton();
-    shippingPage.actions.phoneNumberField(localeAddress.phone);
-    shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and functional', function () {
@@ -263,10 +241,13 @@ describe('Shipping Page Registered user tests', function () {
       this.skip();
     }
     const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-    const includededBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+    const includededBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk']; // Boohoo is different than Arcadia
 
     if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
+    } else if ( variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
+      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]); // User has PREMIER account
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
     } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierToCartFromShippingPage();
@@ -328,10 +309,6 @@ describe('Shipping Page Registered user tests', function () {
 
   it.skip('Verify that PUDO locations are dispayed', () => {
     shippingPage.click.OpenPUDOlocations();
-  });
-
-  it('Verify that order total is dispayed', () => {
-    shippingPage.assertions.assertOrderTotalIsDisplayed();
   });
 
   it('Verify that user can Edit cart from shipping page', () => {

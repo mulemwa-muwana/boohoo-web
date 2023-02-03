@@ -498,9 +498,9 @@ class PlpPage implements AbstractPage {
       const productNameIsDisplayed = selectors[variables.brand].productNameIsDisplayed;
       cy.get(productNameIsDisplayed).eq(0).should('have.css', 'font-family');
     },
-    assertProductPriceIsDispayed(range: string) {
+    assertProductPriceIsDispayed() {
       const productPriceIsDispayed = selectors[variables.brand].productPriceIsDispayed;
-      cy.get(productPriceIsDispayed).eq(1).should('be.visible').should('contain', range);
+      cy.get(productPriceIsDispayed).eq(1).should('be.visible').and('not.be.null');
     },
     assertNewProductPriceIsDispayed() {
       const newProductPriceIsDispayed = selectors[variables.brand].newProductPriceIsDispayed;

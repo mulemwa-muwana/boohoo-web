@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { App } from '@slack/bolt';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
@@ -25,47 +26,57 @@ async function GenerateAndPostReport (report: any) {
   const currentDate = new Date();
 
   // Get result statistics.
-  const { tests, passed, failed, skipped, pending } = report.totals;
+  const { tests, passes, failures, skipped, pending } = report.stats;
 
   const platformRelease = process.env.PLATFORM || 'Generic Test Run';
   const env = 'Staging';
 
   // Failures
-  let failures = '';
+  let failedTitles = '';
   let secondMessageOfFailures = '';
   let i = 1;
-  const reportKeys = Object.keys(report);
-  reportKeys.forEach(key => {
-    if (key !== 'totals') {
-      const suite = report[key] as Record<string, 'failed' | 'passed'>;
-      const suiteKeys = Object.keys(suite);
-      suiteKeys.forEach(testName => {
-        const result = suite[testName];
-        if (result === 'failed') {
 
-          // Check if adding the failure would push it over 2500 characters.
-          if ((failures + `${i}. ${testName}\n`).length > 2500) {
-            secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
-          } else {
+  // Find all Tests inside Suites
+  const recursive = arr => {
+    arr.forEach(suite => {
+      if (suite.suites) {
+        recursive(suite.suites);
+      }
+      
+      if (suite.tests) {
+        suite.tests.forEach(test => {
+          if (test.state == 'failed') {
+            const testName: string = test.fullTitle;
 
-            // Apply failures to the failure list.
-            failures = failures + `${i}. ${testName}\n`;
+            // Check if adding the failure would push it over 2500 characters.
+            if ((failedTitles + `${i}. ${testName}\n`).length > 2500) {
+              secondMessageOfFailures = secondMessageOfFailures + `${i}. ${testName}\n`;
+            } else {
+
+              // Apply failed to the failure list.
+              failedTitles = failedTitles + `${i}. ${testName}\n`;
+            }
+            i++;
           }
-          i++;
-        }
-      });
-    }
+        });
+      }
+    });
+  };
+
+  // Parse all Suites for Tests
+  report.results.forEach(result => {
+    recursive(result.suites);
   });
 
   const attachmentBlocks: any = buildAttachments({
     platformRelease,
     tests,
-    failures,
+    failedTitles,
     env,
     secondMessageOfFailures,
     linkToReport,
-    passed,
-    failed,
+    passes,
+    failures,
     skipped,
     pending,
   });
@@ -74,7 +85,7 @@ async function GenerateAndPostReport (report: any) {
 
   try {
 
-    if (isNaN(passed) || isNaN(failed)) {
+    if (isNaN(passes) || isNaN(failures)) {
       await app.client.chat.postMessage({
         token: process.env.SLACK_BOT_OAUTH,
         channel: process.env.SLACK_CHANNEL,
@@ -87,7 +98,7 @@ async function GenerateAndPostReport (report: any) {
     await app.client.chat.postMessage({
       token: process.env.SLACK_BOT_OAUTH,
       channel: process.env.SLACK_CHANNEL,
-      text: `Web build detected for ${passed} out of ${tests} tests passed.`,
+      text: `Web build detected for ${passes} out of ${tests} tests passed.`,
 
       // Title block.
       blocks: buildBlocks([
@@ -141,7 +152,7 @@ async function StartUpMessage (tag: string) {
 
   // Get the file first.
   try {
-    const file = fs.readFileSync(`config/${arg}/results.json`, 'utf-8');
+    const file = fs.readFileSync(`config/${arg}/results/results.json`, 'utf-8');
     const report = JSON.parse(file);
     GenerateAndPostReport(report);
   } catch {

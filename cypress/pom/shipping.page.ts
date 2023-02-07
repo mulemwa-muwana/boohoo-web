@@ -729,7 +729,7 @@ class ShippingPage implements AbstractPage {
     },
     adressLine1 (address1: string) {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
-      cy.get(addressLine1Shipping).type(address1);
+      cy.get(addressLine1Shipping).click({force: true}).type(address1);
     },
     addressLine1Clear () {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;

@@ -126,6 +126,20 @@ class AssertionText {
     ES: '¡No te olvides de mí!'
   };
 
+  ShippingMandatoryFieldsFnameLnamePostcodeBHM: TranslationMap = {
+    EN: 'Don’t forget about me!',
+    FR: 'Ce champ est obligatoire.',
+    NL: 'Dit veld is verplicht.',
+    DE: 'Vergiss mich nicht!',
+    DK: 'Glem ikke mig!',
+    FI: 'Älä unohda minua!',
+    NO: 'Ikke glem meg!',
+    SE: 'Glöm inte mig!',
+    IL: 'אל תשכח ממני!',
+    IT: 'Non dimenticarti di me!',
+    ES: '¡No te olvides de mí!'
+  };
+
   ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
     EN: 'This field is required.',
     FR: 'Ne m’oublie pas!',

@@ -2,7 +2,7 @@ import { defineConfig } from 'cypress';
 import plugins from '../../cypress/plugins';
 
 export default defineConfig({
-  projectId: 'i6d3n8',
+  projectId: 'eqvgg4',
 
   env: {
     url: 'https://storefront:Oreo2022@dwdev.warehousefashion.com',

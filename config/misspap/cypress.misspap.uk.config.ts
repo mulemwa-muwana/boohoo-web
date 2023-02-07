@@ -19,6 +19,14 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'config/misspap/results',
+    overwrite: false,
+    html: false,
+    json: true,
+  },
+
   e2e: {
     setupNodeEvents (on, config) {
       plugins(on);

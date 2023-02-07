@@ -3,8 +3,8 @@ import * as fs from 'fs';
 async function main (file: string) {
   const readFile = fs.readFileSync(file, 'utf-8');
   const splitByNewLine = readFile.split('\n').map(line => line.replace('\r', ''));// .map(line => line.replace(/\"/ig, "''"));
-  const describeBlocks = [...new Set(readFile.match(/(?<=describe\()(.*)(?=\,)/ig))];
-  const itBlocks = [...new Set(readFile.match(/(?<=it\()(.*)(?=\,)/ig))];
+  const describeBlocks = [...new Set(readFile.match(/(?<=describe\()(.*)(?=,)/ig))];
+  const itBlocks = [...new Set(readFile.match(/(?<=it\()(.*)(?=,)/ig))];
 
   const potentialTests = findPotentialTests(describeBlocks, itBlocks);
   const commentedTests = findTestSteps(splitByNewLine, potentialTests);
@@ -24,7 +24,7 @@ async function main (file: string) {
 }
 
 function findPotentialTests (describeBlocks: Array<string>, itBlocks: Array<string>): Array<{describe: string; it: string}> {
-  const potentialTests = [];
+  const potentialTests: Array<{describe: string; it: string}> = [];
   for (let i = 0; i < describeBlocks.length; i++) {
     const describe = describeBlocks[i];
     for (let x = 0; x < itBlocks.length; x++) {

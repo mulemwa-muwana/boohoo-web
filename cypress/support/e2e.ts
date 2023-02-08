@@ -11,7 +11,7 @@ Cypress.on('uncaught:exception', () => {
 
 // Set anything we need to before all tests
 beforeEach(() => {
-  cy.viewport(820, 1180);
+  cy.viewport(1920, 1080);
 });
 
 // Here we're just hiding the XHR requests from the Cypress GUI.

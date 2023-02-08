@@ -147,7 +147,7 @@ class HomePage implements AbstractPage {
     }
 
     // TODO: When Accept Cookies popup is added for these brands, remove constant and 'if' conditional
-    const brandsWithoutPopup: Array<GroupBrands> = ['burton.co.uk', 'dorothyperkins.com', 'nastygal.com', 'wallis.co.uk', 'coastfashion.com',  'misspap.com', 'karenmillen.com', 'warehousefashion.com'];
+    const brandsWithoutPopup: Array<GroupBrands> = ['burton.co.uk', 'dorothyperkins.com', 'nastygal.com', 'wallis.co.uk', 'coastfashion.com', 'misspap.com', 'karenmillen.com', 'warehousefashion.com'];
     if (!brandsWithoutPopup.includes(variables.brand)) {
       cy.session('accept-cookies', () => {
         cy.visit(variables.url);

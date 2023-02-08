@@ -1,5 +1,3 @@
-const variables = Cypress.env() as EnvironmentVariables;
-
 class productVariations {
 
   Size: SizesMap = {

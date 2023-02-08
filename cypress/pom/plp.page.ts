@@ -1,6 +1,4 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-import productVariations from 'cypress/helpers/productVariations';
-import { isNumber } from 'cypress/types/lodash';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 

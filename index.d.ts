@@ -159,3 +159,83 @@ declare type AddressMapPostcode = {[key in Locale]: string}
 declare type AddressMapPhoneNumber = {[key in Locale]: string}
 
 declare type UserType = 'GuestUser' | 'RegisteredUser'
+
+declare type ReportTest = {
+    'title': string;
+    'fullTitle': string;
+    'timedOut': unknown;
+    'duration': number;
+    'state': string;
+    'speed': unknown;
+    'pass': boolean;
+    'fail': boolean;
+    'pending': boolean;
+    'context': unknown;
+    'code': string;
+    'err': {
+      'message'?: string;
+      'estack'?: string;
+      'diff'?: unknown;
+    };
+    'uuid': string;
+    'parentUUID': string;
+    'isHook': boolean;
+    'skipped': boolean;
+}
+
+declare type ReportSuite = {
+    'uuid': string;
+    'title': string;
+    'fullFile': string;
+    'file': string;
+    'beforeHooks': [];
+    'afterHooks': [];
+    'tests': Array<ReportTest>;
+    'suites': [];
+    'passes': Array<string>;
+    'failures': Array<string>;
+    'pending': [];
+    'skipped': [];
+    'duration': number;
+    'root': boolean;
+    'rootEmpty': boolean;
+    '_timeout': number;
+};
+
+declare type ReportSchema = {
+    'stats': {
+        'suites': number;
+        'tests': number;
+        'passes': number;
+        'pending': number;
+        'failures': number;
+        'start': string;
+        'end': string;
+        'duration': number;
+        'testsRegistered': number;
+        'passPercent': number;
+        'pendingPercent': number;
+        'other': number;
+        'hasOther': boolean;
+        'skipped': number;
+        'hasSkipped': boolean;
+    };
+    'results': Array<{
+        'uuid': string;
+        'title': string;
+        'fullFile': string;
+        'file': string;
+        'beforeHooks': [];
+        'afterHooks': [];
+        'tests': [];
+        'suites': Array<ReportSuite>;
+        'passes': [];
+        'failures': [];
+        'pending': [];
+        'skipped': [];
+        'duration': number;
+        'root': boolean;
+        'rootEmpty': boolean;
+        '_timeout': number;
+    }>;
+}

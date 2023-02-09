@@ -3,7 +3,6 @@ import HomePage from '../../pom/home.page';
 import WishListPage from '../../pom/wishlist.page';
 import assertionText from '../../helpers/assertionText';
 import pdpPage from 'cypress/pom/pdp.page';
-import navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 

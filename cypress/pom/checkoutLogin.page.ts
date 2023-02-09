@@ -73,7 +73,7 @@ const selectors: SelectorBrandMap = {
   'warehousefashion.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
-    passwordField:'[id^="dwfrm_login_password"]',
+    passwordField:'input[type=password]',
     continueAsGuestBt:'#dwfrm_login .login-page-button',
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
@@ -83,7 +83,7 @@ const selectors: SelectorBrandMap = {
   'oasis-stores.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
-    passwordField:'[id^="dwfrm_login_password"]',
+    passwordField:'input[type=password]',
     continueAsGuestBt:'#dwfrm_login .login-page-button',
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',

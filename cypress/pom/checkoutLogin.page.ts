@@ -74,7 +74,7 @@ const selectors: SelectorBrandMap = {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
     passwordField:'input[type=password]',
-    continueAsGuestBt:'#dwfrm_login .login-page-button',
+    continueAsGuestBt:'[name="dwfrm_login_unregistered"]',
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',

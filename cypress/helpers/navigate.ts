@@ -45,8 +45,12 @@ class Navigate {
     // GUEST USER //
     if (userType === 'GuestUser') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
-        CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-        CheckoutPage.click.continueAsGuestBtn();
+        if (variables.brand != 'warehousefashion.com' && variables.locale == 'IE' || variables.locale == 'EU') {
+          CheckoutPage.click.continueAsGuestBtn();
+        } else {
+          CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+          CheckoutPage.click.continueAsGuestBtn();
+        }
       });
     
     // REGISTERED USER //

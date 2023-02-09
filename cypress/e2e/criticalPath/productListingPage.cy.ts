@@ -3,7 +3,6 @@ import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
 import assertionText from 'cypress/helpers/assertionText';
-import priceVariations from 'cypress/helpers/priceVariations';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 const variables = Cypress.env() as EnvironmentVariables;

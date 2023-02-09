@@ -146,8 +146,13 @@ class HomePage implements AbstractPage {
       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
+    // TODO: Remove when redirection from IE locales is fixed (Coast and KarenMillen)
+    if (variables.locale == 'IE') {
+      cy.setCookie('dw_locale', 'en_IE');
+    }
+      
     // TODO: When Accept Cookies popup is added for these brands, remove constant and 'if' conditional
-    const brandsWithoutPopup: Array<GroupBrands> = ['burton.co.uk', 'dorothyperkins.com', 'nastygal.com', 'wallis.co.uk', 'coastfashion.com',  'misspap.com', 'karenmillen.com', 'warehousefashion.com'];
+    const brandsWithoutPopup: Array<GroupBrands> = ['burton.co.uk', 'dorothyperkins.com', 'nastygal.com', 'wallis.co.uk', 'coastfashion.com', 'misspap.com', 'karenmillen.com', 'warehousefashion.com'];
     if (!brandsWithoutPopup.includes(variables.brand)) {
       cy.session('accept-cookies', () => {
         cy.visit(variables.url);

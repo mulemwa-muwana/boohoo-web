@@ -12,8 +12,8 @@ export default defineConfig({
     language: 'DE',
   },
 
-  viewportHeight: 1920,
-  viewportWidth: 1080,
+  viewportHeight: 1080,
+  viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,

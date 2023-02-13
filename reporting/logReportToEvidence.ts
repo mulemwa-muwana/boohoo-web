@@ -31,14 +31,17 @@ async function parseResults (report: ReportSchema, brand: string) {
     });
   });
 
+  console.log(startDate)
+
   const response = await axios.request({
+    validateStatus: () => true,
     method: 'POST',
     url: 'https://automation-evidence-api.boohoo.com/?request=tests',
     headers: {
       'x-api-key': process.env.EVIDENCE_API_KEY
     },
     data: {
-      systemInTest: 'web_' + brand.toLowerCase(),
+      systemInTest: 'webb_' + brand.toLowerCase(),
       dateRan: startDate.getTime() / 1000,
       executor: 'TeamCity',
       records: testRecords,

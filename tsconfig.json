@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "downlevelIteration": true,
     "baseUrl": ".",
@@ -7,5 +10,5 @@
     "types": ["cypress", "node", "cypress-iframe"]
   },
   "include": ["**/*.ts"],
-  "files": ["./cypress/support/index.d.ts"]
+  "files": ["index.d.ts"]
 }

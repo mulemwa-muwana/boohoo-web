@@ -31,8 +31,6 @@ async function parseResults (report: ReportSchema, brand: string) {
     });
   });
 
-  console.log(startDate)
-
   const response = await axios.request({
     validateStatus: () => true,
     method: 'POST',
@@ -50,6 +48,9 @@ async function parseResults (report: ReportSchema, brand: string) {
     }
   });
 
+  if (response.status != 200) {
+    throw new Error(`Failed: ${response.statusText} - with ${response.data}`)
+  }
   console.log(response.statusText, response.data);
 }
 

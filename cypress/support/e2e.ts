@@ -12,6 +12,15 @@ Cypress.on('uncaught:exception', () => {
 // Set anything we need to before all tests
 beforeEach(() => {
   cy.viewport(1920, 1080);
+  
+  const variables = Cypress.env() as EnvironmentVariables;
+  // TODO: Remove when redirection from IE locales is fixed (Coast and KarenMillen)
+  if (variables.locale == 'IE') {
+    cy.setCookie('dw_locale', 'en_IE');
+  }
+  cy.setCookie('OptanonAlertBoxClosed', '');
+  cy.setCookie('dw_cookies_accepted', 'A');
+  cy.setCookie('dw_is_new_consent', 'true');
 });
 
 // Here we're just hiding the XHR requests from the Cypress GUI.

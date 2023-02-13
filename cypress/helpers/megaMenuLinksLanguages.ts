@@ -154,6 +154,34 @@ class megaMenuLinksLanguages {
     ES: 'Todas las rebajas'
   };
 
+  saleLinkBHM: TranslationMap = {
+    EN: 'SALE',
+    FR: 'Promos',
+    NL: 'NIEUWE',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: 'REA',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  subnavAllSaleBHM: TranslationMap = {
+    EN: 'All Sale',
+    FR: 'Promos vêtements',
+    NL: 'nieuw',
+    DE: 'Alles im Sale',
+    DK: 'All Sale',
+    FI: 'All Sale',
+    NO: 'All Sale',
+    SE: 'Alla Reaprodukter',
+    IL: '',
+    IT: 'Tutti i saldi',
+    ES: 'Todas las rebajas'
+  };
+
   urlValidationSale: TranslationMap = {
     EN: 'sale',
     FR: 'promotions',

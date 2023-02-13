@@ -20,15 +20,19 @@ async function parseResults (report: ReportSchema, brand: string) {
   report.results.forEach(result => {
     result.suites.forEach(suite => {
       suite.tests.forEach(test => {
-        testRecords.push({
+        const error = test.err?.message;
+        const entry = {
           testName: test.fullTitle,
           testResult: testStateCorrectionMap[test.state.toLowerCase()]
-        });
+        };
+        entry["error"] = error;
+        testRecords.push(entry);
       });
     });
   });
 
   const response = await axios.request({
+    validateStatus: () => true,
     method: 'POST',
     url: 'https://automation-evidence-api.boohoo.com/?request=tests',
     headers: {
@@ -44,6 +48,9 @@ async function parseResults (report: ReportSchema, brand: string) {
     }
   });
 
+  if (response.status != 200) {
+    throw new Error(`Failed: ${response.statusText} - with ${response.data}`)
+  }
   console.log(response.statusText, response.data);
 }
 

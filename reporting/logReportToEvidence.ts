@@ -20,10 +20,13 @@ async function parseResults (report: ReportSchema, brand: string) {
   report.results.forEach(result => {
     result.suites.forEach(suite => {
       suite.tests.forEach(test => {
-        testRecords.push({
+        const error = test.err?.message;
+        const entry = {
           testName: test.fullTitle,
           testResult: testStateCorrectionMap[test.state.toLowerCase()]
-        });
+        };
+        entry["error"] = error;
+        testRecords.push(entry);
       });
     });
   });

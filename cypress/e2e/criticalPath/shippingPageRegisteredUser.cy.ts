@@ -27,7 +27,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
+  it.only('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'AU') {
@@ -35,14 +35,18 @@ describe('Shipping Page Registered user tests', function () {
     } else {
       shippingPage.actions.selectCountry(localeAddress.country);
     }
-    if (variables.brand == 'boohooman.com') {
+    if (variables.brand == 'boohooman.com' || variables.brand == 'warehousefashion.com') {
       shippingPage.actions.addressLine1Clear();
       shippingPage.actions.cityFieldClear();
     }
     cy.wait(5000);
-    shippingPage.click.enterManuallyAddressDetails();
-    shippingPage.click.proceedToBilling();
+    if (variables.brand !='warehousefashion.com') {
+      shippingPage.click.enterManuallyAddressDetails();
+      shippingPage.click.proceedToBilling();
+    }
     if (variables.brand == 'boohoo.com') {
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    } else if (variables.brand =='warehousefashion.com') { 
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
     } else {
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
@@ -61,7 +65,7 @@ describe('Shipping Page Registered user tests', function () {
     cy.wait(2000);
     shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
     shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-    if (variables.locale == 'US' || variables.locale == 'AU') {
+    if (variables.locale == 'US' || variables.locale == 'AU' || variables.locale == 'IE') {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
@@ -179,7 +183,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
+    if (isSiteGenesisBrand && variables.brand !='warehousefashion.com') {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();

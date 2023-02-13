@@ -39,6 +39,8 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'boohoo.com') {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+    } else if (variables.brand == 'boohooman.com') {
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeBHM[variables.language]);
     } else {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
     }
@@ -157,8 +159,10 @@ describe('Shipping Page Guest user tests', function () {
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand) {
-      shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmailField(this.guestEmail);
+      shippingPage.actions.selectDate('23', '05', '2001');
+      if (variables.brand != 'boohooman.com') {
+        shippingPage.actions.confirmEmailField(this.guestEmail); 
+      }
     }
     shippingPage.click.proceedToBilling();
     if (isSiteGenesisBrand) {

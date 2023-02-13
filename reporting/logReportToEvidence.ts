@@ -36,7 +36,7 @@ async function parseResults (report: ReportSchema, brand: string) {
     },
     data: {
       systemInTest: 'web_' + brand.toLowerCase(),
-      dateRan: startDate.getTime(),
+      dateRan: startDate.getTime() / 1000,
       executor: 'TeamCity',
       records: testRecords,
       result: isSuitePassing ? 'Pass' : 'Fail',

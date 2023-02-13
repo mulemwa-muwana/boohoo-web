@@ -39,7 +39,7 @@ async function parseResults (report: ReportSchema, brand: string) {
       'x-api-key': process.env.EVIDENCE_API_KEY
     },
     data: {
-      systemInTest: 'webb_' + brand.toLowerCase(),
+      systemInTest: 'web_' + brand.toLowerCase(),
       dateRan: startDate.getTime() / 1000,
       executor: 'TeamCity',
       records: testRecords,

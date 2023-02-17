@@ -389,9 +389,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
-        if (variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) {
-          GlobalFooter.actions.checkFooterLinkByText('PayPal');
-        } else if (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
+        if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
         } else {
           this.skip();
@@ -443,10 +441,12 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Modern Slavery Statement', function () {
+        const arkadiaBrands: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk', 'burton.co.uk'];
+        const sgBrands: Array<GroupBrands> = ['oasis-stores.com', 'coastfashion.com','warehousefashion.com', 'misspap.com', 'boohooman.com','karenmillen.com'];
         if (variables.brand == 'boohoomena.com') {
           this.skip();
         }
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'NZ')) || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || ['wallis.co.uk', 'dorothyperkins.com', 'burton.co.uk', 'karemillen.com', 'coastfashion.com', 'oasis.com', 'misspap.com', 'boohooman.com' && variables.locale == 'UK'].includes(variables.brand)) {
+        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'NZ')) || ((variables.brand == 'nastygal.com' || sgBrands.includes(variables.brand)) && variables.locale == 'UK') || (arkadiaBrands.includes(variables.brand) && (variables.locale == 'UK' || variables.locale == 'IE' ||variables.locale == 'EU' ))) {
           GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'modern-slavery' });
         } else {
           this.skip();
@@ -496,11 +496,7 @@ describe('Home Page', function () {
         }
       });  
       it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
-
-        // Const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-
-        // Cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
         cy.contains('COPYRIGHT © 2022', { matchCase: false }).should('be.visible');
       });
     });

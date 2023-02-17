@@ -27,7 +27,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it.only('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
+  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();
     if (variables.locale == 'AU') {

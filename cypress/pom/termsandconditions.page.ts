@@ -32,7 +32,7 @@ const selectors: SelectorBrandMap = {
     termsAndConditionsPageTitle: '#primary > div > h1'
   },
   'misspap.com': {
-    termsAndConditionsPageTitle: '#secondary > :nth-child(1)',
+    termsAndConditionsPageTitle: '.content-page-wrapper > h3',
   },
   'boohoomena.com': {
     termsAndConditionsPageTitle: '#primary > div > h1'

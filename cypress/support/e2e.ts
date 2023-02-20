@@ -11,7 +11,7 @@ Cypress.on('uncaught:exception', () => {
 
 // Set anything we need to before all tests
 beforeEach(() => {
-  cy.viewport(1920, 1080);
+  cy.viewport(375, 667);
   
   const variables = Cypress.env() as EnvironmentVariables;
   // TODO: Remove when redirection from IE locales is fixed (Coast and KarenMillen)

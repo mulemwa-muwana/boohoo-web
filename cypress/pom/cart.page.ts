@@ -21,6 +21,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
+    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
   'nastygal.com': {
     productsTable: '.b-cart_products',
@@ -40,7 +41,8 @@ const selectors: SelectorBrandMap = {
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
     premierBlock: '.b-ngvip',
-    addPremierToCart:'.b-ngvip-button'
+    addPremierToCart:'.b-ngvip-button',
+    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
   'dorothyperkins.com': {
     productsTable: '.b-cart_products',
@@ -61,6 +63,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
+    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
   'burton.co.uk': {
     productsTable: '.b-cart_products',
@@ -81,6 +84,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
+    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
   'wallis.co.uk': {
     productsTable: '.b-cart_products',
@@ -101,6 +105,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
+    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
   'boohooman.com': {
     productsTable: '#cart-table',
@@ -121,6 +126,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
+    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -141,6 +147,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
+    checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
   },
   'coastfashion.com': {
     productsTable: '#cart-table',
@@ -161,6 +168,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
+    checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
   },
   'warehousefashion.com': {
     productsTable: '#cart-table',
@@ -181,6 +189,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
+    checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
   },
   'oasis-stores.com': {
     productsTable: '#cart-table',
@@ -200,7 +209,8 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
-    productName: '.name > a' 
+    productName: '.name > a',
+    checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
   },
   'misspap.com': {
     productsTable: '#cart-table',
@@ -221,7 +231,8 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
-    updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63'
+    updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
+    checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
   },
   'boohoomena.com': {
     productsTable: '#cart-table',
@@ -242,6 +253,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
+    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
 };
 
@@ -265,7 +277,15 @@ class CartPage implements AbstractPage {
     },
     proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
-      cy.get(proceedToCheckout).should('be.visible').click({force: true});    
+      const checkoutBtnForMobile = selectors[variables.brand].checkoutBtnForMobile;   
+      cy.get(checkoutBtnForMobile).then($element => {
+        if ($element.is(':visible')) {
+          cy.get(checkoutBtnForMobile).click({force: true});       
+        } else {
+          cy.get(proceedToCheckout).click({force: true}); 
+        }
+      }      
+      );
     }
   };
 

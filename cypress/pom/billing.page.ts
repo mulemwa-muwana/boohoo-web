@@ -619,7 +619,7 @@ class BillingPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         cy.get(shippingCheckbox).click({force:true});
       } else {
-        cy.get(shippingCheckbox).should('be.checked').uncheck();
+        cy.get(shippingCheckbox).should('be.checked').uncheck({force: true});
       }
     },
     chooseCC () {

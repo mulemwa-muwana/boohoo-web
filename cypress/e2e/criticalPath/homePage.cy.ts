@@ -124,7 +124,9 @@ describe('Home Page', function () {
     describe('Verify the content page (Privacy Policy and Terms And Conditions) is displayed.', () => {
       it('Privacy policy', () => {
         GlobalFooter.click.privacyPolicyLink();
-        if (variables.brand == 'boohoo.com' || isSiteGenesisBrand) {
+        if (variables.brand == 'misspap.com') {
+          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens('Privacy & Security');
+        } else if (variables.brand == 'boohoo.com' || isSiteGenesisBrand) {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
         } else {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);

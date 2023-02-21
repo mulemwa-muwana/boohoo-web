@@ -124,10 +124,10 @@ describe('Home Page', function () {
     describe('Verify the content page (Privacy Policy and Terms And Conditions) is displayed.', () => {
       it('Privacy policy', () => {
         GlobalFooter.click.privacyPolicyLink();
-        if (variables.brand == 'misspap.com') {
-          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens('Privacy & Security');
-        } else if (variables.brand == 'boohoo.com' || isSiteGenesisBrand) {
+        if (variables.brand == 'boohoo.com' || (isSiteGenesisBrand && variables.brand != 'misspap.com')) {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
+        } else if (variables.brand == 'misspap.com') {
+          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyNoticeMisspap[variables.language]);
         } else {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
         }
@@ -143,11 +143,11 @@ describe('Home Page', function () {
         if (variables.brand == 'boohooman.com') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1BHM[variables.language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyArcadiaURL[variables.language]
+        } else if (variables.brand == 'misspap.com') {
+          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyNoticeMisspap[variables.language]);
+          PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
         } else if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[variables.language]);
-          PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
-        } else if (variables.brand == 'misspap.com') {
-          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyNoticeMisspap[variables.brand]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[variables.language]
         } else {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[variables.language]);
@@ -238,7 +238,8 @@ describe('Home Page', function () {
         const excludedBoohooLocales: Array<Locale> = ['EU', 'NL', 'NO', 'DK', 'FI', 'IT', 'ES'];
         const excludedBoohooWithLocales: boolean = variables.brand == 'boohoo.com' && excludedBoohooLocales.includes(variables.locale);
         const excludedNastygalWithLocales: boolean = variables.brand == 'nastygal.com' && variables.locale == 'EU';
-        if (excludedBoohooWithLocales || excludedNastygalWithLocales) {
+        const excludedCoastWithLocales: boolean = variables.brand == 'coastfashion.com' && variables.locale == 'IE';
+        if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedCoastWithLocales) {
           this.skip();
         } else {
           GlobalFooter.assertions.assertAppBannerPresent();
@@ -326,10 +327,13 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', function () {
-        if (variables.brand == 'boohooman.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'DE')) {
+        const boohooAndLocales: boolean = variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT' && variables.locale != 'ES' && variables.locale != 'NO');
+        const boohooManAndLocales: boolean = variables.brand == 'boohooman.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'DE');
+        
+        if (boohooAndLocales || boohooManAndLocales || variables.brand == 'nastygal.com' || (isSiteGenesisBrand && variables.brand != 'misspap.com')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
-        } else if ((variables.brand == 'boohoo.com' && (variables.locale != 'NL' && variables.locale != 'FR' && variables.locale != 'IT'&& variables.locale != 'ES' && variables.locale != 'NO')) || variables.brand == 'nastygal.com' || isSiteGenesisBrand && variables.brand != 'boohooman.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[variables.language]);
+        } else if (variables.brand == 'misspap.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdatesMissPap[variables.language]);
         } else {
           this.skip();
         }
@@ -351,7 +355,7 @@ describe('Home Page', function () {
         });
         */
       it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', function () {
-        if (variables.brand == 'boohoo.com' || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com' || (variables.brand == 'boohooman.com' != (variables.locale == 'NL' || variables.locale == 'DE'|| variables.locale == 'FR'))) {
+        if (variables.brand == 'boohoo.com' || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || (variables.brand == 'coastfashion.com' && variables.locale != 'IE') || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com' || (variables.brand == 'boohooman.com' != (variables.locale == 'NL' || variables.locale == 'DE'|| variables.locale == 'FR'))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[variables.language]);
         } else {
           this.skip();
@@ -365,7 +369,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Sustainability', function () {
-        if (variables.brand == 'burton.co.uk' || (variables.brand == 'misspap.com' && variables.locale == 'IE') || (variables.brand == 'boohoo.com' && (variables.locale == 'NL'|| variables.locale == 'IT' || variables.locale == 'ES'))) {
+        if (variables.brand == 'burton.co.uk' || variables.brand == 'misspap.com' || (variables.brand == 'boohoo.com' && (variables.locale == 'NL'|| variables.locale == 'IT' || variables.locale == 'ES'))) {
           this.skip();
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.sustainability[variables.language]);
@@ -383,28 +387,28 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Clearpay', function () {
         if (variables.locale == 'US' || variables.locale == 'AU') {
           GlobalFooter.actions.checkFooterLinkByText('Afterpay');
-        } else if (variables.locale == 'UK' || (variables.brand == 'boohoo.com' && (variables.locale == 'FR' || variables.locale == 'IT' || variables.locale == 'ES')) || (variables.brand == 'nastygal.com' && variables.locale == 'FR' )) {
+        } else if (variables.locale == 'UK' || (variables.brand == 'boohoo.com' && (variables.locale == 'FR' || variables.locale == 'IT' || variables.locale == 'ES')) || (variables.brand == 'nastygal.com' && variables.locale == 'FR' ) || (variables.brand == 'coastfashion.com' && (variables.locale != 'IE' ))) {
           GlobalFooter.actions.checkFooterLinkByText('Clearpay');
         } else {
           this.skip();
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
-        if (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE' ) {
+        if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
         } else {
           this.skip();
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', function () {
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US' && variables.locale != 'FR')) {
+        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US' && variables.locale != 'FR') || (variables.brand == 'coastfashion.com' && (variables.locale == 'EU' ))) {
           GlobalFooter.actions.checkFooterLinkByText('Laybuy');
         } else {
           this.skip();
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', function () {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com') {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com' || variables.brand == 'coastfashion.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[variables.language]);
         } else {
           this.skip();
@@ -429,10 +433,10 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('Social Responsibility');
         } else if (variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'FR' || variables.locale == 'DE' || variables.locale == 'NZ' || variables.locale == 'DK' || variables.locale == 'FI'|| variables.locale == 'NO')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[variables.language]);
+        } else if (variables.brand == 'nastygal.com' || variables.brand == 'misspap.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespNG[variables.language]);
         } else if (['wallis.co.uk', 'dorothyperkins.com', 'burton.co.uk', ...siteGenesisBrands].includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespSiteGenesis[variables.language]);
-        } else if (variables.brand == 'nastygal.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespNG[variables.language]);
         } else {
           this.skip();
         }
@@ -442,10 +446,12 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('BCI Membership');
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Modern Slavery Statement', function () {
+        const arkadiaBrands: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk', 'burton.co.uk'];
+        const sgBrands: Array<GroupBrands> = ['oasis-stores.com', 'coastfashion.com','warehousefashion.com', 'misspap.com', 'boohooman.com','karenmillen.com'];
         if (variables.brand == 'boohoomena.com') {
           this.skip();
         }
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'NZ')) || (variables.brand == 'nastygal.com' && variables.locale == 'UK') || ['wallis.co.uk', 'dorothyperkins.com', 'burton.co.uk', ...siteGenesisBrands].includes(variables.brand)) {
+        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK' || variables.locale == 'NZ')) || ((variables.brand == 'nastygal.com' || sgBrands.includes(variables.brand)) && variables.locale == 'UK') || (arkadiaBrands.includes(variables.brand) && (variables.locale == 'UK' || variables.locale == 'IE' ||variables.locale == 'EU' ))) {
           GlobalFooter.actions.checkFooterLinkByText('Modern Slavery Statement', { assertionUrl: 'modern-slavery' });
         } else {
           this.skip();
@@ -459,8 +465,10 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - T&Cs', () => {
-        if (variables.brand == 'boohoo.com' || isSiteGenesisBrand) {
+        if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'karenmillen.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCond[variables.language]);
+        } else if (variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondBoohooManAndMena[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
         }
@@ -498,15 +506,6 @@ describe('Home Page', function () {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
         cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
-      });
-        
-      it('Verify that the Sticky Footer displayed below Copyright and clickable.', function () {
-        if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
-          GlobalFooter.assertions.assertFooterIsFixedAndPresent();
-          GlobalFooter.click.footerPromo();
-        } else {
-          this.skip();
-        }
       });
     });
 

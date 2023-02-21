@@ -5,10 +5,10 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@stg.coastfashion.com/',
-    sku: 'ACC99223-105',
-    brand: 'coastfashion.com',
-    locale: 'UK',
+    url: 'https://storefront:Oreo2022@dwstg.boohooman.com/eu',
+    sku: 'BMM26351-105',
+    brand: 'boohooman.com',
+    locale: 'EU',
     language: 'EN',
   },
 
@@ -19,16 +19,8 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
-  reporter: 'mochawesome',
-  reporterOptions: {
-    reportDir: 'config/coast/results',
-    overwrite: false,
-    html: false,
-    json: true,
-  },
-
   e2e: {
-    setupNodeEvents (on, config) {
+    setupNodeEvents (on) {
       plugins(on);
     },
     excludeSpecPattern: [
@@ -36,5 +28,5 @@ export default defineConfig({
     ],
     experimentalSessionAndOrigin: true,
     numTestsKeptInMemory: 0,
-  },   
+  },
 });

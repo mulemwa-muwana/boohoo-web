@@ -25,7 +25,7 @@ async function parseResults (report: ReportSchema, brand: string) {
           testName: test.fullTitle,
           testResult: testStateCorrectionMap[test.state.toLowerCase()]
         };
-        entry["error"] = error;
+        entry['error'] = error;
         testRecords.push(entry);
       });
     });
@@ -39,7 +39,7 @@ async function parseResults (report: ReportSchema, brand: string) {
       'x-api-key': process.env.EVIDENCE_API_KEY
     },
     data: {
-      systemInTest: 'webb_' + brand.toLowerCase(),
+      systemInTest: 'web_' + brand.toLowerCase(),
       dateRan: startDate.getTime() / 1000,
       executor: 'TeamCity',
       records: testRecords,
@@ -49,7 +49,7 @@ async function parseResults (report: ReportSchema, brand: string) {
   });
 
   if (response.status != 200) {
-    throw new Error(`Failed: ${response.statusText} - with ${response.data}`)
+    throw new Error(`Failed: ${response.statusText} - with ${response.data as string}`);
   }
   console.log(response.statusText, response.data);
 }

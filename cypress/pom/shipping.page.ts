@@ -415,6 +415,7 @@ const selectors: SelectorBrandMap = {
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
+    cityDetailsAreMandatory: 'dwfrm_singleshipping_shippingAddress_addressFields_city-error'
   },
   'oasis-stores.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -729,7 +730,7 @@ class ShippingPage implements AbstractPage {
     },
     adressLine1 (address1: string) {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;
-      cy.get(addressLine1Shipping).type(address1);
+      cy.get(addressLine1Shipping).click({force: true}).type(address1);
     },
     addressLine1Clear () {
       const addressLine1Shipping = selectors[variables.brand].addressLine1Shipping;

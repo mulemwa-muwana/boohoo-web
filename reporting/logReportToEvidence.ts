@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as fs from 'fs';
 import axios from 'axios';
 import * as dotenv from 'dotenv';
@@ -50,7 +49,7 @@ async function parseResults (report: ReportSchema, brand: string) {
   });
 
   if (response.status != 200) {
-    throw new Error(`Failed: ${response.statusText} - with ${response.data}`);
+    throw new Error(`Failed: ${response.statusText} - with ${response.data as string}`);
   }
   console.log(response.statusText, response.data);
 }

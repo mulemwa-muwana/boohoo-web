@@ -1036,6 +1036,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkGetExclusiveOffersAndUpdatesMissPap: TranslationMap = {
+    EN: 'Get Exclusive Offers and Updates',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkGiftCard: TranslationMap = {
     EN: 'Gift Cards',
     NL: '',
@@ -1118,6 +1132,20 @@ class AssertionText {
     IL: '',
     IT: 'Termini e condizioni',
     ES: 'TyC'
+  };
+
+  termsAndCondBoohooManAndMena: TranslationMap = {
+    EN: 'T&C\'s',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   termsAndCondArcadia: TranslationMap = {

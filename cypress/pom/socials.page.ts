@@ -91,7 +91,7 @@ const selectors: SelectorBrandMap = {
     instagramUrl: 'instagram.com/misspap/',
     instagram: ' .icon-instagram',
     facebook: '.icon-facebook',
-    facebookUrl: 'facebook.com/MisspapOfficial/',
+    facebookUrl: 'facebook.com/MissPapOfficial',
     twitter: '.icon-twitter',
     youtube: '.icon-youtube',
     pinterest: '.icon-pinterest'
@@ -172,7 +172,7 @@ class SocialsPage implements AbstractPage {
     },
     assertYouTubeIconIsPresent () {
       const youtube = selectors[variables.brand].youtube;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohoomena.com') {
+      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohoomena.com' || variables.brand == 'misspap.com') {
         cy.get(youtube).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(youtube).should('be.visible');
       } else {

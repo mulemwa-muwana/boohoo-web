@@ -38,14 +38,16 @@ describe('Home Page', function () {
     it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
 
-      homePage.assertions.assertAccountIconPresent();
       homePage.assertions.assertWishListIconPresent();
       homePage.assertions.assertCartIconPresent();
+      homePage.assertions.assertAccountIconPresent();
+      HomePage.actions.closeSearchFieldForMobiles();
 
       HomePage.click.searchIcon();
       HomePage.assertions.assertSearchIconPresent();
 
       HomePage.assertions.assertSearchFieldPresent();
+      HomePage.actions.closeSearchFieldForMobiles();
     });
     
     it('Verify search results page opens', () => {

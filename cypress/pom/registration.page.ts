@@ -236,7 +236,7 @@ class RegistrationPage implements AbstractPage {
     },
     submitButton () {
       const submitButton = selectors[variables.brand].submitButton;
-      cy.get(submitButton).click();
+      cy.get(submitButton).click({force: true});
     }
   };
 

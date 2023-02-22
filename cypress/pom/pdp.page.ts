@@ -30,6 +30,7 @@ const selectors: SelectorBrandMap = {
     addedToWishlistMsg: '.b-message',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
+    checkoutBtn: '/checkout-login',
   },
   'nastygal.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -382,7 +383,12 @@ class PdpPage implements AbstractPage {
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
-      cy.get(miniCartViewCartBtn).click({force: true});
+      cy.get('body').then($body => {
+        if ($body.find(miniCartViewCartBtn).length) {
+          cy.get(miniCartViewCartBtn).click({force: true});
+        }   
+      }
+      );   
     },
     viewCart () {
       const viewCart = selectors[variables.brand].viewCart;
@@ -423,6 +429,15 @@ class PdpPage implements AbstractPage {
         });
       }
     },
+    miniCartProceedToCheckout () {
+      const checkoutBtn = selectors[variables.brand].checkoutBtn;
+      cy.get('body').then($body => {
+        if ($body.find(checkoutBtn).length) {
+          cy.get(checkoutBtn).click({force: true});
+        }
+      }
+      );
+    }
   };
 
   assertions = {

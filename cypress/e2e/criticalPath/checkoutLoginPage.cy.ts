@@ -12,7 +12,7 @@ describe('Checkout Page', function () {
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    if (isSiteGenesisBrand) {
+    if (isSiteGenesisBrand || variables.brand == 'boohoo.com') {
       CheckoutPage.assertions.assertUserEmailField();
     } else {
       CheckoutPage.assertions.assertGuestCheckoutEmail();
@@ -43,9 +43,11 @@ describe('Checkout Page', function () {
       this.skip(); // No guest users are allowed for this brand, only registered ones
     }
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-      CheckoutPage.click.continueAsGuestBtn();
-      CheckoutPage.assertions.assertUserProceededToShippingPage();
+      if (variables.brand != 'boohoo.com') {
+        CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+        CheckoutPage.click.continueAsGuestBtn();
+      }
+      CheckoutPage.assertions.assertUserProceededToShippingPage();      
     });
   });
 

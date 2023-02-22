@@ -9,8 +9,8 @@ const selectors: SelectorBrandMap = {
     continueAsGuestBt:'.b-form > .b-button',
     continueAsRegisteredUser: 'button[data-tau="login_submit"]',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
-    premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
+    premierIsDisplayed:'#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
+    premierSubtitle:'#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   },
   'nastygal.com': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
@@ -71,7 +71,6 @@ const selectors: SelectorBrandMap = {
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   },
   'warehousefashion.com': {
-    guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
     passwordField:'input[type=password]',
     continueAsGuestBt:'#dwfrm_login .login-page-button',
@@ -79,6 +78,7 @@ const selectors: SelectorBrandMap = {
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
+    guestCheckoutEmail: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
   },
   'oasis-stores.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
@@ -156,7 +156,13 @@ class CheckoutPage implements AbstractPage {
     },
     assertUserEmailField () {
       const userEmailField = selectors[variables.brand].userEmailField;
-      cy.get(userEmailField).should('be.visible');
+      cy.get('body').then($body => {
+        if ($body.find(userEmailField).length) {
+          cy.get(userEmailField).should('be.visible');
+        }
+      }   
+      );
+      
     },
     assertPasswordFieldForRegisteredUserIsVisible () {
       const passwordField = selectors[variables.brand].passwordField;

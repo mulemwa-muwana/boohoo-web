@@ -277,16 +277,16 @@ class CartPage implements AbstractPage {
     },
     proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
-      const checkoutBtnForMobile = selectors[variables.brand].checkoutBtnForMobile;   
-      cy.get(checkoutBtnForMobile).then($element => {
-        if ($element.is(':visible')) {
-          cy.get(checkoutBtnForMobile).click({force: true});       
+      const checkoutBtnForMobile = selectors[variables.brand].checkoutBtnForMobile;
+      cy.get('body').then($body => {
+        if ($body.find(checkoutBtnForMobile).length) {
+          cy.get(checkoutBtnForMobile).click({force: true});
         } else {
-          cy.get(proceedToCheckout).click({force: true}); 
+          cy.get(proceedToCheckout).invoke('show').click({force: true}); 
         }
-      }      
+      }   
       );
-    }
+    },
   };
 
   actions = {

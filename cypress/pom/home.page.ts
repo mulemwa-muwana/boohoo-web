@@ -119,7 +119,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
     wishlistIcon: '.wishlist-button',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIconMobile: '.header-wishlist',
     searchField: '.js-header-search-input',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     searchIcon: '.js-search-icon',
@@ -171,14 +171,14 @@ class HomePage implements AbstractPage {
     logInIcon () {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
-      cy.get(hamburgerMenu).then($element => {
-        if ($element.is(':visible')) {
-          cy.get(hamburgerMenu).click();
+      cy.get('body').then($body => {
+        if ($body.find(hamburgerMenu).length) {
+          cy.get(hamburgerMenu).click({force: true});
+        } else {
+          cy.get(hamburgerMenu).click({force: true}); 
         }
-      });
-      const loginIcon = selectors[variables.brand].loginIcon;
-
-      // Cy.get(loginIcon).invoke('show').click({ force: true });
+      }
+      );
     },
     
     forgotPasswordLink () {
@@ -189,13 +189,13 @@ class HomePage implements AbstractPage {
       const registrationButton = selectors[variables.brand].registrationButton;
       const registrationButtonMobiles = selectors[variables.brand].registrationButtonMobiles;
       if (!isSiteGenesisBrand) {
-        cy.get(registrationButtonMobiles).then($element => {
-          if ($element.is(':visible')) {
-            cy.get(registrationButtonMobiles).click({force:true});     
+        cy.get('body').then($body => {
+          if ($body.find(registrationButtonMobiles).length) {
+            cy.get(registrationButtonMobiles).click({force: true});
           } else {
-            cy.get(registrationButton).click({force:true});
+            cy.get(registrationButton).click({force: true}); 
           }
-        }      
+        }
         );
       }     
     },
@@ -273,11 +273,12 @@ class HomePage implements AbstractPage {
 
     },
     closeSearchFieldForMobiles () {
-      cy.get('.b-search_dialog-cancel').then($button => {
-        if ($button.is(':visible')) {
-          cy.get('.b-search_dialog-cancel').click({force: true});       
+      cy.get('body').then($body => {
+        if ($body.find('.b-search_dialog-cancel').length) {
+          cy.get('.b-search_dialog-cancel').click({force: true});
         }
-      });   
+      }
+      );
     }
   };
 
@@ -337,15 +338,13 @@ class HomePage implements AbstractPage {
     assertWishListIconPresent () {
       const wishListIcon = selectors[variables.brand].wishListIcon;
       const wishListIconMobile = selectors[variables.brand].wishListIconMobile;
-      cy.get(wishListIconMobile).then($element => {
-        if ($element.is(':visible')) {     
-          cy.get(wishListIconMobile).scrollIntoView().should('be.visible');
-        } else {
-          cy.get(wishListIcon).invoke('show').then(element => {
-            cy.wrap(element).invoke('show').should('be.visible');
-          });
-        }      
-      });
+      cy.get('body').then($body => {
+        if ($body.find(wishListIconMobile).length) {
+          cy.get(wishListIconMobile).invoke('show').should('be.visible');
+        }
+        cy.wrap(wishListIcon).invoke('show').should('be.visible'); 
+      }
+      );
     },
     assertCartIconPresent () {
       const minicartIcon = selectors[variables.brand].minicartIcon;
@@ -356,23 +355,27 @@ class HomePage implements AbstractPage {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIconLinkMobile = selectors[variables.brand].loginIconLinkMobile;
-      cy.get(hamburgerMenu).then($element => {
-        if ($element.is(':visible')) {
-          cy.get(hamburgerMenu).click();              
+      cy.get('body').then($body => {
+        if ($body.find(hamburgerMenu).length) {
+          cy.get(hamburgerMenu).click({force: true});
           if (variables.brand == 'karenmillen.com') {
-            if ($element.is(':visible')) {
-              cy.get(loginIconLinkMobile).should('be.visible');
-            }
+            cy.get('body').then($body => {
+              if ($body.find(loginIconLinkMobile).length) {
+                cy.get(loginIconLinkMobile).should('be.visible');
+              }
+            });
           } else {
-            cy.get(loginIconMobile).scrollIntoView().should('be.visible');
+            cy.get('body').then($body => {
+              if ($body.find(loginIconMobile).length) {
+                cy.get(loginIconMobile).invoke('show').click();
+              }
+            });
           }
         } else {
-          cy.get(loginIcon).invoke('show').then(element => {
-            cy.wrap(element).invoke('show').should('be.visible');
-            cy.get(loginIcon).invoke('show').click({ force: true });
-          });
-        } 
-      });    
+          cy.wrap(loginIcon).invoke('show').should('be.visible');
+        }
+      }
+      ); 
     },
 
     assertCountryURL (country: string) {

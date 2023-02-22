@@ -41,13 +41,13 @@ describe('Home Page', function () {
       homePage.assertions.assertWishListIconPresent();
       homePage.assertions.assertCartIconPresent();
       homePage.assertions.assertAccountIconPresent();
+      HomePage.actions.closeSearchFieldForMobiles();
 
       HomePage.click.searchIcon();
       HomePage.assertions.assertSearchIconPresent();
 
       HomePage.assertions.assertSearchFieldPresent();
       HomePage.actions.closeSearchFieldForMobiles();
-
     });
     
     it('Verify search results page opens', () => {

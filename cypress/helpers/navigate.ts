@@ -8,6 +8,7 @@ import assertionText from './assertionText';
 import Addresses from './addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import cartPage from '../pom/cart.page';
+import pdpPage from '../pom/pdp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -33,6 +34,7 @@ class Navigate {
 
   toCheckoutLoginPage () {
     this.toCartPage();
+    pdpPage.click.miniCartViewCartBtn();
     cartPage.click.proceedToCheckout();       
   }
 

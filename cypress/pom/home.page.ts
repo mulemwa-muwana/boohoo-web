@@ -171,11 +171,13 @@ class HomePage implements AbstractPage {
     logInIcon () {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
+      const loginIcon = selectors[variables.brand].loginIcon;
       cy.get('body').then($body => {
         if ($body.find(hamburgerMenu).length) {
           cy.get(hamburgerMenu).click({force: true});
+          cy.get(loginIconMobile).should('be.visible');
         } else {
-          cy.get(hamburgerMenu).click({force: true}); 
+          cy.get(loginIcon).should('be.visible');
         }
       }
       );
@@ -342,7 +344,7 @@ class HomePage implements AbstractPage {
         if ($body.find(wishListIconMobile).length) {
           cy.get(wishListIconMobile).invoke('show').should('be.visible');
         }
-        cy.wrap(wishListIcon).invoke('show').should('be.visible'); 
+        cy.get(wishListIcon).should('be.visible'); 
       }
       );
     },

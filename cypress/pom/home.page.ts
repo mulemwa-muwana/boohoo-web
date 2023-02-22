@@ -237,12 +237,13 @@ class HomePage implements AbstractPage {
       cy.get('cc-saveAll-startBtn').click();
     },
     expandHamburgerMenu () {
-      const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
-      cy.get(hamburgerMenu).then($element => {
-        if ($element.is(':visible')) {
-          cy.get(hamburgerMenu).click();
+      const hamburgerMenu = selectors[variables.brand].hamburgerMenu;     
+      cy.get('body').then($body => {
+        if ($body.find(hamburgerMenu).length) {
+          cy.get(hamburgerMenu).click({force: true});
         }
-      });
+      }
+      );
     }
   };
 

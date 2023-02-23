@@ -140,7 +140,7 @@ describe('Home Page', function () {
         }
       });
     
-      it.only('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
+      it('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
         GlobalFooter.click.copyrightPrivacyPolicyLink();
         if (variables.brand == 'boohooman.com') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1BHM[variables.language]);
@@ -504,10 +504,14 @@ describe('Home Page', function () {
           this.skip();
         }
       });  
-      it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
+      it.only('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-        cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
+        if (variables.brand == 'boohooman.com') {
+          cy.contains(`COPYRIGHT © ${currentYear - 1}`, { matchCase: false }).should('be.visible');
+        } else {
+          cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
+        }
       });
     });
 

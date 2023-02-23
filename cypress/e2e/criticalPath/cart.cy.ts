@@ -95,6 +95,6 @@ describe('Cart page for Registered user', function () {
       cy.get('[class="b-button m-outline b-minicart-button"]').click({force: true});
     }
     CartPage.click.proceedToCheckout();
-    CheckoutPage.assertions.assertUserProceededToShippingPage(); // Recaptcha 
+    CheckoutPage.assertions.assertUserProceededToShippingPage(); 
   });
 });

@@ -351,7 +351,7 @@ class CartPage implements AbstractPage {
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
-      if (isSiteGenesisBrand || variables.brand == 'dorothyperkins.com') {
+      if (isSiteGenesisBrand) {
         cy.get(cartQuantity).should('have.value', quantity);
       } else {
         cy.get(cartQuantity).should('contain', quantity);

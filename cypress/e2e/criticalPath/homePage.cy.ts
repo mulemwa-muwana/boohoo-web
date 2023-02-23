@@ -35,7 +35,7 @@ describe('Home Page', function () {
        
   // HEADER
   describe('Header verifications', () => {
-    it.only('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
+    it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
 
       homePage.assertions.assertWishListIconPresent();
@@ -140,7 +140,7 @@ describe('Home Page', function () {
         }
       });
     
-      it('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
+      it.only('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
         GlobalFooter.click.copyrightPrivacyPolicyLink();
         if (variables.brand == 'boohooman.com') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1BHM[variables.language]);

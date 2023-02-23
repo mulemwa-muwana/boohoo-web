@@ -888,7 +888,11 @@ class MyAccountPage implements AbstractPage {
         cy.get(billingAndPaymentInfo).should('be.visible');
       },
       assertLoadedOrders () {
-        cy.get('.b-load_progress-value').eq(1).should('be.greaterThan', '10'); //  Check (2 parametars)
+        if (variables.brand == 'boohooman.com') {
+          cy.get('.search-result-items').children().should('have.length', '6')
+        } else {
+          cy.get('.b-load_progress-value').eq(1).should('be.greaterThan', '10'); //  Check (2 parametars)
+        }
       },
       assertAccountEmail (email: string) {
         const accountDetailsEmailField = selectors[variables.brand].accountDetailsEmailField;

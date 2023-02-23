@@ -139,6 +139,9 @@ describe('Shipping Page Registered user tests', function () {
       }
       shippingPage.click.proceedToBilling();
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryNG[variables.language]);
+    } else if (variables.brand == 'dorothyperkins.com') {
+      shippingPage.click.proceedToBilling();
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryNG[variables.language]);
     } else {
       shippingPage.click.proceedToBilling();
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);

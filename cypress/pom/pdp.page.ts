@@ -490,8 +490,7 @@ class PdpPage implements AbstractPage {
       } else {
         const disabledAddToCart = selectors[variables.brand].disabledAddToCart;
         cy.get(disabledAddToCart).should('have.attr', 'disabled');  
-      }
-      
+      }   
     },
     assertMiniCartIsDisplayed () {
       const addToCartTitle = selectors[variables.brand].addToCartTitle;

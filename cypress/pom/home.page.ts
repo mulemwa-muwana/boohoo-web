@@ -375,7 +375,11 @@ class HomePage implements AbstractPage {
             });
           }
         } else {
-          cy.wrap(loginIcon).invoke('show').should('be.visible');
+          if (variables.brand == 'boohooman.com') {
+            cy.get(loginIcon).should('be.visible');
+          } else {
+            cy.wrap(loginIcon).invoke('show').should('be.visible');
+          }
         }
       }
       ); 

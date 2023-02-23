@@ -35,12 +35,12 @@ describe('Home Page', function () {
        
   // HEADER
   describe('Header verifications', () => {
-    it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
+    it.only('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
 
       homePage.assertions.assertWishListIconPresent();
       homePage.assertions.assertCartIconPresent();
-      homePage.assertions.assertAccountIconPresent();
+      homePage.assertions.assertAccountIconPresent(); 
       HomePage.actions.closeSearchFieldForMobiles();
 
       HomePage.click.searchIcon();

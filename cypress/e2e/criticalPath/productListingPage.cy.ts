@@ -26,7 +26,7 @@ describe('Product Listing Page tests', function () {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
     }
   });
-  it('Verify that plp page opens', () => {
+  it.only('Verify that plp page opens', () => {
     if (variables.brand == 'nastygal.com') {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlDresses[variables.language]);
     } else {

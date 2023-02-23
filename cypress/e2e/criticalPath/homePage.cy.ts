@@ -504,7 +504,7 @@ describe('Home Page', function () {
           this.skip();
         }
       });  
-      it.only('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
+      it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
         if (variables.brand == 'boohooman.com') {

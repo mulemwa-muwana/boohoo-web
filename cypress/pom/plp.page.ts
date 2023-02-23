@@ -210,7 +210,8 @@ const selectors: SelectorBrandMap = {
     productImageIsDisplayed: '.thumb-link img',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
-    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
+    plpProduct: '.product-tile-name > .name-link',
   },
   'warehousefashion.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -451,8 +452,12 @@ class PlpPage implements AbstractPage {
       const brand: GroupBrands = 'boohoo.com';
       const wishlistPlpIcon = selectors[brand].wishlistPlpIcon;
       cy.get(wishlistPlpIcon).eq(1).click({ force: true });
-    }
+    },
 
+    selectItem () {
+      const plpProduct = selectors[variables.brand].plpProduct;
+      cy.get(plpProduct).eq(0).click({ force: true });
+    }
   };
 
   actions = {

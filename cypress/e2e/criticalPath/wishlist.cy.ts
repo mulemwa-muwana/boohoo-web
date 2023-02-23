@@ -3,6 +3,7 @@ import HomePage from '../../pom/home.page';
 import WishListPage from '../../pom/wishlist.page';
 import assertionText from '../../helpers/assertionText';
 import pdpPage from 'cypress/pom/pdp.page';
+import plpPage from 'cypress/pom/plp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -20,6 +21,9 @@ describe('Wishlist Page tests', function () {
   
   it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
     HomePage.actions.findItemUsingSKU(variables.sku);
+    if (variables.brand == 'coastfashion.com') {
+      plpPage.click.selectItem();
+    }
     pdpPage.actions.selectSize();
     pdpPage.click.addToWishList();
     if (variables.brand == 'boohoo.com' ) {

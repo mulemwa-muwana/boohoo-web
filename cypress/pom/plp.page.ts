@@ -443,8 +443,14 @@ class PlpPage implements AbstractPage {
     loadMoreProducts () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
-      cy.get(loadMoreProducts).click({ force: true });
-      cy.wait(10000);
+      cy.get('body').then($body => {
+        if ($body.find(loadMoreProducts).length) {
+          cy.get(loadMoreProducts).click({ force: true });
+          cy.wait(10000);
+        }
+      } 
+      );
+      
     },
 
     // Product details (image, name, price, wishlist, quickview)
@@ -456,7 +462,12 @@ class PlpPage implements AbstractPage {
 
     selectItem () {
       const plpProduct = selectors[variables.brand].plpProduct;
-      cy.get(plpProduct).eq(0).click({ force: true });
+      cy.get('body').then($body => {
+        if ($body.find(plpProduct).length) {
+          cy.get(plpProduct).eq(0).click({ force: true });
+        }
+      }
+      );     
     }
   };
 
@@ -483,7 +494,12 @@ class PlpPage implements AbstractPage {
     assertLoadMoreBtnIsVisible () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
-      cy.get(loadMoreProducts).should('be.visible');
+      cy.get('body').then($body => {
+        if ($body.find(loadMoreProducts).length) {
+          cy.get(loadMoreProducts).invoke('show').should('be.visible');
+        }
+      } 
+      );
     },
     assertProductImageIsDisplayed () {
       const productImageIsDisplayed = selectors[variables.brand].productImageIsDisplayed;

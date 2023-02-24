@@ -281,7 +281,7 @@ class AssertionText {
   };
 
   PrivacyPolicyH1BHM: TranslationMap = {
-    EN: 'privacy',
+    EN: 'Privacy',
     FR: 'avis de confidentialité',
     NL: 'privacyverklaring',
     DE: 'datenschutzerklärung',

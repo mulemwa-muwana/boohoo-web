@@ -33,7 +33,7 @@ describe('Cart basic functionality for guest user', function () {
     }
   });
 
-  it.only('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
+  it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
     const internationalBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com'];
     const internationalLocales: Array<Locale> = ['UK', 'FR', 'IE'];
     const internationalBrandsAndLocales: boolean = internationalBrands.includes(variables.brand) && internationalLocales.includes(variables.locale);

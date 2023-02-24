@@ -118,6 +118,8 @@ const selectors: SelectorBrandMap = {
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div.premier-box-main',
     addPremierToCart: '#add-to-cart',
+    premierFooterLink: 'a[title="Premier Delivery"]',
+    premierBackground: '.premier-product-background',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -384,8 +386,17 @@ class CartPage implements AbstractPage {
     assertPremierSlotsAreVisible () {
       const premierBlock = selectors[variables.brand].premierBlock;
       const addPremierToCart = selectors[variables.brand].addPremierToCart;
-      cy.get(premierBlock).should('be.visible');
-      cy.get(addPremierToCart).should('be.visible');
+      const premierFooterLink = selectors[variables.brand].premierFooterLink;
+      const premierBackground = selectors[variables.brand].premierBackground;
+
+      if(variables.brand == "boohooman.com") {
+        cy.get(premierFooterLink).click();
+        cy.get(premierBackground).should('be.visible');
+        cy.get(addPremierToCart).should('be.visible');
+      } else {
+        cy.get(premierBlock).should('be.visible');
+        cy.get(addPremierToCart).should('be.visible');
+      }
     },
     assertPayPalCTAisVisible () {
       const PayPalCTA = selectors[variables.brand].PayPalCTA;

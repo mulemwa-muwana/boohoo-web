@@ -49,7 +49,7 @@ const selectors: SelectorBrandMap = {
     productImage: '.l-cart_product-image',
     productPrice: '.m-user_cart > .b-summary_table-value',
     subtotal: '.m-total > .b-summary_table-value',
-    cartQuantity: '.b-cart_product-qty',
+    cartQuantity: '.b-cart_product-qty_value',
     editQuantity: 'button[data-tau="cart_product_edit"]',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
@@ -111,7 +111,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    subtotal: '.price-adjusted-total',
+    subtotal: 'span.price-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
@@ -137,10 +137,10 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
-    premierBlock: '[data-itemid="coastvip"]',
-    addPremierToCart: '#quickviewbutton',
+    premierBlock: '#cart-unlimited',
+    addPremierToCart: '[data-cmp="PremierAddToCartBtn"]',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button-1',
+    KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
@@ -161,7 +161,7 @@ const selectors: SelectorBrandMap = {
     premierBlock: 'div.premier-box-main',
     addPremierToCart: '#add-to-cart',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button',
+    KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
@@ -195,15 +195,15 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    subtotal: '.price-adjusted-total',
+    subtotal: 'span.price-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '#cart-unlimited',
-    addPremierToCart: '#add-to-cart',
+    addPremierToCart: '[data-cmp="PremierAddToCartBtn"]',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button',
+    KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
@@ -221,10 +221,10 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
-    premierBlock: '[data-itemid="coastvip"]',
-    addPremierToCart: '#quickviewbutton',
+    premierBlock: '.html-slot-container',
+    addPremierToCart: '[data-button-text="GET VIP DELIVERY"]',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
-    KlarnaCTA: '#klarna-express-button',
+    KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
@@ -309,7 +309,6 @@ class CartPage implements AbstractPage {
       cy.get('.paypal-checkout-sandbox-iframe').should('be.visible');
     },
     openKlarnaSandbox () { 
-      cy.get('#klarna-express-button-0').click({force: true});
      
       // Stub the open method with just a console log to force it not to open a window.
       cy.window().then((window: Cypress.AUTWindow) => {
@@ -317,6 +316,8 @@ class CartPage implements AbstractPage {
           console.log('stop this button click');
         });
       });
+      cy.get('#klarna-express-button-0').shadow().find('#klarna-express-button').click({force: true});
+
       cy.frameLoaded('#klarna-express-button-fullscreen');
     },
     openAmazonSandbox () {
@@ -371,7 +372,7 @@ class CartPage implements AbstractPage {
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;
-      if (isSiteGenesisBrand || variables.brand == 'dorothyperkins.com') {
+      if (isSiteGenesisBrand) {
         cy.get(cartQuantity).should('have.value', quantity);
       } else {
         cy.get(cartQuantity).should('contain', quantity);

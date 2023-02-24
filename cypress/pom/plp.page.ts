@@ -486,7 +486,7 @@ class PlpPage implements AbstractPage {
         cy.url().then(currentUrl => {
           expect(currentUrl).to.contain(text);
         });
-    }
+      }
     },
     assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');
@@ -501,12 +501,7 @@ class PlpPage implements AbstractPage {
     assertLoadMoreBtnIsVisible () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
-      cy.get('body').then($body => {
-        if ($body.find(loadMoreProducts).length) {
-          cy.get(loadMoreProducts).invoke('show').should('be.visible');
-        }
-      } 
-      );
+      cy.get(loadMoreProducts).invoke('show').should('be.visible');
     },
     assertProductImageIsDisplayed () {
       const productImageIsDisplayed = selectors[variables.brand].productImageIsDisplayed;

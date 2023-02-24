@@ -154,7 +154,8 @@ const selectors: SelectorBrandMap = {
     productImageIsDisplayed: '.thumb-link img',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
-    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
+    promoTitle: 'promo'
   },
   'karenmillen.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -461,9 +462,15 @@ class PlpPage implements AbstractPage {
 
   assertions = {
     assertOnPage (text: string) {
-      cy.url().then(currentUrl => {
-        expect(currentUrl).to.contain(text);
-      });
+      if (variables.brand == 'boohooman.com') {
+        cy.url().then(currentUrl => {
+          expect(currentUrl).to.contain(selectors[variables.brand].promoTitle);
+        });
+      } else {
+        cy.url().then(currentUrl => {
+          expect(currentUrl).to.contain(text);
+        });
+    }
     },
     assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');

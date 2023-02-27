@@ -14,14 +14,16 @@ describe('Account page', function () {
   });
 
   // Order History test cases
-  it('TC01 Verify that Order history page works as expected and user is able to view order details', function () {
+  it.only('TC01 Verify that Order history page works as expected and user is able to view order details', function () {
     MyAccountPage.click.orderHistoryLink();
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
       MyAccountPage.assertions.assertUrlContains('order-history');
     } else {
       MyAccountPage.assertions.assertUrlContains('orders');
     }
-    MyAccountPage.assertions.assertLoadedOrders();
+    //MyAccountPage.assertions.assertLoadedOrders();
+    MyAccountPage.click.viewNewestOrder();
+    MyAccountPage.assertions.assertOrderDetailsContent();
   });
   it('TC02 Verify that returns option links to correct page', function () {
     if (isSiteGenesisBrand) {

@@ -78,7 +78,7 @@ const selectors: SelectorBrandMap = {
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
-    guestCheckoutEmail: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
+    guestCheckoutEmail: '[id^="dwfrm_login_username"]',
   },
   'oasis-stores.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',

@@ -18,7 +18,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
     submitButton: ':nth-child(9) > .b-button',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error > span'
+    emailError: '#dwfrm_profile_customer_email-error > span',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'nastygal.com': {
     registrationForm: 'form.b-form',
@@ -35,7 +37,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
     submitButton: '[data-tau="register_submit"]',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error'
+    emailError: '#dwfrm_profile_customer_email-error',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'dorothyperkins.com': {
     registrationForm: 'form.b-form',
@@ -52,7 +56,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
     submitButton: '[data-tau="register_submit"]',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error'
+    emailError: '#dwfrm_profile_customer_email-error',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'burton.co.uk': {
     registrationForm: 'form.b-form',
@@ -69,7 +75,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
     submitButton: '[data-tau="register_submit"]',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error'
+    emailError: '#dwfrm_profile_customer_email-error',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'wallis.co.uk': {
     registrationForm: 'form.b-form',
@@ -86,7 +94,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
     submitButton: '[data-tau="register_submit"]',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error'
+    emailError: '#dwfrm_profile_customer_email-error',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'boohooman.com': {
     registrationForm: '#RegistrationForm',
@@ -103,7 +113,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'karenmillen.com': {
     registrationForm: '#RegistrationForm',
@@ -120,7 +132,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: '#dwfrm_profile_customer_emailconfirm-error'
+    emailError: '#dwfrm_profile_customer_emailconfirm-error',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'coastfashion.com': {
     registrationForm: '#RegistrationForm',
@@ -137,7 +151,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'warehousefashion.com': {
     registrationForm: '#RegistrationForm',
@@ -154,7 +170,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'oasis-stores.com': {
     registrationForm: '#RegistrationForm',
@@ -171,7 +189,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'misspap.com': {
     registrationForm: '#RegistrationForm',
@@ -188,7 +208,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'boohoomena.com': {
     registrationForm: '#RegistrationForm',
@@ -205,7 +227,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   }
 };
 
@@ -242,9 +266,11 @@ class RegistrationPage implements AbstractPage {
 
   actions = {
     startRegistration (randomEmail: string) {
-      cy.get('#dwfrm_profile_customer_email').click({force: true}).type(randomEmail);
+      const emailForRegistration = selectors[variables.brand].emailForRegistration;
+      const confirmEmailForRegistration = selectors[variables.brand].confirmEmailForRegistration;
+      cy.get(emailForRegistration).click({force: true}).type(randomEmail);
       if (isSiteGenesisBrand) {
-        cy.get('#dwfrm_profile_customer_emailconfirm').click({force: true}).type(randomEmail);
+        cy.get(confirmEmailForRegistration).click({force: true}).type(randomEmail);
       }
       
       if (variables.brand == 'boohoo.com') {

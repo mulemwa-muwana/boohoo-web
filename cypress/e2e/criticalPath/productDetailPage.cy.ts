@@ -4,6 +4,7 @@ import assertionText from '../../helpers/assertionText';
 import pdpPage from '../../pom/pdp.page';
 import LoginPage from 'cypress/pom/login.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import plpPage from 'cypress/pom/plp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -12,6 +13,9 @@ describe('Product Details Page tests', function () {
   beforeEach (()=>{   
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
+    if (variables.brand == 'coastfashion.com') {
+      plpPage.click.selectItem();
+    }
   });  
 
   it('TC01 Verify that Product name, price and code is showing',function () {  

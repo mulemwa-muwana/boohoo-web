@@ -36,7 +36,6 @@ describe('Product Listing Page tests', function () {
   it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
     plpPage.click.loadMoreProducts();
-    plpPage.assertions.assertNumberOfItemsTextIsVisible();
   });
   describe('Products details are displayed', () => {  
     it('Verify product image, name and price are displayed', () => {

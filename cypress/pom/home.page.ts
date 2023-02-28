@@ -199,7 +199,10 @@ class HomePage implements AbstractPage {
           }
         }
         );
-      }     
+      } else {
+        cy.get(registrationButton).click({force: true});
+      }
+           
     },
 
     // Objects for search subsystem tests

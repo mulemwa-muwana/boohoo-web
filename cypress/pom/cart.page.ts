@@ -385,6 +385,7 @@ class CartPage implements AbstractPage {
     assertPremierSlotsAreVisible () {
       const premierBlock = selectors[variables.brand].premierBlock;
       const addPremierToCart = selectors[variables.brand].addPremierToCart;
+
       cy.get(premierBlock).should('be.visible');
       cy.get(addPremierToCart).should('be.visible');
     },

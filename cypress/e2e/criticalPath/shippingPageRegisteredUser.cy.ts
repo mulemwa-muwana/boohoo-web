@@ -126,7 +126,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.addAddressManually(); 
       shippingPage.click.proceedToBilling();
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
-    } else if (variables.brand == 'nastygal.com') {
+    } else if (variables.brand == 'nastygal.com' || variables.brand == 'burton.co.uk') {
       shippingPage.actions.selectCountry(localeAddress.countryCode);
       cy.wait(4000);
       shippingPage.click.addAddressManually();

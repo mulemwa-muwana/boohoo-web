@@ -55,6 +55,7 @@ describe('Shipping Page Registered user tests', function () {
 
   it('Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
+    cy.wait(3000);
     shippingPage.click.editAddress();
     shippingPage.actions.selectCountry(localeAddress.countryCode);
     cy.wait(5000);
@@ -194,16 +195,16 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoomena.com') { // No Premier/VIP for this brand
       this.skip();
     }
-    const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-    const includededBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk']; // Boohoo is different than Arcadia
+    const includedLocales: Array<Locale> = ['UK', 'FR', 'IE'];
+    const includededBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
 
-    if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
+    if (includededBrands.includes(variables.brand) && includedLocales.includes(variables.locale)) {
       shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
-    } else if ( variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
-      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]); // User has PREMIER account
+    } else if ( variables.brand == 'boohoo.com' && includedLocales.includes(variables.locale)) {
+      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButtonBoohoo[variables.language]);
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
-    } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
+    } else if (variables.brand == 'nastygal.com' && includedLocales.includes(variables.locale)) {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
@@ -215,6 +216,10 @@ describe('Shipping Page Registered user tests', function () {
     } else {
       throw new Error('This brand is to be covered yet');
     }
+
+    // Cleanup - remove Premier from Cart
+    shippingPage.click.editCart();
+    cartPage.actions.removeFromCart(1);
   });
 
   it('Verify that user is able to select standard shipping method', () => {

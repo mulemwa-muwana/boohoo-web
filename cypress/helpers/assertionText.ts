@@ -127,7 +127,7 @@ class AssertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcodeBHM: TranslationMap = {
-    EN: 'Don’t forget about me!',
+    EN: 'Please enter a valid Post Code',
     FR: 'Ce champ est obligatoire.',
     NL: 'Dit veld is verplicht.',
     DE: 'Vergiss mich nicht!',

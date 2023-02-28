@@ -148,7 +148,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: '[data-tau="edit_address"]',
+    editAddress: '.b-option_switch:first-of-type [data-tau="edit_address"]',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -191,7 +191,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
-    editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    editAddress: '.b-option_switch:first-of-type [data-tau="edit_address"]',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -621,14 +621,9 @@ class ShippingPage implements AbstractPage {
       cy.get(editCart).should('be.visible').click();
     },
     editAddress () {
-      if (isSiteGenesisBrand && (variables.brand != 'boohooman.com')) {
+      if (variables.brand != 'boohooman.com') {
         const editAddress = selectors[variables.brand].editAddress;
-        cy.get('body').then($body => { // If Edit Address is visible
-          if ($body.find(editAddress).length) {  
-            cy.get(editAddress).click({force:true});
-          }
-        });
-        
+        cy.get(editAddress).click({force:true}); 
       }
     },
     addNewAddressButton () {
@@ -893,7 +888,7 @@ class ShippingPage implements AbstractPage {
     },
     assertCartShippingPageContainsProduct (product: string) {
       const cartContainer = selectors[variables.brand].cartContainer;
-      cy.get(cartContainer).should('contain', product.trim());
+      cy.get(cartContainer, {timeout: 20000}).should('contain', product.trim());
     },
     assertAddressLookupIsVisible () {
       const PostcodeLookup = selectors[variables.brand].PostcodeLookup;

@@ -21,7 +21,7 @@ class Addresses {
       secondaryAddress: {
         firstName: 'New',
         lastName: 'Test',
-        phone: '020 7590 6960',
+        phone: '02075906960',
         addrline1: '259 Oxford St',
         addrline2: '',
         postcode: 'AB11 6PH',

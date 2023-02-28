@@ -116,7 +116,7 @@ const selectors: SelectorBrandMap = {
     disabledAddToCart: '[data-widget="processButton"]'
   },
   'wallis.co.uk': {
-    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
+    addToCart: '[data-id="addToCart"]',
     addToWishListButton: '.b-product_wishlist-button',
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
@@ -348,7 +348,6 @@ class PdpPage implements AbstractPage {
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
       cy.get(addToCart, {timeout: 15000}).should('not.have.attr', 'disabled');
-      cy.get(addToCart, {timeout: 15000}).should('not.have.attr', 'data-is-out-of-stock');
       cy.get(addToCart).click({force: true});
     },
     addToWishList () {

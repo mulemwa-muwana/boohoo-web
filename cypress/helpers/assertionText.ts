@@ -378,6 +378,20 @@ class AssertionText {
     ES: ''
   };
 
+  AddPremierToCartButtonBoohoo: TranslationMap = {
+    EN: 'ADD TO CART',
+    FR: 'AJOUTER AU PANIER',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   PremierSiteGenesis: TranslationMap = {
     EN: 'VIP',
     FR: '',

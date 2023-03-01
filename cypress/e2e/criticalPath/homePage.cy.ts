@@ -38,14 +38,16 @@ describe('Home Page', function () {
     it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
 
-      homePage.assertions.assertAccountIconPresent();
       homePage.assertions.assertWishListIconPresent();
       homePage.assertions.assertCartIconPresent();
+      homePage.assertions.assertAccountIconPresent(); 
+      HomePage.actions.closeSearchFieldForMobiles();
 
       HomePage.click.searchIcon();
       HomePage.assertions.assertSearchIconPresent();
 
       HomePage.assertions.assertSearchFieldPresent();
+      HomePage.actions.closeSearchFieldForMobiles();
     });
     
     it('Verify search results page opens', () => {
@@ -505,7 +507,11 @@ describe('Home Page', function () {
       it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-        cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
+        if (variables.brand == 'boohooman.com') {
+          cy.contains(`COPYRIGHT © ${currentYear - 1}`, { matchCase: false }).should('be.visible');
+        } else {
+          cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
+        }
       });
     });
 

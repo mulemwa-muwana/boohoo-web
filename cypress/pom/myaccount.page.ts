@@ -288,7 +288,7 @@ const selectors: SelectorBrandMap = {
     addressCardsList: '.account-page-list',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
-    addressEditForm: '#CreditCardForm',
+    addressEditForm: '#edit-address-form',
     addressField: '#dwfrm_profile_address_address1',
     addressSubmitBtn: '.apply-button',
     addAddressBtn: '.address-create',
@@ -395,10 +395,10 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.mini-address-name',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
-    addressEditForm: '#CreditCardForm',
+    addressEditForm: '.ui-dialog-content-wrapper',
     addressField: '#dwfrm_profile_address_address1',
     addressSubmitBtn: '.apply-button',
     addAddressBtn: '.address-create',
@@ -787,7 +787,6 @@ class MyAccountPage implements AbstractPage {
         const addressEditForm = selectors[variables.brand].addressEditForm;
         const addressField = selectors[variables.brand].addressField;
         const addressSubmitBtn = selectors[variables.brand].addressSubmitBtn;
-        const proceedToBillingBtn = selectors[variables.brand].proceedToBillingBtn;
         cy.get(addressDefaultBox).find(addressEditBtn).click({ force: true });
         cy.get(addressEditForm).should('be.visible');
         cy.get(addressField).clear({ force: true }).type(line1);
@@ -795,9 +794,6 @@ class MyAccountPage implements AbstractPage {
           cy.get('#dwfrm_address_country').select(country).invoke('show');
         }
         cy.get(addressSubmitBtn).click({ force: true });
-        if (isSiteGenesisBrand && variables.brand != 'boohoomena.com') {
-          cy.get(proceedToBillingBtn).click({ force: true });
-        }
       },
       createAddress (address: AddressData) {
         const addAddressBtn = selectors[variables.brand].addAddressBtn;
@@ -838,9 +834,9 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {
-          cy.get(addressNicknameField).type('test');
+          cy.get(addressNicknameField).type('New');
           cy.get(addressSubmitBtn).click({ force: true });
-          if (variables.brand != 'boohoomena.com') {
+          if (variables.brand != 'boohoomena.com' && variables.brand != 'coastfashion.com') {
             cy.get(proceedToBillingBtn).click({ force: true });
           }
         }
@@ -899,8 +895,8 @@ class MyAccountPage implements AbstractPage {
         cy.get(billingAndPaymentInfo).should('be.visible');
       },
       assertLoadedOrders () {
-        if (variables.brand == 'boohooman.com') {
-          cy.get('.search-result-items').children().should('have.length', '6')
+        if (variables.brand == 'boohooman.com' || variables.brand == 'coastfashion.com') {
+          cy.get('.search-result-items').children().should('have.length', '6');
         } else {
           cy.get('.b-load_progress-value').eq(1).should('be.greaterThan', '10'); //  Check (2 parametars)
         }
@@ -932,7 +928,7 @@ class MyAccountPage implements AbstractPage {
         const addressNameLine = selectors[variables.brand].addressNameLine;
         const addressSummaryLine = selectors[variables.brand].addressSummaryLine;
         cy.get(addressDefaultBox).find(addressNameLine).should('contain.text', addressName);
-        cy.get(addressDefaultBox).find(addressSummaryLine).should('contain', addressSummary);
+        cy.get(addressDefaultBox).find(addressSummaryLine).should('include.text', addressSummary);
       },
       assertNewAddressData (addressName: string) {
         cy.contains(addressName).should('be.visible');

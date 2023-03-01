@@ -5,88 +5,98 @@ import AbstractPage from './abstract/abstract.page';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     registrationForm: 'form.b-form',
-    passwordField: '#dwfrm_profile_login_password',
-    passwordConfirmField: '#dwfrm_profile_login_passwordconfirm',
-    firstNameField: '#dwfrm_profile_customer_firstname',
-    lastNameField: '#dwfrm_profile_customer_lastname',
-    dayOfBirth: '#dwfrm_profile_customer_dayofbirth',
-    monthOfBirth: '#dwfrm_profile_customer_monthofbirth',
-    yearOfBirth: '#dwfrm_profile_customer_yearOfBirth',
-    emailConsent: '#dwfrm_profile_customer_subscription_isemailsubscribed',
-    postConsent: '#dwfrm_profile_customer_subscription_ispostalsubscribed',
-    smsConsent: '#dwfrm_profile_customer_subscription_issmssubscribed',
-    thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
+    passwordField: '#dwfrm_registration_login_password',
+    passwordConfirmField: '#dwfrm_registration_login_passwordconfirm',
+    firstNameField: '#dwfrm_registration_customer_firstname',
+    lastNameField: '#dwfrm_registration_customer_lastname',
+    dayOfBirth: '#dwfrm_registration_customer_dayofbirth',
+    monthOfBirth: '#dwfrm_registration_customer_monthofbirth',
+    yearOfBirth: '#dwfrm_registration_customer_yearOfBirth',
+    emailConsent: '#dwfrm_registration_customer_subscription_isemailsubscribed',
+    postConsent: '#dwfrm_registration_customer_subscription_ispostalsubscribed',
+    smsConsent: '#dwfrm_registration_customer_subscription_issmssubscribed',
+    thirdPartyConsent: '#dwfrm_registration_customer_subscription_is3rdPartySubscribed',
     submitButton: ':nth-child(9) > .b-button',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error > span'
+    emailError: '#dwfrm_registration_customer_email-error',
+    emailForRegistration: '#dwfrm_registration_customer_email',
+    confirmEmailForRegistration: '#dwfrm_registration_login_passwordconfirm',
   },
   'nastygal.com': {
     registrationForm: 'form.b-form',
-    passwordField: '#dwfrm_profile_login_password',
-    passwordConfirmField: '#dwfrm_profile_login_passwordconfirm',
-    firstNameField: '#dwfrm_profile_customer_firstname',
-    lastNameField: '#dwfrm_profile_customer_lastname',
-    dayOfBirth: '#dwfrm_profile_customer_dayofbirth',
-    monthOfBirth: '#dwfrm_profile_customer_monthofbirth',
-    yearOfBirth: '#dwfrm_profile_customer_yearOfBirth',
-    emailConsent: '#dwfrm_profile_customer_subscription_isemailsubscribed',
-    postConsent: '#dwfrm_profile_customer_subscription_ispostalsubscribed',
-    smsConsent: '#dwfrm_profile_customer_subscription_issmssubscribed',
-    thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
+    passwordField: '#dwfrm_registration_login_password',
+    passwordConfirmField: '#dwfrm_registration_login_passwordconfirm',
+    firstNameField: '#dwfrm_registration_customer_firstname',
+    lastNameField: '#dwfrm_registration_customer_lastname',
+    dayOfBirth: '#dwfrm_registration_customer_dayofbirth',
+    monthOfBirth: '#dwfrm_registration_customer_monthofbirth',
+    yearOfBirth: '#dwfrm_registration_customer_yearOfBirth',
+    emailConsent: '#dwfrm_registration_customer_subscription_isemailsubscribed',
+    postConsent: '#dwfrm_registration_customer_subscription_ispostalsubscribed',
+    smsConsent: '#dwfrm_registration_customer_subscription_issmssubscribed',
+    thirdPartyConsent: '#dwfrm_registration_customer_subscription_is3rdPartySubscribed',
     submitButton: '[data-tau="register_submit"]',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error'
+    emailError: '#dwfrm_registration_customer_email-error',
+    emailForRegistration: '#dwfrm_registration_customer_email',
+    confirmEmailForRegistration: '#dwfrm_registration_login_passwordconfirm',
   },
   'dorothyperkins.com': {
     registrationForm: 'form.b-form',
-    passwordField: '#dwfrm_profile_login_password',
-    passwordConfirmField: '#dwfrm_profile_login_passwordconfirm',
-    firstNameField: '#dwfrm_profile_customer_firstname',
-    lastNameField: '#dwfrm_profile_customer_lastname',
-    dayOfBirth: '#dwfrm_profile_customer_dayofbirth',
-    monthOfBirth: '#dwfrm_profile_customer_monthofbirth',
-    yearOfBirth: '#dwfrm_profile_customer_yearOfBirth',
-    emailConsent: '#dwfrm_profile_customer_subscription_isemailsubscribed',
-    postConsent: '#dwfrm_profile_customer_subscription_ispostalsubscribed',
-    smsConsent: '#dwfrm_profile_customer_subscription_issmssubscribed',
-    thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
+    passwordField: '#dwfrm_registration_login_password',
+    passwordConfirmField: '#dwfrm_registration_login_passwordconfirm',
+    firstNameField: '#dwfrm_registration_customer_firstname',
+    lastNameField: '#dwfrm_registration_customer_lastname',
+    dayOfBirth: '#dwfrm_registration_customer_dayofbirth',
+    monthOfBirth: '#dwfrm_registration_customer_monthofbirth',
+    yearOfBirth: '#dwfrm_registration_customer_yearOfBirth',
+    emailConsent: '#dwfrm_registration_customer_subscription_isemailsubscribed',
+    postConsent: '#dwfrm_registration_customer_subscription_ispostalsubscribed',
+    smsConsent: '#dwfrm_registration_customer_subscription_issmssubscribed',
+    thirdPartyConsent: '#dwfrm_registration_customer_subscription_is3rdPartySubscribed',
     submitButton: '[data-tau="register_submit"]',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error'
+    emailError: '#dwfrm_registration_customer_email-error',
+    emailForRegistration: '#dwfrm_registration_customer_email',
+    confirmEmailForRegistration: '#dwfrm_registration_login_passwordconfirm',
   },
   'burton.co.uk': {
     registrationForm: 'form.b-form',
-    passwordField: '#dwfrm_profile_login_password',
-    passwordConfirmField: '#dwfrm_profile_login_passwordconfirm',
-    firstNameField: '#dwfrm_profile_customer_firstname',
-    lastNameField: '#dwfrm_profile_customer_lastname',
-    dayOfBirth: '#dwfrm_profile_customer_dayofbirth',
-    monthOfBirth: '#dwfrm_profile_customer_monthofbirth',
-    yearOfBirth: '#dwfrm_profile_customer_yearOfBirth',
-    emailConsent: '#dwfrm_profile_customer_subscription_isemailsubscribed',
-    postConsent: '#dwfrm_profile_customer_subscription_ispostalsubscribed',
-    smsConsent: '#dwfrm_profile_customer_subscription_issmssubscribed',
-    thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
+    passwordField: '#dwfrm_registration_login_password',
+    passwordConfirmField: '#dwfrm_registration_login_passwordconfirm',
+    firstNameField: '#dwfrm_registration_customer_firstname',
+    lastNameField: '#dwfrm_registration_customer_lastname',
+    dayOfBirth: '#dwfrm_registration_customer_dayofbirth',
+    monthOfBirth: '#dwfrm_registration_customer_monthofbirth',
+    yearOfBirth: '#dwfrm_registration_customer_yearOfBirth',
+    emailConsent: '#dwfrm_registration_customer_subscription_isemailsubscribed',
+    postConsent: '#dwfrm_registration_customer_subscription_ispostalsubscribed',
+    smsConsent: '#dwfrm_registration_customer_subscription_issmssubscribed',
+    thirdPartyConsent: '#dwfrm_registration_customer_subscription_is3rdPartySubscribed',
     submitButton: '[data-tau="register_submit"]',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error'
+    emailError: '#dwfrm_registration_customer_email-error',
+    emailForRegistration: '#dwfrm_registration_customer_email',
+    confirmEmailForRegistration: '#dwfrm_registration_login_passwordconfirm',
   },
   'wallis.co.uk': {
     registrationForm: 'form.b-form',
-    passwordField: '#dwfrm_profile_login_password',
-    passwordConfirmField: '#dwfrm_profile_login_passwordconfirm',
-    firstNameField: '#dwfrm_profile_customer_firstname',
-    lastNameField: '#dwfrm_profile_customer_lastname',
-    dayOfBirth: '#dwfrm_profile_customer_dayofbirth',
-    monthOfBirth: '#dwfrm_profile_customer_monthofbirth',
-    yearOfBirth: '#dwfrm_profile_customer_yearOfBirth',
-    emailConsent: '#dwfrm_profile_customer_subscription_isemailsubscribed',
-    postConsent: '#dwfrm_profile_customer_subscription_ispostalsubscribed',
-    smsConsent: '#dwfrm_profile_customer_subscription_issmssubscribed',
-    thirdPartyConsent: '#dwfrm_profile_customer_subscription_is3rdPartySubscribed',
+    passwordField: '#dwfrm_registration_login_password',
+    passwordConfirmField: '#dwfrm_registration_login_passwordconfirm',
+    firstNameField: '#dwfrm_registration_customer_firstname',
+    lastNameField: '#dwfrm_registration_customer_lastname',
+    dayOfBirth: '#dwfrm_registration_customer_dayofbirth',
+    monthOfBirth: '#dwfrm_registration_customer_monthofbirth',
+    yearOfBirth: '#dwfrm_registration_customer_yearOfBirth',
+    emailConsent: '#dwfrm_registration_customer_subscription_isemailsubscribed',
+    postConsent: '#dwfrm_registration_customer_subscription_ispostalsubscribed',
+    smsConsent: '#dwfrm_registration_customer_subscription_issmssubscribed',
+    thirdPartyConsent: '#dwfrm_registration_customer_subscription_is3rdPartySubscribed',
     submitButton: '[data-tau="register_submit"]',
     myAccountUrl: '?registration=submitted',
-    emailError: '#dwfrm_profile_customer_email-error'
+    emailError: '#dwfrm_registration_customer_email-error',
+    emailForRegistration: '#dwfrm_registration_customer_email',
+    confirmEmailForRegistration: '#dwfrm_registration_login_passwordconfirm',
   },
   'boohooman.com': {
     registrationForm: '#RegistrationForm',
@@ -103,7 +113,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'karenmillen.com': {
     registrationForm: '#RegistrationForm',
@@ -120,7 +132,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: '#dwfrm_profile_customer_emailconfirm-error'
+    emailError: 'div[class="error error-message js-error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'coastfashion.com': {
     registrationForm: '#RegistrationForm',
@@ -137,7 +151,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'warehousefashion.com': {
     registrationForm: '#RegistrationForm',
@@ -154,7 +170,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'oasis-stores.com': {
     registrationForm: '#RegistrationForm',
@@ -171,7 +189,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'misspap.com': {
     registrationForm: '#RegistrationForm',
@@ -188,7 +208,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   },
   'boohoomena.com': {
     registrationForm: '#RegistrationForm',
@@ -205,7 +227,9 @@ const selectors: SelectorBrandMap = {
     thirdPartyConsent: '.form-row.is3rdPartySubscribed > .form-label',
     submitButton: '.form-row-button > .button',
     myAccountUrl: 'myaccount?registration=true',
-    emailError: 'div[class^="error error-message"]'
+    emailError: 'div[class^="error error-message"]',
+    emailForRegistration: '#dwfrm_profile_customer_email',
+    confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
   }
 };
 
@@ -236,15 +260,17 @@ class RegistrationPage implements AbstractPage {
     },
     submitButton () {
       const submitButton = selectors[variables.brand].submitButton;
-      cy.get(submitButton).click();
+      cy.get(submitButton).click({force: true});
     }
   };
 
   actions = {
     startRegistration (randomEmail: string) {
-      cy.get('#dwfrm_profile_customer_email').click({force: true}).type(randomEmail);
+      const emailForRegistration = selectors[variables.brand].emailForRegistration;
+      const confirmEmailForRegistration = selectors[variables.brand].confirmEmailForRegistration;
+      cy.get(emailForRegistration).click({force: true}).type(randomEmail);
       if (isSiteGenesisBrand) {
-        cy.get('#dwfrm_profile_customer_emailconfirm').click({force: true}).type(randomEmail);
+        cy.get(confirmEmailForRegistration).click({force: true}).type(randomEmail);
       }
       
       if (variables.brand == 'boohoo.com') {
@@ -252,8 +278,8 @@ class RegistrationPage implements AbstractPage {
       }
     },
     confirmationCheckbox () {
-      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' ||variables.brand == 'wallis.co.uk') {
-        cy.get('#dwfrm_profile_customer_emailregistationconfirm').check({force:true});
+      if (!isSiteGenesisBrand) {
+        cy.get('#dwfrm_registration_customer_emailregistationconfirm').check({force:true});
       } else {
         cy.get('#dwfrm_profile_customer_emailregistationconfirm').check();
       }
@@ -287,7 +313,7 @@ class RegistrationPage implements AbstractPage {
       cy.get(registrationForm).should('be.visible');
     },
     assertCheckboxIsChecked () {
-      cy.get('#dwfrm_profile_customer_emailregistationconfirm').should('be.checked');
+      cy.get('#dwfrm_registration_customer_emailregistationconfirm').should('be.checked');
     },
     assertMyAcountPageIsOpened () {
       const myAccountUrl = selectors[variables.brand].myAccountUrl;

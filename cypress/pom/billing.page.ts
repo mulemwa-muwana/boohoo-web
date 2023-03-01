@@ -619,7 +619,7 @@ class BillingPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         cy.get(shippingCheckbox).click({force:true});
       } else {
-        cy.get(shippingCheckbox).should('be.checked').uncheck();
+        cy.get(shippingCheckbox).should('be.checked').uncheck({force: true});
       }
     },
     chooseCC () {
@@ -1006,7 +1006,7 @@ class BillingPage implements AbstractPage {
       } else if (variables.locale == 'IE') {
         cy.get('#payment-button-KlarnaIE').should('be.visible');
       } else if (variables.locale == 'UK') {
-        cy.get('#payment-button-KlarnaUK').should('be.visible');
+        cy.get('label[for="is-KlarnaUK"]').should('be.visible');
       }
     },
       

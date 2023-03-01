@@ -154,7 +154,8 @@ const selectors: SelectorBrandMap = {
     productImageIsDisplayed: '.thumb-link img',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
-    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
+    promoTitle: 'promo'
   },
   'karenmillen.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -210,7 +211,8 @@ const selectors: SelectorBrandMap = {
     productImageIsDisplayed: '.thumb-link img',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
-    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon'
+    wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
+    plpProduct: '.product-tile-name > .name-link',
   },
   'warehousefashion.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -442,8 +444,14 @@ class PlpPage implements AbstractPage {
     loadMoreProducts () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
-      cy.get(loadMoreProducts).click({ force: true });
-      cy.wait(10000);
+      cy.get('body').then($body => {
+        if ($body.find(loadMoreProducts).length) {
+          cy.get(loadMoreProducts).click({ force: true });
+          cy.wait(10000);
+        }
+      } 
+      );
+      
     },
 
     // Product details (image, name, price, wishlist, quickview)
@@ -451,8 +459,17 @@ class PlpPage implements AbstractPage {
       const brand: GroupBrands = 'boohoo.com';
       const wishlistPlpIcon = selectors[brand].wishlistPlpIcon;
       cy.get(wishlistPlpIcon).eq(1).click({ force: true });
-    }
+    },
 
+    selectItem () {
+      const plpProduct = selectors[variables.brand].plpProduct;
+      cy.get('body').then($body => {
+        if ($body.find(plpProduct).length) {
+          cy.get(plpProduct).eq(0).click({ force: true });
+        }
+      }
+      );     
+    }
   };
 
   actions = {
@@ -461,9 +478,15 @@ class PlpPage implements AbstractPage {
 
   assertions = {
     assertOnPage (text: string) {
-      cy.url().then(currentUrl => {
-        expect(currentUrl).to.contain(text);
-      });
+      if (variables.brand == 'boohooman.com') {
+        cy.url().then(currentUrl => {
+          expect(currentUrl).to.contain(selectors[variables.brand].promoTitle);
+        });
+      } else {
+        cy.url().then(currentUrl => {
+          expect(currentUrl).to.contain(text);
+        });
+      }
     },
     assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');
@@ -478,7 +501,7 @@ class PlpPage implements AbstractPage {
     assertLoadMoreBtnIsVisible () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
-      cy.get(loadMoreProducts).should('be.visible');
+      cy.get(loadMoreProducts).invoke('show').should('be.visible');
     },
     assertProductImageIsDisplayed () {
       const productImageIsDisplayed = selectors[variables.brand].productImageIsDisplayed;

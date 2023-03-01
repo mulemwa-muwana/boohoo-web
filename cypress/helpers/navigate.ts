@@ -1,5 +1,4 @@
 import BillingPage from '../pom/billing.page';
-import CartPage from '../pom/cart.page';
 import CheckoutPage from '../pom/checkoutLogin.page';
 import HomePage from '../pom/home.page';
 import LoginPage from '../pom/login.page';
@@ -8,6 +7,8 @@ import shippingPage from '../pom/shipping.page';
 import assertionText from './assertionText';
 import Addresses from './addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import cartPage from '../pom/cart.page';
+import pdpPage from '../pom/pdp.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -28,15 +29,13 @@ class Navigate {
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);
-    HomePage.click.cartIcon();
-    if (!isSiteGenesisBrand) {
-      PdpPage.click.miniCartViewCartBtn();
-    }
+    HomePage.click.cartIcon();    
   }
 
   toCheckoutLoginPage () {
     this.toCartPage();
-    CartPage.click.proceedToCheckout();
+    pdpPage.click.miniCartViewCartBtn();
+    cartPage.click.proceedToCheckout();       
   }
 
   toShippingPage (userType: UserType) {

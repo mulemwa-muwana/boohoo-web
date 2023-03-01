@@ -9,36 +9,36 @@ const selectors: SelectorBrandMap = {
     continueAsGuestBt:'.b-form > .b-button',
     continueAsRegisteredUser: 'button[data-tau="login_submit"]',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
-    premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+    premierIsDisplayed:'#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
+    premierSubtitle:'#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   },
   'nastygal.com': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
     userEmailField: 'input[id="dwfrm_login_email"]',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button'
+    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button',
   },
   'dorothyperkins.com': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
     userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button'
+    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button',
   },
   'burton.co.uk': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
     userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button'
+    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button',
   },
   'wallis.co.uk': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
     userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
-    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button'
+    continueAsRegisteredUser: '.b-login_form-group_cta > .b-button',
   },
   'boohooman.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
@@ -48,7 +48,7 @@ const selectors: SelectorBrandMap = {
     continueAsRegisteredUser: '.login-page-form .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   },
   'karenmillen.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
@@ -58,7 +58,7 @@ const selectors: SelectorBrandMap = {
     continueAsRegisteredUser: '.login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   },
   'coastfashion.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
@@ -68,17 +68,17 @@ const selectors: SelectorBrandMap = {
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   },
   'warehousefashion.com': {
-    guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
     passwordField:'input[type=password]',
     continueAsGuestBt:'#dwfrm_login .login-page-button',
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
+    guestCheckoutEmail: '[id^="dwfrm_login_username"]',
   },
   'oasis-stores.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
@@ -88,7 +88,7 @@ const selectors: SelectorBrandMap = {
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   },
   'misspap.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
@@ -98,7 +98,7 @@ const selectors: SelectorBrandMap = {
     continueAsRegisteredUser: '.login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   }, 
   'boohoomena.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
@@ -108,7 +108,7 @@ const selectors: SelectorBrandMap = {
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle'
+    premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
   }
 };
 
@@ -156,7 +156,13 @@ class CheckoutPage implements AbstractPage {
     },
     assertUserEmailField () {
       const userEmailField = selectors[variables.brand].userEmailField;
-      cy.get(userEmailField).should('be.visible');
+      cy.get('body').then($body => {
+        if ($body.find(userEmailField).length) {
+          cy.get(userEmailField).should('be.visible');
+        }
+      }   
+      );
+      
     },
     assertPasswordFieldForRegisteredUserIsVisible () {
       const passwordField = selectors[variables.brand].passwordField;

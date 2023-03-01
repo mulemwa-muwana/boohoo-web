@@ -127,7 +127,7 @@ class AssertionText {
   };
 
   ShippingMandatoryFieldsFnameLnamePostcodeBHM: TranslationMap = {
-    EN: 'Don’t forget about me!',
+    EN: 'Please enter a valid Post Code',
     FR: 'Ce champ est obligatoire.',
     NL: 'Dit veld is verplicht.',
     DE: 'Vergiss mich nicht!',
@@ -281,7 +281,7 @@ class AssertionText {
   };
 
   PrivacyPolicyH1BHM: TranslationMap = {
-    EN: 'privacy',
+    EN: 'Privacy',
     FR: 'avis de confidentialité',
     NL: 'privacyverklaring',
     DE: 'datenschutzerklärung',
@@ -337,7 +337,7 @@ class AssertionText {
   };
 
   Premier: TranslationMap = {
-    EN: ' \n\n                        .b-ngvip-title {\n                        \n                            letter-spacing: 10px;\n                        \n                        }\n                        \n                        \n                        PREMIER\n                    ',
+    EN: '\n                        BOOHOO PREMIER\n                    ',
     FR: 'PREMIER',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
@@ -421,7 +421,7 @@ class AssertionText {
   };
 
   PremierText: TranslationMap = {
-    EN: '\n                        FREE NEXT DAY DELIVERY & EXCLUSIVE FREE RETURNS FOR 1 YEAR!*\n                    ',
+    EN: '\n                        FREE NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR!\n                    \n                    ',
     FR: 'LIVRAISON STANDARD ILLIMITÉE PENDANT UN AN!',
     NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
     DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',

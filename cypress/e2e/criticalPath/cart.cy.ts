@@ -22,11 +22,7 @@ describe('Cart basic functionality for guest user', function () {
 
   });
   it('Verify that user can update quantity of products', function () {
-<<<<<<< HEAD
     if (isSiteGenesisBrand ) {
-=======
-    if (isSiteGenesisBrand) {
->>>>>>> master
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
       CartPage.actions.editCartQuantitySiteGenesis('1');

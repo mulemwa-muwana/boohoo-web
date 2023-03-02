@@ -19,8 +19,8 @@ describe('Product Listing Page tests', function () {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[variables.language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
     } else if (variables.brand == 'dorothyperkins.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewInDP[variables.language]);
@@ -32,6 +32,8 @@ describe('Product Listing Page tests', function () {
   it('Verify that plp page opens', () => {
     if (variables.brand == 'nastygal.com') {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlDresses[variables.language]);
+    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+      plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[variables.language]);
     } else {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[variables.language]);
     }

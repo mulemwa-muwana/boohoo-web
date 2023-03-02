@@ -139,6 +139,9 @@ describe('Shipping Page Registered user tests', function () {
       }
       shippingPage.click.proceedToBilling();
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryNG[variables.language]);
+    } else if (variables.brand == 'dorothyperkins.com') {
+      shippingPage.click.proceedToBilling();
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryNG[variables.language]);
     } else {
       shippingPage.click.proceedToBilling();
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
@@ -195,7 +198,7 @@ describe('Shipping Page Registered user tests', function () {
       this.skip();
     }
     const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
-    const includededBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk']; // Boohoo is different than Arcadia
+    const includededBrands: Array<GroupBrands> = ['burton.co.uk', 'wallis.co.uk']; // Boohoo is different than Arcadia
 
     if (includededBrands.includes(variables.brand) && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
@@ -206,6 +209,9 @@ describe('Shipping Page Registered user tests', function () {
     } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
+    } else if (variables.brand == 'dorothyperkins.com' && variables.locale == 'UK') {
+      shippingPage.click.addPremierByButtonName(assertionText.UnlimitedDP[variables.language]);
+      shippingPage.assertions.assertCartShippingPageContainsProduct('UNLIMITED NEXT DAY DELIVERY');
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);

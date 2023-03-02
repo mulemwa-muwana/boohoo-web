@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stg.coastfashion.com/',
-    sku: 'ACC99178-1',
+    sku: 'ACC98809-1',
     brand: 'coastfashion.com',
     locale: 'UK',
     language: 'EN',

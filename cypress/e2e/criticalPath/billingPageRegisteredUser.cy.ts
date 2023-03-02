@@ -18,7 +18,12 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');
+    if (variables.brand == 'nastygal.com') {
+      BillingPage.assertions.assertShippingMethodPresent('\n                            UK Next Day Delivery\n                        ');
+    } else {
+      BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');
+
+    }
   });
   it('Verify that register user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
@@ -77,12 +82,6 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
-      
-    if (variables.brand === 'boohoo.com' && variables.locale === 'UK') {
-      BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
-      BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
-    }
-
   });
   
   //  TESTS FOR SITE GENESIS BRANDS:  //

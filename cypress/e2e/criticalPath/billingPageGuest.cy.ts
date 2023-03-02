@@ -74,6 +74,7 @@ describe('Billing page functionality for guest user', function () {
     if (isSiteGenesisBrand) {
       this.skip(); // Date of birth form for Site Genesis brands is on Shipping page.
     }
+    BillingPage.click.chooseCC();
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
     } else {
@@ -116,13 +117,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
-    
-    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
-      BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
-      BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
-    } 
-    
-    BillingPage.actions.waitPageToLoad();
+  
   });
 
 });

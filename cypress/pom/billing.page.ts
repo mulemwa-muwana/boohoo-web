@@ -9,7 +9,7 @@ const selectors: SelectorBrandMap = {
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
     billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
-    billingPostCode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    billingPostCode: '#dwfrm_billing_addressFields_postalCode',
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
@@ -287,7 +287,7 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
-    viewAllBillingAddresses: '#dwfrm_singleshipping_addressList',
+    viewAllBillingAddresses: '#dwfrm_billing_addressList',
     billingAddressFromBook: '#dwfrm_singleshipping_addressList > option:nth-child(3)',
     dobDate: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -715,7 +715,7 @@ class BillingPage implements AbstractPage {
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
       if (variables.locale == 'AU') {
         cy.get(billingAddressFieldsStateCode).select(state);
-      } else {
+      } else if (!isSiteGenesisBrand) {
         cy.get(billingAddressFieldsStateCode).clear().type(state);
       }
       if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
@@ -764,11 +764,16 @@ class BillingPage implements AbstractPage {
       const billingAddressFromBook = selectors[variables.brand].billingAddressFromBook;
       if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
         cy.get('button[class="b-button m-link m-width_full"]').click({force: true});
+      } else if (variables.brand == 'boohooman.com') {
+        cy.get(viewAllBillingAddresses).select('London');
       } else { 
         cy.get(viewAllBillingAddresses).click({force: true});
       }
       
-      cy.get(billingAddressFromBook).click({force: true});
+      if (variables.brand != 'boohooman.com') {
+        cy.get(billingAddressFromBook).click({force: true});
+      }
+      
     },
     selectKlarna () {
       const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;
@@ -1001,12 +1006,15 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodPayPal).should('be.visible');
     },
     assertPaymentMethodKlarnaIsDisplayed () {
-      if (variables.locale == 'AU') {
-        cy.get('#payment-button-KlarnaAU').should('be.visible');
-      } else if (variables.locale == 'IE') {
-        cy.get('#payment-button-KlarnaIE').should('be.visible');
-      } else if (variables.locale == 'UK') {
+      if (isSiteGenesisBrand) {
         cy.get('label[for="is-KlarnaUK"]').should('be.visible');
+      }
+      if (!isSiteGenesisBrand && variables.locale == 'AU') {
+        cy.get('#payment-button-KlarnaAU').should('be.visible');
+      } else if (!isSiteGenesisBrand && variables.locale == 'IE') {
+        cy.get('#payment-button-KlarnaIE').should('be.visible');
+      } else if (!isSiteGenesisBrand && variables.locale == 'UK') {
+        cy.get('#payment-button-KlarnaUK').should('be.visible');
       }
     },
       

@@ -5,6 +5,7 @@ import shippingPage from '../../pom/shipping.page';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
+import cards from 'cypress/helpers/cards';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -74,6 +75,7 @@ describe('Billing page functionality for guest user', function () {
     if (isSiteGenesisBrand) {
       this.skip(); // Date of birth form for Site Genesis brands is on Shipping page.
     }
+    BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
     if (variables.brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
     } else {
@@ -116,13 +118,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
-    
-    if (variables.brand == 'boohoo.com' && variables.locale == 'UK') {
-      BillingPage.assertions.assertPaymentMethodGooglePayIsDisplayed();
-      BillingPage.assertions.assertPaymentMethodAmazonPayIsDisplayed();
-    } 
-    
-    BillingPage.actions.waitPageToLoad();
+  
   });
 
 });

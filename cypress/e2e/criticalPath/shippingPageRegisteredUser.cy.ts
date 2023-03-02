@@ -140,6 +140,9 @@ describe('Shipping Page Registered user tests', function () {
       }
       shippingPage.click.proceedToBilling();
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryNG[variables.language]);
+    } else if (variables.brand == 'dorothyperkins.com') {
+      shippingPage.click.proceedToBilling();
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryNG[variables.language]);
     } else {
       shippingPage.click.proceedToBilling();
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
@@ -195,7 +198,8 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoomena.com') { // No Premier/VIP for this brand
       this.skip();
     }
-    const includedLocales: Array<Locale> = ['UK', 'FR', 'IE'];
+    
+    const includedLocales: Array<Locale> = ['UK', 'EU', 'IE'];
     const includededBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
 
     if (includededBrands.includes(variables.brand) && includedLocales.includes(variables.locale)) {

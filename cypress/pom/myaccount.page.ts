@@ -54,7 +54,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(5) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(3) > .b-account_nav-item_link'
+    orderHistoryLink: ':nth-child(3) > .b-account_nav-item_link',
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'nastygal.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -106,8 +107,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'dorothyperkins.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -159,7 +161,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
+    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'burton.co.uk': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -211,7 +214,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
+    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'wallis.co.uk': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -263,7 +267,8 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link'
+    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'boohooman.com': {
     accountLogout: '.button.simple.js-logout',
@@ -307,9 +312,9 @@ const selectors: SelectorBrandMap = {
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
     newestOrderHistory: 'li.order-history-item:nth-child(1) button',
-    orderID: '.order-number > .value',
-    shippingInfo: '.order-date > .value',
-    billingAndPaymentInfo: '.processing',
+    orderID: '.orderdetails-header-number',
+    shippingInfo: '.orderdetails-shipment-details',
+    billingAndPaymentInfo: '.orderdetails-summary-wrapper',
     accountDetailsEmailField: '.account-email',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
@@ -318,7 +323,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '[title="Order History"]'
+    orderHistoryLink: '[title="Order History"]',
+    viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'karenmillen.com': {
     accountLogout: 'a[title="Log out"]',
@@ -360,9 +366,9 @@ const selectors: SelectorBrandMap = {
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
-    orderID: '.order-number > .value',
-    shippingInfo: '.order-date > .value',
-    billingAndPaymentInfo: '.processing',
+    orderID: '.orderdetails-header-number',
+    shippingInfo: '.orderdetails-shipment-details',
+    billingAndPaymentInfo: '.orderdetails-summary-wrapper',
     accountDetailsEmailField: '#account-email-input',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
@@ -371,7 +377,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '[title="Order History"]'
+    orderHistoryLink: '[title="Order History"]',
+    viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'coastfashion.com': {
     accountLogout: 'a[title="Log out"]',
@@ -415,9 +422,9 @@ const selectors: SelectorBrandMap = {
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
     newestOrderHistory: 'li.order-history-item:nth-child(1) button',
-    orderID: '.order-number > .value',
-    shippingInfo: '.order-date > .value',
-    billingAndPaymentInfo: '.processing',
+    orderID: '.orderdetails-header-number',
+    shippingInfo: '.orderdetails-shipment-details',
+    billingAndPaymentInfo: '.orderdetails-summary-wrapper',
     accountDetailsEmailField: '.account-email',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
@@ -426,7 +433,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '[title="Order History"]'
+    orderHistoryLink: '[title="Order History"]',
+    viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'warehousefashion.com': {
     accountLogout: 'a[title="Log out"]',
@@ -470,9 +478,9 @@ const selectors: SelectorBrandMap = {
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
     newestOrderHistory: 'li.order-history-item:nth-child(1) button',
-    orderID: '.order-number > .value',
-    shippingInfo: '.order-date > .value',
-    billingAndPaymentInfo: '.processing',
+    orderID: '.orderdetails-header-number',
+    shippingInfo: '.orderdetails-shipment-details',
+    billingAndPaymentInfo: '.orderdetails-summary-wrapper',
     accountDetailsEmailField: '.account-details > .account-box-content > .account-box-item',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
@@ -481,7 +489,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '.account-order-history a'
+    orderHistoryLink: '.account-order-history a',
+    viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'oasis-stores.com': {
     accountLogout: 'a[title="Log out"]',
@@ -525,9 +534,9 @@ const selectors: SelectorBrandMap = {
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
     newestOrderHistory: 'li.order-history-item:nth-child(1) button',
-    orderID: '.order-number > .value',
-    shippingInfo: '.order-date > .value',
-    billingAndPaymentInfo: '.processing',
+    orderID: '.orderdetails-header-number',
+    shippingInfo: '.orderdetails-shipment-details',
+    billingAndPaymentInfo: '.orderdetails-summary-wrapper',
     accountDetailsEmailField: '.account-email',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
@@ -536,7 +545,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '.account-order-history a'
+    orderHistoryLink: '.account-order-history a',
+    viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'misspap.com': {
     accountLogout: '.account-logout > .button',
@@ -578,9 +588,9 @@ const selectors: SelectorBrandMap = {
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
-    orderID: '.order-number > .value',
-    shippingInfo: '.order-date > .value',
-    billingAndPaymentInfo: '.processing',
+    orderID: '.orderdetails-header-number',
+    shippingInfo: '.orderdetails-shipment-details',
+    billingAndPaymentInfo: '.orderdetails-summary-wrapper',
     accountDetailsEmailField: '.account-details > .account-box-content > .account-box-item',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
@@ -591,6 +601,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
+    viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'boohoomena.com': {
     accountLogout: 'a[title="Log out"]',
@@ -647,7 +658,8 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '.account-nav-content [title="Order History"]'
+    orderHistoryLink: '.account-nav-content [title="Order History"]',
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   }
 };
 
@@ -755,6 +767,10 @@ class MyAccountPage implements AbstractPage {
           cy.get(newestOrderHistory).should('be.visible').click({force:true});
         }
       },
+      viewNewestOrder () {
+        const viewNewestOrderDetails = selectors[variables.brand].viewNewestOrderDetails;
+        cy.get(viewNewestOrderDetails).eq(0).click({ force: true });
+      },
     };
 
   actions =
@@ -857,11 +873,6 @@ class MyAccountPage implements AbstractPage {
         if (!isSiteGenesisBrand) {
           cy.get(cardDeleteConfirmationBtn).click();
         }
-      },
-      trackNewestOrder () {
-        cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked
-        cy.url().should('include', 'order-details?orderID=');
-        cy.get('button[data-tau="track_order_submit"]').click();
       },
       trackOrderByNumber () {
         cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked

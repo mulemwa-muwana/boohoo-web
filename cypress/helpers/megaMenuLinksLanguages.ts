@@ -70,6 +70,20 @@ class megaMenuLinksLanguages {
     ES: 'Novedades',
   };
 
+  subnavClothingNewInDP: TranslationMap = {
+    EN: 'View All New',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
   subnavClothingNewInURL: TranslationMap = {
     EN: 'new',
     NL: 'nieuw-binnen',

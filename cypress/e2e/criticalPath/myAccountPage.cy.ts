@@ -21,7 +21,8 @@ describe('Account page', function () {
     } else {
       MyAccountPage.assertions.assertUrlContains('orders');
     }
-    MyAccountPage.assertions.assertLoadedOrders();
+    MyAccountPage.click.viewNewestOrder();
+    MyAccountPage.assertions.assertOrderDetailsContent();
   });
   it('TC02 Verify that returns option links to correct page', function () {
     if (isSiteGenesisBrand) {

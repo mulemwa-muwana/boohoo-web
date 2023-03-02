@@ -378,7 +378,7 @@ class HomePage implements AbstractPage {
             });
           }
         } else {
-          if (variables.brand == 'boohooman.com') {
+          if (variables.brand == 'boohooman.com' || variables.brand == 'coastfashion.com') {
             cy.get(loginIcon).should('be.visible');
           } else {
             cy.wrap(loginIcon).invoke('show').should('be.visible');

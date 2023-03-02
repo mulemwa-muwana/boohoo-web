@@ -21,6 +21,9 @@ describe('Product Listing Page tests', function () {
     } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaDresses[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
+    } else if (variables.brand == 'dorothyperkins.com') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewInDP[variables.language]);
     } else {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
@@ -145,8 +148,8 @@ describe('Product Listing Page tests', function () {
       } else if (isSiteGenesisBrand) {
         plpPage.click.selectRefinementVariantShopByFit('Petite');
       } else if (variables.brand == 'dorothyperkins.com') {
-        cy.get('button[id*="-shop-by-body-fit"]').click({ force: true });
-        cy.get('#refinementAttributesList-shop-by-body-fit').contains('Petite').click({ force: true });
+        cy.get('button[id*="-shop-by-"]').click({ force: true });
+        cy.get('ul[id*="refinementAttributesList-shop-by-"]').contains('Petite').click({ force: true });
       } else {
         cy.get('button[id*="-' + (assertionText.shopByFit[variables.language] + '"]')).click({ force: true });
         cy.get('#refinementAttributesList-' + (assertionText.shopByFit[variables.language])).contains('Petite').click({ force: true });

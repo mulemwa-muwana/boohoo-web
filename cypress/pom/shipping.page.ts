@@ -325,7 +325,7 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '#add-to-cart',
+    addPremierToCartFromShippingPage: '.premier-box-btn',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',

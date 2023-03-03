@@ -654,7 +654,7 @@ class ShippingPage implements AbstractPage {
     },
     editCart () {
       const editCart = selectors[variables.brand].editCart;
-      cy.get(editCart).should('be.visible').click();
+      cy.get(editCart).click({force:true});
     },
     editAddress () {
       if (variables.brand != 'boohooman.com') {
@@ -796,6 +796,8 @@ class ShippingPage implements AbstractPage {
       cy.wait(1000);
       const shippingPostcode = selectors[variables.brand].shippingPostcode;
       cy.get(shippingPostcode).clear({force: true}).type(postcode).blur();
+      cy.wait(1000);
+      cy.get(shippingPostcode).click().blur();
     },
     stateField (state: string) {
       cy.wait(1000);

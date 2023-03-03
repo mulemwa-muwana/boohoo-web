@@ -28,28 +28,24 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
     shippingPage.click.addNewAddressButton();
-    if (variables.locale == 'AU') {
-      shippingPage.actions.selectCountry(localeAddress.countryCode); // Can't select
-    } else {
-      shippingPage.actions.selectCountry(localeAddress.country);
-    }
-    if (variables.brand == 'boohooman.com' || variables.brand == 'warehousefashion.com') {
-      shippingPage.actions.addressLine1Clear();
-      shippingPage.actions.cityFieldClear();
-    }
-    cy.wait(5000);
-    if (variables.brand !='warehousefashion.com') {
-      shippingPage.click.enterManuallyAddressDetails();
+
+    shippingPage.actions.firstNameFieldClear();
+    shippingPage.actions.lastNameFieldClear();
+    shippingPage.actions.phoneNumberFieldClear();
+
+    if (!isSiteGenesisBrand) {
       shippingPage.click.proceedToBilling();
     }
+
     if (variables.brand == 'boohoo.com') {
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
-    } else if (variables.brand =='warehousefashion.com') { 
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
+      shippingPage.assertions.assertLastNameIsMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
+      shippingPage.assertions.assertPhoneNumberIsMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
     } else {
-      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldError[variables.language]);
+      shippingPage.assertions.assertLastNameIsMandatory(assertionText.ShippingMandatoryFieldError[variables.language]);
+      shippingPage.assertions.assertPhoneNumberIsMandatory(assertionText.ShippingMandatoryFieldError[variables.language]);
     }
   });
 
@@ -70,10 +66,8 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
+
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
-      shippingPage.click.proceedToBillingVerification();
-    }
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
     

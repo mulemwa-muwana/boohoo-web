@@ -77,9 +77,9 @@ describe('Billing page functionality for guest user', function () {
     }
     BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
     if (variables.brand == 'boohoo.com') {
-      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
     } else {
-      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[variables.language]);
     }
   });
   it('Verify that billing address can be same as shipping address', function () {

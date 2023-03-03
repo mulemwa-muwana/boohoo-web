@@ -38,11 +38,11 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.click.proceedToBilling();
     if (variables.brand == 'boohoo.com') {
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
     } else if (variables.brand == 'boohooman.com') {
       shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeBHM[variables.language]);
     } else {
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldError[variables.language]);
     }
   });
 
@@ -195,13 +195,13 @@ describe('Shipping Page Guest user tests', function () {
     }
     shippingPage.actions.emptyEmailField();
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertEmptyEmailFieldError(assertionText.assertMandatoryFieldErrorSiteGenesis[variables.language]);
+    shippingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldError[variables.language]);
   });
   it('SG: Verify that guest user cannot proceed to billing page if date of birth is not selected', function () {
     if (!isSiteGenesisBrand) {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertEmptyDateFieldError(assertionText.assertMandatoryFieldErrorSiteGenesis[variables.language]);
+    shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[variables.language]);
   });
 });

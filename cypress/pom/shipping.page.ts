@@ -25,7 +25,9 @@ const selectors: SelectorBrandMap = {
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
     shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
     shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
@@ -36,7 +38,6 @@ const selectors: SelectorBrandMap = {
     cityField: '[id$=addressFields_city][id*="shipping"]',
     countyField: '[id$=addressFields_states_stateCode][id*="shipping"]',
     postCodeField: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    postCodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     orderTotal: '.m-total > .b-summary_table-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
@@ -73,7 +74,9 @@ const selectors: SelectorBrandMap = {
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
     shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
     shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
@@ -84,7 +87,6 @@ const selectors: SelectorBrandMap = {
     cityField: '[id$=addressFields_city][id*="shipping"]',
     countyField: '[id$=addressFields_states_stateCode][id*="shipping"]',
     postCodeField: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    postCodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     orderTotal: '.m-total > .b-summary_table-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
@@ -120,7 +122,9 @@ const selectors: SelectorBrandMap = {
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
     shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
     shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
@@ -131,7 +135,6 @@ const selectors: SelectorBrandMap = {
     cityField: '[id$=addressFields_city][id*="shipping"]',
     countyField: '[id$=addressFields_states_stateCode][id*="shipping"]',
     postCodeField: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    postCodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     orderTotal: '.m-total > .b-summary_table-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
@@ -164,7 +167,9 @@ const selectors: SelectorBrandMap = {
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
     shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
     shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
@@ -175,7 +180,6 @@ const selectors: SelectorBrandMap = {
     cityField: '[id$=addressFields_city][id*="shipping"]',
     countyField: '[id$=addressFields_states_stateCode][id*="shipping"]',
     postCodeField: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    postCodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     orderTotal: '.m-total > .b-summary_table-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
@@ -208,7 +212,9 @@ const selectors: SelectorBrandMap = {
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     shippingFname: '[id$=addressFields_firstName][id*="shipping"]',
     shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
     shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
@@ -219,7 +225,6 @@ const selectors: SelectorBrandMap = {
     cityField: '[id$=addressFields_city][id*="shipping"]',
     countyField: '[id$=addressFields_states_stateCode][id*="shipping"]',
     postCodeField: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    postCodeValidation: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
     orderTotal: '.m-total > .b-summary_table-value',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
@@ -253,8 +258,10 @@ const selectors: SelectorBrandMap = {
     cartContainer: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
+    lnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
@@ -266,7 +273,6 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    postCodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -303,8 +309,10 @@ const selectors: SelectorBrandMap = {
     cartContainer: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
+    lnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
@@ -316,7 +324,6 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    postCodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -351,8 +358,10 @@ const selectors: SelectorBrandMap = {
     cartContainer: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
+    lnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
@@ -364,7 +373,6 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    postCodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -399,8 +407,10 @@ const selectors: SelectorBrandMap = {
     cartContainer: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
+    lnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
@@ -412,7 +422,6 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    postCodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -448,8 +457,10 @@ const selectors: SelectorBrandMap = {
     cartContainer: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
+    lnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
@@ -461,7 +472,6 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    postCodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -496,8 +506,10 @@ const selectors: SelectorBrandMap = {
     cartContainer: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
+    lnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
@@ -509,7 +521,6 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    postCodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -544,8 +555,10 @@ const selectors: SelectorBrandMap = {
     cartContainer: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
+    lnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName-error',
+    phoneValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_phone-error',
+    postCodeValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneCode: '#dwfrm_phonedetails_phonecode',
     shippingPhoneNumber: '#dwfrm_phonedetails_phonenumber',
@@ -558,7 +571,6 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    postCodeValidation: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -688,9 +700,17 @@ class ShippingPage implements AbstractPage {
       cy.wait(1000);
       cy.get(addressLookup).type('{enter}');
     },
+    firstNameFieldClear() {
+      const shippingFname = selectors[variables.brand].shippingFname;
+      cy.get(shippingFname).clear({force: true});
+    },
     firstNameField (fname: string) {
       const shippingFname = selectors[variables.brand].shippingFname;
       cy.get(shippingFname).clear().type(fname, {force: true});
+    },
+    lastNameFieldClear() {
+      const shippingLname = selectors[variables.brand].shippingLname;
+      cy.get(shippingLname).clear({force: true});
     },
     lastNameField (lname: string) {
       const shippingLname = selectors[variables.brand].shippingLname;
@@ -698,6 +718,10 @@ class ShippingPage implements AbstractPage {
     },
     countrySelector () {
       cy.get('[id$=addressFields_country][id*="shipping"]'); 
+    },
+    phoneNumberFieldClear() {
+      const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
+      cy.get(shippingPhoneNumber).clear({force: true}).blur();
     },
     phoneNumberField (phone: string) {
       cy.wait(1000);
@@ -814,17 +838,25 @@ class ShippingPage implements AbstractPage {
           .and('contain.text', postCode);
       }
     },
-    assertFirstNameIsMandatory (fname: string) {
+    assertFirstNameIsMandatory (requiredFieldError: string) {
       const fnameValidationMsg = selectors[variables.brand].fnameValidationMsg;
-      cy.get(fnameValidationMsg).should('contain.text', fname); 
+      cy.get(fnameValidationMsg).should('contain.text', requiredFieldError);
+    },
+    assertLastNameIsMandatory (requiredFieldError: string) {
+      const lnameValidationMsg = selectors[variables.brand].lnameValidationMsg;
+      cy.get(lnameValidationMsg).should('contain.text', requiredFieldError); 
+    },
+    assertPhoneNumberIsMandatory (requiredFieldError: string) {
+      const phoneValidationMsg = selectors[variables.brand].phoneValidationMsg;
+      cy.get(phoneValidationMsg).should('contain.text', requiredFieldError);
     },
     assertCityIsMandatory (city: string) {
       const cityField = selectors[variables.brand].cityField;
       cy.get(cityField).should('contain.text', city); 
     },
     assertPostCodeIsMandatory (postcode: string) {
-      const postCodeValidation = selectors[variables.brand].postCodeValidation;
-      cy.get(postCodeValidation).should('contain.text', postcode); 
+      const postCodeValidationMsg = selectors[variables.brand].postCodeValidationMsg;
+      cy.get(postCodeValidationMsg).should('contain.text', postcode); 
     },
     assertUserProceededToBillingPage () {
       cy.url().should('include', 'billing');

@@ -123,7 +123,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'karenmillen.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -145,7 +146,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'coastfashion.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -167,7 +169,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'warehousefashion.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -189,7 +192,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.footer-promo.js-floating-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'oasis-stores.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -211,7 +215,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'misspap.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -234,7 +239,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'boohoomena.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -256,7 +262,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   }
 };
 
@@ -390,6 +397,11 @@ class GlobalFooter implements AbstractPage {
     },
     studentDiscountAcceptCookiesOnPopup () {
       cy.iframe('.student-beans > iframe').find('#onetrust-accept-btn-handler').click({force:true});
+    },
+    checkHelpforSiteG (text: string) {
+      const helpLink = selectors[variables.brand].helpLink;
+      cy.get(helpLink).click({force: true});
+      cy.url().should('include', text);
     }
   };
 

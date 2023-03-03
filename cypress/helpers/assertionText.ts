@@ -840,6 +840,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerCustomerService: TranslationMap = {
+    EN: 'customer-service',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkDeliveryInfo: TranslationMap = {
     EN: 'Delivery Info',
     NL: 'Bezorginformatie',

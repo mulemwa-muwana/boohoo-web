@@ -823,7 +823,7 @@ class MyAccountPage implements AbstractPage {
         if (!isSiteGenesisBrand) {
           cy.get(addressEnterManualyBtn).click({ force: true });
         }
-        cy.get(addressField).should('be.visible').type(address.addrline1, { force: true });
+        cy.get(addressField).should('be.visible').type(address.addressLine, { force: true });
         if (variables.brand == 'boohoomena.com') {
           cy.get(addressCityField).select(address.city);
         } else {

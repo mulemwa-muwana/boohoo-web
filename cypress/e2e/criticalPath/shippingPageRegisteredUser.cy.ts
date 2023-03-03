@@ -62,20 +62,20 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       shippingPage.click.addNewAddress();
     }
-    shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+    shippingPage.actions.adressLine1(localeAddress.addressLine);
     cy.wait(2000);
-    shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
-    shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
+    shippingPage.actions.cityField(localeAddress.city);
+    shippingPage.actions.postcodeField(localeAddress.postcode);
     if (variables.locale == 'US' || variables.locale == 'AU' || variables.locale == 'IE') {
       shippingPage.actions.selectState(localeAddress.county);
     }
-    shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.proceedToBilling();
     if (isSiteGenesisBrand) {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();
-    billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
+    billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
     
   });
 
@@ -116,37 +116,20 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and functional', function () {
-    if (isSiteGenesisBrand) { // Address Lookup isn't mandatory on Site Genesis websites
-      this.skip();
+    if (variables.brand == 'boohoomena.com') {
+      this.skip();  // There is no Address Lookup for this brand
     }
-    const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    const secondaryAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     shippingPage.click.addNewAddressButton();
     cy.wait(3000);
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.click.addAddressManually(); 
-      shippingPage.click.proceedToBilling();
-      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatory[variables.language]);
-    } else if (variables.brand == 'nastygal.com' || variables.brand == 'burton.co.uk') {
-      shippingPage.actions.selectCountry(localeAddress.countryCode);
-      cy.wait(4000);
-      shippingPage.click.addAddressManually();
-      cy.wait(4000);
-      if (variables.brand == 'nastygal.com' && (variables.locale == 'US' || variables.locale == 'AU')) {
-        shippingPage.actions.selectState(localeAddress.county);
-        shippingPage.click.proceedToBilling();
-      }
-      if (variables.locale == 'EU') {
-        shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-      }
-      shippingPage.click.proceedToBilling();
-      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryNG[variables.language]);
-    } else if (variables.brand == 'dorothyperkins.com') {
-      shippingPage.click.proceedToBilling();
-      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryNG[variables.language]);
-    } else {
-      shippingPage.click.proceedToBilling();
-      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.assertShippingAddressIsMandatoryArkadia[variables.language]);
-    }
+    shippingPage.actions.addressLookupSelectFirstAddress(secondaryAddress.addressLine, secondaryAddress.city);
+    shippingPage.assertions.assertNewAddedShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode);
+
+    shippingPage.actions.firstNameField('New');
+    shippingPage.actions.lastNameField('Test');
+    shippingPage.actions.phoneNumberField(secondaryAddress.phone);
+    shippingPage.click.proceedToBilling();
+    billingPage.assertions.assertNewShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode, secondaryAddress.country);
   });
 
   it('Verify that user is able to add address details manually', () => {
@@ -160,7 +143,7 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
-      shippingPage.actions.adressLine1(localeAddress.addrline1);
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
       if (variables.locale == 'US') {
         shippingPage.actions.selectCountry(localeAddress.countryCode);
@@ -173,16 +156,16 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.stateField(localeAddress.county);
       }
     } else if (isSiteGenesisBrand) {
-      shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
-      shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-      shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
+      shippingPage.actions.cityField(localeAddress.city);
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
       if (variables.brand == 'boohoomena.com') {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {
       shippingPage.click.enterManuallyAddressDetails();
-      shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
@@ -191,7 +174,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();
-    billingPage.assertions.assertNewShippingAddress(localeAddress.addrline1);
+    billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
   });
 
   it('Verify that PREMIER can be added to the cart', function () {
@@ -238,7 +221,7 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
       shippingPage.click.addNewAddress();
       shippingPage.click.enterManuallyAddressDetails();
-      shippingPage.actions.adressLine1(localeAddress.addrline1);
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
       if (variables.locale == 'US') {
         shippingPage.actions.selectCountry(localeAddress.countryCode);
@@ -251,16 +234,16 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.stateField(localeAddress.county);
       }
     } else if (isSiteGenesisBrand) {
-      shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
-      shippingPage.actions.clearCityFieldAndAddNewOne(localeAddress.city);
-      shippingPage.actions.clearPostcodeFieldAndAddNewOne(localeAddress.postcode);
-      shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(localeAddress.phone);
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
+      shippingPage.actions.cityField(localeAddress.city);
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
       if (variables.brand == 'boohoomena.com') {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {
       shippingPage.click.enterManuallyAddressDetails();
-      shippingPage.actions.clearAdressLine1AndAddNewOne(localeAddress.addrline1);
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }

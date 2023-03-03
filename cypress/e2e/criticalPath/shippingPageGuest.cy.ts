@@ -71,7 +71,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.lastNameField(localeAddress.lastName);
       shippingPage.actions.selectCountry(localeAddress.country);
     }
-    shippingPage.assertions.assertPostcodeLookupIsVisible();
+    shippingPage.assertions.assertAddressLookupFieldIsVisible();
   });
 
   it('Verify that "Enter manually" button allows guest to enter address details', function () {
@@ -98,7 +98,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.enterManuallyAddressDetails();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -121,7 +121,7 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();
     cy.wait(5000);
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -151,7 +151,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     if (variables.locale == 'US' || variables.locale == 'AU') {

@@ -100,11 +100,11 @@ describe('Billing page functionality for guest user', function () {
       cy.wait(2000);
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addressLine, localeAddress.city, localeAddress.country, localeAddress.postcode);
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addrline1, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addressLine, localeAddress.city, localeAddress.country, localeAddress.postcode);
       if (variables.locale == 'US' || variables.locale == 'AU') {
         shippingPage.actions.selectState(localeAddress.county);
       }

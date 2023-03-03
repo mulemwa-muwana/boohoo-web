@@ -700,7 +700,7 @@ class ShippingPage implements AbstractPage {
       cy.wait(1000);
       cy.get(addressLookup).type('{enter}');
     },
-    firstNameFieldClear() {
+    firstNameFieldClear () {
       const shippingFname = selectors[variables.brand].shippingFname;
       cy.get(shippingFname).clear({force: true});
     },
@@ -708,7 +708,7 @@ class ShippingPage implements AbstractPage {
       const shippingFname = selectors[variables.brand].shippingFname;
       cy.get(shippingFname).clear().type(fname, {force: true});
     },
-    lastNameFieldClear() {
+    lastNameFieldClear () {
       const shippingLname = selectors[variables.brand].shippingLname;
       cy.get(shippingLname).clear({force: true});
     },
@@ -719,7 +719,7 @@ class ShippingPage implements AbstractPage {
     countrySelector () {
       cy.get('[id$=addressFields_country][id*="shipping"]'); 
     },
-    phoneNumberFieldClear() {
+    phoneNumberFieldClear () {
       const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
       cy.get(shippingPhoneNumber).clear({force: true}).blur();
     },
@@ -822,7 +822,7 @@ class ShippingPage implements AbstractPage {
       const addressName = selectors[variables.brand].addressName;
       cy.get(addressName).eq(1).should('be.visible').should('not.be.empty');
     },
-    assertNewAddedShippingAddress(addressLine: string, city: string, postCode: string) {
+    assertNewAddedShippingAddress (addressLine: string, city: string, postCode: string) {
       const brandsPopulatingSeparateAddressFields: Array<GroupBrands> = ['nastygal.com', 'burton.co.uk', 'dorothyperkins.com', 'boohooman.com', 'wallis.co.uk'];
       if (brandsPopulatingSeparateAddressFields.includes(variables.brand)) {
         const addressLine1Field = selectors[variables.brand].addressLine1Field;

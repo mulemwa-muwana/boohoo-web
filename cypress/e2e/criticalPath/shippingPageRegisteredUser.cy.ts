@@ -111,7 +111,7 @@ describe('Shipping Page Registered user tests', function () {
 
   it('Verify that ADDRESS LOOKUP field is dispayed and functional', function () {
     if (variables.brand == 'boohoomena.com') {
-      this.skip();  // There is no Address Lookup for this brand
+      this.skip(); // There is no Address Lookup for this brand
     }
     const secondaryAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
     shippingPage.click.addNewAddressButton();

@@ -179,8 +179,7 @@ class HomePage implements AbstractPage {
         } else {
           cy.get(loginIcon).should('be.visible');
         }
-      }
-      );
+      });
     },
     
     forgotPasswordLink () {

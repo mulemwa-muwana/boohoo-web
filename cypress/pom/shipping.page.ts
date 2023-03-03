@@ -12,11 +12,12 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button.b-button.m-info',
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    addNewAddress: '.b-address_selector-button',
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#LoqateAutocomplete',
@@ -62,6 +63,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
@@ -110,6 +112,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
+    guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
@@ -155,6 +158,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
     editAddress: '.b-option_switch:first-of-type [data-tau="edit_address"]',
+    guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -200,6 +204,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: '.b-address_selector-button',
     editAddress: '.b-option_switch:first-of-type [data-tau="edit_address"]',
+    guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -245,6 +250,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
     editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    guestEditAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -296,6 +302,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
     editAddress: '.js-edit-address',
+    guestEditAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -345,6 +352,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
     editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    guestEditAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -394,6 +402,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
     editAddress: ':nth-child(1) > .address-radios-label .js-address-radios-edit',
+    guestEditAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -444,6 +453,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
     editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    guestEditAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -493,6 +503,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
     editAddress: '.js-edit-address',
+    guestEditAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '.add-new-address',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -542,6 +553,7 @@ const selectors: SelectorBrandMap = {
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
     editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    guestEditAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -649,6 +661,14 @@ class ShippingPage implements AbstractPage {
         const editAddress = selectors[variables.brand].editAddress;
         cy.get(editAddress).click({force:true}); 
       }
+    },
+    guestEditAddress () {
+      const guestEditAddress = selectors[variables.brand].guestEditAddress;
+      cy.get('body').then($body => {
+        if ($body.find(guestEditAddress).length) {
+          cy.get(guestEditAddress).click({force:true});
+        }
+      });
     },
     addNewAddressButton () {
       if (variables.brand != 'boohooman.com') {
@@ -800,11 +820,11 @@ class ShippingPage implements AbstractPage {
     },
     emailField (email: string) {
       const guestEmailField = selectors[variables.brand].guestEmailField;
-      cy.get(guestEmailField).type(email);
+      cy.get(guestEmailField).clear().type(email);
     },
     confirmEmailField (email: string) {
       const confirmEmail = selectors[variables.brand].confirmEmail;
-      cy.get(confirmEmail).type(email);
+      cy.get(confirmEmail).clear().type(email);
     },
     emptyEmailField () {
       const guestEmailField = selectors[variables.brand].guestEmailField;

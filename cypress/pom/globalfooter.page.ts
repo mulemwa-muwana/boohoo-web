@@ -291,7 +291,10 @@ class GlobalFooter implements AbstractPage {
       const instagramLink = selectors[variables.brand].instagramLink;
       cy.get(instagramLink).then(link => {
         cy
-          .request(link.prop('href'))
+          .request({
+            method:'HEAD', 
+            url: link.prop('href')                            
+          })  
           .its('status')
           .should('eq', 200); 
       });

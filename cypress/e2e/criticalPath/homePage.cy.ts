@@ -258,7 +258,12 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
+        if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
+          GlobalFooter.actions.checkHelpforSiteG(assertionText.footerCustomerService[variables.language]);
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
+        }
+        
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[variables.language]);
@@ -411,7 +416,7 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', function () {
         if (variables.brand == 'boohoo.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com' || variables.brand == 'coastfashion.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[variables.language]);
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[variables.language], { assertionUrl: 'www.boohooplc.com' });
         } else {
           this.skip();
         }
@@ -507,7 +512,7 @@ describe('Home Page', function () {
       it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-        if (variables.brand == 'boohooman.com') {
+        if (variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com') {
           cy.contains(`COPYRIGHT © ${currentYear - 1}`, { matchCase: false }).should('be.visible');
         } else {
           cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');

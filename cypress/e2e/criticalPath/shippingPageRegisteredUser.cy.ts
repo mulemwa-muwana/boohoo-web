@@ -186,7 +186,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand && variables.brand !='warehousefashion.com') {
+    if (isSiteGenesisBrand && variables.brand !='warehousefashion.com' && variables.brand !='coastfashion.com') {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();

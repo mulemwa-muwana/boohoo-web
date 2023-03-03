@@ -258,7 +258,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
-        if (isSiteGenesisBrand) {
+        if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
           GlobalFooter.actions.checkHelpforSiteG(assertionText.footerCustomerService[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
@@ -512,7 +512,7 @@ describe('Home Page', function () {
       it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-        if (variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com') {
+        if (variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com') {
           cy.contains(`COPYRIGHT © ${currentYear - 1}`, { matchCase: false }).should('be.visible');
         } else {
           cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');

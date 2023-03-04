@@ -33,6 +33,7 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
+    shippingPage.click.addNewAddress();
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
     shippingPage.click.enterManuallyAddressDetails();
@@ -48,6 +49,7 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name, last name, select country from drop down list, add phone number', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.assertions.assertFirstNameFieldIsPopulated(localeAddress.firstName);
 
@@ -66,6 +68,7 @@ describe('Shipping Page Guest user tests', function () {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddress();
     if (variables.locale == 'EU') {
       shippingPage.actions.firstNameField(localeAddress.firstName);
       shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -78,8 +81,8 @@ describe('Shipping Page Guest user tests', function () {
     if (isSiteGenesisBrand) { // Site Genesis websites have all fields displayed, no Enter Manually button
       this.skip();
     }
-    
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddress();
     if (variables.locale == 'EU') {
       shippingPage.actions.firstNameField(localeAddress.firstName);
       shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -91,9 +94,9 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.click.addNewAddress();
-    }
+    shippingPage.click.addNewAddress();
+    shippingPage.click.addAddressManually();
+
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -107,14 +110,13 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.confirmEmailField(this.guestEmail);
     }
     shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
   it('Verify that user is able to select standard shipping method', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (!isSiteGenesisBrand) {
-      shippingPage.click.addNewAddress();
-    }
+    shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -147,9 +149,7 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that user is able to proceed to billing page after adding fname, lname, country, phone number and select shipping method', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (!isSiteGenesisBrand) {
-      shippingPage.click.addNewAddress();
-    }
+    shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);

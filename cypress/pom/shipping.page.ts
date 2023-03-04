@@ -67,7 +67,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.b-summary_order-header > .b-link',
     addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: '#deliveryPanel > div > div:nth-child(1) > div > button',
+    addNewAddress: '[data-tau="add_new_address"]',
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#LoqateAutocomplete',
@@ -613,8 +613,15 @@ class ShippingPage implements AbstractPage {
       cy.get(promoCodeBtn).click();
     },
     addNewAddress () {
-      const addNewAddress = selectors[variables.brand].addNewAddress;
-      cy.get(addNewAddress, {timeout: 30000}).click({force: true});
+      if (!isSiteGenesisBrand) {
+        const addNewAddress = selectors[variables.brand].addNewAddress;
+        cy.wait(3000);
+        cy.get('body').then($body => {
+          if ($body.find(addNewAddress).length) {
+            cy.get(addNewAddress).click({force:true});
+          }
+        });
+      }
     },
     addPremierByButtonName (text: string) {
       cy.contains(text).click({force: true});

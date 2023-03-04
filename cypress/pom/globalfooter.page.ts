@@ -293,7 +293,8 @@ class GlobalFooter implements AbstractPage {
         cy
           .request({
             method:'HEAD', 
-            url: link.prop('href')                            
+            url: link.prop('href'),
+            log:false                             
           })  
           .its('status')
           .should('eq', 200); 

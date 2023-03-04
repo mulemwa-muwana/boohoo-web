@@ -16,7 +16,7 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
   },
   'nastygal.com': {
-    wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',

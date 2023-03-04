@@ -195,12 +195,12 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.addPremierToCartFromShippingPage();
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierWarehouse[variables.language]);
     } else {
-      throw new Error('This brand is to be covered yet');
+      throw new Error('This brand is yet to be covered');
     }
 
     // Cleanup - remove Premier from Cart
     shippingPage.click.editCart();
-    cartPage.actions.removeFromCart(1);
+    cartPage.click.removePremierFromCart();
   });
 
   it('Verify that user is able to select standard shipping method', () => {

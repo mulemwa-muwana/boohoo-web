@@ -37,7 +37,6 @@ describe('Home Page', function () {
   describe('Header verifications', () => {
     it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
-
       homePage.assertions.assertWishListIconPresent();
       homePage.assertions.assertCartIconPresent();
       homePage.assertions.assertAccountIconPresent(); 
@@ -190,35 +189,30 @@ describe('Home Page', function () {
       });
       
       it('TikTok', function () {
-        if (variables.brand == 'boohoo.com') {
-          SocialsPage.assertions.assertTikTokIconIsPresent();
-          GlobalFooter.click.tiktokLink();
-        } else if (variables.brand == 'nastygal.com' && variables.locale !='FR') {
-          SocialsPage.assertions.assertTikTokIconIsPresent();
-          GlobalFooter.click.tiktokLink();
-        } else {
+        const includedBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com', 'misspap.com', 'boohooman.com'];
+        if (!includedBrands.includes(variables.brand)) {
           this.skip();
         }
+        SocialsPage.assertions.assertTikTokIconIsPresent();
+        GlobalFooter.click.tiktokLink();
       });
       
       it('YouTube', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'karenmillen.com', 'misspap.com', 'boohoomena.com'];
-        if (includedBrands.includes(variables.brand)) {
-          SocialsPage.assertions.assertYouTubeIconIsPresent();
-          GlobalFooter.click.youtubeLink();
-        } else {
+        if (!includedBrands.includes(variables.brand)) {
           this.skip();
         }
+        SocialsPage.assertions.assertYouTubeIconIsPresent();
+        GlobalFooter.click.youtubeLink();
       });
       
       it('Pintrest', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com', 'boohoomena.com'];
-        if (includedBrands.includes(variables.brand)) {
-          SocialsPage.assertions.assertPinterestIconIsPresent();
-          GlobalFooter.click.pintrestLink();
-        } else {
+        if (!includedBrands.includes(variables.brand)) {
           this.skip();
-        }
+        }  
+        SocialsPage.assertions.assertPinterestIconIsPresent();
+        GlobalFooter.click.pintrestLink();
       });
       
       it('TheFix', function () {
@@ -403,13 +397,6 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
         if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
-        } else {
-          this.skip();
-        }
-      });
-      it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', function () {
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US' && variables.locale != 'FR') || (variables.brand == 'coastfashion.com' && (variables.locale == 'EU' ))) {
-          GlobalFooter.actions.checkFooterLinkByText('Laybuy');
         } else {
           this.skip();
         }

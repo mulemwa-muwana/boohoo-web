@@ -264,9 +264,9 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
         const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA'];
-        if (variables.brand == 'boohoo.com' && !boohooLocales.includes(variables.locale)) {
+        if ((variables.brand == 'boohoo.com' && !boohooLocales.includes(variables.locale)) || variables.brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
-        } else if (variables.brand == 'nastygal.com' || (variables.brand == 'boohoo.com' && boohooLocales.includes(variables.locale))) {
+        } else if (variables.brand == 'boohoo.com' && boohooLocales.includes(variables.locale)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);

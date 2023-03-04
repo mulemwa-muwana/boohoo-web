@@ -267,9 +267,6 @@ class HomePage implements AbstractPage {
       cy.get('button[data-tau="forgot_password_submit"]', { timeout: 6000 }).click();
     },
     closeNastygalPopup () {
-
-      // Cy.get('.b-dialog.m-opened, .b-dialog.m-active').should('be.visible').click();
-
       cy.get('body').then($body => {
         if ($body.find('.b-dialog.m-opened').length > 0) {
           cy.get('.b-dialog.m-opened').invoke('attr', 'style', 'visibility:hidden!important;');
@@ -278,12 +275,15 @@ class HomePage implements AbstractPage {
 
     },
     closeSearchFieldForMobiles () {
-      cy.get('body').then($body => {
-        if ($body.find('.b-search_dialog-cancel').length) {
-          cy.get('.b-search_dialog-cancel').click({force: true});
-        }
+      // If Mobile Device is used
+      const viewportWidth = Cypress.config("viewportWidth");
+      if (viewportWidth < 1100) {
+        cy.get('body').then($body => {
+          if ($body.find('.b-search_dialog-cancel').length) {
+            cy.get('.b-search_dialog-cancel').click({force: true});
+          }
+        });
       }
-      );
     }
   };
 
@@ -341,15 +341,21 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
-      const wishListIcon = selectors[variables.brand].wishListIcon;
+      // If Mobile Device is used
       const wishListIconMobile = selectors[variables.brand].wishListIconMobile;
-      cy.get('body').then($body => {
-        if ($body.find(wishListIconMobile).length) {
-          cy.get(wishListIconMobile).invoke('show').should('be.visible');
-        }
+      const viewportWidth = Cypress.config("viewportWidth");
+      if (viewportWidth < 1100) {
+        cy.get('body').then($body => {
+          if ($body.find(wishListIconMobile).length) {
+            cy.get(wishListIconMobile).invoke('show').should('be.visible');
+          }
+        });
+      // If Desktop Device is used
+      } else {
+        const wishListIcon = selectors[variables.brand].wishListIcon;
         cy.get(wishListIcon).should('be.visible'); 
       }
-      );
+      
     },
     assertCartIconPresent () {
       const minicartIcon = selectors[variables.brand].minicartIcon;
@@ -360,6 +366,10 @@ class HomePage implements AbstractPage {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIconLinkMobile = selectors[variables.brand].loginIconLinkMobile;
+
+      // If Mobile Device is used
+      const viewportWidth = Cypress.config("viewportWidth");
+      if (viewportWidth < 1100) {
       cy.get('body').then($body => {
         if ($body.find(hamburgerMenu).length) {
           cy.get(hamburgerMenu).click({force: true});
@@ -376,15 +386,16 @@ class HomePage implements AbstractPage {
               }
             });
           }
+        }
+      });
+     // If Desktop Device is used
+      } else {
+        if (isSiteGenesisBrand) {
+          cy.get(loginIcon).should('be.visible');
         } else {
-          if (isSiteGenesisBrand) {
-            cy.get(loginIcon).should('be.visible');
-          } else {
-            cy.wrap(loginIcon).invoke('show').should('be.visible');
-          }
+          cy.get(loginIcon).invoke('show').should('be.visible');
         }
       }
-      ); 
     },
 
     assertCountryURL (country: string) {

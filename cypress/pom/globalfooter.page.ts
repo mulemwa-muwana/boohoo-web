@@ -35,7 +35,7 @@ const selectors: SelectorBrandMap = {
     tiktokLink: 'a[href="https://www.tiktok.com/@nastygal?lang=en"]',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
-    subscribeSubmitBtn: 'button[data-id="submitButton"]',
+    subscribeSubmitBtn: '.b-newsletters-submit',
     changeCountryDropdown: '.b-country-select',
     successfulSubscriptionMsg: '.b-newsletters-message_success',
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
@@ -381,7 +381,7 @@ class GlobalFooter implements AbstractPage {
       }
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
-      // Cy.log(`searching for '${text}' in footer`);
+      cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       const footer = selectors[variables.brand].footer;
       cy.get(footer).contains(text, { matchCase: false })

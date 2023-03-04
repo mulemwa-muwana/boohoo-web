@@ -281,7 +281,7 @@ class AssertionText {
   };
 
   TermsAndConditionsH1: TranslationMap = {
-    EN: '\n                Terms & Conditions\n            ',
+    EN: 'Terms & Conditions',
     FR: '',
     NL: 'ALGEMENE GEBRUIKSVOORWAARDEN',
     DE: '',

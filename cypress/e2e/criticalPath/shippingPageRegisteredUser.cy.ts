@@ -175,27 +175,18 @@ describe('Shipping Page Registered user tests', function () {
     if (variables.brand == 'boohoomena.com') { // No Premier/VIP for this brand
       this.skip();
     }
+    const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
+    if (!includedLocales.includes(variables.locale)) {
+      this.skip(); // Other locales are not supported for Premier promotion
+    }
     
-    const includedLocales: Array<Locale> = ['UK', 'EU', 'IE'];
-    const includededBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
-
-    if (includededBrands.includes(variables.brand) && includedLocales.includes(variables.locale)) {
-      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButton[variables.language]);
+    shippingPage.click.addPremierToCartFromShippingPage();
+    
+    const includededBlpBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+    if (includededBlpBrands.includes(variables.brand)) {
       shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
-    } else if ( variables.brand == 'boohoo.com' && includedLocales.includes(variables.locale)) {
-      shippingPage.click.addPremierByButtonName(assertionText.AddPremierToCartButtonBoohoo[variables.language]);
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
-    } else if (variables.brand == 'nastygal.com' && includedLocales.includes(variables.locale)) {
-      shippingPage.click.addPremierToCartFromShippingPage();
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierNG[variables.language]);
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com') {
-      shippingPage.click.addPremierToCartFromShippingPage();
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierSiteGenesis[variables.language]);
-    } else if (variables.brand == 'warehousefashion.com') {
-      shippingPage.click.addPremierToCartFromShippingPage();
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.PremierWarehouse[variables.language]);
     } else {
-      throw new Error('This brand is yet to be covered');
+      shippingPage.assertions.assertShippingPageCartContainsVipProduct();
     }
 
     // Cleanup - remove Premier from Cart

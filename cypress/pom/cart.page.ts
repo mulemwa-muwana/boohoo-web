@@ -276,13 +276,14 @@ class CartPage implements AbstractPage {
       });
     },
     removePremierFromCart () {
+
       // Remove everything except the first item. If there are 3 items in cart, item 2 and 3 will be removed
       const clearCart = selectors[variables.brand].clearCart;
       cy.get(clearCart).each(($el, index) => {
         if (index > 0) {
           cy.wrap($el).click();
         }
-      })
+      });
     },
     proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;

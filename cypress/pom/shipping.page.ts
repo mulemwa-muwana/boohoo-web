@@ -6,7 +6,7 @@ const selectors: SelectorBrandMap = {
   'boohoo.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -57,7 +57,8 @@ const selectors: SelectorBrandMap = {
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '.b-ngvip-button',
+    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
+    premierProductTitle: 'NGVIP',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -106,7 +107,7 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -152,7 +153,7 @@ const selectors: SelectorBrandMap = {
   'burton.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -198,7 +199,7 @@ const selectors: SelectorBrandMap = {
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-actions > .b-ngvip-button',
+    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -244,7 +245,8 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '#add-to-cart',
+    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    premierProductTitle: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -296,7 +298,8 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '#add-to-cart',
+    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    premierProductTitle: 'Karen Millen Premier',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -346,7 +349,8 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.premier-box-btn',
+    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    premierProductTitle: 'Coast VIP',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -396,7 +400,8 @@ const selectors: SelectorBrandMap = {
   'warehousefashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '#add-to-cart',
+    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    premierProductTitle: 'WAREHOUSE LIMITLESS',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -447,7 +452,8 @@ const selectors: SelectorBrandMap = {
   'oasis-stores.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '#add-to-cart',
+    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    premierProductTitle: 'OASIS UNLIMITED - UNLIMITED EXPRESS DELIVERY',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -497,7 +503,8 @@ const selectors: SelectorBrandMap = {
   'misspap.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '#add-to-cart',
+    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    premierProductTitle: 'VIP DELIVERY',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -547,7 +554,7 @@ const selectors: SelectorBrandMap = {
   'boohoomena.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '#add-to-cart',
+    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -697,7 +704,7 @@ class ShippingPage implements AbstractPage {
     },
     addPremierToCartFromShippingPage () {
       const addPremierToCartFromShippingPage = selectors[variables.brand].addPremierToCartFromShippingPage;
-      cy.get(addPremierToCartFromShippingPage).should('be.visible').click();
+      cy.get(addPremierToCartFromShippingPage).eq(0).click();
     },
     OpenPUDOlocations () {
       const PUDOlocations = selectors[variables.brand].PUDOlocations;
@@ -942,6 +949,11 @@ class ShippingPage implements AbstractPage {
     assertCartShippingPageContainsProduct (product: string) {
       const cartContainer = selectors[variables.brand].cartContainer;
       cy.get(cartContainer, {timeout: 20000}).should('contain', product.trim());
+    },
+    assertShippingPageCartContainsVipProduct () {
+      const cartContainer = selectors[variables.brand].cartContainer;
+      const premierProductTitle = selectors[variables.brand].premierProductTitle;
+      cy.get(cartContainer, {timeout: 20000}).should('contain', premierProductTitle.trim());
     },
     assertShippingMethodIsSelected (shippingMethod: string) {
       const cartContainer = selectors[variables.brand].cartContainer;

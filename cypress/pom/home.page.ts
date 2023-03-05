@@ -275,8 +275,9 @@ class HomePage implements AbstractPage {
 
     },
     closeSearchFieldForMobiles () {
+
       // If Mobile Device is used
-      const viewportWidth = Cypress.config("viewportWidth");
+      const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100) {
         cy.get('body').then($body => {
           if ($body.find('.b-search_dialog-cancel').length) {
@@ -341,15 +342,17 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
+
       // If Mobile Device is used
       const wishListIconMobile = selectors[variables.brand].wishListIconMobile;
-      const viewportWidth = Cypress.config("viewportWidth");
+      const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100) {
         cy.get('body').then($body => {
           if ($body.find(wishListIconMobile).length) {
             cy.get(wishListIconMobile).invoke('show').should('be.visible');
           }
         });
+
       // If Desktop Device is used
       } else {
         const wishListIcon = selectors[variables.brand].wishListIcon;
@@ -368,27 +371,28 @@ class HomePage implements AbstractPage {
       const loginIconLinkMobile = selectors[variables.brand].loginIconLinkMobile;
 
       // If Mobile Device is used
-      const viewportWidth = Cypress.config("viewportWidth");
+      const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100) {
-      cy.get('body').then($body => {
-        if ($body.find(hamburgerMenu).length) {
-          cy.get(hamburgerMenu).click({force: true});
-          if (variables.brand == 'karenmillen.com') {
-            cy.get('body').then($body => {
-              if ($body.find(loginIconLinkMobile).length) {
-                cy.get(loginIconLinkMobile).should('be.visible');
-              }
-            });
-          } else {
-            cy.get('body').then($body => {
-              if ($body.find(loginIconMobile).length) {
-                cy.get(loginIconMobile).invoke('show').click();
-              }
-            });
+        cy.get('body').then($body => {
+          if ($body.find(hamburgerMenu).length) {
+            cy.get(hamburgerMenu).click({force: true});
+            if (variables.brand == 'karenmillen.com') {
+              cy.get('body').then($body => {
+                if ($body.find(loginIconLinkMobile).length) {
+                  cy.get(loginIconLinkMobile).should('be.visible');
+                }
+              });
+            } else {
+              cy.get('body').then($body => {
+                if ($body.find(loginIconMobile).length) {
+                  cy.get(loginIconMobile).invoke('show').click();
+                }
+              });
+            }
           }
-        }
-      });
-     // If Desktop Device is used
+        });
+
+        // If Desktop Device is used
       } else {
         if (isSiteGenesisBrand) {
           cy.get(loginIcon).should('be.visible');

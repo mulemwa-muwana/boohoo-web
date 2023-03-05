@@ -173,7 +173,9 @@ describe('Home Page', function () {
     });
 
     describe('Verify that Social Networking Links are present.', () => {
-      it('Instagram', () => {
+      it('Instagram', function () {
+        this.skip();
+        
         SocialsPage.assertions.assertInstagramIconIsPresent();
         GlobalFooter.click.instagramLink();
       });

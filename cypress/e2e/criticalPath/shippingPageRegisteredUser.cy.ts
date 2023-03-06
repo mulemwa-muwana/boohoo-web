@@ -55,9 +55,8 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.editAddress();
     shippingPage.actions.selectCountry(localeAddress.countryCode);
     cy.wait(5000);
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-      shippingPage.click.addNewAddress();
-    }
+    shippingPage.click.addAddressManually();
+
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     cy.wait(2000);
     shippingPage.actions.cityField(localeAddress.city);
@@ -97,15 +96,8 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
 
-    shippingPage.click.addNewAddressButton();
-    cy.wait(3000);
-    if (variables.locale == 'US') {
-      shippingPage.actions.selectCountry(localeAddress.countryCode);
-      shippingPage.click.addAddressManually();
-      shippingPage.actions.selectState(localeAddress.county);
-    } else {
-      shippingPage.actions.selectCountry(localeAddress.country);
-    }
+    shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
@@ -134,22 +126,8 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-      shippingPage.click.addNewAddress();
-      shippingPage.click.enterManuallyAddressDetails();
-      shippingPage.actions.adressLine1(localeAddress.addressLine);
-      shippingPage.actions.cityField(localeAddress.city);
-      if (variables.locale == 'US') {
-        shippingPage.actions.selectCountry(localeAddress.countryCode);
-        cy.wait(3000);
-        shippingPage.actions.selectState(localeAddress.county);
-      }
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-      shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (variables.locale == 'AU') {
-        shippingPage.actions.stateField(localeAddress.county);
-      }
-    } else if (isSiteGenesisBrand) {
+
+    if (isSiteGenesisBrand) {
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -158,15 +136,19 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {
+      if (variables.brand == 'boohoo.com') {
+        shippingPage.click.addNewAddress();
+      }
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
+      if (variables.locale == 'US' || variables.locale == 'AU') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }  
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
+
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand && variables.brand !='warehousefashion.com' && variables.brand !='coastfashion.com') {
-      shippingPage.click.proceedToBillingVerification();
-    }
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
   });
@@ -203,22 +185,8 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {
-      shippingPage.click.addNewAddress();
-      shippingPage.click.enterManuallyAddressDetails();
-      shippingPage.actions.adressLine1(localeAddress.addressLine);
-      shippingPage.actions.cityField(localeAddress.city);
-      if (variables.locale == 'US') {
-        shippingPage.actions.selectCountry(localeAddress.countryCode);
-        cy.wait(3000);
-        shippingPage.actions.selectState(localeAddress.county);
-      }
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-      shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (variables.locale == 'AU') {
-        shippingPage.actions.stateField(localeAddress.county);
-      }
-    } else if (isSiteGenesisBrand) {
+
+    if (isSiteGenesisBrand) {
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -227,9 +195,15 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {
+      if (variables.brand == 'boohoo.com') {
+        shippingPage.click.addNewAddress();
+      }
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
+      if (variables.locale == 'US' || variables.locale == 'AU') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }  
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);

@@ -44,7 +44,6 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingMethodname: '.b-option_switch-label',
-    stateField: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -95,7 +94,6 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
-    stateField: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -663,7 +661,11 @@ class ShippingPage implements AbstractPage {
     addAddressManually () {
       if (!isSiteGenesisBrand) {
         const addAddressManually = selectors[variables.brand].addAddressManually;
-        cy.get(addAddressManually).should('be.visible').click({force:true});
+        cy.get('body').then($body => {
+          if ($body.find(addAddressManually).length) {
+            cy.get(addAddressManually).click({force:true});
+          }
+        });
       }
     },
     editCart () {
@@ -812,11 +814,6 @@ class ShippingPage implements AbstractPage {
       cy.get(shippingPostcode).clear({force: true}).type(postcode).blur();
       cy.wait(1000);
       cy.get(shippingPostcode).click().blur();
-    },
-    stateField (state: string) {
-      cy.wait(1000);
-      const stateField = selectors[variables.brand].stateField;
-      cy.get(stateField).select(state);
     },
     selectShippingMethod (shippingMethod: string) {
       const shippingMethodname = selectors[variables.brand].shippingMethodname;

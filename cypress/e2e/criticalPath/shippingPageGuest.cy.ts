@@ -64,9 +64,6 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
-    if (isSiteGenesisBrand) {
-      this.skip();
-    }
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddress();
     if (variables.locale == 'EU') {
@@ -131,7 +128,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (variables.locale == 'AU') {
-      shippingPage.actions.stateField(localeAddress.county);
+      shippingPage.actions.selectState(localeAddress.county);
     }
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');

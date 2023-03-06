@@ -31,8 +31,8 @@ describe('Order confirmation page for guest user', function () {
       }
 
       const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-      orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
-      orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
+      orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
+      orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
 
       orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
@@ -65,9 +65,9 @@ describe('Order confirmation page for registered user', function () {
       }
 
       const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-      orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
+      orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
-      orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addrline1);
+      orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
     });
   });
 

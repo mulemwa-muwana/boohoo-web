@@ -31,7 +31,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.click.addAddressManually();
     cy.wait(2000);
 
-    ShippingPage.actions.adressLine1(localeAddress.addrline1);
+    ShippingPage.actions.adressLine1(localeAddress.addressLine);
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     if (variables.brand == 'boohoomena.com') {

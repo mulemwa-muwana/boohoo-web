@@ -8,29 +8,25 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '08082580300',
-        addrline1: '85 Piccadilly',
-        addrline2: '',
+        addressLine: '85 Piccadilly',
         postcode: 'W1J 7NB',
         addressName: 'PrimaryAddress',
         country: 'United Kingdom',
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        confirmEmail: ''
       },
       secondaryAddress: {
         firstName: 'New',
         lastName: 'Test',
-        phone: '020 7590 6960',
-        addrline1: '259 Oxford St',
-        addrline2: '',
-        postcode: 'AB11 6PH',
-        addressName: 'SecondAddress',
+        phone: '02075906960',
+        addressLine: '259 Oxford Street',
+        postcode: 'S6 3FD',
+        addressName: 'SecondaryAddress',
         country: 'United Kingdom',
-        city: 'Aberdeen',
+        city: 'Sheffield',
         countryCode: 'GB',
-        county: 'Aberdeenshire',
-        confirmEmail: ''
+        county: 'South Yorkshire',
       }
     },
 
@@ -40,525 +36,475 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '19176409576',
-        addrline1: '1665 St Marks Ave',
-        addrline2: '',
+        addressLine: '1665 St Marks Ave',
         postcode: '11233',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'United States',
         city: 'New York',
         countryCode: 'US',
         county: 'Alabama',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '12122733267',
-        addrline1: '110 W 42nd St',
-        addrline2: '',
-        postcode: '10036',
-        addressName: 'SecondAddress',
+        addressLine: '110 W 15th St',
+        postcode: '10011-6724',
+        addressName: 'SecondaryAddress',
         country: 'United States',
         city: 'New York',
         countryCode: 'US',
-        county: 'NY',
-        confirmEmail: ''
+        county: 'New York',
       }
     },
 
+    // Ireland addresses.
     IE: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '35314850900',
-        addrline1: 'Smithfield Market 7',
-        addrline2: '',
+        addressLine: 'Smithfield Market 7',
         postcode: 'D07 RF2Y',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Ireland',
         city: 'Smithfield',
         countryCode: 'IE',
         county: 'Dublin',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '35316615133',
-        addrline1: 'Merrion Square W',
-        addrline2: '',
-        postcode: 'D02 K303',
-        addressName: 'SecondAddress',
+        addressLine: '10 Blackhall Green',
+        postcode: 'D07 EK13',
+        addressName: 'SecondaryAddress',
         country: 'Ireland',
-        city: 'Dublin',
+        city: 'Dublin 7',
         countryCode: 'IE',
         county: 'Dublin',
-        confirmEmail: ''
       }
     },
 
+    // Germany addresses.
     DE: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '306948868',
-        addrline1: 'Potsdamer Str. 50',
-        addrline2: '',
+        addressLine: 'Potsdamer Str. 50',
         postcode: '10785 Berlin',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Deutschland',
         city: 'Berlin',
         countryCode: 'DE',
         county: 'Berlin',
-        confirmEmail: ''
+        
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '1631161055',
-        addrline1: 'Schleiermacherstrase 18',
-        addrline2: '',
-        postcode: '10961 Berlin',
-        addressName: 'SecondAddress',
+        addressLine: 'Schleiermacherstr. 18',
+        postcode: '10961',
+        addressName: 'SecondaryAddress',
         country: 'Deutschland',
         city: 'Berlin',
         countryCode: 'DE',
-        county: '',
-        confirmEmail: ''
+        county: 'Berlin',
       }
     },
 
+    // France addresses.
     FR: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '142223144',
-        addrline1: '132 Rue de Rennes',
-        addrline2: '',
+        addressLine: '132 Rue de Rennes',
         postcode: '75006',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'France',
         city: 'Paris',
         countryCode: 'FR',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '140750875',
-        addrline1: '75 Av. des Champs-Élysées, 8e Arrondissement',
-        addrline2: '',
-        postcode: '75008',
-        addressName: 'SecondAddress',
+        addressLine: '75Bis Avenue Marceau',
+        postcode: '75116',
+        addressName: 'SecondaryAddress',
         country: 'France',
         city: ' Paris',
         countryCode: 'FR',
-        county: '',
-        confirmEmail: ''
+        county: 'Paris',
       }
     },
 
+    // Italy addresses.
     IT: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '0642440415',
-        addrline1: 'Via del Corso, 98 ',
-        addrline2: '',
+        addressLine: 'Via del Corso, 98 ',
         postcode: '00187',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Italy',
         city: 'Roma',
         countryCode: 'IT',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '0648124524',
-        addrline1: 'Viale delle Provincie, 31-33 ',
-        addrline2: '',
+        addressLine: 'Viale delle Provincie 31',
         postcode: '00162',
-        addressName: 'SecondAddress',
-        country: 'Italy',
+        addressName: 'SecondaryAddress',
+        country: 'Italia',
         city: 'Roma',
         countryCode: 'IT',
-        county: '',
-        confirmEmail: ''
+        county: 'RM',
       }
     },
 
+    // Spain addresses.
     ES: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '34932160306',
-        addrline1: 'Passeig de Gràcia, 43',
-        addrline2: '',
+        addressLine: 'Passeig de Gràcia, 43',
         postcode: '08007',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Spain',
         city: 'Barcelona',
         countryCode: 'ES',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '34935537801',
-        addrline1: 'Avinguda Diagonal, 208',
-        addrline2: '',
+        addressLine: 'Avinguda Diagonal, 208',
         postcode: '08018',
-        addressName: 'SecondAddress',
-        country: 'Spain',
+        addressName: 'SecondaryAddress',
+        country: 'España',
         city: 'Barcelona',
         countryCode: 'ES',
-        county: '',
-        confirmEmail: ''
+        county: 'Barcelona',
       }
     },
 
+    // Canada addresses.
     CA: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '19053547887',
-        addrline1: '6361 Fallsview Blvd, Niagara Falls',
-        addrline2: '',
+        addressLine: '6361 Fallsview Blvd, Niagara Falls',
         postcode: 'ON L2G 3V9',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Canada',
         city: '',
         countryCode: 'CA',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '',
-        addrline1: '',
-        addrline2: '',
-        postcode: '',
-        addressName: '',
+        phone: '6135550114',
+        addressLine: '75 Rue Ontario E',
+        postcode: 'H2X 1G9',
+        addressName: 'SecondaryAddress',
         country: 'Canada',
-        city: '',
+        city: 'Montréal',
         countryCode: 'CA',
-        county: '',
-        confirmEmail: ''
+        county: 'Quebec',
       }
     },
 
+    // Israel addresses.
     IL: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '4792540835',
-        addrline1: 'HaMaccabi 2',
-        addrline2: '',
+        addressLine: 'HaMaccabi 2',
         postcode: '6329302',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'United Kingdom',
         city: 'Tel Aviv',
         countryCode: 'IL',
         county: 'Israel',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '',
-        addrline1: '',
-        addrline2: '',
-        postcode: '',
-        addressName: '',
-        country: '',
-        city: '',
+        phone: '972558829936',
+        addressLine: 'Ramban St 30',
+        postcode: '	9270007',
+        addressName: 'SecondaryAddress',
+        country: 'Israel',
+        city: 'Jerusalem',
         countryCode: 'IL',
-        county: '',
-        confirmEmail: ''
+        county: 'Jerusalem',
       }
     },
 
+    // Finland addresses.
     FI: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '358294500501',
-        addrline1: 'Mannerheiminaukio 2',
-        addrline2: '',
+        addressLine: 'Mannerheiminaukio 2',
         postcode: '00100',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Finland',
         city: 'Helsinki',
         countryCode: 'FI',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '',
-        addrline1: '',
-        addrline2: '',
-        postcode: '',
-        addressName: '',
-        country: '',
-        city: '',
+        phone: '358409109222',
+        addressLine: 'Rauhankatu 29',
+        postcode: '20100',
+        addressName: 'SecondaryAddress',
+        country: 'Finland',
+        city: 'Turku',
         countryCode: 'FI',
         county: '',
-        confirmEmail: ''
       }
     },
 
+    // Netherlands addresses.
     NL: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '358294500501',
-        addrline1: 'Museumstraat 1',
-        addrline2: '',
+        addressLine: 'Museumstraat 1',
         postcode: '1071 XX',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Nederland',
         city: 'Amsterdam',
         countryCode: 'NL',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '358294500501',
-        addrline1: 'Museumstraat 3',
-        addrline2: '',
-        postcode: '1071 XX',
-        addressName: 'SecondAddress',
+        addressLine: 'Jaffadwarsstraat 20A',
+        postcode: '3061 JS',
+        addressName: 'SecondaryAddress',
         country: 'Nederland',
-        city: 'Amsterdam',
+        city: 'Rotterdam',
         countryCode: 'NL',
         county: '',
-        confirmEmail: ''
       }
     },
 
+    // Sweden addresses.
     SE: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '850532370',
-        addrline1: 'Torsgatan 10',
-        addrline2: '',
+        addressLine: 'Torsgatan 10',
         postcode: '111 23',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Sverige',
         city: 'Stockholm',
         countryCode: 'SE',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '850900500',
-        addrline1: 'Stadsgårdshamnen 22',
-        addrline2: '',
+        phone: '483563451',
+        addressLine: 'Stadsgårdshamnen 22',
         postcode: '116 45',
-        addressName: 'SecondAddress',
+        addressName: 'SecondaryAddress',
         country: 'Sverige',
         city: 'Stockholm',
         countryCode: 'SE',
         county: '',
-        confirmEmail: ''
       }
     },
 
+    // Norway addresses.
     NO: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '4721982000',
-        addrline1: 'Universitetsgata 13,  ',
-        addrline2: '',
+        addressLine: 'Universitetsgata 13,  ',
         postcode: '0164',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Norway',
         city: 'Oslo',
         countryCode: 'NO',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '',
-        addrline1: '',
-        addrline2: '',
-        postcode: '',
-        addressName: '',
+        phone: '80027476',
+        addressLine: 'Akersbakken 39',
+        postcode: '0172',
+        addressName: 'SecondaryAddress',
         country: 'Norway',
-        city: '',
+        city: 'Oslo',
         countryCode: 'NO',
         county: '',
-        confirmEmail: ''
       }
     },
     
+    // Denmark addresses.
     DK: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '4538163816',
-        addrline1: 'Nordre Fasanvej 57',
-        addrline2: '',
+        addressLine: 'Nordre Fasanvej 57',
         postcode: '2000',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Denmark',
         city: 'Frederiksberg',
         countryCode: 'DK',
         county: '',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '4570232110',
-        addrline1: 'Vandkunsten 5',
-        addrline2: '',
+        addressLine: 'Vandkunsten 5',
         postcode: '1467',
-        addressName: 'SecondAddress',
+        addressName: 'SecondaryAddress',
         country: 'Denmark',
-        city: 'København',
+        city: 'København K',
         countryCode: 'DK',
         county: '',
-        confirmEmail: ''
       }
     },
 
+    // Australia addresses.
     AU: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '292475630',
-        addrline1: '50 Clunies Ross St, Australian Capital Territory',
-        addrline2: '',
+        addressLine: '50 Clunies Ross St, Australian Capital Territory',
         postcode: '2600',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Australia',
         city: 'Sydney',
         countryCode: 'AU',
         county: 'ACT',
-        confirmEmail: ''
+        
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '297998488',
-        addrline1: '82 Ebden St, Ainslie ACT',
-        addrline2: '',
-        postcode: '2602',
-        addressName: 'SecondAddress',
+        phone: '0491570156',
+        addressLine: '10 Legon Rd',
+        postcode: '3167',
+        addressName: 'SecondaryAddress',
         country: 'Australia',
-        city: 'Sydney',
+        city: 'Melbourne',
         countryCode: 'AU',
-        county: 'ACT',
-        confirmEmail: ''
+        county: 'Oakleigh South',
       }
     },
 
+    // New Zealand addresses.
     NZ: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '6433456789 ',
-        addrline1: '123 Pinehaven Road',
-        addrline2: '',
+        addressLine: '123 Pinehaven Road',
         postcode: '5019',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: '',
         city: 'Pinehaven',
         countryCode: 'NZ',
         county: 'Upper Hutt',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '',
-        addrline1: '',
-        addrline2: '',
-        postcode: '',
-        addressName: '',
-        country: '',
-        city: '',
+        phone: '34351201',
+        addressLine: '12 Central Road',
+        postcode: '1021',
+        addressName: 'SecondaryAddress',
+        country: 'New Zealand',
+        city: 'Auckland',
         countryCode: 'NZ',
-        county: '',
-        confirmEmail: ''
+        county: 'Kingsland',
       }
     },
 
+    // European Union addresses.
     EU: {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
         phone: '306948868',
-        addrline1: 'Burgring 7',
-        addrline2: '',
+        addressLine: 'Burgring 7',
         postcode: '1010',
-        addressName: 'SecondAddress',
+        addressName: 'PrimaryAddress',
         country: 'Austria',
         city: 'Wien',
         countryCode: 'AT',
         county: 'Austria',
-        confirmEmail: ''
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '306948868',
-        addrline1: 'Potsdamer Str. 50',
-        addrline2: '',
-        postcode: '10785 Berlin',
-        addressName: 'SecondAddress',
-        country: 'Germany',
-        city: 'Berlin',
-        countryCode: 'DE',
-        county: 'Berlin',
-        confirmEmail: ''
+        phone: '4568759267 ',
+        addressLine: 'Rue Africaine',
+        postcode: '1050',
+        addressName: 'SecondaryAddress',
+        country: 'Belgium',
+        city: 'Ixelles',
+        countryCode: 'BE',
+        county: '',
       }
     },
 
+    // Saudi Arabia addresses.
     SA: {
       primaryAddress: {
         firstName: 'New',
         lastName: 'Test',
         phone: '5014245353',
-        addrline1: 'Unit: A2, King Abdul Aziz Rd',
-        addrline2: '',
+        addressLine: 'Unit: A2, King Abdul Aziz Rd',
         postcode: '12467',
         addressName: 'PrimaryAddress',
         country: 'Saudi Arabia',
         city: 'Jeddah',
         countryCode: 'SA',
         county: 'Eastern Province',
-        confirmEmail: ''
       },
       secondaryAddress: {
         firstName: 'Test',
         lastName: 'Test',
-        phone: '5014245353',
-        addrline1: 'Unit: A2, King Abdul Aziz Rd',
-        addrline2: '',
-        postcode: '12467',
+        phone: '567960904',
+        addressLine: '2873 Al Khudair',
+        postcode: '6259',
         addressName: 'SecondaryAddress',
         country: 'Saudi Arabia',
-        city: 'Jeddah',
+        city: 'Riyadh',
         countryCode: 'SA',
-        county: 'Eastern Province',
-        confirmEmail: ''
+        county: 'Riyadh Province',
       }
     }
   };

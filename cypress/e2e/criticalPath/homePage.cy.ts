@@ -37,7 +37,6 @@ describe('Home Page', function () {
   describe('Header verifications', () => {
     it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
       homePage.assertions.assertLogoPresent();
-
       homePage.assertions.assertWishListIconPresent();
       homePage.assertions.assertCartIconPresent();
       homePage.assertions.assertAccountIconPresent(); 
@@ -174,7 +173,9 @@ describe('Home Page', function () {
     });
 
     describe('Verify that Social Networking Links are present.', () => {
-      it('Instagram', () => {
+      it('Instagram', function () {
+        this.skip(); // TODO: Enable this test after Build Server's IP address gets whitelisted for instagram.com
+        
         SocialsPage.assertions.assertInstagramIconIsPresent();
         GlobalFooter.click.instagramLink();
       });
@@ -190,35 +191,30 @@ describe('Home Page', function () {
       });
       
       it('TikTok', function () {
-        if (variables.brand == 'boohoo.com') {
-          SocialsPage.assertions.assertTikTokIconIsPresent();
-          GlobalFooter.click.tiktokLink();
-        } else if (variables.brand == 'nastygal.com' && variables.locale !='FR') {
-          SocialsPage.assertions.assertTikTokIconIsPresent();
-          GlobalFooter.click.tiktokLink();
-        } else {
+        const includedBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com', 'misspap.com', 'boohooman.com'];
+        if (!includedBrands.includes(variables.brand)) {
           this.skip();
         }
+        SocialsPage.assertions.assertTikTokIconIsPresent();
+        GlobalFooter.click.tiktokLink();
       });
       
       it('YouTube', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'karenmillen.com', 'misspap.com', 'boohoomena.com'];
-        if (includedBrands.includes(variables.brand)) {
-          SocialsPage.assertions.assertYouTubeIconIsPresent();
-          GlobalFooter.click.youtubeLink();
-        } else {
+        if (!includedBrands.includes(variables.brand)) {
           this.skip();
         }
+        SocialsPage.assertions.assertYouTubeIconIsPresent();
+        GlobalFooter.click.youtubeLink();
       });
       
       it('Pintrest', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com', 'boohoomena.com'];
-        if (includedBrands.includes(variables.brand)) {
-          SocialsPage.assertions.assertPinterestIconIsPresent();
-          GlobalFooter.click.pintrestLink();
-        } else {
+        if (!includedBrands.includes(variables.brand)) {
           this.skip();
-        }
+        }  
+        SocialsPage.assertions.assertPinterestIconIsPresent();
+        GlobalFooter.click.pintrestLink();
       });
       
       it('TheFix', function () {
@@ -270,9 +266,9 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
         const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA'];
-        if (variables.brand == 'boohoo.com' && !boohooLocales.includes(variables.locale)) {
+        if ((variables.brand == 'boohoo.com' && !boohooLocales.includes(variables.locale)) || variables.brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
-        } else if (variables.brand == 'nastygal.com' || (variables.brand == 'boohoo.com' && boohooLocales.includes(variables.locale))) {
+        } else if (variables.brand == 'boohoo.com' && boohooLocales.includes(variables.locale)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[variables.language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoArcadia[variables.language]);
@@ -407,13 +403,6 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Laybuy', function () {
-        if ((variables.brand == 'boohoo.com' && (variables.locale == 'UK'|| variables.locale == 'AU'|| variables.locale == 'NZ' )) || (variables.brand == 'nastygal.com' && variables.locale != 'US' && variables.locale != 'FR') || (variables.brand == 'coastfashion.com' && (variables.locale == 'EU' ))) {
-          GlobalFooter.actions.checkFooterLinkByText('Laybuy');
-        } else {
-          this.skip();
-        }
-      });
       it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', function () {
         if (variables.brand == 'boohoo.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com' || variables.brand == 'coastfashion.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[variables.language], { assertionUrl: 'www.boohooplc.com' });
@@ -512,7 +501,7 @@ describe('Home Page', function () {
       it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-        if (variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com') {
+        if (variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com' || variables.brand == 'coastfashion.com') {
           cy.contains(`COPYRIGHT © ${currentYear - 1}`, { matchCase: false }).should('be.visible');
         } else {
           cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');

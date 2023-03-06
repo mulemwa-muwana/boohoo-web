@@ -112,9 +112,23 @@ class AssertionText {
     ES: ''
   };
 
-  ShippingMandatoryFieldsFnameLnamePostcode: TranslationMap = {
+  ShippingMandatoryFieldErrorBoohoo: TranslationMap = {
     EN: 'Don’t forget about me!',
     FR: 'Ne m/’oublie pas!',
+    NL: 'Vergeet mij niet!',
+    DE: 'Vergiss mich nicht!',
+    DK: 'Glem ikke mig!',
+    FI: 'Älä unohda minua!',
+    NO: 'Ikke glem meg!',
+    SE: 'Glöm inte mig!',
+    IL: 'אל תשכח ממני!',
+    IT: 'Non dimenticarti di me!',
+    ES: '¡No te olvides de mí!'
+  };
+
+  ShippingMandatoryFieldError: TranslationMap = {
+    EN: 'This field is required.',
+    FR: 'Ne m’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -130,34 +144,6 @@ class AssertionText {
     EN: 'Please enter a valid Post Code',
     FR: 'Ce champ est obligatoire.',
     NL: 'Dit veld is verplicht.',
-    DE: 'Vergiss mich nicht!',
-    DK: 'Glem ikke mig!',
-    FI: 'Älä unohda minua!',
-    NO: 'Ikke glem meg!',
-    SE: 'Glöm inte mig!',
-    IL: 'אל תשכח ממני!',
-    IT: 'Non dimenticarti di me!',
-    ES: '¡No te olvides de mí!'
-  };
-
-  ShippingMandatoryFieldsFnameLnamePostcodeArcadia: TranslationMap = {
-    EN: 'This field is required.',
-    FR: 'Ne m’oublie pas!',
-    NL: 'Vergeet mij niet!',
-    DE: 'Vergiss mich nicht!',
-    DK: 'Glem ikke mig!',
-    FI: 'Älä unohda minua!',
-    NO: 'Ikke glem meg!',
-    SE: 'Glöm inte mig!',
-    IL: 'אל תשכח ממני!',
-    IT: 'Non dimenticarti di me!',
-    ES: '¡No te olvides de mí!'
-  };
-
-  ShippingMandatoryPostcodeArcadia: TranslationMap = {
-    EN: 'Don’t forget about me!',
-    FR: 'Ne m’oublie pas!',
-    NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
     FI: 'Älä unohda minua!',
@@ -295,7 +281,7 @@ class AssertionText {
   };
 
   TermsAndConditionsH1: TranslationMap = {
-    EN: '\n                Terms & Conditions\n            ',
+    EN: 'Terms & Conditions',
     FR: '',
     NL: 'ALGEMENE GEBRUIKSVOORWAARDEN',
     DE: '',
@@ -337,7 +323,7 @@ class AssertionText {
   };
 
   Premier: TranslationMap = {
-    EN: '\n                        BOOHOO PREMIER\n                    ',
+    EN: 'UNLIMITED NEXT DAY DELIVERY',
     FR: 'PREMIER',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
@@ -364,22 +350,8 @@ class AssertionText {
     ES: ''
   };
 
-  UnlimitedDP: TranslationMap = {
-    EN: 'GET UNLIMITED',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
   AddPremierToCartButton: TranslationMap = {
-    EN: 'PREMIER',
+    EN: 'GET UNLIMITED',
     FR: 'AJOUTER AU PANIER',
     NL: '',
     DE: '',
@@ -392,23 +364,9 @@ class AssertionText {
     ES: ''
   };
 
-  PremierSiteGenesis: TranslationMap = {
-    EN: 'VIP',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
-  PremierWarehouse: TranslationMap = {
-    EN: 'WAREHOUSE LIMITLESS',
-    FR: '',
+  AddPremierToCartButtonBoohoo: TranslationMap = {
+    EN: 'ADD TO CART',
+    FR: 'AJOUTER AU PANIER',
     NL: '',
     DE: '',
     DK: '',
@@ -632,34 +590,6 @@ class AssertionText {
 
   assertShippingAddressIsMandatoryArkadia: TranslationMap = {
     EN: 'Oops, looks like you didn\'t add an address',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
-  assertShippingAddressIsMandatoryNG: TranslationMap = {
-    EN: 'This field is required.',
-    FR: '',
-    NL: '',
-    DE: '',
-    DK: '',
-    FI: '',
-    NO: '',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
-  };
-
-  assertMandatoryFieldErrorSiteGenesis: TranslationMap = {
-    EN: 'This field is required.',
     FR: '',
     NL: '',
     DE: '',

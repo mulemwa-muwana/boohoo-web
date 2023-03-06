@@ -111,9 +111,7 @@ declare type AddressData = {
     firstName: string;
     lastName: string;
     phone: string;
-    confirmEmail: string; 
-    addrline1: string;
-    addrline2: string;
+    addressLine: string;
     postcode: string;
     addressName: string;
     city: string;

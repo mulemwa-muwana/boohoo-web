@@ -275,6 +275,16 @@ class CartPage implements AbstractPage {
         $el.click();
       });
     },
+    removePremierFromCart () {
+
+      // Remove everything except the first item. If there are 3 items in cart, item 2 and 3 will be removed
+      const clearCart = selectors[variables.brand].clearCart;
+      cy.get(clearCart).each(($el, index) => {
+        if (index > 0) {
+          cy.wrap($el).click();
+        }
+      });
+    },
     proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[variables.brand].checkoutBtnForMobile;
@@ -293,9 +303,6 @@ class CartPage implements AbstractPage {
     updateQuantity () {
       const editQuantity = selectors[variables.brand].editQuantity;
       cy.get(editQuantity).should('be.visible').click();
-    },
-    removeFromCart (index: number) {
-      cy.get('.b-cart_product-remove').eq(index).click();
     },
     openPayPalSandbox () {
       const payPalCTA = selectors[variables.brand].PayPalCTA;

@@ -26,7 +26,7 @@ describe('Checkout Page', function () {
     if (isSiteGenesisBrand || arcadiaBrands.includes(variables.brand)) {
       this.skip();
     }
-    const includedLocals: Array<Locale> = ['UK', 'FR', 'IE'];
+    const includedLocals: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
 
     if (variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
       CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);

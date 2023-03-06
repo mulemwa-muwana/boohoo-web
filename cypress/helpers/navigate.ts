@@ -79,7 +79,7 @@ class Navigate {
         shippingPage.actions.lastNameField(primaryAddress.lastName);
         shippingPage.actions.selectCountry(primaryAddress.country);
         shippingPage.click.addAddressManually();
-        shippingPage.actions.adressLine1(primaryAddress.addrline1);
+        shippingPage.actions.adressLine1(primaryAddress.addressLine);
         shippingPage.actions.cityField(primaryAddress.city);
         if (variables.locale == 'US' || variables.locale == 'AU') {
           shippingPage.actions.selectState(primaryAddress.county);
@@ -113,11 +113,11 @@ class Navigate {
       shippingPage.actions.firstNameField(primaryAddress.firstName);
       shippingPage.actions.lastNameField(primaryAddress.lastName);
       shippingPage.actions.selectCountry(primaryAddress.country);
-      shippingPage.actions.clearPhoneNumberFieldAndAddNewOne(primaryAddress.phone);
+      shippingPage.actions.phoneNumberField(primaryAddress.phone);
       cy.wait(5000);
       shippingPage.click.addAddressManually();  
-      shippingPage.actions.clearAdressLine1AndAddNewOne(primaryAddress.addrline1);
-      shippingPage.actions.clearCityFieldAndAddNewOne(primaryAddress.city);
+      shippingPage.actions.adressLine1(primaryAddress.addressLine);
+      shippingPage.actions.cityField(primaryAddress.city);
       if (variables.locale == 'US') {
         shippingPage.actions.selectState(primaryAddress.county);
       } else if (variables.locale == 'AU') {
@@ -126,7 +126,7 @@ class Navigate {
       if (variables.brand == 'boohoomena.com') {
         shippingPage.actions.countyField(primaryAddress.county);
       }
-      shippingPage.actions.clearPostcodeFieldAndAddNewOne(primaryAddress.postcode);
+      shippingPage.actions.postcodeField(primaryAddress.postcode);
       shippingPage.click.proceedToBilling();
       BillingPage.actions.waitPageToLoad();
     }

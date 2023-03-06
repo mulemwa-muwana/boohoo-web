@@ -174,7 +174,7 @@ describe('Home Page', function () {
 
     describe('Verify that Social Networking Links are present.', () => {
       it('Instagram', function () {
-        this.skip();
+        this.skip(); // TODO: Enable this test after Build Server's IP address gets whitelisted for instagram.com
         
         SocialsPage.assertions.assertInstagramIconIsPresent();
         GlobalFooter.click.instagramLink();

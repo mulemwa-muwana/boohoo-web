@@ -118,10 +118,8 @@ class Navigate {
       shippingPage.click.addAddressManually();  
       shippingPage.actions.adressLine1(primaryAddress.addressLine);
       shippingPage.actions.cityField(primaryAddress.city);
-      if (variables.locale == 'US') {
+      if (variables.locale == 'US' || variables.locale == 'AU') {
         shippingPage.actions.selectState(primaryAddress.county);
-      } else if (variables.locale == 'AU') {
-        shippingPage.actions.stateField(primaryAddress.county);
       }
       if (variables.brand == 'boohoomena.com') {
         shippingPage.actions.countyField(primaryAddress.county);

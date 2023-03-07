@@ -122,7 +122,7 @@ const selectors: SelectorBrandMap = {
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
-    clearCart: '[class*="button-remove"]',
+    clearCart: '.item-total .js-remove-from-bag',
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',

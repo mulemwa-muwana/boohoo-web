@@ -243,7 +243,7 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPage: '.premier-add-to-cart',
     premierProductTitle: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
@@ -296,7 +296,7 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPage: '.js-premier-add-to-cart',
     premierProductTitle: 'Karen Millen Premier',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
@@ -451,7 +451,7 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
-    premierProductTitle: 'OASIS UNLIMITED - UNLIMITED EXPRESS DELIVERY',
+    premierProductTitle: 'OASIS UNLIMITED - UNLIMITED DELIVERY',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -626,6 +626,8 @@ class ShippingPage implements AbstractPage {
             cy.get(addNewAddress).click({force:true});
           }
         });
+      } else {
+        this.guestEditAddress();
       }
     },
     addPremierByButtonName (text: string) {

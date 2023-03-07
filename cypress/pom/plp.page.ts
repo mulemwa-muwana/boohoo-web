@@ -1,6 +1,8 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { RouteMatcher } from 'cypress/types/net-stubbing';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -375,34 +377,57 @@ class PlpPage implements AbstractPage {
       cy.get(priceVariant).click({ force: true });
     },
 
-    selectRefinementVariantShopByFit (classification: string) {
-      const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
-      cy.get(selectRefinementVariantShopByFit).contains(classification).click({ force: true });
-    },
-
-    selectRefinementVariantFit () {
-      const selectRefinementVariantFit = selectors[variables.brand].selectRefinementVariantFit;
-      cy.get(selectRefinementVariantFit).click({ force: true });
+    selectRefinementVariantShopByFit () {
+      if (isSiteGenesisBrand) {
+        const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
+        cy.get(selectRefinementVariantShopByFit).contains('Petite').click({ force: true });
+      } else if (variables.brand == 'dorothyperkins.com') {
+        cy.get('button[id*="-shop-by-"]').click({ force: true });
+        cy.get('ul[id*="refinementAttributesList-shop-by-"]').contains('Petite').click({ force: true });
+      } else {
+        cy.get('button[id*="-' + (assertionText.shopByFit[variables.language] + '"]')).click({ force: true });
+        cy.get('#refinementAttributesList-' + (assertionText.shopByFit[variables.language])).contains('Petite').click({ force: true });
+      }
     },
 
     selectRefinementVariantColor (color: string) {
-      const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
-      cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
+      if (isSiteGenesisBrand) {
+        const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
+        cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
+      } else {
+        cy.get('button[id*="-' + (assertionText.colour[variables.language] + '"]')).click({ force: true });
+        cy.get('#refinementAttributesList-' + (assertionText.colour[variables.language])).contains(color).click({ force: true });
+      }
     },
 
     selectRefinementVariantStyle (style: string) {
-      const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
-      cy.get(selectRefinementVariantStyle).contains(style).click({ force: true });
+      if (isSiteGenesisBrand) {
+        const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
+        cy.get(selectRefinementVariantStyle).contains(style).click({ force: true });
+      } else {
+        cy.get('button[id*="-' + (assertionText.style[variables.language] + '"]')).click({ force: true });
+        cy.get('#refinementAttributesList-' + (assertionText.style[variables.language])).contains(style).click({ force: true });
+      }
     },
 
     selectRefinementVariantSize () {
-      const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
-      cy.get(selectRefinementVariantSize).find('li').each(($element) => {
-        if ($element.attr('data-value')) {
-          $element.find('span').trigger('click');
-          return false;
-        }
-      });
+      if (isSiteGenesisBrand) {
+        const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
+        cy.get(selectRefinementVariantSize).find('li').each(($element) => {
+          if ($element.attr('data-value')) {
+            $element.find('span').trigger('click');
+            return false;
+          }
+        });
+      } else {
+        cy.get('button[id*="-' + (assertionText.size[variables.language] + '"]')).click({ force: true });
+        cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.size[variables.language])).find('li').each(($element) => {
+          if ($element.attr('data-tau')) {
+            $element.find('span').trigger('click');
+            return false;
+          }
+        });
+      }
     },
 
     selectRefinementVariantSizePerLanguages () {
@@ -416,8 +441,13 @@ class PlpPage implements AbstractPage {
     },
 
     selectRefinementVariantCategory (category: string) {
-      const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
-      cy.get(selectRefinementVariantCategory).contains(category).click({ force: true });
+      if (isSiteGenesisBrand) {
+        const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
+        cy.get(selectRefinementVariantCategory).contains(category).click({ force: true });
+      } else {
+        cy.get('button[id*="-' + (assertionText.category[variables.language] + '"]')).click({ force: true });
+        cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.category[variables.language])).contains(category).click({ force: true });
+      }
     },
 
     selectCategoryPerLanguages (language: string) {
@@ -425,19 +455,34 @@ class PlpPage implements AbstractPage {
       cy.get(selectRefinementVariantCategoryOtherLanguages + language).click({ force: true });
     },
 
-    selectRefinementVariantOccasion (occasion: string) {
-      const selectRefinementVariantOccasion = selectors[variables.brand].selectRefinementVariantOccasion;
-      cy.get(selectRefinementVariantOccasion).contains(occasion).click({ force: true });
+    selectRefinementVariantOccasion () {
+      if (isSiteGenesisBrand) {
+        const selectRefinementVariantOccasion = selectors[variables.brand].selectRefinementVariantOccasion;
+        cy.get(selectRefinementVariantOccasion).contains('Casual').click({ force: true });
+      } else {
+        cy.get('button[id*="-' + (assertionText.occasion[variables.language] + '"]')).click({ force: true });
+        cy.get('#refinementAttributesList-' + (assertionText.occasion[variables.language])).contains('Casual').click({ force: true });
+      }
     },
 
     selectRefinementVariantPrice () {
-      const selectRefinementVariantPrice = selectors[variables.brand].selectRefinementVariantPrice;
-      cy.get(selectRefinementVariantPrice).find('li').each(($element) => {
-        if ($element.attr('data-value')) {
-          $element.find('span').trigger('click');
-          return false;
-        }
-      });
+      if (isSiteGenesisBrand) {
+        const selectRefinementVariantPrice = selectors[variables.brand].selectRefinementVariantPrice;
+        cy.get(selectRefinementVariantPrice).find('li').each(($element) => {
+          if ($element.attr('data-value')) {
+            $element.find('span').trigger('click');
+            return false;
+          }
+        });
+      } else {
+        cy.get('button[id*="-' + (assertionText.price[variables.language] + '"]')).click({ force: true });
+        cy.get('#refinementAttributesList-price').find('li').each(($element) => {
+          if ($element.attr('data-tau')) {
+            $element.find('span').trigger('click');
+            return false;
+          }
+        });
+      }
     },
 
     // Load more products
@@ -473,7 +518,12 @@ class PlpPage implements AbstractPage {
   };
 
   actions = {
-
+    setupChangeIntercept (interceptRouteRegex: RouteMatcher) {
+      cy.intercept(interceptRouteRegex).as('updateRefinement');
+    },
+    waitForPageRefinementUpdate () {
+      cy.wait('@updateRefinement', { timeout: 60000 }).its('response.statusCode').should('eq', 200);
+    }
   };
 
   assertions = {
@@ -538,12 +588,19 @@ class PlpPage implements AbstractPage {
         .invoke('get', 'prefv1')
         .should('contains', productVariations);
     },
-    assertProductSizeIsDisplayedOnPLP (selectedSize: string) {
+    assertProductSizeIsDisplayedOnPLP () {
+      if (isSiteGenesisBrand) {
+        cy.get('.sizeRefinement > div > ul > li.swatches-item.selected').invoke('attr', 'data-value').as('selectedSize');
+      } else {
+        cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]').invoke('attr', 'aria-label').as('selectedSize');
+      }
+
       cy.location('search')
         .should('contains', '?prefn1=sizeRefinement&prefv1=')
         .then((s) => new URLSearchParams(s))
-        .invoke('get', 'prefv1')
-        .should('eq', selectedSize);
+        .invoke('get', 'prefv1').then( function (size) {
+          cy.wrap(size).should('eq', this.selectedSize);
+        })
     },
     assertProductPriceIsDisplayedOnPLP () {
       cy.location('search')

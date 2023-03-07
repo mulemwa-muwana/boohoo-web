@@ -29,6 +29,7 @@ describe('Product Listing Page tests', function () {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
     }
   });
+
   it('Verify that plp page opens', () => {
     if (variables.brand == 'nastygal.com') {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlDresses[variables.language]);
@@ -67,111 +68,70 @@ describe('Product Listing Page tests', function () {
 
   describe('Product refinements', () => {
     it('Verify category refinement is applied', () => {
-      if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantCategory(productVariations.productAccessories[variables.language]);
-      } else {
-        cy.get('button[id*="-' + (assertionText.category[variables.language] + '"]')).click({ force: true });
-        cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.category[variables.language])).contains(productVariations.productAccessories[variables.language]).click({ force: true });
-      }
-      cy.intercept(/category/).as('updateRefinement');
-      cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      plpPage.actions.setupChangeIntercept(/category/);
+      plpPage.click.selectRefinementVariantCategory(productVariations.productAccessories[variables.language]);
+      plpPage.actions.waitForPageRefinementUpdate();
+
       plpPage.assertions.assertProductVariantIsApplied('category', productVariations.productAccessories[variables.language]);
     });
     it('Verify size refinement is applied', () => {
-      if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantSize();
-        cy.intercept(/size/).as('updateRefinement');
-        cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
-        cy.get('.sizeRefinement > div > ul > li.swatches-item.selected').invoke('attr', 'data-value').as('selectedSize').then(function () {
-          plpPage.assertions.assertProductSizeIsDisplayedOnPLP(this.selectedSize);
-        });
-      } else {
-        cy.get('button[id*="-' + (assertionText.size[variables.language] + '"]')).click({ force: true });
-        cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.size[variables.language])).find('li').each(($element) => {
-          if ($element.attr('data-tau')) {
-            $element.find('span').trigger('click');
-            return false;
-          }
-        });
-        cy.intercept(/size/).as('updateRefinement');
-        cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
-        cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]').invoke('attr', 'aria-label').as('selectedSize').then(function () {
-          plpPage.assertions.assertProductSizeIsDisplayedOnPLP(this.selectedSize);
-        });
-      }
+      
+      plpPage.actions.setupChangeIntercept(/size/);
+      plpPage.click.selectRefinementVariantSize();
+      plpPage.actions.waitForPageRefinementUpdate();
+
+      plpPage.assertions.assertProductSizeIsDisplayedOnPLP();
     });
     it('Verify style refinement is applied', function () {
       const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU', 'US', 'CA'];
       if (variables.brand == 'nastygal.com' && !nastygalLocalesExcludedStyle.includes(variables.locale)) {
         this.skip();
-      } else if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
-      } else {
-        cy.get('button[id*="-' + (assertionText.style[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.style[variables.language])).contains(productVariations.productShopByStyle[variables.language]).click({ force: true });
-      }
-      cy.intercept(/style/).as('updateRefinement');
-      cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      }  
+      plpPage.actions.setupChangeIntercept(/style/);
+      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
+      plpPage.actions.waitForPageRefinementUpdate();
+
       plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);
     });
     it('Verify color refinement is applied', () => {
-      if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[variables.language]);
-      } else {
-        cy.get('button[id*="-' + (assertionText.colour[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.colour[variables.language])).contains(productVariations.ColorBlack[variables.language]).click({ force: true });
-      }
-      cy.intercept(/color/).as('updateRefinement');
-      cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      plpPage.actions.setupChangeIntercept(/color/);
+      plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[variables.language]);
+      plpPage.actions.waitForPageRefinementUpdate();
+
       plpPage.assertions.assertProductVariantIsApplied('color', productVariations.ColorBlack[variables.language]);
     });
     it('Verify price refinement is applied', function () {
       const brandsExludedPriceRefinement: Array<GroupBrands> = ['nastygal.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
       if (brandsExludedPriceRefinement.includes(variables.brand)) {
         this.skip();
-      } else if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantPrice();
-      } else {
-        cy.get('button[id*="-' + (assertionText.price[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-price').find('li').each(($element) => {
-          if ($element.attr('data-tau')) {
-            $element.find('span').trigger('click');
-            return false;
-          }
-        });
       }
-      cy.intercept(/pmin=/).as('updateRefinement');
-      cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      plpPage.actions.setupChangeIntercept(/pmin=/);
+      plpPage.click.selectRefinementVariantPrice();
+      plpPage.actions.waitForPageRefinementUpdate();
+
       plpPage.assertions.assertProductPriceIsDisplayedOnPLP();
     });
+
     it('Verify shop by fit refinement is applied', function () {
       if (variables.brand == 'burton.co.uk') {
         this.skip();
-      } else if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantShopByFit('Petite');
-      } else if (variables.brand == 'dorothyperkins.com') {
-        cy.get('button[id*="-shop-by-"]').click({ force: true });
-        cy.get('ul[id*="refinementAttributesList-shop-by-"]').contains('Petite').click({ force: true });
-      } else {
-        cy.get('button[id*="-' + (assertionText.shopByFit[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.shopByFit[variables.language])).contains('Petite').click({ force: true });
-      }
-      cy.intercept(/classification/).as('updateRefinement');
-      cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      }  
+      plpPage.actions.setupChangeIntercept(/classification/);
+      plpPage.click.selectRefinementVariantShopByFit();
+      plpPage.actions.waitForPageRefinementUpdate();
+
       plpPage.assertions.assertProductVariantIsApplied('classification', 'Petite');
     });
+
     it('Verify occasion refinement is applied', function () {
       const brandsExcludedOccasion: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk'];
       if (brandsExcludedOccasion.includes(variables.brand)) {
         this.skip();
-      } else if (isSiteGenesisBrand) {
-        plpPage.click.selectRefinementVariantOccasion('Casual');
-      } else {
-        cy.get('button[id*="-' + (assertionText.occasion[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.occasion[variables.language])).contains('Casual').click({ force: true });
       }
-      cy.intercept(/occasion/).as('updateRefinement');
-      cy.wait('@updateRefinement', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      plpPage.actions.setupChangeIntercept(/occasion/);
+      plpPage.click.selectRefinementVariantOccasion();
+      plpPage.actions.waitForPageRefinementUpdate();
+
       plpPage.assertions.assertProductVariantIsApplied('occasion', 'Casual');
     });
   });

@@ -51,7 +51,7 @@ describe('Shipping Page Registered user tests', function () {
 
   it('Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'secondaryAddress');
-    cy.wait(3000);
+    cy.wait(4000);
     shippingPage.click.editAddress();
     shippingPage.actions.selectCountry(localeAddress.countryCode);
     cy.wait(5000);

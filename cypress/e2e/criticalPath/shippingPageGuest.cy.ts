@@ -93,6 +93,9 @@ describe('Shipping Page Guest user tests', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.click.addAddressManually();
+    if (isSiteGenesisBrand) {
+      shippingPage.click.guestEditAddress();
+    }
 
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -104,6 +107,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
+      shippingPage.actions.emailField(this.guestEmail);
       shippingPage.actions.confirmEmailField(this.guestEmail);
     }
     shippingPage.click.proceedToBilling();
@@ -132,6 +136,7 @@ describe('Shipping Page Guest user tests', function () {
     }
     if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
       shippingPage.actions.selectDate('23', 'May', '2001');
+      shippingPage.actions.emailField(this.guestEmail);
       shippingPage.actions.confirmEmailField(this.guestEmail);
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
@@ -165,6 +170,7 @@ describe('Shipping Page Guest user tests', function () {
     if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', '05', '2001');
       if (variables.brand != 'boohooman.com') {
+        shippingPage.actions.emailField(this.guestEmail); 
         shippingPage.actions.confirmEmailField(this.guestEmail); 
       }
     }
@@ -174,7 +180,7 @@ describe('Shipping Page Guest user tests', function () {
 
   //  TESTS FOR SITE GENESIS BRANDS:  //
   it('SG: Verify that email field is filled with correct email address', function () {   
-    if (!isSiteGenesisBrand || variables.brand == 'boohooman.com') { // Email field only for Site Genesis brands is on Shipping page.
+    if (!isSiteGenesisBrand || variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com') { // Email field only for Site Genesis brands is on Shipping page.
       this.skip();
     }
     shippingPage.assertions.assertEmailIsCorrect(this.guestEmail);

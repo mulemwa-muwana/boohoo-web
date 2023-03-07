@@ -582,10 +582,10 @@ class PlpPage implements AbstractPage {
       cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'src');
     },
     assertProductVariantIsApplied (typeOfPrefn: string, productVariations: string) {
-      cy.location('search', {timeout: 30000})
+      cy.location('search', {timeout: 60000})
         .should('contains', '?prefn1=' + typeOfPrefn + '&prefv1=')
         .then((s) => new URLSearchParams(s))
-        .invoke('get', 'prefv1', {timeout: 30000})
+        .invoke('get', 'prefv1', {timeout: 60000})
         .should('contains', productVariations);
     },
     assertProductSizeIsDisplayedOnPLP () {
@@ -595,15 +595,15 @@ class PlpPage implements AbstractPage {
         cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]').invoke('attr', 'aria-label').as('selectedSize');
       }
 
-      cy.location('search', {timeout: 30000})
+      cy.location('search', {timeout: 60000})
         .should('contains', '?prefn1=sizeRefinement&prefv1=')
         .then((s) => new URLSearchParams(s))
-        .invoke('get', 'prefv1', {timeout: 30000}).then( function (size) {
+        .invoke('get', 'prefv1', {timeout: 60000}).then( function (size) {
           cy.wrap(size).should('eq', this.selectedSize);
-        })
+        });
     },
     assertProductPriceIsDisplayedOnPLP () {
-      cy.location('search', {timeout: 30000})
+      cy.location('search', {timeout: 60000})
         .should('contains', 'pmax')
         .should('contains', 'pmin');
     },

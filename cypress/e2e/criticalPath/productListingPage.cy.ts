@@ -2,8 +2,6 @@ import plpPage from '../../pom/plp.page';
 import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
-import assertionText from 'cypress/helpers/assertionText';
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -67,39 +65,39 @@ describe('Product Listing Page tests', function () {
   });
 
   describe('Product refinements', () => {
+    
     it('Verify category refinement is applied', () => {
       plpPage.actions.setupChangeIntercept(/category/);
       plpPage.click.selectRefinementVariantCategory(productVariations.productAccessories[variables.language]);
       plpPage.actions.waitForPageRefinementUpdate();
-
       plpPage.assertions.assertProductVariantIsApplied('category', productVariations.productAccessories[variables.language]);
     });
+
     it('Verify size refinement is applied', () => {
-      
       plpPage.actions.setupChangeIntercept(/size/);
       plpPage.click.selectRefinementVariantSize();
       plpPage.actions.waitForPageRefinementUpdate();
-
       plpPage.assertions.assertProductSizeIsDisplayedOnPLP();
     });
+    
     it('Verify style refinement is applied', function () {
       const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU', 'US', 'CA'];
-      if (variables.brand == 'nastygal.com' && !nastygalLocalesExcludedStyle.includes(variables.locale)) {
+      if (variables.brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(variables.locale)) {
         this.skip();
       }  
       plpPage.actions.setupChangeIntercept(/style/);
       plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
       plpPage.actions.waitForPageRefinementUpdate();
-
       plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);
     });
+    
     it('Verify color refinement is applied', () => {
       plpPage.actions.setupChangeIntercept(/color/);
       plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[variables.language]);
       plpPage.actions.waitForPageRefinementUpdate();
-
       plpPage.assertions.assertProductVariantIsApplied('color', productVariations.ColorBlack[variables.language]);
     });
+    
     it('Verify price refinement is applied', function () {
       const brandsExludedPriceRefinement: Array<GroupBrands> = ['nastygal.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
       if (brandsExludedPriceRefinement.includes(variables.brand)) {
@@ -108,7 +106,6 @@ describe('Product Listing Page tests', function () {
       plpPage.actions.setupChangeIntercept(/pmin=/);
       plpPage.click.selectRefinementVariantPrice();
       plpPage.actions.waitForPageRefinementUpdate();
-
       plpPage.assertions.assertProductPriceIsDisplayedOnPLP();
     });
 
@@ -119,7 +116,6 @@ describe('Product Listing Page tests', function () {
       plpPage.actions.setupChangeIntercept(/classification/);
       plpPage.click.selectRefinementVariantShopByFit();
       plpPage.actions.waitForPageRefinementUpdate();
-
       plpPage.assertions.assertProductVariantIsApplied('classification', 'Petite');
     });
 
@@ -131,7 +127,6 @@ describe('Product Listing Page tests', function () {
       plpPage.actions.setupChangeIntercept(/occasion/);
       plpPage.click.selectRefinementVariantOccasion();
       plpPage.actions.waitForPageRefinementUpdate();
-
       plpPage.assertions.assertProductVariantIsApplied('occasion', 'Casual');
     });
   });

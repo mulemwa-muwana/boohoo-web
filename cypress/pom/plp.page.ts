@@ -377,16 +377,16 @@ class PlpPage implements AbstractPage {
       cy.get(priceVariant).click({ force: true });
     },
 
-    selectRefinementVariantShopByFit () {
+    selectRefinementVariantShopByFit (productVariation: string) {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
-        cy.get(selectRefinementVariantShopByFit).contains('Petite').click({ force: true });
+        cy.get(selectRefinementVariantShopByFit).contains(productVariation).click({ force: true });
       } else if (variables.brand == 'dorothyperkins.com') {
         cy.get('button[id*="-shop-by-"]').click({ force: true });
-        cy.get('ul[id*="refinementAttributesList-shop-by-"]').contains('Petite').click({ force: true });
+        cy.get('ul[id*="refinementAttributesList-shop-by-"]').contains(productVariation).click({ force: true });
       } else {
         cy.get('button[id*="-' + (assertionText.shopByFit[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.shopByFit[variables.language])).contains('Petite').click({ force: true });
+        cy.get('#refinementAttributesList-' + (assertionText.shopByFit[variables.language])).contains(productVariation).click({ force: true });
       }
     },
 

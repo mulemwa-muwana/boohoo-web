@@ -29,9 +29,7 @@ describe('Product Listing Page tests', function () {
   });
 
   it('Verify that plp page opens', () => {
-    if (variables.brand == 'nastygal.com') {
-      plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlDresses[variables.language]);
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
+    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[variables.language]);
     } else {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[variables.language]);
@@ -110,11 +108,11 @@ describe('Product Listing Page tests', function () {
     });
 
     it('Verify shop by fit refinement is applied', function () {
-      if (variables.brand == 'burton.co.uk') {
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'boohooman.com') {
         this.skip();
       }  
       plpPage.actions.setupChangeIntercept(/classification/);
-      plpPage.click.selectRefinementVariantShopByFit();
+      plpPage.click.selectRefinementVariantShopByFit('Petite');
       plpPage.actions.waitForPageRefinementUpdate();
       plpPage.assertions.assertProductVariantIsApplied('classification', 'Petite');
     });

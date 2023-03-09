@@ -288,14 +288,15 @@ class CartPage implements AbstractPage {
     proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[variables.brand].checkoutBtnForMobile;
-      cy.get('body').then($body => {
-        if ($body.find(checkoutBtnForMobile).length) {
-          cy.get(checkoutBtnForMobile).click({force: true});
-        } else {
-          cy.get(proceedToCheckout).invoke('show').click({force: true}); 
-        }
-      }   
-      );
+
+      // If Mobile Device is used
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100) {
+        cy.get(checkoutBtnForMobile).click({force: true});
+      // If Desktop Device is used
+      } else {
+        cy.get(proceedToCheckout).invoke('show').click({force: true});
+      }
     },
   };
 

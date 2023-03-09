@@ -95,7 +95,6 @@ class Navigate {
           shippingPage.click.proceedToBilling();
         } else {
           shippingPage.click.proceedToBilling();
-          BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
         }
         if (variables.brand == 'boohooman.com') {
           BillingPage.actions.billingEmailField(credentials.guest);

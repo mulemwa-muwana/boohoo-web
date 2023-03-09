@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.oasisfashion.com',
-    sku: 'BAA04175-1', 
+    sku: 'AAA00008-10', 
     brand: 'oasis-stores.com',
     locale: 'UK',
     language: 'EN',

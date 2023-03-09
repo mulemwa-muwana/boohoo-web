@@ -18,6 +18,9 @@ describe('Order confirmation page for guest user', function () {
 
   it('Verify that guest user can place order with Visa card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('GuestUser');
+    if (!isSiteGenesisBrand) {
+      billingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+    }
     billingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -42,6 +45,9 @@ describe('Order confirmation page for guest user', function () {
 
   it('Verify that guest user can place order using Credit Card - Amex)', function () {
     Navigate.toBillingPage('GuestUser');
+    if (!isSiteGenesisBrand) {
+      billingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+    }
     billingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
     billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
   });

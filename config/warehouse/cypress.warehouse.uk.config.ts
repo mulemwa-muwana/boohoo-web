@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.warehousefashion.com',
-    sku: 'BWW05049',
+    sku: 'BWW02147-3',
     brand: 'warehousefashion.com',
     locale: 'UK',
     language: 'EN'

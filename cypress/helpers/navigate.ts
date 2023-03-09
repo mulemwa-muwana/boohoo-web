@@ -25,7 +25,8 @@ class Navigate {
 
   toCartPage () {
     this.toProductDetailsPage();
-    PdpPage.actions.selectSize();
+    PdpPage.actions.selectColorFromSku();
+    PdpPage.actions.selectSizeFromSku();
     cy.wait(2000);
     PdpPage.click.addToCart();
     cy.wait(7000);

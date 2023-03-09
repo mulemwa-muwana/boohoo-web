@@ -14,7 +14,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline', // Changed for billing page - should checknp
-    selectColor: '.b-product_details-variations > section.b-variations_item.m-swatch.m-color',
+    selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
     productCode: 'span[data-tau="b-product_details-id"]',
@@ -400,11 +400,40 @@ class PdpPage implements AbstractPage {
   };
 
   actions = {
-    selectColor (index: number) {
+    selectColorByIndex (index: number) {
       const selectColor = selectors[variables.brand].selectColor;
       cy.get(selectColor).eq(index).click({ force: true });
     },
-    selectSize () {
+    selectColorFromSku () {
+      const selectColor = selectors[variables.brand].selectColor;
+      const colorFromSku = variables.fullSku.split('-')[1];
+
+      if (isSiteGenesisBrand) {
+        cy.get(selectColor + ` span[data-variation-values*='backendValue": "${colorFromSku}']`).then(($element) => {
+          if (!$element.parent().hasClass('selected')) {  // If <li> doesn't have 'selected' class - it isn't already selected
+            $element.trigger('click');
+          }
+        })
+      } else {
+        cy.get(selectColor + `[data-tau-color-id="${colorFromSku}"]`).click({force:true});
+      }
+      cy.wait(3000);
+    },
+    selectSizeFromSku () {
+      const sizeVariations = selectors[variables.brand].sizeVariations;
+      const sizeFromSku = variables.fullSku.split('-')[2];
+
+      if (isSiteGenesisBrand) {
+        cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {
+          if (!$element.parent().hasClass('selected')) {  // If <li> doesn't have 'selected' class - it isn't already selected
+            $element.trigger('click');
+          }
+        })
+      } else {
+        cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({force:true});
+      }
+    },
+    selectFirstAvailableSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations).find('li').each(($element) => {

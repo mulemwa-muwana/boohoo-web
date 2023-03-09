@@ -53,7 +53,7 @@ declare type PaymentMethod =
 declare type EnvironmentVariables = {
     url: string;
     sku: string;
-    fullSKU: string;
+    fullSku: string;
     brand: GroupBrands;
     locale: Locale;
     language: 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';

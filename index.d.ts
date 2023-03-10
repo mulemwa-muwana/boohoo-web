@@ -3,8 +3,7 @@ declare namespace Cypress {
         goOffline: () => Chainable<null>;
         createUser: (brand: GroupBrands) => Chainable<Subject>;
         prepareUser: (customer: NewCustomerCredentials, brand: GroupBrands, sku: string) => void;
-        createArtefact: (testArtefact: TestArtefact, brand: string, paymentMethod: string) => Chainable<null>;
-        createArtefactTemp: (testArtefact: TestArtefact, brand: string, paymentMethod: string) => Chainable<null>;
+        createArtefact: (testArtefact: TestArtefact, folderPath: string, brand: string, paymentMethod: string) => Chainable<null>;
     }
 }
 
@@ -47,8 +46,9 @@ declare type PaymentMethod =
     | 'LayBuy'
     | 'WorldPay'
     | 'Klarna'
-    | 'AfterPay'
-    | 'ZipPay';
+    | 'CreditCard_Visa'
+    | 'CreditCard_Amex'
+    | 'CreditCard_MasterCard';
 
 declare type EnvironmentVariables = {
     url: string;

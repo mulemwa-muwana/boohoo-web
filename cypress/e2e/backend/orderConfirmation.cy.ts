@@ -117,8 +117,9 @@ describe('Boohoo order placement', () => {
           timestamp: Date.now()
         };
 
+        const folder = 'cypress/artefacts/orderCreation/';
         const brandName = brand.split('.')[0]; // Get first part of a brand: boohoo.com => boohoo
-        cy.createArtefact(testArtefactObject, brandName, paymentMethod.toLowerCase());
+        cy.createArtefact(testArtefactObject, folder, brandName, paymentMethod.toLowerCase());
       });
   }
 

@@ -397,10 +397,10 @@ class PdpPage implements AbstractPage {
 
       if (isSiteGenesisBrand) {
         cy.get(selectColor + ` span[data-variation-values*='backendValue": "${colorFromSku}']`).then(($element) => {
-          if (!$element.parent().hasClass('selected')) {  // If <li> doesn't have 'selected' class - it isn't already selected
+          if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
             $element.trigger('click');
           }
-        })
+        });
       } else {
         cy.get(selectColor + `[data-tau-color-id="${colorFromSku}"]`).click({force:true});
       }
@@ -412,10 +412,10 @@ class PdpPage implements AbstractPage {
 
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {
-          if (!$element.parent().hasClass('selected')) {  // If <li> doesn't have 'selected' class - it isn't already selected
+          if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
             $element.trigger('click');
           }
-        })
+        });
       } else {
         cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({force:true});
       }

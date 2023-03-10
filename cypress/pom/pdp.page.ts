@@ -419,6 +419,7 @@ class PdpPage implements AbstractPage {
       } else {
         cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({force:true});
       }
+      cy.wait(3000);
     },
     selectFirstAvailableSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;

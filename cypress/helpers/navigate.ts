@@ -25,8 +25,8 @@ class Navigate {
 
   toCartPage () {
     this.toProductDetailsPage();
-    PdpPage.actions.selectSize();
-    cy.wait(2000);
+    PdpPage.actions.selectColorFromSku();
+    PdpPage.actions.selectSizeFromSku();
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();    
@@ -34,7 +34,9 @@ class Navigate {
 
   toCheckoutLoginPage () {
     this.toCartPage();
-    pdpPage.click.miniCartViewCartBtn();
+    if (!isSiteGenesisBrand) {
+      pdpPage.click.miniCartViewCartBtn();
+    }
     cartPage.click.proceedToCheckout();       
   }
 
@@ -95,7 +97,6 @@ class Navigate {
           shippingPage.click.proceedToBilling();
         } else {
           shippingPage.click.proceedToBilling();
-          BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
         }
         if (variables.brand == 'boohooman.com') {
           BillingPage.actions.billingEmailField(credentials.guest);

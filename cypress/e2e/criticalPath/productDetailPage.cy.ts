@@ -40,7 +40,7 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
   });
   it('TC03 Verify that it is possible to select a size when available', function () {
-    PdpPage.actions.selectSize();  
+    PdpPage.actions.selectFirstAvailableSize();  
     PdpPage.click.addToCart();
   });
   it('TC04 Verify if size is not selected user cannot add product to a bag', function () {
@@ -51,8 +51,8 @@ describe('Product Details Page tests', function () {
     }
   });   
   it('TC05 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
-    PdpPage.actions.selectColor(0);
-    PdpPage.actions.selectSize();
+    PdpPage.actions.selectColorByIndex(0);
+    PdpPage.actions.selectFirstAvailableSize();
     if (variables.brand == 'burton.co.uk') {
       cy.wait(3000);
     }
@@ -60,7 +60,7 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
   it('TC06 Verify that save for later (heart icon) is functional when selected', function () {
-    PdpPage.actions.selectSize();
+    PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToWishList();
     cy.wait(3000);
     if (variables.brand == 'boohoo.com') {

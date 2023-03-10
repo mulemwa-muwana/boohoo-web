@@ -14,7 +14,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline', // Changed for billing page - should checknp
-    selectColor: '.b-product_details-variations > section.b-variations_item.m-swatch.m-color',
+    selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
     productCode: 'span[data-tau="b-product_details-id"]',
@@ -39,7 +39,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
-    selectColor: '.b-variation_swatch-color_value',
+    selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
@@ -50,7 +50,6 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
@@ -67,7 +66,7 @@ const selectors: SelectorBrandMap = {
     addToWishListButton: '.b-product_wishlist-button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
-    selectColor: '.b-variation_swatch-color_value',
+    selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
@@ -78,7 +77,6 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
@@ -95,7 +93,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
-    selectColor: '.b-variation_swatch-color_value',
+    selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
@@ -106,7 +104,6 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
@@ -122,7 +119,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
-    selectColor: '.b-variation_swatch-color_value',
+    selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
@@ -133,7 +130,6 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
@@ -382,16 +378,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
-      cy.get('body').then($body => {
-        if ($body.find(miniCartViewCartBtn).length) {
-          cy.get(miniCartViewCartBtn).click({force: true});
-        }   
-      }
-      );   
-    },
-    viewCart () {
-      const viewCart = selectors[variables.brand].viewCart;
-      cy.get(viewCart).click();
+      cy.get(miniCartViewCartBtn).click({force: true}); 
     },
     wishListIcon () {
       const wishListIcon = selectors[variables.brand].wishListIcon;
@@ -400,11 +387,41 @@ class PdpPage implements AbstractPage {
   };
 
   actions = {
-    selectColor (index: number) {
+    selectColorByIndex (index: number) {
       const selectColor = selectors[variables.brand].selectColor;
       cy.get(selectColor).eq(index).click({ force: true });
     },
-    selectSize () {
+    selectColorFromSku () {
+      const selectColor = selectors[variables.brand].selectColor;
+      const colorFromSku = variables.fullSku.split('-')[1];
+
+      if (isSiteGenesisBrand) {
+        cy.get(selectColor + ` span[data-variation-values*='backendValue": "${colorFromSku}']`).then(($element) => {
+          if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
+            $element.trigger('click');
+          }
+        });
+      } else {
+        cy.get(selectColor + `[data-tau-color-id="${colorFromSku}"]`).click({force:true});
+      }
+      cy.wait(3000);
+    },
+    selectSizeFromSku () {
+      const sizeVariations = selectors[variables.brand].sizeVariations;
+      const sizeFromSku = variables.fullSku.split('-')[2];
+
+      if (isSiteGenesisBrand) {
+        cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {
+          if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
+            $element.trigger('click');
+          }
+        });
+      } else {
+        cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({force:true});
+      }
+      cy.wait(3000);
+    },
+    selectFirstAvailableSize () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations).find('li').each(($element) => {
@@ -430,12 +447,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartProceedToCheckout () {
       const checkoutBtn = selectors[variables.brand].checkoutBtn;
-      cy.get('body').then($body => {
-        if ($body.find(checkoutBtn).length) {
-          cy.get(checkoutBtn).click({force: true});
-        }
-      }
-      );
+      cy.get(checkoutBtn).click({force: true});
     }
   };
 

@@ -35,7 +35,9 @@ class Navigate {
 
   toCheckoutLoginPage () {
     this.toCartPage();
-    pdpPage.click.miniCartViewCartBtn();
+    if (!isSiteGenesisBrand) {
+      pdpPage.click.miniCartViewCartBtn();
+    }
     cartPage.click.proceedToCheckout();       
   }
 

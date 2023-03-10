@@ -265,10 +265,6 @@ class CartPage implements AbstractPage {
   }
 
   click = {
-    proceedToCheckoutHeaderLink () {
-      const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
-      cy.get(proceedToCheckout).should('be.visible').click();
-    },
     clearCart () {
       const clearCart = selectors[variables.brand].clearCart;
       cy.get(clearCart).each(($el) => {

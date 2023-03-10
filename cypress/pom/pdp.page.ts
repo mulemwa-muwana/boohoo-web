@@ -50,7 +50,6 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
@@ -78,7 +77,6 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
@@ -106,7 +104,6 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
@@ -133,7 +130,6 @@ const selectors: SelectorBrandMap = {
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
-    viewCart: '.b-minicart-actions > .m-outline',
     productTitle: '#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
@@ -383,10 +379,6 @@ class PdpPage implements AbstractPage {
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
       cy.get(miniCartViewCartBtn).click({force: true}); 
-    },
-    viewCart () {
-      const viewCart = selectors[variables.brand].viewCart;
-      cy.get(viewCart).click();
     },
     wishListIcon () {
       const wishListIcon = selectors[variables.brand].wishListIcon;

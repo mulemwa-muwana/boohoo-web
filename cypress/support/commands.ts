@@ -45,7 +45,8 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
  * We need to store the test type so the test frameknown knows how to process it, it needs a folder name which will be the brand and it'll need a name.
  */
 Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, folderPath: string, brand: string, paymentMethod: string) => {
-  // Artefact path example: cypress/artefacts/orderCreation/boohoo/adyen.json
+
+  // Artefact path example: cypress/artefacts_frontend/orderCreation/boohoo/creditcard_visa.json
   cy.log(`Writing artefact file. Brand: '${brand}'. Payment method: '${paymentMethod}'. Artefact: ${JSON.stringify(testArtefact, null, 4)}'`);
   cy.writeFile(`${folderPath}${brand}/${paymentMethod}.json`, JSON.stringify(testArtefact, null, 4));
 });

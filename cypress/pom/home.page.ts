@@ -14,6 +14,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
+    loginIconMobile: '.m-login'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -26,6 +27,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
+    loginIconMobile: '.m-login'
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
@@ -38,6 +40,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div[class="b-hero_carousel-track"]',
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
+    loginIconMobile: '.m-login'
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -51,7 +54,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div[class="b-hero_carousel-track"]',
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login',
+    loginIconMobile: '.m-login'
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -64,6 +67,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div[class="b-hero_carousel-track"]',
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
+    loginIconMobile: '.m-login'
   },
   'boohooman.com': {
     minicartIcon: '#mini-cart .mini-cart-link',
@@ -75,7 +79,8 @@ const selectors: SelectorBrandMap = {
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
-    hamburgerMenu: '#main-navigation-toggle',
+    hamburgerMenu: '.menu-toggle',
+    loginIconMobile: '#mobile-navigation div div div div div a[title="Login"]'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -88,7 +93,8 @@ const selectors: SelectorBrandMap = {
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
-    hamburgerMenu: '#wrapper > div.sticky-spacer.js-sticky-spacer > div > div.sticky-spacer.js-sticky-spacer > div > div > ul > li > div',
+    hamburgerMenu: '.menu-toggle',
+    loginIconMobile: '#mobile-navigation div div div div div a[title="Log In"]'
   },
   'coastfashion.com': {
     minicartIcon: '.mini-cart-link',
@@ -100,7 +106,8 @@ const selectors: SelectorBrandMap = {
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
-    hamburgerMenu: '#main-navigation-toggle',
+    hamburgerMenu: '.menu-toggle',
+    loginIconMobile: '#mobile-navigation div div div div div a[title="Log In"]'
   },
   'warehousefashion.com': {
     minicartIcon: '.mini-cart-link',
@@ -112,7 +119,8 @@ const selectors: SelectorBrandMap = {
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
-    hamburgerMenu: '#main-navigation-toggle',
+    hamburgerMenu: '.menu-toggle',
+    loginIconMobile: '#mobile-navigation div div div div div a[title="Log In"]'
   },
   'oasis-stores.com': {
     minicartIcon: '.mini-cart-link',
@@ -125,7 +133,8 @@ const selectors: SelectorBrandMap = {
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
-    hamburgerMenu: '#main-navigation-toggle',
+    hamburgerMenu: '.menu-toggle',
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'misspap.com': {
     minicartIcon: '.mini-cart-link',
@@ -137,7 +146,8 @@ const selectors: SelectorBrandMap = {
     searchIcon: '.icon-search',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
-    hamburgerMenu: '#main-navigation-toggle',
+    hamburgerMenu: '.menu-toggle',
+    loginIconMobile: '#mobile-navigation div div div div div a[title="My Account"]'
   },
   'boohoomena.com': {
     minicartIcon: '.mini-cart-link',
@@ -150,6 +160,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '#main-navigation-toggle',
+    loginIconMobile: '.m-login'
   }
   
 };
@@ -172,14 +183,24 @@ class HomePage implements AbstractPage {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIcon = selectors[variables.brand].loginIcon;
-      cy.get('body').then($body => {
-        if ($body.find(hamburgerMenu).length) {
-          cy.get(hamburgerMenu).click({force: true});
-          cy.get(loginIconMobile).should('be.visible');
-        } else {
-          cy.get(loginIcon).should('be.visible');
-        }
-      });
+      const viewportWidth = Cypress.config('viewportWidth');
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
+        cy.get(hamburgerMenu).click({force: true});
+        // cy.get(loginIconMobile).should('be.visible');
+        cy.get(loginIconMobile).should('be.visible').click({force:true});
+      // If Desktop Device is used
+      } else {
+        cy.get(loginIcon).should('be.visible');
+      }
+      // cy.get('body').then($body => {
+      //   if ($body.find(hamburgerMenu).length) {
+      //     cy.get(hamburgerMenu).click({force: true});
+      //     cy.get(loginIconMobile).should('be.visible');
+      //   } else {
+      //     cy.get(loginIcon).should('be.visible');
+      //   }
+      // });
     },
     
     forgotPasswordLink () {

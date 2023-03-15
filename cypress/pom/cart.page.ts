@@ -337,7 +337,7 @@ class CartPage implements AbstractPage {
       cy.get(editQuantity).eq(0).click({force: true});
       cy.get(setQuantity).eq(0).select(quantity,{force: true});
       
-      cy.intercept(/Cart-UpdateProductLineItem/).as('updateCartProduct');
+      cy.intercept(/cart/).as('updateCartProduct');
       cy.get(updateQuantity).eq(0).click({force: true});
       cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
     },

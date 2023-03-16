@@ -54,7 +54,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(5) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(3) > .b-account_nav-item_link',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'nastygal.com': {
@@ -161,7 +161,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'burton.co.uk': {
@@ -214,7 +214,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'wallis.co.uk': {
@@ -267,7 +267,7 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'boohooman.com': {
@@ -323,7 +323,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '[title="Order History"]',
+    orderHistoryLink: 'a[href*="order-history"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'karenmillen.com': {
@@ -489,7 +489,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '.account-order-history a',
+    orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'oasis-stores.com': {
@@ -545,7 +545,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '.account-order-history a',
+    orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'misspap.com': {

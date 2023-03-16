@@ -17,4 +17,5 @@ package-lock.json
 .env
 
 **/artefacts
+**/artefacts_frontend
 config/**/results*

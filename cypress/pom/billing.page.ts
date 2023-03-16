@@ -626,7 +626,7 @@ class BillingPage implements AbstractPage {
       const dobDate = selectors[variables.brand].dobDate;
       const dobMonth = selectors[variables.brand].dobMonth;
       const dobYear = selectors[variables.brand].dobYear;
-      cy.get(dobDate).should('be.visible').select(day);
+      cy.get(dobDate).select(day);
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
       cy.get(dobYear).blur();

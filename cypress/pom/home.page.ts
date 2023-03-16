@@ -362,9 +362,11 @@ class HomePage implements AbstractPage {
 
       const wishListIconMobile = selectors[variables.brand].wishListIconMobile;
       const viewportWidth = Cypress.config('viewportWidth');
+
       // If Mobile Device is used
       if (viewportWidth < 1100) {
         cy.get(wishListIconMobile).invoke('show').should('be.visible');
+
       // If Desktop Device is used
       } else {
         const wishListIcon = selectors[variables.brand].wishListIcon;
@@ -383,6 +385,7 @@ class HomePage implements AbstractPage {
       const loginIconLinkMobile = selectors[variables.brand].loginIconLinkMobile;
 
       const viewportWidth = Cypress.config('viewportWidth');
+
       // If Mobile Device is used
       if (viewportWidth < 1100) {
         cy.get(hamburgerMenu).click({force: true});
@@ -391,6 +394,7 @@ class HomePage implements AbstractPage {
         } else {
           cy.get(loginIconMobile).invoke('show').click();
         }
+
       // If Desktop Device is used
       } else {
         if (isSiteGenesisBrand) {

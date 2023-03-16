@@ -25,8 +25,8 @@ class Navigate {
 
   toCartPage () {
     this.toProductDetailsPage();
-    PdpPage.actions.selectSize();
-    cy.wait(2000);
+    PdpPage.actions.selectColorFromSku();
+    PdpPage.actions.selectSizeFromSku();
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();    
@@ -34,7 +34,9 @@ class Navigate {
 
   toCheckoutLoginPage () {
     this.toCartPage();
-    pdpPage.click.miniCartViewCartBtn();
+    if (!isSiteGenesisBrand) {
+      pdpPage.click.miniCartViewCartBtn();
+    }
     cartPage.click.proceedToCheckout();       
   }
 
@@ -95,7 +97,6 @@ class Navigate {
           shippingPage.click.proceedToBilling();
         } else {
           shippingPage.click.proceedToBilling();
-          BillingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
         }
         if (variables.brand == 'boohooman.com') {
           BillingPage.actions.billingEmailField(credentials.guest);
@@ -118,10 +119,8 @@ class Navigate {
       shippingPage.click.addAddressManually();  
       shippingPage.actions.adressLine1(primaryAddress.addressLine);
       shippingPage.actions.cityField(primaryAddress.city);
-      if (variables.locale == 'US') {
+      if (variables.locale == 'US' || variables.locale == 'AU') {
         shippingPage.actions.selectState(primaryAddress.county);
-      } else if (variables.locale == 'AU') {
-        shippingPage.actions.stateField(primaryAddress.county);
       }
       if (variables.brand == 'boohoomena.com') {
         shippingPage.actions.countyField(primaryAddress.county);

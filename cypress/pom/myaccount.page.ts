@@ -53,7 +53,7 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(5) > .b-account_nav-item_link > .b-account_nav-item_label',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
@@ -105,7 +105,7 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
@@ -160,7 +160,7 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
@@ -213,7 +213,7 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
@@ -265,7 +265,7 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'

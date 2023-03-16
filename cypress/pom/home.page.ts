@@ -80,7 +80,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[title="Login"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -94,7 +94,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[title="Log In"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'coastfashion.com': {
     minicartIcon: '.mini-cart-link',
@@ -107,7 +107,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[title="Log In"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'warehousefashion.com': {
     minicartIcon: '.mini-cart-link',
@@ -120,7 +120,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[title="Log In"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'oasis-stores.com': {
     minicartIcon: '.mini-cart-link',
@@ -147,7 +147,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[title="My Account"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'boohoomena.com': {
     minicartIcon: '.mini-cart-link',

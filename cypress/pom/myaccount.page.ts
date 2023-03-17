@@ -566,7 +566,7 @@ const selectors: SelectorBrandMap = {
     addressCardsList: '.account-page-list',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
-    addressEditForm: '#CreditCardForm',
+    addressEditForm: '#edit-address-form',
     addressField: '#dwfrm_profile_address_address1',
     addressSubmitBtn: '.apply-button',
     addAddressBtn: '.address-create',
@@ -601,7 +601,8 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    addCardEditForm: '#dialog-container',
   },
   'boohoomena.com': {
     accountLogout: 'a[title="Log out"]',
@@ -771,6 +772,9 @@ class MyAccountPage implements AbstractPage {
         const viewNewestOrderDetails = selectors[variables.brand].viewNewestOrderDetails;
         cy.get(viewNewestOrderDetails).eq(0).click({ force: true });
       },
+      saveAnyway () {
+        cy.get('.verification-address-button').click();
+      }
     };
 
   actions =
@@ -834,9 +838,9 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {
-          cy.get(addressNicknameField).type('New');
+          cy.get(addressNicknameField).type('New1');
           cy.get(addressSubmitBtn).click({ force: true });
-          if (variables.brand != 'boohoomena.com' && variables.brand != 'coastfashion.com') {
+          if (variables.brand != 'boohoomena.com' && variables.brand != 'coastfashion.com' && variables.brand != 'misspap.com') {
             cy.get(proceedToBillingBtn).click({ force: true });
           }
         }
@@ -928,7 +932,7 @@ class MyAccountPage implements AbstractPage {
         const addressNameLine = selectors[variables.brand].addressNameLine;
         const addressSummaryLine = selectors[variables.brand].addressSummaryLine;
         cy.get(addressDefaultBox).find(addressNameLine).should('contain.text', addressName);
-        cy.get(addressDefaultBox).find(addressSummaryLine).should('include.text', addressSummary);
+        cy.get(addressDefaultBox).find(addressSummaryLine).should('contain.text', addressSummary);
       },
       assertNewAddressData (addressName: string) {
         cy.contains(addressName).should('be.visible');

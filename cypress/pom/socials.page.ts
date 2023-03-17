@@ -94,7 +94,8 @@ const selectors: SelectorBrandMap = {
     facebookUrl: 'facebook.com/MissPapOfficial',
     twitter: '.icon-twitter',
     youtube: '.icon-youtube',
-    pinterest: '.icon-pinterest'
+    pinterest: '.icon-pinterest',
+    tiktok: '.tiktok-icon',
   },
   'boohoomena.com': {
     instagramUrl: 'instagram.com/boohoomena/',

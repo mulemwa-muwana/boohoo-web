@@ -195,7 +195,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    subtotal: 'span.price-total',
+    subtotal: 'span.price-adjusted-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',

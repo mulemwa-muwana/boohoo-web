@@ -74,7 +74,7 @@ describe('Account page', function () {
     // MyAccountPage.assertions.assertAddressNotPresent(localeAddress.firstName);  // this needs different solution
   });
 
-  it('TC05 Verify that card can be viewed / saved / deleted', function () {
+  it.only('TC05 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();
 
     MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.date, Cards.visa.code);

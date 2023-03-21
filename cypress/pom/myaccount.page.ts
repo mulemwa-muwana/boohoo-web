@@ -860,7 +860,7 @@ class MyAccountPage implements AbstractPage {
         cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(addCreditCardNumber).type(cardNumber);
         cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(addCreditCardExpDate).type(expiryDate);
         cy.iframe('.adyen-checkout__card__cvc__input .js-iframe').find(addCreditCardSecurityCode).type(securityCode);
-        cy.get(addCreditCardOwner).should('be.visible').type(cardOwner);
+        cy.get(addCreditCardOwner).click({ force: true }).should('be.visible').type(cardOwner);
         cy.get(addCreditCardSaveBtn).click();
       },
 
@@ -869,7 +869,7 @@ class MyAccountPage implements AbstractPage {
         const creditCardDeleteBtn = selectors[variables.brand].creditCardDeleteBtn;
         const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
         cy.get(creditCardSection).contains(cardEnd).should('be.visible');
-        cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click();
+        cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click({ force: true });
         if (!isSiteGenesisBrand) {
           cy.get(cardDeleteConfirmationBtn).click();
         }

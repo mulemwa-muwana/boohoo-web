@@ -187,7 +187,6 @@ class HomePage implements AbstractPage {
       // If Mobile Device is used
       if (viewportWidth < 1100) {
         cy.get(hamburgerMenu).click({force: true});
-        // cy.get(loginIconMobile).should('be.visible');
         cy.get(loginIconMobile).should('be.visible').click({force:true});
       // If Desktop Device is used
       } else {

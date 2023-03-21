@@ -12,7 +12,7 @@ const selectors: SelectorBrandMap = {
     shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
     shopNowLinkSA: ':nth-child(2) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
-    miniCartIcon: '.b-minicart_icon-link',  // .b-minicart-title
+    miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline', // Changed for billing page - should checknp
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
@@ -72,7 +72,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner',  // .b-minicart-title
+    addToCartTitle: '.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -183,8 +183,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
-    addToCartTitle: '.mini-cart-header-text',  //product-added
-    miniCartProductIner: '.mini-cart-product',
+    addToCartTitle: '.mini-cart-header-text',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '#ui-id-5',
@@ -210,7 +209,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
-    addToCartTitle: '.mini-cart-header-text',  //product-added
+    addToCartTitle: '.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-3',
     productDelivery: '.del-table',
@@ -237,7 +236,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
-    addToCartTitle: '.mini-cart-header-text',  //product-added
+    addToCartTitle: '.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2',
     productDelivery: '.del-table',
@@ -265,7 +264,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
     productImage: '.primary-image',
-    addToCartTitle: '.mini-cart-header-text',  //product-added
+    addToCartTitle: '.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',

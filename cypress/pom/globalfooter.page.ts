@@ -35,7 +35,7 @@ const selectors: SelectorBrandMap = {
     tiktokLink: 'a[href="https://www.tiktok.com/@nastygal?lang=en"]',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
-    subscribeSubmitBtn: 'button[data-id="submitButton"]',
+    subscribeSubmitBtn: '.b-newsletters-submit',
     changeCountryDropdown: '.b-country-select',
     successfulSubscriptionMsg: '.b-newsletters-message_success',
     unsuccessfulSubscriptionMsg: '#dwfrm_newslettersubscribe_email-error',
@@ -123,7 +123,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'karenmillen.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -145,7 +146,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'coastfashion.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -167,7 +169,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'warehousefashion.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -189,7 +192,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.footer-promo.js-floating-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'oasis-stores.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -211,7 +215,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'misspap.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -234,7 +239,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   },
   'boohoomena.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -256,7 +262,8 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer'
+    footer: '.footer',
+    helpLink: 'a[title="Customer Service"]'
   }
 };
 
@@ -284,7 +291,11 @@ class GlobalFooter implements AbstractPage {
       const instagramLink = selectors[variables.brand].instagramLink;
       cy.get(instagramLink).then(link => {
         cy
-          .request(link.prop('href'))
+          .request({
+            method:'HEAD', 
+            url: link.prop('href'),
+            log:false                             
+          })  
           .its('status')
           .should('eq', 200); 
       });
@@ -370,7 +381,7 @@ class GlobalFooter implements AbstractPage {
       }
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
-      // Cy.log(`searching for '${text}' in footer`);
+      cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       const footer = selectors[variables.brand].footer;
       cy.get(footer).contains(text, { matchCase: false })
@@ -390,6 +401,11 @@ class GlobalFooter implements AbstractPage {
     },
     studentDiscountAcceptCookiesOnPopup () {
       cy.iframe('.student-beans > iframe').find('#onetrust-accept-btn-handler').click({force:true});
+    },
+    checkHelpforSiteG (text: string) {
+      const helpLink = selectors[variables.brand].helpLink;
+      cy.get(helpLink).click({force: true});
+      cy.url().should('include', text);
     }
   };
 

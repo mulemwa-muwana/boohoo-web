@@ -14,7 +14,6 @@ const selectors: SelectorBrandMap = {
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
     shippingAddressSection: 'section[class="b-checkout_card b-summary_group-item m-full-width"]',
-    shippingAddress: '.b-address > .b-address-summary',
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
@@ -71,7 +70,6 @@ const selectors: SelectorBrandMap = {
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
     emptyEmailFiledError: '#dwfrm_billing_contactInfoFields_email-error',
     shippingAddressSection: 'section[class="b-checkout_card b-summary_group-item m-full-width"]',
-    shippingAddress: '.b-address > .b-address-summary',
     shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
     addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
     enterManually: '[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
@@ -106,7 +104,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
     shippingAddressSection: 'section[class="b-checkout_card b-summary_group-item m-full-width"]',
-    shippingAddress: '.b-address > .b-address-summary',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -157,7 +154,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
     shippingAddressSection: 'section[class="b-checkout_card b-summary_group-item m-full-width"]',
-    shippingAddress: '.b-address > .b-address-summary',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -208,7 +204,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
     klarnaPayNow:'#payment-details-KlarnaUK > div > div.b-payment_accordion-submit > div > div > button',
     shippingAddressSection: 'section[class="b-checkout_card b-summary_group-item m-full-width"]',
-    shippingAddress: '.b-address > .b-address-summary',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -259,7 +254,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
-    shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -309,7 +303,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
-    shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -357,7 +350,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
-    shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -405,7 +397,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
-    shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -453,7 +444,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
-    shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -501,7 +491,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
-    shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -549,7 +538,6 @@ const selectors: SelectorBrandMap = {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
     shippingAddressSection: '.minicheckout-section',
-    shippingAddress: 'div.minicheckout-value:nth-child(3)',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
@@ -632,12 +620,13 @@ class BillingPage implements AbstractPage {
   actions = {
     waitPageToLoad () {
       cy.wait(12000);
+      cy.url().should('include', 'billing');
     },
     selectDate (day: string, month: string, year: string) {
       const dobDate = selectors[variables.brand].dobDate;
       const dobMonth = selectors[variables.brand].dobMonth;
       const dobYear = selectors[variables.brand].dobYear;
-      cy.get(dobDate).should('be.visible').select(day);
+      cy.get(dobDate).select(day);
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
       cy.get(dobYear).blur();
@@ -730,7 +719,7 @@ class BillingPage implements AbstractPage {
       const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
       const billingPostCode = selectors[variables.brand].billingPostCode;
       this.enterManuallyAddressDetails ();
-      cy.get(billingAddressFieldsAddress1).clear().type(localeAddress.addrline1);
+      cy.get(billingAddressFieldsAddress1).clear().type(localeAddress.addressLine);
       if (variables.brand == 'boohoomena.com') {
         cy.get(billingAddressFieldCity).select(localeAddress.city);
         cy.get('#dwfrm_billing_billingAddress_addressFields_states_state').select(localeAddress.county);
@@ -938,9 +927,12 @@ class BillingPage implements AbstractPage {
       const shippingAddressSection = selectors[variables.brand].shippingAddressSection;
       cy.get(shippingAddressSection).should('be.visible').and('not.be.empty');
     },
-    assertNewShippingAddress (addressline1: string) {
-      const shippingAddress = selectors[variables.brand].shippingAddress;
-      cy.get(shippingAddress).should('contain.text', addressline1);
+    assertNewShippingAddress (addressLine: string, city: string, postCode: string, country: string) {
+      const shippingAddressSection = selectors[variables.brand].shippingAddressSection;
+      cy.get(shippingAddressSection).should('contain.text', addressLine)
+        .and('contain.text', city)
+        .and('contain.text', postCode)
+        .and('contain.text', country);
     },
     assertShippingMethodPresent (shippingMethod: string) {
       const shippingMethodSelector = selectors[variables.brand].shippingMethodSelector;
@@ -960,7 +952,7 @@ class BillingPage implements AbstractPage {
       const dobDate = selectors[variables.brand].dobDate;
       const dobMonth = selectors[variables.brand].dobMonth;
       const dobYear = selectors[variables.brand].dobYear;
-      cy.get(dobDate).should('have.have.value', day);
+      cy.get(dobDate).should('have.value', day);
       cy.get(dobMonth).should('have.value', month);
       cy.get(dobYear).should('have.value', year);
     },

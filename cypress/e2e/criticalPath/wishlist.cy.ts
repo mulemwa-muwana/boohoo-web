@@ -24,7 +24,7 @@ describe('Wishlist Page tests', function () {
     if (variables.brand == 'coastfashion.com') {
       plpPage.click.selectItem();
     }
-    pdpPage.actions.selectSize();
+    pdpPage.actions.selectFirstAvailableSize();
     pdpPage.click.addToWishList();
     if (variables.brand == 'boohoo.com' ) {
       WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);

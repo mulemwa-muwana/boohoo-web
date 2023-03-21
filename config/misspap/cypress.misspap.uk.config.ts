@@ -6,7 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stg.misspap.com/',
-    sku: 'BPP00352-1',
+    sku: 'MPP00243-4',
+    fullSku: 'MPP00243-399-16',
     brand: 'misspap.com',
     locale: 'UK',
     language: 'EN',
@@ -19,6 +20,7 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
+  // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
     reportDir: 'config/misspap/results',

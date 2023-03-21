@@ -6,7 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@uk-dwstg.boohoo.com/',
-    sku: '#PZZ79996',
+    sku: '#FZZ80440',
+    fullSku: 'FZZ80440-106-18',
     brand: 'boohoo.com',
     locale: 'UK',
     language: 'EN',
@@ -22,6 +23,7 @@ export default defineConfig({
     'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
   ],
 
+  // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
     reportDir: 'config/boohoo/results',

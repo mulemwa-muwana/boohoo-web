@@ -14,7 +14,7 @@ describe('Boohoo order placement', () => {
     cy.createUser(variables.brand).then((credentials: NewCustomerCredentials) => {
       cy.log(credentials.email, credentials.password);
 
-      cy.prepareUser(credentials, variables.brand, variables.fullSKU);
+      cy.prepareUser(credentials, variables.brand, variables.fullSku);
       LoginPage.goto();
       LoginPage.actions.loginViaPage(credentials.email, credentials.password);
       cy.wait(2000);
@@ -31,7 +31,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.click.addAddressManually();
     cy.wait(2000);
 
-    ShippingPage.actions.adressLine1(localeAddress.addrline1);
+    ShippingPage.actions.adressLine1(localeAddress.addressLine);
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
     if (variables.brand == 'boohoomena.com') {
@@ -117,8 +117,9 @@ describe('Boohoo order placement', () => {
           timestamp: Date.now()
         };
 
+        const folder = 'cypress/artefacts/orderCreation/';
         const brandName = brand.split('.')[0]; // Get first part of a brand: boohoo.com => boohoo
-        cy.createArtefact(testArtefactObject, brandName, paymentMethod.toLowerCase());
+        cy.createArtefact(testArtefactObject, folder, brandName, paymentMethod.toLowerCase());
       });
   }
 

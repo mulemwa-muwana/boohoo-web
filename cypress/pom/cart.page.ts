@@ -16,7 +16,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '[data-tau="cart_bottom_section"] [data-tau="start_checkout_bottom"]',
+    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
@@ -122,7 +122,7 @@ const selectors: SelectorBrandMap = {
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
-    clearCart: '[class*="button-remove"]',
+    clearCart: '.item-total .js-remove-from-bag',
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
@@ -195,7 +195,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    subtotal: 'span.price-total',
+    subtotal: 'span.price-adjusted-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     updateQuantity: '.b-product_update-button_update',
@@ -265,27 +265,35 @@ class CartPage implements AbstractPage {
   }
 
   click = {
-    proceedToCheckoutHeaderLink () {
-      const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
-      cy.get(proceedToCheckout).should('be.visible').click();
-    },
     clearCart () {
       const clearCart = selectors[variables.brand].clearCart;
       cy.get(clearCart).each(($el) => {
         $el.click();
       });
     },
+    removePremierFromCart () {
+
+      // Remove everything except the first item. If there are 3 items in cart, item 2 and 3 will be removed
+      const clearCart = selectors[variables.brand].clearCart;
+      cy.get(clearCart).each(($el, index) => {
+        if (index > 0) {
+          cy.wrap($el).click();
+        }
+      });
+    },
     proceedToCheckout () {
       const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[variables.brand].checkoutBtnForMobile;
-      cy.get('body').then($body => {
-        if ($body.find(checkoutBtnForMobile).length) {
-          cy.get(checkoutBtnForMobile).click({force: true});
-        } else {
-          cy.get(proceedToCheckout).invoke('show').click({force: true}); 
-        }
-      }   
-      );
+
+      // If Mobile Device is used
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100) {
+        cy.get(checkoutBtnForMobile).click({force: true});
+
+      // If Desktop Device is used
+      } else {
+        cy.get(proceedToCheckout).invoke('show').click({force: true});
+      }
     },
   };
 
@@ -293,9 +301,6 @@ class CartPage implements AbstractPage {
     updateQuantity () {
       const editQuantity = selectors[variables.brand].editQuantity;
       cy.get(editQuantity).should('be.visible').click();
-    },
-    removeFromCart (index: number) {
-      cy.get('.b-cart_product-remove').eq(index).click();
     },
     openPayPalSandbox () {
       const payPalCTA = selectors[variables.brand].PayPalCTA;

@@ -33,21 +33,31 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'secondaryAddress');
+    shippingPage.click.addNewAddress();
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
+
+    shippingPage.actions.firstNameFieldClear();
+    shippingPage.actions.lastNameFieldClear();
+    shippingPage.actions.phoneNumberFieldClear();
+
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.click.proceedToBilling();
+    
     if (variables.brand == 'boohoo.com') {
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcode[variables.language]);
-    } else if (variables.brand == 'boohooman.com') {
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeBHM[variables.language]);
+      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
+      shippingPage.assertions.assertLastNameIsMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
+      shippingPage.assertions.assertPhoneNumberIsMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
     } else {
-      shippingPage.assertions.assertPostCodeIsMandatory(assertionText.ShippingMandatoryFieldsFnameLnamePostcodeArcadia[variables.language]);
+      shippingPage.assertions.assertFirstNameIsMandatory(assertionText.ShippingMandatoryFieldError[variables.language]);
+      shippingPage.assertions.assertLastNameIsMandatory(assertionText.ShippingMandatoryFieldError[variables.language]);
+      shippingPage.assertions.assertPhoneNumberIsMandatory(assertionText.ShippingMandatoryFieldError[variables.language]);
     }
   });
 
   it('Verify that in "DELIVERY INFORMATION" user can add first name, last name, select country from drop down list, add phone number', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.assertions.assertFirstNameFieldIsPopulated(localeAddress.firstName);
 
@@ -62,24 +72,19 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
-    if (isSiteGenesisBrand) {
-      this.skip();
-    }
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddress();
     if (variables.locale == 'EU') {
       shippingPage.actions.firstNameField(localeAddress.firstName);
       shippingPage.actions.lastNameField(localeAddress.lastName);
       shippingPage.actions.selectCountry(localeAddress.country);
     }
-    shippingPage.assertions.assertPostcodeLookupIsVisible();
+    shippingPage.assertions.assertAddressLookupFieldIsVisible();
   });
 
   it('Verify that "Enter manually" button allows guest to enter address details', function () {
-    if (isSiteGenesisBrand) { // Site Genesis websites have all fields displayed, no Enter Manually button
-      this.skip();
-    }
-    
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
+    shippingPage.click.addNewAddress();
     if (variables.locale == 'EU') {
       shippingPage.actions.firstNameField(localeAddress.firstName);
       shippingPage.actions.lastNameField(localeAddress.lastName);
@@ -91,49 +96,58 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.click.addNewAddress();
-    }
+    shippingPage.click.addNewAddress();
+    shippingPage.click.addAddressManually();
+
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     shippingPage.click.enterManuallyAddressDetails();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
+    if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmailField(this.guestEmail);
+      if (variables.brand != 'boohooman.com') {
+        shippingPage.actions.emailField(this.guestEmail);
+        shippingPage.actions.confirmEmailField(this.guestEmail);
+      }
     }
     shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
   it('Verify that user is able to select standard shipping method', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.click.addNewAddress();
-    }
+    shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
-    shippingPage.click.enterManuallyAddressDetails();
+
+    if (!isSiteGenesisBrand) {
+      shippingPage.click.enterManuallyAddressDetails();
+    }
     cy.wait(5000);
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (variables.locale == 'AU') {
-      shippingPage.actions.stateField(localeAddress.county);
+      shippingPage.actions.selectState(localeAddress.county);
     }
-    if (isSiteGenesisBrand && variables.brand != 'boohooman.com') {
+    if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', 'May', '2001');
-      shippingPage.actions.confirmEmailField(this.guestEmail);
+      if (variables.brand != 'boohooman.com') {
+        shippingPage.actions.emailField(this.guestEmail);
+        shippingPage.actions.confirmEmailField(this.guestEmail);
+      }
     } 
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
   it('Verify that guest user can Edit cart from shipping page', function () {
@@ -143,15 +157,16 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that user is able to proceed to billing page after adding fname, lname, country, phone number and select shipping method', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale,'primaryAddress');
-    if (variables.brand == 'boohoo.com') {
-      shippingPage.click.addNewAddress();
-    }
+    shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
     cy.wait(5000);
-    shippingPage.click.enterManuallyAddressDetails();
-    shippingPage.actions.adressLine1(localeAddress.addrline1);
+    
+    if (!isSiteGenesisBrand) {
+      shippingPage.click.enterManuallyAddressDetails();
+    }
+    shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     if (variables.locale == 'US' || variables.locale == 'AU') {
@@ -161,22 +176,17 @@ describe('Shipping Page Guest user tests', function () {
     if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', '05', '2001');
       if (variables.brand != 'boohooman.com') {
+        shippingPage.actions.emailField(this.guestEmail); 
         shippingPage.actions.confirmEmailField(this.guestEmail); 
       }
     }
     shippingPage.click.proceedToBilling();
-    if (isSiteGenesisBrand) {
-      shippingPage.click.proceedToBillingVerification();
-      shippingPage.assertions.assertUserProceededToBillingPage();
-    } else {
-      shippingPage.assertions.assertGuestEmailFieldDisplayed();
-      shippingPage.assertions.assertUserProceededToBillingPage();
-    }
+    shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
   //  TESTS FOR SITE GENESIS BRANDS:  //
   it('SG: Verify that email field is filled with correct email address', function () {   
-    if (!isSiteGenesisBrand || variables.brand == 'boohooman.com') { // Email field only for Site Genesis brands is on Shipping page.
+    if (!isSiteGenesisBrand || variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com') { // Email field only for Site Genesis brands is on Shipping page.
       this.skip();
     }
     shippingPage.assertions.assertEmailIsCorrect(this.guestEmail);
@@ -195,13 +205,14 @@ describe('Shipping Page Guest user tests', function () {
     }
     shippingPage.actions.emptyEmailField();
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertEmptyEmailFieldError(assertionText.assertMandatoryFieldErrorSiteGenesis[variables.language]);
+    shippingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldError[variables.language]);
   });
   it('SG: Verify that guest user cannot proceed to billing page if date of birth is not selected', function () {
     if (!isSiteGenesisBrand) {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
+    shippingPage.actions.selectDate('Day', 'Month', 'Year');
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertEmptyDateFieldError(assertionText.assertMandatoryFieldErrorSiteGenesis[variables.language]);
+    shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[variables.language]);
   });
 });

@@ -19,7 +19,7 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
       const variables = Cypress.env() as EnvironmentVariables;    
       HomePage.click.searchIcon();
       HomePage.actions.findItemUsingSKU(variables.sku);
-      pdpPage.actions.selectSize();
+      pdpPage.actions.selectFirstAvailableSize();
       pdpPage.click.addToCart();
       pdpPage.assertions.assertMiniCartIsDisplayed();
     });

@@ -6,7 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.warehousefashion.com',
-    sku: 'BWW05049',
+    sku: 'BWW02147-3',
+    fullSku: 'BWW02147-105-20',
     brand: 'warehousefashion.com',
     locale: 'UK',
     language: 'EN'
@@ -19,6 +20,7 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
+  // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
     reportDir: 'config/warehouse/results',

@@ -6,7 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stg.karenmillen.com', 
-    sku: 'BKK02508-1',
+    sku: 'BKK04926-1',
+    fullSku: 'BKK04926-105-18',
     brand: 'karenmillen.com',
     locale: 'UK',
     language: 'EN'
@@ -19,6 +20,7 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
+  // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
     reportDir: 'config/karenmillen/results',

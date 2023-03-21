@@ -6,7 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/',
-    sku: 'AQQ42330-141',
+    sku: 'AQQ16660-3',
+    fullSku: 'AQQ16660-132-913',
     brand: 'dorothyperkins.com',
     locale: 'UK',
     language: 'EN',
@@ -19,6 +20,7 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
+  // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
     reportDir: 'config/dorothyperkins/results',

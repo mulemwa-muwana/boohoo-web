@@ -16,7 +16,7 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
   },
   'nastygal.com': {
-    wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',
@@ -179,8 +179,7 @@ class HomePage implements AbstractPage {
         } else {
           cy.get(loginIcon).should('be.visible');
         }
-      }
-      );
+      });
     },
     
     forgotPasswordLink () {
@@ -268,9 +267,6 @@ class HomePage implements AbstractPage {
       cy.get('button[data-tau="forgot_password_submit"]', { timeout: 6000 }).click();
     },
     closeNastygalPopup () {
-
-      // Cy.get('.b-dialog.m-opened, .b-dialog.m-active').should('be.visible').click();
-
       cy.get('body').then($body => {
         if ($body.find('.b-dialog.m-opened').length > 0) {
           cy.get('.b-dialog.m-opened').invoke('attr', 'style', 'visibility:hidden!important;');
@@ -279,12 +275,12 @@ class HomePage implements AbstractPage {
 
     },
     closeSearchFieldForMobiles () {
-      cy.get('body').then($body => {
-        if ($body.find('.b-search_dialog-cancel').length) {
-          cy.get('.b-search_dialog-cancel').click({force: true});
-        }
+
+      // If Mobile Device is used
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100) {
+        cy.get('.b-search_dialog-cancel').click({force: true});
       }
-      );
     }
   };
 
@@ -342,15 +338,20 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
-      const wishListIcon = selectors[variables.brand].wishListIcon;
+
       const wishListIconMobile = selectors[variables.brand].wishListIconMobile;
-      cy.get('body').then($body => {
-        if ($body.find(wishListIconMobile).length) {
-          cy.get(wishListIconMobile).invoke('show').should('be.visible');
-        }
+      const viewportWidth = Cypress.config('viewportWidth');
+
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
+        cy.get(wishListIconMobile).invoke('show').should('be.visible');
+
+      // If Desktop Device is used
+      } else {
+        const wishListIcon = selectors[variables.brand].wishListIcon;
         cy.get(wishListIcon).should('be.visible'); 
       }
-      );
+      
     },
     assertCartIconPresent () {
       const minicartIcon = selectors[variables.brand].minicartIcon;
@@ -361,31 +362,26 @@ class HomePage implements AbstractPage {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIconLinkMobile = selectors[variables.brand].loginIconLinkMobile;
-      cy.get('body').then($body => {
-        if ($body.find(hamburgerMenu).length) {
-          cy.get(hamburgerMenu).click({force: true});
-          if (variables.brand == 'karenmillen.com') {
-            cy.get('body').then($body => {
-              if ($body.find(loginIconLinkMobile).length) {
-                cy.get(loginIconLinkMobile).should('be.visible');
-              }
-            });
-          } else {
-            cy.get('body').then($body => {
-              if ($body.find(loginIconMobile).length) {
-                cy.get(loginIconMobile).invoke('show').click();
-              }
-            });
-          }
+
+      const viewportWidth = Cypress.config('viewportWidth');
+
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
+        cy.get(hamburgerMenu).click({force: true});
+        if (variables.brand == 'karenmillen.com') {  
+          cy.get(loginIconLinkMobile).should('be.visible');
         } else {
-          if (variables.brand == 'boohooman.com' || variables.brand == 'coastfashion.com') {
-            cy.get(loginIcon).should('be.visible');
-          } else {
-            cy.wrap(loginIcon).invoke('show').should('be.visible');
-          }
+          cy.get(loginIconMobile).invoke('show').click();
+        }
+
+      // If Desktop Device is used
+      } else {
+        if (isSiteGenesisBrand) {
+          cy.get(loginIcon).should('be.visible');
+        } else {
+          cy.get(loginIcon).invoke('show').should('be.visible');
         }
       }
-      ); 
     },
 
     assertCountryURL (country: string) {

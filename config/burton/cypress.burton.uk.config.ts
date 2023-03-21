@@ -6,7 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.burton.co.uk/',
-    sku: '#BBB02759-2', // Needs hashtag for assertation on PDP
+    sku: '#ABB15843', // Needs hashtag for assertation on PDP
+    fullSku: 'ABB15843-105-56',
     brand: 'burton.co.uk',
     locale: 'UK',
     language: 'EN',
@@ -19,6 +20,7 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
+  // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
     reportDir: 'config/burton/results',

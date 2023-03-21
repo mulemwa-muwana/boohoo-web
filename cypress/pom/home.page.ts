@@ -193,14 +193,6 @@ class HomePage implements AbstractPage {
       } else {
         cy.get(loginIcon).should('be.visible');
       }
-      // cy.get('body').then($body => {
-      //   if ($body.find(hamburgerMenu).length) {
-      //     cy.get(hamburgerMenu).click({force: true});
-      //     cy.get(loginIconMobile).should('be.visible');
-      //   } else {
-      //     cy.get(loginIcon).should('be.visible');
-      //   }
-      // });
     },
     
     forgotPasswordLink () {

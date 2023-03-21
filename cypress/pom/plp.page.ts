@@ -290,7 +290,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantOccasion: '.js-refinement-occasion.refinement-dropdown',
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
-    loadMoreProducts: '.search-result-options [title="Next"]',
+    loadMoreProducts: ':nth-child(5) > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link > .pagination-item-link-text',
     numberOfPagesTextIsVisible: ':nth-child(6) > .pagination > .pagination-list',
     productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
     newProductPriceIsDispayed: '.product-pricing .product-sales-price',

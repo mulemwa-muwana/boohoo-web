@@ -347,7 +347,7 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPage: '.add-to-cart-text',
     premierProductTitle: 'Coast VIP',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',

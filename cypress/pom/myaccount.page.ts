@@ -53,8 +53,8 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(5) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(3) > .b-account_nav-item_link',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'nastygal.com': {
@@ -105,7 +105,7 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
@@ -160,8 +160,8 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'burton.co.uk': {
@@ -213,8 +213,8 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'wallis.co.uk': {
@@ -265,9 +265,9 @@ const selectors: SelectorBrandMap = {
     addressSummaryLine: '.b-address-summary',
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
-    accountDetailsLink: ':nth-child(4) > .b-account_nav-item_link > .b-account_nav-item_label',
+    accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
-    orderHistoryLink: ':nth-child(2) > .b-account_nav-item_link',
+    orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
   },
   'boohooman.com': {
@@ -323,7 +323,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '[title="Order History"]',
+    orderHistoryLink: 'a[href*="order-history"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'karenmillen.com': {
@@ -489,7 +489,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '.account-order-history a',
+    orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'oasis-stores.com': {
@@ -545,7 +545,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
-    orderHistoryLink: '.account-order-history a',
+    orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]'
   },
   'misspap.com': {
@@ -864,7 +864,7 @@ class MyAccountPage implements AbstractPage {
         cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(addCreditCardNumber).type(cardNumber);
         cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(addCreditCardExpDate).type(expiryDate);
         cy.iframe('.adyen-checkout__card__cvc__input .js-iframe').find(addCreditCardSecurityCode).type(securityCode);
-        cy.get(addCreditCardOwner).should('be.visible').type(cardOwner);
+        cy.get(addCreditCardOwner).click({ force: true }).should('be.visible').type(cardOwner);
         cy.get(addCreditCardSaveBtn).click();
       },
 
@@ -873,7 +873,7 @@ class MyAccountPage implements AbstractPage {
         const creditCardDeleteBtn = selectors[variables.brand].creditCardDeleteBtn;
         const cardDeleteConfirmationBtn = selectors[variables.brand].cardDeleteConfirmationBtn;
         cy.get(creditCardSection).contains(cardEnd).should('be.visible');
-        cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click();
+        cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click({ force: true });
         if (!isSiteGenesisBrand) {
           cy.get(cardDeleteConfirmationBtn).click();
         }

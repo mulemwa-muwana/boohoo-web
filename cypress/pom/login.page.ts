@@ -219,7 +219,13 @@ class LoginPage implements AbstractPage {
     login (user: string, pass: string) {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
-      if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
+      const viewportWidth = Cypress.config('viewportWidth');
+      // If Mobile Device is used
+      if ((isSiteGenesisBrand) && (viewportWidth < 1100)) {
+        cy.get(loginIcon).invoke('show');
+      }
+      // If Desktop Device is used
+      else if ((isSiteGenesisBrand && variables.brand != 'misspap.com') && (viewportWidth > 1100)) {
         cy.get(loginIcon).invoke('show');
         cy.get(loginLink).click({force:true});
       } else {

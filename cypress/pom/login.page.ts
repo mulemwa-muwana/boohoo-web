@@ -51,16 +51,16 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.b-message-inner>.b-message-copy'
   },
   'wallis.co.uk': {
-    loginIcon: '.b-header_login-icon > .i-icon',
-    loginEmail: '#dwfrm_login_email',
-    loginPassword: '#dwfrm_login_password',
-    loginButton:'button[data-tau="login_submit"]',
-    forgotPassword: '#password-reset',
-    forgotPasswordMessage: '.b-dialog-window',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
-    resetPasswordBtn: '.b-dialog-footer > .b-button',
-    loginForm: ':nth-child(1) > .l-service-section_inner',
-    errorLoginMessage: '.b-message-copy'
+    loginIcon: 'svg[class="i-icon i-icon-user"]',
+    loginEmail: '#dwfrm_login_email[type="email"]',
+    loginPassword: '#dwfrm_login_password[type="password"]',
+    loginButton: '.b-login_form-group_cta>button[data-tau="login_submit"]',
+    forgotPassword: '#password-reset[type="button"]',
+    forgotPasswordMessage: '[class*="b-dialog-window"]',
+    resetPasswordEmailField: 'input#dwfrm_profile_resetPassword_email',
+    resetPasswordBtn: '[class*="b-dialog-footer"]>.b-button.m-width_full',
+    loginForm: ':nth-child(1) > .l-service-section_inner', 
+    errorLoginMessage: '.b-message-inner .b-message-copy'
   },
   'boohooman.com': {
     loginIcon: '.user-account',

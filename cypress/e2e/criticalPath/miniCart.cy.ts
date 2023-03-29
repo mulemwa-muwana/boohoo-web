@@ -20,9 +20,13 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
       HomePage.click.searchIcon();
       HomePage.actions.findItemUsingSKU(variables.sku);
       pdpPage.actions.selectFirstAvailableSize();
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com') {
+       cy.wait(3000);
+       }
       pdpPage.click.addToCart();
       pdpPage.assertions.assertMiniCartIsDisplayed();
+    
     });
   }
-    
+
 });

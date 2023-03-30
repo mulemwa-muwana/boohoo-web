@@ -840,10 +840,8 @@ class MyAccountPage implements AbstractPage {
         }
         if (isSiteGenesisBrand) {
           cy.get(addressNicknameField).type('New1');
-          cy.get(addressSubmitBtn).click({ force: true }); 
         }
-
-        
+        cy.get(addressSubmitBtn).click({ force: true }); 
       },
       deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;

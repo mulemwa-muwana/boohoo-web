@@ -91,16 +91,16 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.error-form'
   },
   'coastfashion.com': {
-    loginIcon: '.user-account',
-    loginLink: '.user-links > [title="Log In"]',
-    loginEmail: '[id^=dwfrm_login_username]',
-    loginPassword: '[id^=dwfrm_login_password]',
-    loginButton:'#dwfrm_login .login-page-button',
+    loginIcon: 'span.user-account', 
+    loginLink: '.user-links > [title="Log In"]', 
+    loginEmail: '.field-wrapper.js-field-wrapper>[id^=dwfrm_login_username][type=email]', 
+    loginPassword: 'input[id^=dwfrm_login_password][type="password"]', 
+    loginButton:'.login-page-button.js-login-page-button[type="submit"]',
     forgotPassword: '.password-reset',
     forgotPasswordMessage: '#ShowResetPasswordDialog',
     resetPasswordEmailField: '#dwfrm_requestpassword_email',
     resetPasswordBtn: '.reset-password-btn',
-    loginForm: '#dwfrm_login',
+    loginForm: '#dwfrm_login.login-page-form',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form'
   },

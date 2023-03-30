@@ -184,10 +184,12 @@ class HomePage implements AbstractPage {
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIcon = selectors[variables.brand].loginIcon;
       const viewportWidth = Cypress.config('viewportWidth');
+
       // If Mobile Device is used
       if (viewportWidth < 1100) {
         cy.get(hamburgerMenu).click({force: true});
         cy.get(loginIconMobile).should('be.visible').click({force:true});
+
       // If Desktop Device is used
       } else {
         cy.get(loginIcon).should('be.visible');

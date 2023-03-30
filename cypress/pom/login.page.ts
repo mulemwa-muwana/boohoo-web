@@ -39,16 +39,16 @@ const selectors: SelectorBrandMap = {
     errorLoginMessage: '.b-message-copy'
   },
   'burton.co.uk': {
-    loginIcon: '.b-header_login-icon > .i-icon',
-    loginEmail: '#dwfrm_login_email',
-    loginPassword: '#dwfrm_login_password',
-    loginButton:'button[data-tau="login_submit"]',
-    forgotPassword: '#password-reset',
-    forgotPasswordMessage: '.b-dialog-window',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
-    resetPasswordBtn: '.b-dialog-footer > .b-button',
+    loginIcon: 'a.b-header_login-icon', 
+    loginEmail: 'input#dwfrm_login_email', 
+    loginPassword: '#dwfrm_login_password[type=password]',
+    loginButton:'[class="b-button m-width_full m-small"][type="submit"]',
+    forgotPassword:'button#password-reset', 
+    forgotPasswordMessage: '.b-dialog-window.m-active.m-top_dialog',
+    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email', 
+    resetPasswordBtn: '.b-dialog-footer.m-actions > .b-button[type="submit"]',
     loginForm: ':nth-child(1) > .l-service-section_inner',
-    errorLoginMessage: '.b-message-copy'
+    errorLoginMessage: '.b-message-inner>.b-message-copy'
   },
   'wallis.co.uk': {
     loginIcon: 'svg[class="i-icon i-icon-user"]',

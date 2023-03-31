@@ -97,15 +97,15 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'coastfashion.com': {
-    minicartIcon: '.mini-cart-link',
-    loginIcon: '.user-account',
+    minicartIcon: '.mini-cart-total>.mini-cart-link',
+    loginIcon: 'span.user-account',
     registrationButton: 'a[title="Register"]',
-    wishListIcon: '.header-wishlist > .header-wishlist-link',
+    wishListIcon: '.header-wishlist >a.header-wishlist-link',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
-    searchField: '.js-header-search-input',
-    searchIcon: '.js-search-icon',
+    searchField: 'input.js-header-search-input[type="search"]',
+    searchIcon: 'button.js-search-icon',
     promotion: 'div.product-category-slider',
-    logo: '.primary-logo-link',
+    logo: 'a.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -184,10 +184,12 @@ class HomePage implements AbstractPage {
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIcon = selectors[variables.brand].loginIcon;
       const viewportWidth = Cypress.config('viewportWidth');
+
       // If Mobile Device is used
       if (viewportWidth < 1100) {
         cy.get(hamburgerMenu).click({force: true});
         cy.get(loginIconMobile).should('be.visible').click({force:true});
+
       // If Desktop Device is used
       } else {
         cy.get(loginIcon).should('be.visible');

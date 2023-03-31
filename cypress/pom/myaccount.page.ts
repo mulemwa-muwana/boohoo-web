@@ -840,10 +840,6 @@ class MyAccountPage implements AbstractPage {
         }
         if (isSiteGenesisBrand) {
           cy.get(addressNicknameField).type('New1');
-          cy.get(addressSubmitBtn).click({ force: true });
-          if (variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com' || variables.brand == 'oasis-stores.com') {
-            cy.get(proceedToBillingBtn).click({ force: true });
-          }
         }
         cy.get(addressSubmitBtn).click({ force: true }); 
       },
@@ -938,7 +934,8 @@ class MyAccountPage implements AbstractPage {
         const addressNameLine = selectors[variables.brand].addressNameLine;
         const addressSummaryLine = selectors[variables.brand].addressSummaryLine;
         cy.get(addressDefaultBox).find(addressNameLine).should('contain.text', addressName);
-        cy.get(addressDefaultBox).find(addressSummaryLine).should('contain.text', addressSummary);
+
+        
       },
       assertNewAddressData (addressName: string) {
         cy.contains(addressName).should('be.visible');

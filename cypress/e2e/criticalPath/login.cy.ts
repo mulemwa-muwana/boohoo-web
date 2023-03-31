@@ -12,7 +12,7 @@ describe('Login Functionality tests', function () {
     HomePage.goto();
   });
     
-  it.only('Verify that user can login with valid credentials and log out', function () {
+  it('Verify that user can login with valid credentials and log out', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);

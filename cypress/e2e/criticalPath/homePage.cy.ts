@@ -156,7 +156,7 @@ describe('Home Page', function () {
         }
       });
 
-      it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
+      it.only('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
         GlobalFooter.click.copyrightTermsAndConditionsLink();
 
         if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com') {

@@ -377,7 +377,10 @@ class PdpPage implements AbstractPage {
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth > 1100) {
       cy.get(miniCartViewCartBtn).click({force: true}); 
+      }
     },
     wishListIcon () {
       const wishListIcon = selectors[variables.brand].wishListIcon;

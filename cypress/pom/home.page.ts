@@ -70,15 +70,15 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '.m-login'
   },
   'boohooman.com': {
-    minicartIcon: '#mini-cart .mini-cart-link',
-    loginIcon: '.user-account',
+    minicartIcon: '[class="mini-cart-total"]>a.mini-cart-link.mini-cart-empty',
+    loginIcon: 'span.user-account',
     registrationButton: '.user-links > a:nth-child(2)',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
-    searchField: '.js-header-search-input',
-    searchIcon: '.js-search-icon',
+    searchField: '.header-search-form-fieldset>[class*="js-header-search-input"]:nth-child(1)',
+    searchIcon: '.js-search-icon[type="submit"]',
     promotion: 'div.product-category-slider',
-    logo: '.primary-logo-link',
+    logo: '[class="primary-logo"]>a.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },

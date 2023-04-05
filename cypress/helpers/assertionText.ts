@@ -323,7 +323,7 @@ class AssertionText {
   };
 
   Premier: TranslationMap = {
-    EN: 'UNLIMITED NEXT DAY DELIVERY',
+    EN: '\n                        BOOHOO PREMIER\n                    ',
     FR: 'PREMIER',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',

@@ -756,13 +756,8 @@ class BillingPage implements AbstractPage {
       } else if (variables.brand == 'boohooman.com') {
         cy.get(viewAllBillingAddresses).select('London');
       } else { 
-        cy.get(viewAllBillingAddresses).click({force: true});
-      }
-      
-      if (variables.brand != 'boohooman.com') {
         cy.get(billingAddressFromBook).click({force: true});
-      }
-      
+      }      
     },
     selectKlarna () {
       const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;

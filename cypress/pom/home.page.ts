@@ -32,13 +32,13 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.i-icon.i-icon-user',
-    registrationButton: '#page-body > div.b-miniaccount_panel > div > div > div > div.b-miniaccount-content > div.b-registration_benefits > a',
-    wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    registrationButton: 'a.b-button.m-small.b-registration_benefits-button',
+    wishListIcon: '.b-header_wishlist-icon:nth-child(1)',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
-    promotion: 'div[class="b-hero_carousel-track"]',
-    logo: '.b-logo',
+    promotion: '.b-hero_carousel.m-promotions.m-dualstrip>.b-hero_carousel-track:nth-child(2)',
+    logo: '#main-menu>a.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login'
   },

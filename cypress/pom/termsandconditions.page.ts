@@ -65,8 +65,7 @@ class TermsAndConditionsPage implements AbstractPage {
       const termsAndConditionsPageTitle = selectors[variables.brand].termsAndConditionsPageTitle;
       cy.get(termsAndConditionsPageTitle).invoke('text').then(actualText=>{
         expect(actualText.toLowerCase()).includes(text.toLowerCase());
-      });
-    //  cy.get(termsAndConditionsPageTitle).should('contains.text', text);      
+      });    
     } 
   };
 }

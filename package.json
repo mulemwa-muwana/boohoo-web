@@ -14,7 +14,7 @@
       "cy:open:warehouse": "cypress open --config-file ./config/warehouse/cypress.warehouse.uk.config.ts",
       "cy:open:boohoomena": "cypress open --config-file ./config/boohoomena/cypress.boohoomena.sa.config.ts",
     "//": "CYPRESS RUN",
-      "cy:run:boohoo": "cypress run --config-file .config/boohoo/cypress.boohoo.uk.config.ts",
+      "cy:run:boohoo": "cypress run --config-file ./config/boohoo/cypress.boohoo.uk.config.ts",
       "cy:run:dorothy": "cypress run --config-file ./config/dorothyperkins/cypress.dorothyperkins.uk.config.ts",
       "cy:run:burton": "cypress run --config-file ./config/burton/cypress.burton.uk.config.ts",
       "cy:run:oasis": "cypress run --config-file ./config/oasis/cypress.oasis.uk.config.ts",

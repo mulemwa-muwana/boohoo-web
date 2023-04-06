@@ -471,14 +471,14 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
         const australianLocales: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
-        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
+        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
         const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];
         
         if ((variables.brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[variables.language]);
         } else if ((variables.brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[variables.language]);
-        } else if (variables.brand == 'coastfashion.com') {
+        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2023');
         }  else if (variables.brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
@@ -503,7 +503,7 @@ describe('Home Page', function () {
       it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-        if (variables.brand == 'boohooman.com' || variables.brand == 'karenmillen.com' || variables.brand == 'misspap.com') {
+        if (variables.brand == 'boohooman.com') {
           cy.contains(`COPYRIGHT © ${currentYear - 1}`, { matchCase: false }).should('be.visible');
         } else {
           cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');

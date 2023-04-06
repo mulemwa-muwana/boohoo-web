@@ -70,7 +70,8 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '.m-login'
   },
   'boohooman.com': {
-    minicartIcon: '[class="mini-cart-total"]>a.mini-cart-link.mini-cart-empty',
+    minicartIcon: "[class='js-minicart-quantity minicart-quantity-value is-mobile']",
+    //'[class="mini-cart-total"]>a.mini-cart-link.mini-cart-empty',
     loginIcon: 'span.user-account',
     registrationButton: '.user-links > a:nth-child(2)',
     wishListIcon: '.header-wishlist > .header-wishlist-link',

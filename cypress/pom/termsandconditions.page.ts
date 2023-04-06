@@ -29,10 +29,10 @@ const selectors: SelectorBrandMap = {
     termsAndConditionsPageTitle: '[class*="content-page-wrapper"] > h1',
   },
   'oasis-stores.com': {
-    termsAndConditionsPageTitle: '#primary > div > h1'
+    termsAndConditionsPageTitle: '.l-static_page-title'
   },
   'misspap.com': {
-    termsAndConditionsPageTitle: '.content-page-wrapper > h3',
+    termsAndConditionsPageTitle: '#primary h1',
   },
   'boohoomena.com': {
     termsAndConditionsPageTitle: '#primary > div > h1'

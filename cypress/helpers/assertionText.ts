@@ -295,7 +295,7 @@ class AssertionText {
   };
 
   TermsAndConditionsArcadiaH1: TranslationMap = {
-    EN: 'IMPORTANT LEGAL NOTICE',
+    EN: 'TERMS & CONDITIONS',
     FR: '',
     NL: '',
     DE: '',

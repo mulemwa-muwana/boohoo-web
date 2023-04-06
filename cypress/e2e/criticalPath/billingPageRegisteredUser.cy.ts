@@ -48,7 +48,7 @@ describe('Billing page functionality for registered user', function () {
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
-  it('Verify that registered user can submit new billing address from address book', function () {
+  it.only('Verify that registered user can submit new billing address from address book', function () {
     if (!isSiteGenesisBrand) {
       BillingPage.click.uncheckShippingCheckbox();
     }

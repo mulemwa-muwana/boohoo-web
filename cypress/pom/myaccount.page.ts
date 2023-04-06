@@ -934,7 +934,6 @@ class MyAccountPage implements AbstractPage {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         const addressNameLine = selectors[variables.brand].addressNameLine;
         const addressSummaryLine = selectors[variables.brand].addressSummaryLine;
-        //cy.get(addressDefaultBox).find(addressNameLine).should('contain.text', addressName);
       },
       assertNewAddressData (addressName: string) {
         cy.contains(addressName).should('be.visible');

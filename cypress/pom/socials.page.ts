@@ -47,7 +47,7 @@ const selectors: SelectorBrandMap = {
     facebook: '.icon-facebook',
     facebookUrl: 'facebook.com/BoohooMAN',
     twitter: '.icon-twitter',
-    tiktok: '.tiktok-icon > a > span',
+    tiktok: 'li[class=tiktok-icon]',
     youtube: '.icon-youtube-text',
     pinterest: ''
   },

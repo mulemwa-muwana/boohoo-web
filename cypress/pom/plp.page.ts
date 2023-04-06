@@ -491,7 +491,12 @@ class PlpPage implements AbstractPage {
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       cy.get('body').then($body => {
         if ($body.find(loadMoreProducts).length) {
-          cy.get(loadMoreProducts).click({ force: true });
+          if (variables.brand == 'warehousefashion.com') {
+            cy.get(loadMoreProducts).eq(1).click({ force: true });
+
+          } else {
+            cy.get(loadMoreProducts).click({ force: true });
+          }
           cy.wait(10000);
         }
       } 

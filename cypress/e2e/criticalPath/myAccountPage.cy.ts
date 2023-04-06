@@ -41,7 +41,7 @@ describe('Account page', function () {
       MyAccountPage.click.accountDetailsLink();
     }
     cy.fixture('users').then((credentials: LoginCredentials) => {
-     
+      MyAccountPage.assertions.assertAccountEmail(credentials.username);
     });
 
     MyAccountPage.click.accountDetailsLink();

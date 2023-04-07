@@ -12,7 +12,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
     loginForm: ':nth-child(1) > .l-service-section_inner > .b-form_box',
-    errorLoginMessage: '.b-message-copy'
+    errorLoginMessage: '.b-message-copy',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email',
   },
   'nastygal.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
@@ -24,7 +25,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
     loginForm: '.b-login_form',
-    errorLoginMessage: '.b-message-copy'
+    errorLoginMessage: '.b-message-copy',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'dorothyperkins.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
@@ -36,7 +38,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
     loginForm: ':nth-child(1) > .l-service-section_inner',
-    errorLoginMessage: '.b-message-copy'
+    errorLoginMessage: '.b-message-copy',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'burton.co.uk': {
     loginIcon: 'a.b-header_login-icon', 
@@ -48,7 +51,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email', 
     resetPasswordBtn: '.b-dialog-footer.m-actions > .b-button[type="submit"]',
     loginForm: ':nth-child(1) > .l-service-section_inner',
-    errorLoginMessage: '.b-message-inner>.b-message-copy'
+    errorLoginMessage: '.b-message-inner>.b-message-copy',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'wallis.co.uk': {
     loginIcon: 'svg[class="i-icon i-icon-user"]',
@@ -60,7 +64,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordEmailField: 'input#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '[class*="b-dialog-footer"]>.b-button.m-width_full',
     loginForm: ':nth-child(1) > .l-service-section_inner', 
-    errorLoginMessage: '.b-message-inner .b-message-copy'
+    errorLoginMessage: '.b-message-inner .b-message-copy',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'boohooman.com': {
     loginIcon: '.user-account',
@@ -74,7 +79,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.reset-password-btn',
     loginForm: 'form#dwfrm_login[class="login-page-form"]',
     wishlistLoginTitle: '.login-title',
-    errorLoginMessage: '.error-form'
+    errorLoginMessage: '.error-form',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'karenmillen.com': {
     loginIcon: '.user-account',
@@ -88,7 +94,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.reset-password-btn',
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
-    errorLoginMessage: '.error-form'
+    errorLoginMessage: '.error-form',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'coastfashion.com': {
     loginIcon: 'span.user-account', 
@@ -102,7 +109,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.reset-password-btn',
     loginForm: '#dwfrm_login.login-page-form',
     wishlistLoginTitle: '.login-title',
-    errorLoginMessage: '.error-form'
+    errorLoginMessage: '.error-form',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'warehousefashion.com': {
     loginIcon: '.user-account',
@@ -116,7 +124,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.reset-password-btn',
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
-    errorLoginMessage: '.error-form'
+    errorLoginMessage: '.error-form',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'oasis-stores.com': {
     loginIcon: '.user-account',
@@ -130,7 +139,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.reset-password-btn',
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
-    errorLoginMessage: '.error-form'
+    errorLoginMessage: '.error-form',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'misspap.com': {
     loginIcon: '.link-item-login',
@@ -144,7 +154,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.reset-password-btn',
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
-    errorLoginMessage: '.error-form'
+    errorLoginMessage: '.error-form',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'boohoomena.com': {
     loginIcon: 'span.user-account',
@@ -158,7 +169,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.reset-password-btn',
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
-    errorLoginMessage: '.error-form'
+    errorLoginMessage: '.error-form',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   }
 };
 
@@ -225,7 +237,6 @@ class LoginPage implements AbstractPage {
       if ((isSiteGenesisBrand) && (viewportWidth < 1100)) {
         cy.get(loginIcon).invoke('show');
       }
-
       // If Desktop Device is used
       else if ((isSiteGenesisBrand && variables.brand != 'misspap.com') && (viewportWidth > 1100)) {
         cy.get(loginIcon).invoke('show');
@@ -233,6 +244,7 @@ class LoginPage implements AbstractPage {
       } else {
         cy.get(loginIcon).click({force:true});
       }
+
       cy.wait(3000);
       const loginEmail = selectors[variables.brand].loginEmail;
       cy.get(loginEmail).type(user, {force: true}); 
@@ -253,7 +265,14 @@ class LoginPage implements AbstractPage {
     },
     resetPasswordEmail (email: string) {
       const resetPasswordEmailField = selectors[variables.brand].resetPasswordEmailField;
-      cy.get(resetPasswordEmailField).type(email);
+      const resetPasswordEmailFieldMobile = selectors[variables.brand].resetPasswordEmailFieldMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100) {
+        cy.get(resetPasswordEmailFieldMobile).type(email);
+      }
+      else {
+        cy.get(resetPasswordEmailField).type(email);
+      }
     }
   };
 }

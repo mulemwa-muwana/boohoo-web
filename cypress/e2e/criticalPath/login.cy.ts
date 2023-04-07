@@ -37,7 +37,7 @@ describe('Login Functionality tests', function () {
     });
   });
 
-  it('Verify that user can not login with non-registered mail address and that user can start process of reseting password using the "Forgot your password?" link', function () {
+  it.only('Verify that user can not login with non-registered mail address and that user can start process of reseting password using the "Forgot your password?" link', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
       if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com') {

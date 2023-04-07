@@ -288,7 +288,7 @@ class CartPage implements AbstractPage {
       // If Mobile Device is used
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100) {
-        cy.get(checkoutBtnForMobile).click({force: true});
+        cy.get(checkoutBtnForMobile).invoke('show').click({force: true});
 
       // If Desktop Device is used
       } else {

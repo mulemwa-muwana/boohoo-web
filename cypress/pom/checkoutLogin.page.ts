@@ -138,7 +138,7 @@ class CheckoutPage implements AbstractPage {
   actions = {
     guestCheckoutEmail (guestEmail: string) {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
-      cy.get(guestCheckoutEmail).clear({force:true}).type(guestEmail, {force:true});
+      cy.get(guestCheckoutEmail).click().clear({force:true}).type(guestEmail, {force:true});
     },
     userEmailField (username: string) {  
       const userEmailField = selectors[variables.brand].userEmailField;

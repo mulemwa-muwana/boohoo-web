@@ -344,7 +344,7 @@ const selectors: SelectorBrandMap = {
     addressCardsList: '.account-page-list',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
-    addressEditForm: '#CreditCardForm',
+    addressEditForm: '.edit-address > .account-page-title',
     addressField: '#dwfrm_profile_address_address1',
     addressSubmitBtn: '.apply-button',
     addAddressBtn: '.address-create',
@@ -359,6 +359,7 @@ const selectors: SelectorBrandMap = {
     addressDeleteBtn: '.address-delete-link',
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
+    addCardEditForm: '.account-wrapper > .account-page-title',
     addCreditCardNumber: '#encryptedCardNumber',
     addCreditCardOwner: 'input.adyen-checkout__input',
     addCreditCardExpDate: '#encryptedExpiryDate',
@@ -934,8 +935,6 @@ class MyAccountPage implements AbstractPage {
         const addressNameLine = selectors[variables.brand].addressNameLine;
         const addressSummaryLine = selectors[variables.brand].addressSummaryLine;
         cy.get(addressDefaultBox).find(addressNameLine).should('contain.text', addressName);
-
-        
       },
       assertNewAddressData (addressName: string) {
         cy.contains(addressName).should('be.visible');

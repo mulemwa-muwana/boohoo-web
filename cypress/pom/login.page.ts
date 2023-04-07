@@ -39,6 +39,7 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.b-dialog-footer > .b-button',
     loginForm: '.l-service-section_inner>.b-login_form',
     errorLoginMessage: '.b-message-inner>.b-message-copy',
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'burton.co.uk': {
     loginIcon: 'a.b-header_login-icon', 

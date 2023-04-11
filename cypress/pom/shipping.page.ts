@@ -353,7 +353,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
     addNewAddressButton: 'span.button.add-new-address',
-    editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
+    editAddress: '.js-address-radios-edit:eq(1)',
     guestEditAddress: '.js-edit-address',
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',

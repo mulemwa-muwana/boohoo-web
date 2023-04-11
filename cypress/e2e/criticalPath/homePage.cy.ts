@@ -82,6 +82,8 @@ describe('Home Page', function () {
       } else if (variables.brand == 'nastygal.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
+      }else if(variables.brand =='dorothyperkins.com'){
+        HomePage.click.selectLinkFromMegaMenuForDorothy(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       } else {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
@@ -89,7 +91,7 @@ describe('Home Page', function () {
       if (variables.brand == 'boohooman.com') {
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
       } else {
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[variables.language]);
+       homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[variables.language]);
       }
     });
 

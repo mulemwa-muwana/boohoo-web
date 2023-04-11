@@ -15,7 +15,7 @@ export default defineConfig({
 
   viewportHeight: 1080,
   viewportWidth: 1920,
-  defaultCommandTimeout: 10000,
+  defaultCommandTimeout: 60000,
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,

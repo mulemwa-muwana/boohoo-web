@@ -82,7 +82,7 @@ describe('Home Page', function () {
       } else if (variables.brand == 'nastygal.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
-      }else if(variables.brand =='dorothyperkins.com'){
+      } else if (variables.brand =='dorothyperkins.com') {
         HomePage.click.selectLinkFromMegaMenuForDorothy(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
       } else {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
@@ -91,7 +91,7 @@ describe('Home Page', function () {
       if (variables.brand == 'boohooman.com') {
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
       } else {
-       homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[variables.language]);
+        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[variables.language]);
       }
     });
 
@@ -482,7 +482,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[variables.language]);
         } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2023');
-        }  else if (variables.brand == 'boohoomena.com') {
+        } else if (variables.brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);

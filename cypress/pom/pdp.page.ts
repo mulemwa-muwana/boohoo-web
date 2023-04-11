@@ -501,8 +501,8 @@ class PdpPage implements AbstractPage {
     assertAddToCartBtnDisabled () {
       if (isSiteGenesisBrand) {
         const addToCart = selectors[variables.brand].addToCart;
-        if(variables.brand=='boohooman.com'){ // Deselecting Size to make addToCard button Disable for BHM
-          const deselectSize=selectors[variables.brand].deselectSize;
+        if(variables.brand=='boohooman.com') { 
+          const deselectSize=selectors[variables.brand].deselectSize; // Deselecting Size to Disable addToCart button for BHM
           cy.get(deselectSize).click()
         }
         cy.get(addToCart).should('have.attr', 'disabled');

@@ -29,10 +29,11 @@ const selectors: SelectorBrandMap = {
     termsAndConditionsPageTitle: '[class*="content-page-wrapper"] > h1',
   },
   'oasis-stores.com': {
+
     termsAndConditionsPageTitle: '.l-static_page-title > strong'
   },
   'misspap.com': {
-    termsAndConditionsPageTitle: '.content-page-wrapper > h3',
+    termsAndConditionsPageTitle: '#primary h1',
   },
   'boohoomena.com': {
     termsAndConditionsPageTitle: '#primary > div > h1'
@@ -63,7 +64,13 @@ class TermsAndConditionsPage implements AbstractPage {
     },
     assertTermsAndConditionsPageOpens (text: string) {
       const termsAndConditionsPageTitle = selectors[variables.brand].termsAndConditionsPageTitle;
+
       cy.get(termsAndConditionsPageTitle).contains(text, { matchCase: false }).should('be.visible');      
+
+      cy.get(termsAndConditionsPageTitle).invoke('text').then(actualText=>{
+        expect(actualText.toLowerCase()).includes(text.toLowerCase());
+      });    
+
     } 
   };
 }

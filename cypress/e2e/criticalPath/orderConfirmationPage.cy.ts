@@ -44,7 +44,7 @@ describe('Order confirmation page for guest user', function () {
 
     const paymentMethod: PaymentMethod = 'CreditCard_Visa';
     generateFrontendArtefact(variables.brand, paymentMethod);
-  });
+  }); 
 
   it('Verify that guest user can place order using Credit Card - Amex)', function () {
     Navigate.toBillingPage('GuestUser');

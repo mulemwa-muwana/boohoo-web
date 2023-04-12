@@ -67,7 +67,6 @@ describe('Account page', function () {
     MyAccountPage.assertions.assertDefaultAddressPresence();
     MyAccountPage.actions.editDefaultAddress(localeAddress.addressLine, localeAddress.country);
     MyAccountPage.assertions.assertDefaultAddressData(localeAddress.firstName, localeAddress.addressLine);
-
     MyAccountPage.click.addressesLink();
     MyAccountPage.actions.deleteAddress();
 

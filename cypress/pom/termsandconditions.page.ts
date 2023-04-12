@@ -23,13 +23,13 @@ const selectors: SelectorBrandMap = {
     termsAndConditionsPageTitle: '#primary > div > h1',
   },
   'coastfashion.com': {
-    termsAndConditionsPageTitle: '.cs-terms-of-use > h1',
+    termsAndConditionsPageTitle: '.l-static_page-title',
   },
   'warehousefashion.com': {
     termsAndConditionsPageTitle: '[class*="content-page-wrapper"] > h1',
   },
   'oasis-stores.com': {
-    termsAndConditionsPageTitle: '#primary > div > h1'
+    termsAndConditionsPageTitle: '.l-static_page-title > strong'
   },
   'misspap.com': {
     termsAndConditionsPageTitle: '.content-page-wrapper > h3',
@@ -63,7 +63,7 @@ class TermsAndConditionsPage implements AbstractPage {
     },
     assertTermsAndConditionsPageOpens (text: string) {
       const termsAndConditionsPageTitle = selectors[variables.brand].termsAndConditionsPageTitle;
-      cy.get(termsAndConditionsPageTitle).should('contains.text', text);      
+      cy.get(termsAndConditionsPageTitle).contains(text, { matchCase: false }).should('be.visible');      
     } 
   };
 }

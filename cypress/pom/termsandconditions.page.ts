@@ -67,10 +67,6 @@ class TermsAndConditionsPage implements AbstractPage {
 
       cy.get(termsAndConditionsPageTitle).contains(text, { matchCase: false }).should('be.visible');      
 
-      cy.get(termsAndConditionsPageTitle).invoke('text').then(actualText=>{
-        expect(actualText.toLowerCase()).includes(text.toLowerCase());
-      });    
-
     } 
   };
 }

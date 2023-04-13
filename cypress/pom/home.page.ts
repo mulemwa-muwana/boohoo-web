@@ -91,7 +91,7 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.icon-wishlist-bold',
     wishListIconMobile: '.icon-wishlist-bold',
     searchField: '.js-header-search-input',
-    searchIcon: '.js-search-icon',
+    searchIcon: '.icon-search',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
@@ -300,7 +300,7 @@ class HomePage implements AbstractPage {
       // If Mobile Device is used
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100) {
-        cy.get('.b-search_dialog-cancel').click({force: true});
+        cy.get('.search-close-button').click({force: true});
       }
     }
   };

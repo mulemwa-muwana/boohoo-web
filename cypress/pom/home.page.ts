@@ -14,7 +14,8 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    loginIconMobile: '.m-login',
+    registrationButtonMobiles:'.b-button.m-width_full[type="button"][data-tau="register_submit"]'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -33,7 +34,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.i-icon.i-icon-user',
     registrationButton: 'a.b-button.m-small.b-registration_benefits-button',
-    wishListIcon: '.b-header_wishlist-icon:nth-child(1)',
+    wishListIcon: 'span.b-header_wishlist-icon:eq(1)',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
@@ -70,7 +71,7 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '.m-login'
   },
   'boohooman.com': {
-    minicartIcon: '[class="mini-cart-total"]>a.mini-cart-link.mini-cart-empty',
+    minicartIcon: "[class='js-minicart-quantity minicart-quantity-value is-mobile']",
     loginIcon: 'span.user-account',
     registrationButton: '.user-links > a:nth-child(2)',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
@@ -129,7 +130,7 @@ const selectors: SelectorBrandMap = {
     wishlistIcon: '.wishlist-button',
     wishListIconMobile: '.header-wishlist',
     searchField: '.js-header-search-input',
-    wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
+    wishListIcon: '.icon-wishlist',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
@@ -240,6 +241,12 @@ class HomePage implements AbstractPage {
 
     selectLinkFromMegaMenu (text: string) {
       cy.contains(text).click({ force: true });
+    },
+
+    // MEGA MENU - MAIN NAV DOROTHYPERKINS FOR DOUBLECLICK
+
+    selectLinkFromMegaMenuForDorothy (text: string) {
+      cy.contains(text).dblclick({ force: true });
     },
 
     //  SUB-LINKS FROM MEGA MENU

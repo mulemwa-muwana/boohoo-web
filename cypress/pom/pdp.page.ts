@@ -149,6 +149,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
+    deselectSize:'[class="swatches size clearfix"] li:eq(0)',
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '.product-detail > h1.product-name',
@@ -176,6 +177,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
+    miniCartProductIner:'[class="mini-cart-content-inner js-mini-cart-content-inner"]',
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '.product-detail > h1.product-name',
@@ -499,6 +501,10 @@ class PdpPage implements AbstractPage {
     assertAddToCartBtnDisabled () {
       if (isSiteGenesisBrand) {
         const addToCart = selectors[variables.brand].addToCart;
+        if(variables.brand=='boohooman.com') { 
+          const deselectSize=selectors[variables.brand].deselectSize; // Deselecting Size to Disable addToCart button for BHM
+          cy.get(deselectSize).click()
+        }
         cy.get(addToCart).should('have.attr', 'disabled');
       } else {
         const disabledAddToCart = selectors[variables.brand].disabledAddToCart;

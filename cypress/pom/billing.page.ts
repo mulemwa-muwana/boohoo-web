@@ -754,15 +754,10 @@ class BillingPage implements AbstractPage {
       if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
         cy.get('button[class="b-button m-link m-width_full"]').click({force: true});
       } else if (variables.brand == 'boohooman.com') {
-        cy.get(viewAllBillingAddresses).select('London');
+        cy.get(viewAllBillingAddresses).select('New1');
       } else { 
-        cy.get(viewAllBillingAddresses).click({force: true});
-      }
-      
-      if (variables.brand != 'boohooman.com') {
         cy.get(billingAddressFromBook).click({force: true});
-      }
-      
+      }      
     },
     selectKlarna () {
       const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;

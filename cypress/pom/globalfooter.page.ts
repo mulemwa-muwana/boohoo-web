@@ -225,7 +225,7 @@ const selectors: SelectorBrandMap = {
     facebookLink: 'a[href="https://www.facebook.com/MissPapOfficial"]',
     twitterLink: 'a[href="https://twitter.com/misspap"]',
     pintrestLink: 'a[href="https://www.pinterest.co.uk/oasisfashion/"]',
-    tiktokLink: 'a[href="https://www.tiktok.com/@misspap?lang=en"]',
+    tiktokLink:'a[href="https://www.tiktok.com/@misspap"]',
     youtubeLink: 'a[href="https://www.youtube.com/channel/UC-fFPC-ggIM_EcHsfoDMbjg"]',
     newsletterInputMail: 'input[id^="footer_newsletter_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
@@ -239,7 +239,7 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer',
+    footer: '.footer[style^="padd"]',
     helpLink: 'a[title="Customer Service"]'
   },
   'boohoomena.com': {
@@ -322,7 +322,7 @@ class GlobalFooter implements AbstractPage {
       const tiktokLink = selectors[variables.brand].tiktokLink; //  Only boohoo
       cy.get(tiktokLink).then(link => {
         cy
-          .request(link.prop('href'))
+          .request(link.prop('href')) // Get the href attribute value
           .its('status')
           .should('eq', 200); 
       });

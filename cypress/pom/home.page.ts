@@ -14,7 +14,8 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    loginIconMobile: '.m-login',
+    registrationButtonMobiles:'.b-button.m-width_full[type="button"][data-tau="register_submit"]'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',

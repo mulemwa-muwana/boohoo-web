@@ -24,7 +24,7 @@ describe('Account page', function () {
     MyAccountPage.click.viewNewestOrder();
     MyAccountPage.assertions.assertOrderDetailsContent();
   });
-  it.only('TC02 Verify that returns option links to correct page', function () {
+  it('TC02 Verify that returns option links to correct page', function () {
     if (isSiteGenesisBrand) {
       MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
       MyAccountPage.assertions.assertUrlContains('return');

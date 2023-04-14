@@ -19,6 +19,7 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
+  
 
   // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',

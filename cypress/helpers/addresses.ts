@@ -1,4 +1,4 @@
-type AddressMap = Record<string, Record<'primaryAddress' | 'secondaryAddress', AddressData>>
+type AddressMap = Record<string, Record<'primaryAddress' | 'secondaryAddress' | 'newAddedPrimaryAddress', AddressData>>
 
 class Addresses {
   
@@ -27,6 +27,18 @@ class Addresses {
         city: 'Sheffield',
         countryCode: 'GB',
         county: 'South Yorkshire',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -55,6 +67,18 @@ class Addresses {
         city: 'New York',
         countryCode: 'US',
         county: 'New York',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -83,6 +107,18 @@ class Addresses {
         city: 'Dublin 7',
         countryCode: 'IE',
         county: 'Dublin',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -112,6 +148,18 @@ class Addresses {
         city: 'Berlin',
         countryCode: 'DE',
         county: 'Berlin',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -140,6 +188,18 @@ class Addresses {
         city: ' Paris',
         countryCode: 'FR',
         county: 'Paris',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -168,6 +228,18 @@ class Addresses {
         city: 'Roma',
         countryCode: 'IT',
         county: 'RM',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -196,6 +268,18 @@ class Addresses {
         city: 'Barcelona',
         countryCode: 'ES',
         county: 'Barcelona',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -224,6 +308,18 @@ class Addresses {
         city: 'Montréal',
         countryCode: 'CA',
         county: 'Quebec',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -252,6 +348,18 @@ class Addresses {
         city: 'Jerusalem',
         countryCode: 'IL',
         county: 'Jerusalem',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -280,6 +388,18 @@ class Addresses {
         city: 'Turku',
         countryCode: 'FI',
         county: '',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -308,6 +428,18 @@ class Addresses {
         city: 'Rotterdam',
         countryCode: 'NL',
         county: '',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -336,6 +468,18 @@ class Addresses {
         city: 'Stockholm',
         countryCode: 'SE',
         county: '',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -364,6 +508,18 @@ class Addresses {
         city: 'Oslo',
         countryCode: 'NO',
         county: '',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
     
@@ -392,6 +548,18 @@ class Addresses {
         city: 'København K',
         countryCode: 'DK',
         county: '',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -421,6 +589,18 @@ class Addresses {
         city: 'Melbourne',
         countryCode: 'AU',
         county: 'Oakleigh South',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -449,6 +629,18 @@ class Addresses {
         city: 'Auckland',
         countryCode: 'NZ',
         county: 'Kingsland',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -477,6 +669,18 @@ class Addresses {
         city: 'Ixelles',
         countryCode: 'BE',
         county: '',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     },
 
@@ -505,6 +709,18 @@ class Addresses {
         city: 'Riyadh',
         countryCode: 'SA',
         county: 'Riyadh Province',
+      },
+      newAddedPrimaryAddress:{
+        firstName: 'Boohoo',
+        lastName: 'Test',
+        phone: '08082580300',
+        addressLine: '85 Piccadilly',
+        postcode: 'W1J 7NB',
+        addressName: 'PrimaryAddress',
+        country: 'United Kingdom',
+        city: 'London',
+        countryCode: 'GB',
+        county: 'London',
       }
     }
   };
@@ -515,7 +731,7 @@ class Addresses {
    * @param type either primaryAddress or secondaryAddress 
    * @returns AddressData type with all the details for an address.
    */
-  getAddressByLocale (locale: string, type: 'primaryAddress' | 'secondaryAddress'): AddressData {
+  getAddressByLocale (locale: string, type: 'primaryAddress' | 'secondaryAddress' | 'newAddedPrimaryAddress') : AddressData {
     if (typeof this.addressMap[locale] === 'undefined') throw new Error('Address could not be found with locale ' + locale);
     return this.addressMap[locale][type] as AddressData;
   }

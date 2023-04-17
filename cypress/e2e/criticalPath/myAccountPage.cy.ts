@@ -53,7 +53,7 @@ describe('Account page', function () {
     }
   });
 
-  it.only('TC04 Verify that addresses are editable; user can add and delete new address', function () {
+  it('TC04 Verify that addresses are editable; user can add and delete new address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
     const localeNewAddress = Addresses.getAddressByLocale(variables.locale, 'newAddedPrimaryAddress');
     

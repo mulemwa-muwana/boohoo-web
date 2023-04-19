@@ -115,8 +115,9 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIconMobile: '.icon-wishlist',
     searchField: '.js-header-search-input',
+    searchFieldMobile:'[class="icon-search js-icon-search"]',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
@@ -279,7 +280,11 @@ class HomePage implements AbstractPage {
       const searchField = selectors[variables.brand].searchField;
       const searchIcon = selectors[variables.brand].searchIcon;
       cy.get(searchIcon).click({ force: true });
-      cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
+      if (variables.brand == 'karenmillen.com') {
+        cy.get(searchField).click({ force: true }).type(SKU + '{enter}' +  '{enter}', {force: true}); //- For KarrenMillen It's not navigating user to PDP until click on product 2 times or hit enter 2 times
+        } else {
+        cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
+        }
     },
     forgotPassword (email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();
@@ -315,7 +320,15 @@ class HomePage implements AbstractPage {
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[variables.brand].searchField;
-      cy.get(searchIcon).invoke('show').should('be.visible');
+      const searchIconMobile = selectors[variables.brand].searchFieldMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100 && variables.brand == 'warehousefashion.com')  {
+        cy.get(searchIconMobile).invoke('show').should('be.visible')
+        cy.get(searchIconMobile).click()
+      } else {
+        cy.get(searchIcon).invoke('show').should('be.visible');
+      }
+      
     },
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;

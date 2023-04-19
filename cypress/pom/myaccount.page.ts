@@ -370,7 +370,7 @@ const selectors: SelectorBrandMap = {
     orderID: '.orderdetails-header-number',
     shippingInfo: '.orderdetails-shipment-details',
     billingAndPaymentInfo: '.orderdetails-summary-wrapper',
-    accountDetailsEmailField: '#account-email-input',
+    accountDetailsEmailField: '.account-box-item.account-email',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
     addressNameLine: '.mini-address-name',

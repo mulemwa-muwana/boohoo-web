@@ -848,7 +848,7 @@ class MyAccountPage implements AbstractPage {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
         cy.get(addressDeleteBtn).last().click({ force: true }); //  Target Last address which added now
         if (!isSiteGenesisBrand) {
-        cy.contains("button", "Yes, delete").click()
+          cy.contains('button', 'Yes, delete').click();
         }
       },
       addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {
@@ -944,7 +944,7 @@ class MyAccountPage implements AbstractPage {
       },
       assertAddressNotPresent (addressName: string) {
         const addressCardsList = selectors[variables.brand].addressCardsList;
-        cy.wait(5000)
+        cy.wait(5000);
         cy.get(addressCardsList).last().should('not.contain', addressName);
       },
       assertCardDetails (cardEnd: string) {

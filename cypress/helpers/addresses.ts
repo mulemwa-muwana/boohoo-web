@@ -731,7 +731,7 @@ class Addresses {
    * @param type either primaryAddress or secondaryAddress 
    * @returns AddressData type with all the details for an address.
    */
-  getAddressByLocale (locale: string, type: 'primaryAddress' | 'secondaryAddress' | 'newAddedPrimaryAddress') : AddressData {
+  getAddressByLocale (locale: string, type: 'primaryAddress' | 'secondaryAddress' | 'newAddedPrimaryAddress'): AddressData {
     if (typeof this.addressMap[locale] === 'undefined') throw new Error('Address could not be found with locale ' + locale);
     return this.addressMap[locale][type] as AddressData;
   }

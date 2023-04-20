@@ -213,15 +213,14 @@ class LoginPage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
       
       if (viewportWidth < 1100) {
-        cy.get(mobileHamburgIcon).click()
-      } 
-      else {
-        if (isSiteGenesisBrand && variables.brand != 'misspap.com' && variables.brand != 'boohooman.com') {
-        cy.get('.header-customer-info').invoke('show');
+        cy.get(mobileHamburgIcon).click();
       } else {
-        cy.get(loginIcon).click({ force: true });
+        if (isSiteGenesisBrand && variables.brand != 'misspap.com' && variables.brand != 'boohooman.com') {
+          cy.get('.header-customer-info').invoke('show');
+        } else {
+          cy.get(loginIcon).click({ force: true });
+        }
       }
-    }
     },
     forgotPasswordLink (opts = { force: true }) {
       const forgotPassword = selectors[variables.brand].forgotPassword;
@@ -268,17 +267,17 @@ class LoginPage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
 
       if (viewportWidth < 1100) {
-          cy.get(mobileHamburgIcon).click({force:true})
-          cy.wait(2000)
-          cy.get(MobileloginLink).click()
-      } else { //Web Device logic start from this else statement
+        cy.get(mobileHamburgIcon).click({force:true});
+        cy.wait(2000);
+        cy.get(MobileloginLink).click();
+      } else { // Web Device logic start from this else statement
         if ((isSiteGenesisBrand && variables.brand != 'misspap.com') && (viewportWidth > 1100)) {
           cy.get(loginIcon).invoke('show');
           cy.get(loginLink).click({force:true});
         } else {
           cy.get(loginIcon).click({force:true});
         }
-       } 
+      } 
        
       cy.wait(3000);
       const loginEmail = selectors[variables.brand].loginEmail;
@@ -304,8 +303,7 @@ class LoginPage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100) {
         cy.get(resetPasswordEmailFieldMobile).type(email);
-      }
-      else {
+      } else {
         cy.get(resetPasswordEmailField).type(email);
       }
     }

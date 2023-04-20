@@ -273,15 +273,8 @@ class RegistrationPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         cy.get(confirmEmailForRegistration).click({force: true}).type(randomEmail);
       }
-      
-      if (variables.brand == 'boohoo.com') {
-
-        if (viewportWidth < 1100) {
-          cy.get('.b-button.m-width_full[type="button"][data-tau="register_submit"]').click({force:true});
-        }
-        else{
-          cy.get('button[data-id="continueButton"]').click();
-        }
+      if(variables.brand == 'boohoo.com') {
+        cy.get('button[data-id="continueButton"]').click()
       }
     },
     confirmationCheckbox () {

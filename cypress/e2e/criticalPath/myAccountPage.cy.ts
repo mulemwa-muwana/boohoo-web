@@ -31,7 +31,7 @@ describe('Account page', function () {
     } else {
       MyAccountPage.click.viewOrderBtn();
       MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
-      MyAccountPage.assertions.assertUrlContains('delivery');
+      MyAccountPage.assertions.assertUrlContains('returns');
     }
   });
 

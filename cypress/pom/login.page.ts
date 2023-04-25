@@ -5,7 +5,7 @@ const selectors: SelectorBrandMap = {
   'boohoo.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
-    MobileloginLink:'[class="b-hamburger_account-action_link m-login"]',
+    MobileLoginLink:'[class="b-hamburger_account-action_link m-login"]',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
@@ -20,7 +20,7 @@ const selectors: SelectorBrandMap = {
   'nastygal.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
-    MobileloginLink: '[class="b-menu_panel-guest_action m-login"]',
+    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
@@ -50,7 +50,7 @@ const selectors: SelectorBrandMap = {
   'burton.co.uk': {
     loginIcon: 'a.b-header_login-icon', 
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
-    MobileloginLink: '[class="b-menu_panel-guest_action m-login"]',
+    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
     loginEmail: 'input#dwfrm_login_email', 
     loginPassword: '#dwfrm_login_password[type=password]',
     loginButton:'button[data-tau="login_submit"]',
@@ -65,7 +65,7 @@ const selectors: SelectorBrandMap = {
   'wallis.co.uk': {
     loginIcon: 'svg[class="i-icon i-icon-user"]',
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
-    MobileloginLink: '[class="b-menu_panel-guest_action m-login"]',
+    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
     loginEmail: '#dwfrm_login_email[type="email"]',
     loginPassword: '#dwfrm_login_password[type="password"]',
     loginButton: '.b-login_form-group_cta>button[data-tau="login_submit"]',
@@ -81,7 +81,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.user-account',
     loginLink: '.user-links > a:nth-child(1)',
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
-    MobileloginLink :'.user-link-item[title^="Log"]:eq(1)',
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: 'input[id^=dwfrm_login_username][type="email"]',
     loginPassword: 'input[id^=dwfrm_login_password][type="password"]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -98,7 +98,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.user-account',
     loginLink: '.user-links > [title="Log In"]',
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
-    MobileloginLink :'.user-link-item[title^="Log"]:eq(1)',
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -115,7 +115,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: 'span.user-account', 
     loginLink: '.user-links > [title="Log In"]', 
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
-    MobileloginLink :'.user-link-item[title^="Log"]:eq(1)',
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '.field-wrapper.js-field-wrapper>[id^=dwfrm_login_username][type=email]', 
     loginPassword: 'input[id^=dwfrm_login_password][type="password"]', 
     loginButton:'.login-page-button.js-login-page-button[type="submit"]',
@@ -132,7 +132,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.user-account',
     loginLink: '.user-links > [title="Log In"]',
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
-    MobileloginLink :'.user-link-item[title^="Log"]:eq(1)',
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -149,7 +149,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.user-account',
     loginLink: '.user-links > [title="Log In"]',
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
-    MobileloginLink :'.user-link-item[title^="Log"]:eq(1)',
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -166,7 +166,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.link-item-login',
     loginLink: '.user-links > [title="Log In"]',
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
-    MobileloginLink:'.user-links [title="My Account"]:eq(1)',
+    MobileLoginLink:'.user-links [title="My Account"]:eq(1)',
     loginEmail: '[id^="dwfrm_login_username"]',
     loginPassword: '[id^="dwfrm_login_password"]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -183,7 +183,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: 'span.user-account',
     loginLink: '.user-links > [title="Log In"]',
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
-    MobileloginLink :'.user-link-item[title^="Log"]:eq(1)',
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -263,13 +263,13 @@ class LoginPage implements AbstractPage {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
       const mobileHamburgIcon = selectors[variables.brand].mobileHamburgIcon;
-      const MobileloginLink = selectors[variables.brand].MobileloginLink;
+      const MobileLoginLink = selectors[variables.brand].MobileLoginLink;
       const viewportWidth = Cypress.config('viewportWidth');
 
       if (viewportWidth < 1100) {
         cy.get(mobileHamburgIcon).click({force:true});
         cy.wait(2000);
-        cy.get(MobileloginLink).click();
+        cy.get(MobileLoginLink).click();
       } else { // Web Device logic start from this else statement
         if ((isSiteGenesisBrand && variables.brand != 'misspap.com') && (viewportWidth > 1100)) {
           cy.get(loginIcon).invoke('show');

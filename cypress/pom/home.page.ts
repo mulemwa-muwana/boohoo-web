@@ -96,7 +96,7 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.icon-wishlist-bold',
     wishListIconMobile: '.icon-wishlist-bold',
     searchField: '.js-header-search-input',
-    searchIcon: '.icon-search',
+    searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
@@ -283,11 +283,7 @@ class HomePage implements AbstractPage {
       const searchField = selectors[variables.brand].searchField;
       const searchIcon = selectors[variables.brand].searchIcon;
       cy.get(searchIcon).click({ force: true });
-      if (variables.brand == 'karenmillen.com') {
-        cy.get(searchField).click({ force: true }).type(SKU + '{enter}' + '{enter}', {force: true}); // - For KarrenMillen It's not navigating user to PDP until click on product 2 times or hit enter 2 times
-      } else {
-        cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
-      }
+      cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
     },
     forgotPassword (email: string) {
       cy.get('button[data-tau="login_password_reset"]').click();
@@ -327,7 +323,6 @@ class HomePage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100 && variables.brand == 'warehousefashion.com') {
         cy.get(searchIconMobile).invoke('show').should('be.visible');
-        cy.get(searchIconMobile).click();
       } else {
         cy.get(searchIcon).invoke('show').should('be.visible');
       }

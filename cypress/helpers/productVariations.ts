@@ -90,7 +90,7 @@ class productVariations {
   };
 
   productShopByStyle: TranslationMap = {
-    EN: 'Jacket',
+    EN: 'Jeans',
     NL: 'Jurken',
     DE: 'Jeans',
     FR: 'Jeans',

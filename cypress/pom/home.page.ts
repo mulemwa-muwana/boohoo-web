@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
-    registrationButtonMobiles:'.b-button.m-width_full[type="button"][data-tau="register_submit"]'
+    registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -28,12 +28,14 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    loginIconMobile: '.m-login',
+    registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.i-icon.i-icon-user',
     registrationButton: 'a.b-button.m-small.b-registration_benefits-button',
+    registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
     wishListIcon: 'span.b-header_wishlist-icon:eq(1)',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
@@ -47,7 +49,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-header_login-icon',
     registrationButton: '.b-registration_benefits > .b-button',
-    registrationButtonMobiles: '.l-service-section_inner > .b-button',
+    registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
     wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
@@ -61,6 +63,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     loginIcon: '.b-header_login-icon > .i-icon',
     registrationButton: '.b-registration_benefits > .b-button',
+    registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
@@ -74,6 +77,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: "[class='js-minicart-quantity minicart-quantity-value is-mobile']",
     loginIcon: 'span.user-account',
     registrationButton: '.user-links > a:nth-child(2)',
+    registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '.header-search-form-fieldset>[class*="js-header-search-input"]:nth-child(1)',
@@ -88,10 +92,11 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.user-account',
     loginIconLinkMobile: '#mobile-navigation > div > div.mobile-menu-header > div.js-appshell-uncached-headercustomerinfo-container > div > div > div > div > a:nth-child(1)',
     registrationButton: 'a[title="Register"]',
+    registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishListIcon: '.icon-wishlist-bold',
     wishListIconMobile: '.icon-wishlist-bold',
     searchField: '.js-header-search-input',
-    searchIcon: '.icon-search',
+    searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
@@ -101,6 +106,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.mini-cart-total>.mini-cart-link',
     loginIcon: 'span.user-account',
     registrationButton: 'a[title="Register"]',
+    registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishListIcon: '.header-wishlist >a.header-wishlist-link',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: 'input.js-header-search-input[type="search"]',
@@ -114,9 +120,11 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
+    registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIconMobile: '.icon-wishlist',
     searchField: '.js-header-search-input',
+    searchIconMobile:'[class="icon-search js-icon-search"]',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
@@ -127,6 +135,7 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.user-account',
     registrationButton: 'a[title="Register"]',
+    registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishlistIcon: '.wishlist-button',
     wishListIconMobile: '.header-wishlist',
     searchField: '.js-header-search-input',
@@ -142,6 +151,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: '.link-item-login',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     registrationButton: 'button.login-page-button[value="Create Account"]',
+    registrationButtonMobiles: '.user-links [title="Join"]:eq(1)',
     wishListIcon: '.icon-wishlist-header',
     searchField: 'form > fieldset > input',
     searchIcon: '.icon-search',
@@ -204,21 +214,15 @@ class HomePage implements AbstractPage {
     registrationButton () {
       const registrationButton = selectors[variables.brand].registrationButton;
       const registrationButtonMobiles = selectors[variables.brand].registrationButtonMobiles;
-      if (!isSiteGenesisBrand) {
-        cy.get('body').then($body => {
-          if ($body.find(registrationButtonMobiles).length) {
-            cy.get(registrationButtonMobiles).click({force: true});
-          } else {
-            cy.get(registrationButton).click({force: true}); 
-          }
-        }
-        );
-      } else {
-        cy.get(registrationButton).click({force: true});
-      }
-           
-    },
+      const viewportWidth = Cypress.config('viewportWidth');
 
+      if (viewportWidth < 1100 ) {
+        cy.get(registrationButtonMobiles).click({force:true});
+      } else {
+        cy.get(registrationButton).click({force:true});
+      }   
+    },
+   
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
@@ -315,7 +319,14 @@ class HomePage implements AbstractPage {
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[variables.brand].searchField;
-      cy.get(searchIcon).invoke('show').should('be.visible');
+      const searchIconMobile = selectors[variables.brand].searchIconMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100 && variables.brand == 'warehousefashion.com') {
+        cy.get(searchIconMobile).invoke('show').should('be.visible');
+      } else {
+        cy.get(searchIcon).invoke('show').should('be.visible');
+      }
+      
     },
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;

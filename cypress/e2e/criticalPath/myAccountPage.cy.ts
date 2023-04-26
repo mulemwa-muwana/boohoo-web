@@ -31,7 +31,7 @@ describe('Account page', function () {
     } else {
       MyAccountPage.click.viewOrderBtn();
       MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
-      MyAccountPage.assertions.assertUrlContains('delivery');
+      MyAccountPage.assertions.assertUrlContains('returns');
     }
   });
 
@@ -55,22 +55,22 @@ describe('Account page', function () {
 
   it('TC04 Verify that addresses are editable; user can add and delete new address', function () {
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    const localeNewAddress = Addresses.getAddressByLocale(variables.locale, 'newAddedPrimaryAddress');
     
     if (variables.brand == 'burton.co.uk') {
       cy.scrollTo('top');
     } 
 
     MyAccountPage.click.addressesLink();
-    MyAccountPage.actions.createAddress(localeAddress);
-
+    MyAccountPage.actions.createAddress(localeNewAddress);
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
     MyAccountPage.actions.editDefaultAddress(localeAddress.addressLine, localeAddress.country);
     MyAccountPage.assertions.assertDefaultAddressData(localeAddress.firstName, localeAddress.addressLine);
+   
     MyAccountPage.click.addressesLink();
-    MyAccountPage.actions.deleteAddress();
-
-    // MyAccountPage.assertions.assertAddressNotPresent(localeAddress.firstName);  // this needs different solution
+    MyAccountPage.actions.deleteAddress();  
+    MyAccountPage.assertions.assertAddressNotPresent(localeNewAddress.firstName); 
   });
 
   it('TC05 Verify that card can be viewed / saved / deleted', function () {

@@ -487,7 +487,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
         } else if (variables.brand == 'warehousefashion.com' && variables.locale == 'UK') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated July 2022');
-        } else if (variables.brand == 'warehousefashion.com' && variables.locale == 'IE' || variables.locale == 'EU') {
+        } else if (variables.brand == 'warehousefashion.com' && (variables.locale == 'IE' || variables.locale == 'EU')) {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2020');
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);

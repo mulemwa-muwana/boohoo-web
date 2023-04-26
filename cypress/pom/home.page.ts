@@ -124,7 +124,7 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.header-wishlist > .header-wishlist-link',
     wishListIconMobile: '.icon-wishlist',
     searchField: '.js-header-search-input',
-    searchFieldMobile:'[class="icon-search js-icon-search"]',
+    searchIconMobile:'[class="icon-search js-icon-search"]',
     searchIcon: '.js-search-icon',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
@@ -319,7 +319,7 @@ class HomePage implements AbstractPage {
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[variables.brand].searchField;
-      const searchIconMobile = selectors[variables.brand].searchFieldMobile;
+      const searchIconMobile = selectors[variables.brand].searchIconMobile;
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100 && variables.brand == 'warehousefashion.com') {
         cy.get(searchIconMobile).invoke('show').should('be.visible');

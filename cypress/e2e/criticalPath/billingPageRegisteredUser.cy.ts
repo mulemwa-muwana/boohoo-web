@@ -18,7 +18,7 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    if (variables.brand == 'nastygal.com') {
+    if (variables.brand == 'boohoo.com','dorothyperkins.com','wallis.co.uk') {
       BillingPage.assertions.assertShippingMethodPresent('\n                            UK Next Day Delivery\n                        ');
     } else {
       BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');

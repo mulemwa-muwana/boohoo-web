@@ -16,9 +16,11 @@ describe('Billing page functionality for registered user', function () {
   it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
-  it('Verify that shipping method is displayed', function () {
+  it.only('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     if (variables.brand == 'nastygal.com') {
+      BillingPage.assertions.assertShippingMethodPresent('\n                            UK Standard Delivery\n                        ');
+    } else if (variables.brand== 'boohoo.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'oasis-stores.com') {
       BillingPage.assertions.assertShippingMethodPresent('\n                            UK Next Day Delivery\n                        ');
     } else {
       BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');

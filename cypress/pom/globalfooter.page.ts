@@ -33,7 +33,7 @@ const selectors: SelectorBrandMap = {
     facebookLink: 'a[href="https://www.facebook.com/nastygal"]',
     twitterLink: 'a[href="https://twitter.com/nastygal"]',
     tiktokLink: 'a[href="https://www.tiktok.com/@nastygal?lang=en"]',
-    newsletterInputMail: '#dwfrm_newslettersubscribe_email',//'input[id="dwfrm_newslettersubscribe_email"]',
+    newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: '.b-newsletters-submit',
     changeCountryDropdown: '.b-country-select',

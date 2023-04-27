@@ -19,6 +19,8 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
+  numTestsKeptInMemory: 150,
+
   blockHosts: [
     'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
   ],
@@ -40,7 +42,7 @@ export default defineConfig({
       plugins(on);
     },
     experimentalSessionAndOrigin: true,
-    numTestsKeptInMemory: 0,
+    // numTestsKeptInMemory: 0,
   },
 
 });

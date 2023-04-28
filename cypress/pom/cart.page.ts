@@ -277,7 +277,7 @@ class CartPage implements AbstractPage {
       const clearCart = selectors[variables.brand].clearCart;
       cy.get(clearCart).each(($el, index) => {
         if (index > 0) {
-          cy.wrap($el).click();
+          cy.wrap($el).click({force: true});
         }
       });
     },

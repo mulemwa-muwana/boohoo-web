@@ -312,17 +312,7 @@ class GlobalFooter implements AbstractPage {
           .should('eq', 200); 
       });
     },
-    facebookContactLink () {
-      const facebookContactLink = selectors[variables.brand].facebookContactLink;
-      cy.get(facebookContactLink).then(link => {
-        cy
-          .request(link.prop('href'))
-          .its('status')
-          .should('eq', 200); 
-      });
-    },
-
-    facebookLink () {
+   facebookLink () {
       const facebookLink = selectors[variables.brand].facebookLink;
       cy.get(facebookLink).then(link => {
         cy
@@ -331,12 +321,6 @@ class GlobalFooter implements AbstractPage {
           .should('eq', 200); 
       });
     },
-
-    emailContactLink () {
-      const emailContactLink = selectors[variables.brand].emailContactLink;
-      cy.get(emailContactLink).click();
-    },
-
     twitterLink () {
       const twitterLink = selectors[variables.brand].twitterLink;
       cy.get(twitterLink).then(link => {

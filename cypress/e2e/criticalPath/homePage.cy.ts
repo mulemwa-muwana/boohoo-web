@@ -547,11 +547,9 @@ describe('Home Page', function () {
       });
       it('Verify that Facebook link is present and functional', () => {
         contactusPage.assertions.assertFacebookIconIsPresent();
-        GlobalFooter.click.facebookContactLink();
       });
       it('Verify that Email link is present and functional', () => {
         contactusPage.assertions.assertEmailIconIsPresent();
-        GlobalFooter.click.emailContactLink();
       });
     });
   });

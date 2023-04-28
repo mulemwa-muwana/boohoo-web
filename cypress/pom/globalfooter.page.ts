@@ -425,9 +425,9 @@ class GlobalFooter implements AbstractPage {
         .then(element => {
           const href = element.attr('href');
           cy.wrap(element).click({force: true});
-          // cy.url().then(url => {
-          //   expect(url).to.contain(options?.assertionUrl ?? href);
-          // });
+          cy.url().then(url => {
+            expect(url).to.contain(options?.assertionUrl ?? href);
+          });
         });
     },
     changeCountry (country: CountryCode) {

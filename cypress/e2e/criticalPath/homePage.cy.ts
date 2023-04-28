@@ -473,24 +473,19 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month/year', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
         const australianLocales: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
-        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'misspap.com', 'boohooman.com'];
+        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
+        const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];
         
         if ((variables.brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[variables.language]);
-        } else if ((variables.brand == 'boohoo.com' && australianLocales) || (variables.brand=='karenmillen.com' && (variables.locale == 'UK' || variables.locale == 'EU' || variables.locale == 'AU'))) {
+        } else if ((variables.brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[variables.language]);
-        } else if (variables.brand == 'karenmillen.com' && (variables.locale == 'US')) {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated January 2023');
         } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2023');
         } else if (variables.brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
-        } else if (variables.brand == 'warehousefashion.com' && variables.locale == 'UK') {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated July 2022');
-        } else if (variables.brand == 'warehousefashion.com' && (variables.locale == 'IE' || variables.locale == 'EU')) {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2020');
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);
         }
@@ -554,7 +549,7 @@ describe('Home Page', function () {
         contactusPage.assertions.assertFacebookIconIsPresent();
         GlobalFooter.click.facebookContactLink();
       });
-      it.only('Verify that Email link is present and functional', () => {
+      it('Verify that Email link is present and functional', () => {
         contactusPage.assertions.assertEmailIconIsPresent();
         GlobalFooter.click.emailContactLink();
       });

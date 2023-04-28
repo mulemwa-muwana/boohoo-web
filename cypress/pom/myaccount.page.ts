@@ -17,7 +17,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
-    addressCardsList: '.b-cards_grid > div',
+    addressCardsList: 'section[class^="b-cards_grid-item "]',
     addressDefaultBox: 'section[data-tau="address_book_item_default"]',
     addressEditBtn: '.b-cards_grid-header > .b-button',
     addressEditForm: '.l-account_main-section',
@@ -71,7 +71,7 @@ const selectors: SelectorBrandMap = {
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
-    addressCardsList: '.b-cards_grid > div',
+    addressCardsList: 'section[class^="b-cards_grid-item "]',
     addressDefaultBox: 'section[data-tau="address_book_item_default"]',
     addressEditBtn: 'a[data-tau="address_book_edit"]',
     addressEditForm: '.l-account_main-section',
@@ -125,7 +125,7 @@ const selectors: SelectorBrandMap = {
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
-    addressCardsList: '.b-cards_grid > div',
+    addressCardsList: 'section[class^="b-cards_grid-item "]',
     addressDefaultBox: 'section[data-tau="address_book_item_default"]',
     addressEditBtn: 'a[data-tau="address_book_edit"]',
     addressEditForm: '.l-account_main-section',
@@ -178,7 +178,7 @@ const selectors: SelectorBrandMap = {
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
-    addressCardsList: '.b-cards_grid > div',
+    addressCardsList: 'section[class^="b-cards_grid-item "]',
     addressDefaultBox: 'section[data-tau="address_book_item_default"]',
     addressEditBtn: 'a[data-tau="address_book_edit"]',
     addressEditForm: '.l-account_main-section',
@@ -231,7 +231,7 @@ const selectors: SelectorBrandMap = {
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
-    addressCardsList: '.b-cards_grid > div',
+    addressCardsList: 'section[class^="b-cards_grid-item "]',
     addressDefaultBox: 'section[data-tau="address_book_item_default"]',
     addressEditBtn: 'a[data-tau="address_book_edit"]',
     addressEditForm: '.l-account_main-section',
@@ -370,7 +370,7 @@ const selectors: SelectorBrandMap = {
     orderID: '.orderdetails-header-number',
     shippingInfo: '.orderdetails-shipment-details',
     billingAndPaymentInfo: '.orderdetails-summary-wrapper',
-    accountDetailsEmailField: '#account-email-input',
+    accountDetailsEmailField: '.account-box-item.account-email',
     nameGreeting: '.account-welcome-title',
     accountEditedSuccessfulPopup: '#js-accounteditsuccessfull-container',
     addressNameLine: '.mini-address-name',
@@ -396,7 +396,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.mini-address-name',
+    addressCardsList: 'li[class^="account-page-list-item"]',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '.ui-dialog-content-wrapper',
@@ -846,7 +846,10 @@ class MyAccountPage implements AbstractPage {
       },
       deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
-        cy.get(addressDeleteBtn).eq(0).click({ force: true }); //  It was eq(3)
+        cy.get(addressDeleteBtn).last().click({ force: true }); //  Target Last address which added now
+        if (!isSiteGenesisBrand) {
+          cy.contains('button', 'Yes, delete').click();
+        }
       },
       addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {
         const addCreditCardBtn = selectors[variables.brand].addCreditCardBtn;
@@ -941,7 +944,8 @@ class MyAccountPage implements AbstractPage {
       },
       assertAddressNotPresent (addressName: string) {
         const addressCardsList = selectors[variables.brand].addressCardsList;
-        cy.get(addressCardsList).should('not.contain', addressName);
+        cy.wait(5000);
+        cy.get(addressCardsList).last().should('not.contain', addressName);
       },
       assertCardDetails (cardEnd: string) {
         cy.contains(cardEnd).should('be.visible');

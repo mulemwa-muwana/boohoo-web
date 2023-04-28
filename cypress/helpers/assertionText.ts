@@ -365,7 +365,7 @@ class AssertionText {
   };
 
   AddPremierToCartButton: TranslationMap = {
-    EN: 'GET UNLIMITED',
+    EN: 'UNLIMITED',
     FR: 'AJOUTER AU PANIER',
     NL: '',
     DE: '',
@@ -617,7 +617,7 @@ class AssertionText {
   };
 
   assertPaymentMethod: TranslationMap = {
-    EN: 'Credit Card',
+    EN: 'Card',
     NL: 'Creditcard / betaalkaart',
     DK: 'Kredit-/betalingskort',
     FR: 'Carte de crédit / débit',

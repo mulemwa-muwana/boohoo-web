@@ -8,6 +8,8 @@ import homePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import assertionText from '../../helpers/assertionText';
 import { isSiteGenesisBrand, siteGenesisBrands } from '../../helpers/common';
+import contactusPage from 'cypress/pom/contactus.page';
+import faqPage from 'cypress/pom/faq.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -529,6 +531,28 @@ describe('Home Page', function () {
       });
     });
 
+    describe('Contact Us Page links', () => {
+      beforeEach( function ()
+      {
+        if(variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com'){
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
+        faqPage.click.contactUsLink()}
+        else if (variables.brand == 'boohooman.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[variables.language]);
+          faqPage.click.contactUsLink();
+        }
+      })
+      it('Verify that Twitter is not an option', () => {
+          contactusPage.assertions.assertTwitterIconIsNotPresent();
+      });
+      it('Verify that Facebook link is present and functional', () => {
+        contactusPage.assertions.assertFacebookIconIsPresent();
+        GlobalFooter.click.facebookContactLink();
+      });
+      it.only('Verify that Email link is present and functional', () => {
+        contactusPage.assertions.assertEmailIconIsPresent();
+        GlobalFooter.click.emailContactLink();
+      });
+    });
   });
-
 });

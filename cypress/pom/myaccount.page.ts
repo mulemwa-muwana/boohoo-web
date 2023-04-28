@@ -12,7 +12,7 @@ const selectors: SelectorBrandMap = {
     contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
     accountAddresses: 'a[data-tau="navigation_addressList"]',
     paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
-    viewOrderBtn: 'a[data-tau="account_viewOrder"]',
+    viewOrderBtn: 'a[data-tau="account_viewOrder"]:eq(1)',
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',

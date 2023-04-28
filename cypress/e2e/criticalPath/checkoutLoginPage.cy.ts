@@ -44,10 +44,9 @@ describe('Checkout Page', function () {
     }
     cy.fixture('users').then((credentials: LoginCredentials) => {
       const viewportWidth = Cypress.config('viewportWidth');
-      if (variables.brand != 'boohoo.com' && viewportWidth > 1100) {
-        CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-        CheckoutPage.click.continueAsGuestBtn();
-      }
+
+      CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+      CheckoutPage.click.continueAsGuestBtn();
       CheckoutPage.assertions.assertUserProceededToShippingPage();      
     });
   });

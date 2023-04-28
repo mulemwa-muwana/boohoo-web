@@ -5,7 +5,7 @@ import homePage from './home.page';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     searchField: '#header-search-input',
-    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
+    addToCart:'.b-product_actions-inner [data-id="addToCart"]',
     addToWishListButton: '.m-outline > span',
     shippingInfoButton: '#product-details-btn-shipping',
     returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
@@ -345,6 +345,7 @@ class PdpPage implements AbstractPage {
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
       cy.get(addToCart, {timeout: 15000}).should('not.have.attr', 'disabled');
+      cy.wait(3000);
       cy.get(addToCart).click({force: true});
     },
     addToWishList () {
@@ -551,10 +552,8 @@ class PdpPage implements AbstractPage {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
       if (isSiteGenesisBrand) {
         cy.get(productReturnsInfoButton).click();
-      } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
-        cy.get('#product-details-btn-shipping').click();
-      }
-      
+      } 
+       
       cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {

@@ -323,7 +323,7 @@ class AssertionText {
   };
 
   Premier: TranslationMap = {
-    EN: '\n                        BOOHOO PREMIER\n                    ',
+    EN:'PREMIER',// '\n                         PREMIER\n                    ',
     FR: 'PREMIER',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
@@ -337,7 +337,7 @@ class AssertionText {
   };
 
   PremierNG: TranslationMap = {
-    EN: 'NGVIP',
+    EN: 'GET NGVIP',
     FR: '',
     NL: '',
     DE: '',
@@ -379,7 +379,7 @@ class AssertionText {
   };
 
   PremierText: TranslationMap = {
-    EN: '\n                        FREE NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR!\n                    \n                    ',
+    EN:'FREE NEXT DAY DELIVERY',
     FR: 'LIVRAISON STANDARD ILLIMITÉE PENDANT UN AN!',
     NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
     DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',

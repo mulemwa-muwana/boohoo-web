@@ -166,7 +166,7 @@ describe('Shipping Page Registered user tests', function () {
     
     const includededBlpBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
     if (includededBlpBrands.includes(variables.brand)) {
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.Premier[variables.language]);
+      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.AddPremierToCartButton[variables.language]);
     } else {
       shippingPage.assertions.assertShippingPageCartContainsVipProduct();
     }

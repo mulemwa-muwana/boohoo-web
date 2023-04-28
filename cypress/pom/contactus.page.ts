@@ -88,26 +88,23 @@ class ContactUsPage implements AbstractPage {
   assertions = {
     assertTwitterIconIsNotPresent () {
         const twitterIcon = selectors[variables.brand].twitterIcon;
-        if (variables.brand === 'dorothyperkins.com'){
-        ensureScrollable: false
+        if (variables.brand !== 'dorothyperkins.com') {
+            cy.scrollTo('top')
         }
-        else {cy.scrollTo('top')};
         cy.get(twitterIcon).should('not.exist');
     },
     assertFacebookIconIsPresent () {
         const facebookIcon = selectors[variables.brand].facebookIcon;
-        if (variables.brand === 'dorothyperkins.com'){
-            ensureScrollable: false
+        if (variables.brand !== 'dorothyperkins.com') {
+            cy.scrollTo('bottom')
         }
-        else {cy.scrollTo('bottom')};
         cy.get(facebookIcon).should('be.visible');
     },
     assertEmailIconIsPresent () {
         const emailIcon = selectors[variables.brand].emailIcon;
-        if (variables.brand === 'dorothyperkins.com'){
-            ensureScrollable: false
+        if (variables.brand !== 'dorothyperkins.com') {
+            cy.scrollTo('top')
         }
-        else{cy.scrollTo('top');}
         cy.get(emailIcon).should('be.visible');
     }
     } 

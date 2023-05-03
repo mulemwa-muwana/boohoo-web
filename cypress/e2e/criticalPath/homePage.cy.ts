@@ -8,6 +8,8 @@ import homePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import assertionText from '../../helpers/assertionText';
 import { isSiteGenesisBrand, siteGenesisBrands } from '../../helpers/common';
+import contactusPage from 'cypress/pom/contactus.page';
+import faqPage from 'cypress/pom/faq.page';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -471,24 +473,19 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month/year', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
         const australianLocales: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
-        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'misspap.com', 'boohooman.com'];
+        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
+        const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];
         
         if ((variables.brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[variables.language]);
-        } else if ((variables.brand == 'boohoo.com' && australianLocales) || (variables.brand=='karenmillen.com' && (variables.locale == 'UK' || variables.locale == 'EU' || variables.locale == 'AU'))) {
+        } else if ((variables.brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[variables.language]);
-        } else if (variables.brand == 'karenmillen.com' && (variables.locale == 'US')) {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated January 2023');
         } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2023');
         } else if (variables.brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
-        } else if (variables.brand == 'warehousefashion.com' && variables.locale == 'UK') {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated July 2022');
-        } else if (variables.brand == 'warehousefashion.com' && (variables.locale == 'IE' || variables.locale == 'EU')) {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2020');
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);
         }
@@ -534,6 +531,26 @@ describe('Home Page', function () {
       });
     });
 
+    describe('Contact Us Page links', () => {
+      beforeEach( function ()
+      {
+        if(variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com'){
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
+        faqPage.click.contactUsLink()}
+        else if (variables.brand == 'boohooman.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[variables.language]);
+          faqPage.click.contactUsLink();
+        }
+      })
+      it('Verify that Twitter is not an option', () => {
+          contactusPage.assertions.assertTwitterIconIsNotPresent();
+      });
+      it('Verify that Facebook link is present and functional', () => {
+        contactusPage.assertions.assertFacebookIconIsPresent();
+      });
+      it('Verify that Email link is present and functional', () => {
+        contactusPage.assertions.assertEmailIconIsPresent();
+      });
+    });
   });
-
 });

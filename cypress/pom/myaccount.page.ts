@@ -946,10 +946,6 @@ class MyAccountPage implements AbstractPage {
         const addressCardsList = selectors[variables.brand].addressCardsList;
         cy.wait(5000);
         cy.get(addressCardsList).last().should('not.contain',addressName);
-        
-        // .then((firstname => {
-        //   cy.wrap(firstname).should('not.contain', addressName);
-        // }))
       },
       assertCardDetails (cardEnd: string) {
         cy.contains(cardEnd).should('be.visible');

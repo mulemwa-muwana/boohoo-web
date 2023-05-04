@@ -28,6 +28,20 @@ class AssertionText {
     ES: ''
   };
 
+  contactUsText: TranslationMap = {
+    EN: 'Contact Us',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   startAReturnURLvalidation: TranslationMap = {
     EN: 'return',
     FR: '\n\nEnregistré\n',
@@ -784,6 +798,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerCustomerServiceBHM: TranslationMap = {
+    EN: 'Customer Service',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkDeliveryInfo: TranslationMap = {
     EN: 'Delivery Info',
     NL: 'Bezorginformatie',
@@ -1073,6 +1101,20 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'Hållbarhet',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  contactUs: TranslationMap = {
+    EN: 'Contact us',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''

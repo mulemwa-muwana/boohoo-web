@@ -312,7 +312,7 @@ class GlobalFooter implements AbstractPage {
           .should('eq', 200); 
       });
     },
-   facebookLink () {
+    facebookLink () {
       const facebookLink = selectors[variables.brand].facebookLink;
       cy.get(facebookLink).then(link => {
         cy

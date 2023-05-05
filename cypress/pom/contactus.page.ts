@@ -123,6 +123,6 @@ class ContactUsPage implements AbstractPage {
       cy.get(emailIcon).should('be.visible');
     }
   }; 
-}
+} 
 
 export default new ContactUsPage();

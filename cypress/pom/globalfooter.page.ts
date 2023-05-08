@@ -9,6 +9,8 @@ const selectors: SelectorBrandMap = {
     facebookLink: 'a[href="https://www.facebook.com/boohoo.com"]',
     twitterLink: 'a[href="https://twitter.com/boohoo"]',
     tiktokLink: 'a[href="https://www.tiktok.com/@boohoo?lang=en"]',
+    facebookContactLink: 'a[href="https://m.me/boohoo.com"]',
+    emailContactLink: 'button.b-contact-channel',
     youtubeLink: 'a[href="https://www.youtube.com/c/boohoo"]',
     pintrestLink: 'a[href="https://www.pinterest.co.uk/boohooofficial/_created/"]',
     theFixLink: 'a[href="https://thefix.boohoo.com/"]',
@@ -24,7 +26,8 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo > a',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
-    footer: '#footercontent'
+    footer: '#footercontent',
+    helpLink: 'b-footer_quick_links-link',
   },
   'nastygal.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -33,6 +36,9 @@ const selectors: SelectorBrandMap = {
     facebookLink: 'a[href="https://www.facebook.com/nastygal"]',
     twitterLink: 'a[href="https://twitter.com/nastygal"]',
     tiktokLink: 'a[href="https://www.tiktok.com/@nastygal?lang=en"]',
+    facebookContactLink:'a[href="https://m.me/nastygal"]',
+    messageContactLink: 'a[href="https://wa.me/443333110804"]',
+    emailContactLink: '.m-email-channel',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: '.b-newsletters-submit',
@@ -51,6 +57,8 @@ const selectors: SelectorBrandMap = {
     instagramLink: 'a[href="https://www.instagram.com/dorothyperkins/"]',
     facebookLink: 'a[href="https://www.facebook.com/dorothyperkins"]',
     twitterLink: 'a[href="https://twitter.com/Dorothy_Perkins"]',
+    facebookContactLink: 'a[href="https://m.me/dorothyperkins"]',
+    emailContactLink: '.m-email-channel',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: 'button[data-id="submitButton"]',
@@ -70,6 +78,8 @@ const selectors: SelectorBrandMap = {
     instagramLink: 'a[href="https://www.instagram.com/burton_menswear/"]',
     facebookLink: 'a[href="https://www.facebook.com/BurtonMenswear/"]',
     twitterLink: '[data-tau="social_twitter"]',
+    facebookContactLink: 'a[href="https://m.me/burtonmenswear"]',
+    emailContactLink: '.m-email-channel',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: 'button[data-id="submitButton"]',
@@ -89,6 +99,8 @@ const selectors: SelectorBrandMap = {
     instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
     facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
     twitterLink: 'a[href="https://twitter.com/wallisfashion?lang=en"]',
+    facebookContactLink: 'a[href="https://m.me/wallis"]',
+    emailContactLink: '.m-email-channel',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: 'button[data-id="submitButton"]',
@@ -300,7 +312,7 @@ class GlobalFooter implements AbstractPage {
           .should('eq', 200); 
       });
     },
-    facebookLink () {
+   facebookLink () {
       const facebookLink = selectors[variables.brand].facebookLink;
       cy.get(facebookLink).then(link => {
         cy
@@ -363,6 +375,14 @@ class GlobalFooter implements AbstractPage {
           expect(url).to.contain(href);
         });
       });
+    },
+    helpLink () {
+      const helpLink = selectors[variables.brand].helpLink;
+      cy.get(helpLink).click();
+    },
+    contactLink () {
+      const contactLink = selectors[variables.brand].contactLink;
+      cy.get(contactLink).click();
     }
   };
 

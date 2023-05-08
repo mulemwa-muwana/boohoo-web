@@ -24,15 +24,10 @@ describe('Account page', function () {
     MyAccountPage.click.viewNewestOrder();
     MyAccountPage.assertions.assertOrderDetailsContent();
   });
+
   it('TC02 Verify that returns option links to correct page', function () {
-    if (isSiteGenesisBrand) {
-      MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
-      MyAccountPage.assertions.assertUrlContains('return');
-    } else {
-      MyAccountPage.click.viewOrderBtn();
-      MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
-      MyAccountPage.assertions.assertUrlContains('returns');
-    }
+    MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
+    MyAccountPage.assertions.assertUrlContains('return');
   });
 
   // My Acount Details test cases

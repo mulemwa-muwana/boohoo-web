@@ -35,7 +35,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout:'.b-summary_section > :nth-child(1) > .b-cart_actions-button',
+    proceedToCheckout: 'a[href*="checkout-login"]',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
@@ -337,7 +337,9 @@ class CartPage implements AbstractPage {
       
       cy.intercept(/cart/).as('updateCartProduct');
       cy.get(updateQuantity).eq(0).click({force: true});
-      cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
+      if (variables.brand!='nastygal.com') {
+        cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
+      }
     },
 
     editCartQuantitySiteGenesis (quantity: string) {

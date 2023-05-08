@@ -12,7 +12,7 @@ const selectors: SelectorBrandMap = {
     contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
     accountAddresses: 'a[data-tau="navigation_addressList"]',
     paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
-    viewOrderBtn: 'a[data-tau="account_viewOrder"]',
+    viewOrderBtn: 'a[data-tau="account_viewOrder"]:eq(1)',
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
@@ -812,7 +812,6 @@ class MyAccountPage implements AbstractPage {
         const addressPostalCodeField = selectors[variables.brand].addressPostalCodeField;
         const addressSubmitBtn = selectors[variables.brand].addressSubmitBtn;
         const addressNicknameField = selectors[variables.brand].addressNicknameField;
-        const proceedToBillingBtn = selectors[variables.brand].proceedToBillingBtn;
         const addressStateCode = selectors[variables.brand].addressStateCode;
         cy.get(addAddressBtn).should('be.visible').click({ force: true });
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
@@ -928,7 +927,7 @@ class MyAccountPage implements AbstractPage {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         cy.get(addressDefaultBox).should('be.visible');
       },
-      assertDefaultAddressData (addressName: string, addressSummary: string) {
+      assertDefaultAddressData (addressName: string) {
         cy.get('body').then($body => {
           if ($body.find('.verification-address-button').length) {
             cy.get('.verification-address-button').click({force: true});
@@ -936,7 +935,6 @@ class MyAccountPage implements AbstractPage {
         });
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         const addressNameLine = selectors[variables.brand].addressNameLine;
-        const addressSummaryLine = selectors[variables.brand].addressSummaryLine;
         cy.get(addressDefaultBox).find(addressNameLine).should('contain.text', addressName);
       },
       assertNewAddressData (addressName: string) {

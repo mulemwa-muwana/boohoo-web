@@ -1,4 +1,3 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -122,7 +121,8 @@ class ContactUsPage implements AbstractPage {
       }
       cy.get(emailIcon).should('be.visible');
     }
-  }; 
+  };
+
 } 
 
 export default new ContactUsPage();

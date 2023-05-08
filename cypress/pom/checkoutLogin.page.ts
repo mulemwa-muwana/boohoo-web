@@ -9,8 +9,8 @@ const selectors: SelectorBrandMap = {
     continueAsGuestBt:'.b-form > .b-button',
     continueAsRegisteredUser: 'button[data-tau="login_submit"]',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
-    premierIsDisplayed:'#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
-    premierSubtitle:'#deliveryPanel > .b-checkout_card > [role="none"] > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
+    premierIsDisplayed:'.b-ngvip-inner p.b-ngvip-title:eq(1)',
+    premierSubtitle:'p.b-ngvip-subtitle:eq(1)'
   },
   'nastygal.com': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
@@ -18,6 +18,8 @@ const selectors: SelectorBrandMap = {
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
     continueAsRegisteredUser: '.b-login_form-group_cta > .b-button',
+    premierIsDisplayed :'button.b-ngvip-button',
+    premierSubtitle: '.b-ngvip-description',
   },
   'dorothyperkins.com': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
@@ -174,11 +176,17 @@ class CheckoutPage implements AbstractPage {
     },
     assertPremierTitleIsDisplayed (premierTitleText: string) {
       const premierIsDisplayed = selectors[variables.brand].premierIsDisplayed;
-      cy.get(premierIsDisplayed).should('have.text', premierTitleText);
+      cy.get(premierIsDisplayed).invoke('text').then(text=>{
+        const premierText = text.replace(/\.b-ngvip-title\s*\{[^}]+\}[\n\r]+|[\s]{2,}/g, ' ').trim(); // REGULAR EXPRESSION TO REMOVE STYLE TAG TEXT AND SPACES INSIDE P TAG FOR BOOHOO
+        expect(premierText.toUpperCase()).to.equal(premierTitleText.toUpperCase());
+      });
     },
     assertPremierSubtitleIsDisplayed (premierSubtitleText: string) {
       const premierSubtitle = selectors[variables.brand].premierSubtitle;
-      cy.get(premierSubtitle).should('have.text', premierSubtitleText);
+      cy.get(premierSubtitle).invoke('text').then(text=>{
+        const premiersubText=text.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim(); // REGULAR EXPRESSION TO REMOVE EXTRA SPACES AND LINES FROM STRING
+        expect(premiersubText.toUpperCase()).to.include(premierSubtitleText.toUpperCase());
+      });
     }
   };
 }

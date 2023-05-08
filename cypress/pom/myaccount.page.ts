@@ -697,9 +697,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(loadMoreButton).eq(0).click({ force: true });
       },
       startReturnButton (text: string) {
-        if (variables.brand == 'nastygal.com') {
-          cy.get('.b-order_item-button').click({force:true});
-        } else if (isSiteGenesisBrand) {
+        if (isSiteGenesisBrand) {
           cy.log(`searching for '${text}' in account nav panel on the left side`);
           cy.get('.secondary-navigation').contains(text, {matchCase: false})
             .invoke('removeAttr', 'target')
@@ -746,15 +744,7 @@ class MyAccountPage implements AbstractPage {
       },
       viewOrderBtn () {
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
-        const viewportWidth = Cypress.config('viewportWidth');
-        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
-          cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
-        } else if (variables.brand == 'boohoo.com' && viewportWidth < 1100) { // MAke it working for Boohoo Mobile Resolution
-          cy.get(viewOrderBtn).click({force:true}); 
-        } else {
-          cy.get(viewOrderBtn).should('be.visible').click({force:true});
-        }
-        
+        cy.get(viewOrderBtn).should('be.visible').click({force:true});
       },
       orderHistoryLink () {
         const orderHistoryLink = selectors[variables.brand].orderHistoryLink;

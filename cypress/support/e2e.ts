@@ -14,7 +14,7 @@ beforeEach(() => {
   // TODO: Remove when redirection from IE locales is fixed (Coast and KarenMillen)
   const variables = Cypress.env() as EnvironmentVariables;
   if (variables.locale == 'IE') {
-   cy.setCookie('dw_locale', 'en_IE');
+    cy.setCookie('dw_locale', 'en_IE');
   } else if (variables.locale == 'UK') {
     cy.setCookie('dw_locale', 'en_GB');
   }

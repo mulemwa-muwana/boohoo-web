@@ -337,8 +337,8 @@ class CartPage implements AbstractPage {
       
       cy.intercept(/cart/).as('updateCartProduct');
       cy.get(updateQuantity).eq(0).click({force: true});
-      if (variables.brand!='nastygal.com'){
-      cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
+      if (variables.brand!='nastygal.com') {
+        cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
       }
     },
 

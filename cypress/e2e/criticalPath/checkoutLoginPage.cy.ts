@@ -43,8 +43,6 @@ describe('Checkout Page', function () {
       this.skip(); // No guest users are allowed for this brand, only registered ones
     }
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      const viewportWidth = Cypress.config('viewportWidth');
-
       CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
       CheckoutPage.click.continueAsGuestBtn();
       CheckoutPage.assertions.assertUserProceededToShippingPage();      

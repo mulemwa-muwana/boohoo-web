@@ -52,7 +52,7 @@ const selectors: SelectorBrandMap = {
     loadMoreProducts: 'div.b-load_more > a',
     loadMoreProductsMobile: '.b-load_more-button',
     numberOfItemsTextIsVisible: 'div.b-load_progress > span',
-    productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
+    productColorIsDisplayedOnPLP: '.b-product_tile-container > .b-quickbuy-swatches > .b-product_slider-track > .b-product_tile_swatches-swatch_wrapper > .b-product_tile_swatches-swatch',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
     productImageIsDisplayed: '#product-grid > div.l-plp_grid > section:nth-child(3) > div.b-product_tile-container > div:nth-child(1) > div.b-product_tile-top > a > picture > img',

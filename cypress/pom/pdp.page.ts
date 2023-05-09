@@ -181,6 +181,7 @@ const selectors: SelectorBrandMap = {
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '.product-detail > h1.product-name',
+    productTitleMobile: '.product-col-1 > .product-name',
     productCode: '.product-number > [itemprop="sku"]',
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
@@ -458,8 +459,18 @@ class PdpPage implements AbstractPage {
   assertions = {
     assertProductNameIsDisplayed () {
       const productTitle = selectors[variables.brand].productTitle;
-      cy.get(productTitle).should('be.visible');
+      const productTitleMobile = selectors[variables.brand].productTitleMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
 
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
+        
+        cy.get(productTitleMobile).should('be.visible');
+        
+        // If Desktop Device is used
+      } else {
+      cy.get(productTitle).should('be.visible');
+      }
       // .and('include.text', productName);  // Skus are different 
     },
     assertProductCodeIsDisplayed (SKU: string) {

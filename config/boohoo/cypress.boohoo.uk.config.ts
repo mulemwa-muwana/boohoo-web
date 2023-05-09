@@ -16,9 +16,11 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
+  
   blockHosts: [
     'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
   ],
+
   // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {

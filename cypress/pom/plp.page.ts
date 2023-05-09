@@ -570,11 +570,11 @@ class PlpPage implements AbstractPage {
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       const loadMoreProductsMobile = selectors[variables.brand].loadMoreProductsMobile;
       const viewportWidth = Cypress.config('viewportWidth');
-      if(viewportWidth < 1100){
+      if (viewportWidth < 1100) {
         cy.get(loadMoreProductsMobile).invoke('show').should('be.visible');
-      }else{
-      cy.get(loadMoreProducts).invoke('show').should('be.visible');
-    }
+      } else {
+        cy.get(loadMoreProducts).invoke('show').should('be.visible');
+      }
     },
     assertProductImageIsDisplayed () {
       const productImageIsDisplayed = selectors[variables.brand].productImageIsDisplayed;

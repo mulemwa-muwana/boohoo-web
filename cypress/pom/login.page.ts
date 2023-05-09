@@ -20,7 +20,7 @@ const selectors: SelectorBrandMap = {
   'nastygal.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
-    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
+    MobileLoginLink: '.m-login',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
@@ -35,7 +35,7 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
-    MobileloginLink: '[class="b-menu_panel-guest_action m-login"]',
+    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',

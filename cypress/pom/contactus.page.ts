@@ -40,40 +40,54 @@ const selectors: SelectorBrandMap = {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
+    facebookIcon:'[class="contact-channel facebook-channel"]',
+    emailIcon:'[class="contact-channel js-contact-channel-email"]'
   },
   'karenmillen.com': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
+    facebookIcon:'[class="contact-channel facebook-channel"]',
+    emailIcon:'[class="contact-channel js-contact-channel-email"]'
   },
   'coastfashion.com': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
+    facebookIcon:'[class="contact-channel facebook-channel"]',
+    emailIcon:'[class="contact-channel js-contact-channel-email"]'
   },
   'warehousefashion.com': {
     instagram: 'a[href="https://www.instagram.com/boohoo/"] > svg > path',
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
+    facebookIcon:'[class="contact-channel facebook-channel"]',
+    emailIcon:'[class="contact-channel js-contact-channel-email"]'
   },
   'oasis-stores.com': {
     instagram: 'a[href="https://www.instagram.com/boohoo/"] > svg > path',
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
+    facebookIcon:'[class="contact-channel facebook-channel"]',
+    emailIcon:'[class="contact-channel js-contact-channel-email"]'
   },
   'misspap.com': {
     instagram: 'a[href="https://www.instagram.com/boohoo/"] > svg > path',
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.contact-channel twitter-channel',
+    facebookIcon:'[class="contact-channel facebook-channel"]',
+    emailIcon:'[class="contact-channel js-contact-channel-email"]'
   },
   'boohoomena.com': {
     instagram: 'a[href="https://www.instagram.com/boohoo/"] > svg > path',
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
+    facebookIcon:'[class="contact-channel facebook-channel"]',
+    emailIcon:'[class="contact-channel js-contact-channel-email"]'
   }
 };
  
@@ -107,7 +121,8 @@ class ContactUsPage implements AbstractPage {
       }
       cy.get(emailIcon).should('be.visible');
     }
-  }; 
-}
+  };
+
+} 
 
 export default new ContactUsPage();

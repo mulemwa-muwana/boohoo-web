@@ -16,7 +16,7 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
-
+  
   blockHosts: [
     'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
   ],

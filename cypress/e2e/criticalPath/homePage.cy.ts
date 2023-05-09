@@ -532,15 +532,16 @@ describe('Home Page', function () {
     });
 
     describe('Contact Us Page links', () => {
-      beforeEach( function () {
-        if (variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
-          faqPage.click.contactUsLink();
-        } else if (variables.brand == 'boohooman.com') {
+
+      beforeEach( function () {        
+        if (variables.brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[variables.language]);
-          faqPage.click.contactUsLink();
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
         }
+        faqPage.click.contactUsLink();
       });
+
       it('Verify that Twitter is not an option', () => {
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });

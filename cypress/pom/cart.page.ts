@@ -6,7 +6,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '.b-cart_products',
     productImage: '.l-cart_product-image',
     productPrice: '.l-cart_product-total',
-    productPriceMobile: ".b-cart_product-price > .b-price > .m-new",
+    productPriceMobile: '.b-cart_product-price > .b-price > .m-new',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
@@ -28,7 +28,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '.b-cart_products',
     productImage: '.l-cart_product-image',
     productPrice: '.l-cart_product-total',
-    productPriceMobile: ".m-total > .b-summary_table-value",
+    productPriceMobile: '.m-total > .b-summary_table-value',
     subtotal: 'tr[class="b-summary_table-item m-total"]',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
@@ -72,7 +72,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '.b-cart_products',
     productImage: '.l-cart_product-image',
     productPrice: '.m-user_cart > .b-summary_table-value',
-    productPriceMobile: ".m-total > .b-summary_table-value",
+    productPriceMobile: '.m-total > .b-summary_table-value',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
@@ -116,7 +116,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    productPriceMobile: ".order-value",
+    productPriceMobile: '.order-value',
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
@@ -226,7 +226,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    productPriceMobile: ".price-total",
+    productPriceMobile: '.price-total',
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
@@ -387,16 +387,17 @@ class CartPage implements AbstractPage {
       const productPriceMobile = selectors[variables.brand].productPriceMobile;
       const subtotal = selectors[variables.brand].subtotal;
       const viewportWidth = Cypress.config('viewportWidth');
-       // If Mobile Device is used
-       if (viewportWidth < 1100) {
+
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
         
         cy.get(productPriceMobile).should('be.visible');
        
         // If Desktop Device is used
       } else {
 
-      cy.get(productPrice).should('be.visible').and('not.null');
-      cy.get(subtotal).should('be.visible').and('not.to.be.empty');
+        cy.get(productPrice).should('be.visible').and('not.null');
+        cy.get(subtotal).should('be.visible').and('not.to.be.empty');
       }
     },
     assertQuantityIsDisplayed (quantity: string) {

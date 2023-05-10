@@ -470,8 +470,9 @@ class PdpPage implements AbstractPage {
         
         // If Desktop Device is used
       } else {
-      cy.get(productTitle).should('be.visible');
+        cy.get(productTitle).should('be.visible');
       }
+
       // .and('include.text', productName);  // Skus are different 
     },
     assertProductCodeIsDisplayed (SKU: string) {

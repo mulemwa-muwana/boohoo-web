@@ -276,9 +276,9 @@ class HomePage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100 ) {
         cy.get(searchIconMobile).click({force: opts.force});
-          } else {
-         cy.get(searchIcon).click({force: opts.force});        
-          }
+      } else {
+        cy.get(searchIcon).click({force: opts.force});        
+      }
     },
     searchField () {
       const searchField = selectors[variables.brand].searchField;
@@ -299,7 +299,7 @@ class HomePage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       if (viewportWidth < 1100) {             
-          cy.get(hamburgerMenu).click({force: true});
+        cy.get(hamburgerMenu).click({force: true});
       }
       cy.contains(text).click({ force: true });
     },

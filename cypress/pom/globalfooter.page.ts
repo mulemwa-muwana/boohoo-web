@@ -312,7 +312,7 @@ class GlobalFooter implements AbstractPage {
           .should('eq', 200); 
       });
     },
-   facebookLink () {
+    facebookLink () {
       const facebookLink = selectors[variables.brand].facebookLink;
       cy.get(facebookLink).then(link => {
         cy
@@ -397,14 +397,15 @@ class GlobalFooter implements AbstractPage {
       } else {
         cy.get(newsletterInputMail).type(email);
         cy.get(agreeToPrivacyCheckbox).check();
-        cy.get(subscribeSubmitBtn).click();
+        cy.get(subscribeSubmitBtn).invoke('show').click({force:true});
       }
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
       cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
       const footer = selectors[variables.brand].footer;
-      cy.get(footer).contains(text, { matchCase: false })
+
+      cy.get(footer).contains('a', text, { matchCase: true }) // Add Tag a contains Text Help to make it work for SG Brands
         .invoke('removeAttr', 'target')
         .then(element => {
           const href = element.attr('href');

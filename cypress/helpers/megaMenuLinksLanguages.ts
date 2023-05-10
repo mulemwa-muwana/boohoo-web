@@ -15,7 +15,7 @@ class megaMenuLinksLanguages {
   };
 
   subnavClothingArkadiaNewIn: TranslationMap = { 
-    EN: 'New',
+    EN: 'New Clothes',
     NL: 'Alles Bekijken',
     DE: '',
     FR: 'Nouveau',

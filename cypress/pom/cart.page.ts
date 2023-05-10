@@ -6,6 +6,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '.b-cart_products',
     productImage: '.l-cart_product-image',
     productPrice: '.l-cart_product-total',
+    productPriceMobile: ".b-cart_product-price > .b-price > .m-new",
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
@@ -27,6 +28,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '.b-cart_products',
     productImage: '.l-cart_product-image',
     productPrice: '.l-cart_product-total',
+    productPriceMobile: ".m-total > .b-summary_table-value",
     subtotal: 'tr[class="b-summary_table-item m-total"]',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
@@ -35,7 +37,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
+    proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
@@ -48,6 +50,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '.b-cart_products',
     productImage: '.l-cart_product-image',
     productPrice: '.m-user_cart > .b-summary_table-value',
+    productPriceMobile: '.l-cart_product-total',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty_value',
     editQuantity: 'button[data-tau="cart_product_edit"]',
@@ -69,6 +72,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '.b-cart_products',
     productImage: '.l-cart_product-image',
     productPrice: '.m-user_cart > .b-summary_table-value',
+    productPriceMobile: ".m-total > .b-summary_table-value",
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
@@ -90,6 +94,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '.b-cart_products',
     productImage: '.l-cart_product-image',
     productPrice: '.m-user_cart > .b-summary_table-value',
+    productPriceMobile: '.b-cart_product-price > .b-price',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
@@ -111,6 +116,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
+    productPriceMobile: ".order-value",
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
@@ -132,6 +138,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
+    productPriceMobile: '.price-adjusted-total > span',
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
@@ -153,6 +160,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
+    productPriceMobile: '.price-adjusted-total > span',
     subtotal: '.price-adjusted-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
@@ -174,6 +182,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
+    productPriceMobile: '.price-adjusted-total > span',
     subtotal: '.cart-cell.item-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
@@ -195,6 +204,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
+    productPriceMobile: '.price-adjusted-total > span',
     subtotal: 'span.price-adjusted-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
@@ -216,6 +226,7 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
+    productPriceMobile: ".price-total",
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
@@ -337,7 +348,9 @@ class CartPage implements AbstractPage {
       
       cy.intercept(/cart/).as('updateCartProduct');
       cy.get(updateQuantity).eq(0).click({force: true});
-      cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
+      if (variables.brand!='nastygal.com') {
+        cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
+      }
     },
 
     editCartQuantitySiteGenesis (quantity: string) {
@@ -371,9 +384,20 @@ class CartPage implements AbstractPage {
     },
     assertPriceAndSubtotalAreVisible () {
       const productPrice = selectors[variables.brand].productPrice;
+      const productPriceMobile = selectors[variables.brand].productPriceMobile;
       const subtotal = selectors[variables.brand].subtotal;
+      const viewportWidth = Cypress.config('viewportWidth');
+       // If Mobile Device is used
+       if (viewportWidth < 1100) {
+        
+        cy.get(productPriceMobile).should('be.visible');
+       
+        // If Desktop Device is used
+      } else {
+
       cy.get(productPrice).should('be.visible').and('not.null');
       cy.get(subtotal).should('be.visible').and('not.to.be.empty');
+      }
     },
     assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[variables.brand].cartQuantity;

@@ -287,6 +287,15 @@ class HomePage implements AbstractPage {
     // MEGA MENU - MAIN NAV
 
     selectLinkFromMegaMenu (text: string) {
+      const viewportWidth = Cypress.config('viewportWidth');
+      const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
+      if (viewportWidth < 1100) {             
+          cy.get(hamburgerMenu).click({force: true});
+      }
+      cy.contains(text).click({ force: true });
+    },
+
+    selectLinkFromMegaMenuSubNav (text: string) {
       cy.contains(text).click({ force: true });
     },
 

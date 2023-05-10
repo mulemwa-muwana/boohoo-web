@@ -12,7 +12,7 @@ describe('Product Listing Page tests', function () {
     HomePage.actions.closeNastygalPopup();
     if (variables.brand == 'nastygal.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
+      HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
     } else if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
@@ -29,6 +29,7 @@ describe('Product Listing Page tests', function () {
   });
 
   it('Verify that plp page opens', () => {
+    cy.wait(3000);
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[variables.language]);
     } else {

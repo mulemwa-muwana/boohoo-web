@@ -302,7 +302,8 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.product-delivery-link > .product-info-link-text',
-    productReturnsInfoButton: '.product-returns-link > .product-info-link-text'
+    productReturnsInfoButton: '.product-returns-link > .product-info-link-text',
+    showAllContentButton: '[class="show-all js-show-all"]'
   },
   'boohoomena.com': {
     searchField: '#header-search-input',
@@ -470,8 +471,9 @@ class PdpPage implements AbstractPage {
         
         // If Desktop Device is used
       } else {
-      cy.get(productTitle).should('be.visible');
+        cy.get(productTitle).should('be.visible');
       }
+
       // .and('include.text', productName);  // Skus are different 
     },
     assertProductCodeIsDisplayed (SKU: string) {
@@ -537,6 +539,10 @@ class PdpPage implements AbstractPage {
     },
     assertProductDescriptionIsPresent () {
       const productDescription = selectors[variables.brand].productDescription;
+      const showAllContentButton = selectors[variables.brand].showAllContentButton;
+      if (variables.brand == 'misspap.com') {
+        cy.get(showAllContentButton).click();
+      }
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
     assertDeliveryInfoIsDisplayed () {

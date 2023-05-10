@@ -16,6 +16,7 @@ const selectors: SelectorBrandMap = {
     promotion: '#promotion_slide-0 > div > div > a',
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
+    logoMobile: '[aria-label="Boohoo"]',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]'
@@ -33,6 +34,7 @@ const selectors: SelectorBrandMap = {
     promotion: 'div[class="b-hero_carousel-track"]',
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
+    logoMobile: '[aria-label="Nasty gal"]',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
@@ -69,6 +71,7 @@ const selectors: SelectorBrandMap = {
     searchFieldCloseMobile: '.b-search_dialog-cancel',
     promotion: 'div[class="b-hero_carousel-track"]',
     logo: '.b-logo',
+    logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login'
   },
@@ -86,6 +89,7 @@ const selectors: SelectorBrandMap = {
     searchFieldCloseMobile: '.b-search_dialog-cancel',
     promotion: 'div[class="b-hero_carousel-track"]',
     logo: '.b-logo',
+    logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login'
   },
@@ -103,6 +107,7 @@ const selectors: SelectorBrandMap = {
     searchFieldCloseMobile: 'span.icon-close ',
     promotion: 'div.product-category-slider',
     logo: '[class="primary-logo"]>a.primary-logo-link',
+    logoMobile: '.primary-logo',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -121,6 +126,7 @@ const selectors: SelectorBrandMap = {
     searchFieldCloseMobile: '.mobile-menu-header > .icon-close',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
+    logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -138,6 +144,7 @@ const selectors: SelectorBrandMap = {
     searchFieldCloseMobile:'.search-close-button ',
     promotion: 'div.product-category-slider',
     logo: 'a.primary-logo-link',
+    logoMobile: '.logo-svg',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -155,6 +162,7 @@ const selectors: SelectorBrandMap = {
     searchFieldCloseMobile: '.search-close-button',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
+    logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -173,6 +181,7 @@ const selectors: SelectorBrandMap = {
     searchFieldCloseMobile: '.search-close-button',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
+    logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -190,6 +199,7 @@ const selectors: SelectorBrandMap = {
     searchFieldCloseMobile: '.icon-close',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
+    logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '.header-customer-info'
   },
@@ -267,8 +277,7 @@ class HomePage implements AbstractPage {
       if (viewportWidth < 1100 ) {
         cy.get(searchIconMobile).click({force: opts.force});
           } else {
-          cy.get(searchIcon).click({force: opts.force});
-          cy.hasListeners();
+         cy.get(searchIcon).click({force: opts.force});        
           }
     },
     searchField () {
@@ -373,10 +382,10 @@ class HomePage implements AbstractPage {
     },
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;
-      const searchFielMobile = selectors[variables.brand].searchFieldMobile;
+      const searchFieldMobile = selectors[variables.brand].searchFieldMobile;
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100 ) {
-        cy.get(searchFielMobile).invoke('show').should('be.visible');
+        cy.get(searchFieldMobile).invoke('show').should('be.visible');
       } else {
         cy.get(searchField).should('be.visible');
       }
@@ -416,7 +425,7 @@ class HomePage implements AbstractPage {
       const logo = selectors[variables.brand].logo;
       const viewportWidth = Cypress.config('viewportWidth');
       const logoMobile =selectors[variables.brand].logoMobile;
-      if (viewportWidth < 1100 && variables.brand == 'dorothyperkins.com') {
+      if (viewportWidth < 1100 ) {
         cy.get(logoMobile).should('be.visible');
       } else {
         cy.get(logo).should('be.visible').should('have.attr', 'href');

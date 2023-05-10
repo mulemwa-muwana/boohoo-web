@@ -813,7 +813,7 @@ class AssertionText {
   };
 
   footerLinkDeliveryInfo: TranslationMap = {
-    EN: 'Delivery Info',
+    EN: 'Delivery info',
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
@@ -1261,7 +1261,7 @@ class AssertionText {
   };
 
   envAndSocRespNG: TranslationMap = {
-    EN: 'Environment And Social',
+    EN: 'Environment and Social Responsibility',
     NL: '',
     DE: '',
     FR: 'Environnement Et Responsabilité Sociale',

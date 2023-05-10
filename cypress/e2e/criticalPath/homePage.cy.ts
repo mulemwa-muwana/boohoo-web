@@ -401,7 +401,9 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
-        if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
+        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE')) {
+          GlobalFooter.actions.checkFooterLinkByText('Paypal');
+        } else if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
         } else {
           this.skip();
@@ -423,7 +425,7 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Become A Brand Ambassador', function () {
         if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'CA' || variables.locale == 'US')) {
-          GlobalFooter.actions.checkFooterLinkByText('Become A Brand Ambassador'); 
+          GlobalFooter.actions.checkFooterLinkByText('Become a Brand Ambassador'); 
         } else {
           this.skip();
         }

@@ -82,9 +82,7 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
     if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
-      if (variables.brand != 'misspap.com') {
-        BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-      } // Klarna Payment option is not Available for Misspap
+      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
   });

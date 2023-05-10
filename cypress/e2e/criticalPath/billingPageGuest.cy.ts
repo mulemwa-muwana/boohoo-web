@@ -115,9 +115,7 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
 
     if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
-      if (variables.brand != 'misspap.com') {
-        BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-      } // Klarna Payment option not available for misspap
+      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
   

@@ -813,7 +813,7 @@ class AssertionText {
   };
 
   footerLinkDeliveryInfo: TranslationMap = {
-    EN: 'Delivery info',
+    EN: 'Delivery Info',
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
@@ -825,6 +825,20 @@ class AssertionText {
     IT: 'Informazioni sulla consegna',
     ES: 'Información de envío'
   };
+
+  footerLinkDeliveryInfoNG: TranslationMap = {
+    EN: 'Delivery info',
+    NL: 'Bezorginformatie',
+    DE: 'Lieferinformationen',
+    FR: 'Information sur la livraison',
+    DK: 'Shipping Info',
+    FI: 'Shipping Info',
+    NO: 'Shipping Info',
+    SE: 'Leveranser',
+    IL: '',
+    IT: 'Informazioni sulla consegna',
+    ES: 'Información de envío'
+  }
 
   pdpDeliverylist: TranslationMap = {
     EN: '\nFewer shipping options\n',

@@ -4,15 +4,19 @@ import AbstractPage from './abstract/abstract.page';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     searchField: '#header-search-input',
+    searchFieldMobile: '#header-search-input',
     searchIcon: 'button.b-search_toggle',
+    searchIconMobile:'.b-search_toggle-icon',
+    searchFieldCloseMobile: '.b-search_input-close',
     resetPassword: '',
     wishListIcon: '.b-header_wishlist-icon',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIconMobile: 'span.b-header_wishlist-icon',
     registrationButton: '.b-registration_benefits > .b-button',
     minicartIcon: '.b-minicart_icon-link',
     promotion: '#promotion_slide-0 > div > div > a',
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
+    logoMobile: '[aria-label="Boohoo"]',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]'
@@ -23,10 +27,14 @@ const selectors: SelectorBrandMap = {
     minicartIcon: '.b-minicart_icon-link',
     registrationButton: '.b-registration_benefits > .b-button',
     searchField: '#header-search-input',
+    searchFieldMobile: 'input[id="header-search-input"]',
     searchIcon: 'button.b-search_toggle',
+    searchIconMobile:'.b-search_toggle-icon',
+    searchFieldCloseMobile: '.b-search_dialog-cancel',
     promotion: 'div[class="b-hero_carousel-track"]',
     loginIcon: '.b-header_login-icon > .i-icon',
     logo: '.b-logo',
+    logoMobile: '[aria-label="Nasty gal"]',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
@@ -39,9 +47,13 @@ const selectors: SelectorBrandMap = {
     wishListIcon: 'span.b-header_wishlist-icon:eq(1)',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
+    searchFieldMobile:'#header-search-input',
     searchIcon: 'button.b-search_toggle',
+    searchIconMobile:'span.b-search_toggle-icon',
+    searchFieldCloseMobile: '.b-search_dialog-cancel',
     promotion: '.b-hero_carousel.m-promotions.m-dualstrip>.b-hero_carousel-track:nth-child(2)',
     logo: '#main-menu>a.b-logo',
+    logoMobile: '.l-logo-container>a[class="b-logo"]',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login'
   },
@@ -53,9 +65,13 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.l-header-right > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
+    searchFieldMobile: 'input[id="header-search-input"]',
     searchIcon: 'button.b-search_toggle',
+    searchIconMobile:'.l-header-right>.b-header_actions .b-search_toggle',
+    searchFieldCloseMobile: '.b-search_dialog-cancel',
     promotion: 'div[class="b-hero_carousel-track"]',
     logo: '.b-logo',
+    logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login'
   },
@@ -67,9 +83,13 @@ const selectors: SelectorBrandMap = {
     wishListIcon: 'div[class="b-header_actions b-header_actions_sticky"] span[class="b-header_wishlist-icon"]',
     wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
     searchField: '#header-search-input',
+    searchFieldMobile: 'input[id="header-search-input"]',
     searchIcon: 'button.b-search_toggle',
+    searchIconMobile:'.b-search_toggle-icon',
+    searchFieldCloseMobile: '.b-search_dialog-cancel',
     promotion: 'div[class="b-hero_carousel-track"]',
     logo: '.b-logo',
+    logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login'
   },
@@ -79,11 +99,15 @@ const selectors: SelectorBrandMap = {
     registrationButton: '.user-links > a:nth-child(2)',
     registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
-    searchField: '.header-search-form-fieldset>[class*="js-header-search-input"]:nth-child(1)',
+    wishListIconMobile: '.header-wishlist-link',
+    searchField: '.js-header-search-input',
+    searchFieldMobile: '.js-header-search-input',
     searchIcon: '.js-search-icon[type="submit"]',
+    searchIconMobile:'.icon-search',
+    searchFieldCloseMobile: 'span.icon-close ',
     promotion: 'div.product-category-slider',
     logo: '[class="primary-logo"]>a.primary-logo-link',
+    logoMobile: '.primary-logo',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -96,9 +120,13 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.icon-wishlist-bold',
     wishListIconMobile: '.icon-wishlist-bold',
     searchField: '.js-header-search-input',
-    searchIcon: '.js-search-icon',
+    searchFieldMobile: '.js-header-search-input',
+    searchIcon: '.icon-search',
+    searchIconMobile:'[class="icon-search js-icon-search"]',
+    searchFieldCloseMobile: '.mobile-menu-header > .icon-close',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
+    logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -108,11 +136,15 @@ const selectors: SelectorBrandMap = {
     registrationButton: 'a[title="Register"]',
     registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishListIcon: '.header-wishlist >a.header-wishlist-link',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
-    searchField: 'input.js-header-search-input[type="search"]',
+    wishListIconMobile: '.icon-wishlist',
+    searchField: '.js-header-search',
+    searchFieldMobile: '.js-header-search-input',
     searchIcon: 'button.js-search-icon',
+    searchIconMobile: '.icon-search',
+    searchFieldCloseMobile:'.search-close-button ',
     promotion: 'div.product-category-slider',
     logo: 'a.primary-logo-link',
+    logoMobile: '.logo-svg',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -124,10 +156,13 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.header-wishlist > .header-wishlist-link',
     wishListIconMobile: '.icon-wishlist',
     searchField: '.js-header-search-input',
-    searchIconMobile:'[class="icon-search js-icon-search"]',
+    searchFieldMobile: '.js-header-search-input',
     searchIcon: '.js-search-icon',
+    searchIconMobile:'[class="icon-search js-icon-search"]',
+    searchFieldCloseMobile: '.search-close-button',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
+    logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
@@ -139,39 +174,50 @@ const selectors: SelectorBrandMap = {
     wishlistIcon: '.wishlist-button',
     wishListIconMobile: '.header-wishlist',
     searchField: '.js-header-search-input',
+    searchFieldMobile: '.js-header-search-input',
     wishListIcon: '.icon-wishlist',
     searchIcon: '.js-search-icon',
+    searchIconMobile:'.icon-search ',
+    searchFieldCloseMobile: '.search-close-button',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
+    logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'misspap.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: '.link-item-login',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIconMobile: '.icon-wishlist-header',
     registrationButton: 'button.login-page-button[value="Create Account"]',
     registrationButtonMobiles: '.user-links [title="Join"]:eq(1)',
     wishListIcon: '.icon-wishlist-header',
     searchField: 'form > fieldset > input',
+    searchFieldMobile: '.js-header-search-input',
     searchIcon: '.icon-search',
+    searchIconMobile:'.icon-search',
+    searchFieldCloseMobile: '.icon-close',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
+    logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
+    loginIconMobile: '.header-customer-info'
   },
   'boohoomena.com': {
     minicartIcon: '.mini-cart-link',
     loginIcon: ' span.user-account',
     registrationButton: '.js-header-right-box [title="Register"]',
     wishListIcon: '.icon-wishlist',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIconMobile: '.icon-wishlist',
     searchField: '.js-header-search-input',
+    searchFieldMobile: '.js-header-search-input',
     searchIcon: '.js-search-icon',
+    searchIconMobile: '.icon-search',
+    searchFieldCloseMobile: '.search-close-button',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
-    hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    hamburgerMenu: '.menu-toggle',
+    loginIconMobile: ':nth-child(1) > .user-link-item'
   }
   
 };
@@ -226,7 +272,13 @@ class HomePage implements AbstractPage {
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
-      cy.get(searchIcon).click({force: opts.force});
+      const searchIconMobile = selectors[variables.brand].searchIconMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100 ) {
+        cy.get(searchIconMobile).click({force: opts.force});
+      } else {
+        cy.get(searchIcon).click({force: opts.force});        
+      }
     },
     searchField () {
       const searchField = selectors[variables.brand].searchField;
@@ -247,7 +299,7 @@ class HomePage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       if (viewportWidth < 1100) {             
-          cy.get(hamburgerMenu).click({force: true});
+        cy.get(hamburgerMenu).click({force: true});
       }
       cy.contains(text).click({ force: true });
     },
@@ -312,8 +364,9 @@ class HomePage implements AbstractPage {
 
       // If Mobile Device is used
       const viewportWidth = Cypress.config('viewportWidth');
+      const searchFieldCloseMobile = selectors[variables.brand].searchFieldCloseMobile;
       if (viewportWidth < 1100) {
-        cy.get('.search-close-button').click({force: true});
+        cy.get(searchFieldCloseMobile).click({force: true});
       }
     }
   };
@@ -335,11 +388,16 @@ class HomePage implements AbstractPage {
       } else {
         cy.get(searchIcon).invoke('show').should('be.visible');
       }
-      
     },
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;
-      cy.get(searchField).should('be.visible');
+      const searchFieldMobile = selectors[variables.brand].searchFieldMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100 ) {
+        cy.get(searchFieldMobile).invoke('show').should('be.visible');
+      } else {
+        cy.get(searchField).should('be.visible');
+      }
     },
     assertSearchFieldContains (text: string) {
       const searchField = selectors[variables.brand].searchField;
@@ -374,7 +432,13 @@ class HomePage implements AbstractPage {
     // Logo
     assertLogoPresent () {
       const logo = selectors[variables.brand].logo;
-      cy.get(logo).should('be.visible').should('have.attr', 'href');
+      const viewportWidth = Cypress.config('viewportWidth');
+      const logoMobile =selectors[variables.brand].logoMobile;
+      if (viewportWidth < 1100 ) {
+        cy.get(logoMobile).should('be.visible');
+      } else {
+        cy.get(logo).should('be.visible').should('have.attr', 'href');
+      }
     },
 
     // Header icons
@@ -412,7 +476,7 @@ class HomePage implements AbstractPage {
         if (variables.brand == 'karenmillen.com') {  
           cy.get(loginIconLinkMobile).should('be.visible');
         } else {
-          cy.get(loginIconMobile).invoke('show').click();
+          cy.get(loginIconMobile).invoke('show').click({force: true});
         }
 
       // If Desktop Device is used

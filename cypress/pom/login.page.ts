@@ -269,7 +269,7 @@ class LoginPage implements AbstractPage {
       if (viewportWidth < 1100) {
         cy.get(mobileHamburgIcon).click({force:true});
         cy.wait(2000);
-        cy.get(MobileLoginLink).click();
+        cy.get(MobileLoginLink).click({force:true});
       } else { // Web Device logic start from this else statement
         if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
           cy.get(loginIcon).invoke('show');

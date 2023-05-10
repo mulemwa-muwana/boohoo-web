@@ -79,7 +79,7 @@ const selectors: SelectorBrandMap = {
     registrationButton: '.user-links > a:nth-child(2)',
     registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
-    wishListIconMobile: '.l-header-left > .b-header_actions > .m-wishlist > .b-header_wishlist > .b-header_wishlist-icon > .i-icon > [fill="none"]',
+    wishListIconMobile: '.header-wishlist-link',
     searchField: '.header-search-form-fieldset>[class*="js-header-search-input"]:nth-child(1)',
     searchIcon: '.js-search-icon[type="submit"]',
     promotion: 'div.product-category-slider',
@@ -303,8 +303,8 @@ class HomePage implements AbstractPage {
 
       // If Mobile Device is used
       const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
-        cy.get('.search-close-button').click({force: true});
+      if (viewportWidth < 1100) {  
+          cy.get('.search-close-button').click({force: true});
       }
     }
   };

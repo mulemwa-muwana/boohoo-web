@@ -126,7 +126,7 @@ const selectors: SelectorBrandMap = {
     emptyCartTitle: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
-    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',

@@ -80,6 +80,7 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: '.button-fancy-small',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
+    removeItemFromWishlistMobile: ':nth-child(3) > .button-text > .button-remove-text',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
     itemIsAddedToWishlist: '.wishlist-table form',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
@@ -207,7 +208,13 @@ class WishListPage implements AbstractPage {
     },
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
+      const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if(viewportWidth < 1100 && variables.brand == 'boohooman.com'){
+        cy.get(removeItemFromWishListMobile).eq(0).click();
+      }else{
       cy.get(removeItemFromWishlist).eq(0).click();
+      }
       if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
         cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({force:true});
       }

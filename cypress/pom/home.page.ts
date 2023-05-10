@@ -247,12 +247,7 @@ class HomePage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       if (viewportWidth < 1100) {             
-      cy.get('body').then($body => {
-        if ($body.find(hamburgerMenu).length) {
           cy.get(hamburgerMenu).click({force: true});
-        }
-      }
-      );
       }
       cy.contains(text).click({ force: true });
     },

@@ -29,7 +29,7 @@ describe('Product Listing Page tests', function () {
   });
 
   it('Verify that plp page opens', () => {
-    //cy.wait(3000);
+    cy.wait(3000);
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[variables.language]);
     } else {

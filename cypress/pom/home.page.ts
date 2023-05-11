@@ -270,7 +270,7 @@ class HomePage implements AbstractPage {
       cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
     },
     investorRelationsAcceptBtn () {
-      cy.get('cc-saveAll-startBtn').click();
+      cy.get('cc-saveAll-startBtn').click(); 
     },
     expandHamburgerMenu () {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;     

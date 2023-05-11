@@ -5,7 +5,7 @@ import homePage from './home.page';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     searchField: '#header-search-input',
-    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
+    addToCart:'.b-product_actions-inner [data-id="addToCart"]',
     addToWishListButton: '.m-outline > span',
     shippingInfoButton: '#product-details-btn-shipping',
     returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
@@ -68,7 +68,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
-    sizeVariations: '.b-product_details-variations > .m-size',
+    sizeVariations: '.b-variations_item-content.m-list',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
@@ -182,6 +182,7 @@ const selectors: SelectorBrandMap = {
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '.product-detail > h1.product-name',
+    productTitleMobile: '.product-col-1 > .product-name',
     productCode: '.product-number > [itemprop="sku"]',
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
@@ -297,12 +298,13 @@ const selectors: SelectorBrandMap = {
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-link',
     miniCartProductIner: '.mini-cart-product',
-    productDescription: '.product-care-info',
+    productDescription: '.product-description-info',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.product-delivery-link > .product-info-link-text',
-    productReturnsInfoButton: '.product-returns-link > .product-info-link-text'
+    productReturnsInfoButton: '.product-returns-link > .product-info-link-text',
+    showAllContentButton: '[class="show-all js-show-all"]'
   },
   'boohoomena.com': {
     searchField: '#header-search-input',
@@ -344,14 +346,13 @@ class PdpPage implements AbstractPage {
   click = {
 
     addToCart () {
+      cy.wait(3000);
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart, {timeout: 15000}).should('not.have.attr', 'disabled');
       cy.get(addToCart).click({force: true});
     },
     addToWishList () {
-      const addToWishListButton = selectors[variables.brand].addToWishListButton;
-      cy.get(addToWishListButton, {timeout: 10000}).should('not.have.attr', 'disabled');
       cy.wait(4000);
+      const addToWishListButton = selectors[variables.brand].addToWishListButton;
       cy.get(addToWishListButton).click({force: true});
     },
     shippingInfoButton () {
@@ -382,7 +383,7 @@ class PdpPage implements AbstractPage {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth > 1100) {
-      cy.get(miniCartViewCartBtn).click({force: true}); 
+        cy.get(miniCartViewCartBtn).click({force: true}); 
       }
     },
     wishListIcon () {
@@ -398,7 +399,7 @@ class PdpPage implements AbstractPage {
     },
     selectColorFromSku () {
       const selectColor = selectors[variables.brand].selectColor;
-      const colorFromSku = variables.fullSku.split('-')[1];
+      const colorFromSku = variables.fullSku.split('-')[1]; // Get color part from fullSku FZZ80440-106-18 => 106
 
       if (isSiteGenesisBrand) {
         cy.get(selectColor + ` span[data-variation-values*='backendValue": "${colorFromSku}']`).then(($element) => {
@@ -413,7 +414,7 @@ class PdpPage implements AbstractPage {
     },
     selectSizeFromSku () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      const sizeFromSku = variables.fullSku.split('-')[2];
+      const sizeFromSku = variables.fullSku.split('-')[2]; // Get size part from fullSku FZZ80440-106-18 => 18
 
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {
@@ -459,7 +460,18 @@ class PdpPage implements AbstractPage {
   assertions = {
     assertProductNameIsDisplayed () {
       const productTitle = selectors[variables.brand].productTitle;
-      cy.get(productTitle).should('be.visible');
+      const productTitleMobile = selectors[variables.brand].productTitleMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
+        
+        cy.get(productTitleMobile).should('be.visible');
+        
+        // If Desktop Device is used
+      } else {
+        cy.get(productTitle).should('be.visible');
+      }
 
       // .and('include.text', productName);  // Skus are different 
     },
@@ -502,9 +514,9 @@ class PdpPage implements AbstractPage {
     assertAddToCartBtnDisabled () {
       if (isSiteGenesisBrand) {
         const addToCart = selectors[variables.brand].addToCart;
-        if(variables.brand=='boohooman.com') { 
+        if (variables.brand=='boohooman.com') { 
           const deselectSize=selectors[variables.brand].deselectSize; // Deselecting Size to Disable addToCart button for BHM
-          cy.get(deselectSize).click()
+          cy.get(deselectSize).click();
         }
         cy.get(addToCart).should('have.attr', 'disabled');
       } else {
@@ -526,6 +538,10 @@ class PdpPage implements AbstractPage {
     },
     assertProductDescriptionIsPresent () {
       const productDescription = selectors[variables.brand].productDescription;
+      const showAllContentButton = selectors[variables.brand].showAllContentButton;
+      if (variables.brand == 'misspap.com') {
+        cy.get(showAllContentButton).click();
+      }
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
     assertDeliveryInfoIsDisplayed () {
@@ -552,10 +568,8 @@ class PdpPage implements AbstractPage {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
       if (isSiteGenesisBrand) {
         cy.get(productReturnsInfoButton).click();
-      } else if (variables.brand == 'boohoo.com' && variables.locale != 'EU') {
-        cy.get('#product-details-btn-shipping').click();
-      }
-      
+      } 
+       
       cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {

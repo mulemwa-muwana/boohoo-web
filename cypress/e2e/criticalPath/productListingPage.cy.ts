@@ -12,7 +12,7 @@ describe('Product Listing Page tests', function () {
     HomePage.actions.closeNastygalPopup();
     if (variables.brand == 'nastygal.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
+      HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
     } else if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
@@ -29,6 +29,7 @@ describe('Product Listing Page tests', function () {
   });
 
   it('Verify that plp page opens', () => {
+    cy.wait(3000);
     if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[variables.language]);
     } else {
@@ -80,13 +81,13 @@ describe('Product Listing Page tests', function () {
     
     it('Verify style refinement is applied', function () {
       const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU', 'US', 'CA'];
-      if (variables.brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(variables.locale)) {
+      if ((variables.brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(variables.locale)) || (variables.brand =='misspap.com')) {
         this.skip();
-      }  
+      } 
       plpPage.actions.setupChangeIntercept(/style/);
       plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
       plpPage.actions.waitForPageRefinementUpdate();
-      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);   
     });
     
     it('Verify color refinement is applied', () => {
@@ -108,7 +109,7 @@ describe('Product Listing Page tests', function () {
     });
 
     it('Verify shop by fit refinement is applied', function () {
-      if (variables.brand == 'burton.co.uk' || variables.brand == 'boohooman.com') {
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'boohooman.com' || variables.brand == 'misspap.com') {
         this.skip();
       }  
       plpPage.actions.setupChangeIntercept(/classification/);

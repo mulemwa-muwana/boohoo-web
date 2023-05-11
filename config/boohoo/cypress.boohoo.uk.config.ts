@@ -1,9 +1,7 @@
 import { defineConfig } from 'cypress';
 import plugins from '../../cypress/plugins';
-
 export default defineConfig({
   projectId: 'i6d3n8',
-
   env: {
     url: 'https://storefront:Oreo2022@uk-dwstg.boohoo.com/',
     sku: '#FZZ80440',
@@ -12,13 +10,13 @@ export default defineConfig({
     locale: 'UK',
     language: 'EN',
   },
-
   viewportHeight: 1080,
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
+  
   blockHosts: [
     'boohoo-engb.qa.verbolia.com' // Stops verbolia sign-in popup
   ],
@@ -31,7 +29,6 @@ export default defineConfig({
     html: false,
     json: true,
   },
-  
   e2e: {
     excludeSpecPattern: [
       '**/backend*/**' // Skip backend tests
@@ -42,6 +39,4 @@ export default defineConfig({
     experimentalSessionAndOrigin: true,
     numTestsKeptInMemory: 0,
   },
-
 });
-

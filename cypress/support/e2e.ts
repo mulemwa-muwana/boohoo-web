@@ -15,6 +15,8 @@ beforeEach(() => {
   const variables = Cypress.env() as EnvironmentVariables;
   if (variables.locale == 'IE') {
     cy.setCookie('dw_locale', 'en_IE');
+  } else if (variables.locale == 'UK') {
+    cy.setCookie('dw_locale', 'en_GB');
   }
   cy.setCookie('OptanonAlertBoxClosed', '');
   cy.setCookie('dw_cookies_accepted', 'A');

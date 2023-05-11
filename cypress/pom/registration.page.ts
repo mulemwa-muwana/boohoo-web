@@ -268,20 +268,12 @@ class RegistrationPage implements AbstractPage {
     startRegistration (randomEmail: string) {
       const emailForRegistration = selectors[variables.brand].emailForRegistration;
       const confirmEmailForRegistration = selectors[variables.brand].confirmEmailForRegistration;
-      const viewportWidth = Cypress.config('viewportWidth');
       cy.get(emailForRegistration).click({force: true}).type(randomEmail);
       if (isSiteGenesisBrand) {
         cy.get(confirmEmailForRegistration).click({force: true}).type(randomEmail);
       }
-      
       if (variables.brand == 'boohoo.com') {
-
-        if (viewportWidth < 1100) {
-          cy.get('.b-button.m-width_full[type="button"][data-tau="register_submit"]').click({force:true});
-        }
-        else{
-          cy.get('button[data-id="continueButton"]').click();
-        }
+        cy.get('button[data-id="continueButton"]').click();
       }
     },
     confirmationCheckbox () {

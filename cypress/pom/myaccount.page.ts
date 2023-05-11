@@ -851,7 +851,7 @@ class MyAccountPage implements AbstractPage {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
         cy.get(addressDeleteBtn).last().click({ force: true }); //  Target Last address which added now
         if (!isSiteGenesisBrand) {
-          cy.contains('button', 'Yes, delete').click();
+          cy.contains('button', 'Yes, delete').click({ force: true });
         }
       },
       addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {
@@ -879,7 +879,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(creditCardSection).contains(cardEnd).should('be.visible');
         cy.get(creditCardSection).contains(cardEnd).parents(creditCardSection).find(creditCardDeleteBtn).click({ force: true });
         if (!isSiteGenesisBrand) {
-          cy.get(cardDeleteConfirmationBtn).click();
+          cy.get(cardDeleteConfirmationBtn).click({ force: true });
         }
       },
       trackOrderByNumber () {

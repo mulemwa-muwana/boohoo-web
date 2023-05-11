@@ -237,6 +237,7 @@ class LoginPage implements AbstractPage {
       if ((isSiteGenesisBrand) && (viewportWidth < 1100)) {
         cy.get(loginIcon).invoke('show');
       }
+
       // If Desktop Device is used
       else if ((isSiteGenesisBrand && variables.brand != 'misspap.com') && (viewportWidth > 1100)) {
         cy.get(loginIcon).invoke('show');
@@ -269,8 +270,7 @@ class LoginPage implements AbstractPage {
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100) {
         cy.get(resetPasswordEmailFieldMobile).type(email);
-      }
-      else {
+      } else {
         cy.get(resetPasswordEmailField).type(email);
       }
     }

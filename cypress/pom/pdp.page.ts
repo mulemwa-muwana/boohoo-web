@@ -381,7 +381,7 @@ class PdpPage implements AbstractPage {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth > 1100) {
-      cy.get(miniCartViewCartBtn).click({force: true}); 
+        cy.get(miniCartViewCartBtn).click({force: true}); 
       }
     },
     wishListIcon () {
@@ -501,9 +501,9 @@ class PdpPage implements AbstractPage {
     assertAddToCartBtnDisabled () {
       if (isSiteGenesisBrand) {
         const addToCart = selectors[variables.brand].addToCart;
-        if(variables.brand=='boohooman.com') { 
+        if (variables.brand=='boohooman.com') { 
           const deselectSize=selectors[variables.brand].deselectSize; // Deselecting Size to Disable addToCart button for BHM
-          cy.get(deselectSize).click()
+          cy.get(deselectSize).click();
         }
         cy.get(addToCart).should('have.attr', 'disabled');
       } else {

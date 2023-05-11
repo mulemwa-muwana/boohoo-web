@@ -270,8 +270,10 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
         const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA'];
-        if ((variables.brand == 'boohoo.com' && !boohooLocales.includes(variables.locale)) || variables.brand == 'nastygal.com') {
+        if ((variables.brand == 'boohoo.com' && !boohooLocales.includes(variables.locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[variables.language]);
+        } else if (variables.brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[variables.language]);
         } else if (variables.brand == 'boohoo.com' && boohooLocales.includes(variables.locale)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[variables.language]);
         } else {
@@ -401,7 +403,9 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
-        if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
+        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') || variables.brand == 'misspap.com') {
+          GlobalFooter.actions.checkFooterLinkByText('Paypal');
+        } else if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
         } else {
           this.skip();
@@ -423,7 +427,7 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Become A Brand Ambassador', function () {
         if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'CA' || variables.locale == 'US')) {
-          GlobalFooter.actions.checkFooterLinkByText('Become A Brand Ambassador'); 
+          GlobalFooter.actions.checkFooterLinkByText('Become a Brand Ambassador'); 
         } else {
           this.skip();
         }
@@ -528,18 +532,18 @@ describe('Home Page', function () {
     });
 
     describe('Contact Us Page links', () => {
-      beforeEach( function ()
-      {
-        if(variables.brand == 'burton.co.uk' || variables.brand == 'boohoo.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com'){
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
-        faqPage.click.contactUsLink()}
-        else if (variables.brand == 'boohooman.com') {
+
+      beforeEach( function () {        
+        if (variables.brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[variables.language]);
-          faqPage.click.contactUsLink();
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerHelp[variables.language]);
         }
-      })
+        faqPage.click.contactUsLink();
+      });
+
       it('Verify that Twitter is not an option', () => {
-          contactusPage.assertions.assertTwitterIconIsNotPresent();
+        contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
       it('Verify that Facebook link is present and functional', () => {
         contactusPage.assertions.assertFacebookIconIsPresent();

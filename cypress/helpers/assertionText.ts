@@ -337,7 +337,7 @@ class AssertionText {
   };
 
   Premier: TranslationMap = {
-    EN: '\n                        BOOHOO PREMIER\n                    ',
+    EN:'PREMIER',
     FR: 'PREMIER',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
@@ -351,7 +351,7 @@ class AssertionText {
   };
 
   PremierNG: TranslationMap = {
-    EN: 'NGVIP',
+    EN: 'GET NGVIP',
     FR: '',
     NL: '',
     DE: '',
@@ -393,7 +393,7 @@ class AssertionText {
   };
 
   PremierText: TranslationMap = {
-    EN: '\n                        FREE NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR!\n                    \n                    ',
+    EN:'FREE NEXT DAY DELIVERY',
     FR: 'LIVRAISON STANDARD ILLIMITÉE PENDANT UN AN!',
     NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
     DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',
@@ -814,6 +814,20 @@ class AssertionText {
 
   footerLinkDeliveryInfo: TranslationMap = {
     EN: 'Delivery Info',
+    NL: 'Bezorginformatie',
+    DE: 'Lieferinformationen',
+    FR: 'Information sur la livraison',
+    DK: 'Shipping Info',
+    FI: 'Shipping Info',
+    NO: 'Shipping Info',
+    SE: 'Leveranser',
+    IL: '',
+    IT: 'Informazioni sulla consegna',
+    ES: 'Información de envío'
+  };
+
+  footerLinkDeliveryInfoNG: TranslationMap = {
+    EN: 'Delivery info',
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
@@ -1261,7 +1275,7 @@ class AssertionText {
   };
 
   envAndSocRespNG: TranslationMap = {
-    EN: 'Environment And Social',
+    EN: 'Environment and Social Responsibility',
     NL: '',
     DE: '',
     FR: 'Environnement Et Responsabilité Sociale',

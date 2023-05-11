@@ -213,7 +213,7 @@ class WishListPage implements AbstractPage {
       if(viewportWidth < 1100 && variables.brand == 'boohooman.com'){
         cy.get(removeItemFromWishListMobile).eq(0).click();
       }else{
-      cy.get(removeItemFromWishlist).eq(0).click();
+      cy.get(removeItemFromWishlist).eq(0).click({force:true});
       }
       if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
         cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({force:true});

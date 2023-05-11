@@ -268,7 +268,6 @@ class RegistrationPage implements AbstractPage {
     startRegistration (randomEmail: string) {
       const emailForRegistration = selectors[variables.brand].emailForRegistration;
       const confirmEmailForRegistration = selectors[variables.brand].confirmEmailForRegistration;
-      const viewportWidth = Cypress.config('viewportWidth');
       cy.get(emailForRegistration).click({force: true}).type(randomEmail);
       if (isSiteGenesisBrand) {
         cy.get(confirmEmailForRegistration).click({force: true}).type(randomEmail);

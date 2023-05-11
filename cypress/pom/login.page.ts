@@ -20,7 +20,7 @@ const selectors: SelectorBrandMap = {
   'nastygal.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
-    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
+    MobileLoginLink: '.m-login',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
@@ -35,7 +35,7 @@ const selectors: SelectorBrandMap = {
   'dorothyperkins.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
-    MobileLoginLink: '.m-login',
+    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
@@ -269,7 +269,7 @@ class LoginPage implements AbstractPage {
       if (viewportWidth < 1100) {
         cy.get(mobileHamburgIcon).click({force:true});
         cy.wait(2000);
-        cy.get(MobileLoginLink).click();
+        cy.get(MobileLoginLink).click({force:true});
       } else { // Web Device logic start from this else statement
         if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
           cy.get(loginIcon).invoke('show');

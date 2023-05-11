@@ -67,7 +67,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
-    sizeVariations: '.b-variations_item-content.m-list',
+    sizeVariations: '.b-variations_item-content.m-list:eq(1)',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',

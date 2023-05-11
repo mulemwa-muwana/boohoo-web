@@ -824,6 +824,20 @@ class BillingPage implements AbstractPage {
           }
         });
 
+        body().then($body => {
+          if ($body.find('[data-testid="select-payment-category"]').length) { // If 'How do you want to pay' popup exists
+            $body.find('[data-testid="select-payment-category"]').click();
+            cy.wait(5000);
+          }
+        });
+
+        body().then($body => {
+          if ($body.find('[data-testid="pick-plan"]').length) { // If 'Pick plan' popup exists
+            $body.find('[data-testid="pick-plan"]').click();
+            cy.wait(5000);
+          }
+        });
+
         const payButtonLocator = (variables.brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[data-testid="confirm-and-pay"]';
         body().find(payButtonLocator).click({force:true});
         cy.wait(5000);
@@ -841,7 +855,9 @@ class BillingPage implements AbstractPage {
             cy.wait(5000);
           }
         });
+        
       });
+ 
     },
 
     selectPayPal () {

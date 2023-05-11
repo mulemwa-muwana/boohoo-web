@@ -28,6 +28,20 @@ class AssertionText {
     ES: ''
   };
 
+  contactUsText: TranslationMap = {
+    EN: 'Contact Us',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   startAReturnURLvalidation: TranslationMap = {
     EN: 'return',
     FR: '\n\nEnregistré\n',
@@ -323,7 +337,7 @@ class AssertionText {
   };
 
   Premier: TranslationMap = {
-    EN: '\n                        BOOHOO PREMIER\n                    ',
+    EN:'PREMIER',
     FR: 'PREMIER',
     NL: '\nEERST\n',
     DE: '\nERSTE\n',
@@ -337,7 +351,7 @@ class AssertionText {
   };
 
   PremierNG: TranslationMap = {
-    EN: 'NGVIP',
+    EN: 'GET NGVIP',
     FR: '',
     NL: '',
     DE: '',
@@ -351,7 +365,7 @@ class AssertionText {
   };
 
   AddPremierToCartButton: TranslationMap = {
-    EN: 'GET UNLIMITED',
+    EN: 'UNLIMITED',
     FR: 'AJOUTER AU PANIER',
     NL: '',
     DE: '',
@@ -379,7 +393,7 @@ class AssertionText {
   };
 
   PremierText: TranslationMap = {
-    EN: '\n                        FREE NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR!\n                    \n                    ',
+    EN:'FREE NEXT DAY DELIVERY',
     FR: 'LIVRAISON STANDARD ILLIMITÉE PENDANT UN AN!',
     NL: '\nGRATIS VOLGENDE DAG LEVERING GEDURENDE 1 JAAR!\n',
     DE: '\nKOSTENLOSE LIEFERUNG AM NÄCHSTEN TAG FÜR 1 JAHR!\n',
@@ -603,7 +617,7 @@ class AssertionText {
   };
 
   assertPaymentMethod: TranslationMap = {
-    EN: 'Credit Card',
+    EN: 'Card',
     NL: 'Creditcard / betaalkaart',
     DK: 'Kredit-/betalingskort',
     FR: 'Carte de crédit / débit',
@@ -784,8 +798,36 @@ class AssertionText {
     ES: ''
   };
 
+  footerCustomerServiceBHM: TranslationMap = {
+    EN: 'Customer Service',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkDeliveryInfo: TranslationMap = {
     EN: 'Delivery Info',
+    NL: 'Bezorginformatie',
+    DE: 'Lieferinformationen',
+    FR: 'Information sur la livraison',
+    DK: 'Shipping Info',
+    FI: 'Shipping Info',
+    NO: 'Shipping Info',
+    SE: 'Leveranser',
+    IL: '',
+    IT: 'Informazioni sulla consegna',
+    ES: 'Información de envío'
+  };
+
+  footerLinkDeliveryInfoNG: TranslationMap = {
+    EN: 'Delivery info',
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
     FR: 'Information sur la livraison',
@@ -1078,6 +1120,20 @@ class AssertionText {
     ES: ''
   };
 
+  contactUs: TranslationMap = {
+    EN: 'Contact us',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   termsAndCond: TranslationMap = {
     EN: 'T&Cs',
     NL: 'Algemene voorwaarden',
@@ -1219,7 +1275,7 @@ class AssertionText {
   };
 
   envAndSocRespNG: TranslationMap = {
-    EN: 'Environment And Social',
+    EN: 'Environment and Social Responsibility',
     NL: '',
     DE: '',
     FR: 'Environnement Et Responsabilité Sociale',

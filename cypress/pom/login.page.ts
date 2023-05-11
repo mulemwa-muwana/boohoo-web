@@ -4,6 +4,8 @@ import { isSiteGenesisBrand } from '../helpers/common';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
+    mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
+    MobileLoginLink:'[class="b-hamburger_account-action_link m-login"]',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
@@ -17,6 +19,8 @@ const selectors: SelectorBrandMap = {
   },
   'nastygal.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
+    mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
+    MobileLoginLink: '.m-login',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
@@ -30,6 +34,8 @@ const selectors: SelectorBrandMap = {
   },
   'dorothyperkins.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
+    mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
+    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
     loginEmail: '#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password',
     loginButton:'button[data-tau="login_submit"]',
@@ -43,9 +49,11 @@ const selectors: SelectorBrandMap = {
   },
   'burton.co.uk': {
     loginIcon: 'a.b-header_login-icon', 
+    mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
+    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
     loginEmail: 'input#dwfrm_login_email', 
     loginPassword: '#dwfrm_login_password[type=password]',
-    loginButton:'[class="b-button m-width_full m-small"][type="submit"]',
+    loginButton:'button[data-tau="login_submit"]',
     forgotPassword:'button#password-reset', 
     forgotPasswordMessage: '.b-dialog-window.m-active.m-top_dialog',
     resetPasswordEmailField: '#dwfrm_profile_resetPassword_email', 
@@ -56,6 +64,8 @@ const selectors: SelectorBrandMap = {
   },
   'wallis.co.uk': {
     loginIcon: 'svg[class="i-icon i-icon-user"]',
+    mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
+    MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
     loginEmail: '#dwfrm_login_email[type="email"]',
     loginPassword: '#dwfrm_login_password[type="password"]',
     loginButton: '.b-login_form-group_cta>button[data-tau="login_submit"]',
@@ -70,6 +80,8 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': {
     loginIcon: '.user-account',
     loginLink: '.user-links > a:nth-child(1)',
+    mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: 'input[id^=dwfrm_login_username][type="email"]',
     loginPassword: 'input[id^=dwfrm_login_password][type="password"]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -80,11 +92,13 @@ const selectors: SelectorBrandMap = {
     loginForm: 'form#dwfrm_login[class="login-page-form"]',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
   },
   'karenmillen.com': {
     loginIcon: '.user-account',
     loginLink: '.user-links > [title="Log In"]',
+    mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -95,11 +109,13 @@ const selectors: SelectorBrandMap = {
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
   },
   'coastfashion.com': {
     loginIcon: 'span.user-account', 
     loginLink: '.user-links > [title="Log In"]', 
+    mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '.field-wrapper.js-field-wrapper>[id^=dwfrm_login_username][type=email]', 
     loginPassword: 'input[id^=dwfrm_login_password][type="password"]', 
     loginButton:'.login-page-button.js-login-page-button[type="submit"]',
@@ -110,11 +126,13 @@ const selectors: SelectorBrandMap = {
     loginForm: '#dwfrm_login.login-page-form',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
   },
   'warehousefashion.com': {
     loginIcon: '.user-account',
     loginLink: '.user-links > [title="Log In"]',
+    mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -125,11 +143,13 @@ const selectors: SelectorBrandMap = {
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
   },
   'oasis-stores.com': {
     loginIcon: '.user-account',
     loginLink: '.user-links > [title="Log In"]',
+    mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -140,11 +160,13 @@ const selectors: SelectorBrandMap = {
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
   },
   'misspap.com': {
     loginIcon: '.link-item-login',
     loginLink: '.user-links > [title="Log In"]',
+    mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
+    MobileLoginLink:'.user-links [title="My Account"]:eq(1)',
     loginEmail: '[id^="dwfrm_login_username"]',
     loginPassword: '[id^="dwfrm_login_password"]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -155,11 +177,13 @@ const selectors: SelectorBrandMap = {
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
   },
   'boohoomena.com': {
     loginIcon: 'span.user-account',
     loginLink: '.user-links > [title="Log In"]',
+    mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
+    MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',
     loginButton:'#dwfrm_login .login-page-button',
@@ -170,7 +194,7 @@ const selectors: SelectorBrandMap = {
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
   }
 };
 
@@ -185,10 +209,17 @@ class LoginPage implements AbstractPage {
   click = {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
-      if (isSiteGenesisBrand && variables.brand != 'misspap.com' && variables.brand != 'boohooman.com') {
-        cy.get('.header-customer-info').invoke('show');
+      const mobileHamburgIcon = selectors[variables.brand].mobileHamburgIcon;
+      const viewportWidth = Cypress.config('viewportWidth');
+      
+      if (viewportWidth < 1100) {
+        cy.get(mobileHamburgIcon).click();
       } else {
-        cy.get(loginIcon).click({ force: true });
+        if (isSiteGenesisBrand && variables.brand != 'misspap.com' && variables.brand != 'boohooman.com') {
+          cy.get('.header-customer-info').invoke('show');
+        } else {
+          cy.get(loginIcon).click({ force: true });
+        }
       }
     },
     forgotPasswordLink (opts = { force: true }) {
@@ -231,6 +262,8 @@ class LoginPage implements AbstractPage {
     login (user: string, pass: string) {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginLink = selectors[variables.brand].loginLink;
+      const mobileHamburgIcon = selectors[variables.brand].mobileHamburgIcon;
+      const MobileLoginLink = selectors[variables.brand].MobileLoginLink;
       const viewportWidth = Cypress.config('viewportWidth');
 
       // If Mobile Device is used

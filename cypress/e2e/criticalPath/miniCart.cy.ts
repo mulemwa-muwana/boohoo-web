@@ -11,7 +11,7 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
       HomePage.goto();
       HomePage.click.logInIcon();
       LoginPage.actions.login(credentials.username, credentials.password);
-      HomePage.goto(); // This is added because user is redirected to MyAccount page after login
+      HomePage.goto(); // This is added because user is redirected to MyAccount page afters login
     });
   });
   {

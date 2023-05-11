@@ -15,7 +15,8 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
-    registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]'
+    registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]',
+    searchIconMobile: 'button.b-search_toggle'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -30,6 +31,7 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
+    searchIconMobile: 'button.b-search_toggle',
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
@@ -141,6 +143,7 @@ const selectors: SelectorBrandMap = {
     searchField: '.js-header-search-input',
     wishListIcon: '.icon-wishlist',
     searchIcon: '.js-search-icon',
+    searchIconMobile: '.icon-search',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
@@ -226,6 +229,11 @@ class HomePage implements AbstractPage {
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
+      const searchIconMobile = selectors[variables.brand].searchIconMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100) {
+        cy.get(searchIconMobile).click({force: opts.force});
+      }
       cy.get(searchIcon).click({force: opts.force});
     },
     searchField () {

@@ -81,13 +81,13 @@ describe('Product Listing Page tests', function () {
     
     it('Verify style refinement is applied', function () {
       const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU', 'US', 'CA'];
-      if (variables.brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(variables.locale)) {
+      if ((variables.brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(variables.locale)) || (variables.brand =='misspap.com')) {
         this.skip();
-      }  
+      } 
       plpPage.actions.setupChangeIntercept(/style/);
       plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
       plpPage.actions.waitForPageRefinementUpdate();
-      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);   
     });
     
     it('Verify color refinement is applied', () => {
@@ -109,7 +109,7 @@ describe('Product Listing Page tests', function () {
     });
 
     it('Verify shop by fit refinement is applied', function () {
-      if (variables.brand == 'burton.co.uk' || variables.brand == 'boohooman.com') {
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'boohooman.com' || variables.brand == 'misspap.com') {
         this.skip();
       }  
       plpPage.actions.setupChangeIntercept(/classification/);

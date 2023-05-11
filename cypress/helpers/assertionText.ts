@@ -838,7 +838,7 @@ class AssertionText {
     IL: '',
     IT: 'Informazioni sulla consegna',
     ES: 'Información de envío'
-  }
+  };
 
   pdpDeliverylist: TranslationMap = {
     EN: '\nFewer shipping options\n',

@@ -525,13 +525,13 @@ class PdpPage implements AbstractPage {
         cy.get(disabledAddToCart).should('have.attr', 'disabled');  
       }   
     },
-    assertMiniCartIsDisplayed () {                                             ///////////////////////
+    assertMiniCartIsDisplayed () { // /////////////////////
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       if (variables.brand != 'boohooman.com') {
         cy.get(addToCartTitle).should('be.visible');
       }
       const miniCartProductIner = selectors[variables.brand].miniCartProductIner;
-     cy.get(miniCartProductIner).should('be.visible');
+      cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string) {
       const addedToWishlistMsg = selectors[variables.brand].addedToWishlistMsg; 

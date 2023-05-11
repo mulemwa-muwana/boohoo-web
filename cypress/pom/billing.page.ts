@@ -647,7 +647,7 @@ class BillingPage implements AbstractPage {
       cy.wait(4000);
 
       cy.get('body').then($body=>{
-        if ($body.find("[class='b-button m-info m-width_full ']").length>0) {
+        if ($body.find("[class='b-button m-info m-width_full ']").length>0) { // (Updated) If there is saved Credit Card, click Add new Card button
           cy.get("[class='b-button m-info m-width_full ']").click();
         }
       });

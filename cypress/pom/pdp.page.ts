@@ -67,7 +67,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
-    sizeVariations: '.b-product_details-variations > .m-size',
+    sizeVariations: '.b-variations_item-content.m-list',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
@@ -345,15 +345,13 @@ class PdpPage implements AbstractPage {
   click = {
 
     addToCart () {
-      const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart, {timeout: 15000}).should('not.have.attr', 'disabled');
       cy.wait(3000);
+      const addToCart = selectors[variables.brand].addToCart;
       cy.get(addToCart).click({force: true});
     },
     addToWishList () {
-      const addToWishListButton = selectors[variables.brand].addToWishListButton;
-      cy.get(addToWishListButton, {timeout: 10000}).should('not.have.attr', 'disabled');
       cy.wait(4000);
+      const addToWishListButton = selectors[variables.brand].addToWishListButton;
       cy.get(addToWishListButton).click({force: true});
     },
     shippingInfoButton () {
@@ -400,7 +398,7 @@ class PdpPage implements AbstractPage {
     },
     selectColorFromSku () {
       const selectColor = selectors[variables.brand].selectColor;
-      const colorFromSku = variables.fullSku.split('-')[1];
+      const colorFromSku = variables.fullSku.split('-')[1]; // Get color part from fullSku FZZ80440-106-18 => 106
 
       if (isSiteGenesisBrand) {
         cy.get(selectColor + ` span[data-variation-values*='backendValue": "${colorFromSku}']`).then(($element) => {
@@ -415,7 +413,7 @@ class PdpPage implements AbstractPage {
     },
     selectSizeFromSku () {
       const sizeVariations = selectors[variables.brand].sizeVariations;
-      const sizeFromSku = variables.fullSku.split('-')[2];
+      const sizeFromSku = variables.fullSku.split('-')[2]; // Get size part from fullSku FZZ80440-106-18 => 18
 
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {

@@ -12,7 +12,8 @@ const selectors: SelectorBrandMap = {
     contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
     accountAddresses: 'a[data-tau="navigation_addressList"]',
     paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
-    viewOrderBtn: 'a[data-tau="account_viewOrder"]',
+    viewOrderBtn: '.b-account_dashboard-body > .b-card > .b-card-body > .b-order_item > .b-order_item-buttons > [href="https://uk-dwstg.boohoo.com/order-details?orderID=UK200036459"]',
+    viewOrderBtnMobile:'.b-account_dashboard > .b-card > .b-card-body > .b-order_item > .b-order_item-buttons > [href="https://uk-dwstg.boohoo.com/order-details?orderID=UK200036459"]',
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
@@ -745,13 +746,18 @@ class MyAccountPage implements AbstractPage {
         cy.get(socialAccounts).should('be.visible').click();
       },
       viewOrderBtn () {
+        const viewportWidth = Cypress.config('viewportWidth');
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
-        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
-          cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
-        } else {
-          cy.get(viewOrderBtn).should('be.visible').click({force:true});
-        }
-        
+        const viewOrderBtnMobile = selectors[variables.brand].viewOrderBtnMobile;
+        if (viewportWidth < 1100) {
+          cy.get(viewOrderBtnMobile).click({force: true});
+        } else  {
+           if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+            cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
+          } else {
+            cy.get(viewOrderBtn).should('be.visible').click({force:true}); 
+          }
+        } 
       },
       orderHistoryLink () {
         const orderHistoryLink = selectors[variables.brand].orderHistoryLink;

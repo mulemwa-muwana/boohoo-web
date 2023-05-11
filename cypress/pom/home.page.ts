@@ -322,7 +322,7 @@ class HomePage implements AbstractPage {
       cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
     },
     investorRelationsAcceptBtn () {
-      cy.get('cc-saveAll-startBtn').click();
+      cy.get('cc-saveAll-startBtn').click(); 
     },
     expandHamburgerMenu () {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;     
@@ -335,7 +335,7 @@ class HomePage implements AbstractPage {
     }
   };
 
-  actions = {
+  actions = { 
     findItemUsingSKU (SKU: string) {
       if (variables.brand != 'boohoo.com') {
         const searchIcon = selectors[variables.brand].searchIcon;

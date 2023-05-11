@@ -4,6 +4,8 @@ import WishListPage from '../../pom/wishlist.page';
 import assertionText from '../../helpers/assertionText';
 import pdpPage from 'cypress/pom/pdp.page';
 import plpPage from 'cypress/pom/plp.page';
+import cartPage from 'cypress/pom/cart.page';
+import navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -35,5 +37,8 @@ describe('Wishlist Page tests', function () {
     WishListPage.click.addToCart();
     pdpPage.assertions.assertMiniCartIsDisplayed();
     WishListPage.click.removeItemFromWishlist();
+    navigate.toCartPage();
+    cartPage.click.clearCart();
+    cartPage.assertions.assertCartIsEmpty();
   });
 });

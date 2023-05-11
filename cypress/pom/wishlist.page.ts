@@ -41,7 +41,7 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
-    removeItemFromWishlist: '.b-wishlist_tile-remove',
+    removeItemFromWishlist: 'button.b-minicart_product-remove_btn[title="Remove"]',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
   },
   'burton.co.uk': {
@@ -215,7 +215,7 @@ class WishListPage implements AbstractPage {
       }else{
       cy.get(removeItemFromWishlist).eq(0).click();
       }
-      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
         cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({force:true});
       }
       

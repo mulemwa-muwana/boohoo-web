@@ -266,17 +266,17 @@ class LoginPage implements AbstractPage {
       const MobileLoginLink = selectors[variables.brand].MobileLoginLink;
       const viewportWidth = Cypress.config('viewportWidth');
 
-      // If Mobile Device is used
-      if ((isSiteGenesisBrand) && (viewportWidth < 1100)) {
-        cy.get(loginIcon).invoke('show');
-      }
-
-      // If Desktop Device is used
-      else if ((isSiteGenesisBrand && variables.brand != 'misspap.com') && (viewportWidth > 1100)) {
-        cy.get(loginIcon).invoke('show');
-        cy.get(loginLink).click({force:true});
-      } else {
-        cy.get(loginIcon).click({force:true});
+      if (viewportWidth < 1100) {
+        cy.get(mobileHamburgIcon).click({force:true});
+        cy.wait(2000);
+        cy.get(MobileLoginLink).click({force:true});
+      } else { // Web Device logic start from this else statement
+        if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
+          cy.get(loginIcon).invoke('show');
+          cy.get(loginLink).click({force:true});
+        } else {
+          cy.get(loginIcon).click({force:true});
+        }
       }
 
       cy.wait(3000);

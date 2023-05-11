@@ -263,6 +263,7 @@ const selectors: SelectorBrandMap = {
     miniCartViewCartBtn: '.mini-cart-link',
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
+    productTitleMobile: '.product-col-1 > .product-name',
     productTitle: '.product-detail > h1.product-name',
     productCode: '.product-number > [itemprop="sku"]',
     productPrice: '.product-price',

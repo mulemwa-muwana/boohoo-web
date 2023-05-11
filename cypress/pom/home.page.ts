@@ -19,7 +19,7 @@ const selectors: SelectorBrandMap = {
     logoMobile: '[aria-label="Boohoo"]',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
-    registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]'
+    registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]',
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -121,7 +121,7 @@ const selectors: SelectorBrandMap = {
     wishListIconMobile: '.icon-wishlist-bold',
     searchField: '.js-header-search-input',
     searchFieldMobile: '.js-header-search-input',
-    searchIcon: '.icon-search',
+    searchIcon: '.js-search-icon',
     searchIconMobile:'[class="icon-search js-icon-search"]',
     searchFieldCloseMobile: '.mobile-menu-header > .icon-close',
     promotion: 'div.product-category-slider',
@@ -137,7 +137,7 @@ const selectors: SelectorBrandMap = {
     registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
     wishListIcon: '.header-wishlist >a.header-wishlist-link',
     wishListIconMobile: '.icon-wishlist',
-    searchField: '.js-header-search',
+    searchField: 'input.js-header-search-input[type="search"]',
     searchFieldMobile: '.js-header-search-input',
     searchIcon: 'button.js-search-icon',
     searchIconMobile: '.icon-search',
@@ -322,7 +322,7 @@ class HomePage implements AbstractPage {
       cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
     },
     investorRelationsAcceptBtn () {
-      cy.get('cc-saveAll-startBtn').click();
+      cy.get('cc-saveAll-startBtn').click(); 
     },
     expandHamburgerMenu () {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;     
@@ -335,7 +335,7 @@ class HomePage implements AbstractPage {
     }
   };
 
-  actions = {
+  actions = { 
     findItemUsingSKU (SKU: string) {
       if (variables.brand != 'boohoo.com') {
         const searchIcon = selectors[variables.brand].searchIcon;

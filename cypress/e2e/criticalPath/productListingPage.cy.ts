@@ -81,13 +81,13 @@ describe('Product Listing Page tests', function () {
     
     it('Verify style refinement is applied', function () {
       const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU', 'US', 'CA'];
-      if (variables.brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(variables.locale) || variables.brand == 'misspap.com') {
+      if ((variables.brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(variables.locale)) || (variables.brand =='misspap.com')) {
         this.skip();
-      }  
+      } 
       plpPage.actions.setupChangeIntercept(/style/);
       plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
       plpPage.actions.waitForPageRefinementUpdate();
-      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);   
     });
     
     it('Verify color refinement is applied', () => {

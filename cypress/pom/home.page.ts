@@ -283,7 +283,7 @@ class HomePage implements AbstractPage {
     }
   };
 
-  actions = {
+  actions = { 
     findItemUsingSKU (SKU: string) {
       if (variables.brand != 'boohoo.com') {
         const searchIcon = selectors[variables.brand].searchIcon;

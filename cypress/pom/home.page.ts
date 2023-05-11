@@ -19,7 +19,7 @@ const selectors: SelectorBrandMap = {
     logoMobile: '[aria-label="Boohoo"]',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
-    registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]'
+    registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]',
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',

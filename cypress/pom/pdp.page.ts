@@ -23,6 +23,7 @@ const selectors: SelectorBrandMap = {
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
+    miniCartProductInerMobile:'',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
@@ -376,7 +377,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartIcon () {
       const miniCartIcon = selectors[variables.brand].minicartIcon;
-      cy.get(miniCartIcon).click();
+      cy.get(miniCartIcon).click({force: true});
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[variables.brand].miniCartViewCartBtn;
@@ -501,7 +502,7 @@ class PdpPage implements AbstractPage {
       cy.get('.b-availability-status').should('contain.text', msg); // N/a need check
     },
     assertProductIsAddedToCart (text: string) {
-      const addToCartTitle = selectors[variables.brand].addToCartTitle;
+      const addToCartTitle = selectors[variables.brand].addToCartTitle;         
       cy.get(addToCartTitle).should('be.visible').and('contain.text', text);
     },
     assertAddToCartBtnIsNotAvailable (msg: string) {
@@ -523,13 +524,13 @@ class PdpPage implements AbstractPage {
         cy.get(disabledAddToCart).should('have.attr', 'disabled');  
       }   
     },
-    assertMiniCartIsDisplayed () {
+    assertMiniCartIsDisplayed () {                                             ///////////////////////
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       if (variables.brand != 'boohooman.com') {
         cy.get(addToCartTitle).should('be.visible');
       }
       const miniCartProductIner = selectors[variables.brand].miniCartProductIner;
-      cy.get(miniCartProductIner).should('be.visible');
+     cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string) {
       const addedToWishlistMsg = selectors[variables.brand].addedToWishlistMsg; 

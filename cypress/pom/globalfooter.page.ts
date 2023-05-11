@@ -405,7 +405,7 @@ class GlobalFooter implements AbstractPage {
       cy.scrollTo('bottom');
       const footer = selectors[variables.brand].footer;
 
-      cy.get(footer).contains('a', text, { matchCase: true }) // Add Tag a contains Text Help to make it work for SG Brands
+      cy.get(footer).contains('a', text, { matchCase: false }) // Add Tag a contains Text Help to make it work for SG Brands
         .invoke('removeAttr', 'target')
         .then(element => {
           const href = element.attr('href');

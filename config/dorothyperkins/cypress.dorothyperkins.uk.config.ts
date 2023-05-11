@@ -7,14 +7,14 @@ export default defineConfig({
   env: {
     url: 'https://storefront:Oreo2022@dwstg.dorothyperkins.com/',
     sku: 'AQQ16660-702',
-    fullSku: 'AQQ16660-702-908',
+    fullSku: 'AQQ16660-702-363',
     brand: 'dorothyperkins.com',
     locale: 'UK',
     language: 'EN',
   },
 
-  viewportHeight: 667,
-  viewportWidth: 375,
+  viewportHeight: 1080,
+  viewportWidth: 1920,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,

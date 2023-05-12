@@ -70,7 +70,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
-    sizeVariations: '.b-variations_item-content.m-list',
+    sizeVariations: '[data-tau-unique="size-swatches"]',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
@@ -527,13 +527,13 @@ class PdpPage implements AbstractPage {
         cy.get(disabledAddToCart).should('have.attr', 'disabled');  
       }   
     },
-    assertMiniCartIsDisplayed () {                                             ///////////////////////
+    assertMiniCartIsDisplayed () { 
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       if (variables.brand != 'boohooman.com') {
         cy.get(addToCartTitle).should('be.visible');
       }
       const miniCartProductIner = selectors[variables.brand].miniCartProductIner;
-     cy.get(miniCartProductIner).should('be.visible');
+      cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string) {
       const addedToWishlistMsg = selectors[variables.brand].addedToWishlistMsg; 

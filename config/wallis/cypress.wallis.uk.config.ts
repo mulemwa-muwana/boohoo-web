@@ -6,8 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.wallis.co.uk',
-    sku: '#BYY03425-2', // Needs hashtag for assertation on PDP
-    fullSku: 'BYY03425-148-30',
+    sku: '#BYY07099', // Needs hashtag for assertation on PDP
+    fullSku: 'BYY07099-808-16',
     brand: 'wallis.co.uk',
     locale: 'UK',
     language: 'EN',

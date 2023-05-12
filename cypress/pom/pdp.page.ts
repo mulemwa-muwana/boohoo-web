@@ -46,12 +46,14 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner .b-minicart-title',
+    addToCartTitle: '.b-minicart-inner .b-minicart_product-title',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
+    productReturnsInfoButton: '#product-details-btn-shipping',
     productTitle: '#editProductModalTitle',
+    productTitleMobile: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_delivery',
@@ -567,11 +569,17 @@ class PdpPage implements AbstractPage {
     assertReturnInfoIsDisplayed () {
       const productReturnsInfoButton = selectors[variables.brand].productReturnsInfoButton;
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
+      const viewportWidth = Cypress.config('viewportWidth');
       if (isSiteGenesisBrand) {
         cy.get(productReturnsInfoButton).click();
       } 
-       
-      cy.get(productReturnsDescription).should('be.visible');
+
+       // If Mobile Device is used
+       if (viewportWidth < 1100) {
+        
+        cy.get(productReturnsInfoButton).click({force:true});
+       }
+        cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {
 

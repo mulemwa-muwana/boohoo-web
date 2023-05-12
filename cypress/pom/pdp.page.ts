@@ -578,13 +578,8 @@ class PdpPage implements AbstractPage {
        if (viewportWidth < 1100) {
         
         cy.get(productReturnsInfoButton).click({force:true});
+       }
         cy.get(productReturnsDescription).should('be.visible');
-        
-        // If Desktop Device is used
-      } else {
-        cy.get(productReturnsDescription).should('be.visible');
-      }
-
     },
     assertStartReturnPageIsDisplayed () {
 

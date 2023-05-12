@@ -278,7 +278,7 @@ class LoginPage implements AbstractPage {
           cy.get(loginIcon).click({force:true});
         }
       } 
-       
+
       cy.wait(3000);
       const loginEmail = selectors[variables.brand].loginEmail;
       cy.get(loginEmail).type(user, {force: true}); 

@@ -254,7 +254,7 @@ const selectors: SelectorBrandMap = {
   },
   'oasis-stores.com': {
     searchField: '#header-search-input',
-    addToCart: '#add-to-cart',
+    addToCart: '.add-to-cart-text',
     addToWishListButton: '.wishlist-button',
     shippingInfoButton: '#product-details-btn-shipping',
     returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',

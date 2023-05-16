@@ -543,7 +543,7 @@ class PdpPage implements AbstractPage {
       const productDescription = selectors[variables.brand].productDescription;
       const showAllContentButton = selectors[variables.brand].showAllContentButton;
       if (variables.brand == 'misspap.com') {
-        cy.get(showAllContentButton).click();
+        cy.get(showAllContentButton).click({force: true});
       }
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
@@ -571,15 +571,15 @@ class PdpPage implements AbstractPage {
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
       const viewportWidth = Cypress.config('viewportWidth');
       if (isSiteGenesisBrand) {
-        cy.get(productReturnsInfoButton).click();
+        cy.get(productReturnsInfoButton).click({force: true});
       } 
 
-       // If Mobile Device is used
-       if (viewportWidth < 1100) {
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
         
         cy.get(productReturnsInfoButton).click({force:true});
-       }
-        cy.get(productReturnsDescription).should('be.visible');
+      }
+      cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {
 

@@ -210,10 +210,10 @@ class WishListPage implements AbstractPage {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
       const viewportWidth = Cypress.config('viewportWidth');
-      if(viewportWidth < 1100 && variables.brand == 'boohooman.com'){
+      if (viewportWidth < 1100 && variables.brand == 'boohooman.com') {
         cy.get(removeItemFromWishListMobile).eq(0).click();
-      }else{
-      cy.get(removeItemFromWishlist).eq(0).click({force:true});
+      } else {
+        cy.get(removeItemFromWishlist).eq(0).click({force:true});
       }
       if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
         cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({force:true});

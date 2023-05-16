@@ -574,12 +574,12 @@ class PdpPage implements AbstractPage {
         cy.get(productReturnsInfoButton).click();
       } 
 
-       // If Mobile Device is used
-       if (viewportWidth < 1100) {
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
         
         cy.get(productReturnsInfoButton).click({force:true});
-       }
-        cy.get(productReturnsDescription).should('be.visible');
+      }
+      cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {
 

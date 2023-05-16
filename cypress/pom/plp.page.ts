@@ -603,7 +603,7 @@ class PlpPage implements AbstractPage {
     assertProductColorIsDisplayedOnPLP () {
       const productColorIsDisplayedOnPLP = selectors[variables.brand].productColorIsDisplayedOnPLP;
       if (variables.brand == 'nastygal.com') {
-        cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'href');  // Attribute changed from src to href for NastyGal
+        cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'href'); // Attribute changed from src to href for NastyGal
       } else {
         cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'src');
       }

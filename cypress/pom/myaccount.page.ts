@@ -749,8 +749,8 @@ class MyAccountPage implements AbstractPage {
         const viewOrderBtnMobile = selectors[variables.brand].viewOrderBtnMobile;
         if (viewportWidth < 1100) {
           cy.get(viewOrderBtnMobile).click({force: true});
-        } else  {
-           if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        } else {
+          if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
             cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
           } else {
             cy.get(viewOrderBtn).should('be.visible').click({force:true}); 
@@ -849,10 +849,10 @@ class MyAccountPage implements AbstractPage {
       },
       deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
-        cy.wait(1000)
+        cy.wait(1000);
         cy.get(addressDeleteBtn).last().click({ force: true }); //  Target Last address which added now
         if (!isSiteGenesisBrand) {
-          cy.wait(1000)
+          cy.wait(1000);
           cy.contains('button', 'Yes, delete').click({ force: true });
         }
       },

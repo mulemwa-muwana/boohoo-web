@@ -57,7 +57,7 @@ describe('Product Details Page tests', function () {
       cy.wait(3000);
     }
     PdpPage.click.addToCart(); 
-   // PdpPage.assertions.assertMiniCartIsDisplayed();
+    PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
   it('TC06 Verify that save for later (heart icon) is functional when selected', function () {
     PdpPage.actions.selectFirstAvailableSize();

@@ -18,9 +18,7 @@ describe('Billing page functionality for registered user', function () {
   });
   it('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    if (variables.brand == 'nastygal.com') {
-      BillingPage.assertions.assertShippingMethodPresent('\n                            UK Standard Delivery\n                        ');
-    } else if (variables.brand== 'boohoo.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'oasis-stores.com'|| variables.brand == 'wallis.co.uk') {
+    if (variables.brand== 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'oasis-stores.com'|| variables.brand == 'wallis.co.uk') {
 
       BillingPage.assertions.assertShippingMethodPresent('\n                            UK Next Day Delivery\n                        ');
     } else {

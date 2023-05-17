@@ -351,12 +351,12 @@ class PdpPage implements AbstractPage {
     addToCart () {
       cy.wait(3000);
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).click({force: true});
+      cy.get(addToCart).invoke('show').click({force: true});
     },
     addToWishList () {
       cy.wait(4000);
       const addToWishListButton = selectors[variables.brand].addToWishListButton;
-      cy.get(addToWishListButton).click({force: true});
+      cy.get(addToWishListButton).invoke('show').click({force: true});
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[variables.brand].shippingInfoButton;

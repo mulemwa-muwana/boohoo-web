@@ -142,6 +142,8 @@ const selectors: SelectorBrandMap = {
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '#cart-unlimited',
@@ -208,6 +210,8 @@ const selectors: SelectorBrandMap = {
     subtotal: 'span.price-adjusted-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '#cart-unlimited',
@@ -348,18 +352,32 @@ class CartPage implements AbstractPage {
       
       cy.intercept(/cart/).as('updateCartProduct');
       cy.get(updateQuantity).eq(0).click({force: true});
-      if (variables.brand!='nastygal.com') {
+      if (variables.brand!='nastygal.com'&& variables.brand != 'boohoo.com') {
         cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
       }
     },
 
     editCartQuantitySiteGenesis (quantity: string) {
       const editQuantity = selectors[variables.brand].editQuantity;
-      cy.get(editQuantity).clear().type(quantity);
+      const editQuantityMobile = selectors[variables.brand].editQuantityMobile;
+      const editDetailsMobile = selectors[variables.brand].editDetailsMobile;
 
-      cy.intercept('**/cart').as('cartPage');
-      cy.get(editQuantity).blur();
-      cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      // If Mobile Device is used
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth <1100 ) {
+        cy.get(editDetailsMobile).click({force: true});
+        cy.get(editQuantityMobile).clear().type(quantity);
+        cy.get('.add-to-cart-text').click();
+        cy.intercept('**/cart').as('cartPage');
+        cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+
+        // If Desktop Device is used
+      } else {
+        cy.get(editQuantity).clear().type(quantity);
+        cy.intercept('**/cart').as('cartPage');
+        cy.get(editQuantity).blur();
+        cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      }
     }
   };
 

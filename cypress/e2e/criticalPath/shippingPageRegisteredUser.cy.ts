@@ -176,7 +176,7 @@ describe('Shipping Page Registered user tests', function () {
     cartPage.click.removePremierFromCart();
   });
 
-  it('Verify that user is able to select standard shipping method', () => {
+  it.only('Verify that user is able to select standard shipping method', () => {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
 

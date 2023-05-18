@@ -247,7 +247,7 @@ const selectors: SelectorBrandMap = {
     productDescription: '#ui-id-2',
     productDelivery: '.del-table',
     productReturnsInfoButton: '#product-returns-info-tab',
-    productReturnsDescription: '.product-returns-info',
+    productReturnsDescription: '#product-returns-info-tab',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.product-delivery-info a',
     cartValidation: '.b-product_actions-error_msg',

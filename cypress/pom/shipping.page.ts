@@ -794,6 +794,10 @@ class ShippingPage implements AbstractPage {
       const addressLine2Field = selectors[variables.brand].addressLine2Field;
       cy.get(addressLine2Field).clear({force: true}).type(address2);
     },
+    addressLine2Clear () {
+      const addressLine2Field = selectors[variables.brand].addressLine2Field;
+      cy.get(addressLine2Field).clear({force: true});
+    },
     cityFieldClear () {
       const cityField = selectors[variables.brand].cityField;
       cy.get(cityField).clear({force: true});

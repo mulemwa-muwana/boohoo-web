@@ -102,7 +102,7 @@ class Navigate {
           BillingPage.actions.billingEmailField(credentials.guest);
           BillingPage.actions.billingConfirmEmailField(credentials.guest);
         }
-        BillingPage.actions.waitPageToLoad();
+        BillingPage.actions.waitPageToLoad(); 
       });
 
     // REGISTERED USER //
@@ -118,6 +118,7 @@ class Navigate {
       cy.wait(5000);
       shippingPage.click.addAddressManually();  
       shippingPage.actions.adressLine1(primaryAddress.addressLine);
+      shippingPage.actions.addressLine2Clear();
       shippingPage.actions.cityField(primaryAddress.city);
       if (variables.locale == 'US' || variables.locale == 'AU') {
         shippingPage.actions.selectState(primaryAddress.county);
@@ -127,7 +128,7 @@ class Navigate {
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
       shippingPage.click.proceedToBilling();
-      BillingPage.actions.waitPageToLoad();
+      BillingPage.actions.waitPageToLoad();     
     }
   }
 

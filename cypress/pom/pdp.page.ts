@@ -46,7 +46,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner .b-minicart_product-title',
+    addToCartTitle: '.b-global_alerts-item',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -75,7 +75,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner',
+    addToCartTitle: '.b-global_alerts-item',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -102,7 +102,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner',
+    addToCartTitle: '.b-global_alerts-item',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -128,7 +128,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner',
+    addToCartTitle: '.b-global_alerts',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -247,7 +247,7 @@ const selectors: SelectorBrandMap = {
     productDescription: '#ui-id-2',
     productDelivery: '.del-table',
     productReturnsInfoButton: '#product-returns-info-tab',
-    productReturnsDescription: '.product-returns-info',
+    productReturnsDescription: '#product-returns-info-tab',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.product-delivery-info a',
     cartValidation: '.b-product_actions-error_msg',
@@ -351,12 +351,12 @@ class PdpPage implements AbstractPage {
     addToCart () {
       cy.wait(3000);
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).click({force: true});
+      cy.get(addToCart).invoke('show').click({force: true});
     },
     addToWishList () {
       cy.wait(4000);
       const addToWishListButton = selectors[variables.brand].addToWishListButton;
-      cy.get(addToWishListButton).click({force: true});
+      cy.get(addToWishListButton).invoke('show').click({force: true});
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[variables.brand].shippingInfoButton;

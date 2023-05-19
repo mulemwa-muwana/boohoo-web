@@ -1,17 +1,18 @@
 import { defineConfig } from 'cypress';
-import plugins from '../../../cypress/plugins';
+import plugins from '../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@stg.misspap.com/',
-    sku: 'BPP03840',
-    fullSku: 'BPP03840-809-14',
-    brand: 'misspap.com',
-    locale: 'UK',
+    url: 'https://storefront:Oreo2022@dwstg.boohooman.com/au',
+    sku: 'AMM00817-105-37',
+    fullSku: 'AMM00817-105-37',
+    brand: 'boohooman.com',
+    locale: 'AU',
     language: 'EN',
   },
+
   viewportHeight: 1080,
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
@@ -22,20 +23,20 @@ export default defineConfig({
   // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
-    reportDir: 'config/misspap/results',
+    reportDir: 'config/boohooman/results',
     overwrite: false,
     html: false,
     json: true,
   },
 
   e2e: {
-    setupNodeEvents (on, config) {
+    setupNodeEvents (on) {
       plugins(on);
     },
     excludeSpecPattern: [
       '**/backend*/**' // Skip backend tests
     ],
     experimentalSessionAndOrigin: true,
-    numTestsKeptInMemory: 0
-  },   
+    numTestsKeptInMemory: 0,
+  },
 });

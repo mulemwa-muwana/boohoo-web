@@ -85,7 +85,7 @@ class AssertionText {
   };
 
   WishListIsEmpty: TranslationMap = {
-    EN: 'You dont have any items saved for later (yet)',
+    EN: 'Your wish list is currently empty',
     FR: 'Vous n’avez pas (encore) enregistré d`éléments pour plus tard',
     NL: 'Je hebt (nog) geen items opgeslagen voor later',
     DE: 'Sie haben (noch) keine Artikel für später gespeichert',

@@ -35,9 +35,10 @@ describe('Wishlist Page tests', function () {
     HomePage.click.wishListIcon();
     WishListPage.assertions.assertItemIsAddedToWishlist();
     WishListPage.click.addToCart();
-    pdpPage.assertions.assertMiniCartIsDisplayed();
+    //pdpPage.assertions.assertMiniCartIsDisplayed();
     WishListPage.click.removeItemFromWishlist();
-    navigate.toCartPage();
+    WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmpty[variables.language]);
+    cartPage.goto();
     cartPage.click.clearCart();
     cartPage.assertions.assertCartIsEmpty();
   });

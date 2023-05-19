@@ -41,9 +41,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: '.b-minicart_product-remove_btn',
-    clearCartMobile: '.b-minicart_product-remove_btn',
+    clearCartMobile: '.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-minicart-title',
-    emptyCartTitleMobile:'.b-minicart-title',
+    emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
     premierBlock: '.b-ngvip',
@@ -67,9 +67,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: 'button.b-minicart_product-remove_btn[title="Remove"]',
-    clearCartMobile: 'button.b-minicart_product-remove_btn[title="Remove"]',
+    clearCartMobile: '.l-cart_product-remove > .b-cart_product-remove',
     emptyCartTitle: '.b-minicart-title',
-    emptyCartTitleMobile:'.b-minicart-title',
+    emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -91,9 +91,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: '.b-minicart_product-remove_btn',
-    clearCartMobile: '',
+    clearCartMobile: '.l-cart_product-remove > .b-cart_product-remove',
     emptyCartTitle: '.b-minicart-title',
-    emptyCartTitleMobile:'',
+    emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -114,9 +114,9 @@ const selectors: SelectorBrandMap = {
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
-    clearCart: '.b-minicart_product-remove_btn',
+    clearCart: '.b-cart_product-remove',
     clearCartMobile: '.b-cart_product-remove',
-    emptyCartTitle: '.b-minicart-title',
+    emptyCartTitle: '.b-cart_empty-title',
     emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
@@ -309,10 +309,12 @@ class CartPage implements AbstractPage {
           $el.click();
         });
       } else {
-        cy.get(clearCart).each(($el) => {
+          cy.get(clearCart).each(($el) => { 
           $el.click();
         });
+      
       }
+
     },
     removePremierFromCart () {
 

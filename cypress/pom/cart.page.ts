@@ -335,23 +335,14 @@ class CartPage implements AbstractPage {
   click = {
     clearCart () {
       const clearCart = selectors[variables.brand].clearCart;
-      const clearCartMobile = selectors[variables.brand].clearCartMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
-        cy.get(clearCartMobile).each(($el) => {
-          $el.click();
-        });
-      } else {
-        cy.get(clearCart).each(($el) => { 
-          $el.click();
-        });
-      
-      }
-
+      cy.get(clearCart).each(($el) => {
+        cy.wrap($el).click({force: true});
+        cy.wait(7000);
+      });
     },
     removePremierFromCart () {
 
-      // Remove everything except the first item. If there are 3 items in cart, item 2 and 3 will be removed
+      // Remove everything except the first item. If there are 3 items in cart, items 2 and 3 will be removed
       const clearCart = selectors[variables.brand].clearCart;
       cy.get(clearCart).each(($el, index) => {
         if (index > 0) {

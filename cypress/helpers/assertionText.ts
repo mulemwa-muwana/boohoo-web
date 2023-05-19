@@ -84,8 +84,8 @@ class AssertionText {
     ES: 'Producto añadido a la lista de deseos'
   };
 
-  WishListIsEmpty: TranslationMap = {
-    EN: 'Your wish list is currently empty',
+  WishListIsEmptyBlp: TranslationMap = {
+    EN: 'You don\'t have any items saved for later (yet)',
     FR: 'Vous n’avez pas (encore) enregistré d`éléments pour plus tard',
     NL: 'Je hebt (nog) geen items opgeslagen voor later',
     DE: 'Sie haben (noch) keine Artikel für später gespeichert',
@@ -96,6 +96,20 @@ class AssertionText {
     IL: 'אין לך פריטים שנשמרו למועד מאוחר יותר (עדיין)',
     IT: 'Non hai elementi salvati per dopo (ancora)',
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
+  };
+
+  WishListIsEmptySiteGenesis: TranslationMap = {
+    EN: 'add your favorite items as you start shopping',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   WishlistLoginTitle: TranslationMap = {

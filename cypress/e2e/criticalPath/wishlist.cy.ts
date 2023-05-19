@@ -51,9 +51,8 @@ describe('Wishlist Page tests', function () {
       WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptyBlp[variables.language]);
     }
     cartPage.goto();
-    cy.wait(5000);
+    cy.wait(10000);
     cartPage.click.clearCart();
-    cy.wait(5000);
     cartPage.assertions.assertCartIsEmpty();
   });
 });

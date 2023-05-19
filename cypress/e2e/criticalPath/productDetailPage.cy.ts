@@ -79,7 +79,7 @@ describe('Product Details Page tests', function () {
       PdpPage.click.shippingInfoButton();
       PdpPage.assertions.assertDeliveryInfoIsDisplayed();
     }
-    if (variables.brand == 'dorothyperkins.com' || variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk') {
+    if (variables.brand == 'dorothyperkins.com' || variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk'||variables.brand == 'oasis-stores.com') {
       pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
     } else {
       PdpPage.assertions.assertReturnInfoIsDisplayed(); 

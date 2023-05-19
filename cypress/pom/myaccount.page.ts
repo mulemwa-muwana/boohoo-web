@@ -849,8 +849,10 @@ class MyAccountPage implements AbstractPage {
       },
       deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
+        cy.wait(1000);
         cy.get(addressDeleteBtn).last().click({ force: true }); //  Target Last address which added now
         if (!isSiteGenesisBrand) {
+          cy.wait(1000);
           cy.contains('button', 'Yes, delete').click({ force: true });
         }
       },

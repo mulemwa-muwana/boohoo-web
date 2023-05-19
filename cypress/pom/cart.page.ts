@@ -10,6 +10,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile: '[data-tau="cart_product_quantity"]',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile:' .b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.m-with_actions',
@@ -32,6 +35,9 @@ const selectors: SelectorBrandMap = {
     subtotal: 'tr[class="b-summary_table-item m-total"]',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile:'[data-tau="cart_product_quantity"]',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile:'.b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     PayPalCTA: '.zoid-component-frame',
@@ -54,6 +60,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty_value',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile: '[data-tau="cart_product_quantity"] ',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile: '.b-product_update-button_update', 
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -76,6 +85,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile: '.b-product_update-button_update',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile:' .b-product_update-button_update', 
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -98,6 +110,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile: '[data-tau="cart_product_quantity"]',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile: '.b-product_update-button_update', 
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -120,6 +135,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile:'.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div.premier-box-main',
@@ -144,6 +162,7 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.cart-input-quantity',
     editQuantityMobile: '#Quantity',
     editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile:'.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '#cart-unlimited',
@@ -166,6 +185,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.price-adjusted-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile:' .add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div.premier-box-main',
@@ -188,6 +210,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.cart-cell.item-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile: '.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div#cart-limitless',
@@ -212,6 +237,7 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.cart-input-quantity',
     editQuantityMobile: '#Quantity',
     editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile: '.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '#cart-unlimited',
@@ -234,6 +260,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile:'.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '.html-slot-container',
@@ -361,13 +390,15 @@ class CartPage implements AbstractPage {
       const editQuantity = selectors[variables.brand].editQuantity;
       const editQuantityMobile = selectors[variables.brand].editQuantityMobile;
       const editDetailsMobile = selectors[variables.brand].editDetailsMobile;
+      const updateBtnMobile = selectors[variables.brand].updateBtnMobile;
 
       // If Mobile Device is used
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth <1100 ) {
         cy.get(editDetailsMobile).click({force: true});
-        cy.get(editQuantityMobile).clear().type(quantity);
-        cy.get('.add-to-cart-text').click();
+        cy.wait(5000);
+        cy.get(editQuantityMobile).clear({force: true}).type(quantity);
+        cy.get(updateBtnMobile).click({force: true});
         cy.intercept('**/cart').as('cartPage');
         cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
 

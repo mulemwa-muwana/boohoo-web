@@ -5,7 +5,6 @@ import assertionText from '../../helpers/assertionText';
 import pdpPage from 'cypress/pom/pdp.page';
 import plpPage from 'cypress/pom/plp.page';
 import cartPage from 'cypress/pom/cart.page';
-import navigate from 'cypress/helpers/navigate';
 
 const variables = Cypress.env() as EnvironmentVariables;
 

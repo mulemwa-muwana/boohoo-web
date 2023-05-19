@@ -342,7 +342,7 @@ class CartPage implements AbstractPage {
           $el.click();
         });
       } else {
-          cy.get(clearCart).each(($el) => { 
+        cy.get(clearCart).each(($el) => { 
           $el.click();
         });
       

@@ -270,19 +270,19 @@ class WishListPage implements AbstractPage {
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
       const msg2 = "YOU DON'T HAVE ANY ITEMS SAVED FOR LATER (YET)";
-      if(variables.brand == 'boohoo.com', 'nastygal.com'){
+      if (variables.brand == 'boohoo.com', 'nastygal.com') {
         cy.get(wishListIsEmpty).invoke('text').then((text) => {
           const formattedText = text.replace(/\s/g,'').toLowerCase;
           const formattedMsg = msg2.replace(/\s/g,'').toLowerCase;
-          cy.wrap(formattedText).should('include',formattedMsg)
-        })
-      }else{
-      cy.get(wishListIsEmpty).invoke('text').then((text) => {
-        const formattedText = text.replace(/\s/g,'');
-        const formattedMsg = msg.replace(/\s/g,'');
-        cy.wrap(formattedText).should('include',formattedMsg, { matchCase: false })
-      })
-    }
+          cy.wrap(formattedText).should('include',formattedMsg);
+        });
+      } else {
+        cy.get(wishListIsEmpty).invoke('text').then((text) => {
+          const formattedText = text.replace(/\s/g,'');
+          const formattedMsg = msg.replace(/\s/g,'');
+          cy.wrap(formattedText).should('include',formattedMsg, { matchCase: false });
+        });
+      }
     },
     assertItemIsAddedtoWishlistAlertText (msg: string) {
       const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;

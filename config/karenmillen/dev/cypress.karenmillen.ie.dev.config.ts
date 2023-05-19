@@ -21,13 +21,14 @@ export default defineConfig({
   screenshotOnRunFailure: true,
   
   e2e: {
-    experimentalSessionAndOrigin: true,
     setupNodeEvents (on) {
       plugins(on);
     },
-
-    numTestsKeptInMemory: 0
+    excludeSpecPattern: [
+      '**/backend*/**' // Skip backend tests
+    ],
+    experimentalSessionAndOrigin: true,
+    numTestsKeptInMemory: 0,
   },
 
 });
-

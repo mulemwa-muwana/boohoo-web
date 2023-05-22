@@ -118,7 +118,9 @@ class Navigate {
       cy.wait(5000);
       shippingPage.click.addAddressManually();  
       shippingPage.actions.adressLine1(primaryAddress.addressLine);
-      shippingPage.actions.addressLine2Clear();
+      if (variables.brand == 'boohooman.com') {
+        shippingPage.actions.addressLine2Clear();
+      }
       shippingPage.actions.cityField(primaryAddress.city);
       if (variables.locale == 'US' || variables.locale == 'AU') {
         shippingPage.actions.selectState(primaryAddress.county);

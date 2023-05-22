@@ -802,6 +802,12 @@ class BillingPage implements AbstractPage {
         body().find('#otp_field').type('111111', {force: true});
         cy.wait(12000);
 
+        body().then($body => {  
+          if ($body.find("[value='pay_later']").length>0) { // If PAyment plan appears to select pay now or pay after 30 days
+            body().find("[value='pay_later']").click();
+          }
+        });
+
         body().then($body => { 
           if ($body.find('#pay_now-pay_now').length) { // If Payment options popup exists select Pay now
             body().find('#pay_now-pay_now').click();

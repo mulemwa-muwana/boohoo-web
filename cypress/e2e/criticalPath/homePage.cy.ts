@@ -402,8 +402,8 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
-        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') || variables.brand == 'misspap.com') {
+      it.only('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
+        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') || variables.brand == 'misspap.com' || (variables.brand == 'karenmillen.com' && variables.locale=='UK')) {
           GlobalFooter.actions.checkFooterLinkByText('Paypal');
         } else if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');

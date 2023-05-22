@@ -518,7 +518,12 @@ describe('Home Page', function () {
     describe('Verify that the global header is displayed.', () => {
       it('Check global header is visible when scrolling down.', () => {
         const excludedBrands: Array<GroupBrands> = ['nastygal.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com', 'boohoomena.com'];
-        if (excludedBrands.includes(variables.brand)) { // For these brands header retracts(hides) on scroll down
+        const viewportWidth = Cypress.config('viewportWidth');
+        
+        if ( viewportWidth < 1100) {
+          cy.scrollTo('bottom');
+          GlobalFooter.assertions.assertHeaderIsVisible();
+        } else if (excludedBrands.includes(variables.brand)) { // For these brands header retracts(hides) on scroll down
           cy.scrollTo('bottom');
           GlobalFooter.assertions.assertHeaderIsNotVisible();
         } else {

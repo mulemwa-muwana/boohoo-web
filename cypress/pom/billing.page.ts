@@ -45,11 +45,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -92,11 +92,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -142,11 +142,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -192,11 +192,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -242,11 +242,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },

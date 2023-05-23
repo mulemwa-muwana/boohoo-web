@@ -57,6 +57,9 @@ describe('Account page', function () {
     } 
 
     MyAccountPage.click.addressesLink();
+    if (!isSiteGenesisBrand) {
+      MyAccountPage.actions.deleteAddressIfExist();
+    }
     MyAccountPage.actions.createAddress(localeNewAddress);
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();

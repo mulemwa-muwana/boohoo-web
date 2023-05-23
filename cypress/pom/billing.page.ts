@@ -1015,7 +1015,7 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodPayPal).should('be.visible');
     },
     assertPaymentMethodKlarnaIsDisplayed () {
-      if (isSiteGenesisBrand && variables.brand!='misspap.com') {
+      if (isSiteGenesisBrand) {
         cy.get('label[for="is-KlarnaUK"]').should('be.visible');
       }
       if (!isSiteGenesisBrand && variables.locale == 'AU') {

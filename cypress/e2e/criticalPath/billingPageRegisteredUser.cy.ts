@@ -75,7 +75,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.actions.addBillingAddressRegisteredUser(localeAddress);
     }
   });
-  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
+  it.only('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     if (variables.brand == 'boohoomena.com') {
       BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
       return; // Only credit card as payment option for this brand

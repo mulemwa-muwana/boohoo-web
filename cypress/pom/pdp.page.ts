@@ -301,7 +301,7 @@ const selectors: SelectorBrandMap = {
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-link',
     miniCartProductIner: '.mini-cart-product',
-    productDescription: '.product-description-info',
+    productDescription: '.product-care-info',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',

@@ -79,6 +79,10 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
       return; // Only credit card as payment option for this brand
     }
+    if (variables.brand == 'misspap.com') {
+      cy.clearCookies();
+      Navigate.toBillingPage('RegisteredUser');
+    }
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
     if (locale === 'UK' || locale === 'IE' || locale === 'AU') {

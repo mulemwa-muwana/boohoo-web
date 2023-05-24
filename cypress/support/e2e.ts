@@ -9,6 +9,11 @@ Cypress.on('uncaught:exception', () => {
   return false;
 });
 
+const variables = Cypress.env() as EnvironmentVariables;
+export const brand = variables.brand;
+export const locale = variables.locale;
+export const language = variables.language;
+
 // Set anything we need to before all tests
 beforeEach(() => {
   // TODO: Remove when redirection from IE locales is fixed (Coast and KarenMillen)

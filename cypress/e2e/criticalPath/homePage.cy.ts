@@ -403,7 +403,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
-        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') || variables.brand == 'misspap.com') {
+        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') || variables.brand == 'misspap.com' || (variables.brand == 'karenmillen.com' && variables.locale=='UK')) {
           GlobalFooter.actions.checkFooterLinkByText('Paypal');
         } else if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
@@ -477,7 +477,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
         const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];
@@ -486,9 +486,11 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[variables.language]);
         } else if ((variables.brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[variables.language]);
-        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+        } else if (variables.brand == 'oasis-stores.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2023');
-        } else if (variables.brand == 'boohoomena.com') {
+        } else if (variables.brand == 'coastfashion.com') {
+          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated May 2023');
+        }else if (variables.brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);
@@ -511,18 +513,19 @@ describe('Home Page', function () {
       it('Verify that the Footer Copyright and Security Information displayed at the bottom of the website.', () => {
         const currentYear = new Date().getFullYear();
         cy.scrollTo('bottom');
-        if (variables.brand == 'boohooman.com') {
-          cy.contains(`COPYRIGHT © ${currentYear - 1}`, { matchCase: false }).should('be.visible');
-        } else {
-          cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
-        }
+        cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
       });
     });
 
     describe('Verify that the global header is displayed.', () => {
       it('Check global header is visible when scrolling down.', () => {
         const excludedBrands: Array<GroupBrands> = ['nastygal.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com', 'boohoomena.com'];
-        if (excludedBrands.includes(variables.brand)) { // For these brands header retracts(hides) on scroll down
+        const viewportWidth = Cypress.config('viewportWidth');
+        
+        if ( viewportWidth < 1100) {
+          cy.scrollTo('bottom');
+          GlobalFooter.assertions.assertHeaderIsVisible();
+        } else if (excludedBrands.includes(variables.brand)) { // For these brands header retracts(hides) on scroll down
           cy.scrollTo('bottom');
           GlobalFooter.assertions.assertHeaderIsNotVisible();
         } else {

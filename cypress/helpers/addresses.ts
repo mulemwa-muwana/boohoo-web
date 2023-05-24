@@ -29,7 +29,7 @@ class Addresses {
         county: 'South Yorkshire',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -69,7 +69,7 @@ class Addresses {
         county: 'New York',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -109,7 +109,7 @@ class Addresses {
         county: 'Dublin',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -150,7 +150,7 @@ class Addresses {
         county: 'Berlin',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -190,7 +190,7 @@ class Addresses {
         county: 'Paris',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -230,7 +230,7 @@ class Addresses {
         county: 'RM',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -270,7 +270,7 @@ class Addresses {
         county: 'Barcelona',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -310,7 +310,7 @@ class Addresses {
         county: 'Quebec',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -350,7 +350,7 @@ class Addresses {
         county: 'Jerusalem',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -390,7 +390,7 @@ class Addresses {
         county: '',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -430,7 +430,7 @@ class Addresses {
         county: '',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -470,7 +470,7 @@ class Addresses {
         county: '',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -510,7 +510,7 @@ class Addresses {
         county: '',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -550,7 +550,7 @@ class Addresses {
         county: '',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -591,7 +591,7 @@ class Addresses {
         county: 'Oakleigh South',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -631,7 +631,7 @@ class Addresses {
         county: 'Kingsland',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -671,7 +671,7 @@ class Addresses {
         county: '',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
@@ -711,7 +711,7 @@ class Addresses {
         county: 'Riyadh Province',
       },
       newAddedPrimaryAddress:{
-        firstName: 'BoohooNew',
+        firstName: 'ZBoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',

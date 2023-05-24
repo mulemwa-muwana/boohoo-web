@@ -1,6 +1,8 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
+const variables = Cypress.env() as EnvironmentVariables;
+
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -10,9 +12,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
     removeItemFromWishlist: 'a[data-tau="wishlist_product_delete"]',
+    removeItemFromWishlistMobile: '.b-wishlist_tile-sub_action[data-ref="remove"]',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.b-header_wishlist-count',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-tau-product-id="product-${variables.fullSku}"]`,
+    wishListIsEmpty: '.b-wishlist-empty_text',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   },
@@ -24,11 +27,12 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
     wishlistLoginBtn: '.b-button',
-    itemIsAddedToWishlist: '.b-header_wishlist-count',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-tau-product-id="product-${variables.fullSku}"]`,
+    wishListIsEmpty: '.b-wishlist-empty',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
-    removeItemFromWishlist: '.b-wishlist_tile-remove'
+    removeItemFromWishlist: '.b-wishlist_tile-remove',
+    removeItemFromWishlistMobile: '.b-wishlist_tile-remove'
   },
   'dorothyperkins.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -38,10 +42,11 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
     wishlistLoginBtn: '.b-button',
-    itemIsAddedToWishlist: '.b-header_wishlist-count',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-tau-product-id="product-${variables.fullSku}"]`,
+    wishListIsEmpty: '.b-wishlist-empty_text',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     removeItemFromWishlist: '.b-wishlist_tile-remove',
+    removeItemFromWishlistMobile: '.b-wishlist_tile-remove',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
   },
   'burton.co.uk': {
@@ -52,10 +57,11 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'div.b-wishlist_tile-actions > button > span',
     wishlistLoginBtn: '.b-button',
-    itemIsAddedToWishlist: '.b-header_wishlist-count',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-tau-product-id="product-${variables.fullSku}"]`,
+    wishListIsEmpty: '.b-wishlist-empty_text',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     removeItemFromWishlist: '.b-wishlist_tile-remove',
+    removeItemFromWishlistMobile: '.b-wishlist_tile-remove',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
   },
   'wallis.co.uk': {
@@ -66,10 +72,11 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: '.b-wishlist_tile-action > span',
     wishlistLoginBtn: '.b-button',
-    itemIsAddedToWishlist: '.b-header_wishlist-count',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-tau-product-id="product-${variables.fullSku}"]`,
+    wishListIsEmpty: '.b-wishlist-empty_text',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     removeItemFromWishlist: '.b-wishlist_tile-remove',
+    removeItemFromWishlistMobile: '.b-wishlist_tile-remove',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
   },
   'boohooman.com': {
@@ -80,9 +87,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: '.button-fancy-small',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
+    removeItemFromWishlistMobile: ':nth-child(3) > .button-text > .button-remove-text',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.wishlist-table form',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
+    wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   },
@@ -94,9 +102,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
+    removeItemFromWishlistMobile: ':nth-child(3) > .button-text > .button-remove-text',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.wishlist-table form',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
+    wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   },
@@ -108,9 +117,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
+    removeItemFromWishlistMobile: ':nth-child(3) > .button-text > .button-remove-text',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.wishlist-table form',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
+    wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   },
@@ -121,10 +131,11 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
+    removeItemFromWishlistMobile: ':nth-child(3) > .button-text > .button-remove-text',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.wishlist-table form',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
+    wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   },
@@ -136,9 +147,10 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
+    removeItemFromWishlistMobile: ':nth-child(3) > .button-text > .button-remove-text',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.wishlist-table form',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
+    wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
     wishlistIcon: '.wishlist-button'
@@ -150,10 +162,11 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
+    removeItemFromWishlistMobile: ':nth-child(3) > .button-text > .button-remove-text',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.wishlist-table form',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
+    wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
     wishlistIcon: '.wishlist-button'
@@ -166,15 +179,14 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
+    removeItemFromWishlistMobile: '',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: '.wishlist-table form',
-    wishListIsEmpty: '.b-wishlist-empty > :nth-child(2)',
+    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
+    wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
   }
 };
-
-const variables = Cypress.env() as EnvironmentVariables;
 class WishListPage implements AbstractPage {
   goto (): void {
     homePage.goto();
@@ -207,9 +219,19 @@ class WishListPage implements AbstractPage {
     },
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
-      cy.get(removeItemFromWishlist).eq(0).click({force:true});
-      if (variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
-        cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({force:true});
+      const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100) {
+        cy.get(removeItemFromWishListMobile).eq(0).click({force:true});
+      } else {
+        cy.get(removeItemFromWishlist).eq(0).click({force:true});
+      }
+      if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
+        cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });
+      } else if (viewportWidth < 1100 && variables.brand == 'dorothyperkins.com') {
+        cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });
+      } else if (variables.brand == 'dorothyperkins.com') {
+        cy.get('.b-button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });
       }
       
     },
@@ -243,11 +265,11 @@ class WishListPage implements AbstractPage {
   assertions = {
     assertItemIsAddedToWishlist () {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
-      cy.get(itemIsAddedToWishlist).should('not.be.empty');
+      cy.get(itemIsAddedToWishlist).should('be.visible');
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
-      cy.get(wishListIsEmpty).should('have.text', msg);
+      cy.get(wishListIsEmpty).contains(msg, { matchCase: false }).should('be.visible');
     },
     assertItemIsAddedtoWishlistAlertText (msg: string) {
       const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;

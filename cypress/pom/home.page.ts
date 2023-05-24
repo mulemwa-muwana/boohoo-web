@@ -227,7 +227,8 @@ class HomePage implements AbstractPage {
 
   goto () {
     if (variables.brand == 'nastygal.com') {
-      cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
+
+      // Cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
 
     cy.visit(variables.url);

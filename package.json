@@ -35,7 +35,7 @@
       "cy:open:wallis:dev": "cypress open --config-file ./config/wallis/dev/cypress.wallis.uk.dev.config.ts",
       "cy:open:nastygal:dev": "cypress open --config-file ./config/nastygal/dev/cypress.nastygal.uk.dev.config.ts",
       "cy:open:warehouse:dev": "cypress open --config-file ./config/warehouse/dev/cypress.warehouse.uk.dev.config.ts", 
-      "cy:open:misspap:dev": "cypress open --config-file ./config/misspap/dev/cypress.misspap.uk.dev.config.ts ",
+      "cy:open:misspap:dev": "cypress open --config-file ./config/misspap/dev/cypress.misspap.uk.dev.config.ts",
       "cy:open:karenmillen:dev": "cypress open --config-file ./config/karenmillen/dev/cypress.karenmillen.uk.dev.config.ts",
       "cy:open:boohooman:dev": "cypress open --config-file ./config/boohooman/dev/cypress.boohooman.uk.dev.config.ts",
       "cy:open:boohoomena:dev": "cypress open --config-file ./config/boohoomena/dev/cypress.boohoomena.sa.dev.config.ts",

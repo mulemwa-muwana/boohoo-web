@@ -9,7 +9,7 @@ Cypress.on('uncaught:exception', () => {
   return false;
 });
 
-export const variables = Cypress.env() as EnvironmentVariables;
+const variables = Cypress.env() as EnvironmentVariables;
 export const brand = variables.brand;
 export const locale = variables.locale;
 export const language = variables.language;

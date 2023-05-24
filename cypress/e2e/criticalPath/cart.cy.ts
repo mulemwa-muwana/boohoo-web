@@ -4,8 +4,7 @@ import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { brand, locale } from 'cypress/support/e2e';
 
 describe('Cart basic functionality for guest user', function () {
   
@@ -36,12 +35,12 @@ describe('Cart basic functionality for guest user', function () {
   it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
     const internationalBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com'];
     const internationalLocales: Array<Locale> = ['UK', 'FR', 'IE'];
-    const internationalBrandsAndLocales: boolean = internationalBrands.includes(variables.brand) && internationalLocales.includes(variables.locale);
+    const internationalBrandsAndLocales: boolean = internationalBrands.includes(brand) && internationalLocales.includes(locale);
 
     const brandsUK: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk', ...siteGenesisBrands];
-    const brandsAndLocaleUK: boolean = brandsUK.includes(variables.brand) && variables.locale == 'UK';
+    const brandsAndLocaleUK: boolean = brandsUK.includes(brand) && locale == 'UK';
 
-    if (internationalBrandsAndLocales || brandsAndLocaleUK && variables.brand != 'boohooman.com'&& variables.brand != 'coastfashion.com') {
+    if (internationalBrandsAndLocales || brandsAndLocaleUK && brand != 'boohooman.com'&& brand != 'coastfashion.com') {
       CartPage.assertions.assertPremierSlotsAreVisible();
     } else {
       this.skip();
@@ -54,7 +53,7 @@ describe('Cart basic functionality for guest user', function () {
     CheckoutPage.assertions.assertGuestCheckoutEmail();
   });
   it('Verify that PayPal CTA is displayed and functional', function () {
-    if (variables.brand == 'boohoomena.com') {
+    if (brand == 'boohoomena.com') {
       this.skip();
     } else {
       CartPage.assertions.assertPayPalCTAisVisible();
@@ -64,8 +63,8 @@ describe('Cart basic functionality for guest user', function () {
   });
   it('Verify that Klarna CTA is displayed and functional', function () {
     const brandsUK: Array<GroupBrands> = ['wallis.co.uk', 'dorothyperkins.com', 'burton.co.uk'];
-    const brandsAndLocaleUK: boolean = brandsUK.includes(variables.brand) && variables.locale == 'UK';
-    if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(variables.brand) && ['UK', 'IE', 'AU'].includes(variables.locale) && variables.brand != 'misspap.com' || brandsAndLocaleUK ) {
+    const brandsAndLocaleUK: boolean = brandsUK.includes(brand) && locale == 'UK';
+    if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(brand) && ['UK', 'IE', 'AU'].includes(locale) && brand != 'misspap.com' || brandsAndLocaleUK ) {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox(); 
     } else {
@@ -91,7 +90,7 @@ describe('Cart page for Registered user', function () {
     Navigate.toCartPage();
   });
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
-    if (['burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk', 'nastygal.com', 'boohoo.com'].includes(variables.brand) ) {
+    if (['burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk', 'nastygal.com', 'boohoo.com'].includes(brand) ) {
       cy.get('[class="b-button m-outline b-minicart-button"]').click({force: true});
     }
     CartPage.click.proceedToCheckout();

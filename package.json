@@ -29,7 +29,7 @@
       "//": "CYPRESS OPEN DEV",
       "cy:open:boohoo:dev": "cypress open --config-file ./config/boohoo/dev/cypress.boohoo.uk.dev.config.ts",
       "cy:open:dorothy:dev": "cypress open --config-file ./config/dorothyperkins/dev/cypress.dorothyperkins.uk.dev.config.ts",
-      "cy:open:burton:dev": "cypress open --config-file ./config/burton/dev/cypress.burton.uk.dev.config.ts",
+      "cy:open:burton:dev": "cypress open --config-file ./config/burton/dev/cypress.burton.uk.dev.config.ts", 
       "cy:open:oasis:dev": "cypress open --config-file ./config/oasis/dev/cypress.oasis.uk.dev.config.ts",
       "cy:open:coast:dev": "cypress open --config-file ./config/coast/dev/cypress.coast.uk.dev.config.ts",
       "cy:open:wallis:dev": "cypress open --config-file ./config/wallis/dev/cypress.wallis.uk.dev.config.ts",

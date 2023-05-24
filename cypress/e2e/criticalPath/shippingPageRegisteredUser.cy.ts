@@ -58,6 +58,9 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.addAddressManually();
 
     shippingPage.actions.adressLine1(localeAddress.addressLine);
+    if (variables.brand == 'boohooman.com') {
+      shippingPage.actions.addressLine2Clear(); // To Remove complete data provided through BeforeEach ShippingPage Method
+    } 
     cy.wait(2000);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);

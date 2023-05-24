@@ -197,7 +197,7 @@ const selectors: SelectorBrandMap = {
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
+    addPremierToCartFromShippingPage: '#deliveryTabs',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -234,7 +234,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
-    cartContainer: '.b-checkout_products',
+    cartContainer: '.l-checkout-main > h1 > :nth-child(1) ',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -793,6 +793,10 @@ class ShippingPage implements AbstractPage {
     adressLine2 (address2: string) {
       const addressLine2Field = selectors[variables.brand].addressLine2Field;
       cy.get(addressLine2Field).clear({force: true}).type(address2);
+    },
+    addressLine2Clear () {
+      const addressLine2Field = selectors[variables.brand].addressLine2Field;
+      cy.get(addressLine2Field).clear({force: true});
     },
     cityFieldClear () {
       const cityField = selectors[variables.brand].cityField;

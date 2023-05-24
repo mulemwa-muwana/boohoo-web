@@ -102,7 +102,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-global_alerts-item',
+    addToCartTitle: '.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',

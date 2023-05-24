@@ -36,10 +36,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
-    addCreditCardNumber: '#encryptedCardNumber',
     addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber:"[data-fieldtype='encryptedCardNumber']",
+    addCreditCardExpDate: "[data-fieldtype='encryptedExpiryDate']",
+    addCreditCardSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     addCreditCardSaveBtn: '.m-mobile_column > .b-button',
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
@@ -89,10 +89,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
-    addCreditCardNumber: '#encryptedCardNumber',
     addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber:"[data-fieldtype='encryptedCardNumber']",
+    addCreditCardExpDate: "[data-fieldtype='encryptedExpiryDate']",
+    addCreditCardSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     addCreditCardSaveBtn: '.m-mobile_column > .b-button',
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
@@ -143,10 +143,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
-    addCreditCardNumber: '#encryptedCardNumber',
     addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber:"[data-fieldtype='encryptedCardNumber']",
+    addCreditCardExpDate: "[data-fieldtype='encryptedExpiryDate']",
+    addCreditCardSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     addCreditCardSaveBtn: '.m-mobile_column > .b-button',
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
@@ -196,10 +196,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
-    addCreditCardNumber: '#encryptedCardNumber',
     addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber:"[data-fieldtype='encryptedCardNumber']",
+    addCreditCardExpDate: "[data-fieldtype='encryptedExpiryDate']",
+    addCreditCardSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     addCreditCardSaveBtn: '.m-mobile_column > .b-button',
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
@@ -248,10 +248,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
-    addCreditCardNumber: 'input[id^="adyen-checkout-encryptedCardNumber"]',
     addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: 'input[id^="adyen-checkout-encryptedExpiryDate"]',
-    addCreditCardSecurityCode: 'input[id^="adyen-checkout-encryptedSecurityCode"]',
+    addCreditCardNumber:"[data-fieldtype='encryptedCardNumber']",
+    addCreditCardExpDate: "[data-fieldtype='encryptedExpiryDate']",
+    addCreditCardSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     addCreditCardSaveBtn: '.m-mobile_column > .b-button',
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
@@ -847,9 +847,20 @@ class MyAccountPage implements AbstractPage {
         }
         cy.get(addressSubmitBtn).click({ force: true }); 
       },
+      deleteAddressIfExist () {
+        cy.get('.b-cards_grid-item .b-address-name').then($addressCards=>{
+          if ($addressCards.text().includes('Boohoo')) {
+            cy.get('.b-cards_grid-item .b-address-name:contains("Boohoo")').each((deleteAddressCard)=>{
+              cy.wait(1000);
+              cy.wrap(deleteAddressCard).parentsUntil('[data-tau="address_book_item"]').parent().find('[data-tau="address_book_delete"]').click({force:true});// Finding element by text then going to delete button through parentsUntil and parents
+              cy.wait(1000);
+              cy.contains('button', 'Yes, delete').click({ force: true });    
+            });            
+          }
+        });
+      },
       deleteAddress () {
         const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
-        cy.wait(1000);
         cy.get(addressDeleteBtn).last().click({ force: true }); //  Target Last address which added now
         if (!isSiteGenesisBrand) {
           cy.wait(1000);
@@ -868,7 +879,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addCardEditForm).should('be.visible');
 
         cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(addCreditCardNumber).type(cardNumber);
-        cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(addCreditCardExpDate).should('be.enabled').type(expiryDate);
+        cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(addCreditCardExpDate).should('be.enabled').type(expiryDate, {force:true});
         cy.iframe('.adyen-checkout__card__cvc__input .js-iframe').find(addCreditCardSecurityCode).type(securityCode);
         cy.get(addCreditCardOwner).click({ force: true }).should('be.visible').type(cardOwner);
         cy.get(addCreditCardSaveBtn).click({ force: true });

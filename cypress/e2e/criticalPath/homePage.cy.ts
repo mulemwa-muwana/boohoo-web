@@ -489,7 +489,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2023');
         } else if (brand == 'coastfashion.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated May 2023');
-        }else if (brand == 'boohoomena.com') {
+        } else if (brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[language]);

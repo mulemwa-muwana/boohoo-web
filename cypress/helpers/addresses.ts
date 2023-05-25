@@ -29,7 +29,7 @@ class Addresses {
         county: 'South Yorkshire',
       },
       newAddedPrimaryAddress:{
-        firstName: 'YBoohooNew',
+        firstName: 'BoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',

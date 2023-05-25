@@ -45,11 +45,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -92,11 +92,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -142,11 +142,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -192,11 +192,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -242,11 +242,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
   },
@@ -646,9 +646,9 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodCreditCard).click({force: true});
       cy.wait(4000);
 
-      cy.get('body').then($body => { // If there is saved Credit Card, click Add new Card button
-        if ($body.find('[data-ref="newAdyenCardBlock"]').attr('hidden') == 'hidden') {  
-          cy.get('.b-payment_options_group-actions > button').click({force:true});
+      cy.get('body').then($body=>{ // (Updated) If there is saved Credit Card, click Add new Card button
+        if ($body.find("[class='b-button m-info m-width_full ']").length>0) { 
+          cy.get("[class='b-button m-info m-width_full ']").click();
         }
       });
 
@@ -801,6 +801,12 @@ class BillingPage implements AbstractPage {
         cy.wait(2000);
         body().find('#otp_field').type('111111', {force: true});
         cy.wait(12000);
+
+        body().then($body => {  
+          if ($body.find("[value='pay_later']").length>0) { // If PAyment plan appears to select pay now or pay after 30 days
+            body().find("[value='pay_later']").click();
+          }
+        });
 
         body().then($body => { 
           if ($body.find('#pay_now-pay_now').length) { // If Payment options popup exists select Pay now

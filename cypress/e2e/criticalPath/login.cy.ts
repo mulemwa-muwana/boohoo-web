@@ -3,8 +3,7 @@ import assertionText from '../../helpers/assertionText';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { brand, language } from 'cypress/support/e2e';
 
 describe('Login Functionality tests', function () {
 
@@ -27,12 +26,12 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with invalid credentials', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, 'invalid12345');
-      if (variables.brand == 'misspap.com') {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
+      if (brand == 'misspap.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[language]);
       } else if (isSiteGenesisBrand) {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[variables.language]);
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[language]);
       } else {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[variables.language]);
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[language]);
       }
     });
   });
@@ -40,12 +39,12 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with non-registered mail address and that user can start process of reseting password using the "Forgot your password?" link', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com') {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[variables.language]);
-      } else if (variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'misspap.com') {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisCustomer[variables.language]);
+      if (brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'boohooman.com' || brand == 'boohoomena.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[language]);
+      } else if (brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || brand == 'misspap.com') {
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisCustomer[language]);
       } else {
-        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[variables.language]);
+        LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[language]);
       }
     });
     LoginPage.click.forgotPasswordLink();

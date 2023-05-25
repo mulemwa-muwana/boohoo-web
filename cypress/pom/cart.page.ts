@@ -10,6 +10,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile: '[data-tau="cart_product_quantity"]',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile:' .b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.m-with_actions',
@@ -19,7 +22,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
+    clearCartMobile: 'button.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',
+    emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -32,6 +37,9 @@ const selectors: SelectorBrandMap = {
     subtotal: 'tr[class="b-summary_table-item m-total"]',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile:'[data-tau="cart_product_quantity"]',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile:'.b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     PayPalCTA: '.zoid-component-frame',
@@ -39,7 +47,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
+    clearCartMobile: '.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',
+    emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
     premierBlock: '.b-ngvip',
@@ -54,6 +64,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty_value',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile: '[data-tau="cart_product_quantity"] ',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile: '.b-product_update-button_update', 
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -63,7 +76,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
+    clearCartMobile: '.l-cart_product-remove > .b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
+    emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -76,6 +91,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile: '.b-product_update-button_update',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile:' .b-product_update-button_update', 
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -85,7 +103,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
+    clearCartMobile: '.l-cart_product-remove > .b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
+    emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -98,6 +118,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantityMobile: '[data-tau="cart_product_quantity"]',
+    editDetailsMobile:'.b-cart_product-edit',
+    updateBtnMobile: '.b-product_update-button_update', 
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -107,7 +130,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
+    clearCartMobile: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
+    emptyCartTitleMobile:'.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -120,6 +145,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile:'.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div.premier-box-main',
@@ -129,10 +157,12 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '.item-total .js-remove-from-bag',
+    clearCartMobile: '.item-details-container > .item-actions-btns > .remove > .item-actions-inner > .item-actions-icon',
     emptyCartTitle: '.cart-empty-title',
+    emptyCartTitleMobile: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
-    checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -142,6 +172,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile:'.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '#cart-unlimited',
@@ -151,7 +184,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
+    clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
+    emptyCartTitleMobile:'.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -164,6 +199,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.price-adjusted-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile:' .add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div.premier-box-main',
@@ -173,7 +211,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
+    clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
+    emptyCartTitleMobile:'.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -186,6 +226,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.cart-cell.item-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile: '.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div#cart-limitless',
@@ -195,7 +238,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
+    clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
+    emptyCartTitleMobile:'.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -208,6 +253,9 @@ const selectors: SelectorBrandMap = {
     subtotal: 'span.price-adjusted-total',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile: '.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '#cart-unlimited',
@@ -217,7 +265,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
+    clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
+    emptyCartTitleMobile:'.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -230,6 +280,9 @@ const selectors: SelectorBrandMap = {
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
+    editQuantityMobile: '#Quantity',
+    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile:'.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '.html-slot-container',
@@ -239,7 +292,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
+    clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
+    emptyCartTitleMobile:'.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
@@ -261,7 +316,9 @@ const selectors: SelectorBrandMap = {
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
+    clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
+    emptyCartTitleMobile:'.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -279,12 +336,13 @@ class CartPage implements AbstractPage {
     clearCart () {
       const clearCart = selectors[variables.brand].clearCart;
       cy.get(clearCart).each(($el) => {
-        $el.click();
+        cy.wrap($el).click({force: true});
+        cy.wait(7000);
       });
     },
     removePremierFromCart () {
 
-      // Remove everything except the first item. If there are 3 items in cart, item 2 and 3 will be removed
+      // Remove everything except the first item. If there are 3 items in cart, items 2 and 3 will be removed
       const clearCart = selectors[variables.brand].clearCart;
       cy.get(clearCart).each(($el, index) => {
         if (index > 0) {
@@ -348,18 +406,34 @@ class CartPage implements AbstractPage {
       
       cy.intercept(/cart/).as('updateCartProduct');
       cy.get(updateQuantity).eq(0).click({force: true});
-      if (variables.brand!='nastygal.com') {
+      if (variables.brand!='nastygal.com'&& variables.brand != 'boohoo.com') {
         cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
       }
     },
 
     editCartQuantitySiteGenesis (quantity: string) {
       const editQuantity = selectors[variables.brand].editQuantity;
-      cy.get(editQuantity).clear().type(quantity);
+      const editQuantityMobile = selectors[variables.brand].editQuantityMobile;
+      const editDetailsMobile = selectors[variables.brand].editDetailsMobile;
+      const updateBtnMobile = selectors[variables.brand].updateBtnMobile;
 
-      cy.intercept('**/cart').as('cartPage');
-      cy.get(editQuantity).blur();
-      cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      // If Mobile Device is used
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth <1100 ) {
+        cy.get(editDetailsMobile).click({force: true});
+        cy.wait(5000);
+        cy.get(editQuantityMobile).clear({force: true}).type(quantity);
+        cy.get(updateBtnMobile).click({force: true});
+        cy.intercept('**/cart').as('cartPage');
+        cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+
+        // If Desktop Device is used
+      } else {
+        cy.get(editQuantity).clear().type(quantity);
+        cy.intercept('**/cart').as('cartPage');
+        cy.get(editQuantity).blur();
+        cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
+      }
     }
   };
 
@@ -410,7 +484,13 @@ class CartPage implements AbstractPage {
     },
     assertCartIsEmpty () {
       const emptyCartTitle = selectors[variables.brand].emptyCartTitle;
-      cy.get(emptyCartTitle).should('be.visible');
+      const emptyCartTitleMobile = selectors[variables.brand].emptyCartTitleMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100) {
+        cy.get(emptyCartTitleMobile).should('be.visible');
+      } else {
+        cy.get(emptyCartTitle).should('be.visible');
+      }
     },
     assertPremierSlotsAreVisible () {
       const premierBlock = selectors[variables.brand].premierBlock;

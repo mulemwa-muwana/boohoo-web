@@ -46,12 +46,14 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner .b-minicart-title',
+    addToCartTitle: '.b-global_alerts-item',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
+    productReturnsInfoButton: '#product-details-btn-shipping',
     productTitle: '#editProductModalTitle',
+    productTitleMobile: '#editProductModalTitle',
     shippingInfoButton: '.b-product_delivery-link',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_delivery',
@@ -68,12 +70,12 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
-    sizeVariations: '.b-variations_item-content.m-list',
+    sizeVariations: '[data-tau-unique="size-swatches"]',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner',
+    addToCartTitle: '.b-global_alerts-item',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -126,7 +128,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-minicart-inner',
+    addToCartTitle: '.b-global_alerts',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -245,7 +247,7 @@ const selectors: SelectorBrandMap = {
     productDescription: '#ui-id-2',
     productDelivery: '.del-table',
     productReturnsInfoButton: '#product-returns-info-tab',
-    productReturnsDescription: '.product-returns-info',
+    productReturnsDescription: '#product-returns-info-tab',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.product-delivery-info a',
     cartValidation: '.b-product_actions-error_msg',
@@ -299,7 +301,7 @@ const selectors: SelectorBrandMap = {
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-link',
     miniCartProductIner: '.mini-cart-product',
-    productDescription: '.product-description-info',
+    productDescription: '.product-care-info',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
@@ -347,14 +349,14 @@ class PdpPage implements AbstractPage {
   click = {
 
     addToCart () {
-      cy.wait(3000);
+      cy.wait(4000);
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).click({force: true});
+      cy.get(addToCart).invoke('show').click({force: true});
     },
     addToWishList () {
       cy.wait(4000);
       const addToWishListButton = selectors[variables.brand].addToWishListButton;
-      cy.get(addToWishListButton).click({force: true});
+      cy.get(addToWishListButton).invoke('show').click({force: true});
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[variables.brand].shippingInfoButton;
@@ -525,13 +527,13 @@ class PdpPage implements AbstractPage {
         cy.get(disabledAddToCart).should('have.attr', 'disabled');  
       }   
     },
-    assertMiniCartIsDisplayed () {                                             ///////////////////////
+    assertMiniCartIsDisplayed () { 
       const addToCartTitle = selectors[variables.brand].addToCartTitle;
       if (variables.brand != 'boohooman.com') {
         cy.get(addToCartTitle).should('be.visible');
       }
       const miniCartProductIner = selectors[variables.brand].miniCartProductIner;
-     cy.get(miniCartProductIner).should('be.visible');
+      cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string) {
       const addedToWishlistMsg = selectors[variables.brand].addedToWishlistMsg; 
@@ -541,7 +543,7 @@ class PdpPage implements AbstractPage {
       const productDescription = selectors[variables.brand].productDescription;
       const showAllContentButton = selectors[variables.brand].showAllContentButton;
       if (variables.brand == 'misspap.com') {
-        cy.get(showAllContentButton).click();
+        cy.get(showAllContentButton).click({force: true});
       }
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
@@ -567,10 +569,16 @@ class PdpPage implements AbstractPage {
     assertReturnInfoIsDisplayed () {
       const productReturnsInfoButton = selectors[variables.brand].productReturnsInfoButton;
       const productReturnsDescription = selectors[variables.brand].productReturnsDescription;
+      const viewportWidth = Cypress.config('viewportWidth');
       if (isSiteGenesisBrand) {
-        cy.get(productReturnsInfoButton).click();
+        cy.get(productReturnsInfoButton).click({force: true});
       } 
-       
+
+      // If Mobile Device is used
+      if (viewportWidth < 1100) {
+        
+        cy.get(productReturnsInfoButton).click({force:true});
+      }
       cy.get(productReturnsDescription).should('be.visible');
     },
     assertStartReturnPageIsDisplayed () {

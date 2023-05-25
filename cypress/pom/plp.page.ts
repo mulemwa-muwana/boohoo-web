@@ -602,7 +602,11 @@ class PlpPage implements AbstractPage {
     },
     assertProductColorIsDisplayedOnPLP () {
       const productColorIsDisplayedOnPLP = selectors[variables.brand].productColorIsDisplayedOnPLP;
-      cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'src');
+      if (variables.brand == 'nastygal.com') {
+        cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'href'); // Attribute changed from src to href for NastyGal
+      } else {
+        cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'src');
+      }
     },
     assertProductVariantIsApplied (typeOfPrefn: string, productVariations: string) {
       cy.location('search', {timeout: 60000})
@@ -615,9 +619,9 @@ class PlpPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         cy.get('.sizeRefinement > div > ul > li.swatches-item.selected').invoke('attr', 'data-value').as('selectedSize');
       } else {
+        cy.wait(8000); // It takes sometime to display checkbox as checked
         cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]').invoke('attr', 'aria-label').as('selectedSize');
       }
-
       cy.location('search', {timeout: 60000})
         .should('contains', '?prefn1=sizeRefinement&prefv1=')
         .then((s) => new URLSearchParams(s))

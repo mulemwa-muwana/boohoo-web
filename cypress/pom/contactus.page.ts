@@ -103,14 +103,11 @@ class ContactUsPage implements AbstractPage {
     assertTwitterIconIsNotPresent () {
       const viewportWidth = Cypress.config('viewportWidth');
       const twitterIcon = selectors[variables.brand].twitterIcon;
-      
-      // For either mobile or desktop view
-      if (viewportWidth < 1100 || viewportWidth < 1100 ) {
+     
       if (variables.brand !== 'dorothyperkins.com') {
         cy.scrollTo('top');
       }
       cy.get(twitterIcon).should('not.exist');
-    }
     },
     assertFacebookIconIsPresent () {
       const facebookIcon = selectors[variables.brand].facebookIcon;

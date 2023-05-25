@@ -55,7 +55,7 @@ class faqPage implements AbstractPage {
   click = {
     contactUsLink () {
       const contactUsLink = selectors[variables.brand].contactUsLink;
-      cy.get(contactUsLink).click();
+      cy.get(contactUsLink).click({force:true});
     }
   };
 

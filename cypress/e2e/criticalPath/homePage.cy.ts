@@ -486,9 +486,13 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[variables.language]);
         } else if ((variables.brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[variables.language]);
-        } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
+        } else if ((variables.locale == 'UK' || variables.locale == 'EU') && (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com')) {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated May 2023');
-        } else if (variables.brand == 'boohoomena.com') {
+        } else if ((variables.locale == 'IE') && (variables.brand == 'coastfashion.com')) {
+          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated June 2022');
+        }else if ((variables.locale == 'IE') && (variables.brand == 'oasis-stores.com')) {
+          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated July 2022');
+        }else if (variables.brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyArcadia[variables.language]);

@@ -4,8 +4,7 @@ import shippingPage from '../../pom/shipping.page';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { locale, brand } from 'cypress/support/e2e';
 
 describe('Billing page functionality for registered user', function () {
 
@@ -17,11 +16,11 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
   it('Verify that shipping method is displayed', function () {
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    if (variables.brand == 'oasis-stores.com') {
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
+    if (brand == 'oasis-stores.com') {
       BillingPage.assertions.assertShippingMethodPresent('\n                            UK Standard Delivery\n                        ');
     
-    } else if (variables.brand== 'boohoo.com' || variables.brand == 'nastygal.com' || variables.brand == 'dorothyperkins.com' || variables.brand == 'wallis.co.uk') {
+    } else if (brand== 'boohoo.com' || brand == 'nastygal.com' || brand == 'dorothyperkins.com' || brand == 'wallis.co.uk') {
 
       BillingPage.assertions.assertShippingMethodPresent('\n                            UK Next Day Delivery\n                        ');
     } else {
@@ -59,11 +58,11 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.actions.selectAddressFromBook();
   });
   it('Verify that registered user can add  new billing address', function () {
-    if (variables.brand == 'boohooman.com') {
+    if (brand == 'boohooman.com') {
       this.skip();
     }
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    if (isSiteGenesisBrand && variables.brand != 'boohoomena.com') {
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+    if (isSiteGenesisBrand && brand != 'boohoomena.com') {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
@@ -76,7 +75,7 @@ describe('Billing page functionality for registered user', function () {
     }
   });
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
-    if (variables.brand == 'boohoomena.com') {
+    if (brand == 'boohoomena.com') {
       BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
       return; // Only credit card as payment option for this brand
     }
@@ -86,7 +85,7 @@ describe('Billing page functionality for registered user', function () {
     }
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
+    if (locale === 'UK' || locale === 'IE' || locale === 'AU') {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }

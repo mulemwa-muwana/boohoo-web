@@ -6,8 +6,7 @@ import pdpPage from 'cypress/pom/pdp.page';
 import plpPage from 'cypress/pom/plp.page';
 import cartPage from 'cypress/pom/cart.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { brand, language, sku} from 'cypress/support/e2e';
 
 describe('Wishlist Page tests', function () {
 
@@ -22,8 +21,8 @@ describe('Wishlist Page tests', function () {
   });
   
   it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
-    HomePage.actions.findItemUsingSKU(variables.sku);
-    if (variables.brand == 'coastfashion.com') {
+    HomePage.actions.findItemUsingSKU(sku);
+    if (brand == 'coastfashion.com') {
       plpPage.click.selectItem();
     }
     pdpPage.actions.selectColorFromSku();
@@ -31,8 +30,8 @@ describe('Wishlist Page tests', function () {
     pdpPage.actions.selectSizeFromSku();
     cy.wait(5000);
     pdpPage.click.addToWishList();
-    if (variables.brand == 'boohoo.com' ) {
-      WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[variables.language]);
+    if (brand == 'boohoo.com' ) {
+      WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[language]);
     }
     cy.wait(7000);
     HomePage.click.wishListIcon();
@@ -46,9 +45,9 @@ describe('Wishlist Page tests', function () {
     WishListPage.click.removeItemFromWishlist();
     cy.wait(3000);
     if (isSiteGenesisBrand) {
-      WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptySiteGenesis[variables.language]);
+      WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptySiteGenesis[language]);
     } else {
-      WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptyBlp[variables.language]);
+      WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptyBlp[language]);
     }
     cartPage.goto();
     cy.wait(10000);

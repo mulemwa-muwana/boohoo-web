@@ -2,8 +2,7 @@ import CheckoutPage from '../../pom/checkoutLogin.page';
 import assertionText from 'cypress/helpers/assertionText';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { brand, locale, language } from 'cypress/support/e2e';
 
 describe('Checkout Page', function () {
 
@@ -12,7 +11,7 @@ describe('Checkout Page', function () {
   });
 
   it('Verify is checkout login / guest displayed', () => {
-    if (isSiteGenesisBrand || variables.brand == 'boohoo.com') {
+    if (isSiteGenesisBrand || brand == 'boohoo.com') {
       CheckoutPage.assertions.assertUserEmailField();
     } else {
       CheckoutPage.assertions.assertGuestCheckoutEmail();
@@ -23,23 +22,23 @@ describe('Checkout Page', function () {
 
   it('Verify Premier is displayed and can be added to the cart', function () {
     const arcadiaBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
-    if (isSiteGenesisBrand || arcadiaBrands.includes(variables.brand)) {
+    if (isSiteGenesisBrand || arcadiaBrands.includes(brand)) {
       this.skip();
     }
     const includedLocals: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
 
-    if (variables.brand == 'boohoo.com' && includedLocals.includes(variables.locale)) {
-      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[variables.language]);
-      CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
+    if (brand == 'boohoo.com' && includedLocals.includes(locale)) {
+      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[language]);
+      CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[language]);
 
-    } else if (variables.brand == 'nastygal.com' && includedLocals.includes(variables.locale)) {
-      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.PremierNG[variables.language]);
-      CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[variables.language]);
+    } else if (brand == 'nastygal.com' && includedLocals.includes(locale)) {
+      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.PremierNG[language]);
+      CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[language]);
     }
   });
 
   it('Verify that user is able to proceed as guest', function () {
-    if (variables.brand == 'boohoomena.com') {
+    if (brand == 'boohoomena.com') {
       this.skip(); // No guest users are allowed for this brand, only registered ones
     }
     cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -55,7 +54,7 @@ describe('Checkout Page', function () {
 
     cy.fixture('users').then((credentials: LoginCredentials) => {
       CheckoutPage.actions.userEmailField(credentials.username);
-      if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
+      if (isSiteGenesisBrand && brand != 'boohooman.com' && brand != 'boohoomena.com') {
         CheckoutPage.click.continueAsRegisteredUser();
       }
       CheckoutPage.actions.passwordField(credentials.password);

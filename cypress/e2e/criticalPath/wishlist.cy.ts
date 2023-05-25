@@ -23,9 +23,12 @@ describe('Wishlist Page tests', function () {
   
   it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
     HomePage.actions.findItemUsingSKU(variables.sku);
-    if (variables.brand == 'coastfashion.com') {
+
+    /*     //Issue Resolved No Need of if statement for CoastFashion
+    if (variables.brand == 'coastfashion.com') { 
       plpPage.click.selectItem();
-    }
+    } */
+    
     pdpPage.actions.selectColorFromSku();
     cy.wait(5000);
     pdpPage.actions.selectSizeFromSku();
@@ -53,6 +56,6 @@ describe('Wishlist Page tests', function () {
     cartPage.goto();
     cy.wait(10000);
     cartPage.click.clearCart();
-    cartPage.assertions.assertCartIsEmpty();
+    cartPage.assertions.assertCartIsEmpty();   
   });
 });

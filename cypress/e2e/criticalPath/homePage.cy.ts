@@ -487,7 +487,7 @@ describe('Home Page', function () {
         } else if ((variables.brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(variables.brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[variables.language]);
         } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com') {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2023');
+          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated May 2023');
         } else if (variables.brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
         } else {

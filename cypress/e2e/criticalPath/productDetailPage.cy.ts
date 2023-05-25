@@ -13,9 +13,6 @@ describe('Product Details Page tests', function () {
   beforeEach (()=>{   
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(variables.sku);
-    if (variables.brand == 'coastfashion.com') {
-      plpPage.click.selectItem();
-    }
   });  
 
   it('TC01 Verify that Product name, price and code is showing',function () {  

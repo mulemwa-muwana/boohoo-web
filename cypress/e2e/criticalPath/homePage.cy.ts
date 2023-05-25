@@ -403,7 +403,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
-        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') || variables.brand == 'misspap.com') {
+        if (variables.brand == 'nastygal.com' && (variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') || variables.brand == 'misspap.com' || (variables.brand == 'karenmillen.com' && variables.locale=='UK')) {
           GlobalFooter.actions.checkFooterLinkByText('Paypal');
         } else if ((variables.brand == 'coastfashion.com' && variables.locale == 'UK' ) || variables.locale == 'UK' || variables.locale == 'US' || variables.locale == 'IE') {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
@@ -477,7 +477,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[variables.language]);
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated July 2022', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = variables.locale == 'AU' || variables.locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
         const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];

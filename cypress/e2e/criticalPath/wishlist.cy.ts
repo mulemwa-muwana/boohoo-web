@@ -22,13 +22,7 @@ describe('Wishlist Page tests', function () {
   });
   
   it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
-    HomePage.actions.findItemUsingSKU(variables.sku);
-
-    /*     //Issue Resolved No Need of if statement for CoastFashion
-    if (variables.brand == 'coastfashion.com') { 
-      plpPage.click.selectItem();
-    } */
-    
+    HomePage.actions.findItemUsingSKU(variables.sku);    
     pdpPage.actions.selectColorFromSku();
     cy.wait(5000);
     pdpPage.actions.selectSizeFromSku();

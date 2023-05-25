@@ -335,7 +335,7 @@ class CartPage implements AbstractPage {
   click = {
     clearCart () {
       const clearCart = selectors[variables.brand].clearCart;
-      cy.get(clearCart).each(($el) => {
+      cy.get(clearCart).each(() => {
         cy.get(clearCart).eq(0).click({force: true}); // In case of multiple item After Deleting an item, page refreshes and previous cy.wrap() embeded element detached from DOM
         cy.wait(7000);
       });

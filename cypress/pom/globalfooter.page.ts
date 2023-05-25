@@ -251,7 +251,7 @@ const selectors: SelectorBrandMap = {
     footerPromoLink: '.header-banner-timer-inner .footer-promo .banner-link',
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
-    footer: '.footer[style^="padd"]',
+    footer: '.footer',
     helpLink: 'a[title="Customer Service"]'
   },
   'boohoomena.com': {

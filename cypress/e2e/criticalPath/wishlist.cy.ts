@@ -3,7 +3,6 @@ import HomePage from '../../pom/home.page';
 import WishListPage from '../../pom/wishlist.page';
 import assertionText from '../../helpers/assertionText';
 import pdpPage from 'cypress/pom/pdp.page';
-import plpPage from 'cypress/pom/plp.page';
 import cartPage from 'cypress/pom/cart.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import { brand, language, sku} from 'cypress/support/e2e';

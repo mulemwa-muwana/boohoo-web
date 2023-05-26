@@ -56,7 +56,10 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    allAddressCards:'[data-tau="address_book_item"]:contains("Boohoo")',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
+    confirmDelete:'button:contains("Yes, delete")'
   },
   'nastygal.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -110,7 +113,10 @@ const selectors: SelectorBrandMap = {
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    allAddressCards:'[data-tau="address_book_item"]:contains("Boohoo")',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
+    confirmDelete:'button:contains("Yes, delete")'
   },
   'dorothyperkins.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -163,7 +169,10 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    allAddressCards:'[data-tau="address_book_item"]:contains("Boohoo")',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
+    confirmDelete:'button:contains("Yes, delete")'
   },
   'burton.co.uk': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -216,7 +225,10 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    allAddressCards:'[data-tau="address_book_item"]:contains("Boohoo")',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
+    confirmDelete:'button:contains("Yes, delete")'
   },
   'wallis.co.uk': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -269,7 +281,10 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    allAddressCards:'[data-tau="address_book_item"]:contains("Boohoo")',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
+    confirmDelete:'button:contains("Yes, delete")'
   },
   'boohooman.com': {
     accountLogout: '.button.simple.js-logout',
@@ -286,7 +301,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#edit-address-form',
@@ -325,7 +340,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: 'a[href*="order-history"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    allAddressCards:'.account-page-list-inner:contains("Boohoo")',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'karenmillen.com': {
     accountLogout: 'a[title="Log out"]',
@@ -342,7 +359,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '.edit-address > .account-page-title',
@@ -380,7 +397,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    allAddressCards:'.account-page-list-inner:contains("Boohoo")',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'coastfashion.com': {
     accountLogout: 'a[title="Log out"]',
@@ -436,7 +455,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    allAddressCards:'.account-page-list-inner:contains("Boohoo")',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'warehousefashion.com': {
     accountLogout: 'a[title="Log out"]',
@@ -453,7 +474,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '#addresses',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#edit-address-form',
@@ -492,7 +513,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    allAddressCards:'.account-page-list-inner:contains("Boohoo")',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'oasis-stores.com': {
     accountLogout: 'a[title="Log out"]',
@@ -509,7 +532,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '.js-verification-address-wrapper',
@@ -548,7 +571,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    allAddressCards:'.account-page-list-inner:contains("Boohoo")',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'misspap.com': {
     accountLogout: '.account-logout > .button',
@@ -565,7 +590,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#edit-address-form',
@@ -605,6 +630,8 @@ const selectors: SelectorBrandMap = {
     newestOrderHistory: '[data-tau="account_viewOrder"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addCardEditForm: '.account-wrapper',
+    allAddressCards:'.account-page-list-inner:contains("Boohoo")',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'boohoomena.com': {
     accountLogout: 'a[title="Log out"]',
@@ -621,7 +648,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#primary > .edit-address',
@@ -662,7 +689,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '.account-nav-content [title="Order History"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    allAddressCards:'.account-page-list-inner:contains("Boohoo")',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   }
 };
 
@@ -860,12 +889,16 @@ class MyAccountPage implements AbstractPage {
         });
       },
       deleteAddress () {
-        const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
-        cy.get(addressDeleteBtn).last().click({ force: true }); //  Target Last address which added now
+        const allAddressCards = selectors[variables.brand].allAddressCards;
+        const addressDeleteButton = selectors[variables.brand].addressDeleteButton;
+        const confirmDelete = selectors[variables.brand].confirmDelete;
+        cy.get(allAddressCards).then((addressCard)=>{
+        cy.wrap(addressCard).find(addressDeleteButton).click({force:true});
         if (!isSiteGenesisBrand) {
-          cy.wait(1000);
-          cy.contains('button', 'Yes, delete').click({ force: true });
+           cy.wait(1000);
+           cy.get(confirmDelete).click({ force: true });
         }
+        });
       },
       addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {
         const addCreditCardBtn = selectors[variables.brand].addCreditCardBtn;
@@ -960,7 +993,9 @@ class MyAccountPage implements AbstractPage {
       assertAddressNotPresent (addressName: string) {
         const addressCardsList = selectors[variables.brand].addressCardsList;
         cy.wait(5000);
-        cy.get(addressCardsList).last().should('not.contain',addressName);
+        cy.get(addressCardsList).each(($el)=>{
+          cy.wrap($el).should('be.visible').and('not.contain', addressName);
+        });
       },
       assertCardDetails (cardEnd: string) {
         cy.contains(cardEnd).should('be.visible');

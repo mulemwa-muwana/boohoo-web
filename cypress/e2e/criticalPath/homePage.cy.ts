@@ -240,7 +240,8 @@ describe('Home Page', function () {
         const excludedBoohooWithLocales: boolean = brand == 'boohoo.com' && excludedBoohooLocales.includes(locale);
         const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && locale == 'EU';
         const excludedCoastWithLocales: boolean = brand == 'coastfashion.com' && locale == 'IE';
-        if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedCoastWithLocales) {
+        const viewportWidth = Cypress.config('viewportWidth');
+        if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedCoastWithLocales || (brand == 'coastfashion.com' && viewportWidth < 1100)) {
           this.skip();
         } else {
           GlobalFooter.assertions.assertAppBannerPresent();

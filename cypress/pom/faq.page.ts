@@ -58,8 +58,6 @@ const selectors: SelectorBrandMap = {
       
   }
 };
- 
-const variables = Cypress.env() as EnvironmentVariables;
 class faqPage implements AbstractPage {
   goto () {
     throw new Error('No goto href for the global footer, try HomePage.goto()');

@@ -5,20 +5,19 @@ import pdpPage from '../../pom/pdp.page';
 import LoginPage from 'cypress/pom/login.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import plpPage from 'cypress/pom/plp.page';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { sku, brand, language } from 'cypress/support/e2e';
 
 describe('Product Details Page tests', function () {
 
   beforeEach (()=>{   
     HomePage.goto();
-    HomePage.actions.findItemUsingSKU(variables.sku);
+    HomePage.actions.findItemUsingSKU(sku);
   });  
 
   it('TC01 Verify that Product name, price and code is showing',function () {  
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
-    PdpPage.assertions.assertProductCodeIsDisplayed(variables.sku);
+    PdpPage.assertions.assertProductCodeIsDisplayed(sku);
 
     // We need to instal plugin for continuing after failed assertation just in case
 
@@ -41,8 +40,8 @@ describe('Product Details Page tests', function () {
     PdpPage.click.addToCart();
   });
   it('TC04 Verify if size is not selected user cannot add product to a bag', function () {
-    if (variables.brand == 'boohoo.com') {
-      PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[variables.language]);
+    if (brand == 'boohoo.com') {
+      PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[language]);
     } else {
       PdpPage.assertions.assertAddToCartBtnDisabled();
     }
@@ -50,7 +49,7 @@ describe('Product Details Page tests', function () {
   it('TC05 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColorByIndex(0);
     PdpPage.actions.selectFirstAvailableSize();
-    if (variables.brand == 'burton.co.uk') {
+    if (brand == 'burton.co.uk') {
       cy.wait(3000);
     }
     PdpPage.click.addToCart(); 
@@ -60,23 +59,23 @@ describe('Product Details Page tests', function () {
     PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToWishList();
     cy.wait(3000);
-    if (variables.brand == 'boohoo.com') {
-      PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[variables.language]);
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'warehousefashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohooman.com' || variables.brand == 'boohoomena.com') {
-      LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitle[variables.language]);
-    } else if (variables.brand == 'misspap.com') {
-      LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitleMisspap[variables.language]);
+    if (brand == 'boohoo.com') {
+      PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[language]);
+    } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || brand == 'karenmillen.com' || brand == 'boohooman.com' || brand == 'boohoomena.com') {
+      LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitle[language]);
+    } else if (brand == 'misspap.com') {
+      LoginPage.assertions.assertWishlistLoginTitleIsPresent(assertionText.WishlistLoginTitleMisspap[language]);
     } else {
-      PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[variables.language]);
+      PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[language]);
     }
   });
   it('TC07 Verify that Style Notes, Shipping & Return Info are displayed when configured', function () {
     PdpPage.assertions.assertProductDescriptionIsPresent();
-    if (variables.brand == 'boohoo.com' || variables.brand == 'coastfashion.com' || variables.brand == 'warehousefashion.com') {
+    if (brand == 'boohoo.com' || brand == 'coastfashion.com' || brand == 'warehousefashion.com') {
       PdpPage.click.shippingInfoButton();
       PdpPage.assertions.assertDeliveryInfoIsDisplayed();
     }
-    if (variables.brand == 'dorothyperkins.com' || variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk'||variables.brand == 'oasis-stores.com') {
+    if (brand == 'dorothyperkins.com' || brand == 'burton.co.uk' || brand == 'wallis.co.uk'||brand == 'oasis-stores.com') {
       pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
     } else {
       PdpPage.assertions.assertReturnInfoIsDisplayed(); 
@@ -85,8 +84,8 @@ describe('Product Details Page tests', function () {
     // We need to instal plugin for continuing after failed assertation just in case
   });
   it('TC08 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
-    if (variables.brand == 'boohoo.com') {
-      PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[variables.language]);
+    if (brand == 'boohoo.com') {
+      PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[language]);
     } else {
       this.skip();
     }

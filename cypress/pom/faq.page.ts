@@ -1,5 +1,5 @@
 import AbstractPage from './abstract/abstract.page';
-import { sku, brand, language, locale } from 'cypress/support/e2e';
+import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {

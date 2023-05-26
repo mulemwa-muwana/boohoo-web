@@ -71,9 +71,8 @@ class faqPage implements AbstractPage {
       if (viewportWidth < 1100) {
         cy.get(contactUsLinkMobile).click({force: true}); 
       } else {
-        cy.get(contactUsLink).click();
+        cy.get(contactUsLink).click({force:true});
       }
-      
     }
   };
 

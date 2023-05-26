@@ -102,6 +102,7 @@ class ContactUsPage implements AbstractPage {
   assertions = {
     assertTwitterIconIsNotPresent () {
       const twitterIcon = selectors[variables.brand].twitterIcon;
+     
       if (variables.brand !== 'dorothyperkins.com') {
         cy.scrollTo('top');
       }

@@ -3,7 +3,6 @@ import HomePage from '../../pom/home.page';
 import WishListPage from '../../pom/wishlist.page';
 import assertionText from '../../helpers/assertionText';
 import pdpPage from 'cypress/pom/pdp.page';
-import plpPage from 'cypress/pom/plp.page';
 import cartPage from 'cypress/pom/cart.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import { brand, language, sku} from 'cypress/support/e2e';
@@ -21,10 +20,7 @@ describe('Wishlist Page tests', function () {
   });
   
   it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
-    HomePage.actions.findItemUsingSKU(sku);
-    if (brand == 'coastfashion.com') {
-      plpPage.click.selectItem();
-    }
+    HomePage.actions.findItemUsingSKU(sku);    
     pdpPage.actions.selectColorFromSku();
     cy.wait(5000);
     pdpPage.actions.selectSizeFromSku();
@@ -52,6 +48,6 @@ describe('Wishlist Page tests', function () {
     cartPage.goto();
     cy.wait(10000);
     cartPage.click.clearCart();
-    cartPage.assertions.assertCartIsEmpty();
+    cartPage.assertions.assertCartIsEmpty();   
   });
 });

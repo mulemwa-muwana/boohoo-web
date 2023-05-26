@@ -4,8 +4,7 @@ import Addresses from '../../helpers/addresses';
 import assertionText from 'cypress/helpers/assertionText';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { brand, language, locale } from 'cypress/support/e2e';
 
 describe('Account page', function () {
 
@@ -16,7 +15,7 @@ describe('Account page', function () {
   // Order History test cases
   it('TC01 Verify that Order history page works as expected and user is able to view order details', function () {
     MyAccountPage.click.orderHistoryLink();
-    if (variables.brand == 'boohoo.com' || variables.brand == 'nastygal.com' || isSiteGenesisBrand) {
+    if (brand == 'boohoo.com' || brand == 'nastygal.com' || isSiteGenesisBrand) {
       MyAccountPage.assertions.assertUrlContains('order-history');
     } else {
       MyAccountPage.assertions.assertUrlContains('orders');
@@ -26,7 +25,7 @@ describe('Account page', function () {
   });
 
   it('TC02 Verify that returns option links to correct page', function () {
-    MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[variables.language]);
+    MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[language]);
     MyAccountPage.assertions.assertUrlContains('return');
   });
 
@@ -49,10 +48,10 @@ describe('Account page', function () {
   });
 
   it('TC04 Verify that addresses are editable; user can add and delete new address', function () {
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-    const localeNewAddress = Addresses.getAddressByLocale(variables.locale, 'newAddedPrimaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+    const localeNewAddress = Addresses.getAddressByLocale(locale, 'newAddedPrimaryAddress');
     
-    if (variables.brand == 'burton.co.uk') {
+    if (brand == 'burton.co.uk') {
       cy.scrollTo('top');
     } 
 

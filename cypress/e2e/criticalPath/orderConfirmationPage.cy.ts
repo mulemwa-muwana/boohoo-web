@@ -5,13 +5,12 @@ import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import cards from '../../helpers/cards';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { brand, language, locale, url } from 'cypress/support/e2e';
 
 describe('Order confirmation page for guest user', function () {
 
   beforeEach (function () {
-    if (variables.brand == 'boohoomena.com') {
+    if (brand == 'boohoomena.com') {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
   });
@@ -19,7 +18,7 @@ describe('Order confirmation page for guest user', function () {
   it('Verify that guest user can place order with Visa card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('GuestUser');
     if (!isSiteGenesisBrand) {
-      billingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+      billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
     billingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
@@ -28,12 +27,12 @@ describe('Order confirmation page for guest user', function () {
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
       orderConfirmationPage.assertions.assertOrderValueIsDisplayed();
       if (isSiteGenesisBrand) {
-        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
+        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[language]);
       } else {
-        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
+        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[language]);
       }
 
-      const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+      const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
       orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
@@ -43,19 +42,19 @@ describe('Order confirmation page for guest user', function () {
     });
 
     const paymentMethod: PaymentMethod = 'CreditCard_Visa';
-    generateFrontendArtefact(variables.brand, paymentMethod);
+    generateFrontendArtefact(brand, paymentMethod);
   }); 
 
   it('Verify that guest user can place order using Credit Card - Amex)', function () {
     Navigate.toBillingPage('GuestUser');
     if (!isSiteGenesisBrand) {
-      billingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
+      billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
     billingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
     billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
 
     const paymentMethod: PaymentMethod = 'CreditCard_Amex';
-    generateFrontendArtefact(variables.brand, paymentMethod);
+    generateFrontendArtefact(brand, paymentMethod);
   });
 
 });
@@ -71,23 +70,23 @@ describe('Order confirmation page for registered user', function () {
       orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
       orderConfirmationPage.assertions.assertOrderTotalIsVisible();
       if (isSiteGenesisBrand) {
-        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[variables.language]);
+        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[language]);
       } else {
-        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[variables.language]);
+        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[language]);
       }
 
-      const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+      const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
       orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
       orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
     });
 
     const paymentMethod: PaymentMethod = 'CreditCard_MasterCard';
-    generateFrontendArtefact(variables.brand, paymentMethod);
+    generateFrontendArtefact(brand, paymentMethod);
   });
 
   it('Verify that registered user can place order using PayPal', function () {
-    if (variables.brand == 'boohoomena.com') {
+    if (brand == 'boohoomena.com') {
       this.skip(); // Only credit card as payment option for this brand
     }
     Navigate.toBillingPage('RegisteredUser');
@@ -95,11 +94,11 @@ describe('Order confirmation page for registered user', function () {
     billingPage.assertions.assertOrderConfirmationPageIsDisplayed(); // Not working on Site Genesis
 
     const paymentMethod: PaymentMethod = 'PayPal';
-    generateFrontendArtefact(variables.brand, paymentMethod);
+    generateFrontendArtefact(brand, paymentMethod);
   });
 
   it('Verify that guest user can place order using Klarna', function () {
-    if (variables.locale === 'UK' || variables.locale === 'IE' || variables.locale === 'AU') {
+    if (locale === 'UK' || locale === 'IE' || locale === 'AU') {
       Navigate.toBillingPage('RegisteredUser');
       billingPage.actions.selectKlarna();
       billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
@@ -108,14 +107,13 @@ describe('Order confirmation page for registered user', function () {
     }
 
     const paymentMethod: PaymentMethod = 'Klarna';
-    generateFrontendArtefact(variables.brand, paymentMethod);
+    generateFrontendArtefact(brand, paymentMethod);
   });
 
 });
 
 // Method for generating .json artefact on Order Confirmation page for testing Business Manager.
 function generateFrontendArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
-  const variables = Cypress.env() as EnvironmentVariables;
 
   cy.url({timeout: 60000}).should('include', 'confirm');
   
@@ -138,15 +136,15 @@ function generateFrontendArtefact (brand: GroupBrands, paymentMethod: PaymentMet
         orderTotal: this.orderValue,
         orderEmail: this.orderEmail,
         paymentMethod: paymentMethod,
-        groupBrand: variables.brand,
+        groupBrand: brand,
         deliveryMethod: this.deliveryMethod,
         items: [{
           sku: this.fullSku,
           quantity: 1
         }],
         testScenario: 'CompleteOrder',
-        locale: variables.locale,
-        url: variables.url,
+        locale: locale,
+        url: url,
         timestamp: Date.now()
       };
 

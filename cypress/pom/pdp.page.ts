@@ -134,9 +134,11 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     productTitle: '#editProductModalTitle',
+    productTitleMobile: '#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
+    productDeliveryInfoMobile: '.b-product_details-content_title_text',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
     disabledAddToCart: '[data-widget="processButton"]'
@@ -195,6 +197,7 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
+    productDeliveryInfoMobile: '#product-delivery-info-tab',
     productReturnsInfoButton: '#ui-id-5'
   },
   'coastfashion.com': {
@@ -278,6 +281,7 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '.product-returns-info',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
+    productDeliveryInfoMobile: '#product-delivery-info-tab',
     cartValidation: '.b-product_actions-error_msg',
     productReturnsInfoButton: '#product-returns-info-tab'
   },
@@ -564,7 +568,14 @@ class PdpPage implements AbstractPage {
     },
     assertDeliveryOptionsAreDisplayed () {
       const productDeliveryInfo = selectors[variables.brand].productDeliveryInfo;
-      cy.get(productDeliveryInfo).should('be.visible');
+      const productDeliveryInfoMobile = selectors[variables.brand].productDeliveryInfoMobile;
+      const viewportWidth = Cypress.config('viewportWidth');
+      if (viewportWidth < 1100) {
+        cy.get(productDeliveryInfoMobile).should('be.visible');
+      } else {
+        cy.get(productDeliveryInfo).should('be.visible');
+    
+      }
     },
     assertReturnInfoIsDisplayed () {
       const productReturnsInfoButton = selectors[variables.brand].productReturnsInfoButton;

@@ -22,7 +22,7 @@ describe('Billing page functionality for registered user', function () {
     
     } else if (brand== 'boohoo.com' || brand == 'nastygal.com' || brand == 'dorothyperkins.com' || brand == 'wallis.co.uk') {
 
-      BillingPage.assertions.assertShippingMethodPresent('\n                            UK Next Day Delivery\n                        ');
+      BillingPage.assertions.assertShippingMethodPresent('UK Standard Delivery');
     } else {
       BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');
 

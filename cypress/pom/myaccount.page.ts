@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -57,7 +57,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
-    allAddressCards:'[data-tau="address_book_item"]',
+    addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'nastygal.com': {
@@ -113,7 +113,7 @@ const selectors: SelectorBrandMap = {
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
-    allAddressCards:'[data-tau="address_book_item"]',
+    addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'dorothyperkins.com': {
@@ -168,7 +168,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
-    allAddressCards:'[data-tau="address_book_item"]',
+    addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'burton.co.uk': {
@@ -223,7 +223,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
-    allAddressCards:'[data-tau="address_book_item"]',
+    addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'wallis.co.uk': {
@@ -278,7 +278,7 @@ const selectors: SelectorBrandMap = {
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
-    allAddressCards:'[data-tau="address_book_item"]',
+    addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'boohooman.com': {
@@ -336,7 +336,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: 'a[href*="order-history"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
-    allAddressCards:'.account-page-list-inner',
+    addressCards:'.account-page-list-inner',
     addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'karenmillen.com': {
@@ -393,7 +393,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
-    allAddressCards:'.account-page-list-inner',
+    addressCards:'.account-page-list-inner',
     addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'coastfashion.com': {
@@ -451,7 +451,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
-    allAddressCards:'.account-page-list-inner',
+    addressCards:'.account-page-list-inner',
     addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'warehousefashion.com': {
@@ -509,7 +509,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
-    allAddressCards:'.account-page-list-inner',
+    addressCards:'.account-page-list-inner',
     addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'oasis-stores.com': {
@@ -567,7 +567,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
-    allAddressCards:'.account-page-list-inner',
+    addressCards:'.account-page-list-inner',
     addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'misspap.com': {
@@ -625,7 +625,7 @@ const selectors: SelectorBrandMap = {
     newestOrderHistory: '[data-tau="account_viewOrder"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addCardEditForm: '.account-wrapper',
-    allAddressCards:'.account-page-list-inner',
+    addressCards:'.account-page-list-inner',
     addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'boohoomena.com': {
@@ -685,7 +685,7 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '.account-nav-content [title="Order History"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
-    allAddressCards:'.account-page-list-inner',
+    addressCards:'.account-page-list-inner',
     addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   }
 };
@@ -873,29 +873,25 @@ class MyAccountPage implements AbstractPage {
       },
       deleteAddressIfExist () {
         cy.get('.b-cards_grid-item .b-address-name').then($addressCards=>{
-          if ($addressCards.text().includes('Boohoo')) {
-            cy.get('.b-cards_grid-item .b-address-name:contains("Boohoo")').each((deleteAddressCard)=>{
-              cy.wait(1000);
-              cy.wrap(deleteAddressCard).parentsUntil('[data-tau="address_book_item"]').parent().find('[data-tau="address_book_delete"]').click({force:true});// Finding element by text then going to delete button through parentsUntil and parents
-              cy.wait(1000);
-              cy.contains('button', 'Yes, delete').click({ force: true });    
-            });            
-          }
+        if ($addressCards.text().includes('Boohoo')) {
+        cy.get('.b-cards_grid-item .b-address-name:contains("Boohoo")').each((deleteAddressCard)=>{
+        cy.wait(1000);
+        cy.wrap(deleteAddressCard).parentsUntil('[data-tau="address_book_item"]').parent().find('[data-tau="address_book_delete"]').click({force:true});// Finding element by text then going to delete button through parentsUntil and parents
+        cy.wait(1000);
+        cy.contains('button', 'Yes, delete').click({ force: true });    
+        });            
+        }
         });
       },
       deleteAddress () {
-        const allAddressCards = selectors[variables.brand].allAddressCards;
+        const addressCards = selectors[variables.brand].addressCards;
         const addressDeleteButton = selectors[variables.brand].addressDeleteButton;
-        if (isSiteGenesisBrand) {
-          cy.get('.account-page-list-inner:contains("Boohoo")').then(addressCard=>{
-            cy.wrap(addressCard).find(addressDeleteButton).click({force:true});
-          });
-        } else {
-          cy.get('[data-tau="address_book_item"]:contains("Boohoo")').then((addressCard)=>{
-            cy.wrap(addressCard).find(addressDeleteButton).click({force:true});
-            cy.wait(1000);
-            cy.contains('button', 'Yes, delete').click({ force: true });
-          });
+        cy.get(addressCards).contains('Boohoo').then(ele=>{
+        cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true}); 
+        })
+        if (!isSiteGenesisBrand) {
+        cy.wait(1000);
+        cy.contains('button', 'Yes, delete').click({ force: true });
         }
       },
       addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {

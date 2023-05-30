@@ -314,7 +314,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', function () {
-        if (brand == 'boohoomena.com' || (brand == 'burton.co.uk' && locale != 'UK')) {
+        if (brand == 'boohoomena.com' || (brand == 'burton.co.uk' && locale != 'UK'|| (brand == 'oasis-stores.com' && locale == 'IE'))) {
           this.skip();
         }
         if (brand == 'nastygal.com') {
@@ -462,7 +462,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Careers', function () {
-        if ((brand == 'boohoo.com' && locale == 'IT') || (brand == 'nastygal.com' && locale == 'FR') || brand == 'boohoomena.com') {
+        if ((brand == 'boohoo.com' && locale == 'IT') || (brand == 'nastygal.com' && locale == 'FR') || brand == 'boohoomena.com'|| (brand == 'oasis-stores.com' && locale == 'IE'|| locale == 'EU')) {
           this.skip();
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[language], { assertionUrl: 'https://careers.boohoogroup.com/' });

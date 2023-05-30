@@ -90,7 +90,8 @@ describe('Cart page for Registered user', function () {
     Navigate.toCartPage();
   });
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
-    if (['burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk', 'nastygal.com', 'boohoo.com'].includes(brand) ) {
+    const viewportWidth = Cypress.config('viewportWidth');
+    if (['burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk', 'nastygal.com', 'boohoo.com'].includes(brand) && (viewportWidth > 1100)) {         
       cy.get('[class="b-button m-outline b-minicart-button"]').click({force: true});
     }
     CartPage.click.proceedToCheckout();

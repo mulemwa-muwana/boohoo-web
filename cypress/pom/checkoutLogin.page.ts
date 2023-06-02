@@ -10,6 +10,7 @@ const selectors: SelectorBrandMap = {
     continueAsRegisteredUser: 'button[data-tau="login_submit"]',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.b-ngvip-inner p.b-ngvip-title:eq(1)',
+    premierIconIsDisplayed:'.i-icon-premierLogoShort',
     premierSubtitle:'p.b-ngvip-subtitle:eq(1)'
   },
   'nastygal.com': {
@@ -173,6 +174,10 @@ class CheckoutPage implements AbstractPage {
     assertGuestCheckoutEmail () {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail;
       cy.get(guestCheckoutEmail).should('be.visible');
+    },
+    assertPremierIconIsDisplayed () {
+      const premierIconIsDisplayed = selectors[variables.brand].premierIconIsDisplayed;
+      cy.get(premierIconIsDisplayed).should('be.visible');
     },
     assertPremierTitleIsDisplayed (premierTitleText: string) {
       const premierIsDisplayed = selectors[variables.brand].premierIsDisplayed;

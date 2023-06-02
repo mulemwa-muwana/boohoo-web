@@ -121,7 +121,7 @@ const selectors: SelectorBrandMap = {
     returnLink: '',
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
-    miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
+    miniCartViewCartBtn: '[data-tau="minicart_start_open_cart_bottom"]',
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productCode: 'span[data-tau="b-product_details-id"]',

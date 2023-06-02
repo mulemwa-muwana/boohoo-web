@@ -177,7 +177,6 @@ class CheckoutPage implements AbstractPage {
     },
     assertPremierIconIsDisplayed () {
       const premierIconIsDisplayed = selectors[variables.brand].premierIconIsDisplayed;
-      cy.log('trte ert ')
       cy.get(premierIconIsDisplayed).should('be.visible');
     },
     assertPremierTitleIsDisplayed (premierTitleText: string) {

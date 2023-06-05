@@ -1,6 +1,8 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
+import cartPage from './cart.page';
+import { brand, viewportWidth } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -73,6 +75,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     cartContainer: '[data-tau="checkout_products"]',
+    cartContainerMobile: '.b-checkout_products',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
@@ -197,7 +200,7 @@ const selectors: SelectorBrandMap = {
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '#deliveryTabs',
+    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -234,7 +237,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
-    cartContainer: '.l-checkout-main > h1 > :nth-child(1) ',
+    cartContainer: '.b-checkout_products',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -244,6 +247,8 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.premier-add-to-cart',
+    addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
+    addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
@@ -262,6 +267,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -297,6 +303,8 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.js-premier-add-to-cart',
+    addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
+    addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'Karen Millen Premier',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
@@ -315,6 +323,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -348,6 +357,8 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.add-to-cart-text',
+    addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
+    addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'Coast VIP',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
@@ -366,6 +377,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -383,6 +395,7 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
+    addressNicknameField: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -399,6 +412,8 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
+    addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'WAREHOUSE LIMITLESS',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
@@ -417,6 +432,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -452,6 +468,8 @@ const selectors: SelectorBrandMap = {
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
     premierProductTitle: 'OASIS UNLIMITED - UNLIMITED DELIVERY',
+    addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
+    addPremierToBagMobile: '#add-to-cart',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -469,6 +487,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -486,6 +505,7 @@ const selectors: SelectorBrandMap = {
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
+    addressNicknameField: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -502,6 +522,8 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
+    addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'VIP DELIVERY',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
@@ -520,6 +542,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -604,8 +627,6 @@ const selectors: SelectorBrandMap = {
   }
 };
 
-const variables = Cypress.env() as EnvironmentVariables;
-
 class ShippingPage implements AbstractPage {
 
   goto (): void {
@@ -614,16 +635,16 @@ class ShippingPage implements AbstractPage {
 
   click = {
     submitPromoCode () {
-      const promoCodeBtn = selectors[variables.brand].promoCodeBtn;
+      const promoCodeBtn = selectors[brand].promoCodeBtn;
       cy.get(promoCodeBtn).click();
     },
     addNewAddress () {
       if (!isSiteGenesisBrand) {
-        const addNewAddress = selectors[variables.brand].addNewAddress;
+        const addNewAddress = selectors[brand].addNewAddress;
         cy.wait(3000);
         cy.get('body').then($body => {
           if ($body.find(addNewAddress).length) {
-            cy.get(addNewAddress).click({force:true});
+            cy.get(addNewAddress).click({ force: true });
           }
         });
       } else {
@@ -631,93 +652,100 @@ class ShippingPage implements AbstractPage {
       }
     },
     addPremierByButtonName (text: string) {
-      cy.contains(text).click({force: true});
+      cy.contains(text).click({ force: true });
     },
     cancelAddingNewAddress () {
-      const cancelAddingNewAddress = selectors[variables.brand].cancelAddingNewAddress;
+      const cancelAddingNewAddress = selectors[brand].cancelAddingNewAddress;
       cy.get(cancelAddingNewAddress);
     },
     proceedToBilling () {
-      const proceedToBilling = selectors[variables.brand].proceedToBilling;
+      const proceedToBilling = selectors[brand].proceedToBilling;
       cy.wait(3000);
-      cy.get(proceedToBilling).click({force: true});
+      cy.get(proceedToBilling).click({ force: true });
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
-      if (variables.brand != 'boohoomena.com') {
-        const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
+      if (brand != 'boohoomena.com') {
+        const proceedToBillingVerificationBtn = selectors[brand].proceedToBillingVerificationBtn;
         cy.wait(1000);
-        cy.get(proceedToBillingVerificationBtn).click({force: true});
+        cy.get(proceedToBillingVerificationBtn).click({ force: true });
       }
     },
     proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis brands
-      const proceedToBillingVerificationBtn = selectors[variables.brand].proceedToBillingVerificationBtn;
+      const proceedToBillingVerificationBtn = selectors[brand].proceedToBillingVerificationBtn;
       cy.wait(1000);
       cy.intercept(/checkoutshopper\/assets\/html/).as('paymentMethodsSection');
-      cy.get(proceedToBillingVerificationBtn).click({force: true});
+      cy.get(proceedToBillingVerificationBtn).click({ force: true });
       cy.wait('@paymentMethodsSection', { timeout: 20000 }).its('response.statusCode').should('eq', 200);
     },
     editSavedAddress () {
-      const editSavedAddress = selectors[variables.brand].editSavedAddress;
+      const editSavedAddress = selectors[brand].editSavedAddress;
       cy.get(editSavedAddress).click();
     },
     addAddressManually () {
       if (!isSiteGenesisBrand) {
-        const addAddressManually = selectors[variables.brand].addAddressManually;
+        const addAddressManually = selectors[brand].addAddressManually;
         cy.get('body').then($body => {
           if ($body.find(addAddressManually).length) {
-            cy.get(addAddressManually).click({force:true});
+            cy.get(addAddressManually).click({ force: true });
           }
         });
       }
     },
     editCart () {
-      const editCart = selectors[variables.brand].editCart;
-      cy.get(editCart).click({force:true});
+      const editCart = selectors[brand].editCart;
+      cy.get(editCart).click({ force: true });
     },
     editAddress () {
-      if (variables.brand != 'boohooman.com') {
-        const editAddress = selectors[variables.brand].editAddress;
-        cy.get(editAddress).click({force:true}); 
+      if (brand != 'boohooman.com') {
+        const editAddress = selectors[brand].editAddress;
+        cy.get(editAddress).click({ force: true });
       }
     },
     guestEditAddress () {
-      const guestEditAddress = selectors[variables.brand].guestEditAddress;
+      const guestEditAddress = selectors[brand].guestEditAddress;
       cy.get('body').then($body => {
         if ($body.find(guestEditAddress).length) {
-          cy.get(guestEditAddress).click({force:true});
+          cy.get(guestEditAddress).click({ force: true });
         }
       });
     },
     addNewAddressButton () {
-      if (variables.brand != 'boohooman.com') {
-        const addNewAddressButton = selectors[variables.brand].addNewAddressButton;
-        cy.get(addNewAddressButton).click({force:true});
+      if (brand != 'boohooman.com') {
+        const addNewAddressButton = selectors[brand].addNewAddressButton;
+        cy.get(addNewAddressButton).click({ force: true });
       }
     },
     editExistingAddressButton () {
-      const editExistingAddressButton = selectors[variables.brand].editExistingAddressButton;
+      const editExistingAddressButton = selectors[brand].editExistingAddressButton;
       cy.get(editExistingAddressButton).click();
     },
     cancelAddingNewAddressForRegisteredUser () {
-      const cancelAddingNewAddressForRegisteredUser = selectors[variables.brand].cancelAddingNewAddressForRegisteredUser;
-      cy.get(cancelAddingNewAddressForRegisteredUser).should('be.visible').click({force:true});
+      const cancelAddingNewAddressForRegisteredUser = selectors[brand].cancelAddingNewAddressForRegisteredUser;
+      cy.get(cancelAddingNewAddressForRegisteredUser).should('be.visible').click({ force: true });
     },
     viewAllAddressesLink () {
-      const viewAllAddressesLink = selectors[variables.brand].viewAllAddressesLink;
+      const viewAllAddressesLink = selectors[brand].viewAllAddressesLink;
       cy.get(viewAllAddressesLink).should('be.visible').click();
     },
     addPremierToCartFromShippingPage () {
-      const addPremierToCartFromShippingPage = selectors[variables.brand].addPremierToCartFromShippingPage;
-      cy.get(addPremierToCartFromShippingPage).eq(0).click();
+      const addPremierToCartFromShippingPage = selectors[brand].addPremierToCartFromShippingPage;
+      const addPremierToCartFromShippingPageMobile = selectors[brand].addPremierToCartFromShippingPageMobile;
+      const addPremierToBagMobile = selectors[brand].addPremierToBagMobile;
+      if (viewportWidth < 1100 && isSiteGenesisBrand) {
+        cy.get(addPremierToCartFromShippingPageMobile).click({ force: true });
+      } else {
+        cy.get(addPremierToCartFromShippingPage).eq(0).click();
+      }
+
     },
     OpenPUDOlocations () {
-      const PUDOlocations = selectors[variables.brand].PUDOlocations;
+      const PUDOlocations = selectors[brand].PUDOlocations;
       cy.get(PUDOlocations).click();
     },
     enterManuallyAddressDetails () {
       if (!isSiteGenesisBrand) {
-        const enterManually = selectors[variables.brand].enterManually;
-        cy.get(enterManually).click({force: true});
+        const enterManually = selectors[brand].enterManually;
+        cy.get(enterManually).click({ force: true });
       }
     }
   };
@@ -727,11 +755,11 @@ class ShippingPage implements AbstractPage {
       cy.get('span').contains(variables.shippingMethod).click();
     },
     promoCodeField (promoCode: string) {
-      const coupon = selectors[variables.brand].coupon;
+      const coupon = selectors[brand].coupon;
       cy.get(coupon).type(promoCode);
     },
     addressLookupSelectFirstAddress (addressLine: string, city: string) {
-      const addressLookup = selectors[variables.brand].addressLookup;
+      const addressLookup = selectors[brand].addressLookup;
       cy.get(addressLookup).type(addressLine);
       cy.wait(1000);
       cy.get(addressLookup).type(' ' + city);
@@ -739,33 +767,33 @@ class ShippingPage implements AbstractPage {
       cy.get(addressLookup).type('{enter}');
     },
     firstNameFieldClear () {
-      const shippingFname = selectors[variables.brand].shippingFname;
-      cy.get(shippingFname).clear({force: true});
+      const shippingFname = selectors[brand].shippingFname;
+      cy.get(shippingFname).clear({ force: true });
     },
     firstNameField (fname: string) {
-      const shippingFname = selectors[variables.brand].shippingFname;
-      cy.get(shippingFname).clear().type(fname, {force: true});
+      const shippingFname = selectors[brand].shippingFname;
+      cy.get(shippingFname).clear().type(fname, { force: true });
     },
     lastNameFieldClear () {
-      const shippingLname = selectors[variables.brand].shippingLname;
-      cy.get(shippingLname).clear({force: true});
+      const shippingLname = selectors[brand].shippingLname;
+      cy.get(shippingLname).clear({ force: true });
     },
     lastNameField (lname: string) {
-      const shippingLname = selectors[variables.brand].shippingLname;
-      cy.get(shippingLname).clear().type(lname, {force: true});
+      const shippingLname = selectors[brand].shippingLname;
+      cy.get(shippingLname).clear().type(lname, { force: true });
     },
     countrySelector () {
-      cy.get('[id$=addressFields_country][id*="shipping"]'); 
+      cy.get('[id$=addressFields_country][id*="shipping"]');
     },
     phoneNumberFieldClear () {
-      const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).clear({force: true}).blur();
+      const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
+      cy.get(shippingPhoneNumber).clear({ force: true }).blur();
     },
     phoneNumberField (phone: string) {
       cy.wait(1000);
-      const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      if (variables.brand == 'boohoomena.com') {
-        const shippingPhoneCode = selectors[variables.brand].shippingPhoneCode;
+      const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
+      if (brand == 'boohoomena.com') {
+        const shippingPhoneCode = selectors[brand].shippingPhoneCode;
         cy.get(shippingPhoneCode).select(phone.slice(0, 2));
         cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
       } else {
@@ -773,80 +801,84 @@ class ShippingPage implements AbstractPage {
       }
     },
     selectCountry (country: string) {
-      if (variables.brand != 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
-        const shippingCountry = selectors[variables.brand].shippingCountry;
+      if (brand != 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
+        const shippingCountry = selectors[brand].shippingCountry;
         cy.get(shippingCountry).select(country).invoke('show');
       }
     },
     selectState (state: string) {
-      const shippingState = selectors[variables.brand].shippingState;
+      const shippingState = selectors[brand].shippingState;
       cy.get(shippingState).select(state).invoke('show');
     },
     adressLine1 (address1: string) {
-      const addressLine1Field = selectors[variables.brand].addressLine1Field;
-      cy.get(addressLine1Field).clear({force: true}).type(address1);
+      const addressLine1Field = selectors[brand].addressLine1Field;
+      cy.get(addressLine1Field).clear({ force: true }).type(address1);
     },
     addressLine1Clear () {
-      const addressLine1Field = selectors[variables.brand].addressLine1Field;
-      cy.get(addressLine1Field).clear({force: true});
+      const addressLine1Field = selectors[brand].addressLine1Field;
+      cy.get(addressLine1Field).clear({ force: true });
     },
     adressLine2 (address2: string) {
-      const addressLine2Field = selectors[variables.brand].addressLine2Field;
-      cy.get(addressLine2Field).clear({force: true}).type(address2);
+      const addressLine2Field = selectors[brand].addressLine2Field;
+      cy.get(addressLine2Field).clear({ force: true }).type(address2);
     },
     addressLine2Clear () {
-      const addressLine2Field = selectors[variables.brand].addressLine2Field;
-      cy.get(addressLine2Field).clear({force: true});
+      const addressLine2Field = selectors[brand].addressLine2Field;
+      cy.get(addressLine2Field).clear({ force: true });
     },
     cityFieldClear () {
-      const cityField = selectors[variables.brand].cityField;
-      cy.get(cityField).clear({force: true});
+      const cityField = selectors[brand].cityField;
+      cy.get(cityField).clear({ force: true });
     },
     cityField (city: string) {
-      const cityField = selectors[variables.brand].cityField;
-      if (variables.brand == 'boohoomena.com') {
+      const cityField = selectors[brand].cityField;
+      if (brand == 'boohoomena.com') {
         cy.get(cityField).select(city);
       } else {
-        cy.get(cityField).clear({force: true}).type(city);
+        cy.get(cityField).clear({ force: true }).type(city);
       }
     },
     countyField (county: string) {
-      const countyField = selectors[variables.brand].countyField;
+      const countyField = selectors[brand].countyField;
       cy.get(countyField).select(county);
     },
     postcodeField (postcode: string) {
       cy.wait(1000);
-      const shippingPostcode = selectors[variables.brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({force: true}).type(postcode).blur();
+      const shippingPostcode = selectors[brand].shippingPostcode;
+      cy.get(shippingPostcode).clear({ force: true }).type(postcode).blur();
       cy.wait(1000);
       cy.get(shippingPostcode).click().blur();
     },
+    addAddressNickname (addressNickname: string) {
+      const addressNicknameField = selectors[brand].addressNicknameField;
+      cy.get(addressNicknameField).type(addressNickname);
+    },
     selectShippingMethod (shippingMethod: string) {
-      const shippingMethodname = selectors[variables.brand].shippingMethodname;
+      const shippingMethodname = selectors[brand].shippingMethodname;
       cy.get(shippingMethodname).each(() => {
-        cy.contains(shippingMethod).click({force: true});
+        cy.contains(shippingMethod).click({ force: true });
       });
     },
 
     // METHODS ONLY FOR SITE GENESIS BRANDS //
     selectDate (day: string, month: string, year: string) {
-      const dobDay = selectors[variables.brand].dobDay;
-      const dobMonth = selectors[variables.brand].dobMonth;
-      const dobYear = selectors[variables.brand].dobYear;
+      const dobDay = selectors[brand].dobDay;
+      const dobMonth = selectors[brand].dobMonth;
+      const dobYear = selectors[brand].dobYear;
       cy.get(dobDay).select(day);
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
     },
     emailField (email: string) {
-      const guestEmailField = selectors[variables.brand].guestEmailField;
+      const guestEmailField = selectors[brand].guestEmailField;
       cy.get(guestEmailField).clear().type(email);
     },
     confirmEmailField (email: string) {
-      const confirmEmail = selectors[variables.brand].confirmEmail;
+      const confirmEmail = selectors[brand].confirmEmail;
       cy.get(confirmEmail).clear().type(email);
     },
     emptyEmailField () {
-      const guestEmailField = selectors[variables.brand].guestEmailField;
+      const guestEmailField = selectors[brand].guestEmailField;
       cy.get(guestEmailField).clear();
     },
 
@@ -854,112 +886,117 @@ class ShippingPage implements AbstractPage {
 
   assertions = {
     assertPromoCodeFieldIsDisplayed () {
-      const coupon = selectors[variables.brand].coupon;
+      const coupon = selectors[brand].coupon;
       cy.get(coupon).should('be.visible');
     },
     assertSavedShippingAddressIsDispayed () {
-      const addressName = selectors[variables.brand].addressName;
+      const addressName = selectors[brand].addressName;
       cy.get(addressName).eq(1).should('be.visible').should('not.be.empty');
     },
     assertNewAddedShippingAddress (addressLine: string, city: string, postCode: string) {
       const brandsPopulatingSeparateAddressFields: Array<GroupBrands> = ['nastygal.com', 'burton.co.uk', 'dorothyperkins.com', 'boohooman.com', 'wallis.co.uk'];
-      if (brandsPopulatingSeparateAddressFields.includes(variables.brand)) {
-        const addressLine1Field = selectors[variables.brand].addressLine1Field;
-        const cityField = selectors[variables.brand].cityField;
-        const postCodeField = selectors[variables.brand].postCodeField;
+      if (brandsPopulatingSeparateAddressFields.includes(brand)) {
+        const addressLine1Field = selectors[brand].addressLine1Field;
+        const cityField = selectors[brand].cityField;
+        const postCodeField = selectors[brand].postCodeField;
         cy.get(addressLine1Field).should('have.value', addressLine);
         cy.get(cityField).should('have.value', city);
         cy.get(postCodeField).should('have.value', postCode);
       } else {
-        const newAddedAddressBlock = selectors[variables.brand].newAddedAddressBlock;
+        const newAddedAddressBlock = selectors[brand].newAddedAddressBlock;
         cy.get(newAddedAddressBlock).should('contain.text', addressLine)
           .and('contain.text', city)
           .and('contain.text', postCode);
       }
     },
     assertFirstNameIsMandatory (requiredFieldError: string) {
-      const fnameValidationMsg = selectors[variables.brand].fnameValidationMsg;
+      const fnameValidationMsg = selectors[brand].fnameValidationMsg;
       cy.get(fnameValidationMsg).should('contain.text', requiredFieldError);
     },
     assertLastNameIsMandatory (requiredFieldError: string) {
-      const lnameValidationMsg = selectors[variables.brand].lnameValidationMsg;
-      cy.get(lnameValidationMsg).should('contain.text', requiredFieldError); 
+      const lnameValidationMsg = selectors[brand].lnameValidationMsg;
+      cy.get(lnameValidationMsg).should('contain.text', requiredFieldError);
     },
     assertPhoneNumberIsMandatory (requiredFieldError: string) {
-      const phoneValidationMsg = selectors[variables.brand].phoneValidationMsg;
+      const phoneValidationMsg = selectors[brand].phoneValidationMsg;
       cy.get(phoneValidationMsg).should('contain.text', requiredFieldError);
     },
     assertCityIsMandatory (city: string) {
-      const cityField = selectors[variables.brand].cityField;
-      cy.get(cityField).should('contain.text', city); 
+      const cityField = selectors[brand].cityField;
+      cy.get(cityField).should('contain.text', city);
     },
     assertPostCodeIsMandatory (postcode: string) {
-      const postCodeValidationMsg = selectors[variables.brand].postCodeValidationMsg;
-      cy.get(postCodeValidationMsg).should('contain.text', postcode); 
+      const postCodeValidationMsg = selectors[brand].postCodeValidationMsg;
+      cy.get(postCodeValidationMsg).should('contain.text', postcode);
     },
     assertUserProceededToBillingPage () {
       cy.url().should('include', 'billing');
     },
     assertFirstNameFieldIsPopulated (text: string) {
-      const shippingFname = selectors[variables.brand].shippingFname;
+      const shippingFname = selectors[brand].shippingFname;
       cy.get(shippingFname).should('contain.value', text);
     },
     assertLastNameFieldIsPopulated (text: string) {
-      const shippingLname = selectors[variables.brand].shippingLname;
+      const shippingLname = selectors[brand].shippingLname;
       cy.get(shippingLname).should('contain.value', text);
     },
     assertCountryIsSelected (text: string) {
-      const shippingCountry = selectors[variables.brand].shippingCountry;
+      const shippingCountry = selectors[brand].shippingCountry;
       cy.get(shippingCountry).should('contain.value', text);
     },
     assertPhoneNumberFieldIsPopulated (text: string) {
-      const shippingPhoneNumber = selectors[variables.brand].shippingPhoneNumber;
-      if (variables.brand == 'boohoomena.com') {
+      const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
+      if (brand == 'boohoomena.com') {
         cy.get(shippingPhoneNumber).should('contain.value', text.slice(2));
       } else {
         cy.get(shippingPhoneNumber).should('contain.value', text);
       }
     },
     assertGuestEmailFieldDisplayed () {
-      const guestEmailField = selectors[variables.brand].guestEmailField;
+      const guestEmailField = selectors[brand].guestEmailField;
       cy.get(guestEmailField).should('be.visible');
     },
     assertManualAddressFieldsAreDisplayed () {
-      const addressLine1Field = selectors[variables.brand].addressLine1Field;
-      const addressLine2Field = selectors[variables.brand].addressLine2Field;
-      const cityField = selectors[variables.brand].cityField;
+      const addressLine1Field = selectors[brand].addressLine1Field;
+      const addressLine2Field = selectors[brand].addressLine2Field;
+      const cityField = selectors[brand].cityField;
       cy.get(addressLine1Field).should('be.visible');
       cy.get(addressLine2Field).should('be.visible');
       cy.get(cityField).should('be.visible');
     },
     assertOrderTotalIsDisplayed () {
-      const orderTotal = selectors[variables.brand].orderTotal;
+      const orderTotal = selectors[brand].orderTotal;
       cy.get(orderTotal).should('not.be.empty');
     },
     assertAddressDetailsAreMandatory (text: string) {
-      const cityDetailsAreMandatory = selectors[variables.brand].cityDetailsAreMandatory;
-      const address1DetailsAreMandatory = selectors[variables.brand].address1DetailsAreMandatory;
+      const cityDetailsAreMandatory = selectors[brand].cityDetailsAreMandatory;
+      const address1DetailsAreMandatory = selectors[brand].address1DetailsAreMandatory;
       cy.get(cityDetailsAreMandatory).should('contain.text', text);
       cy.get(address1DetailsAreMandatory).should('contain.text', text);
     },
     assertAddressLookupFieldIsVisible () {
-      const addressLookup = selectors[variables.brand].addressLookup;
+      const addressLookup = selectors[brand].addressLookup;
       cy.get(addressLookup).should('be.visible');
     },
     assertOtherAddressesAreVisible () {
       cy.get('.m-list > :nth-child(3) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface').should('be.visible');
     },
     assertCartShippingPageContainsProduct (product: string) {
-      const cartContainer = selectors[variables.brand].cartContainer;
-      cy.get(cartContainer, {timeout: 20000}).should('contain', product.trim());
+      const cartContainer = selectors[brand].cartContainer;
+      cy.get(cartContainer, { timeout: 20000 }).should('contain', product.trim());
     },
     assertShippingPageCartContainsVipProduct () {
-      const cartContainer = selectors[variables.brand].cartContainer;
-      const premierProductTitle = selectors[variables.brand].premierProductTitle;
-      cy.get(cartContainer, {timeout: 20000}).should('contain', premierProductTitle.trim());
+      const cartContainer = selectors[brand].cartContainer;
+      const cartContainerMobile = selectors[brand].cartContainerMobile;
+      const premierProductTitle = selectors[brand].premierProductTitle;
+      if (viewportWidth < 1100) {
+        cy.get(cartContainerMobile, { timeout: 20000 }).should('contain', premierProductTitle.trim());
+      } else {
+        cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());
+      }
     },
     assertShippingMethodIsSelected (shippingMethod: string) {
-      const cartContainer = selectors[variables.brand].cartContainer;
+      const cartContainer = selectors[brand].cartContainer;
       cy.get(cartContainer).each(() => {
         cy.contains(shippingMethod.trim());
       });
@@ -970,23 +1007,23 @@ class ShippingPage implements AbstractPage {
       cy.get('#dwfrm_singleshipping_shippingAddress_email_emailAddress').should('have.value', email);
     },
     assertDateFormIsPresent () {
-      const dateOfBirthForm = selectors[variables.brand].dateOfBirthForm;
+      const dateOfBirthForm = selectors[brand].dateOfBirthForm;
       cy.get(dateOfBirthForm).should('be.visible');
     },
     assertDateIsSelected (day: string, month: string, year: string) {
-      const dobDay = selectors[variables.brand].dobDay;
-      const dobMonth = selectors[variables.brand].dobMonth;
-      const dobYear = selectors[variables.brand].dobYear;
+      const dobDay = selectors[brand].dobDay;
+      const dobMonth = selectors[brand].dobMonth;
+      const dobYear = selectors[brand].dobYear;
       cy.get(dobDay).should('have.have.value', day);
       cy.get(dobMonth).should('have.value', month);
       cy.get(dobYear).should('have.value', year);
     },
     assertEmptyEmailFieldError (errorMsg: string) {
-      const emptyEmailFieldError = selectors[variables.brand].emptyEmailFieldError;
+      const emptyEmailFieldError = selectors[brand].emptyEmailFieldError;
       cy.get(emptyEmailFieldError).should('be.visible').and('contain.text', errorMsg);
     },
     assertEmptyDateFieldError (errorMsg: string) {
-      const emptyDateFieldError = selectors[variables.brand].emptyDateFieldError;
+      const emptyDateFieldError = selectors[brand].emptyDateFieldError;
       cy.get(emptyDateFieldError).should('be.visible').and('contain.text', errorMsg);
     },
   };

@@ -6,7 +6,7 @@ import Addresses from '../../helpers/addresses';
 import billingPage from 'cypress/pom/billing.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
-import { brand, language, locale } from 'cypress/support/e2e';
+import { brand, language, locale, viewportWidth } from 'cypress/support/e2e';
 
 describe('Shipping Page Registered user tests', function () {
 
@@ -67,6 +67,9 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
+    if ((brand == 'oasis-stores.com' || brand == 'coastfashion.com') && viewportWidth < 1100) {
+      shippingPage.actions.addAddressNickname(localeAddress.addressNickname);
+    }
 
     shippingPage.click.proceedToBilling();
     billingPage.actions.waitPageToLoad();
@@ -176,6 +179,7 @@ describe('Shipping Page Registered user tests', function () {
     // Cleanup - remove Premier from Cart
     shippingPage.click.editCart();
     cartPage.click.removePremierFromCart();
+    
   });
 
   it('Verify that user is able to select standard shipping method', () => {

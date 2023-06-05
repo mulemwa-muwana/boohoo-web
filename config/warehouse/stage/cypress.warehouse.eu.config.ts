@@ -19,6 +19,7 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
+  numTestsKeptInMemory: 150,
   
   e2e: {
     setupNodeEvents (on) {
@@ -28,7 +29,7 @@ export default defineConfig({
       '**/backend*/**' // Skip backend tests
     ],
     experimentalSessionAndOrigin: true,
-    numTestsKeptInMemory: 0,
+    // numTestsKeptInMemory: 0,
   },
 
 });

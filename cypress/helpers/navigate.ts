@@ -46,11 +46,11 @@ class Navigate {
     // GUEST USER //
     if (userType === 'GuestUser') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
-        if (variables.brand != 'warehousefashion.com' && (variables.locale == 'IE' || variables.locale == 'EU')) {
-          CheckoutPage.click.continueAsGuestBtn();
+        if ((isSiteGenesisBrand) && (variables.locale == 'IE' || variables.locale == 'EU')) {
+           CheckoutPage.click.continueAsGuestBtn();
         } else {
           CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-          CheckoutPage.click.continueAsGuestBtn();
+           CheckoutPage.click.continueAsGuestBtn();
         }
       });
     
@@ -67,11 +67,12 @@ class Navigate {
         CheckoutPage.click.continueAsRegisteredUser();
       });
     }
-    cy.wait(2000);
+   cy.wait(2000);
   }
 
   toBillingPage (userType: UserType) {
     this.toShippingPage(userType);
+    
 
     // GUEST USER //
     if (userType === 'GuestUser') {
@@ -92,6 +93,7 @@ class Navigate {
         if (isSiteGenesisBrand) {
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
           if (variables.brand != 'boohooman.com') {
+            shippingPage.actions.emailField(credentials.guest)
             shippingPage.actions.confirmEmailField(credentials.guest);
           } 
           shippingPage.click.proceedToBilling();
@@ -132,7 +134,7 @@ class Navigate {
       shippingPage.click.proceedToBilling();
       BillingPage.actions.waitPageToLoad();     
     }
-  }
+  } 
 
   toMyAccountPage () {
     HomePage.goto();

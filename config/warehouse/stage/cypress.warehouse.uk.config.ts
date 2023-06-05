@@ -19,6 +19,8 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
+  numTestsKeptInMemory: 150,
+  
 
   // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
@@ -37,7 +39,7 @@ export default defineConfig({
       '**/backend*/**' // Skip backend tests
     ],
     experimentalSessionAndOrigin: true,
-    numTestsKeptInMemory: 0,
+    // numTestsKeptInMemory: 0,
   },
 
 });

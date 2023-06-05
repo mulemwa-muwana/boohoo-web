@@ -1,7 +1,7 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { brand, locale,fullSku } from 'cypress/support/e2e';
+import { brand, locale,fullSku, viewportWidth } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -344,8 +344,6 @@ const selectors: SelectorBrandMap = {
     cartValidation: '.b-product_actions-error_msg'
   }
 };
-
-const viewportWidth = Cypress.config('viewportWidth');
 
 class PdpPage implements AbstractPage {
   goto (): void {

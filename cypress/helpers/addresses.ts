@@ -15,7 +15,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UK1',
       },
       secondaryAddress: {
         firstName: 'New',
@@ -58,7 +58,7 @@ class Addresses {
         city: 'New York',
         countryCode: 'US',
         county: 'Alabama',
-        addressNickname: 'US',
+        addressNickname: 'US1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -84,7 +84,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UKNewNEw',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -101,7 +101,7 @@ class Addresses {
         city: 'Smithfield',
         countryCode: 'IE',
         county: 'Dublin',
-        addressNickname: 'IE',
+        addressNickname: 'IE1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -127,7 +127,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'IENew',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -144,7 +144,7 @@ class Addresses {
         city: 'Berlin',
         countryCode: 'DE',
         county: 'Berlin',
-        addressNickname: 'DE',
+        addressNickname: 'DE1',
         
       },
       secondaryAddress:  {
@@ -171,7 +171,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -188,7 +188,7 @@ class Addresses {
         city: 'Paris',
         countryCode: 'FR',
         county: '',
-        addressNickname: 'FR',
+        addressNickname: 'FR1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -214,7 +214,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -231,7 +231,7 @@ class Addresses {
         city: 'Roma',
         countryCode: 'IT',
         county: '',
-        addressNickname: 'IT',
+        addressNickname: 'IT1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -257,7 +257,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -274,7 +274,7 @@ class Addresses {
         city: 'Barcelona',
         countryCode: 'ES',
         county: '',
-        addressNickname: 'ES',
+        addressNickname: 'ES1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -300,7 +300,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -317,7 +317,7 @@ class Addresses {
         city: '',
         countryCode: 'CA',
         county: '',
-        addressNickname: 'CA',
+        addressNickname: 'CA1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -343,7 +343,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -360,7 +360,7 @@ class Addresses {
         city: 'Tel Aviv',
         countryCode: 'IL',
         county: 'Israel',
-        addressNickname: 'IL',
+        addressNickname: 'IL1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -386,7 +386,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -403,7 +403,7 @@ class Addresses {
         city: 'Helsinki',
         countryCode: 'FI',
         county: '',
-        addressNickname: 'FI',
+        addressNickname: 'FI1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -429,7 +429,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -446,7 +446,7 @@ class Addresses {
         city: 'Amsterdam',
         countryCode: 'NL',
         county: '',
-        addressNickname: 'NL',
+        addressNickname: 'NL1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -472,7 +472,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -489,7 +489,7 @@ class Addresses {
         city: 'Stockholm',
         countryCode: 'SE',
         county: '',
-        addressNickname: 'SE',
+        addressNickname: 'SE1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -515,7 +515,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -532,7 +532,7 @@ class Addresses {
         city: 'Oslo',
         countryCode: 'NO',
         county: '',
-        addressNickname: 'NO',
+        addressNickname: 'NO1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -558,7 +558,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
     
@@ -575,7 +575,7 @@ class Addresses {
         city: 'Frederiksberg',
         countryCode: 'DK',
         county: '',
-        addressNickname: 'DK',
+        addressNickname: 'DK1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -601,7 +601,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -618,7 +618,7 @@ class Addresses {
         city: 'Sydney',
         countryCode: 'AU',
         county: 'ACT',
-        addressNickname: 'AU',
+        addressNickname: 'AU1',
         
       },
       secondaryAddress:  {
@@ -645,7 +645,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -662,7 +662,7 @@ class Addresses {
         city: 'Pinehaven',
         countryCode: 'NZ',
         county: 'Upper Hutt',
-        addressNickname: 'NZ',
+        addressNickname: 'NZ1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -688,7 +688,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -705,7 +705,7 @@ class Addresses {
         city: 'Wien',
         countryCode: 'AT',
         county: 'Austria',
-        addressNickname: 'AU',
+        addressNickname: 'AU1',
       },
       secondaryAddress:  {
         firstName: 'New',
@@ -718,7 +718,7 @@ class Addresses {
         city: 'Ixelles',
         countryCode: 'BE',
         county: '',
-        addressNickname: 'BE',
+        addressNickname: 'BE1',
       },
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
@@ -731,7 +731,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     },
 
@@ -748,7 +748,7 @@ class Addresses {
         city: 'Jeddah',
         countryCode: 'SA',
         county: 'Eastern Province',
-        addressNickname: 'SA',
+        addressNickname: 'SA1',
       },
       secondaryAddress: {
         firstName: 'Test',
@@ -774,7 +774,7 @@ class Addresses {
         city: 'London',
         countryCode: 'GB',
         county: 'London',
-        addressNickname: 'UK',
+        addressNickname: 'UKNew',
       }
     }
   };

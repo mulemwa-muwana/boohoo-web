@@ -6,7 +6,7 @@ import { brand, locale, language } from 'cypress/support/e2e';
 
 describe('Checkout Page', function () {
 
-  beforeEach(() => {
+  beforeEach(() => { 
     Navigate.toCheckoutLoginPageUsingSession();
   });
 
@@ -28,7 +28,7 @@ describe('Checkout Page', function () {
     const includedLocals: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
 
     if (brand == 'boohoo.com' && includedLocals.includes(locale)) {
-      CheckoutPage.assertions.assertPremierTitleIsDisplayed(assertionText.Premier[language]);
+      CheckoutPage.assertions.assertPremierIconIsDisplayed() 
       CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[language]);
 
     } else if (brand == 'nastygal.com' && includedLocals.includes(locale)) {

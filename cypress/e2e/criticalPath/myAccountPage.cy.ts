@@ -50,7 +50,7 @@ describe('Account page', function () {
   it('TC04 Verify that addresses are editable; user can add and delete new address', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     const localeNewAddress = Addresses.getAddressByLocale(locale, 'newAddedPrimaryAddress');
-    
+
     if (brand == 'burton.co.uk') {
       cy.scrollTo('top');
     } 
@@ -59,6 +59,7 @@ describe('Account page', function () {
     if (!isSiteGenesisBrand) {
       MyAccountPage.actions.deleteAddressIfExist();
     }
+
     MyAccountPage.actions.createAddress(localeNewAddress);
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
@@ -68,7 +69,7 @@ describe('Account page', function () {
     MyAccountPage.click.addressesLink();
     MyAccountPage.actions.deleteAddress();  
     MyAccountPage.assertions.assertAddressNotPresent(localeNewAddress.firstName); 
-  });
+    });
 
   it('TC05 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();

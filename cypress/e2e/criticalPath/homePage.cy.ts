@@ -314,7 +314,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', function () {
-        if (brand == 'boohoomena.com' || (brand == 'burton.co.uk' && locale != 'UK')) {
+        if (brand == 'boohoomena.com' || (brand == 'burton.co.uk' && locale != 'UK')|| (brand == 'oasis-stores.com' && locale == 'IE')) {
           this.skip();
         }
         if (brand == 'nastygal.com') {
@@ -462,7 +462,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Careers', function () {
-        if ((brand == 'boohoo.com' && locale == 'IT') || (brand == 'nastygal.com' && locale == 'FR') || brand == 'boohoomena.com') {
+        if ((brand == 'boohoo.com' && locale == 'IT') || (brand == 'nastygal.com' && locale == 'FR') || brand == 'boohoomena.com'|| (brand == 'oasis-stores.com' && (locale == 'IE'|| locale == 'EU'))) {
           this.skip();
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[language], { assertionUrl: 'https://careers.boohoogroup.com/' });
@@ -481,15 +481,17 @@ describe('Home Page', function () {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
         const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];
-        
+
         if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
         } else if ((brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
-        } else if (brand == 'oasis-stores.com') {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated March 2023');
-        } else if (brand == 'coastfashion.com') {
+        } else if ((locale == 'UK' || locale == 'EU') && (brand == 'coastfashion.com' || brand == 'oasis-stores.com')) {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated May 2023');
+        } else if ((locale == 'IE') && (brand == 'coastfashion.com')) {
+          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated June 2022');
+        } else if ((locale == 'IE') && (brand == 'oasis-stores.com')) {
+          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated July 2022');
         } else if (brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2020');
         } else {

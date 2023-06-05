@@ -232,7 +232,7 @@ const selectors: SelectorBrandMap = {
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div#cart-limitless',
-    addPremierToCart: '#add-to-cart',
+    addPremierToCart:'.js-cmp-PremierAddToCartBtn',
     PayPalCTA: '.cart-action-checkout .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -335,8 +335,8 @@ class CartPage implements AbstractPage {
   click = {
     clearCart () {
       const clearCart = selectors[variables.brand].clearCart;
-      cy.get(clearCart).each(($el) => {
-        cy.wrap($el).click({force: true});
+      cy.get(clearCart).each(() => {
+        cy.get(clearCart).eq(0).click({force: true}); // In case of multiple item After Deleting an item, page refreshes and previous cy.wrap() embeded element detached from DOM
         cy.wait(7000);
       });
     },

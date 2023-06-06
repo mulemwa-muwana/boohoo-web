@@ -118,6 +118,7 @@ declare type AddressData = {
     county: string;
     country: string;
     countryCode: string;
+    addressNickname: string;
 }
     
 declare type ShippingData = {

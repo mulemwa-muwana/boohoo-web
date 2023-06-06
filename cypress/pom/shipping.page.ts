@@ -554,7 +554,7 @@ const selectors: SelectorBrandMap = {
     newAddedAddressBlock: '.checkout-address-form .address-summary',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#address-autocomplete',
-    enterManually: '[data-ref="addressFomFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
     cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
@@ -874,18 +874,15 @@ class ShippingPage implements AbstractPage {
       const shippingMethodname = selectors[brand].shippingMethodname;
       cy.get(shippingMethodname).each(() => {
         cy.contains(shippingMethod).click({ force: true });
-<<<<<<< HEAD
       });
     },
     confirmShippingAddress () {
-      const confirmShippingAddress = selectors[variables.brand].confirmShippingAddress;
+      const confirmShippingAddress = selectors[brand].confirmShippingAddress;
       cy.wait(5000);
       cy.get('body').then($body => { 
         if ($body.find(confirmShippingAddress).length > 0) { 
           cy.get(confirmShippingAddress).click({force:true});  
         }
-=======
->>>>>>> master
       });
     },
 

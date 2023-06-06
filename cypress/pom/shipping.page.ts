@@ -699,12 +699,8 @@ class ShippingPage implements AbstractPage {
     },
     addAddressManually () {
       if (!isSiteGenesisBrand) {
-<<<<<<< HEAD
-        const addAddressManually = selectors[variables.brand].addAddressManually;
-        cy.wait(5000);
-=======
         const addAddressManually = selectors[brand].addAddressManually;
->>>>>>> master
+        cy.wait(5000)
         cy.get('body').then($body => {
           if ($body.find(addAddressManually).length) {
             cy.get(addAddressManually).click({ force: true });
@@ -878,6 +874,7 @@ class ShippingPage implements AbstractPage {
       const shippingMethodname = selectors[brand].shippingMethodname;
       cy.get(shippingMethodname).each(() => {
         cy.contains(shippingMethod).click({ force: true });
+<<<<<<< HEAD
       });
     },
     confirmShippingAddress () {
@@ -887,6 +884,8 @@ class ShippingPage implements AbstractPage {
         if ($body.find(confirmShippingAddress).length > 0) { 
           cy.get(confirmShippingAddress).click({force:true});  
         }
+=======
+>>>>>>> master
       });
     },
 

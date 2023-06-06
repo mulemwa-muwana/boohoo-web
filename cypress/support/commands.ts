@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/method-signature-style */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Any methods created need to be added to the Cypress namespace, this is typescript feature.
-
+import { locale } from "./e2e";
 // Login and preserve tokens. (EXPERIMENTAL, NOT CURRENTLY IN USE).
 Cypress.Commands.add('goOffline', () => {
   return cy.log('Disabling internet connectivity').then(() => {
@@ -68,6 +68,8 @@ Cypress.Commands.overwrite('visit', function (originalFn, url) {
     urlPath += '&noredirect=true';
   } else {
     urlPath += '?noredirect=true';
+  }  if(locale == 'EU') {
+    urlPath = urlPath.replace('/eu','/ie');
   }
     
   return originalFn({ url: urlPath });

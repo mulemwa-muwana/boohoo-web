@@ -95,9 +95,7 @@ class Navigate {
         }
         shippingPage.actions.postcodeField(primaryAddress.postcode);
         shippingPage.actions.phoneNumberField(primaryAddress.phone);
-
-        // ShippingPage.actions.countyFieldIfExist(primaryAddress.county); // Currently ask county only for IE local 
-           
+              
         if (isSiteGenesisBrand) { // Holds Condition 1
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
           if (variables.brand != 'boohooman.com') { // Holds condition 2

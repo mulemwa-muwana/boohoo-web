@@ -24,6 +24,8 @@ beforeEach(() => {
     cy.setCookie('dw_locale', 'en_IE');
   } else if (variables.locale == 'UK') {
     cy.setCookie('dw_locale', 'en_GB');
+  } else if (variables.locale == 'EU') {
+    cy.setCookie('dw_locale', 'default');
   }
   cy.setCookie('OptanonAlertBoxClosed', '');
   cy.setCookie('dw_cookies_accepted', 'A');

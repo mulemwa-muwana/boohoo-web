@@ -51,10 +51,8 @@ class Navigate {
         if ((isSiteGenesisBrand ) && (variables.locale == 'IE' || variables.locale == 'EU')) {
           if (variables.brand == 'karenmillen.com' && variables.locale == 'EU') {
             CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-            CheckoutPage.click.continueAsGuestBtn();
-          } else {
-            CheckoutPage.click.continueAsGuestBtn();
           }
+          CheckoutPage.click.continueAsGuestBtn();
         } else {
           CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
           CheckoutPage.click.continueAsGuestBtn();
@@ -96,22 +94,22 @@ class Navigate {
         shippingPage.actions.postcodeField(primaryAddress.postcode);
         shippingPage.actions.phoneNumberField(primaryAddress.phone);
               
-        if (isSiteGenesisBrand) { // Holds Condition 1
+        if (isSiteGenesisBrand) { // Covers SiteGenesis Brands
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-          if (variables.brand != 'boohooman.com') { // Holds condition 2
+          if (variables.brand != 'boohooman.com') { // Covers all SG brands except Boohooman
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
             shippingPage.click.proceedToBilling();
-          } else { // Doesn't hold condition 1
+          } else { // Covers Boohooman
             shippingPage.click.proceedToBilling();
             BillingPage.actions.billingEmailField(credentials.guest);
             BillingPage.actions.billingConfirmEmailField(credentials.guest);
           }
-        } else { // Doesn't hold condition 2
+        } else { // Covers BLP Brands
           shippingPage.click.proceedToBilling();
         }      
         shippingPage.actions.confirmShippingAddress(); // If asks use suggested shipping address
-		  BillingPage.actions.waitPageToLoad(); 
+		    BillingPage.actions.waitPageToLoad(); 
       });
 
     // REGISTERED USER //

@@ -700,7 +700,7 @@ class ShippingPage implements AbstractPage {
     addAddressManually () {
       if (!isSiteGenesisBrand) {
         const addAddressManually = selectors[brand].addAddressManually;
-        cy.wait(5000)
+        cy.wait(5000);
         cy.get('body').then($body => {
           if ($body.find(addAddressManually).length) {
             cy.get(addAddressManually).click({ force: true });

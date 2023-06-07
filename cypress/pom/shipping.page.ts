@@ -50,7 +50,7 @@ const selectors: SelectorBrandMap = {
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
     postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearOfBirth',
@@ -97,7 +97,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodname: '.b-option_switch-label',
-    shippingState: '#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearOfBirth',
@@ -134,6 +134,8 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
     shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
     shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    confirmShippingAddress:'[data-id="submitShippingButton"]',
     guestEmailField: '#dwfrm_billing_contactInfoFields_email',
     addressLine1Field: '[id$=addressFields_address1][id*="shipping"]',
     addressLine2Field: '[id$=addressFields_address2][id*="shipping"]',
@@ -180,6 +182,7 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
     shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
     shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     guestEmailField: '#dwfrm_billing_contactInfoFields_email',
     addressLine1Field: '[id$=addressFields_address1][id*="shipping"]',
     addressLine2Field: '[id$=addressFields_address2][id*="shipping"]',
@@ -226,6 +229,7 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '[id$=addressFields_phone][id*="shipping"]',
     shippingLname: '[id$=addressFields_lastName][id*="shipping"]',
     shippingCountry: '[id$=addressFields_country][id*="shipping"]',
+    shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     guestEmailField: '#dwfrm_billing_contactInfoFields_email',
     addressLine1Field: '[id$=addressFields_address1][id*="shipping"]',
     addressLine2Field: '[id$=addressFields_address2][id*="shipping"]',
@@ -278,12 +282,14 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
+    shippingState :'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    confirmShippingAddress:"button[class^='verification-address-button']",
     guestEmailField: '#dwfrm_billing_contactInfoFields_email',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    countyField: 'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -334,6 +340,8 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
+    shippingState :'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    confirmShippingAddress:"button[class^='verification-address-button']",
     guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
@@ -388,6 +396,8 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
+    shippingState :'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    confirmShippingAddress:"button[class^='verification-address-button']",
     guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
@@ -443,12 +453,14 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
+    shippingState :'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    confirmShippingAddress:"button[class^='verification-address-button']",
     guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -498,6 +510,8 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
+    shippingState :'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    confirmShippingAddress:"button[class^='verification-address-button']",
     guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
@@ -553,6 +567,8 @@ const selectors: SelectorBrandMap = {
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
+    shippingState :'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    confirmShippingAddress:"button[class^='verification-address-button']",
     guestEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     confirmEmail: '#dwfrm_singleshipping_shippingAddress_email_emailConfirm',
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
@@ -684,6 +700,7 @@ class ShippingPage implements AbstractPage {
     addAddressManually () {
       if (!isSiteGenesisBrand) {
         const addAddressManually = selectors[brand].addAddressManually;
+        cy.wait(5000);
         cy.get('body').then($body => {
           if ($body.find(addAddressManually).length) {
             cy.get(addAddressManually).click({ force: true });
@@ -857,6 +874,15 @@ class ShippingPage implements AbstractPage {
       const shippingMethodname = selectors[brand].shippingMethodname;
       cy.get(shippingMethodname).each(() => {
         cy.contains(shippingMethod).click({ force: true });
+      });
+    },
+    confirmShippingAddress () {
+      const confirmShippingAddress = selectors[brand].confirmShippingAddress;
+      cy.wait(5000);
+      cy.get('body').then($body => { 
+        if ($body.find(confirmShippingAddress).length > 0) { 
+          cy.get(confirmShippingAddress).click({force:true});  
+        }
       });
     },
 

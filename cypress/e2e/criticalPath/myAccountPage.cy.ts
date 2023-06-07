@@ -69,7 +69,7 @@ describe('Account page', function () {
     MyAccountPage.click.addressesLink();
     MyAccountPage.actions.deleteAddress();  
     MyAccountPage.assertions.assertAddressNotPresent(localeNewAddress.firstName); 
-    });
+  });
 
   it('TC05 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();

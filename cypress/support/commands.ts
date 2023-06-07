@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Any methods created need to be added to the Cypress namespace, this is typescript feature.
 
+import { brand, locale } from './e2e';
+
 // Login and preserve tokens. (EXPERIMENTAL, NOT CURRENTLY IN USE).
 Cypress.Commands.add('goOffline', () => {
   return cy.log('Disabling internet connectivity').then(() => {
@@ -69,6 +71,11 @@ Cypress.Commands.overwrite('visit', function (originalFn, url) {
   } else {
     urlPath += '?noredirect=true';
   }
-    
+
+  // Currently EU locale for below brands is accessible with /ie endpoints so replacing /eu with /ie. only differentiating btw IE and EU locale on base of cookies
+  if ((brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || brand == 'karenmillen.com') && locale == 'EU') {
+    urlPath = urlPath.replace('/eu', '/ie');
+  }
+
   return originalFn({ url: urlPath });
 });

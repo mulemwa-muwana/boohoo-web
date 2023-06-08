@@ -15,8 +15,8 @@ describe('Billing page functionality for guest user', function () {
       cy.wrap(credentials.guest).as('guestEmail');
     });
   });
-  
-  beforeEach (function () { 
+
+  beforeEach(function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
@@ -27,9 +27,11 @@ describe('Billing page functionality for guest user', function () {
   it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
+  //The following logic will assert for "dorothyperkins.com" shipping method is "UK Next Day Delivery" and for all other Brands "UK Standard Delivery" shipping methods
   it('Verify that shipping method is displayed', function () {
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
-    if (locale != 'EU') {    
+    const shippingType = (brand == "dorothyperkins.com") ? 'shippingMethod4' : 'shippingMethod1';
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, shippingType);
+    if (locale != 'EU') {
       BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName); // EU has only Europe and International Delivery
     }
   });
@@ -42,8 +44,8 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
 
-  it('Verify that email field is filled with correct email address', function () {   
-    if (isSiteGenesisBrand) { 
+  it('Verify that email field is filled with correct email address', function () {
+    if (isSiteGenesisBrand) {
       this.skip(); // Email field for Site Genesis brands is on Shipping page.
     }
     BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
@@ -63,7 +65,7 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', '4', '2001');
     BillingPage.click.chooseCC();
-    
+
     if (brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[language]);
     } else {
@@ -121,7 +123,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
-  
+
   });
 
 });

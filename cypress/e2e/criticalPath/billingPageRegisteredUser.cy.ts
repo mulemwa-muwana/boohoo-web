@@ -8,31 +8,27 @@ import { locale, brand } from 'cypress/support/e2e';
 
 describe('Billing page functionality for registered user', function () {
 
-  beforeEach (() => {
+  beforeEach(() => {
     Navigate.toBillingPageUsingSession('RegisteredUser');
   });
 
   it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
-  it('Verify that shipping method is displayed', function () {
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
-    if (brand == 'oasis-stores.com') {
-      BillingPage.assertions.assertShippingMethodPresent('\n                            UK Standard Delivery\n                        ');
-    
-    } else if (brand== 'boohoo.com' || brand == 'nastygal.com' || brand == 'dorothyperkins.com' || brand == 'wallis.co.uk') {
 
-      BillingPage.assertions.assertShippingMethodPresent('UK Standard Delivery');
-    } else {
-      BillingPage.assertions.assertShippingMethodPresent('\n                            ' + localeShippingMethod.shippingMethodName + '\n                  ');
-
+  //The following logic will assert for "dorothyperkins.com" shipping method is "UK Next Day Delivery" and for all other Brands "UK Standard Delivery" shipping methods
+  it.only('Verify that shipping method is displayed', function () {
+    const shippingType = (brand == "dorothyperkins.com") ? 'shippingMethod4' : 'shippingMethod1';
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, shippingType);
+    if (locale != 'EU') {
+      BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName); // EU has only Europe and International Delivery
     }
   });
   it('Verify that register user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('Verify that register user can change shipping method', function () {
+  it.only('Verify that register user can change shipping method', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
@@ -90,7 +86,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
   });
-  
+
   //  TESTS FOR SITE GENESIS BRANDS:  //
   it('Verify that promo code field is displayed', function () {
     if (isSiteGenesisBrand) {

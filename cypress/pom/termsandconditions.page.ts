@@ -1,4 +1,5 @@
 import AbstractPage from './abstract/abstract.page';
+import { brand, url, locale } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -45,10 +46,16 @@ const variables = Cypress.env() as EnvironmentVariables;
 class TermsAndConditionsPage implements AbstractPage {
 
   goto () {
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'misspap.com' || variables.brand == 'boohoomena.com') {
-      cy.visit(variables.url + '/page/terms-of-use.html');
+    if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'misspap.com' || brand == 'boohoomena.com') {
+      cy.visit(url + '/page/terms-of-use.html');
+      // if((brand == 'coastfashion.com' || brand == 'oasis-stores.com') && locale == 'EU'){
+      //   cy.setCookie('dw_locale', 'default');
+      // }
     } else {
-      cy.visit(variables.url + '/page/terms-and-conditions.html');
+      cy.visit(url + '/page/terms-and-conditions.html');
+      // if((brand == 'karenmillen.com' || brand == 'warehousefashion.com') && locale == 'EU'){
+      //   cy.setCookie('dw_locale', 'default');
+      // }
     }
   }
 
@@ -63,7 +70,7 @@ class TermsAndConditionsPage implements AbstractPage {
       cy.url().should('include', text);
     },
     assertTermsAndConditionsPageOpens (text: string) {
-      const termsAndConditionsPageTitle = selectors[variables.brand].termsAndConditionsPageTitle;
+      const termsAndConditionsPageTitle = selectors[brand].termsAndConditionsPageTitle;
 
       cy.get(termsAndConditionsPageTitle).contains(text, { matchCase: false }).should('be.visible');      
 

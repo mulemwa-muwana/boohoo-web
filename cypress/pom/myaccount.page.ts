@@ -870,6 +870,7 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressNicknameField).type('New1');
         }
         cy.get(addressSubmitBtn).click({ force: true }); 
+        
       },
       deleteAddressIfExist () {
         cy.get('.b-cards_grid-item .b-address-name').then($addressCards=>{

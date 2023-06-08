@@ -875,7 +875,7 @@ class ShippingPage implements AbstractPage {
     },
     confirmEmailField (email: string) {
       const confirmEmail = selectors[brand].confirmEmail;
-      cy.get(confirmEmail).clear().type(email);
+      cy.get(confirmEmail).clear({force:true}).type(email);
     },
     emptyEmailField () {
       const guestEmailField = selectors[brand].guestEmailField;

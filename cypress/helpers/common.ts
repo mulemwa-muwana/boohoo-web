@@ -237,3 +237,6 @@ export function isBrandSupportingPaymentMethod (brand: GroupBrands, paymentMetho
 const variables = Cypress.env() as EnvironmentVariables;
 export const siteGenesisBrands: Array<GroupBrands> = ['coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'misspap.com', 'karenmillen.com', 'boohooman.com', 'boohoomena.com'];
 export const isSiteGenesisBrand: boolean = siteGenesisBrands.includes(variables.brand);
+
+const viewportWidth = Cypress.config('viewportWidth');
+export const isMobileDeviceUsed: boolean = viewportWidth < 1100;

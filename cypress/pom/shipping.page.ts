@@ -1,8 +1,8 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import cartPage from './cart.page';
-import { brand, viewportWidth } from 'cypress/support/e2e';
+import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -731,7 +731,7 @@ class ShippingPage implements AbstractPage {
       const addPremierToCartFromShippingPage = selectors[brand].addPremierToCartFromShippingPage;
       const addPremierToCartFromShippingPageMobile = selectors[brand].addPremierToCartFromShippingPageMobile;
       const addPremierToBagMobile = selectors[brand].addPremierToBagMobile;
-      if (viewportWidth < 1100 && isSiteGenesisBrand) {
+      if (isMobileDeviceUsed && isSiteGenesisBrand) {
         cy.get(addPremierToCartFromShippingPageMobile).click({ force: true });
       } else {
         cy.get(addPremierToCartFromShippingPage).eq(0).click();
@@ -989,7 +989,7 @@ class ShippingPage implements AbstractPage {
       const cartContainer = selectors[brand].cartContainer;
       const cartContainerMobile = selectors[brand].cartContainerMobile;
       const premierProductTitle = selectors[brand].premierProductTitle;
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(cartContainerMobile, { timeout: 20000 }).should('contain', premierProductTitle.trim());
       } else {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());

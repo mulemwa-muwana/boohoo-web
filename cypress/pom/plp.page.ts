@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import { RouteMatcher } from 'cypress/types/net-stubbing';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
@@ -569,8 +569,8 @@ class PlpPage implements AbstractPage {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       const loadMoreProductsMobile = selectors[variables.brand].loadMoreProductsMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+
+      if (isMobileDeviceUsed) {
         cy.get(loadMoreProductsMobile).invoke('show').should('be.visible');
       } else {
         cy.get(loadMoreProducts).invoke('show').should('be.visible');

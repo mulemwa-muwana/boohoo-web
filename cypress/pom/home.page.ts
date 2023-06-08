@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -241,10 +241,9 @@ class HomePage implements AbstractPage {
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIcon = selectors[variables.brand].loginIcon;
-      const viewportWidth = Cypress.config('viewportWidth');
 
       // If Mobile Device is used
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(hamburgerMenu).click({force: true});
         cy.get(loginIconMobile).should('be.visible').click({force:true});
 
@@ -261,9 +260,8 @@ class HomePage implements AbstractPage {
     registrationButton () {
       const registrationButton = selectors[variables.brand].registrationButton;
       const registrationButtonMobiles = selectors[variables.brand].registrationButtonMobiles;
-      const viewportWidth = Cypress.config('viewportWidth');
 
-      if (viewportWidth < 1100 ) {
+      if (isMobileDeviceUsed ) {
         cy.get(registrationButtonMobiles).click({force:true});
       } else {
         cy.get(registrationButton).click({force:true});
@@ -274,8 +272,7 @@ class HomePage implements AbstractPage {
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[variables.brand].searchIcon;
       const searchIconMobile = selectors[variables.brand].searchIconMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100 ) {
+      if (isMobileDeviceUsed ) {
         cy.get(searchIconMobile).click({force: opts.force});
       } else {
         cy.get(searchIcon).click({force: opts.force});        
@@ -297,9 +294,8 @@ class HomePage implements AbstractPage {
     // MEGA MENU - MAIN NAV
 
     selectLinkFromMegaMenu (text: string) {
-      const viewportWidth = Cypress.config('viewportWidth');
       const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
-      if (viewportWidth < 1100) {             
+      if (isMobileDeviceUsed) {             
         cy.get(hamburgerMenu).click({force: true});
       }
       cy.contains(text).click({ force: true });
@@ -364,9 +360,8 @@ class HomePage implements AbstractPage {
     closeSearchFieldForMobiles () {
 
       // If Mobile Device is used
-      const viewportWidth = Cypress.config('viewportWidth');
       const searchFieldCloseMobile = selectors[variables.brand].searchFieldCloseMobile;
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
     }
@@ -383,8 +378,7 @@ class HomePage implements AbstractPage {
     assertSearchIconPresent () {
       const searchIcon = selectors[variables.brand].searchField;
       const searchIconMobile = selectors[variables.brand].searchIconMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100 && variables.brand == 'warehousefashion.com') {
+      if (isMobileDeviceUsed && variables.brand == 'warehousefashion.com') {
         cy.get(searchIconMobile).invoke('show').should('be.visible');
       } else {
         cy.get(searchIcon).invoke('show').should('be.visible');
@@ -393,8 +387,7 @@ class HomePage implements AbstractPage {
     assertSearchFieldPresent () {
       const searchField = selectors[variables.brand].searchField;
       const searchFieldMobile = selectors[variables.brand].searchFieldMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100 ) {
+      if (isMobileDeviceUsed) {
         cy.get(searchFieldMobile).invoke('show').should('be.visible');
       } else {
         cy.get(searchField).should('be.visible');
@@ -433,9 +426,8 @@ class HomePage implements AbstractPage {
     // Logo
     assertLogoPresent () {
       const logo = selectors[variables.brand].logo;
-      const viewportWidth = Cypress.config('viewportWidth');
       const logoMobile =selectors[variables.brand].logoMobile;
-      if (viewportWidth < 1100 ) {
+      if (isMobileDeviceUsed) {
         cy.get(logoMobile).should('be.visible');
       } else {
         cy.get(logo).should('be.visible').should('have.attr', 'href');
@@ -446,10 +438,9 @@ class HomePage implements AbstractPage {
     assertWishListIconPresent () {
 
       const wishListIconMobile = selectors[variables.brand].wishListIconMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
 
       // If Mobile Device is used
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(wishListIconMobile).invoke('show').should('be.visible');
 
       // If Desktop Device is used
@@ -469,10 +460,9 @@ class HomePage implements AbstractPage {
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIconLinkMobile = selectors[variables.brand].loginIconLinkMobile;
 
-      const viewportWidth = Cypress.config('viewportWidth');
 
       // If Mobile Device is used
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(hamburgerMenu).click({force: true});
         if (variables.brand == 'karenmillen.com') {  
           cy.get(loginIconLinkMobile).should('be.visible');

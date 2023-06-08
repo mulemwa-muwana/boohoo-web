@@ -17,8 +17,6 @@ export const sku = variables.sku;
 export const url = variables.url;
 export const fullSku = variables.fullSku;
 
-export const viewportWidth = Cypress.config('viewportWidth'); // Following the logic from above, as it will be used in every test
-
 // Set anything we need to before all tests
 beforeEach(() => {
   // TODO: Remove when redirection from IE locales is fixed (Coast and KarenMillen)

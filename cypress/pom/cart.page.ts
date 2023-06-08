@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -355,8 +355,7 @@ class CartPage implements AbstractPage {
       const checkoutBtnForMobile = selectors[variables.brand].checkoutBtnForMobile;
 
       // If Mobile Device is used
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(checkoutBtnForMobile).invoke('show').click({force: true});
 
       // If Desktop Device is used
@@ -418,8 +417,7 @@ class CartPage implements AbstractPage {
       const updateBtnMobile = selectors[variables.brand].updateBtnMobile;
 
       // If Mobile Device is used
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth <1100 ) {
+      if (isMobileDeviceUsed) {
         cy.get(editDetailsMobile).click({force: true});
         cy.wait(5000);
         cy.get(editQuantityMobile).clear({force: true}).type(quantity);
@@ -460,10 +458,9 @@ class CartPage implements AbstractPage {
       const productPrice = selectors[variables.brand].productPrice;
       const productPriceMobile = selectors[variables.brand].productPriceMobile;
       const subtotal = selectors[variables.brand].subtotal;
-      const viewportWidth = Cypress.config('viewportWidth');
 
       // If Mobile Device is used
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         
         cy.get(productPriceMobile).should('be.visible');
        
@@ -485,8 +482,7 @@ class CartPage implements AbstractPage {
     assertCartIsEmpty () {
       const emptyCartTitle = selectors[variables.brand].emptyCartTitle;
       const emptyCartTitleMobile = selectors[variables.brand].emptyCartTitleMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(emptyCartTitleMobile).should('be.visible');
       } else {
         cy.get(emptyCartTitle).should('be.visible');

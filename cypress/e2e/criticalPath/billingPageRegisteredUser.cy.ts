@@ -16,19 +16,19 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
 
-  //The following logic will assert for "dorothyperkins.com" shipping method is "UK Next Day Delivery" and for all other Brands "UK Standard Delivery" shipping methods
-  it.only('Verify that shipping method is displayed', function () {
-    const shippingType = (brand == "dorothyperkins.com") ? 'shippingMethod4' : 'shippingMethod1';
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, shippingType);
-    if (locale != 'EU') {
-      BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName); // EU has only Europe and International Delivery
+  it('Verify that shipping method is displayed', function () {
+    // const shippingType = (brand == "dorothyperkins.com") ? 'shippingMethod4' : 'shippingMethod1';   //The following logic will assert for "dorothyperkins.com" shipping method is "UK Next Day Delivery" and for all other Brands "UK Standard Delivery" shipping methods
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
+    if (locale == 'EU') {
+      this.skip(); // EU has only Europe and International Delivery
     }
+    BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
   it('Verify that register user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it.only('Verify that register user can change shipping method', function () {
+  it('Verify that register user can change shipping method', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });

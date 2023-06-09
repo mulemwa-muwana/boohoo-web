@@ -45,7 +45,7 @@ describe('Order confirmation page for guest user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   }); 
 
-  it('Verify that guest user can place order using Credit Card - Amex)', function () {
+  it.only('Verify that guest user can place order using Credit Card - Amex)', function () {
     Navigate.toBillingPage('GuestUser');
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');

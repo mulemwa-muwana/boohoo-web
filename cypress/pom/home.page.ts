@@ -233,11 +233,10 @@ class HomePage implements AbstractPage {
     }
     if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
       cy.setCookie('dw_locale', 'default');
+      //It needs to be set again when linking to another page.
     }
     cy.visit(url);
-    // if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
-    //   cy.setCookie('dw_locale', 'default');
-    // }
+
   }
 
   click = {

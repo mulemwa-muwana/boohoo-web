@@ -373,10 +373,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
     addCardEditForm: '.account-wrapper > .account-page-title',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
@@ -488,10 +488,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
     addCardEditForm: '#CreditCardForm',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
@@ -546,10 +546,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
     addCardEditForm: '#CreditCardForm',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
@@ -845,6 +845,11 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
         
+        if (variables.locale == 'EU') {
+          cy.get('#dwfrm_profile_address_country').
+          select(address.country);
+        }
+
         if (variables.brand == 'boohoomena.com') {
           const addressPhoneCode = selectors[variables.brand].addressPhoneCode;
           cy.get(addressPhoneCode).select(address.phone.slice(0, 2));

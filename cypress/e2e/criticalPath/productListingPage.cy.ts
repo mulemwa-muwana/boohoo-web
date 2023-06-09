@@ -89,14 +89,14 @@ describe('Product Listing Page tests', function () {
       plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   
     });
     
-    it.only('Verify color refinement is applied', () => {
+    it('Verify color refinement is applied', () => {
       plpPage.actions.setupChangeIntercept(/color/);
       plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[language]);
       plpPage.actions.waitForPageRefinementUpdate();
       plpPage.assertions.assertProductVariantIsApplied('color', productVariations.ColorBlack[language]);
     });
     
-    it.only('Verify price refinement is applied', function () {
+    it('Verify price refinement is applied', function () {
       const brandsExludedPriceRefinement: Array<GroupBrands> = ['nastygal.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
       if (brandsExludedPriceRefinement.includes(brand)) {
         this.skip();
@@ -107,7 +107,7 @@ describe('Product Listing Page tests', function () {
       plpPage.assertions.assertProductPriceIsDisplayedOnPLP();
     });
 
-    it.only('Verify shop by fit refinement is applied', function () {
+    it('Verify shop by fit refinement is applied', function () {
       if (brand == 'burton.co.uk' || brand == 'boohooman.com' || brand == 'misspap.com') {
         this.skip();
       }  
@@ -117,7 +117,7 @@ describe('Product Listing Page tests', function () {
       plpPage.assertions.assertProductVariantIsApplied('classification', 'Petite');
     });
 
-    it.only('Verify occasion refinement is applied', function () {
+    it('Verify occasion refinement is applied', function () {
       const brandsExcludedOccasion: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk'];
       if (brandsExcludedOccasion.includes(brand)) {
         this.skip();

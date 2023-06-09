@@ -48,14 +48,8 @@ class TermsAndConditionsPage implements AbstractPage {
   goto () {
     if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'misspap.com' || brand == 'boohoomena.com') {
       cy.visit(url + '/page/terms-of-use.html');
-      // if((brand == 'coastfashion.com' || brand == 'oasis-stores.com') && locale == 'EU'){
-      //   cy.setCookie('dw_locale', 'default');
-      // }
     } else {
       cy.visit(url + '/page/terms-and-conditions.html');
-      // if((brand == 'karenmillen.com' || brand == 'warehousefashion.com') && locale == 'EU'){
-      //   cy.setCookie('dw_locale', 'default');
-      // }
     }
   }
 

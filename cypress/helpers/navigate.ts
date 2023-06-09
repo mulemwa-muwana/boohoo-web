@@ -172,9 +172,6 @@ class Navigate {
 
     if (isSiteGenesisBrand) {
       cy.visit(url + '/shipping');
-      // if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
-      //   cy.setCookie('dw_locale', 'default');
-      // }
     } else {
       cy.visit(url + '/checkout?step=shipping');
     }
@@ -187,9 +184,6 @@ class Navigate {
 
     if (isSiteGenesisBrand) {
       cy.visit(url + '/billing-continue');
-      // if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
-      //   cy.setCookie('dw_locale', 'default');
-      // }
     } else {
       cy.visit(url + '/checkout?step=billing');
     }
@@ -201,9 +195,6 @@ class Navigate {
       cy.wait(7000);
     });
     cy.visit(url + '/myaccount');
-    // if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
-    //   cy.setCookie('dw_locale', 'default');
-    // }
   }
 
   clearSessionCookies () {

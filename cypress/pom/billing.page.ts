@@ -587,9 +587,6 @@ const selectors: SelectorBrandMap = {
 class BillingPage implements AbstractPage {
   goto (): void {
     cy.visit('/checkout?step=billing');
-    // if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
-    //   cy.setCookie('dw_locale', 'default');
-    // }
   }
 
   click = {

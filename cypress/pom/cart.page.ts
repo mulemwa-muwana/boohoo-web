@@ -331,9 +331,6 @@ const variables = Cypress.env() as EnvironmentVariables;
 class CartPage implements AbstractPage {
   goto (): void {
     cy.visit(url + '/cart');
-    // if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
-    //   cy.setCookie('dw_locale', 'default');
-    // }
   }
 
   click = {

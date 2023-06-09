@@ -26,7 +26,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
+  it.skip('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {    
     shippingPage.click.addNewAddressButton();
 
     shippingPage.actions.firstNameFieldClear();

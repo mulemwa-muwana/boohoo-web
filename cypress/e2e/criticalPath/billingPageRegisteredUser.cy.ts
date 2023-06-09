@@ -15,7 +15,7 @@ describe('Billing page functionality for registered user', function () {
   it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
-  it('Verify that shipping method is displayed', function () {
+  it.only('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
     if (brand == 'oasis-stores.com') {
       BillingPage.assertions.assertShippingMethodPresent('\n                            UK Standard Delivery\n                        ');

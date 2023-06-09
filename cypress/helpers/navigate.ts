@@ -46,6 +46,7 @@ class Navigate {
     if (userType === 'GuestUser') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         if (brand != 'warehousefashion.com' && (locale == 'IE' || locale == 'EU')) {
+          cy.wait(2000);
           CheckoutPage.click.continueAsGuestBtn();
         } else {
           CheckoutPage.actions.guestCheckoutEmail(credentials.guest);

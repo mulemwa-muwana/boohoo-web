@@ -460,7 +460,6 @@ class HomePage implements AbstractPage {
       const loginIconMobile = selectors[variables.brand].loginIconMobile;
       const loginIconLinkMobile = selectors[variables.brand].loginIconLinkMobile;
 
-
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(hamburgerMenu).click({force: true});

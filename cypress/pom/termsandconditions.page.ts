@@ -1,5 +1,5 @@
 import AbstractPage from './abstract/abstract.page';
-import { brand, url, locale } from 'cypress/support/e2e';
+import { brand, url } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -40,8 +40,6 @@ const selectors: SelectorBrandMap = {
     termsAndConditionsPageTitle: '#primary > div > h1'
   }
 };
-
-const variables = Cypress.env() as EnvironmentVariables;
 
 class TermsAndConditionsPage implements AbstractPage {
 

@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -847,7 +847,7 @@ class MyAccountPage implements AbstractPage {
         
         if (variables.locale == 'EU') {
           cy.get('#dwfrm_profile_address_country').
-          select(address.country);
+            select(address.country);
         }
 
         if (variables.brand == 'boohoomena.com') {
@@ -879,25 +879,25 @@ class MyAccountPage implements AbstractPage {
       },
       deleteAddressIfExist () {
         cy.get('.b-cards_grid-item .b-address-name').then($addressCards=>{
-        if ($addressCards.text().includes('Boohoo')) {
-        cy.get('.b-cards_grid-item .b-address-name:contains("Boohoo")').each((deleteAddressCard)=>{
-        cy.wait(1000);
-        cy.wrap(deleteAddressCard).parentsUntil('[data-tau="address_book_item"]').parent().find('[data-tau="address_book_delete"]').click({force:true});// Finding element by text then going to delete button through parentsUntil and parents
-        cy.wait(1000);
-        cy.contains('button', 'Yes, delete').click({ force: true });    
-        });            
-        }
+          if ($addressCards.text().includes('Boohoo')) {
+            cy.get('.b-cards_grid-item .b-address-name:contains("Boohoo")').each((deleteAddressCard)=>{
+              cy.wait(1000);
+              cy.wrap(deleteAddressCard).parentsUntil('[data-tau="address_book_item"]').parent().find('[data-tau="address_book_delete"]').click({force:true});// Finding element by text then going to delete button through parentsUntil and parents
+              cy.wait(1000);
+              cy.contains('button', 'Yes, delete').click({ force: true });    
+            });            
+          }
         });
       },
       deleteAddress () {
         const addressCards = selectors[variables.brand].addressCards;
         const addressDeleteButton = selectors[variables.brand].addressDeleteButton;
         cy.get(addressCards).contains('Boohoo').then(ele=>{
-        cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true}); 
-        })
+          cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true}); 
+        });
         if (!isSiteGenesisBrand) {
-        cy.wait(1000);
-        cy.contains('button', 'Yes, delete').click({ force: true });
+          cy.wait(1000);
+          cy.contains('button', 'Yes, delete').click({ force: true });
         }
       },
       addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {

@@ -72,8 +72,8 @@ describe('Shipping Page Registered user tests', function () {
     }
     cy.wait(3000);
     shippingPage.click.proceedToBilling();
-    if(brand == 'karenmillen.com' && locale == 'EU'){
-      shippingPage.click.proceedToBilling();  // there is one more step to verify address again
+    if (brand == 'karenmillen.com' && locale == 'EU') {
+      shippingPage.click.proceedToBilling(); // There is one more step to verify address again
     }
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);

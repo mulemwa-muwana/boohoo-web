@@ -136,7 +136,7 @@ class Navigate {
       shippingPage.click.proceedToBilling();
       BillingPage.actions.waitPageToLoad();     
     }
-  }
+  } 
 
   toMyAccountPage () {
     HomePage.goto();
@@ -160,7 +160,7 @@ class Navigate {
     });
 
     cy.visit(url + '/checkout-login');
-    if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
+    if ((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU') {
       cy.setCookie('dw_locale', 'default');
     }
   }

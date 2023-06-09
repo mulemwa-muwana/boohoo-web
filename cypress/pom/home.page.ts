@@ -222,8 +222,6 @@ const selectors: SelectorBrandMap = {
   }
   
 };
-
-const variables = Cypress.env() as EnvironmentVariables;
 class HomePage implements AbstractPage {
 
   goto () {
@@ -231,9 +229,10 @@ class HomePage implements AbstractPage {
 
       // Cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
-    if((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU'){
+    if ((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU') {
       cy.setCookie('dw_locale', 'default');
-      //It needs to be set again when linking to another page.
+
+      // It needs to be set again when linking to another page.
     }
     cy.visit(url);
 

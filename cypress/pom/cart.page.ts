@@ -1,5 +1,5 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-import { brand, locale, url } from 'cypress/support/e2e';
+import { brand, url } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -325,8 +325,6 @@ const selectors: SelectorBrandMap = {
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
 };
-
-const variables = Cypress.env() as EnvironmentVariables;
 
 class CartPage implements AbstractPage {
   goto (): void {

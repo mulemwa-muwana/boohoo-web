@@ -28,7 +28,7 @@ describe('Checkout Page', function () {
     const includedLocals: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
 
     if (brand == 'boohoo.com' && includedLocals.includes(locale)) {
-      CheckoutPage.assertions.assertPremierIconIsDisplayed() 
+      CheckoutPage.assertions.assertPremierIconIsDisplayed(); 
       CheckoutPage.assertions.assertPremierSubtitleIsDisplayed(assertionText.PremierText[language]);
 
     } else if (brand == 'nastygal.com' && includedLocals.includes(locale)) {

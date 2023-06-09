@@ -6,7 +6,7 @@ import Addresses from '../../helpers/addresses';
 import billingPage from 'cypress/pom/billing.page';
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
-import { brand, language, locale, viewportWidth } from 'cypress/support/e2e';
+import { brand, language, locale } from 'cypress/support/e2e';
 
 describe('Shipping Page Registered user tests', function () {
 

@@ -17,7 +17,6 @@ describe('Billing page functionality for registered user', function () {
   });
 
   it('Verify that shipping method is displayed', function () {
-    // const shippingType = (brand == "dorothyperkins.com") ? 'shippingMethod4' : 'shippingMethod1';   //The following logic will assert for "dorothyperkins.com" shipping method is "UK Next Day Delivery" and for all other Brands "UK Standard Delivery" shipping methods
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
     if (locale == 'EU') {
       this.skip(); // EU has only Europe and International Delivery

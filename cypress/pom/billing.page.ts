@@ -291,11 +291,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   },

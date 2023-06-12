@@ -31,7 +31,7 @@ class Addresses {
         addressNickname: 'UK2',
       },
       newAddedPrimaryAddress:{
-        firstName: 'ZBoohooNew',
+        firstName: 'BoohooNew',
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',

@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Any methods created need to be added to the Cypress namespace, this is typescript feature.
 
+import { brand, locale } from './e2e';
+
 // Login and preserve tokens. (EXPERIMENTAL, NOT CURRENTLY IN USE).
 Cypress.Commands.add('goOffline', () => {
   return cy.log('Disabling internet connectivity').then(() => {
@@ -46,9 +48,13 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
  */
 Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, folderPath: string, brand: string, paymentMethod: string) => {
 
-  // Artefact path example: cypress/artefacts_frontend/orderCreation/boohoo/creditcard_visa.json
-  cy.log(`Writing artefact file. Brand: '${brand}'. Payment method: '${paymentMethod}'. Artefact: ${JSON.stringify(testArtefact, null, 4)}'`);
-  cy.writeFile(`${folderPath}${brand}/${paymentMethod}.json`, JSON.stringify(testArtefact, null, 4));
+  // Artefact path example: cypress/artefacts_frontend/orderCreation/boohoo/creditcard_visa-2023-06-13_10-38-26.json
+  const dateFormat = require('dateformat');
+  const currentTime = dateFormat(new Date(), 'yyyy-mm-dd_HH-MM-ss'); // Format example: 2023-06-13_10-38-26
+
+  cy.log(`Writing artefact file: ${folderPath}${brand}/${paymentMethod}-${currentTime}.json`);
+  cy.log(`Artefact Content: ${JSON.stringify(testArtefact, null, 4)}'`);
+  cy.writeFile(`${folderPath}${brand}/${paymentMethod}-${currentTime}.json`, JSON.stringify(testArtefact, null, 4));
 });
 
 /**
@@ -69,6 +75,11 @@ Cypress.Commands.overwrite('visit', function (originalFn, url) {
   } else {
     urlPath += '?noredirect=true';
   }
-    
+
+  // Currently EU locale for below brands is accessible with /ie endpoints so replacing /eu with /ie. only differentiating btw IE and EU locale on base of cookies
+  if ((brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || brand == 'karenmillen.com') && locale == 'EU') {
+    urlPath = urlPath.replace('/eu', '/ie');
+  }
+
   return originalFn({ url: urlPath });
 });

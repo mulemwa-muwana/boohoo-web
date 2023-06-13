@@ -9,6 +9,7 @@ import Addresses from './addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import cartPage from '../pom/cart.page';
 import pdpPage from '../pom/pdp.page';
+import { locale } from 'cypress/support/e2e';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -46,7 +47,11 @@ class Navigate {
     // GUEST USER //
     if (userType === 'GuestUser') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
-        if (variables.brand != 'warehousefashion.com' && (variables.locale == 'IE' || variables.locale == 'EU')) {
+
+        if ((isSiteGenesisBrand ) && (variables.locale == 'IE' || variables.locale == 'EU')) {
+          if (variables.brand == 'karenmillen.com' && variables.locale == 'EU') {
+            CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+          }
           CheckoutPage.click.continueAsGuestBtn();
         } else {
           CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
@@ -83,26 +88,28 @@ class Navigate {
         shippingPage.click.addAddressManually();
         shippingPage.actions.adressLine1(primaryAddress.addressLine);
         shippingPage.actions.cityField(primaryAddress.city);
-        if (variables.locale == 'US' || variables.locale == 'AU') {
+        if (variables.locale == 'US' || variables.locale == 'AU' || variables.locale == 'IE') {
           shippingPage.actions.selectState(primaryAddress.county);
         }
         shippingPage.actions.postcodeField(primaryAddress.postcode);
         shippingPage.actions.phoneNumberField(primaryAddress.phone);
-
-        if (isSiteGenesisBrand) {
+              
+        if (isSiteGenesisBrand) { // Covers SiteGenesis Brands
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-          if (variables.brand != 'boohooman.com') {
+          if (variables.brand != 'boohooman.com') { // Covers all SG brands except Boohooman
+            shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
-          } 
+            shippingPage.click.proceedToBilling();
+          } else { // Covers Boohooman
+            shippingPage.click.proceedToBilling();
+            BillingPage.actions.billingEmailField(credentials.guest);
+            BillingPage.actions.billingConfirmEmailField(credentials.guest);
+          }
+        } else { // Covers BLP Brands
           shippingPage.click.proceedToBilling();
-        } else {
-          shippingPage.click.proceedToBilling();
-        }
-        if (variables.brand == 'boohooman.com') {
-          BillingPage.actions.billingEmailField(credentials.guest);
-          BillingPage.actions.billingConfirmEmailField(credentials.guest);
-        }
-        BillingPage.actions.waitPageToLoad(); 
+        }      
+        shippingPage.actions.confirmShippingAddress(); // If asks use suggested shipping address
+		    BillingPage.actions.waitPageToLoad(); 
       });
 
     // REGISTERED USER //
@@ -132,7 +139,7 @@ class Navigate {
       shippingPage.click.proceedToBilling();
       BillingPage.actions.waitPageToLoad();     
     }
-  }
+  } 
 
   toMyAccountPage () {
     HomePage.goto();

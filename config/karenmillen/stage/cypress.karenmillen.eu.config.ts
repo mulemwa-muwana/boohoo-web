@@ -5,7 +5,7 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@stg.karenmillen.com/eu', 
+    url: 'https://storefront:Oreo2022@stg.karenmillen.com/eu',
     sku: 'BKK04926-1',
     fullSku: 'BKK04926-105-18',
     brand: 'karenmillen.com',
@@ -19,7 +19,7 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
-  
+    
   e2e: {
     setupNodeEvents (on) {
       plugins(on);

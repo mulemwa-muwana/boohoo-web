@@ -49,8 +49,8 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
 Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, folderPath: string, brand: string, paymentMethod: string) => {
 
   // Artefact path example: cypress/artefacts_frontend/orderCreation/boohoo/creditcard_visa-2023-06-13_10-38-26.json
-  var dateFormat = require('dateformat');
-  const currentTime = dateFormat(new Date(), "yyyy-mm-dd_HH-MM-ss");  // Format example: 2023-06-13_10-38-26
+  const dateFormat = require('dateformat');
+  const currentTime = dateFormat(new Date(), 'yyyy-mm-dd_HH-MM-ss'); // Format example: 2023-06-13_10-38-26
 
   cy.log(`Writing artefact file: ${folderPath}${brand}/${paymentMethod}-${currentTime}.json`);
   cy.log(`Artefact Content: ${JSON.stringify(testArtefact, null, 4)}'`);

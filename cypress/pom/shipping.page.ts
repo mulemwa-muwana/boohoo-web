@@ -516,7 +516,7 @@ const selectors: SelectorBrandMap = {
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     addressNicknameField: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     dobDay: '#dwfrm_profile_customer_dayofbirth',

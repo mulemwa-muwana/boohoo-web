@@ -72,8 +72,8 @@ describe('Shipping Page Registered user tests', function () {
     }
     cy.wait(3000);
     shippingPage.click.proceedToBilling();
-    if (brand == 'karenmillen.com' && locale == 'EU') {
-      shippingPage.click.proceedToBilling(); // There is one more step to verify address again
+    if (locale == 'IE') {
+      shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
@@ -140,7 +140,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (brand == 'boohoomena.com') {
+      if (brand == 'boohoomena.com' || locale == 'IE' ) {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {
@@ -157,6 +157,9 @@ describe('Shipping Page Registered user tests', function () {
     }
 
     shippingPage.click.proceedToBilling();
+    if (locale == 'IE') {
+      shippingPage.click.proceedToBillingVerification();
+    }
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
   });
@@ -200,7 +203,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (brand == 'boohoomena.com') {
+      if (brand == 'boohoomena.com' || locale == 'IE') {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {
@@ -217,6 +220,9 @@ describe('Shipping Page Registered user tests', function () {
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
+    if (locale == 'IE') {
+      shippingPage.click.proceedToBillingVerification();
+    }
     billingPage.actions.waitPageToLoad();
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
   });

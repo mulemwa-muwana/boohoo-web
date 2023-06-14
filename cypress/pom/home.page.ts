@@ -1,4 +1,5 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { brand, url, locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -221,26 +222,29 @@ const selectors: SelectorBrandMap = {
   }
   
 };
-
-const variables = Cypress.env() as EnvironmentVariables;
 class HomePage implements AbstractPage {
 
   goto () {
-    if (variables.brand == 'nastygal.com') {
+    if (brand == 'nastygal.com') {
 
       // Cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
+    if ((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU') {
+      cy.setCookie('dw_locale', 'default');
 
-    cy.visit(variables.url);
+      // It needs to be set again when linking to another page.
+    }
+    cy.visit(url);
+
   }
 
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
     logInIcon () {
-      const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
-      const loginIconMobile = selectors[variables.brand].loginIconMobile;
-      const loginIcon = selectors[variables.brand].loginIcon;
+      const hamburgerMenu = selectors[brand].hamburgerMenu;
+      const loginIconMobile = selectors[brand].loginIconMobile;
+      const loginIcon = selectors[brand].loginIcon;
       const viewportWidth = Cypress.config('viewportWidth');
 
       // If Mobile Device is used
@@ -255,12 +259,12 @@ class HomePage implements AbstractPage {
     },
     
     forgotPasswordLink () {
-      const resetPassword = selectors[variables.brand].resetPassword;
+      const resetPassword = selectors[brand].resetPassword;
       cy.get(resetPassword).click();
     },
     registrationButton () {
-      const registrationButton = selectors[variables.brand].registrationButton;
-      const registrationButtonMobiles = selectors[variables.brand].registrationButtonMobiles;
+      const registrationButton = selectors[brand].registrationButton;
+      const registrationButtonMobiles = selectors[brand].registrationButtonMobiles;
       const viewportWidth = Cypress.config('viewportWidth');
 
       if (viewportWidth < 1100 ) {
@@ -272,8 +276,8 @@ class HomePage implements AbstractPage {
    
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
-      const searchIcon = selectors[variables.brand].searchIcon;
-      const searchIconMobile = selectors[variables.brand].searchIconMobile;
+      const searchIcon = selectors[brand].searchIcon;
+      const searchIconMobile = selectors[brand].searchIconMobile;
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100 ) {
         cy.get(searchIconMobile).click({force: opts.force});
@@ -282,15 +286,15 @@ class HomePage implements AbstractPage {
       }
     },
     searchField () {
-      const searchField = selectors[variables.brand].searchField;
+      const searchField = selectors[brand].searchField;
       cy.get(searchField).click({force: true});   
     },
     wishListIcon () {
-      const wishListIcon = selectors[variables.brand].wishListIcon;
+      const wishListIcon = selectors[brand].wishListIcon;
       cy.get(wishListIcon).click({force: true});
     },
     cartIcon () {
-      const minicartIcon = selectors[variables.brand].minicartIcon;
+      const minicartIcon = selectors[brand].minicartIcon;
       cy.get(minicartIcon).click({force: true});
     },
 
@@ -298,7 +302,7 @@ class HomePage implements AbstractPage {
 
     selectLinkFromMegaMenu (text: string) {
       const viewportWidth = Cypress.config('viewportWidth');
-      const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
+      const hamburgerMenu = selectors[brand].hamburgerMenu;
       if (viewportWidth < 1100) {             
         cy.get(hamburgerMenu).click({force: true});
       }
@@ -326,7 +330,7 @@ class HomePage implements AbstractPage {
       cy.get('cc-saveAll-startBtn').click(); 
     },
     expandHamburgerMenu () {
-      const hamburgerMenu = selectors[variables.brand].hamburgerMenu;     
+      const hamburgerMenu = selectors[brand].hamburgerMenu;     
       cy.get('body').then($body => {
         if ($body.find(hamburgerMenu).length) {
           cy.get(hamburgerMenu).click({force: true});
@@ -338,12 +342,12 @@ class HomePage implements AbstractPage {
 
   actions = { 
     findItemUsingSKU (SKU: string) {
-      if (variables.brand != 'boohoo.com') {
-        const searchIcon = selectors[variables.brand].searchIcon;
+      if (brand != 'boohoo.com') {
+        const searchIcon = selectors[brand].searchIcon;
         cy.get(searchIcon).click({ force: true });
       }
-      const searchField = selectors[variables.brand].searchField;
-      const searchIcon = selectors[variables.brand].searchIcon;
+      const searchField = selectors[brand].searchField;
+      const searchIcon = selectors[brand].searchIcon;
       cy.get(searchIcon).click({ force: true });
       cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
     },
@@ -365,7 +369,7 @@ class HomePage implements AbstractPage {
 
       // If Mobile Device is used
       const viewportWidth = Cypress.config('viewportWidth');
-      const searchFieldCloseMobile = selectors[variables.brand].searchFieldCloseMobile;
+      const searchFieldCloseMobile = selectors[brand].searchFieldCloseMobile;
       if (viewportWidth < 1100) {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
@@ -381,18 +385,18 @@ class HomePage implements AbstractPage {
 
     // Search assertions
     assertSearchIconPresent () {
-      const searchIcon = selectors[variables.brand].searchField;
-      const searchIconMobile = selectors[variables.brand].searchIconMobile;
+      const searchIcon = selectors[brand].searchField;
+      const searchIconMobile = selectors[brand].searchIconMobile;
       const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100 && variables.brand == 'warehousefashion.com') {
+      if (viewportWidth < 1100 && brand == 'warehousefashion.com') {
         cy.get(searchIconMobile).invoke('show').should('be.visible');
       } else {
         cy.get(searchIcon).invoke('show').should('be.visible');
       }
     },
     assertSearchFieldPresent () {
-      const searchField = selectors[variables.brand].searchField;
-      const searchFieldMobile = selectors[variables.brand].searchFieldMobile;
+      const searchField = selectors[brand].searchField;
+      const searchFieldMobile = selectors[brand].searchFieldMobile;
       const viewportWidth = Cypress.config('viewportWidth');
       if (viewportWidth < 1100 ) {
         cy.get(searchFieldMobile).invoke('show').should('be.visible');
@@ -401,7 +405,7 @@ class HomePage implements AbstractPage {
       }
     },
     assertSearchFieldContains (text: string) {
-      const searchField = selectors[variables.brand].searchField;
+      const searchField = selectors[brand].searchField;
       cy.get(searchField).contains(text);
     },
     assertSearchResultPage (text: string) {
@@ -419,7 +423,7 @@ class HomePage implements AbstractPage {
 
     // Counter (header) assertion
     assertPromotionPresent () {
-      const promotion = selectors[variables.brand].promotion;
+      const promotion = selectors[brand].promotion;
       cy.get(promotion).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
       });
@@ -432,9 +436,9 @@ class HomePage implements AbstractPage {
 
     // Logo
     assertLogoPresent () {
-      const logo = selectors[variables.brand].logo;
+      const logo = selectors[brand].logo;
       const viewportWidth = Cypress.config('viewportWidth');
-      const logoMobile =selectors[variables.brand].logoMobile;
+      const logoMobile =selectors[brand].logoMobile;
       if (viewportWidth < 1100 ) {
         cy.get(logoMobile).should('be.visible');
       } else {
@@ -445,7 +449,7 @@ class HomePage implements AbstractPage {
     // Header icons
     assertWishListIconPresent () {
 
-      const wishListIconMobile = selectors[variables.brand].wishListIconMobile;
+      const wishListIconMobile = selectors[brand].wishListIconMobile;
       const viewportWidth = Cypress.config('viewportWidth');
 
       // If Mobile Device is used
@@ -454,27 +458,27 @@ class HomePage implements AbstractPage {
 
       // If Desktop Device is used
       } else {
-        const wishListIcon = selectors[variables.brand].wishListIcon;
+        const wishListIcon = selectors[brand].wishListIcon;
         cy.get(wishListIcon).should('be.visible'); 
       }
       
     },
     assertCartIconPresent () {
-      const minicartIcon = selectors[variables.brand].minicartIcon;
+      const minicartIcon = selectors[brand].minicartIcon;
       cy.get(minicartIcon).should('be.visible');
     },
     assertAccountIconPresent () {
-      const loginIcon = selectors[variables.brand].loginIcon;
-      const hamburgerMenu = selectors[variables.brand].hamburgerMenu;
-      const loginIconMobile = selectors[variables.brand].loginIconMobile;
-      const loginIconLinkMobile = selectors[variables.brand].loginIconLinkMobile;
+      const loginIcon = selectors[brand].loginIcon;
+      const hamburgerMenu = selectors[brand].hamburgerMenu;
+      const loginIconMobile = selectors[brand].loginIconMobile;
+      const loginIconLinkMobile = selectors[brand].loginIconLinkMobile;
 
       const viewportWidth = Cypress.config('viewportWidth');
 
       // If Mobile Device is used
       if (viewportWidth < 1100) {
         cy.get(hamburgerMenu).click({force: true});
-        if (variables.brand == 'karenmillen.com') {  
+        if (brand == 'karenmillen.com') {  
           cy.get(loginIconLinkMobile).should('be.visible');
         } else {
           cy.get(loginIconMobile).invoke('show').click({force: true});

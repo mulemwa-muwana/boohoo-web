@@ -1,7 +1,6 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import cartPage from './cart.page';
 import { brand, viewportWidth } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
@@ -747,7 +746,6 @@ class ShippingPage implements AbstractPage {
     addPremierToCartFromShippingPage () {
       const addPremierToCartFromShippingPage = selectors[brand].addPremierToCartFromShippingPage;
       const addPremierToCartFromShippingPageMobile = selectors[brand].addPremierToCartFromShippingPageMobile;
-      const addPremierToBagMobile = selectors[brand].addPremierToBagMobile;
       if (viewportWidth < 1100 && isSiteGenesisBrand) {
         cy.get(addPremierToCartFromShippingPageMobile).click({ force: true });
       } else {
@@ -901,7 +899,7 @@ class ShippingPage implements AbstractPage {
     },
     confirmEmailField (email: string) {
       const confirmEmail = selectors[brand].confirmEmail;
-      cy.get(confirmEmail).clear().type(email);
+      cy.get(confirmEmail).clear({force:true}).type(email);
     },
     emptyEmailField () {
       const guestEmailField = selectors[brand].guestEmailField;

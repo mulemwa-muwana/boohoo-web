@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -845,6 +845,11 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
         
+        if (variables.locale == 'EU') {
+          cy.get('#dwfrm_profile_address_country').
+            select(address.country);
+        }
+
         if (variables.brand == 'boohoomena.com') {
           const addressPhoneCode = selectors[variables.brand].addressPhoneCode;
           cy.get(addressPhoneCode).select(address.phone.slice(0, 2));
@@ -870,6 +875,7 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressNicknameField).type('New1');
         }
         cy.get(addressSubmitBtn).click({ force: true }); 
+        
       },
       deleteAddressIfExist () {
         cy.get('.b-cards_grid-item .b-address-name').then($addressCards=>{

@@ -271,7 +271,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantOccasion: '.js-refinement-occasion.refinement-dropdown',
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
-    loadMoreProducts: ':nth-child(6) > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link > .pagination-item-link-text',
+    loadMoreProducts: ':nth-child(5) > .pagination .view-items-perpage-link, :nth-child(6) > .pagination .view-items-perpage-link',
     loadMoreProductsMobile: '.is-mobile.m-pagination-wrapper > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link',
     numberOfPagesTextIsVisible: ':nth-child(6) > .pagination > .pagination-list',
     productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',

@@ -406,7 +406,7 @@ class HomePage implements AbstractPage {
     },
     assertSearchResultPage (text: string) {
       const helper = text.split('-');
-      const finalSku = helper[0].trim().replaceAll('#','');
+      const finalSku = helper[0].trim().replace('#','');
       cy.url().should('include', finalSku);
     },
     assertAutosearchSuggestionsDispayed () {

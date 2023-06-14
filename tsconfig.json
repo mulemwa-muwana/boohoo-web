@@ -6,7 +6,7 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "target": "es5",
-    "lib": ["es5", "dom", "ES2021.String"],
+    "lib": ["es5", "dom"],
     "types": ["cypress", "node", "cypress-iframe"]
   },
   "include": ["**/*.ts"],

@@ -70,7 +70,7 @@ describe('Shipping Page Registered user tests', function () {
     if ((brand == 'oasis-stores.com' || brand == 'coastfashion.com') && isMobileDeviceUsed) {
       shippingPage.actions.addAddressNickname(localeAddress.addressNickname);
     }
-
+    cy.wait(3000);
     shippingPage.click.proceedToBilling();
     if (locale == 'IE') {
       shippingPage.click.proceedToBillingVerification();

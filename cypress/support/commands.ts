@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/method-signature-style */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable  @typescript-eslint/no-var-requires */
 // Any methods created need to be added to the Cypress namespace, this is typescript feature.
 
 import { brand, locale } from './e2e';
@@ -50,7 +51,7 @@ Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, folderPath: 
 
   // Artefact path example: cypress/artefacts_frontend/orderCreation/boohoo/creditcard_visa-2023-06-13_10-38-26.json
   const dateFormat = require('dateformat');
-  const currentTime = dateFormat(new Date(), 'yyyy-mm-dd_HH-MM-ss'); // Format example: 2023-06-13_10-38-26
+  const currentTime: string = dateFormat(new Date(), 'yyyy-mm-dd_HH-MM-ss'); // Format example: 2023-06-13_10-38-26
 
   cy.log(`Writing artefact file: ${folderPath}${brand}/${paymentMethod}-${currentTime}.json`);
   cy.log(`Artefact Content: ${JSON.stringify(testArtefact, null, 4)}'`);

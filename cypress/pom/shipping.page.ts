@@ -1,7 +1,6 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import cartPage from './cart.page';
 import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
@@ -421,7 +420,7 @@ const selectors: SelectorBrandMap = {
   'warehousefashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPage: '.add-to-cart-text',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'WAREHOUSE LIMITLESS',
@@ -747,7 +746,6 @@ class ShippingPage implements AbstractPage {
     addPremierToCartFromShippingPage () {
       const addPremierToCartFromShippingPage = selectors[brand].addPremierToCartFromShippingPage;
       const addPremierToCartFromShippingPageMobile = selectors[brand].addPremierToCartFromShippingPageMobile;
-      const addPremierToBagMobile = selectors[brand].addPremierToBagMobile;
       if (isMobileDeviceUsed && isSiteGenesisBrand) {
         cy.get(addPremierToCartFromShippingPageMobile).click({ force: true });
       } else {
@@ -901,7 +899,7 @@ class ShippingPage implements AbstractPage {
     },
     confirmEmailField (email: string) {
       const confirmEmail = selectors[brand].confirmEmail;
-      cy.get(confirmEmail).clear().type(email);
+      cy.get(confirmEmail).clear({force:true}).type(email);
     },
     emptyEmailField () {
       const guestEmailField = selectors[brand].guestEmailField;

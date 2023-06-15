@@ -9,9 +9,7 @@ import Addresses from './addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import cartPage from '../pom/cart.page';
 import pdpPage from '../pom/pdp.page';
-import { locale } from 'cypress/support/e2e';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { locale, brand, url, sku, language } from 'cypress/support/e2e';
 
 class Navigate {
   
@@ -21,7 +19,7 @@ class Navigate {
 
   toProductDetailsPage () {
     this.toHomePage();
-    HomePage.actions.findItemUsingSKU(variables.sku);
+    HomePage.actions.findItemUsingSKU(sku);
   }
 
   toCartPage () {
@@ -47,11 +45,8 @@ class Navigate {
     // GUEST USER //
     if (userType === 'GuestUser') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
-
-        if ((isSiteGenesisBrand ) && (variables.locale == 'IE' || variables.locale == 'EU')) {
-          if (variables.brand == 'karenmillen.com' && variables.locale == 'EU') {
-            CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
-          }
+        if (brand != 'warehousefashion.com' && (locale == 'IE' || locale == 'EU')) {
+          cy.wait(2000);
           CheckoutPage.click.continueAsGuestBtn();
         } else {
           CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
@@ -64,7 +59,7 @@ class Navigate {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         cy.wait(2000);
         CheckoutPage.actions.userEmailField(credentials.username);
-        if (isSiteGenesisBrand && variables.brand != 'boohooman.com' && variables.brand != 'boohoomena.com') {
+        if (isSiteGenesisBrand && brand != 'boohooman.com' && brand != 'boohoomena.com') {
           CheckoutPage.click.continueAsRegisteredUser();
         }
         cy.wait(1000);
@@ -80,7 +75,7 @@ class Navigate {
 
     // GUEST USER //
     if (userType === 'GuestUser') {
-      const primaryAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+      const primaryAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
       cy.fixture('users').then((credentials: LoginCredentials) => {
         shippingPage.actions.firstNameField(primaryAddress.firstName);
         shippingPage.actions.lastNameField(primaryAddress.lastName);
@@ -88,34 +83,36 @@ class Navigate {
         shippingPage.click.addAddressManually();
         shippingPage.actions.adressLine1(primaryAddress.addressLine);
         shippingPage.actions.cityField(primaryAddress.city);
-        if (variables.locale == 'US' || variables.locale == 'AU' || variables.locale == 'IE') {
+        if (locale == 'US' || locale == 'AU') {
           shippingPage.actions.selectState(primaryAddress.county);
         }
         shippingPage.actions.postcodeField(primaryAddress.postcode);
         shippingPage.actions.phoneNumberField(primaryAddress.phone);
-              
-        if (isSiteGenesisBrand) { // Covers SiteGenesis Brands
-          shippingPage.actions.selectDate('23', assertionText.DOBmonth[variables.language], '2001');
-          if (variables.brand != 'boohooman.com') { // Covers all SG brands except Boohooman
+
+        if (isSiteGenesisBrand) {
+          shippingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
+          if (brand != 'boohooman.com') {
+            shippingPage.actions.confirmEmailField(credentials.guest);
+          } if ((brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'warehousefashion.com') && locale == 'EU') {
+            shippingPage.actions.emptyEmailField();
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
-            shippingPage.click.proceedToBilling();
-          } else { // Covers Boohooman
-            shippingPage.click.proceedToBilling();
-            BillingPage.actions.billingEmailField(credentials.guest);
-            BillingPage.actions.billingConfirmEmailField(credentials.guest);
           }
-        } else { // Covers BLP Brands
           shippingPage.click.proceedToBilling();
-        }      
-        shippingPage.actions.confirmShippingAddress(); // If asks use suggested shipping address
-		    BillingPage.actions.waitPageToLoad(); 
+        } else {
+          shippingPage.click.proceedToBilling();
+        }
+        if (brand == 'boohooman.com') {
+          BillingPage.actions.billingEmailField(credentials.guest);
+          BillingPage.actions.billingConfirmEmailField(credentials.guest);
+        }
+        BillingPage.actions.waitPageToLoad(); 
       });
 
     // REGISTERED USER //
     } else {
-      const primaryAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
-      if (variables.brand != 'boohooman.com') {
+      const primaryAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+      if (brand != 'boohooman.com') {
         shippingPage.click.addNewAddressButton();
       }
       shippingPage.actions.firstNameField(primaryAddress.firstName);
@@ -125,14 +122,14 @@ class Navigate {
       cy.wait(5000);
       shippingPage.click.addAddressManually();  
       shippingPage.actions.adressLine1(primaryAddress.addressLine);
-      if (variables.brand == 'boohooman.com') {
+      if (brand == 'boohooman.com') {
         shippingPage.actions.addressLine2Clear();
       }
       shippingPage.actions.cityField(primaryAddress.city);
-      if (variables.locale == 'US' || variables.locale == 'AU') {
+      if (locale == 'US' || locale == 'AU') {
         shippingPage.actions.selectState(primaryAddress.county);
       }
-      if (variables.brand == 'boohoomena.com') {
+      if (brand == 'boohoomena.com') {
         shippingPage.actions.countyField(primaryAddress.county);
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
@@ -154,7 +151,7 @@ class Navigate {
       this.toCartPage();
     });
 
-    cy.visit(variables.url + '/cart');
+    cy.visit(url + '/cart');
   }
 
   toCheckoutLoginPageUsingSession () {
@@ -162,7 +159,10 @@ class Navigate {
       this.toCheckoutLoginPage();
     });
 
-    cy.visit(variables.url + '/checkout-login');
+    cy.visit(url + '/checkout-login');
+    if ((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU') {
+      cy.setCookie('dw_locale', 'default');
+    }
   }
 
   toShippingPageUsingSession (userType: UserType) {
@@ -171,9 +171,9 @@ class Navigate {
     });
 
     if (isSiteGenesisBrand) {
-      cy.visit(variables.url + '/shipping');
+      cy.visit(url + '/shipping');
     } else {
-      cy.visit(variables.url + '/checkout?step=shipping');
+      cy.visit(url + '/checkout?step=shipping');
     }
   }
 
@@ -183,9 +183,9 @@ class Navigate {
     });
 
     if (isSiteGenesisBrand) {
-      cy.visit(variables.url + '/billing-continue');
+      cy.visit(url + '/billing-continue');
     } else {
-      cy.visit(variables.url + '/checkout?step=billing');
+      cy.visit(url + '/checkout?step=billing');
     }
   }
 
@@ -194,7 +194,7 @@ class Navigate {
       this.toMyAccountPage();
       cy.wait(7000);
     });
-    cy.visit(variables.url + '/myaccount');
+    cy.visit(url + '/myaccount');
   }
 
   clearSessionCookies () {

@@ -1,4 +1,5 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { locale, brand } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -291,11 +292,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   },
@@ -338,11 +339,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    creditCardSecurityCodeIframe: '#component_scheme .adyen-checkout__field__cvc .js-iframe',
+    creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   },
@@ -385,11 +386,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   },
@@ -432,11 +433,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
-    creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    creditCardSecurityCodeIframe: '#component_scheme .adyen-checkout__field__cvc .js-iframe',
+    creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   },
@@ -479,11 +480,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   },
@@ -526,11 +527,11 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   }, 
@@ -573,17 +574,16 @@ const selectors: SelectorBrandMap = {
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: '#encryptedCardNumber',
+    creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
-    creditCardFieldsExpirationDate: '#encryptedExpiryDate',
+    creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
-    creditCardFieldsSecurityCode: '#encryptedSecurityCode',
+    creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
     paynowBtnCC:'#billingSubmitButton',
   }
 };
 
-const variables = Cypress.env() as EnvironmentVariables;
 class BillingPage implements AbstractPage {
   goto (): void {
     cy.visit('/checkout?step=billing');
@@ -591,19 +591,19 @@ class BillingPage implements AbstractPage {
 
   click = {
     changeShippingAddress () {
-      const changeShippingAddress = selectors[variables.brand].changeShippingAddress;
+      const changeShippingAddress = selectors[brand].changeShippingAddress;
       cy.get(changeShippingAddress).click({force: true});
     },
     addNewBilingAddress () {
-      const addNewBillingAddress = selectors[variables.brand].addNewBillingAddress;
+      const addNewBillingAddress = selectors[brand].addNewBillingAddress;
       cy.get(addNewBillingAddress).click({force: true});
     },
     changeShippingMethod () {
-      const changeShippingMethod = selectors[variables.brand].changeShippingMethod;
+      const changeShippingMethod = selectors[brand].changeShippingMethod;
       cy.get(changeShippingMethod).click();
     },
     uncheckShippingCheckbox () {
-      const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
+      const shippingCheckbox = selectors[brand].shippingCheckbox;
       if (isSiteGenesisBrand) {
         cy.get(shippingCheckbox).click({force:true});
       } else {
@@ -611,7 +611,7 @@ class BillingPage implements AbstractPage {
       }
     },
     chooseCC () {
-      const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
+      const paynowBtnCC = selectors[brand].paynowBtnCC;
       cy.get(paynowBtnCC).click({force: true});
     }
    
@@ -623,26 +623,26 @@ class BillingPage implements AbstractPage {
       cy.url().should('include', 'billing');
     },
     selectDate (day: string, month: string, year: string) {
-      const dobDate = selectors[variables.brand].dobDate;
-      const dobMonth = selectors[variables.brand].dobMonth;
-      const dobYear = selectors[variables.brand].dobYear;
+      const dobDate = selectors[brand].dobDate;
+      const dobMonth = selectors[brand].dobMonth;
+      const dobYear = selectors[brand].dobYear;
       cy.get(dobDate).select(day);
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
       cy.get(dobYear).blur();
     },
     selectCreditCard (cardNo: string, cardOwner: string, date: string, code: string) {
-      const paymentMethodCreditCard = selectors[variables.brand].paymentMethodCreditCard;
+      const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
 
-      const creditCardCardNumberIframe = selectors[variables.brand].creditCardCardNumberIframe;
-      const creditCardFieldsCardNumber = selectors[variables.brand].creditCardFieldsCardNumber;
-      const creditCardExpirationDateIframe = selectors[variables.brand].creditCardExpirationDateIframe;
-      const creditCardFieldsExpirationDate = selectors[variables.brand].creditCardFieldsExpirationDate;
-      const creditCardSecurityCodeIframe = selectors[variables.brand].creditCardSecurityCodeIframe;
-      const creditCardFieldsSecurityCode = selectors[variables.brand].creditCardFieldsSecurityCode;
-      const creditCardFieldsCardOwner = selectors[variables.brand].creditCardFieldsCardOwner;
+      const creditCardCardNumberIframe = selectors[brand].creditCardCardNumberIframe;
+      const creditCardFieldsCardNumber = selectors[brand].creditCardFieldsCardNumber;
+      const creditCardExpirationDateIframe = selectors[brand].creditCardExpirationDateIframe;
+      const creditCardFieldsExpirationDate = selectors[brand].creditCardFieldsExpirationDate;
+      const creditCardSecurityCodeIframe = selectors[brand].creditCardSecurityCodeIframe;
+      const creditCardFieldsSecurityCode = selectors[brand].creditCardFieldsSecurityCode;
+      const creditCardFieldsCardOwner = selectors[brand].creditCardFieldsCardOwner;
 
-      const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
+      const paynowBtnCC = selectors[brand].paynowBtnCC;
       cy.get(paymentMethodCreditCard).click({force: true});
       cy.wait(4000);
 
@@ -660,54 +660,54 @@ class BillingPage implements AbstractPage {
 
     },
     emptyEmailField () {
-      const emptyEmailField = selectors[variables.brand].emptyEmailField;
+      const emptyEmailField = selectors[brand].emptyEmailField;
       cy.get(emptyEmailField).clear();
     },
     addNewAddress () {
-      const addNewAddressBtn = selectors[variables.brand].addNewAddressBtn;
-      const addNewAddressField = selectors[variables.brand].addNewAddressField;
-      if (variables.brand == 'boohoo.com') {
+      const addNewAddressBtn = selectors[brand].addNewAddressBtn;
+      const addNewAddressField = selectors[brand].addNewAddressField;
+      if (brand == 'boohoo.com') {
         cy.get(addNewAddressBtn).eq(0).click({force: true});
-      } else if (variables.brand == 'nastygal.com' || variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
+      } else if (brand == 'nastygal.com' || brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com') {
         cy.get(addNewAddressField).click({force: true});
       }    
     },
     enterManuallyAddressDetails () {
-      const enterManually = selectors[variables.brand].enterManually;
+      const enterManually = selectors[brand].enterManually;
       if (!isSiteGenesisBrand) {
         cy.get(enterManually).click({force: true});
       }
     },
     billingFirstNameField (firstName: string) {
-      const billingAddressFirstName = selectors[variables.brand].billingAddressFirstName;
+      const billingAddressFirstName = selectors[brand].billingAddressFirstName;
       cy.get(billingAddressFirstName).clear().type(firstName);
     },
     billingLastNameField (lastName: string) {
-      const billingAddressLastName = selectors[variables.brand].billingAddressLastName;
+      const billingAddressLastName = selectors[brand].billingAddressLastName;
       cy.get(billingAddressLastName).clear().type(lastName);
     },
     billingEmailField (email: string) { // Only for boohooman
-      const emailField = selectors[variables.brand].emailField;
+      const emailField = selectors[brand].emailField;
       cy.get(emailField).clear().type(email);
     },
     billingConfirmEmailField (email: string) { // Only for boohooman
-      const confirmEmailField = selectors[variables.brand].confirmEmailField;
+      const confirmEmailField = selectors[brand].confirmEmailField;
       cy.get(confirmEmailField).clear().type(email);
     },
     addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
-      const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
-      const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
-      const billingPostCode = selectors[variables.brand].billingPostCode;
-      const billingAddressFieldsStateCode = selectors[variables.brand].billingAddressFieldsStateCode;
+      const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
+      const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
+      const billingPostCode = selectors[brand].billingPostCode;
+      const billingAddressFieldsStateCode = selectors[brand].billingAddressFieldsStateCode;
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
-      if (variables.locale == 'AU') {
+      if (locale == 'AU') {
         cy.get(billingAddressFieldsStateCode).select(state);
       } else if (!isSiteGenesisBrand) {
         cy.get(billingAddressFieldsStateCode).clear().type(state);
       }
-      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+      if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
       } else {
         cy.get(billingPostCode).clear().type(postcode);
@@ -715,12 +715,12 @@ class BillingPage implements AbstractPage {
       
     },
     addBillingAddressRegisteredUser (localeAddress: AddressData) {
-      const billingAddressFieldsAddress1 = selectors[variables.brand].billingAddressFieldsAddress1;
-      const billingAddressFieldCity = selectors[variables.brand].billingAddressFieldCity;
-      const billingPostCode = selectors[variables.brand].billingPostCode;
+      const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
+      const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
+      const billingPostCode = selectors[brand].billingPostCode;
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(localeAddress.addressLine);
-      if (variables.brand == 'boohoomena.com') {
+      if (brand == 'boohoomena.com') {
         cy.get(billingAddressFieldCity).select(localeAddress.city);
         cy.get('#dwfrm_billing_billingAddress_addressFields_states_state').select(localeAddress.county);
         cy.get('#dwfrm_phonedetails_phonecode').select(localeAddress.phone.slice(0, 2));
@@ -728,7 +728,7 @@ class BillingPage implements AbstractPage {
       } else {
         cy.get(billingAddressFieldCity).clear().type(localeAddress.city);
       }
-      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+      if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(localeAddress.postcode);
       } else {
         cy.get(billingPostCode).clear().type(localeAddress.postcode);
@@ -736,36 +736,36 @@ class BillingPage implements AbstractPage {
       
     },
     addPromoCode (promo: string) {
-      const couponCode = selectors[variables.brand].couponCode;
+      const couponCode = selectors[brand].couponCode;
       cy.get(couponCode).type(promo);
       cy.get(couponCode).click();
     },
     addGiftCard (giftCard: string) {
-      const addGiftCertificate = selectors[variables.brand].addGiftCertificate;
-      const giftCertCode = selectors[variables.brand].giftCertCode;
-      const addGiftCert = selectors[variables.brand].addGiftCert;
+      const addGiftCertificate = selectors[brand].addGiftCertificate;
+      const giftCertCode = selectors[brand].giftCertCode;
+      const addGiftCert = selectors[brand].addGiftCert;
       cy.get(addGiftCertificate).click();
       cy.get(giftCertCode).should('be.visible').type(giftCard);
       cy.get(addGiftCert).click();
     },
     selectAddressFromBook () {
-      const viewAllBillingAddresses = selectors[variables.brand].viewAllBillingAddresses;
-      const billingAddressFromBook = selectors[variables.brand].billingAddressFromBook;
-      if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+      const viewAllBillingAddresses = selectors[brand].viewAllBillingAddresses;
+      const billingAddressFromBook = selectors[brand].billingAddressFromBook;
+      if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('button[class="b-button m-link m-width_full"]').click({force: true});
-      } else if (variables.brand == 'boohooman.com') {
+      } else if (brand == 'boohooman.com') {
         cy.get(viewAllBillingAddresses).select('New1');
       } else { 
         cy.get(billingAddressFromBook).click({force: true});
       }      
     },
     selectKlarna () {
-      const paymentMethodKlarna = selectors[variables.brand].paymentMethodKlarna;
-      if (variables.locale == 'AU') {
+      const paymentMethodKlarna = selectors[brand].paymentMethodKlarna;
+      if (locale == 'AU') {
         cy.get('#payment-button-KlarnaAU').click({force : true});
-      } else if (variables.locale == 'IE') {
+      } else if (locale == 'IE') {
         cy.get('#payment-button-KlarnaIE').click({force : true});
-      } else if (variables.locale == 'UK') {
+      } else if (locale == 'UK') {
         cy.get(paymentMethodKlarna).click({force:true});
       }
       
@@ -779,8 +779,8 @@ class BillingPage implements AbstractPage {
       });
       
       // Click on PayNow.
-      const klarnaPayNow = selectors[variables.brand].klarnaPayNow;
-      if (variables.locale == 'AU') {
+      const klarnaPayNow = selectors[brand].klarnaPayNow;
+      if (locale == 'AU') {
         cy.get('#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button').click({force:true});
       } else {
         cy.get(klarnaPayNow).click({force:true});
@@ -817,7 +817,7 @@ class BillingPage implements AbstractPage {
         });
         
         body().then($body => {
-          const continueButtonLocator= (variables.brand == 'nastygal.com') ? '[data-cid="btn-primary"]' : 'button[data-testid="pick-plan"]';
+          const continueButtonLocator= (brand == 'nastygal.com') ? '[data-cid="btn-primary"]' : 'button[data-testid="pick-plan"]';
           if ($body.find(continueButtonLocator).length) { // If Continue button on test plan page exists
             body().find(continueButtonLocator).click({force:true});
             cy.wait(5000);
@@ -844,7 +844,7 @@ class BillingPage implements AbstractPage {
           }
         });
 
-        const payButtonLocator = (variables.brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[data-testid="confirm-and-pay"]';
+        const payButtonLocator = (brand == 'nastygal.com') ? 'button[id*="purchase-review-continue-button"]' : '[data-testid="confirm-and-pay"]';
         body().find(payButtonLocator).click({force:true});
         cy.wait(5000);
 
@@ -867,7 +867,7 @@ class BillingPage implements AbstractPage {
     },
 
     selectPayPal () {
-      const paymentMethodPayPal = selectors[variables.brand].paymentMethodPayPal;
+      const paymentMethodPayPal = selectors[brand].paymentMethodPayPal;
       cy.get(paymentMethodPayPal).click();
       cy.wait(2000);
       
@@ -941,18 +941,18 @@ class BillingPage implements AbstractPage {
 
   assertions = {
     assertShippingAddressPresent () {
-      const shippingAddressSection = selectors[variables.brand].shippingAddressSection;
+      const shippingAddressSection = selectors[brand].shippingAddressSection;
       cy.get(shippingAddressSection).should('be.visible').and('not.be.empty');
     },
     assertNewShippingAddress (addressLine: string, city: string, postCode: string, country: string) {
-      const shippingAddressSection = selectors[variables.brand].shippingAddressSection;
+      const shippingAddressSection = selectors[brand].shippingAddressSection;
       cy.get(shippingAddressSection).should('contain.text', addressLine)
         .and('contain.text', city)
         .and('contain.text', postCode)
         .and('contain.text', country);
     },
     assertShippingMethodPresent (shippingMethod: string) {
-      const shippingMethodSelector = selectors[variables.brand].shippingMethodSelector;
+      const shippingMethodSelector = selectors[brand].shippingMethodSelector;
       cy.get(shippingMethodSelector).should('be.visible').and('include.text', shippingMethod.trim());
     },
     assertEmailIsCorrect (email: string) {
@@ -962,27 +962,27 @@ class BillingPage implements AbstractPage {
       cy.get('div[class="b-create_account_form-subscription"]').should('be.visible');
     },
     assertDateFormIsPresent () {
-      const dobForm = selectors[variables.brand].dobForm;
+      const dobForm = selectors[brand].dobForm;
       cy.get(dobForm).should('be.visible');
     },
     assertDateIsSelected (day: string, month: string, year: string) {
-      const dobDate = selectors[variables.brand].dobDate;
-      const dobMonth = selectors[variables.brand].dobMonth;
-      const dobYear = selectors[variables.brand].dobYear;
+      const dobDate = selectors[brand].dobDate;
+      const dobMonth = selectors[brand].dobMonth;
+      const dobYear = selectors[brand].dobYear;
       cy.get(dobDate).should('have.value', day);
       cy.get(dobMonth).should('have.value', month);
       cy.get(dobYear).should('have.value', year);
     },
     assertEmptyEmailFieldError (errorMsg: string) {
-      const emptyEmailFiledError = selectors[variables.brand].emptyEmailFiledError;
+      const emptyEmailFiledError = selectors[brand].emptyEmailFiledError;
       cy.get(emptyEmailFiledError).should('be.visible').and('contain.text', errorMsg);
     },
     assertEmptyDateFieldError (errorMsg: string) {
-      const dateError = selectors[variables.brand].dateError;
+      const dateError = selectors[brand].dateError;
       cy.get(dateError).should('be.visible').and('contain.text', errorMsg);
     },
     assertSameAsShippingIsChecked () {
-      const shippingCheckbox = selectors[variables.brand].shippingCheckbox;
+      const shippingCheckbox = selectors[brand].shippingCheckbox;
       if (isSiteGenesisBrand) {
         cy.get(shippingCheckbox).should('have.class', 'is-checked');
       } else {
@@ -990,11 +990,11 @@ class BillingPage implements AbstractPage {
       }
     },
     assertBillingAddressFormIsPresent () {
-      const billingForm = selectors[variables.brand].billingForm;
+      const billingForm = selectors[brand].billingForm;
       cy.get(billingForm).should('be.visible');
     },
     assertNewBillingAddress (address: string) {
-      const newBillingAddressForm = selectors[variables.brand].newBillingAddressForm;
+      const newBillingAddressForm = selectors[brand].newBillingAddressForm;
       cy.get(newBillingAddressForm).should('be.visible').and('include.text', address);
     },
     assertGiftCertificateFormIsPresent () {
@@ -1003,41 +1003,41 @@ class BillingPage implements AbstractPage {
       }
     },
     assertPaymentMethodCreditCardIsDisplayed () {
-      const paymentMethodCreditCard = selectors[variables.brand].paymentMethodCreditCard;
+      const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
       cy.get(paymentMethodCreditCard).should('be.visible');
     },
     assertPaymentMethodGooglePayIsDisplayed () {
-      const paymentMethodGooglePay = selectors[variables.brand].paymentMethodGooglePay;
+      const paymentMethodGooglePay = selectors[brand].paymentMethodGooglePay;
       cy.get(paymentMethodGooglePay).should('be.visible');
     },
     assertPaymentMethodPayPalIsDisplayed () {
-      const paymentMethodPayPal = selectors[variables.brand].paymentMethodPayPal;
+      const paymentMethodPayPal = selectors[brand].paymentMethodPayPal;
       cy.get(paymentMethodPayPal).should('be.visible');
     },
     assertPaymentMethodKlarnaIsDisplayed () {
       if (isSiteGenesisBrand) {
         cy.get('label[for="is-KlarnaUK"]').should('be.visible');
       }
-      if (!isSiteGenesisBrand && variables.locale == 'AU') {
+      if (!isSiteGenesisBrand && locale == 'AU') {
         cy.get('#payment-button-KlarnaAU').should('be.visible');
-      } else if (!isSiteGenesisBrand && variables.locale == 'IE') {
+      } else if (!isSiteGenesisBrand && locale == 'IE') {
         cy.get('#payment-button-KlarnaIE').should('be.visible');
-      } else if (!isSiteGenesisBrand && variables.locale == 'UK') {
+      } else if (!isSiteGenesisBrand && locale == 'UK') {
         cy.get('#payment-button-KlarnaUK').should('be.visible');
       }
     },
       
     assertPaymentMethodClearPayIsDisplayed () {
-      const paymentMethodClearPay = selectors[variables.brand].paymentMethodClearPay;
-      if (variables.locale == 'AU' || variables.locale == 'US') {
+      const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
+      if (locale == 'AU' || locale == 'US') {
         cy.get('#payment-button-AFTERPAY').should('be.visible');
-      } else if (variables.locale == 'UK') {
+      } else if (locale == 'UK') {
         cy.get(paymentMethodClearPay).should('be.visible');
       }
       
     }, 
     assertPaymentMethodAmazonPayIsDisplayed () {
-      const paymentMethodAmazonPay = selectors[variables.brand].paymentMethodAmazonPay;
+      const paymentMethodAmazonPay = selectors[brand].paymentMethodAmazonPay;
       cy.get(paymentMethodAmazonPay).should('be.visible');
     },
     assertPromoCodeIsApplied (promoName: string) {
@@ -1054,7 +1054,7 @@ class BillingPage implements AbstractPage {
       cy.url().should('include', 'shipping');
     },
     assertOrderConfirmationPageIsDisplayed () {
-      if (variables.brand == 'wallis.co.uk' || variables.brand == 'burton.co.uk' || variables.brand == 'dorothyperkins.com') {
+      if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
@@ -1068,7 +1068,7 @@ class BillingPage implements AbstractPage {
 
     // METHODS ONLY FOR SITE GENESIS BRANDS //
     assertPromoCodeFieldIsDisplayed () {
-      const promoCodeField = selectors[variables.brand].promoCodeField;
+      const promoCodeField = selectors[brand].promoCodeField;
       cy.get(promoCodeField).should('be.visible');
     },
   };

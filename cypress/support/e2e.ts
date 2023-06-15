@@ -13,6 +13,9 @@ const variables = Cypress.env() as EnvironmentVariables;
 export const brand = variables.brand;
 export const locale = variables.locale;
 export const language = variables.language;
+export const sku = variables.sku;
+export const url = variables.url;
+export const fullSku = variables.fullSku;
 
 // Set anything we need to before all tests
 beforeEach(() => {
@@ -22,6 +25,8 @@ beforeEach(() => {
     cy.setCookie('dw_locale', 'en_IE');
   } else if (variables.locale == 'UK') {
     cy.setCookie('dw_locale', 'en_GB');
+  } else if (variables.locale == 'EU') {
+    cy.setCookie('dw_locale', 'default');
   }
   cy.setCookie('OptanonAlertBoxClosed', '');
   cy.setCookie('dw_cookies_accepted', 'A');

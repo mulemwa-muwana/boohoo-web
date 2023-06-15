@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -56,7 +56,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    addressCards:'[data-tau="address_book_item"]',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'nastygal.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -110,7 +112,9 @@ const selectors: SelectorBrandMap = {
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    addressCards:'[data-tau="address_book_item"]',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'dorothyperkins.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -163,7 +167,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    addressCards:'[data-tau="address_book_item"]',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'burton.co.uk': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -216,7 +222,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    addressCards:'[data-tau="address_book_item"]',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'wallis.co.uk': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -269,7 +277,9 @@ const selectors: SelectorBrandMap = {
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    addressCards:'[data-tau="address_book_item"]',
+    addressDeleteButton:'[data-tau="address_book_delete"]',
   },
   'boohooman.com': {
     accountLogout: '.button.simple.js-logout',
@@ -286,7 +296,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#edit-address-form',
@@ -325,7 +335,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: 'a[href*="order-history"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    addressCards:'.account-page-list-inner',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'karenmillen.com': {
     accountLogout: 'a[title="Log out"]',
@@ -342,7 +354,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '.edit-address > .account-page-title',
@@ -361,10 +373,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
     addCardEditForm: '.account-wrapper > .account-page-title',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
@@ -380,7 +392,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    addressCards:'.account-page-list-inner',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'coastfashion.com': {
     accountLogout: 'a[title="Log out"]',
@@ -416,10 +430,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
     addCardEditForm: '#CreditCardForm',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
@@ -436,7 +450,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    addressCards:'.account-page-list-inner',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'warehousefashion.com': {
     accountLogout: 'a[title="Log out"]',
@@ -453,7 +469,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '#addresses',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#edit-address-form',
@@ -472,10 +488,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
     addCardEditForm: '#CreditCardForm',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
@@ -492,7 +508,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    addressCards:'.account-page-list-inner',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'oasis-stores.com': {
     accountLogout: 'a[title="Log out"]',
@@ -509,7 +527,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '.js-verification-address-wrapper',
@@ -528,10 +546,10 @@ const selectors: SelectorBrandMap = {
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
     addCardEditForm: '#CreditCardForm',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
@@ -548,7 +566,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '[title="Order History"]',
-    viewNewestOrderDetails: 'button[class="order-details-btn"]'
+    viewNewestOrderDetails: 'button[class="order-details-btn"]',
+    addressCards:'.account-page-list-inner',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'misspap.com': {
     accountLogout: '.account-logout > .button',
@@ -565,7 +585,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#edit-address-form',
@@ -583,10 +603,10 @@ const selectors: SelectorBrandMap = {
     addressDeleteBtn: '.address-delete-link',
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
@@ -605,6 +625,8 @@ const selectors: SelectorBrandMap = {
     newestOrderHistory: '[data-tau="account_viewOrder"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addCardEditForm: '.account-wrapper',
+    addressCards:'.account-page-list-inner',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   },
   'boohoomena.com': {
     accountLogout: 'a[title="Log out"]',
@@ -621,7 +643,7 @@ const selectors: SelectorBrandMap = {
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
-    addressCardsList: '.account-page-list',
+    addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#primary > .edit-address',
@@ -662,7 +684,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '.account-nav-content [title="Order History"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]'
+    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    addressCards:'.account-page-list-inner',
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
   }
 };
 
@@ -744,10 +768,9 @@ class MyAccountPage implements AbstractPage {
         cy.get(socialAccounts).should('be.visible').click();
       },
       viewOrderBtn () {
-        const viewportWidth = Cypress.config('viewportWidth');
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
         const viewOrderBtnMobile = selectors[variables.brand].viewOrderBtnMobile;
-        if (viewportWidth < 1100) {
+        if (isMobileDeviceUsed) {
           cy.get(viewOrderBtnMobile).click({force: true});
         } else {
           if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
@@ -821,6 +844,11 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
         
+        if (variables.locale == 'EU') {
+          cy.get('#dwfrm_profile_address_country').
+            select(address.country);
+        }
+
         if (variables.brand == 'boohoomena.com') {
           const addressPhoneCode = selectors[variables.brand].addressPhoneCode;
           cy.get(addressPhoneCode).select(address.phone.slice(0, 2));
@@ -846,6 +874,7 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressNicknameField).type('New1');
         }
         cy.get(addressSubmitBtn).click({ force: true }); 
+        
       },
       deleteAddressIfExist () {
         cy.get('.b-cards_grid-item .b-address-name').then($addressCards=>{
@@ -860,8 +889,11 @@ class MyAccountPage implements AbstractPage {
         });
       },
       deleteAddress () {
-        const addressDeleteBtn = selectors[variables.brand].addressDeleteBtn;
-        cy.get(addressDeleteBtn).last().click({ force: true }); //  Target Last address which added now
+        const addressCards = selectors[variables.brand].addressCards;
+        const addressDeleteButton = selectors[variables.brand].addressDeleteButton;
+        cy.get(addressCards).contains('Boohoo').then(ele=>{
+          cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true}); 
+        });
         if (!isSiteGenesisBrand) {
           cy.wait(1000);
           cy.contains('button', 'Yes, delete').click({ force: true });
@@ -960,7 +992,9 @@ class MyAccountPage implements AbstractPage {
       assertAddressNotPresent (addressName: string) {
         const addressCardsList = selectors[variables.brand].addressCardsList;
         cy.wait(5000);
-        cy.get(addressCardsList).last().should('not.contain',addressName);
+        cy.get(addressCardsList).each(($el)=>{
+          cy.wrap($el).should('be.visible').and('not.contain', addressName);
+        });
       },
       assertCardDetails (cardEnd: string) {
         cy.contains(cardEnd).should('be.visible');

@@ -21,7 +21,7 @@ export default defineConfig({
   screenshotOnRunFailure: true,
 
   e2e: {
-    setupNodeEvents (on, config) {
+    setupNodeEvents (on) {
       plugins(on);
     },
     excludeSpecPattern: [

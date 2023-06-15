@@ -1,4 +1,5 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
+import { brand, url } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -232,7 +233,7 @@ const selectors: SelectorBrandMap = {
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div#cart-limitless',
-    addPremierToCart: '#add-to-cart',
+    addPremierToCart:'.js-cmp-PremierAddToCartBtn',
     PayPalCTA: '.cart-action-checkout .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -325,25 +326,23 @@ const selectors: SelectorBrandMap = {
   },
 };
 
-const variables = Cypress.env() as EnvironmentVariables;
-
 class CartPage implements AbstractPage {
   goto (): void {
-    cy.visit(variables.url + '/cart');
+    cy.visit(url + '/cart');
   }
 
   click = {
     clearCart () {
-      const clearCart = selectors[variables.brand].clearCart;
-      cy.get(clearCart).each(($el) => {
-        cy.wrap($el).click({force: true});
+      const clearCart = selectors[brand].clearCart;
+      cy.get(clearCart).each(() => {
+        cy.get(clearCart).eq(0).click({force: true}); // In case of multiple item After Deleting an item, page refreshes and previous cy.wrap() embeded element detached from DOM
         cy.wait(7000);
       });
     },
     removePremierFromCart () {
 
       // Remove everything except the first item. If there are 3 items in cart, items 2 and 3 will be removed
-      const clearCart = selectors[variables.brand].clearCart;
+      const clearCart = selectors[brand].clearCart;
       cy.get(clearCart).each(($el, index) => {
         if (index > 0) {
           cy.wrap($el).click({force: true});
@@ -351,12 +350,11 @@ class CartPage implements AbstractPage {
       });
     },
     proceedToCheckout () {
-      const proceedToCheckout = selectors[variables.brand].proceedToCheckout;
-      const checkoutBtnForMobile = selectors[variables.brand].checkoutBtnForMobile;
+      const proceedToCheckout = selectors[brand].proceedToCheckout;
+      const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
 
       // If Mobile Device is used
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(checkoutBtnForMobile).invoke('show').click({force: true});
 
       // If Desktop Device is used
@@ -368,11 +366,11 @@ class CartPage implements AbstractPage {
 
   actions = {
     updateQuantity () {
-      const editQuantity = selectors[variables.brand].editQuantity;
+      const editQuantity = selectors[brand].editQuantity;
       cy.get(editQuantity).should('be.visible').click();
     },
     openPayPalSandbox () {
-      const payPalCTA = selectors[variables.brand].PayPalCTA;
+      const payPalCTA = selectors[brand].PayPalCTA;
       cy.get(payPalCTA).click({force: true});
       cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
       
@@ -398,28 +396,27 @@ class CartPage implements AbstractPage {
       cy.get('#OffAmazonPaymentsWidgets0').invoke('removeAttr', 'target').click();
     },
     editCartQuantity (quantity: string) {
-      const editQuantity = selectors[variables.brand].editQuantity;
-      const setQuantity = selectors[variables.brand].setQuantity;
-      const updateQuantity = selectors[variables.brand].updateQuantity;
+      const editQuantity = selectors[brand].editQuantity;
+      const setQuantity = selectors[brand].setQuantity;
+      const updateQuantity = selectors[brand].updateQuantity;
       cy.get(editQuantity).eq(0).click({force: true});
       cy.get(setQuantity).eq(0).select(quantity,{force: true});
       
       cy.intercept(/cart/).as('updateCartProduct');
       cy.get(updateQuantity).eq(0).click({force: true});
-      if (variables.brand!='nastygal.com'&& variables.brand != 'boohoo.com') {
+      if (brand!='nastygal.com'&& brand != 'boohoo.com') {
         cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
       }
     },
 
     editCartQuantitySiteGenesis (quantity: string) {
-      const editQuantity = selectors[variables.brand].editQuantity;
-      const editQuantityMobile = selectors[variables.brand].editQuantityMobile;
-      const editDetailsMobile = selectors[variables.brand].editDetailsMobile;
-      const updateBtnMobile = selectors[variables.brand].updateBtnMobile;
+      const editQuantity = selectors[brand].editQuantity;
+      const editQuantityMobile = selectors[brand].editQuantityMobile;
+      const editDetailsMobile = selectors[brand].editDetailsMobile;
+      const updateBtnMobile = selectors[brand].updateBtnMobile;
 
       // If Mobile Device is used
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth <1100 ) {
+      if (isMobileDeviceUsed) {
         cy.get(editDetailsMobile).click({force: true});
         cy.wait(5000);
         cy.get(editQuantityMobile).clear({force: true}).type(quantity);
@@ -439,31 +436,31 @@ class CartPage implements AbstractPage {
 
   assertions = {
     assertTableWithProductIsVisible () {
-      const productsTable = selectors[variables.brand].productsTable;
+      const productsTable = selectors[brand].productsTable;
       cy.get(productsTable).should('be.visible');
     },
     assertProductImageIsDisplayed () {
-      const productImage = selectors[variables.brand].productImage;
+      const productImage = selectors[brand].productImage;
       cy.get(productImage).then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
     assertProductTitleIsVisible () {
-      const productName = selectors[variables.brand].productName;
+      const productName = selectors[brand].productName;
       cy.get(productName).should('not.be.empty');
     },
     assertProductDetailsAreVisible () {
-      const productDetails = selectors[variables.brand].productDetails;
+      const productDetails = selectors[brand].productDetails;
       cy.get(productDetails).should('be.visible');
     },
     assertPriceAndSubtotalAreVisible () {
-      const productPrice = selectors[variables.brand].productPrice;
-      const productPriceMobile = selectors[variables.brand].productPriceMobile;
-      const subtotal = selectors[variables.brand].subtotal;
-      const viewportWidth = Cypress.config('viewportWidth');
+
+      const productPrice = selectors[brand].productPrice;
+      const productPriceMobile = selectors[brand].productPriceMobile;
+      const subtotal = selectors[brand].subtotal;
 
       // If Mobile Device is used
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         
         cy.get(productPriceMobile).should('be.visible');
        
@@ -475,7 +472,7 @@ class CartPage implements AbstractPage {
       }
     },
     assertQuantityIsDisplayed (quantity: string) {
-      const cartQuantity = selectors[variables.brand].cartQuantity;
+      const cartQuantity = selectors[brand].cartQuantity;
       if (isSiteGenesisBrand) {
         cy.get(cartQuantity).should('have.value', quantity);
       } else {
@@ -483,32 +480,31 @@ class CartPage implements AbstractPage {
       }
     },
     assertCartIsEmpty () {
-      const emptyCartTitle = selectors[variables.brand].emptyCartTitle;
-      const emptyCartTitleMobile = selectors[variables.brand].emptyCartTitleMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+      const emptyCartTitle = selectors[brand].emptyCartTitle;
+      const emptyCartTitleMobile = selectors[brand].emptyCartTitleMobile;
+      if (isMobileDeviceUsed) {
         cy.get(emptyCartTitleMobile).should('be.visible');
       } else {
         cy.get(emptyCartTitle).should('be.visible');
       }
     },
     assertPremierSlotsAreVisible () {
-      const premierBlock = selectors[variables.brand].premierBlock;
-      const addPremierToCart = selectors[variables.brand].addPremierToCart;
+      const premierBlock = selectors[brand].premierBlock;
+      const addPremierToCart = selectors[brand].addPremierToCart;
 
       cy.get(premierBlock).should('be.visible');
       cy.get(addPremierToCart).should('be.visible');
     },
     assertPayPalCTAisVisible () {
-      const PayPalCTA = selectors[variables.brand].PayPalCTA;
+      const PayPalCTA = selectors[brand].PayPalCTA;
       cy.get(PayPalCTA).should('be.visible');
     },
     assertKlarnaCTAisVisible () {
-      const KlarnaCTA = selectors[variables.brand].KlarnaCTA;
+      const KlarnaCTA = selectors[brand].KlarnaCTA;
       cy.get(KlarnaCTA).should('be.visible');
     },
     assertAmazonPayCTAisVisible () {
-      const AmazonCTA = selectors[variables.brand].AmazonCTA;
+      const AmazonCTA = selectors[brand].AmazonCTA;
       cy.get(AmazonCTA).should('be.visible');
     }
   };

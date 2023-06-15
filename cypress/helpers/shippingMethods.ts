@@ -1,4 +1,4 @@
-type ShippingMap = Record<string, Record<'shippingMethod1' | 'shippingMethod2' | 'shippingMethod3', ShippingData>>
+type ShippingMap = Record<string, Record<'shippingMethod1' | 'shippingMethod2' | 'shippingMethod3' | 'shippingMethod4', ShippingData>>
 
 class ShippingMethod {
   
@@ -12,6 +12,9 @@ class ShippingMethod {
       },
       shippingMethod3: {
         shippingMethodName: 'UkDPD'
+      },
+      shippingMethod4: {
+        shippingMethodName: 'Next Day'
       }
     },
     US: {
@@ -24,6 +27,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: ''
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
     EU: {
       shippingMethod1: {
@@ -35,6 +41,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: 'Europe and International Delivery'
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
     AU: {
       shippingMethod1: {
@@ -46,6 +55,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: 'Australia Saver Shipping'
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
     NZ: {
       shippingMethod1: {
@@ -55,6 +67,9 @@ class ShippingMethod {
         shippingMethodName: 'Express'
       },
       shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
         shippingMethodName: ''
       }
     },
@@ -68,6 +83,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: ''
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
     NL: {
       shippingMethod1: {
@@ -77,6 +95,9 @@ class ShippingMethod {
         shippingMethodName: 'Netherlands Express'
       },
       shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
         shippingMethodName: ''
       }
     },
@@ -90,6 +111,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: ''
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
     FR: {
       shippingMethod1: {
@@ -99,6 +123,9 @@ class ShippingMethod {
         shippingMethodName: 'Livraison standard France'
       },
       shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
         shippingMethodName: ''
       }
     },
@@ -112,6 +139,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: 'Republic of Ireland Next Day Delivery joanna test'
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
     DK: {
       shippingMethod1: {
@@ -121,6 +151,9 @@ class ShippingMethod {
         shippingMethodName: 'Denmark Express'
       },
       shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
         shippingMethodName: ''
       }
     },
@@ -132,6 +165,9 @@ class ShippingMethod {
         shippingMethodName: ''
       },
       shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
         shippingMethodName: ''
       }
     },
@@ -145,6 +181,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: ''
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
     SE: {
       shippingMethod1: {
@@ -155,6 +194,9 @@ class ShippingMethod {
       },
       shippingMethod3: {
         shippingMethodName: 'Super Saver Delivery Storbritannien'
+      },
+      shippingMethod4: {
+        shippingMethodName: ''
       }
     },
     IT: {
@@ -166,6 +208,9 @@ class ShippingMethod {
       },
       shippingMethod3: {
         shippingMethodName: ''
+      },
+      shippingMethod4: {
+        shippingMethodName: ''
       }
     },
     ES: {
@@ -176,6 +221,9 @@ class ShippingMethod {
         shippingMethodName: 'Express a España'
       },
       shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
         shippingMethodName: ''
       }
     },
@@ -189,6 +237,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: 'משלוח אקספרס לישראל'
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
     SA: {
       shippingMethod1: {
@@ -200,6 +251,9 @@ class ShippingMethod {
       shippingMethod3: {
         shippingMethodName: ''
       },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
     },
   };
 
@@ -210,7 +264,7 @@ class ShippingMethod {
    * @returns AddressData type with all the details for an address.
    */
 
-  getShippingMethodByLocale (locale: string, type: 'shippingMethod1' | 'shippingMethod2'): ShippingData {
+  getShippingMethodByLocale (locale: string, type: 'shippingMethod1' | 'shippingMethod2' | 'shippingMethod4'): ShippingData {
     if (typeof this.shippingMap[locale] === 'undefined') throw new Error('Shipping method could not be found with locale ' + locale);
     return this.shippingMap[locale][type] as ShippingData;
   }

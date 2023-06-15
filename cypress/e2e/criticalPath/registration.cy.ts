@@ -5,8 +5,7 @@ import { isSiteGenesisBrand } from '../../helpers/common';
 import HomePage from '../../pom/home.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import RegistrationPage from '../../pom/registration.page';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { language } from 'cypress/support/e2e';
 
 describe('Verify Registration feature', function () {
   beforeEach(() => {
@@ -30,7 +29,7 @@ describe('Verify Registration feature', function () {
       }
       RegistrationPage.actions.enterNewUserData(credentials.password, credentials.password, credentials.firstname, credentials.lastname);
     
-      RegistrationPage.actions.chooseDate('23', assertionText.DOBmonth[variables.language], '1989');
+      RegistrationPage.actions.chooseDate('23', assertionText.DOBmonth[language], '1989');
       RegistrationPage.click.chooseEmailConsent();
       RegistrationPage.click.submitButton();
       RegistrationPage.assertions.assertMyAcountPageIsOpened();
@@ -46,7 +45,7 @@ describe('Verify Registration feature', function () {
       }
       RegistrationPage.actions.enterNewUserData(credentials.password, credentials.password, credentials.firstname, credentials.lastname);
     });
-    RegistrationPage.actions.chooseDate('23', assertionText.DOBmonth[variables.language], '1989');
+    RegistrationPage.actions.chooseDate('23', assertionText.DOBmonth[language], '1989');
     RegistrationPage.click.chooseEmailConsent();
     RegistrationPage.click.submitButton();
     RegistrationPage.assertions.assertErrorMessageExistingEmail();

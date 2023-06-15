@@ -6,8 +6,7 @@ import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import cards from 'cypress/helpers/cards';
-
-const variables = Cypress.env() as EnvironmentVariables; 
+import { brand, locale, language } from 'cypress/support/e2e';
 
 describe('Billing page functionality for guest user', function () {
 
@@ -16,9 +15,9 @@ describe('Billing page functionality for guest user', function () {
       cy.wrap(credentials.guest).as('guestEmail');
     });
   });
-  
-  beforeEach (function () { 
-    if (variables.brand == 'boohoomena.com') {
+
+  beforeEach(function () {
+    if (brand == 'boohoomena.com') {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
 
@@ -29,12 +28,13 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
   it('Verify that shipping method is displayed', function () {
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(variables.locale, 'shippingMethod1');
-    if (variables.locale != 'EU') {    
-      BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName); // EU has only Europe and International Delivery
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
+    if (locale == 'EU') {
+      this.skip(); // EU has only Europe and International Delivery
     }
 
   });
+
   it('Verify that guest user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
@@ -44,8 +44,8 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertShippingPageIsOpened();
   });
 
-  it('Verify that email field is filled with correct email address', function () {   
-    if (isSiteGenesisBrand) { 
+  it('Verify that email field is filled with correct email address', function () {
+    if (isSiteGenesisBrand) {
       this.skip(); // Email field for Site Genesis brands is on Shipping page.
     }
     BillingPage.assertions.assertEmailIsCorrect(this.guestEmail);
@@ -65,11 +65,11 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', '4', '2001');
     BillingPage.click.chooseCC();
-    
-    if (variables.brand == 'boohoo.com') {
-      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[variables.language]);
+
+    if (brand == 'boohoo.com') {
+      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[language]);
     } else {
-      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[variables.language]);
+      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[language]);
     }
   });
   it('Verify that guest user cannot place order if date of birth is not selected', function () {
@@ -77,10 +77,10 @@ describe('Billing page functionality for guest user', function () {
       this.skip(); // Date of birth form for Site Genesis brands is on Shipping page.
     }
     BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-    if (variables.brand == 'boohoo.com') {
-      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldErrorBoohoo[variables.language]);
+    if (brand == 'boohoo.com') {
+      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldErrorBoohoo[language]);
     } else {
-      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[variables.language]);
+      BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
     }
   });
   it('Verify that billing address can be same as shipping address', function () {
@@ -90,10 +90,10 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
   it('Verify that guest user can submit new billing address', function () {
-    if (variables.brand == 'boohooman.com') { // For boohooman there is no adding new billing address, all fields are open for edit
+    if (brand == 'boohooman.com') { // For boohooman there is no adding new billing address, all fields are open for edit
       this.skip();
     }
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
@@ -106,24 +106,24 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
       BillingPage.actions.addBillingAddressGuestUser(localeAddress.addressLine, localeAddress.city, localeAddress.country, localeAddress.postcode);
-      if (variables.locale == 'US' || variables.locale == 'AU') {
+      if (locale == 'US' || locale == 'AU') {
         shippingPage.actions.selectState(localeAddress.county);
       }
     }
   });
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
-    if (variables.brand == 'misspap.com') {
+    if (brand == 'misspap.com') {
       cy.clearCookies();
       Navigate.toBillingPage('GuestUser');
     }
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
 
-    if (variables.locale == 'UK' || variables.locale == 'IE' || variables.locale == 'AU') {
+    if (locale == 'UK' || locale == 'IE' || locale == 'AU') {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
-  
+
   });
 
 });

@@ -10,6 +10,7 @@ const selectors: SelectorBrandMap = {
     continueAsRegisteredUser: 'button[data-tau="login_submit"]',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.b-ngvip-inner p.b-ngvip-title:eq(1)',
+    premierIconIsDisplayed:'.i-icon-premierLogoShort',
     premierSubtitle:'p.b-ngvip-subtitle:eq(1)'
   },
   'nastygal.com': {
@@ -55,9 +56,9 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
-    passwordField:'[id^="dwfrm_login_password"]',
-    continueAsGuestBt:'.login-page-button',
-    continueAsRegisteredUser: '.login-page-button',
+    passwordField:'input[id^=dwfrm_login_password]',
+    continueAsGuestBt:'button[value^="Continue as"]',
+    continueAsRegisteredUser: '.js-login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
@@ -65,8 +66,8 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
-    passwordField:'[id^="dwfrm_login_password"]',
-    continueAsGuestBt:'.login-page-button',
+    passwordField:'input[type="password"]',
+    continueAsGuestBt:'button[name="dwfrm_login_unregistered"]',
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
@@ -75,7 +76,7 @@ const selectors: SelectorBrandMap = {
   'warehousefashion.com': {
     userEmailField: '[id^="dwfrm_login_username"]',
     passwordField:'input[type=password]',
-    continueAsGuestBt:'#dwfrm_login .login-page-button',
+    continueAsGuestBt:'[name="dwfrm_login_unregistered"]',
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
@@ -84,9 +85,9 @@ const selectors: SelectorBrandMap = {
   },
   'oasis-stores.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
-    userEmailField: '[id^="dwfrm_login_username"]',
+    userEmailField: 'input[id^="dwfrm_login_username"]',
     passwordField:'input[type=password]',
-    continueAsGuestBt:'#dwfrm_login .login-page-button',
+    continueAsGuestBt:'button[name="dwfrm_login_unregistered"]',
     continueAsRegisteredUser: '#dwfrm_login .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
@@ -96,7 +97,7 @@ const selectors: SelectorBrandMap = {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
     passwordField:'[id^="dwfrm_login_password"]',
-    continueAsGuestBt:'.login-page-button',
+    continueAsGuestBt:'[name="dwfrm_login_unregistered"]',
     continueAsRegisteredUser: '.login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
@@ -173,6 +174,10 @@ class CheckoutPage implements AbstractPage {
     assertGuestCheckoutEmail () {
       const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail;
       cy.get(guestCheckoutEmail).should('be.visible');
+    },
+    assertPremierIconIsDisplayed () {
+      const premierIconIsDisplayed = selectors[variables.brand].premierIconIsDisplayed;
+      cy.get(premierIconIsDisplayed).should('be.visible');
     },
     assertPremierTitleIsDisplayed (premierTitleText: string) {
       const premierIsDisplayed = selectors[variables.brand].premierIsDisplayed;

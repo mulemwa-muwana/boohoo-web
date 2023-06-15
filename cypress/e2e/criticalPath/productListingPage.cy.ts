@@ -2,38 +2,37 @@ import plpPage from '../../pom/plp.page';
 import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
-
-const variables = Cypress.env() as EnvironmentVariables;
+import { brand, language, locale } from 'cypress/support/e2e';
 
 describe('Product Listing Page tests', function () {
 
   beforeEach(() => {
     HomePage.goto();
     HomePage.actions.closeNastygalPopup();
-    if (variables.brand == 'nastygal.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
-      HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[variables.language]);
-    } else if (variables.brand == 'boohoo.com' || variables.brand == 'boohooman.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
-    } else if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[variables.language]);
-    } else if (variables.brand == 'dorothyperkins.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewInDP[variables.language]);
+    if (brand == 'nastygal.com') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
+      HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
+    } else if (brand == 'boohoo.com' || brand == 'boohooman.com') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
+    } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'wallis.co.uk') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+    } else if (brand == 'dorothyperkins.com') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewInDP[language]);
     } else {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[variables.language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[variables.language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
     }
   });
 
   it('Verify that plp page opens', () => {
     cy.wait(3000);
-    if (variables.brand == 'coastfashion.com' || variables.brand == 'oasis-stores.com' || variables.brand == 'karenmillen.com') {
-      plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[variables.language]);
+    if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'wallis.co.uk') {
+      plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[language]);
     } else {
-      plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[variables.language]);
+      plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[language]);
     }
   });
   it('Verify the "Load More" button is located at the bottom of the page and functions correctly.', () => {
@@ -47,16 +46,16 @@ describe('Product Listing Page tests', function () {
       plpPage.assertions.assertProductPriceIsDispayed();
     });
     it('Verify add to wishlist is displayed', () => {
-      if (variables.brand == 'boohoo.com') {
+      if (brand == 'boohoo.com') {
         plpPage.click.wishlistOnPlpImage();
         plpPage.assertions.assertItemIsAddedToWishlist();
-      } else if (variables.brand == 'dorothyperkins.com' || variables.brand == 'nastygal.com') {
+      } else if (brand == 'dorothyperkins.com' || brand == 'nastygal.com') {
         plpPage.click.wishlistOnPlpImage();
         plpPage.assertions.assertItemIsAddedToWishlistColorChange();
       }
     });
     it('Verify that product color is dispayed', function () {
-      if (variables.brand == 'boohooman.com') { // No product colors on Plp page for this brand
+      if (brand == 'boohooman.com') { // No product colors on Plp page for this brand
         this.skip();
       }
       plpPage.assertions.assertProductColorIsDisplayedOnPLP();
@@ -67,9 +66,9 @@ describe('Product Listing Page tests', function () {
     
     it('Verify category refinement is applied', () => {
       plpPage.actions.setupChangeIntercept(/category/);
-      plpPage.click.selectRefinementVariantCategory(productVariations.productAccessories[variables.language]);
+      plpPage.click.selectRefinementVariantCategory(productVariations.productAccessories[language]);
       plpPage.actions.waitForPageRefinementUpdate();
-      plpPage.assertions.assertProductVariantIsApplied('category', productVariations.productAccessories[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied('category', productVariations.productAccessories[language]);
     });
 
     it('Verify size refinement is applied', () => {
@@ -81,25 +80,25 @@ describe('Product Listing Page tests', function () {
     
     it('Verify style refinement is applied', function () {
       const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU', 'US', 'CA'];
-      if ((variables.brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(variables.locale)) || (variables.brand =='misspap.com')) {
+      if ((brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(locale)) || (brand =='misspap.com')) {
         this.skip();
       } 
       plpPage.actions.setupChangeIntercept(/style/);
-      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[variables.language]);
+      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[language]);
       plpPage.actions.waitForPageRefinementUpdate();
-      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[variables.language]);   
+      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   
     });
     
     it('Verify color refinement is applied', () => {
       plpPage.actions.setupChangeIntercept(/color/);
-      plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[variables.language]);
+      plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[language]);
       plpPage.actions.waitForPageRefinementUpdate();
-      plpPage.assertions.assertProductVariantIsApplied('color', productVariations.ColorBlack[variables.language]);
+      plpPage.assertions.assertProductVariantIsApplied('color', productVariations.ColorBlack[language]);
     });
     
     it('Verify price refinement is applied', function () {
       const brandsExludedPriceRefinement: Array<GroupBrands> = ['nastygal.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
-      if (brandsExludedPriceRefinement.includes(variables.brand)) {
+      if (brandsExludedPriceRefinement.includes(brand)) {
         this.skip();
       }
       plpPage.actions.setupChangeIntercept(/pmin=/);
@@ -109,7 +108,7 @@ describe('Product Listing Page tests', function () {
     });
 
     it('Verify shop by fit refinement is applied', function () {
-      if (variables.brand == 'burton.co.uk' || variables.brand == 'boohooman.com' || variables.brand == 'misspap.com') {
+      if (brand == 'burton.co.uk' || brand == 'boohooman.com' || brand == 'misspap.com') {
         this.skip();
       }  
       plpPage.actions.setupChangeIntercept(/classification/);
@@ -120,7 +119,7 @@ describe('Product Listing Page tests', function () {
 
     it('Verify occasion refinement is applied', function () {
       const brandsExcludedOccasion: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk'];
-      if (brandsExcludedOccasion.includes(variables.brand)) {
+      if (brandsExcludedOccasion.includes(brand)) {
         this.skip();
       }
       plpPage.actions.setupChangeIntercept(/occasion/);

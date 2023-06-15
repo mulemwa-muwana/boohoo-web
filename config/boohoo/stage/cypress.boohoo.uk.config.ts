@@ -5,7 +5,7 @@ export default defineConfig({
   projectId: 'i6d3n8',
   env: {
     url: 'https://storefront:Oreo2022@uk-dwstg.boohoo.com/',
-    sku: '##TZZ97642',
+    sku: '#TZZ97642',
     fullSku: 'TZZ97642-105-16',
     brand: 'boohoo.com',
     locale: 'UK',

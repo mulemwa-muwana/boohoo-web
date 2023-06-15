@@ -20,20 +20,6 @@ describe('Home Page', function () {
 
   });
 
-  /* Describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
-    it('No login', () => {
-      HomePage.click.logInIcon();
-      HomePage.assertions.assertUserIsNotLoggedIn(assertionText.assertUserIsNotLoggedIn[language]);
-    });
-    it('After login', () => {
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        LoginPage.goto();
-        LoginPage.actions.login(credentials.username, credentials.password);
-        HomePage.goto();
-        HomePage.assertions.assertUserPanelTitle(assertionText.assertUsername[language]);
-      });
-    }); */
-       
   // HEADER
   describe('Header verifications', () => {
     it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {

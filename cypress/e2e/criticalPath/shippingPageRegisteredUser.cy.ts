@@ -4,9 +4,9 @@ import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
 import billingPage from 'cypress/pom/billing.page';
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
-import { brand, language, locale, viewportWidth } from 'cypress/support/e2e';
+import { brand, language, locale } from 'cypress/support/e2e';
 
 describe('Shipping Page Registered user tests', function () {
 
@@ -67,10 +67,10 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if ((brand == 'oasis-stores.com' || brand == 'coastfashion.com') && viewportWidth < 1100) {
+    if ((brand == 'oasis-stores.com' || brand == 'coastfashion.com') && isMobileDeviceUsed) {
       shippingPage.actions.addAddressNickname(localeAddress.addressNickname);
     }
-
+    cy.wait(3000);
     shippingPage.click.proceedToBilling();
     if (locale == 'IE') {
       shippingPage.click.proceedToBillingVerification();

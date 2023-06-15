@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import { RouteMatcher } from 'cypress/types/net-stubbing';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
@@ -271,7 +271,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantOccasion: '.js-refinement-occasion.refinement-dropdown',
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
-    loadMoreProducts: ':nth-child(6) > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link > .pagination-item-link-text',
+    loadMoreProducts: ':nth-child(5) > .pagination .view-items-perpage-link, :nth-child(6) > .pagination .view-items-perpage-link',
     loadMoreProductsMobile: '.is-mobile.m-pagination-wrapper > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link',
     numberOfPagesTextIsVisible: ':nth-child(6) > .pagination > .pagination-list',
     productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
@@ -569,8 +569,8 @@ class PlpPage implements AbstractPage {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       const loadMoreProductsMobile = selectors[variables.brand].loadMoreProductsMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+
+      if (isMobileDeviceUsed) {
         cy.get(loadMoreProductsMobile).invoke('show').should('be.visible');
       } else {
         cy.get(loadMoreProducts).invoke('show').should('be.visible');

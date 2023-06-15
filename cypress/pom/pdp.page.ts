@@ -1,7 +1,7 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { brand, locale,fullSku, viewportWidth } from 'cypress/support/e2e';
+import { brand, locale,fullSku } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -388,7 +388,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[brand].miniCartViewCartBtn;
-      if (viewportWidth > 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(miniCartViewCartBtn).click({force: true}); 
       }
     },
@@ -469,7 +469,7 @@ class PdpPage implements AbstractPage {
       const productTitleMobile = selectors[brand].productTitleMobile;
 
       // If Mobile Device is used
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         
         cy.get(productTitleMobile).should('be.visible');
         
@@ -568,7 +568,7 @@ class PdpPage implements AbstractPage {
       const productDeliveryInfo = selectors[brand].productDeliveryInfo;
       const productDeliveryInfoMobile = selectors[brand].productDeliveryInfoMobile;
     
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(productDeliveryInfoMobile).should('be.visible');
       } else {
         cy.get(productDeliveryInfo).should('be.visible');
@@ -584,7 +584,7 @@ class PdpPage implements AbstractPage {
       } 
 
       // If Mobile Device is used
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         
         cy.get(productReturnsInfoButton).click({force:true});
       }

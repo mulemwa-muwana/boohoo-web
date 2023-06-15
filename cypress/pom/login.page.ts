@@ -1,5 +1,5 @@
 import AbstractPage from './abstract/abstract.page';
-import { isSiteGenesisBrand } from '../helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from '../helpers/common';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -210,9 +210,8 @@ class LoginPage implements AbstractPage {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
       const mobileHamburgIcon = selectors[variables.brand].mobileHamburgIcon;
-      const viewportWidth = Cypress.config('viewportWidth');
       
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(mobileHamburgIcon).click();
       } else {
         if (isSiteGenesisBrand && variables.brand != 'misspap.com' && variables.brand != 'boohooman.com') {
@@ -264,9 +263,8 @@ class LoginPage implements AbstractPage {
       const loginLink = selectors[variables.brand].loginLink;
       const mobileHamburgIcon = selectors[variables.brand].mobileHamburgIcon;
       const MobileLoginLink = selectors[variables.brand].MobileLoginLink;
-      const viewportWidth = Cypress.config('viewportWidth');
 
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(mobileHamburgIcon).click({force:true});
         cy.wait(2000);
         cy.get(MobileLoginLink).click({force:true});
@@ -300,8 +298,8 @@ class LoginPage implements AbstractPage {
     resetPasswordEmail (email: string) {
       const resetPasswordEmailField = selectors[variables.brand].resetPasswordEmailField;
       const resetPasswordEmailFieldMobile = selectors[variables.brand].resetPasswordEmailFieldMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+
+      if (isMobileDeviceUsed) {
         cy.get(resetPasswordEmailFieldMobile).type(email);
       } else {
         cy.get(resetPasswordEmailField).type(email);

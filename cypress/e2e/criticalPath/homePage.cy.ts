@@ -7,7 +7,7 @@ import SocialsPage from '../../pom/socials.page';
 import homePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import assertionText from '../../helpers/assertionText';
-import { isSiteGenesisBrand, siteGenesisBrands } from '../../helpers/common';
+import { isSiteGenesisBrand, siteGenesisBrands, isMobileDeviceUsed } from '../../helpers/common';
 import contactusPage from 'cypress/pom/contactus.page';
 import faqPage from 'cypress/pom/faq.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
@@ -20,20 +20,6 @@ describe('Home Page', function () {
 
   });
 
-  /* Describe('Verify that home page is displayed after login or not and user name is displayed.', () => {
-    it('No login', () => {
-      HomePage.click.logInIcon();
-      HomePage.assertions.assertUserIsNotLoggedIn(assertionText.assertUserIsNotLoggedIn[language]);
-    });
-    it('After login', () => {
-      cy.fixture('users').then((credentials: LoginCredentials) => {
-        LoginPage.goto();
-        LoginPage.actions.login(credentials.username, credentials.password);
-        HomePage.goto();
-        HomePage.assertions.assertUserPanelTitle(assertionText.assertUsername[language]);
-      });
-    }); */
-       
   // HEADER
   describe('Header verifications', () => {
     it('Verify that header logo, search icon/field, Account/ WishList/ Cart icons are present', () => {
@@ -240,8 +226,7 @@ describe('Home Page', function () {
         const excludedBoohooWithLocales: boolean = brand == 'boohoo.com' && excludedBoohooLocales.includes(locale);
         const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && locale == 'EU';
         const excludedCoastWithLocales: boolean = brand == 'coastfashion.com' && locale == 'IE';
-        const viewportWidth = Cypress.config('viewportWidth');
-        if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedCoastWithLocales || (brand == 'coastfashion.com' && viewportWidth < 1100)) {
+        if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedCoastWithLocales || (brand == 'coastfashion.com' && isMobileDeviceUsed)) {
           this.skip();
         } else {
           GlobalFooter.assertions.assertAppBannerPresent();
@@ -522,9 +507,8 @@ describe('Home Page', function () {
     describe('Verify that the global header is displayed.', () => {
       it('Check global header is visible when scrolling down.', () => {
         const excludedBrands: Array<GroupBrands> = ['nastygal.com', 'coastfashion.com', 'oasis-stores.com', 'warehousefashion.com', 'karenmillen.com', 'boohoomena.com'];
-        const viewportWidth = Cypress.config('viewportWidth');
         
-        if ( viewportWidth < 1100) {
+        if (isMobileDeviceUsed) {
           cy.scrollTo('bottom');
           GlobalFooter.assertions.assertHeaderIsVisible();
         } else if (excludedBrands.includes(brand)) { // For these brands header retracts(hides) on scroll down

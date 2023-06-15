@@ -395,7 +395,7 @@ class GlobalFooter implements AbstractPage {
         cy.get(newsletterInputMail).type(email, {force:true});
         cy.get(subscribeSubmitBtn).click({force:true});
       } else {
-        cy.get(newsletterInputMail).type(email);
+        cy.get(newsletterInputMail).type(email, {force:true});
         cy.get(agreeToPrivacyCheckbox).check();
         cy.get(subscribeSubmitBtn).invoke('show').click({force:true});
       }

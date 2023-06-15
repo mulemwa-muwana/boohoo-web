@@ -1,5 +1,6 @@
 import AbstractPage from './abstract/abstract.page';
 import { brand } from 'cypress/support/e2e';
+import { isMobileDeviceUsed } from 'cypress/helpers/common';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -67,8 +68,7 @@ class faqPage implements AbstractPage {
     contactUsLink () {
       const contactUsLink = selectors[brand].contactUsLink;
       const contactUsLinkMobile = selectors[brand].contactUsLinkMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(contactUsLinkMobile).click({force: true}); 
       } else {
         cy.get(contactUsLink).click({force:true});

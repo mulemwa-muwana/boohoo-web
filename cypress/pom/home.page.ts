@@ -442,6 +442,7 @@ class HomePage implements AbstractPage {
     assertWishListIconPresent () {
       
       const wishListIconMobile = selectors[brand].wishListIconMobile;
+
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(wishListIconMobile).invoke('show').should('be.visible');

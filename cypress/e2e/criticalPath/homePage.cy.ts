@@ -11,7 +11,6 @@ import { isSiteGenesisBrand, siteGenesisBrands, isMobileDeviceUsed } from '../..
 import contactusPage from 'cypress/pom/contactus.page';
 import faqPage from 'cypress/pom/faq.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
-import { is } from 'cypress/types/bluebird';
 
 describe('Home Page', function () {
 

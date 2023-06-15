@@ -1,5 +1,6 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
+import { isMobileDeviceUsed } from 'cypress/helpers/common';
 
 const variables = Cypress.env() as EnvironmentVariables;
 
@@ -220,15 +221,14 @@ class WishListPage implements AbstractPage {
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
-      const viewportWidth = Cypress.config('viewportWidth');
-      if (viewportWidth < 1100) {
+      if (isMobileDeviceUsed) {
         cy.get(removeItemFromWishListMobile).eq(0).click({force:true});
       } else {
         cy.get(removeItemFromWishlist).eq(0).click({force:true});
       }
       if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
         cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });
-      } else if (viewportWidth < 1100 && variables.brand == 'dorothyperkins.com') {
+      } else if (isMobileDeviceUsed && variables.brand == 'dorothyperkins.com') {
         cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });
       } else if (variables.brand == 'dorothyperkins.com') {
         cy.get('.b-button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });

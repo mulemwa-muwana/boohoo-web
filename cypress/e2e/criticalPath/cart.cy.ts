@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, siteGenesisBrands, isMobileDeviceUsed } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import CartPage from '../../pom/cart.page';
 import CheckoutPage from '../../pom/checkoutLogin.page';
@@ -90,8 +90,7 @@ describe('Cart page for Registered user', function () {
     Navigate.toCartPage();
   });
   it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
-    const viewportWidth = Cypress.config('viewportWidth');
-    if (['burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk', 'nastygal.com', 'boohoo.com'].includes(brand) && (viewportWidth > 1100)) {         
+    if (['burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk', 'nastygal.com', 'boohoo.com'].includes(brand) && !isMobileDeviceUsed) {         
       cy.get('[class="b-button m-outline b-minicart-button"]').click({force: true});
     }
     CartPage.click.proceedToCheckout();

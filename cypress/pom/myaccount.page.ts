@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -768,10 +768,9 @@ class MyAccountPage implements AbstractPage {
         cy.get(socialAccounts).should('be.visible').click();
       },
       viewOrderBtn () {
-        const viewportWidth = Cypress.config('viewportWidth');
         const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
         const viewOrderBtnMobile = selectors[variables.brand].viewOrderBtnMobile;
-        if (viewportWidth < 1100) {
+        if (isMobileDeviceUsed) {
           cy.get(viewOrderBtnMobile).click({force: true});
         } else {
           if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {

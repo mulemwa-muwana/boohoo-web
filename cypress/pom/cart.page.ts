@@ -187,7 +187,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
-    emptyCartTitleMobile:'.cart-empty-title',
+    emptyCartTitleMobile: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -416,10 +416,10 @@ class CartPage implements AbstractPage {
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
-        cy.get(editDetailsMobile).click({ force: true });
+        cy.get(editDetailsMobile).click({force: true});
         cy.wait(5000);
-        cy.get(editQuantityMobile).clear({ force: true }).type(quantity);
-        cy.get(updateBtnMobile).click({ force: true });
+        cy.get(editQuantityMobile).clear({force: true}).type(quantity);
+        cy.get(updateBtnMobile).click({force: true});
         cy.intercept('**/cart').as('cartPage');
         cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
 

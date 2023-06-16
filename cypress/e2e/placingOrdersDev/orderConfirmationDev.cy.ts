@@ -1,5 +1,5 @@
 import orderConfirmationPage from '../../pom/orderConfirmationDev.page';
-import billingPage from 'cypress/pom/billing.page';
+import billingPage from 'cypress/pom/billingDev.page';
 import assertionText from '../../helpers/assertionText';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
@@ -175,7 +175,7 @@ describe('Order confirmation page for registered user', function () {
 
   //var i = 0;
   //for (i = 0; i < 20 ; i++) {    +i
-  it.only('Verify that registered user can place order using PayPal' , function () {
+  it('Verify that registered user can place order using PayPal' , function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // Only credit card as payment option for this brand
     }
@@ -187,7 +187,7 @@ describe('Order confirmation page for registered user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
 
-  it('Verify that registered user can place order using PP - TEST FOR STE', function () {
+  it.only('Verify that registered user can place order using PP - TEST FOR STE', function () {
 
     homePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {    

@@ -187,7 +187,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
-    emptyCartTitleMobile: '.cart-empty-title',
+    emptyCartTitleMobile:'.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -377,6 +377,7 @@ class CartPage implements AbstractPage {
         });
       cy.wait(800);
       cy.iframe(payPalCTA).find('.paypal-button').should('be.visible').click({ force: true });
+
     },
     openKlarnaSandbox() {
 

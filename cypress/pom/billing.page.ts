@@ -659,6 +659,39 @@ class BillingPage implements AbstractPage {
       cy.get(paynowBtnCC).click({force:true});
 
     },
+    selectCreditCardUS (cardNo: string, cardOwner: string, date: string, code: string) {
+      const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
+
+      const creditCardCardNumberIframe = selectors[brand].creditCardCardNumberIframe;
+      const creditCardFieldsCardNumber = selectors[brand].creditCardFieldsCardNumber;
+      const creditCardExpirationDateIframe = selectors[brand].creditCardExpirationDateIframe;
+      const creditCardFieldsExpirationDate = selectors[brand].creditCardFieldsExpirationDate;
+      const creditCardSecurityCodeIframe = selectors[brand].creditCardSecurityCodeIframe;
+      const creditCardFieldsSecurityCode = selectors[brand].creditCardFieldsSecurityCode;
+      const creditCardFieldsCardOwner = selectors[brand].creditCardFieldsCardOwner;
+
+      //const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
+      if(brand == 'boohooman.com'){
+        cy.get(':nth-child(3) > .payment-method-option').click({force:true})
+      } else{
+        cy.get('#payment-button-scheme').click({force: true});
+      }
+    
+      cy.wait(4000);
+
+      cy.get('body').then($body=>{ // (Updated) If there is saved Credit Card, click Add new Card button
+        if ($body.find("[class='b-button m-info m-width_full ']").length>0) { 
+          cy.get("[class='b-button m-info m-width_full ']").click({force: true});
+        }
+      });
+      cy.get('#dwfrm_billing_creditCardFields_cardNumber').type(cardNo);
+      cy.get('#dwfrm_billing_creditCardFields_cardOwner').type(cardOwner);
+      cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select('03');
+      cy.get('#dwfrm_billing_creditCardFields_expirationYear').select('2030');
+      cy.get('#dwfrm_billing_creditCardFields_securityCode').type('737', {force: true});
+      cy.get('#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
+
+    },
     emptyEmailField () {
       const emptyEmailField = selectors[brand].emptyEmailField;
       cy.get(emptyEmailField).clear();

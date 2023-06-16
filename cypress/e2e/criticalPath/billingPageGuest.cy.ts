@@ -32,7 +32,7 @@ describe('Billing page functionality for guest user', function () {
     if (locale == 'EU') {
       this.skip(); // EU has only Europe and International Delivery
     }
-
+    BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
 
   it('Verify that guest user can change shipping address', function () {

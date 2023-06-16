@@ -307,7 +307,7 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.js-premier-add-to-cart',
+    addPremierToCartFromShippingPage: '#add-to-cart',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'Karen Millen Premier',

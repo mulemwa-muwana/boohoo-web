@@ -117,7 +117,7 @@ class ShippingMethod {
     },
     FR: {
       shippingMethod1: {
-        shippingMethodName: 'Livraison express France'
+        shippingMethodName: '\n Livraison standard France\n                        '
       },
       shippingMethod2: {
         shippingMethodName: 'Livraison standard France'

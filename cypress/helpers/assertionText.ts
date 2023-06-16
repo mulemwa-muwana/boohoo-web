@@ -142,7 +142,7 @@ class AssertionText {
 
   ShippingMandatoryFieldErrorBoohoo: TranslationMap = {
     EN: 'Don’t forget about me!',
-    FR: 'Ne m/’oublie pas!',
+    FR: 'Ne m’oublie pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -156,7 +156,7 @@ class AssertionText {
 
   ShippingMandatoryFieldError: TranslationMap = {
     EN: 'This field is required.',
-    FR: 'Ne m’oublie pas!',
+    FR: 'Ce champ est obligatoire',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
@@ -562,7 +562,7 @@ class AssertionText {
 
   emptyEmailFieldErrorBillingPage: TranslationMap = {
     EN: '',
-    FR: 'Ne m’oubliez pas !',
+    FR: 'Ce champ est obligatoire',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: '',

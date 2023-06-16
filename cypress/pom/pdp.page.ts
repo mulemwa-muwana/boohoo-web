@@ -388,7 +388,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[brand].miniCartViewCartBtn;
-      if (isMobileDeviceUsed) {
+      if (!isMobileDeviceUsed) {
         cy.get(miniCartViewCartBtn).click({force: true}); 
       }
     },

@@ -51,23 +51,12 @@ describe('Order confirmation page for guest user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   }); 
 
-  it('Verify that guest user can place order using Credit Card - Amex)', function () {
-    Navigate.toBillingPage('GuestUser');
-    if (!isSiteGenesisBrand) {
-      billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
-    }
-    billingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
-    billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-
-    const paymentMethod: PaymentMethod = 'CreditCard_Amex';
-    generateFrontendArtefact(brand, paymentMethod);
-  });
-
+  
 });
 
-describe('Order confirmation page for registered user', function () {
-  it.only('Verify that registerd user can place order with VISA SAVED card and that order confirmation page is displayed correctly FOR STE', function () {
+describe('Order confirmation page for REGISTERED user', function () {
 
+  it('AMEX CC - REGISTERED USER', function () {
     homePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       loginPage.actions.login(credentials.username, credentials.password);
@@ -169,25 +158,119 @@ describe('Order confirmation page for registered user', function () {
       orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
     });
 
+    const paymentMethod: PaymentMethod = 'CreditCard_Amex';
+    generateFrontendArtefact(brand, paymentMethod);
+  });
+
+
+  it('VISA CC - REGISTERED USER', function () {
+
+    homePage.goto();
+    cy.fixture('users').then((credentials: LoginCredentials) => {    
+      loginPage.actions.login(credentials.username, credentials.password);
+      myaccountPage.assertions.assertNameGreetingMessage(credentials.name);
+
+      cy.wait(3000); 
+    });
+
+    homePage.actions.findItemUsingSKU(sku);
+    pdpPage.actions.selectFirstAvailableSize();
+    pdpPage.click.addToCart();
+    pdpPage.click.addToCart();
+
+
+    // Add second sku
+    // homePage.actions.findItemUsingSKU(sku2);
+    // pdpPage.actions.selectFirstAvailableSize();
+    // pdpPage.click.addToCart();
+    if (!isSiteGenesisBrand) {
+      pdpPage.click.miniCartViewCartBtn();
+    }
+    if (isSiteGenesisBrand) {
+      cy.wait(3000);
+      homePage.click.cartIcon();
+      
+    }
+
+    // if (siteGenesisBrands) {
+    //  cartPage.actions.editCartQuantitySiteGenesis('2');
+    // } else {
+    // cartPage.actions.editCartQuantity('2');
+    // }
+    // homePage.actions.findItemUsingSKU(sku2);
+    // pdpPage.actions.selectFirstAvailableSize();
+    //pdpPage.click.addToCart();
+
+    // NG pop up
+    if (brand == 'nastygal.com') {
+
+       cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
+    }
+
+    cartPage.click.proceedToCheckout();
+    
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+
+    shippingPage.click.addNewAddressButton();
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
+
+    if (isSiteGenesisBrand) {
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
+      shippingPage.actions.cityField(localeAddress.city);
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
+      if (brand == 'boohoomena.com') {
+        shippingPage.actions.countyField(localeAddress.county);
+      }
+    } else {
+      if (brand == 'boohoo.com') {
+        shippingPage.click.addNewAddress();
+      }
+      shippingPage.click.enterManuallyAddressDetails();
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
+      shippingPage.actions.cityField(localeAddress.city);
+      if (locale == 'US' || locale == 'AU') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }  
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+    }
+
+    shippingPage.click.proceedToBilling();
+    cy.wait(10000);
+    
+    if (brand=='boohoo.com' && locale== 'US') {
+      billingPage.actions.selectCreditCardUS(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+    } else {
+      billingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+    } 
+    billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);
+      orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
+      orderConfirmationPage.assertions.assertOrderTotalIsVisible();
+      if (isSiteGenesisBrand) {
+        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[language]);
+      } else {
+        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[language]);
+      }
+
+      const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+      orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
+      orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
+      orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
+    });
+
     const paymentMethod: PaymentMethod = 'CreditCard_Visa';
     generateFrontendArtefact(brand, paymentMethod);
   });
 
   //var i = 0;
   //for (i = 0; i < 20 ; i++) {    +i
-  it('Verify that registered user can place order using PayPal' , function () {
-    if (brand == 'boohoomena.com') {
-      this.skip(); // Only credit card as payment option for this brand
-    }
-    Navigate.toBillingPage('RegisteredUser');
-    billingPage.actions.selectPayPal();
-    billingPage.assertions.assertOrderConfirmationPageIsDisplayed(); // Not working on Site Genesis
 
-    const paymentMethod: PaymentMethod = 'PayPal';
-    generateFrontendArtefact(brand, paymentMethod);
-  });
-
-  it.only('Verify that registered user can place order using PP - TEST FOR STE', function () {
+  it('PAYPAL REGISTERED USER', function () {
 
     homePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {    
@@ -277,45 +360,6 @@ describe('Order confirmation page for registered user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
 
-});
-
-  it('Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
-    Navigate.toBillingPage('RegisteredUser');
-    if (brand == 'boohoo.com' && locale== 'US') {
-      billingPage.actions.selectCreditCardUS(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-    }
-    billingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
-    billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);
-      orderConfirmationPage.assertions.assertOrderNumberIsDisplayed();
-      orderConfirmationPage.assertions.assertOrderTotalIsVisible();
-      if (isSiteGenesisBrand) {
-        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethodSiteGenesis[language]);
-      } else {
-        orderConfirmationPage.assertions.assertPaymentMethod(assertionText.assertPaymentMethod[language]);
-      }
-
-      const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
-      orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
-      orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
-      orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
-    });
-
-    const paymentMethod: PaymentMethod = 'CreditCard_MasterCard';
-    generateFrontendArtefact(brand, paymentMethod);
-  });
-
-  it('Verify that registered user can place order using PayPal', function () {
-    if (brand == 'boohoomena.com') {
-      this.skip(); // Only credit card as payment option for this brand
-    }
-    Navigate.toBillingPage('RegisteredUser');
-    billingPage.actions.selectPayPal();
-    billingPage.assertions.assertOrderConfirmationPageIsDisplayed(); // Not working on Site Genesis
-
-    const paymentMethod: PaymentMethod = 'PayPal';
-    generateFrontendArtefact(brand, paymentMethod);
   });
 
   it('Verify that guest user can place order using Klarna', function () {

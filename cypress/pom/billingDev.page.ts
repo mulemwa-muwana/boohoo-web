@@ -20,7 +20,7 @@ const selectors: SelectorBrandMap = {
     shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
     paymentMethodCreditCard: '#payment-button-scheme',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
-    paymentMethodPayPal: '#payment-button-PayPal',
+    paymentMethodPayPal: '.zoid-component-frameHvala',
     paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
@@ -917,9 +917,9 @@ class BillingPage implements AbstractPage {
       cy.wait(2000);
       
       // Stub the open method inside iframe to force it not to open a window.
-      cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
-        cy.stub(win, 'open');
-      });
+      //cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
+      //  cy.stub(win, 'open');
+     // });
       
       // Click PayPal button
       cy.iframe('.zoid-component-frame').find('.paypal-button').eq(0).should('be.visible').click({force:true});
@@ -932,14 +932,15 @@ class BillingPage implements AbstractPage {
         const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
 
         // If accept cookies button appears
-        cy.wrap(innerIframe).then($body => {
-          if ($body.find('#acceptAllButton').length) {
-            cy.wrap(innerIframe).find('#acceptAllButton').click();
-          }
-        });
+        //cy.wrap(innerIframe).then($body => {
+        //  if ($body.find('#acceptAllButton').length) {
+        //    cy.wrap(innerIframe).find('#acceptAllButton').click();
+        //  }
+        //});
         
         // If Login form appears 
         cy.wrap(innerIframe).then($body => {
+          const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
           if ($body.find('#email').length) {
             cy.wrap(innerIframe).find('#email').clear().type('test.user@boohoo.com');
             cy.wrap(innerIframe).find('#btnNext').click();
@@ -958,6 +959,7 @@ class BillingPage implements AbstractPage {
 
       });
     },
+
     selectClearpay () {
       if (isSiteGenesisBrand) {
         cy.get('[for="is-CLEARPAY"]', { timeout: 15000 }).click({ force: true });

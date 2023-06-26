@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@uk-dwdev.boohoo.com',
-    sku: '#DZZ01081',
+    sku: '#DZZ01081-105',
     fullSku: 'DZZ01081-105-16',
     brand: 'boohoo.com',
     locale: 'UK',

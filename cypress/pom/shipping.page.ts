@@ -1,7 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { brand, locale } from 'cypress/support/e2e';
+import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -703,7 +703,6 @@ class ShippingPage implements AbstractPage {
         cy.get('body').then($body => {
           if ($body.find(addAddressManually).length) {
             cy.get(addAddressManually).click({ force: true });
-
           }
         });
       }

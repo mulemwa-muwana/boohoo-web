@@ -93,7 +93,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertManualAddressFieldsAreDisplayed();
   });
 
-  it.only('Verify that user is able to add address details manually', function () {
+  it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.click.addAddressManually();

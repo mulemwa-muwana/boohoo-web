@@ -64,7 +64,7 @@ const selectors: SelectorBrandMap = {
     productPriceMobile: '.l-cart_product-total',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty_value',
-    editQuantity: 'button[data-tau="cart_product_edit"]',
+    editQuantity: '.b-product_update-attribute_name',
     editQuantityMobile: '[data-tau="cart_product_quantity"] ',
     editDetailsMobile:'.b-cart_product-edit',
     updateBtnMobile: '.b-product_update-button_update', 

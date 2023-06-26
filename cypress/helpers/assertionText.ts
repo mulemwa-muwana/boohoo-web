@@ -690,7 +690,7 @@ class AssertionText {
     EN: 'Hold up! That doesn’t seem right.',
     NL: 'Wacht! Er gaat iets mis.',
     DE: 'Achtung! Das scheint nicht richtig zu sein.',
-    FR: 'Tenir bon! Cela ne semble pas juste.',
+    FR: 'Attendez ! Il semblerait qu’il y ait un souci.',
     DK: 'Hold op! Det virker ikke rigtigt.',
     FI: 'Kestä! Se ei vaikuta oikealta.',
     NO: 'Vent! Det virker ikke riktig.',

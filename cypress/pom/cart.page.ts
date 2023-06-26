@@ -12,8 +12,8 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
     editQuantityMobile: '[data-tau="cart_product_quantity"]',
-    editDetailsMobile:'.b-cart_product-edit',
-    updateBtnMobile:' .b-product_update-button_update',
+    editDetailsMobile: '.b-cart_product-edit',
+    updateBtnMobile: ' .b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.m-with_actions',
@@ -25,7 +25,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '.b-cart_product-remove',
     clearCartMobile: 'button.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',
-    emptyCartTitleMobile:'.b-cart_empty-title',
+    emptyCartTitleMobile: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -38,9 +38,9 @@ const selectors: SelectorBrandMap = {
     subtotal: 'tr[class="b-summary_table-item m-total"]',
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
-    editQuantityMobile:'[data-tau="cart_product_quantity"]',
-    editDetailsMobile:'.b-cart_product-edit',
-    updateBtnMobile:'.b-product_update-button_update',
+    editQuantityMobile: '[data-tau="cart_product_quantity"]',
+    editDetailsMobile: '.b-cart_product-edit',
+    updateBtnMobile: '.b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     PayPalCTA: '.zoid-component-frame',
@@ -50,11 +50,11 @@ const selectors: SelectorBrandMap = {
     clearCart: '.b-cart_product-remove',
     clearCartMobile: '.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',
-    emptyCartTitleMobile:'.b-cart_empty-title',
+    emptyCartTitleMobile: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
     premierBlock: '.b-ngvip',
-    addPremierToCart:'.b-ngvip-button',
+    addPremierToCart: '.b-ngvip-button',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
   },
   'dorothyperkins.com': {
@@ -66,8 +66,8 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.b-cart_product-qty_value',
     editQuantity: '.b-product_update-attribute_name',
     editQuantityMobile: '[data-tau="cart_product_quantity"] ',
-    editDetailsMobile:'.b-cart_product-edit',
-    updateBtnMobile: '.b-product_update-button_update', 
+    editDetailsMobile: '.b-cart_product-edit',
+    updateBtnMobile: '.b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -79,7 +79,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '.b-cart_product-remove',
     clearCartMobile: '.l-cart_product-remove > .b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
-    emptyCartTitleMobile:'.b-cart_empty-title',
+    emptyCartTitleMobile: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -93,8 +93,8 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
     editQuantityMobile: '.b-product_update-button_update',
-    editDetailsMobile:'.b-cart_product-edit',
-    updateBtnMobile:' .b-product_update-button_update', 
+    editDetailsMobile: '.b-cart_product-edit',
+    updateBtnMobile: ' .b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -106,7 +106,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '.b-cart_product-remove',
     clearCartMobile: '.l-cart_product-remove > .b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
-    emptyCartTitleMobile:'.b-cart_empty-title',
+    emptyCartTitleMobile: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -120,8 +120,8 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.b-cart_product-qty',
     editQuantity: 'button[data-tau="cart_product_edit"]',
     editQuantityMobile: '[data-tau="cart_product_quantity"]',
-    editDetailsMobile:'.b-cart_product-edit',
-    updateBtnMobile: '.b-product_update-button_update', 
+    editDetailsMobile: '.b-cart_product-edit',
+    updateBtnMobile: '.b-product_update-button_update',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     premierBlock: '.b-ngvip-details',
@@ -133,7 +133,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '.b-cart_product-remove',
     clearCartMobile: '.b-cart_product-remove',
     emptyCartTitle: '.b-cart_empty-title',
-    emptyCartTitleMobile:'.b-cart_empty-title',
+    emptyCartTitleMobile: '.b-cart_empty-title',
     productDetails: '.l-cart_product-details',
     productName: '.b-cart_product-title > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -147,8 +147,8 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     editQuantityMobile: '#Quantity',
-    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
-    updateBtnMobile:'.add-to-cart-text',
+    editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile: '.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div.premier-box-main',
@@ -175,7 +175,7 @@ const selectors: SelectorBrandMap = {
     editQuantity: '.cart-input-quantity',
     editQuantityMobile: '#Quantity',
     editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
-    updateBtnMobile:'.add-to-cart-text',
+    updateBtnMobile: '.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '#cart-unlimited',
@@ -187,7 +187,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
-    emptyCartTitleMobile:'.cart-empty-title',
+    emptyCartTitleMobile: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -201,8 +201,8 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     editQuantityMobile: '#Quantity',
-    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
-    updateBtnMobile:' .add-to-cart-text',
+    editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile: ' .add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div.premier-box-main',
@@ -214,7 +214,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
-    emptyCartTitleMobile:'.cart-empty-title',
+    emptyCartTitleMobile: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -228,12 +228,12 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     editQuantityMobile: '#Quantity',
-    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
     updateBtnMobile: '.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: 'div#cart-limitless',
-    addPremierToCart:'.js-cmp-PremierAddToCartBtn',
+    addPremierToCart: '.js-cmp-PremierAddToCartBtn',
     PayPalCTA: '.cart-action-checkout .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -241,7 +241,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
-    emptyCartTitleMobile:'.cart-empty-title',
+    emptyCartTitleMobile: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -268,7 +268,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
-    emptyCartTitleMobile:'.cart-empty-title',
+    emptyCartTitleMobile: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
@@ -282,8 +282,8 @@ const selectors: SelectorBrandMap = {
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
     editQuantityMobile: '#Quantity',
-    editDetailsMobile:'.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
-    updateBtnMobile:'.add-to-cart-text',
+    editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
+    updateBtnMobile: '.add-to-cart-text',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '.html-slot-container',
@@ -295,7 +295,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
-    emptyCartTitleMobile:'.cart-empty-title',
+    emptyCartTitleMobile: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
@@ -319,7 +319,7 @@ const selectors: SelectorBrandMap = {
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
-    emptyCartTitleMobile:'.cart-empty-title',
+    emptyCartTitleMobile: '.cart-empty-title',
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
@@ -327,89 +327,87 @@ const selectors: SelectorBrandMap = {
 };
 
 class CartPage implements AbstractPage {
-  goto (): void {
+  goto(): void {
     cy.visit(url + '/cart');
   }
 
   click = {
-    clearCart () {
+    clearCart() {
       const clearCart = selectors[brand].clearCart;
       cy.get(clearCart).each(() => {
-        cy.get(clearCart).eq(0).click({force: true}); // In case of multiple item After Deleting an item, page refreshes and previous cy.wrap() embeded element detached from DOM
+        cy.get(clearCart).eq(0).click({ force: true }); // In case of multiple item After Deleting an item, page refreshes and previous cy.wrap() embeded element detached from DOM
         cy.wait(7000);
       });
     },
-    removePremierFromCart () {
+    removePremierFromCart() {
 
       // Remove everything except the first item. If there are 3 items in cart, items 2 and 3 will be removed
       const clearCart = selectors[brand].clearCart;
       cy.get(clearCart).each(($el, index) => {
         if (index > 0) {
-          cy.wrap($el).click({force: true});
+          cy.wrap($el).click({ force: true });
         }
       });
     },
-    proceedToCheckout () {
+    proceedToCheckout() {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
-        cy.get(checkoutBtnForMobile).invoke('show').click({force: true});
+        cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
 
-      // If Desktop Device is used
+        // If Desktop Device is used
       } else {
-        cy.get(proceedToCheckout).invoke('show').click({force: true});
+        cy.get(proceedToCheckout).invoke('show').click({ force: true });
       }
     },
   };
 
   actions = {
-    updateQuantity () {
+    updateQuantity() {
       const editQuantity = selectors[brand].editQuantity;
       cy.get(editQuantity).should('be.visible').click();
     },
-    openPayPalSandbox () {
+    openPayPalSandbox() {
       const payPalCTA = selectors[brand].PayPalCTA;
-      cy.get(payPalCTA).click({force: true});
-      cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
-      
-        cy.stub(win, 'open');
-      });
-      cy.iframe('.zoid-component-frame').find('.paypal-button').should('be.visible').click({force:true});
-      cy.wait(8000);
-      cy.get('.paypal-checkout-sandbox-iframe').should('be.visible');
+      cy.get(payPalCTA).its('0.contentDocument.defaultView')
+        .then(win => {
+          cy.stub(win, 'open');
+        });
+      cy.wait(800);
+      cy.iframe(payPalCTA).find('.paypal-button').should('be.visible').click({ force: true });
     },
-    openKlarnaSandbox () { 
-     
+    openKlarnaSandbox() {
+
       // Stub the open method with just a console log to force it not to open a window.
       cy.window().then((window: Cypress.AUTWindow) => {
         cy.stub(window, 'open').callsFake(() => {
           console.log('stop this button click');
         });
       });
-      cy.get('#klarna-express-button-0').shadow().find('#klarna-express-button').click({force: true});
+      cy.get('#klarna-express-button-0').shadow().find('#klarna-express-button').click({ force: true });
 
       cy.frameLoaded('#klarna-express-button-fullscreen');
     },
-    openAmazonSandbox () {
+    openAmazonSandbox() {
       cy.get('#OffAmazonPaymentsWidgets0').invoke('removeAttr', 'target').click();
     },
-    editCartQuantity (quantity: string) {
+    editCartQuantity(quantity: string) {
       const editQuantity = selectors[brand].editQuantity;
       const setQuantity = selectors[brand].setQuantity;
       const updateQuantity = selectors[brand].updateQuantity;
-      cy.get(editQuantity).eq(0).click({force: true});
-      cy.get(setQuantity).eq(0).select(quantity,{force: true});
-      
+      cy.get(editQuantity).eq(0).click({ force: true });
+      cy.get(setQuantity).eq(0).select(quantity, { force: true });
+
       cy.intercept(/cart/).as('updateCartProduct');
-      cy.get(updateQuantity).eq(0).click({force: true});
-      if (brand!='nastygal.com'&& brand != 'boohoo.com') {
+      cy.get(updateQuantity).eq(0).click({ force: true });
+      if (brand != 'nastygal.com' && brand != 'boohoo.com') {
         cy.wait('@updateCartProduct', { timeout: 30000 }).its('response.statusCode').should('eq', 200); // Wait for cart product to refresh
       }
     },
 
-    editCartQuantitySiteGenesis (quantity: string) {
+    editCartQuantitySiteGenesis(quantity: string) {
       const editQuantity = selectors[brand].editQuantity;
       const editQuantityMobile = selectors[brand].editQuantityMobile;
       const editDetailsMobile = selectors[brand].editDetailsMobile;
@@ -417,10 +415,10 @@ class CartPage implements AbstractPage {
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
-        cy.get(editDetailsMobile).click({force: true});
+        cy.get(editDetailsMobile).click({ force: true });
         cy.wait(5000);
-        cy.get(editQuantityMobile).clear({force: true}).type(quantity);
-        cy.get(updateBtnMobile).click({force: true});
+        cy.get(editQuantityMobile).clear({ force: true }).type(quantity);
+        cy.get(updateBtnMobile).click({ force: true });
         cy.intercept('**/cart').as('cartPage');
         cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
 
@@ -435,25 +433,25 @@ class CartPage implements AbstractPage {
   };
 
   assertions = {
-    assertTableWithProductIsVisible () {
+    assertTableWithProductIsVisible() {
       const productsTable = selectors[brand].productsTable;
       cy.get(productsTable).should('be.visible');
     },
-    assertProductImageIsDisplayed () {
+    assertProductImageIsDisplayed() {
       const productImage = selectors[brand].productImage;
       cy.get(productImage).then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
-    assertProductTitleIsVisible () {
+    assertProductTitleIsVisible() {
       const productName = selectors[brand].productName;
       cy.get(productName).should('not.be.empty');
     },
-    assertProductDetailsAreVisible () {
+    assertProductDetailsAreVisible() {
       const productDetails = selectors[brand].productDetails;
       cy.get(productDetails).should('be.visible');
     },
-    assertPriceAndSubtotalAreVisible () {
+    assertPriceAndSubtotalAreVisible() {
 
       const productPrice = selectors[brand].productPrice;
       const productPriceMobile = selectors[brand].productPriceMobile;
@@ -461,9 +459,9 @@ class CartPage implements AbstractPage {
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
-        
+
         cy.get(productPriceMobile).should('be.visible');
-       
+
         // If Desktop Device is used
       } else {
 
@@ -471,7 +469,7 @@ class CartPage implements AbstractPage {
         cy.get(subtotal).should('be.visible').and('not.to.be.empty');
       }
     },
-    assertQuantityIsDisplayed (quantity: string) {
+    assertQuantityIsDisplayed(quantity: string) {
       const cartQuantity = selectors[brand].cartQuantity;
       if (isSiteGenesisBrand) {
         cy.get(cartQuantity).should('have.value', quantity);
@@ -479,7 +477,7 @@ class CartPage implements AbstractPage {
         cy.get(cartQuantity).should('contain', quantity);
       }
     },
-    assertCartIsEmpty () {
+    assertCartIsEmpty() {
       const emptyCartTitle = selectors[brand].emptyCartTitle;
       const emptyCartTitleMobile = selectors[brand].emptyCartTitleMobile;
       if (isMobileDeviceUsed) {
@@ -488,22 +486,22 @@ class CartPage implements AbstractPage {
         cy.get(emptyCartTitle).should('be.visible');
       }
     },
-    assertPremierSlotsAreVisible () {
+    assertPremierSlotsAreVisible() {
       const premierBlock = selectors[brand].premierBlock;
       const addPremierToCart = selectors[brand].addPremierToCart;
 
       cy.get(premierBlock).should('be.visible');
       cy.get(addPremierToCart).should('be.visible');
     },
-    assertPayPalCTAisVisible () {
+    assertPayPalCTAisVisible() {
       const PayPalCTA = selectors[brand].PayPalCTA;
       cy.get(PayPalCTA).should('be.visible');
     },
-    assertKlarnaCTAisVisible () {
+    assertKlarnaCTAisVisible() {
       const KlarnaCTA = selectors[brand].KlarnaCTA;
       cy.get(KlarnaCTA).should('be.visible');
     },
-    assertAmazonPayCTAisVisible () {
+    assertAmazonPayCTAisVisible() {
       const AmazonCTA = selectors[brand].AmazonCTA;
       cy.get(AmazonCTA).should('be.visible');
     }

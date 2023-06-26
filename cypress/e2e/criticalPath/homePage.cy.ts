@@ -221,7 +221,7 @@ describe('Home Page', function () {
         GlobalFooter.assertions.assertPaymentOptionsArePresent();
       });
           
-      it.only('Verify that App Banner is present as content slot.', function () {
+      it('Verify that App Banner is present as content slot.', function () {
         const excludedBoohooLocales: Array<Locale> = ['EU', 'NL', 'NO', 'DK', 'FI', 'IT', 'ES'];
         const excludedBoohooWithLocales: boolean = brand == 'boohoo.com' && excludedBoohooLocales.includes(locale);
         const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && locale == 'EU';

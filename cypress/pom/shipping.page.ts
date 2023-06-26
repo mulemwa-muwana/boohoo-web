@@ -477,7 +477,7 @@ const selectors: SelectorBrandMap = {
   'oasis-stores.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.add-to-cart-textgit ',
+    addPremierToCartFromShippingPage: '.add-to-cart-text',
     premierProductTitle: 'OASIS UNLIMITED - UNLIMITED DELIVERY',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
@@ -749,7 +749,7 @@ class ShippingPage implements AbstractPage {
       if (isMobileDeviceUsed && isSiteGenesisBrand) {
         cy.get(addPremierToCartFromShippingPageMobile).click({ force: true });
       } else {
-        cy.get(addPremierToCartFromShippingPage).eq(0).click();
+        cy.get(addPremierToCartFromShippingPage).eq(0).click({ force: true });
       }
 
     },

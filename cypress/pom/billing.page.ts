@@ -282,7 +282,7 @@ const selectors: SelectorBrandMap = {
     billingAddressFirstName: '#dwfrm_billing_billingAddress_addressFields_firstName',
     billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
-    viewAllBillingAddresses: '#dwfrm_billing_addressList',
+    viewAllBillingAddresses: '[name="dwfrm_billing_addressList"]',
     billingAddressFromBook: '#dwfrm_singleshipping_addressList > option:nth-child(3)',
     dobDate: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -787,7 +787,7 @@ class BillingPage implements AbstractPage {
       if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('button[class="b-button m-link m-width_full"]').click({force: true});
       } else if (brand == 'boohooman.com') {
-        cy.get(viewAllBillingAddresses).select('New1');
+        cy.get(viewAllBillingAddresses).select(2);
       } else { 
         cy.get(billingAddressFromBook).click({force: true});
       }      

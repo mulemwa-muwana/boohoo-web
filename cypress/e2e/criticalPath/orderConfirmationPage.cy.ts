@@ -98,7 +98,7 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('Verify that guest user can place order using Klarna', function () {
-    if (locale === 'UK' || locale === 'IE' || locale === 'AU') {
+    if (locale === 'UK' || locale === 'IE' || locale === 'AU'|| locale === 'NL') {
       Navigate.toBillingPage('RegisteredUser');
       billingPage.actions.selectKlarna();
       billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
@@ -115,7 +115,7 @@ describe('Order confirmation page for registered user', function () {
 // Method for generating .json artefact on Order Confirmation page for testing Business Manager.
 function generateFrontendArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
 
-  cy.url({timeout: 60000}).should('include', 'confirm');
+  cy.url({timeout: 60000}).should('match', /confirm/i);
   
   if (isSiteGenesisBrand) {
     cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');

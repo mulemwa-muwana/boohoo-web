@@ -183,7 +183,7 @@ class AssertionText {
   };
 
   RegistrationPageExistingEmail: TranslationMap = {
-    EN: 'Looks like you already have an account with us. Please try logging in or use a different email address  Log in',
+    EN: 'Looks like you already have an account with us. Please try logging in or use a different email address',
     FR: 'Il semble que vous ayez déjà un compte chez nous. Veuillez essayer de vous connecter ou utiliser une autre adresse e-mail',
     NL: 'Het lijkt erop dat je al een account bij ons hebt. Probeer op dit account in te loggen of gebruik een ander e-mailadres',
     DE: 'Anscheinend haben Sie bereits ein Konto bei uns. Bitte versuchen Sie sich anzumelden oder verwenden Sie eine andere E-Mail-Adresse',

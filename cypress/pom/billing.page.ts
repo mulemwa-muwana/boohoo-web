@@ -767,8 +767,9 @@ class BillingPage implements AbstractPage {
         cy.get('#payment-button-KlarnaIE').click({force : true});
       } else if (locale == 'UK') {
         cy.get(paymentMethodKlarna).click({force:true});
+      } else if ( locale == 'NL') {
+        cy.get('#payment-button-Klarna > .b-payment_accordion-head > .b-payment_accordion-label').click({force : true});
       }
-      
       cy.wait(5000);
       
       // Stub the open method with just a console log to force it not to open a window.
@@ -782,6 +783,8 @@ class BillingPage implements AbstractPage {
       const klarnaPayNow = selectors[brand].klarnaPayNow;
       if (locale == 'AU') {
         cy.get('#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button').click({force:true});
+      } else if (locale == 'NL') {
+        cy.get('#payment-details-Klarna > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
       } else {
         cy.get(klarnaPayNow).click({force:true});
       }
@@ -1058,6 +1061,8 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
+      } else if (brand =='boohoo.com' && locale =='NL' || locale =='NO') {
+        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }  

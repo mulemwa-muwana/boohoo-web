@@ -809,10 +809,11 @@ class ShippingPage implements AbstractPage {
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
       if (brand == 'boohoomena.com') {
         const shippingPhoneCode = selectors[brand].shippingPhoneCode;
-        cy.get(shippingPhoneCode).select(phone.slice(0, 2));
-        cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
+        cy.get(shippingPhoneCode).select(phone.slice(0, 2),{timeout:5000});
+        cy.get(shippingPhoneNumber).clear().type(phone.slice(2), {timeout:5000});
+        cy.log(shippingPhoneNumber)
       } else {
-        cy.get(shippingPhoneNumber).clear().type(phone);
+        cy.get(shippingPhoneNumber).clear().type(phone, {timeout:1000});
       }
     },
     selectCountry (country: string) {

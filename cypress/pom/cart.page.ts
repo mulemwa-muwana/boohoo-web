@@ -334,9 +334,9 @@ class CartPage implements AbstractPage {
   click = {
     clearCart() {
       const clearCart = selectors[brand].clearCart;
-      cy.get(clearCart).each(() => {
-        cy.get(clearCart).eq(0).click({ force: true }); // In case of multiple item After Deleting an item, page refreshes and previous cy.wrap() embeded element detached from DOM
-        cy.wait(7000);
+      cy.get(clearCart).each(($el) => {
+        cy.wrap($el).eq(0).click({ force: true });
+        cy.wait(7000)
       });
     },
     removePremierFromCart() {
@@ -377,6 +377,7 @@ class CartPage implements AbstractPage {
         });
       cy.wait(800);
       cy.iframe(payPalCTA).find('.paypal-button').should('be.visible').click({ force: true });
+
     },
     openKlarnaSandbox() {
 
@@ -415,10 +416,10 @@ class CartPage implements AbstractPage {
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
-        cy.get(editDetailsMobile).click({ force: true });
+        cy.get(editDetailsMobile).click({force: true});
         cy.wait(5000);
-        cy.get(editQuantityMobile).clear({ force: true }).type(quantity);
-        cy.get(updateBtnMobile).click({ force: true });
+        cy.get(editQuantityMobile).clear({force: true}).type(quantity);
+        cy.get(updateBtnMobile).click({force: true});
         cy.intercept('**/cart').as('cartPage');
         cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
 

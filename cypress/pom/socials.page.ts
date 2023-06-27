@@ -10,7 +10,8 @@ const selectors: SelectorBrandMap = {
     twitter: 'a[href="https://twitter.com/boohoo"] > svg > path',
     tiktok: 'a[href="https://www.tiktok.com/@boohoo?lang=en"] > svg',
     youtube: 'a[href="https://www.youtube.com/c/boohoo"] > svg > path',
-    pinterest: '[href="https://www.pinterest.co.uk/boohooofficial/_created/"] > svg'
+    pinterest: '[href="https://www.pinterest.co.uk/boohooofficial/_created/"] > svg',
+    theFix: '[href="https://thefix.boohoo.com/"] > svg'
   },
   'nastygal.com': {
     instagramUrl: 'instagram.com/nastygal/',
@@ -104,7 +105,8 @@ const selectors: SelectorBrandMap = {
     facebookUrl: 'facebook.com/boohoo.com',
     twitter: '.icon-twitter-2',
     youtube: '.icon-youtube-2',
-    pinterest: '.icon-pinterest'
+    pinterest: '.icon-pinterest',
+    snapchat: '.icon-snapchat-2'
   }
 };
 
@@ -147,7 +149,13 @@ class SocialsPage implements AbstractPage {
       }
     },
     assertTheFixIconIsPresent () {
-      cy.get('[href="https://thefix.boohoo.com/"] > svg').should('be.visible');
+      const theFix = selectors[variables.brand].theFix;
+      cy.get(theFix).should('be.visible');
+    },
+    assertSnapchatIconIsPresent () {
+      const snapchat = selectors[variables.brand].snapchat;
+      cy.get(snapchat).parent().invoke('attr', 'style', 'overflow:visible');
+      cy.get(snapchat).should('be.visible');
     },
     assertPinterestIconIsPresent () {
       const pinterest = selectors[variables.brand].pinterest;

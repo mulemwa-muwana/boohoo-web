@@ -214,6 +214,15 @@ describe('Home Page', function () {
           this.skip();
         }
       });
+
+      it('Snapchat', function () {
+        if (brand == 'boohoomena.com') {
+          SocialsPage.assertions.assertSnapchatIconIsPresent();
+          GlobalFooter.click.snapchatLink();         
+        } else {
+          this.skip();
+        }
+      });
     });
       
     describe('Verify Footer Payment providers and mobile App Banners', () => {

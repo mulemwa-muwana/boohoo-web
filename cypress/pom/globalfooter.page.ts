@@ -262,6 +262,7 @@ const selectors: SelectorBrandMap = {
     twitterLink: '[title="Twitter"]',
     pintrestLink: '[title="Pinterest"]', 
     youtubeLink: '[title="YouTube"]',
+    snapchatLink: 'a[href="https://www.snapchat.com/add/boohooofficial"]',
     newsletterInputMail: 'input[id^="footer_newsletter_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: '.newsletter-form-group button',
@@ -360,6 +361,15 @@ class GlobalFooter implements AbstractPage {
     theFixLink () {
       const theFixLink = selectors[variables.brand].theFixLink; //  Only boohoo
       cy.get(theFixLink).then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
+      });
+    },
+    snapchatLink () {
+      const snapchatLink = selectors[variables.brand].snapchatLink; // Only boohoomena
+      cy.get(snapchatLink).then(link => {
         cy
           .request(link.prop('href'))
           .its('status')

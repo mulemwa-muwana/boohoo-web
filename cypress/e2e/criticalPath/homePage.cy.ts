@@ -263,7 +263,7 @@ describe('Home Page', function () {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
-        const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA'];
+        const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA','NO'];
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
@@ -427,7 +427,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Environmental & Social Responsibility', function () {
-        if (brand == 'boohoo.com' && (locale == 'EU' || locale == 'CA' || locale == 'AU' || locale == 'US'|| locale == 'IE')) {
+        if (brand == 'boohoo.com' && (locale == 'EU' || locale == 'CA' || locale == 'AU' || locale == 'US'|| locale == 'IE' || locale == 'NO')) {
           GlobalFooter.actions.checkFooterLinkByText('Social Responsibility');
         } else if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'DE' || locale == 'NZ' || locale == 'DK' || locale == 'FI'|| locale == 'NO')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[language]);

@@ -525,7 +525,7 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '4721982000',
-        addressLine: 'Universitetsgata 13,  ',
+        addressLine: 'Universitetsgata 13',
         postcode: '0164',
         addressName: 'PrimaryAddress',
         country: 'Norway',

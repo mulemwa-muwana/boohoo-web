@@ -788,7 +788,7 @@ class AssertionText {
     EN: 'Help',
     NL: 'Klantenservice',
     DE: 'Kundenservice',
-    FR: 'Aide',
+    FR: 'Service client',
     DK: '',
     FI: '',
     NO: '',

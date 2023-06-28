@@ -45,7 +45,9 @@ describe('Home Page', function () {
     it('Verify Mega Menu - Sale link opens', () => {
       if (brand == 'boohoo.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[language]);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+        if (locale != 'AU') {
+          HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+        }
       } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
@@ -397,9 +399,10 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
+        const includedLocales: Array<Locale> = ['UK', 'US', 'IE', 'AU'];
         if (brand == 'nastygal.com' && (locale == 'UK' || locale == 'US' || locale == 'IE') || brand == 'misspap.com' || (brand == 'karenmillen.com' && locale=='UK')) {
           GlobalFooter.actions.checkFooterLinkByText('Paypal');
-        } else if ((brand == 'coastfashion.com' && locale == 'UK' ) || locale == 'UK' || locale == 'US' || locale == 'IE') {
+        } else if ((brand == 'coastfashion.com' && locale == 'UK' ) || includedLocales.includes(locale)) {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
         } else {
           this.skip();

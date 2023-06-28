@@ -811,7 +811,7 @@ class ShippingPage implements AbstractPage {
         const shippingPhoneCode = selectors[brand].shippingPhoneCode;
         cy.get(shippingPhoneCode).select(phone.slice(0, 2));
         cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
-        cy.log(shippingPhoneNumber)
+        cy.log(shippingPhoneNumber);
       } else {
         cy.get(shippingPhoneNumber).clear().type(phone);
       }

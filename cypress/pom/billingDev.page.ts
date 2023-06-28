@@ -648,10 +648,10 @@ class BillingPage implements AbstractPage {
       cy.wait(4000);
 
       cy.get('body').then($body=>{ // (Updated) If there is saved Credit Card, click Add new Card button
-      if ($body.find("[class='b-button m-info m-width_full ']").length>0) { 
-      cy.get("[class='b-button m-info m-width_full ']").click();
-      }
-       });
+        if ($body.find("[class='b-button m-info m-width_full ']").length>0) { 
+          cy.get("[class='b-button m-info m-width_full ']").click();
+        }
+      });
       cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).type(cardNo, {force:true});
       cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(date, {force:true});
       cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(code, {force:true});
@@ -682,10 +682,10 @@ class BillingPage implements AbstractPage {
       const creditCardFieldsSecurityCode = selectors[variables.brand].creditCardFieldsSecurityCode;
       const creditCardFieldsCardOwner = selectors[variables.brand].creditCardFieldsCardOwner;
 
-      //const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
-      if(variables.brand == 'boohooman.com'){
-        cy.get(':nth-child(3) > .payment-method-option').click({force:true})
-      } else{
+      // Const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
+      if (variables.brand == 'boohooman.com') {
+        cy.get(':nth-child(3) > .payment-method-option').click({force:true});
+      } else {
         cy.get('#payment-button-scheme').click({force: true});
       }
     
@@ -917,9 +917,9 @@ class BillingPage implements AbstractPage {
       cy.wait(2000);
       
       // Stub the open method inside iframe to force it not to open a window.
-      //cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
-      //  cy.stub(win, 'open');
-     // });
+      // Cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
+      //  Cy.stub(win, 'open');
+      // });
       
       // Click PayPal button
       cy.iframe('.zoid-component-frame').find('.paypal-button').eq(0).should('be.visible').click({force:true});
@@ -932,11 +932,11 @@ class BillingPage implements AbstractPage {
         const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
 
         // If accept cookies button appears
-        //cy.wrap(innerIframe).then($body => {
-        //  if ($body.find('#acceptAllButton').length) {
-        //    cy.wrap(innerIframe).find('#acceptAllButton').click();
+        // Cy.wrap(innerIframe).then($body => {
+        //  If ($body.find('#acceptAllButton').length) {
+        //    Cy.wrap(innerIframe).find('#acceptAllButton').click();
         //  }
-        //});
+        // });
         
         // If Login form appears 
         cy.wrap(innerIframe).then($body => {
@@ -1107,7 +1107,7 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (variables.brand == 'boohoo.com' || variables.locale == 'AU') {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');
-      }else {
+      } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }  
     },

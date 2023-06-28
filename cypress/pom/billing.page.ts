@@ -670,10 +670,10 @@ class BillingPage implements AbstractPage {
       const creditCardFieldsSecurityCode = selectors[brand].creditCardFieldsSecurityCode;
       const creditCardFieldsCardOwner = selectors[brand].creditCardFieldsCardOwner;
 
-      //const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
-      if(brand == 'boohooman.com'){
-        cy.get(':nth-child(3) > .payment-method-option').click({force:true})
-      } else{
+      // Const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
+      if (brand == 'boohooman.com') {
+        cy.get(':nth-child(3) > .payment-method-option').click({force:true});
+      } else {
         cy.get('#payment-button-scheme').click({force: true});
       }
     

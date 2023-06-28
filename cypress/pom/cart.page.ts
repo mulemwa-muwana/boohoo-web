@@ -327,19 +327,19 @@ const selectors: SelectorBrandMap = {
 };
 
 class CartPage implements AbstractPage {
-  goto(): void {
+  goto (): void {
     cy.visit(url + '/cart');
   }
 
   click = {
-    clearCart() {
+    clearCart () {
       const clearCart = selectors[brand].clearCart;
       cy.get(clearCart).each(($el) => {
         cy.wrap($el).eq(0).click({ force: true });
-        cy.wait(7000)
+        cy.wait(7000);
       });
     },
-    removePremierFromCart() {
+    removePremierFromCart () {
 
       // Remove everything except the first item. If there are 3 items in cart, items 2 and 3 will be removed
       const clearCart = selectors[brand].clearCart;
@@ -349,7 +349,7 @@ class CartPage implements AbstractPage {
         }
       });
     },
-    proceedToCheckout() {
+    proceedToCheckout () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
 
@@ -365,11 +365,11 @@ class CartPage implements AbstractPage {
   };
 
   actions = {
-    updateQuantity() {
+    updateQuantity () {
       const editQuantity = selectors[brand].editQuantity;
       cy.get(editQuantity).should('be.visible').click();
     },
-    openPayPalSandbox() {
+    openPayPalSandbox () {
       const payPalCTA = selectors[brand].PayPalCTA;
       cy.get(payPalCTA).its('0.contentDocument.defaultView')
         .then(win => {
@@ -379,7 +379,7 @@ class CartPage implements AbstractPage {
       cy.iframe(payPalCTA).find('.paypal-button').should('be.visible').click({ force: true });
 
     },
-    openKlarnaSandbox() {
+    openKlarnaSandbox () {
 
       // Stub the open method with just a console log to force it not to open a window.
       cy.window().then((window: Cypress.AUTWindow) => {
@@ -391,10 +391,10 @@ class CartPage implements AbstractPage {
 
       cy.frameLoaded('#klarna-express-button-fullscreen');
     },
-    openAmazonSandbox() {
+    openAmazonSandbox () {
       cy.get('#OffAmazonPaymentsWidgets0').invoke('removeAttr', 'target').click();
     },
-    editCartQuantity(quantity: string) {
+    editCartQuantity (quantity: string) {
       const editQuantity = selectors[brand].editQuantity;
       const setQuantity = selectors[brand].setQuantity;
       const updateQuantity = selectors[brand].updateQuantity;
@@ -408,7 +408,7 @@ class CartPage implements AbstractPage {
       }
     },
 
-    editCartQuantitySiteGenesis(quantity: string) {
+    editCartQuantitySiteGenesis (quantity: string) {
       const editQuantity = selectors[brand].editQuantity;
       const editQuantityMobile = selectors[brand].editQuantityMobile;
       const editDetailsMobile = selectors[brand].editDetailsMobile;
@@ -434,25 +434,25 @@ class CartPage implements AbstractPage {
   };
 
   assertions = {
-    assertTableWithProductIsVisible() {
+    assertTableWithProductIsVisible () {
       const productsTable = selectors[brand].productsTable;
       cy.get(productsTable).should('be.visible');
     },
-    assertProductImageIsDisplayed() {
+    assertProductImageIsDisplayed () {
       const productImage = selectors[brand].productImage;
       cy.get(productImage).then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
-    assertProductTitleIsVisible() {
+    assertProductTitleIsVisible () {
       const productName = selectors[brand].productName;
       cy.get(productName).should('not.be.empty');
     },
-    assertProductDetailsAreVisible() {
+    assertProductDetailsAreVisible () {
       const productDetails = selectors[brand].productDetails;
       cy.get(productDetails).should('be.visible');
     },
-    assertPriceAndSubtotalAreVisible() {
+    assertPriceAndSubtotalAreVisible () {
 
       const productPrice = selectors[brand].productPrice;
       const productPriceMobile = selectors[brand].productPriceMobile;
@@ -470,7 +470,7 @@ class CartPage implements AbstractPage {
         cy.get(subtotal).should('be.visible').and('not.to.be.empty');
       }
     },
-    assertQuantityIsDisplayed(quantity: string) {
+    assertQuantityIsDisplayed (quantity: string) {
       const cartQuantity = selectors[brand].cartQuantity;
       if (isSiteGenesisBrand) {
         cy.get(cartQuantity).should('have.value', quantity);
@@ -478,7 +478,7 @@ class CartPage implements AbstractPage {
         cy.get(cartQuantity).should('contain', quantity);
       }
     },
-    assertCartIsEmpty() {
+    assertCartIsEmpty () {
       const emptyCartTitle = selectors[brand].emptyCartTitle;
       const emptyCartTitleMobile = selectors[brand].emptyCartTitleMobile;
       if (isMobileDeviceUsed) {
@@ -487,22 +487,22 @@ class CartPage implements AbstractPage {
         cy.get(emptyCartTitle).should('be.visible');
       }
     },
-    assertPremierSlotsAreVisible() {
+    assertPremierSlotsAreVisible () {
       const premierBlock = selectors[brand].premierBlock;
       const addPremierToCart = selectors[brand].addPremierToCart;
 
       cy.get(premierBlock).should('be.visible');
       cy.get(addPremierToCart).should('be.visible');
     },
-    assertPayPalCTAisVisible() {
+    assertPayPalCTAisVisible () {
       const PayPalCTA = selectors[brand].PayPalCTA;
       cy.get(PayPalCTA).should('be.visible');
     },
-    assertKlarnaCTAisVisible() {
+    assertKlarnaCTAisVisible () {
       const KlarnaCTA = selectors[brand].KlarnaCTA;
       cy.get(KlarnaCTA).should('be.visible');
     },
-    assertAmazonPayCTAisVisible() {
+    assertAmazonPayCTAisVisible () {
       const AmazonCTA = selectors[brand].AmazonCTA;
       cy.get(AmazonCTA).should('be.visible');
     }

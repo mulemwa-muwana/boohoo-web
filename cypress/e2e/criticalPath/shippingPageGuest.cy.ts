@@ -104,8 +104,8 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if (!isSiteGenesisBrand && locale == 'US'){
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1)
+    if (!isSiteGenesisBrand && locale == 'US') {
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -135,8 +135,8 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if (!isSiteGenesisBrand && locale == 'US'){
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1)
+    if (!isSiteGenesisBrand && locale == 'US') {
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);

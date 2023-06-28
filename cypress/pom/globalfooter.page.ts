@@ -465,8 +465,8 @@ class GlobalFooter implements AbstractPage {
     },
     assertAppBannerPresent () {
       const appBanner = selectors[variables.brand].appBanner;
-      if(isMobileDeviceUsed){
-        cy.get('h5#ui-id-7').click()
+      if (isMobileDeviceUsed) {
+        cy.get('h5#ui-id-7').click();
       }
       cy.get(appBanner).scrollIntoView().should('be.visible');
     },

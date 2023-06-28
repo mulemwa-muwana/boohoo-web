@@ -6,8 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/gb',
-    sku: '#AGG77115', // Needs hashtag for assertation on PDP
-    fullSku: 'AGG77115-105-35',
+    sku: '#AGG50919-1', // Needs hashtag for assertation on PDP
+    fullSku: 'AGG50919-432-16', 
     brand: 'nastygal.com',
     locale: 'UK',
     language: 'EN',
@@ -19,6 +19,7 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   screenshotOnRunFailure: true,
+
 
   // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',

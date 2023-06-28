@@ -14,6 +14,7 @@ export const brand = variables.brand;
 export const locale = variables.locale;
 export const language = variables.language;
 export const sku = variables.sku;
+export const fullsku = variables.fullSku;
 export const url = variables.url;
 export const fullSku = variables.fullSku;
 

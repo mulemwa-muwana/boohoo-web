@@ -47,7 +47,7 @@ const selectors: SelectorBrandMap = {
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
-    addToCartTitle: '.b-global_alerts-item',
+    addToCartTitle: '.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -483,6 +483,7 @@ class PdpPage implements AbstractPage {
     assertProductCodeIsDisplayed (SKU: string) {
       const productCode = selectors[brand].productCode;
       cy.get(productCode).should('be.visible').invoke('text').then(productCodeText => {
+        productCodeText=productCodeText.replace(/^#/g, ''); // Regex to Remove # from String front
         expect(SKU).to.contain(productCodeText);
       });
     },

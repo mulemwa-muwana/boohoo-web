@@ -4,7 +4,7 @@ import assertionText from '../../helpers/assertionText';
 import pdpPage from '../../pom/pdp.page';
 import LoginPage from 'cypress/pom/login.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-import { sku, brand, language } from 'cypress/support/e2e';
+import { sku, brand, language, fullSku } from 'cypress/support/e2e';
 
 describe('Product Details Page tests', function () {
 
@@ -16,7 +16,7 @@ describe('Product Details Page tests', function () {
   it('TC01 Verify that Product name, price and code is showing',function () {  
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
-    PdpPage.assertions.assertProductCodeIsDisplayed(sku);
+    PdpPage.assertions.assertProductCodeIsDisplayed(fullSku); // Used FullSku as some brands(NG) display fullSku as product code
 
     // We need to instal plugin for continuing after failed assertation just in case
 

@@ -16,7 +16,7 @@ class AssertionText {
 
   startReturnButtonText: TranslationMap = {
     EN: 'return',
-    FR: '',
+    FR: 'retour',
     NL: 'retourzending',
     DE: '',
     DK: '',

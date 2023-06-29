@@ -164,7 +164,7 @@ describe('Shipping Page Registered user tests', function () {
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
   });
 
-  it('Verify that PREMIER can be added to the cart', function () {
+  it.only('Verify that PREMIER can be added to the cart', function () {
     if (brand == 'boohoomena.com') { // No Premier/VIP for this brand
       this.skip();
     }

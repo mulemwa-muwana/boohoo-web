@@ -189,44 +189,44 @@ const selectors: SelectorBrandMap = {
   }
 };
 class WishListPage implements AbstractPage {
-  goto(): void {
+  goto (): void {
     homePage.goto();
   }
 
   click = {
-    sortItems() {
+    sortItems () {
       const sortItems = selectors[variables.brand].sortItems;
       cy.get(sortItems);
     },
-    sortByDateAddedFromNew() {
+    sortByDateAddedFromNew () {
       const sortByDateAddedFromNew = selectors[variables.brand].sortByDateAddedFromNew;
       cy.get(sortByDateAddedFromNew);
     },
-    sortByDateAddedFromOld() {
+    sortByDateAddedFromOld () {
       const sortByDateAddedFromOld = selectors[variables.brand].sortByDateAddedFromOld;
       cy.get(sortByDateAddedFromOld);
     },
-    sortByPriceFromLowToHigh() {
+    sortByPriceFromLowToHigh () {
       const sortByPriceFromLowToHigh = selectors[variables.brand].sortByPriceFromLowToHigh;
       cy.get(sortByPriceFromLowToHigh);
     },
-    sortByPriceFromHighToLow() {
+    sortByPriceFromHighToLow () {
       const sortByPriceFromHighToLow = selectors[variables.brand].sortByPriceFromHighToLow;
       cy.get(sortByPriceFromHighToLow);
     },
-    addToCart() {
+    addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
       cy.get(addToCart).eq(0).click({ force: true });
     },
-    removeItemFromWishlist() {
+    removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
       if (isMobileDeviceUsed) {
         cy.get(removeItemFromWishListMobile).eq(0).click({ force: true });
       } else {
         cy.get(removeItemFromWishlist).each(item => {
-          cy.wrap(item).eq(0).click()
-        })
+          cy.wrap(item).eq(0).click();
+        });
       }
       if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
         cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });
@@ -237,7 +237,7 @@ class WishListPage implements AbstractPage {
       }
 
     },
-    wishlistLoginBtn() {
+    wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;
       cy.get(wishlistLoginBtn).eq(0).click();
     }
@@ -245,35 +245,35 @@ class WishListPage implements AbstractPage {
   };
 
   actions = {
-    showInStockItemsCheckbox() {
+    showInStockItemsCheckbox () {
       cy.get('.show-in-stock').check();
     },
-    chooseSizeDDL(size: string) {
+    chooseSizeDDL (size: string) {
       const chooseSizeDDL = selectors[variables.brand].chooseSizeDDL;
       cy.get(chooseSizeDDL).select(size);
     },
-    chooseSizeBHO() {
+    chooseSizeBHO () {
       const chooseSizeBHO = selectors[variables.brand].chooseSizeBHO;
       cy.get(chooseSizeBHO).click();
     },
-    selectSizeBHO(size: number) {
+    selectSizeBHO (size: number) {
       cy.get('#attribute-b42fa661ec3462331eea8571c9-size').select(size);
     },
-    selectColourBHO(colour: number) {
+    selectColourBHO (colour: number) {
       cy.get('.b-select-input attribute-color').select(colour);
     }
   };
 
   assertions = {
-    assertItemIsAddedToWishlist() {
+    assertItemIsAddedToWishlist () {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
       cy.get(itemIsAddedToWishlist).should('be.visible');
     },
-    assertWishListIsEmpty(msg: string) {
+    assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
       cy.get(wishListIsEmpty).contains(msg, { matchCase: false }).should('be.visible');
     },
-    assertItemIsAddedtoWishlistAlertText(msg: string) {
+    assertItemIsAddedtoWishlistAlertText (msg: string) {
       const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;
       cy.get(itemIsAddedtoWishlistAlertText).should('have.text', msg);
     }

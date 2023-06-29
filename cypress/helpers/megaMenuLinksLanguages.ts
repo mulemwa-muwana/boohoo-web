@@ -102,7 +102,7 @@ class megaMenuLinksLanguages {
     EN: 'new',
     NL: 'nieuw',
     DE: 'neu',
-    FR: 'nouveautés',
+    FR: 'nouveautes',
     DK: '',
     FI: '',
     NO: '',

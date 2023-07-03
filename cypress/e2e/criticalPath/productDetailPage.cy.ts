@@ -16,7 +16,7 @@ describe('Product Details Page tests', function () {
   it('TC01 Verify that Product name, price and code is showing',function () {  
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
-    PdpPage.assertions.assertProductCodeIsDisplayed(fullSku); // Used FullSku as some brands(NG) display fullSku as product code
+    PdpPage.assertions.assertProductCodeIsDisplayed(sku); 
 
     // We need to instal plugin for continuing after failed assertation just in case
 

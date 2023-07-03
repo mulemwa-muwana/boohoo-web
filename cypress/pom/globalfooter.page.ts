@@ -420,7 +420,7 @@ class GlobalFooter implements AbstractPage {
         .invoke('removeAttr', 'target')
         .then(element => {
           let href = element.attr('href');
-          href = href.trim()
+          href = href.trim();
           cy.wrap(element).click({force: true});
           cy.url().then(url => {
             expect(url).to.contain(options?.assertionUrl ?? href);

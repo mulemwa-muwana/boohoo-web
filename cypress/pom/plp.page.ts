@@ -3,6 +3,7 @@ import { RouteMatcher } from 'cypress/types/net-stubbing';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import assertionText from 'cypress/helpers/assertionText';
+import { brand, locale } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -406,6 +407,9 @@ class PlpPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
         cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
+      } else if (brand == 'boohoo.com' && locale == 'US') {
+        cy.get('button[id*="-' + (assertionText.color[variables.language] + '"]')).click({ force: true });
+        cy.get('#refinementAttributesList-' + (assertionText.color[variables.language])).contains(color).click({ force: true });
       } else {
         cy.get('button[id*="-' + (assertionText.colour[variables.language] + '"]')).click({ force: true });
         cy.get('#refinementAttributesList-' + (assertionText.colour[variables.language])).contains(color).click({ force: true });

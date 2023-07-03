@@ -150,7 +150,9 @@ describe('Shipping Page Guest user tests', function () {
         shippingPage.actions.confirmEmailField(this.guestEmail);
       }
     } 
-    shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
+    if (brand != 'boohooman.com' && locale != 'EU') {
+      shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
+      }
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });

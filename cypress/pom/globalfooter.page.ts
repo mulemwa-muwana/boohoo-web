@@ -420,7 +420,8 @@ class GlobalFooter implements AbstractPage {
       cy.get(footer).contains('a', text, { matchCase: false }) // Add Tag a contains Text Help to make it work for SG Brands
         .invoke('removeAttr', 'target')
         .then(element => {
-          const href = element.attr('href');
+          let href = element.attr('href');
+          href = href.trim()
           cy.wrap(element).click({force: true});
           cy.url().then(url => {
             expect(url).to.contain(options?.assertionUrl ?? href);

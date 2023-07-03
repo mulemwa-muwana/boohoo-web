@@ -417,7 +417,7 @@ class PdpPage implements AbstractPage {
     },
     selectColorFromSku () {
       const selectColor = selectors[brand].selectColor;
-      const colorFromSku = fullSku.split('-')[1]; // Get color part from fullSku FZZ80440-106-18 => 106
+      const colorFromSku = fullSku.split('-')[1]; // Get color part from fullSku FZZ80440-157-18 => 157
 
       if (isSiteGenesisBrand) {
         cy.get(selectColor + ` span[data-variation-values*='backendValue": "${colorFromSku}']`).then(($element) => {

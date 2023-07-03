@@ -152,7 +152,7 @@ describe('Shipping Page Guest user tests', function () {
     } 
     if (brand != 'boohooman.com' && locale != 'EU') {
       shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
-      }
+    }
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });

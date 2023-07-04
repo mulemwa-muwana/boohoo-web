@@ -506,7 +506,7 @@ class AssertionText {
 
   loginAttempts: TranslationMap = {
     EN: 'login attempts',
-    FR: 'tentatives de connexion',
+    FR: 'tentatives d’enregistrement',
     NL: 'pogingen om in te loggen',
     DE: 'weitere Anmeldeversuche',
     DK: 'flere loginforsøg',

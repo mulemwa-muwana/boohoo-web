@@ -1,6 +1,7 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import { isMobileDeviceUsed } from 'cypress/helpers/common';
+import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -420,7 +421,7 @@ class GlobalFooter implements AbstractPage {
         .invoke('removeAttr', 'target')
         .then(element => {
           let href = element.attr('href');
-          href = href.trim()
+          href = href.trim();
           cy.wrap(element).click({force: true});
           cy.url().then(url => {
             expect(url).to.contain(options?.assertionUrl ?? href);
@@ -466,7 +467,7 @@ class GlobalFooter implements AbstractPage {
     },
     assertAppBannerPresent () {
       const appBanner = selectors[variables.brand].appBanner;
-      if (isMobileDeviceUsed) {
+      if (isMobileDeviceUsed && (brand == 'karenmillen.com' || brand == 'boohoomena.com')) {
         cy.get('h5#ui-id-7').click();
       }
       cy.get(appBanner).scrollIntoView().should('be.visible');

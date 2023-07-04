@@ -23,6 +23,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner',
+    miniCartContent:'.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     miniCartProductInerMobile:'',
     productDescription: 'div[data-id="descriptions"]',
@@ -48,6 +49,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner',
+    miniCartContent:'.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -77,6 +79,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-global_alerts-item',
+    miniCartContent:'.b-global_alerts-item',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -104,6 +107,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner',
+    miniCartContent:'.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -130,6 +134,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-global_alerts',
+    miniCartContent:'.b-global_alerts',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -164,6 +169,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-product-added',
+    miniCartContent:'.mini-cart-content-inner',
     miniCartProductIner: '.mini-cart-content-inner',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.del-table',
@@ -193,6 +199,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-text',
+    miniCartContent:'.mini-cart-header-text',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '#ui-id-5',
@@ -221,6 +228,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-text',
+    miniCartContent:'.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-3',
     productDelivery: '.del-table',
@@ -248,6 +256,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-text',
+    miniCartContent:'.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2',
     productDelivery: '.del-table',
@@ -277,6 +286,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-header-text',
+    miniCartContent:'.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
@@ -306,6 +316,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-link',
+    miniCartContent:'.mini-cart-link',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '.product-care-info',
     productDelivery: '.b-product_delivery',
@@ -334,6 +345,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-header-product-added',
+    miniCartContent:'.mini-cart-content-inner',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
@@ -531,12 +543,12 @@ class PdpPage implements AbstractPage {
       }   
     },
     assertMiniCartIsDisplayed () { 
-      const addToCartTitle = selectors[brand].addToCartTitle;
-      if (brand != 'boohooman.com') {
-        cy.get(addToCartTitle).should('be.visible');
+      const miniCartContent = selectors[brand].miniCartContent;
+      if (isMobileDeviceUsed && !isSiteGenesisBrand) {
+        cy.get('[data-tau="global_alerts_item"]').should('be.visible');
+      } else {
+        cy.get(miniCartContent).should('be.visible');
       }
-      const miniCartProductIner = selectors[brand].miniCartProductIner;
-      cy.get(miniCartProductIner).should('be.visible');
     },
     assertProductIsAddedToWishlist (msg: string) {
       const addedToWishlistMsg = selectors[brand].addedToWishlistMsg; 

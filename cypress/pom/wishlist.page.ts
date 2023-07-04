@@ -180,7 +180,7 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
-    removeItemFromWishlistMobile: '',
+    removeItemFromWishlistMobile: '.button-remove-text',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
     itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
     wishListIsEmpty: '.wishlist-empty-message',

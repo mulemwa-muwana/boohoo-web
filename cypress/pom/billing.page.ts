@@ -565,7 +565,7 @@ const selectors: SelectorBrandMap = {
     billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
     viewAllBillingAddresses: '.use-another-address',
-    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
+    billingAddressFromBook: '.button',
     dobDate: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',

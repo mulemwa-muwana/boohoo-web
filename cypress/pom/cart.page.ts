@@ -46,7 +46,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: 'b-button b-minicart-button',
+    proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
     clearCartMobile: '.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',

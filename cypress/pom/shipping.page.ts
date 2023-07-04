@@ -776,7 +776,7 @@ class ShippingPage implements AbstractPage {
     addressLookupSelectFirstAddress (addressLine: string, city: string) {
       const addressLookup = selectors[brand].addressLookup;
       cy.get(addressLookup).type(addressLine);
-      cy.wait(1000);
+      cy.wait(2000);
       cy.get(addressLookup).type(' ' + city);
       cy.wait(1000);
       cy.get(addressLookup).type('{enter}');

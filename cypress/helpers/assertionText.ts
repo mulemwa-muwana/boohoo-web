@@ -1470,6 +1470,20 @@ class AssertionText {
     ES: 'color'
   };
 
+  color: TranslationMap = {
+    EN: 'color',
+    NL: 'kleur',
+    DE: 'farbe',
+    FR: 'couleur',
+    DK: 'colour',
+    FI: 'colour',
+    NO: 'colour',
+    SE: 'färg',
+    IL: '',
+    IT: 'colore',
+    ES: 'color'
+  };
+
   occasion: TranslationMap = {
     EN: 'occasion',
     NL: 'gelegenheid',

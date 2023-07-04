@@ -182,7 +182,7 @@ const selectors: SelectorBrandMap = {
   'boohoomena.com': {
     loginIcon: 'span.user-account',
     loginLink: '.user-links > [title="Log In"]',
-    mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
+    mobileHamburgIcon: '.js-menu-toggle',
     MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
     loginEmail: '[id^=dwfrm_login_username]',
     loginPassword: '[id^=dwfrm_login_password]',

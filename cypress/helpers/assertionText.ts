@@ -3,7 +3,7 @@ class AssertionText {
   WishlistItemsAdded: TranslationMap = {
     EN: 'The product is added to wish list',
     FR: 'Le produit a été ajouté à la liste des favoris',
-    NL: '\n\nOpgeslagen\n',
+    NL: 'The product is added to wish list',
     DE: '\n\nGerettet\n',
     DK: '\n\nGemt\n',
     FI: '\n\nTallennettu\n',
@@ -16,8 +16,8 @@ class AssertionText {
 
   startReturnButtonText: TranslationMap = {
     EN: 'return',
-    FR: '',
-    NL: '',
+    FR: 'retour',
+    NL: 'retourzending',
     DE: '',
     DK: '',
     FI: '',
@@ -183,9 +183,9 @@ class AssertionText {
   };
 
   RegistrationPageExistingEmail: TranslationMap = {
-    EN: 'Looks like you already have an account with us. Please try logging in or use a different email address  Log in',
+    EN: 'Looks like you already have an account with us. Please try logging in or use a different email address',
     FR: 'Il semble que vous ayez déjà un compte chez nous. Veuillez essayer de vous connecter ou utiliser une autre adresse e-mail',
-    NL: 'Het lijkt erop dat u al een account bij ons heeft. Probeer in te loggen of gebruik een ander e-mailadres Log in',
+    NL: 'Het lijkt erop dat je al een account bij ons hebt. Probeer op dit account in te loggen of gebruik een ander e-mailadres',
     DE: 'Anscheinend haben Sie bereits ein Konto bei uns. Bitte versuchen Sie sich anzumelden oder verwenden Sie eine andere E-Mail-Adresse',
     DK: 'Det ser ud til, at du allerede har en konto hos os. Prøv venligst at logge ind eller brug en anden e-mailadresse Log ind',
     FI: 'Näyttää siltä, ​​että sinulla on jo tili meillä. Yritä kirjautua sisään tai käytä toista sähköpostiosoitetta Kirjaudu sisään',
@@ -311,7 +311,7 @@ class AssertionText {
   TermsAndConditionsH1: TranslationMap = {
     EN: 'Terms & Conditions',
     FR: '',
-    NL: 'ALGEMENE GEBRUIKSVOORWAARDEN',
+    NL: 'TERMS & CONDITIONS',
     DE: '',
     DK: '',
     FI: '',
@@ -632,7 +632,7 @@ class AssertionText {
 
   assertPaymentMethod: TranslationMap = {
     EN: 'Card',
-    NL: 'Creditcard / betaalkaart',
+    NL: 'Card',
     DK: 'Kredit-/betalingskort',
     FR: 'Carte de crédit / débit',
     FI: 'Luotto/pankkikortti',
@@ -690,7 +690,7 @@ class AssertionText {
     EN: 'Hold up! That doesn’t seem right.',
     NL: 'Wacht! Er gaat iets mis.',
     DE: 'Achtung! Das scheint nicht richtig zu sein.',
-    FR: 'Tenir bon! Cela ne semble pas juste.',
+    FR: 'Attendez ! Il semblerait qu’il y ait un souci.',
     DK: 'Hold op! Det virker ikke rigtigt.',
     FI: 'Kestä! Se ei vaikuta oikealta.',
     NO: 'Vent! Det virker ikke riktig.',
@@ -788,7 +788,7 @@ class AssertionText {
     EN: 'Help',
     NL: 'Klantenservice',
     DE: 'Kundenservice',
-    FR: 'Aide',
+    FR: 'Service client',
     DK: '',
     FI: '',
     NO: '',
@@ -926,7 +926,7 @@ class AssertionText {
 
   footerLinkSizeGuide: TranslationMap = {
     EN: 'Size Guide',
-    NL: 'Maatgids',
+    NL: 'Maatwijzer',
     DE: 'Größentabelle',
     FR: 'Guide des tailles',
     DK: 'Size Guide',
@@ -996,7 +996,7 @@ class AssertionText {
 
   footerLinkReturns: TranslationMap = {
     EN: 'Returns',
-    NL: 'Retourzendingen',
+    NL: 'RETOURNERINGEN',
     DE: 'Rücksendungen',
     FR: 'Retours',
     DK: '',

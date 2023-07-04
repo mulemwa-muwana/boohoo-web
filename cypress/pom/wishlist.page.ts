@@ -180,7 +180,7 @@ const selectors: SelectorBrandMap = {
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
     addToCart: 'form[name="dwfrm_wishlist_items_i0"] button[class*="button-fancy-small"]',
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
-    removeItemFromWishlistMobile: '',
+    removeItemFromWishlistMobile: '.button-remove-text',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
     itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
     wishListIsEmpty: '.wishlist-empty-message',
@@ -216,15 +216,17 @@ class WishListPage implements AbstractPage {
     },
     addToCart () {
       const addToCart = selectors[variables.brand].addToCart;
-      cy.get(addToCart).eq(0).click({force: true});
+      cy.get(addToCart).eq(0).click({ force: true });
     },
     removeItemFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
       if (isMobileDeviceUsed) {
-        cy.get(removeItemFromWishListMobile).eq(0).click({force:true});
+        cy.get(removeItemFromWishListMobile).eq(0).click({ force: true });
       } else {
-        cy.get(removeItemFromWishlist).eq(0).click({force:true});
+        cy.get(removeItemFromWishlist).each(item => {
+          cy.wrap(item).eq(0).click();
+        });
       }
       if (variables.brand == 'burton.co.uk' || variables.brand == 'wallis.co.uk' || variables.brand == 'nastygal.com') {
         cy.get('button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });
@@ -233,7 +235,7 @@ class WishListPage implements AbstractPage {
       } else if (variables.brand == 'dorothyperkins.com') {
         cy.get('.b-button[data-tau="remove_item_confirmation_confirm"]').click({ force: true });
       }
-      
+
     },
     wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;

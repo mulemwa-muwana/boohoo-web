@@ -13,8 +13,12 @@ describe('Product Listing Page tests', function () {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
       HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
     } else if (brand == 'boohoo.com' || brand == 'boohooman.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
+      if ( locale == 'AU') {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[language]);
+      } else {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
+      }   
     } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'wallis.co.uk') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
@@ -29,7 +33,7 @@ describe('Product Listing Page tests', function () {
 
   it('Verify that plp page opens', () => {
     cy.wait(3000);
-    if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'wallis.co.uk') {
+    if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'wallis.co.uk' || ( brand == 'boohoo.com' && locale == 'AU')) {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[language]);
     } else {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlLinkNewIn[language]);
@@ -84,9 +88,17 @@ describe('Product Listing Page tests', function () {
         this.skip();
       } 
       plpPage.actions.setupChangeIntercept(/style/);
-      plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[language]);
+      if ( brand == 'boohoo.com' && locale == 'AU') {
+        plpPage.click.selectRefinementVariantStyle(productVariations.productTops[language]);
+      } else {
+        plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[language]);
+      }
       plpPage.actions.waitForPageRefinementUpdate();
-      plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   
+      if ( brand == 'boohoo.com' && locale == 'AU') {
+        plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productTops[language]);   
+      } else {
+        plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   
+      }   
     });
     
     it('Verify color refinement is applied', () => {

@@ -307,7 +307,7 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.js-premier-add-to-cart',
+    addPremierToCartFromShippingPage: '.premier-box-btn',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'Karen Millen Premier',
@@ -363,7 +363,7 @@ const selectors: SelectorBrandMap = {
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.add-to-cart-text',
+    addPremierToCartFromShippingPage: '#add-to-cart',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'Coast VIP',
@@ -477,7 +477,7 @@ const selectors: SelectorBrandMap = {
   'oasis-stores.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPage: '.add-to-cart-text',
     premierProductTitle: 'OASIS UNLIMITED - UNLIMITED DELIVERY',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
@@ -534,7 +534,7 @@ const selectors: SelectorBrandMap = {
   'misspap.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPage: '#add-to-cart',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'VIP DELIVERY',
@@ -749,7 +749,7 @@ class ShippingPage implements AbstractPage {
       if (isMobileDeviceUsed && isSiteGenesisBrand) {
         cy.get(addPremierToCartFromShippingPageMobile).click({ force: true });
       } else {
-        cy.get(addPremierToCartFromShippingPage).eq(0).click();
+        cy.get(addPremierToCartFromShippingPage).eq(0).click({ force: true });
       }
 
     },
@@ -811,6 +811,7 @@ class ShippingPage implements AbstractPage {
         const shippingPhoneCode = selectors[brand].shippingPhoneCode;
         cy.get(shippingPhoneCode).select(phone.slice(0, 2));
         cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
+        cy.log(shippingPhoneNumber);
       } else {
         cy.get(shippingPhoneNumber).clear().type(phone);
       }

@@ -1,5 +1,7 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
+import { isMobileDeviceUsed } from 'cypress/helpers/common';
+import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -262,6 +264,7 @@ const selectors: SelectorBrandMap = {
     twitterLink: '[title="Twitter"]',
     pintrestLink: '[title="Pinterest"]', 
     youtubeLink: '[title="YouTube"]',
+    snapchatLink: 'a[href="https://www.snapchat.com/add/boohooofficial"]',
     newsletterInputMail: 'input[id^="footer_newsletter_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: '.newsletter-form-group button',
@@ -366,6 +369,15 @@ class GlobalFooter implements AbstractPage {
           .should('eq', 200); 
       });
     },
+    snapchatLink () {
+      const snapchatLink = selectors[variables.brand].snapchatLink; // Only boohoomena
+      cy.get(snapchatLink).then(link => {
+        cy
+          .request(link.prop('href'))
+          .its('status')
+          .should('eq', 200); 
+      });
+    },
     footerPromo () {
       const footerPromoLink = selectors[variables.brand].footerPromoLink;
       cy.get(footerPromoLink).then(element => {
@@ -408,7 +420,8 @@ class GlobalFooter implements AbstractPage {
       cy.get(footer).contains('a', text, { matchCase: false }) // Add Tag a contains Text Help to make it work for SG Brands
         .invoke('removeAttr', 'target')
         .then(element => {
-          const href = element.attr('href');
+          let href = element.attr('href');
+          href = href.trim();
           cy.wrap(element).click({force: true});
           cy.url().then(url => {
             expect(url).to.contain(options?.assertionUrl ?? href);
@@ -454,6 +467,9 @@ class GlobalFooter implements AbstractPage {
     },
     assertAppBannerPresent () {
       const appBanner = selectors[variables.brand].appBanner;
+      if (isMobileDeviceUsed && (brand == 'karenmillen.com' || brand == 'boohoomena.com')) {
+        cy.get('h5#ui-id-7').click();
+      }
       cy.get(appBanner).scrollIntoView().should('be.visible');
     },
     assertCurrencyByPageContext (currency: string) { //  N/A

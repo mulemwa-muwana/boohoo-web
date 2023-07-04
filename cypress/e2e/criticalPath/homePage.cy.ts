@@ -45,7 +45,9 @@ describe('Home Page', function () {
     it('Verify Mega Menu - Sale link opens', () => {
       if (brand == 'boohoo.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[language]);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+        if (locale != 'AU') {
+          HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+        }
       } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
@@ -214,6 +216,15 @@ describe('Home Page', function () {
           this.skip();
         }
       });
+
+      it('Snapchat', function () {
+        if (brand == 'boohoomena.com') {
+          SocialsPage.assertions.assertSnapchatIconIsPresent();
+          GlobalFooter.click.snapchatLink();         
+        } else {
+          this.skip();
+        }
+      });
     });
       
     describe('Verify Footer Payment providers and mobile App Banners', () => {
@@ -254,7 +265,7 @@ describe('Home Page', function () {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[language]);
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
-        const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA'];
+        const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA','NO'];
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
@@ -388,9 +399,10 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - PayPal', function () {
+        const includedLocales: Array<Locale> = ['UK', 'US', 'IE', 'AU'];
         if (brand == 'nastygal.com' && (locale == 'UK' || locale == 'US' || locale == 'IE') || brand == 'misspap.com' || (brand == 'karenmillen.com' && locale=='UK')) {
           GlobalFooter.actions.checkFooterLinkByText('Paypal');
-        } else if ((brand == 'coastfashion.com' && locale == 'UK' ) || locale == 'UK' || locale == 'US' || locale == 'IE') {
+        } else if ((brand == 'coastfashion.com' && locale == 'UK' ) || includedLocales.includes(locale)) {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
         } else {
           this.skip();
@@ -418,7 +430,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Environmental & Social Responsibility', function () {
-        if (brand == 'boohoo.com' && (locale == 'EU' || locale == 'CA' || locale == 'AU' || locale == 'US'|| locale == 'IE')) {
+        if (brand == 'boohoo.com' && (locale == 'EU' || locale == 'CA' || locale == 'AU' || locale == 'US'|| locale == 'IE' || locale == 'NO')) {
           GlobalFooter.actions.checkFooterLinkByText('Social Responsibility');
         } else if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'DE' || locale == 'NZ' || locale == 'DK' || locale == 'FI'|| locale == 'NO')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[language]);

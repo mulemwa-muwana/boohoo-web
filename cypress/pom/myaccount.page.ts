@@ -1,4 +1,5 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
+import { brand, locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -37,8 +38,12 @@ const selectors: SelectorBrandMap = {
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
     addCreditCardOwner: 'input.adyen-checkout__input',
+    addCreditCardOwnerUS:"input[id='dwfrm_creditCard_cardOwner']",
     addCreditCardNumber:"[data-fieldtype='encryptedCardNumber']",
+    addCreditCardNumberUS:"input[id='dwfrm_creditCard_cardNumber']",
     addCreditCardExpDate: "[data-fieldtype='encryptedExpiryDate']",
+    addCreditCardExpMonthUS: '#dwfrm_creditCard_expirationMonth',
+    addCreditCardExpYearUS: '#dwfrm_creditCard_expirationYear',
     addCreditCardSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     addCreditCardSaveBtn: '.m-mobile_column > .b-button',
     creditCardSection: '.b-cards_grid section',
@@ -748,7 +753,7 @@ class MyAccountPage implements AbstractPage {
       },
       accountDetailsLink () {
         const accountDetailsLink = selectors[variables.brand].accountDetailsLink;
-        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        if (brand == 'boohoo.com' && locale == 'AU') {
           cy.get('a[class="b-account_nav-item_link m-user"]').should('be.visible').click({force: true});
         } else {
           cy.get(accountDetailsLink).should('be.visible').click({force: true});
@@ -790,7 +795,7 @@ class MyAccountPage implements AbstractPage {
       },
       viewNewestOrderHistory () {
         const newestOrderHistory = selectors[variables.brand].newestOrderHistory;
-        if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+        if (brand == 'boohoo.com' &&locale == 'AU') {
           cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force:true});
         } else {
           cy.get(newestOrderHistory).should('be.visible').click({force:true});
@@ -844,12 +849,12 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
         
-        if (variables.locale == 'EU') {
+        if (locale == 'EU') {
           cy.get('#dwfrm_profile_address_country').
             select(address.country);
         }
 
-        if (variables.brand == 'boohoomena.com') {
+        if (brand == 'boohoomena.com') {
           const addressPhoneCode = selectors[variables.brand].addressPhoneCode;
           cy.get(addressPhoneCode).select(address.phone.slice(0, 2));
           cy.get(addressPhoneNumberField).clear().type(address.phone.slice(2));
@@ -861,13 +866,13 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressEnterManualyBtn).click({ force: true });
         }
         cy.get(addressField).should('be.visible').type(address.addressLine, { force: true });
-        if (variables.brand == 'boohoomena.com') {
+        if (brand == 'boohoomena.com') {
           cy.get(addressCityField).select(address.city);
         } else {
           cy.get(addressCityField).type(address.city, { force: true });
         }
         cy.get(addressPostalCodeField).type(address.postcode, { force: true });
-        if (variables.locale == 'AU' || variables.brand == 'boohoomena.com') {
+        if (locale == 'AU' || brand == 'boohoomena.com' || locale=='US') {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {
@@ -892,9 +897,9 @@ class MyAccountPage implements AbstractPage {
         const addressCards = selectors[variables.brand].addressCards;
         const addressDeleteButton = selectors[variables.brand].addressDeleteButton;
         cy.get(addressCards).contains('Boohoo').then(ele=>{
-          cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true}); 
+          cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true});
         });
-        if (!isSiteGenesisBrand) {
+        if (!isSiteGenesisBrand || locale=='US') {
           cy.wait(1000);
           cy.contains('button', 'Yes, delete').click({ force: true });
         }
@@ -914,6 +919,24 @@ class MyAccountPage implements AbstractPage {
         cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(addCreditCardExpDate).should('be.enabled').type(expiryDate, {force:true});
         cy.iframe('.adyen-checkout__card__cvc__input .js-iframe').find(addCreditCardSecurityCode).type(securityCode);
         cy.get(addCreditCardOwner).click({ force: true }).should('be.visible').type(cardOwner);
+        cy.get(addCreditCardSaveBtn).click({ force: true });
+      },
+      addCardUS (cardNumber: string, cardOwner: string, cardMonth: string, cardYear: string) {
+        const addCreditCardBtn = selectors[variables.brand].addCreditCardBtn;
+        const addCreditCardNumberUS = selectors[variables.brand].addCreditCardNumberUS;
+        const addCardEditForm = selectors[variables.brand].addCardEditForm;
+        const addCreditCardOwnerUS = selectors[variables.brand].addCreditCardOwnerUS;
+        const addCreditCardExpMonthUS = selectors[variables.brand].addCreditCardExpMonthUS;
+        const addCreditCardExpYearUS = selectors[variables.brand].addCreditCardExpYearUS;
+        const addCreditCardSaveBtn = selectors[variables.brand].addCreditCardSaveBtn;
+        cy.get(addCreditCardBtn).click({ force: true });
+        cy.get(addCardEditForm).should('be.visible');
+
+        cy.get(addCreditCardNumberUS).type(cardNumber);
+        cy.get(addCreditCardOwnerUS).click({ force: true }).should('be.visible').type(cardOwner);
+        cy.get(addCreditCardExpMonthUS).select(3).invoke('val').should('eq', '3');
+        cy.get(addCreditCardExpYearUS).select(8) .invoke('val').should('eq', '2030');
+
         cy.get(addCreditCardSaveBtn).click({ force: true });
       },
 

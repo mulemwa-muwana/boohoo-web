@@ -76,7 +76,11 @@ describe('Billing page functionality for guest user', function () {
     if (isSiteGenesisBrand) {
       this.skip(); // Date of birth form for Site Genesis brands is on Shipping page.
     }
-    BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+    if (brand=='boohoo.com'&& locale=='US') {
+      BillingPage.actions.selectCreditCardUS(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+    } else {
+      BillingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+    }
     if (brand == 'boohoo.com') {
       BillingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldErrorBoohoo[language]);
     } else {

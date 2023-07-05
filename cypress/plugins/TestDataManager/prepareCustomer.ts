@@ -3,6 +3,33 @@ import { getCustomerKeyByBrand } from './createCustomer';
 import createBasket from './createBasket';
 import jwtToken from './jwtToken';
 
+export async function whitelistEmail (email: string): Promise<void> {
+  const endpoint = 'https://uat-transactional-mail.boohoo.com/whitelist';
+
+  const response = await axios.post(
+    endpoint,
+    { emails: [email] },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: process.env.EMAIL_WHITELIST_AUTH_KEY,
+        'Accept-Encoding': 'gzip, deflate, br',
+        Connection: 'keep-alive',
+        Accept: '*/*',
+      },
+    }
+  );
+
+  if (response.status !== 200) {
+    throw Error(
+      'whitelistEmail: Did not get a success response status, with error code ' +
+        response.status
+    );
+  }
+
+  console.log('Email whitelisted successfully:', email);
+}
+
 export default async function (credentials: NewCustomerCredentials, brand: GroupBrands, sku: string, locale: 'uk'): Promise<{success: boolean}> {
 
   // Check SKU is valid.
@@ -39,6 +66,8 @@ export default async function (credentials: NewCustomerCredentials, brand: Group
   if (response.status !== 200) {
     const json = await response.data;
     throw new Error(`setProductInBasket: Did not get a success response status, with error: ${(json.fault && json.fault.message) ? json.fault.message as string : String(response.status)}`);
+  } else {
+    await whitelistEmail(credentials.email);
   }
 
   return {

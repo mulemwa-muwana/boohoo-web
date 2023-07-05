@@ -29,6 +29,7 @@ export default defineConfig({
     overwrite: false,
     html: false,
     json: true,
+  
   },
   e2e: {
     excludeSpecPattern: [

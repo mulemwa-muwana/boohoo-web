@@ -5,9 +5,9 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@cs-dwstg.boohoo.com/',
+    url: 'https://storefront:Oreo2022@ca-dwstg.boohoo.com/',
     sku: '#FZZ80440',
-    fullSku: 'FZZ80440-106-18',
+    fullSku: 'FZZ80440-157-18',
     brand: 'boohoo.com',
     locale: 'CA',
     language: 'EN',

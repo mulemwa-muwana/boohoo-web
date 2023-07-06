@@ -271,10 +271,10 @@ class WishListPage implements AbstractPage {
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
-      if(variables.brand == 'boohoo.com' && variables.locale == 'DE'){
+      if (variables.brand == 'boohoo.com' && variables.locale == 'DE') {
         cy.get(wishListIsEmpty).contains('DU HAST (NOCH) KEINE ARTIKEL FÜR SPÄTER GESPEICHERT.', { matchCase: false}).should('be.visible');
-      }else{
-      cy.get(wishListIsEmpty).contains(msg, { matchCase: false }).should('be.visible');
+      } else {
+        cy.get(wishListIsEmpty).contains(msg, { matchCase: false }).should('be.visible');
       }
     },
     assertItemIsAddedtoWishlistAlertText (msg: string) {

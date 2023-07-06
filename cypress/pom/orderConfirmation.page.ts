@@ -242,11 +242,11 @@ class OrderConfirmation implements AbstractPage {
     },
     assertPaymentMethod (method: string) {
       const paymentMethod = selectors[variables.brand].paymentMethod;
-      if(brand == 'boohoo.com' && locale == 'DE'){
+      if (brand == 'boohoo.com' && locale == 'DE') {
         const method = 'Card';
         cy.get(paymentMethod).should('contain.text', method);
-      }else{
-      cy.get(paymentMethod).should('contain.text', method);
+      } else {
+        cy.get(paymentMethod).should('contain.text', method);
       }
     },
     assertOrderTotalIsVisible () {

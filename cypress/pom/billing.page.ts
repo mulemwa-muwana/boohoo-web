@@ -659,18 +659,7 @@ class BillingPage implements AbstractPage {
       cy.get(paynowBtnCC).click({force:true});
 
     },
-    selectCreditCardUS (cardNo: string, cardOwner: string, date: string, code: string) {
-      const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
-
-      const creditCardCardNumberIframe = selectors[brand].creditCardCardNumberIframe;
-      const creditCardFieldsCardNumber = selectors[brand].creditCardFieldsCardNumber;
-      const creditCardExpirationDateIframe = selectors[brand].creditCardExpirationDateIframe;
-      const creditCardFieldsExpirationDate = selectors[brand].creditCardFieldsExpirationDate;
-      const creditCardSecurityCodeIframe = selectors[brand].creditCardSecurityCodeIframe;
-      const creditCardFieldsSecurityCode = selectors[brand].creditCardFieldsSecurityCode;
-      const creditCardFieldsCardOwner = selectors[brand].creditCardFieldsCardOwner;
-
-      // Const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
+    selectCreditCardUS (cardNo: string, cardOwner: string) {
       if (brand == 'boohooman.com') {
         cy.get(':nth-child(3) > .payment-method-option').click({force:true});
       } else {

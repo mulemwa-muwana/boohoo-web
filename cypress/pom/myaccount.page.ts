@@ -915,7 +915,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addCreditCardBtn).click({ force: true });
         cy.get(addCardEditForm).should('be.visible');
         cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(addCreditCardNumber).type(cardNumber);
-        cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(addCreditCardExpDate).type(expiryDate, {force:true});
+        cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(addCreditCardExpDate).should('be.enabled').type(expiryDate, {force:true});
         cy.iframe('.adyen-checkout__card__cvc__input .js-iframe').find(addCreditCardSecurityCode).type(securityCode);
         cy.get(addCreditCardOwner).click({ force: true }).should('be.visible').type(cardOwner);
         cy.get(addCreditCardSaveBtn).click({ force: true });

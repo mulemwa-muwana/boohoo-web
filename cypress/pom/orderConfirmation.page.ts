@@ -1,3 +1,4 @@
+import { brand , locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -241,7 +242,12 @@ class OrderConfirmation implements AbstractPage {
     },
     assertPaymentMethod (method: string) {
       const paymentMethod = selectors[variables.brand].paymentMethod;
+      if(brand == 'boohoo.com' && locale == 'DE'){
+        const method = 'Card';
+        cy.get(paymentMethod).should('contain.text', method);
+      }else{
       cy.get(paymentMethod).should('contain.text', method);
+      }
     },
     assertOrderTotalIsVisible () {
       const orderTotalIsVisible = selectors[variables.brand].orderTotalIsVisible;

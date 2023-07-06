@@ -99,6 +99,7 @@ const selectors: SelectorBrandMap = {
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
     cardDeleteConfirmationBtn: 'button[data-event-click\\.prevent="confirm"]',
+    addressDeleteConfirmationBtn: 'button[data-tau="dialog_delete_address_confirm"]',
     orderID: '.b-account-title',
     shippingInfo: '.b-summary_group',
     billingAndPaymentInfo: 'section.l-account_main-section:nth-child(4)',
@@ -891,12 +892,13 @@ class MyAccountPage implements AbstractPage {
       deleteAddress () {
         const addressCards = selectors[variables.brand].addressCards;
         const addressDeleteButton = selectors[variables.brand].addressDeleteButton;
-        cy.get(addressCards).contains('Boohoo').then(ele=>{
+        const addressDeleteConfirmationBtn = selectors[variables.brand].addressDeleteConfirmationBtn;
+        cy.get(addressCards).contains('Test').then(ele=>{
           cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true}); 
         });
         if (!isSiteGenesisBrand) {
           cy.wait(1000);
-          cy.contains('button', 'Yes, delete').click({ force: true });
+          cy.get(addressDeleteConfirmationBtn).click({force:true});
         }
       },
       addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {

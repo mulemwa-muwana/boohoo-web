@@ -165,7 +165,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that PREMIER can be added to the cart', function () {
-    if (brand == 'boohoomena.com') { // No Premier/VIP for this brand
+    if (brand == 'boohoomena.com' || locale == 'FR') { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
@@ -189,7 +189,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user is able to select standard shipping method', () => {
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
 
     shippingPage.click.addNewAddressButton();

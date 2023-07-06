@@ -227,6 +227,47 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
   });
 
+  it('Verify that user is able to select 2nd shipping method', () => {
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+
+    shippingPage.click.addNewAddressButton();
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
+
+    if (isSiteGenesisBrand) {
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
+      shippingPage.actions.cityField(localeAddress.city);
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+      shippingPage.actions.phoneNumberField(localeAddress.phone);
+      if (brand == 'boohoomena.com' || locale == 'IE') {
+        shippingPage.actions.countyField(localeAddress.county);
+      }
+    } else {
+      if (brand == 'boohoo.com') {
+        shippingPage.click.addNewAddress();
+      }
+      shippingPage.click.enterManuallyAddressDetails();
+      shippingPage.actions.adressLine1(localeAddress.addressLine);
+      shippingPage.actions.cityField(localeAddress.city);
+      if (locale == 'US' || locale == 'AU') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }  
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+    }
+    cy.wait(5000);
+    shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
+    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    shippingPage.click.proceedToBilling();
+    if (locale == 'IE') {
+      shippingPage.click.proceedToBillingVerification();
+    }
+    billingPage.actions.waitPageToLoad();
+    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+  });
+
   it('Verify that user can Edit cart from shipping page', () => {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();

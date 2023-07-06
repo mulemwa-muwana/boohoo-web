@@ -6,8 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwdev.warehousefashion.com',
-    sku: 'AWW36169-109-22',
-    fullSku: 'AWW36169-109-22',
+    sku: 'AWW36829-144-14',
+    fullSku: 'AWW36829-144-14',
     brand: 'warehousefashion.com',
     locale: 'UK',
     language: 'EN'

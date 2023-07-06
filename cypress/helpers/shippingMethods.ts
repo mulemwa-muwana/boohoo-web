@@ -8,13 +8,13 @@ class ShippingMethod {
         shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'Express'
+        shippingMethodName: 'UK Next Day Delivery'
       },
       shippingMethod3: {
-        shippingMethodName: 'UkDPD'
+        shippingMethodName: 'DPD'
       },
       shippingMethod4: {
-        shippingMethodName: 'Next Day'
+        shippingMethodName: ''
       }
     },
     US: {
@@ -75,10 +75,10 @@ class ShippingMethod {
     },
     CA: {
       shippingMethod1: {
-        shippingMethodName: 'Express'
+        shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'Standard'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -92,7 +92,7 @@ class ShippingMethod {
         shippingMethodName: 'Standaardlevering Nederland'
       },
       shippingMethod2: {
-        shippingMethodName: 'Netherlands Express'
+        shippingMethodName: 'Expressdienst'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -117,10 +117,10 @@ class ShippingMethod {
     },
     FR: {
       shippingMethod1: {
-        shippingMethodName: '\n Livraison standard France\n                        '
+        shippingMethodName: 'Livraison standard France'
       },
       shippingMethod2: {
-        shippingMethodName: 'Livraison standard France'
+        shippingMethodName: 'Livraison express France'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -134,10 +134,10 @@ class ShippingMethod {
         shippingMethodName: 'Standard'
       },
       shippingMethod2: {
-        shippingMethodName: 'Express'
+        shippingMethodName: 'Next Day'
       },
       shippingMethod3: {
-        shippingMethodName: 'Republic of Ireland Next Day Delivery joanna test'
+        shippingMethodName: ''
       },
       shippingMethod4: {
         shippingMethodName: ''
@@ -176,7 +176,7 @@ class ShippingMethod {
         shippingMethodName: 'Norwegian Standard Delivery'
       },
       shippingMethod2: {
-        shippingMethodName: 'Norwegian Express Delivery'
+        shippingMethodName: ''
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -193,7 +193,7 @@ class ShippingMethod {
         shippingMethodName: 'Expressleverans Sverige'
       },
       shippingMethod3: {
-        shippingMethodName: 'Super Saver Delivery Storbritannien'
+        shippingMethodName: ''
       },
       shippingMethod4: {
         shippingMethodName: ''

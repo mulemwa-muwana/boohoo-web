@@ -680,7 +680,7 @@ class BillingPage implements AbstractPage {
       cy.get('#dwfrm_billing_creditCardFields_cardOwner').type(cardOwner);
       cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select('03');
       cy.get('#dwfrm_billing_creditCardFields_expirationYear').select('2030');
-      cy.get('#dwfrm_billing_creditCardFields_securityCode').type('737', {force: true});
+      cy.get('#dwfrm_billing_creditCardFields_securityCode').type('7373', {force: true});
       cy.get('#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
 
     },

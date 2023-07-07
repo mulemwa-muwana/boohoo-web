@@ -157,6 +157,46 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
+  it('Verify that user is able to select 2nd shipping method', function () {
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
+    const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
+    shippingPage.click.addNewAddress();
+    shippingPage.actions.firstNameField(localeAddress.firstName);
+    shippingPage.actions.lastNameField(localeAddress.lastName);
+    shippingPage.actions.selectCountry(localeAddress.country);
+    cy.wait(5000);
+
+    if (!isSiteGenesisBrand) {
+      shippingPage.click.enterManuallyAddressDetails();
+    }
+    cy.wait(5000);
+    shippingPage.actions.adressLine1(localeAddress.addressLine);
+    shippingPage.actions.cityField(localeAddress.city);
+    if (!isSiteGenesisBrand && locale == 'US') {
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1);
+    }
+    shippingPage.actions.postcodeField(localeAddress.postcode);
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
+    if (locale == 'AU') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
+    if (isSiteGenesisBrand) {
+      shippingPage.actions.selectDate('23', 'May', '2001');
+      if (brand != 'boohooman.com') {
+        shippingPage.actions.emailField(this.guestEmail);
+        shippingPage.actions.confirmEmailField(this.guestEmail);
+      }
+    } 
+    if (brand != 'boohooman.com' && locale != 'EU') {
+      shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
+    }
+    cy.wait(5000);
+    shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
+    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    shippingPage.click.proceedToBilling();
+    shippingPage.assertions.assertUserProceededToBillingPage();
+  });
+
   it('Verify that guest user can Edit cart from shipping page', function () {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();

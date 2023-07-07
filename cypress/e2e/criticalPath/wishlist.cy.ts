@@ -22,9 +22,7 @@ describe('Wishlist Page tests', function () {
   it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
     HomePage.actions.findItemUsingSKU(sku);    
     pdpPage.actions.selectColorFromSku();
-    cy.wait(5000);
     pdpPage.actions.selectSizeFromSku();
-    cy.wait(5000);
     pdpPage.click.addToWishList();
     if (brand == 'boohoo.com' ) {
       WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[language]);
@@ -39,7 +37,6 @@ describe('Wishlist Page tests', function () {
     
     // Cleanup of Whishlist and Cart
     WishListPage.click.removeItemFromWishlist();
-    cy.wait(3000);
     if (isSiteGenesisBrand) {
       WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptySiteGenesis[language]);
     } else {

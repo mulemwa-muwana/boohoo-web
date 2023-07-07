@@ -52,7 +52,7 @@ const selectors: SelectorBrandMap = {
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
     creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
-    paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+    paynowBtnCC:':nth-child(2).b-payment_accordion-submit > .b-checkout_step-controls .b-button',
   },
   'nastygal.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
@@ -565,7 +565,7 @@ const selectors: SelectorBrandMap = {
     billingAddressLastName: '#dwfrm_billing_billingAddress_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
     viewAllBillingAddresses: '.use-another-address',
-    billingAddressFromBook: ':nth-child(2) > .address-radios-label',
+    billingAddressFromBook: '.button',
     dobDate: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearofbirth',
@@ -673,6 +673,8 @@ class BillingPage implements AbstractPage {
       // Const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
       if (brand == 'boohooman.com') {
         cy.get(':nth-child(3) > .payment-method-option').click({force:true});
+      } else if (brand=='boohoo.com'&&locale=='US') {
+        cy.get(':nth-child(2).b-payment_accordion-submit > .b-checkout_step-controls .b-button').click({force:true});
       } else {
         cy.get('#payment-button-scheme').click({force: true});
       }

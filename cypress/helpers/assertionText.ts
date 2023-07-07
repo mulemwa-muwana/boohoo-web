@@ -506,7 +506,7 @@ class AssertionText {
 
   loginAttempts: TranslationMap = {
     EN: 'login attempts',
-    FR: 'tentatives de connexion',
+    FR: 'tentatives d’enregistrement',
     NL: 'pogingen om in te loggen',
     DE: 'weitere Anmeldeversuche',
     DK: 'flere loginforsøg',
@@ -1458,6 +1458,20 @@ class AssertionText {
 
   colour: TranslationMap = {
     EN: 'colour',
+    NL: 'kleur',
+    DE: 'farbe',
+    FR: 'couleur',
+    DK: 'colour',
+    FI: 'colour',
+    NO: 'colour',
+    SE: 'färg',
+    IL: '',
+    IT: 'colore',
+    ES: 'color'
+  };
+
+  color: TranslationMap = {
+    EN: 'color',
     NL: 'kleur',
     DE: 'farbe',
     FR: 'couleur',

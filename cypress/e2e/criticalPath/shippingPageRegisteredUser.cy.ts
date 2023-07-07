@@ -165,7 +165,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that PREMIER can be added to the cart', function () {
-    if (brand == 'boohoomena.com') { // No Premier/VIP for this brand
+    if (brand == 'boohoomena.com' || brand == 'nastygal.com' && locale == 'FR') { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];

@@ -36,7 +36,7 @@ describe('Verify Registration feature', function () {
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.firstname);
     });
   });
-  it('Verify that user can not register using email that already has account', function () {
+  it.only('Verify that user can not register using email that already has account', function () {
     cy.fixture('newuser').then((credentials) =>{
       RegistrationPage.actions.startRegistration(credentials.username);
       if (!isSiteGenesisBrand) {

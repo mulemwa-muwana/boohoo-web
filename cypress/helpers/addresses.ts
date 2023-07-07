@@ -208,13 +208,13 @@ class Addresses {
         lastName: 'Test',
         phone: '08082580300',
         addressLine: '85 Piccadilly',
-        postcode: 'W1J 7NB',
+        postcode: '75116',
         addressName: 'PrimaryAddress',
         country: 'United Kingdom',
-        city: 'London',
-        countryCode: 'GB',
-        county: 'London',
-        addressNickname: 'UKNew',
+        city: 'Paris',
+        countryCode: 'FR',
+        county: 'Paris',
+        addressNickname: 'FRNew',
       }
     },
 

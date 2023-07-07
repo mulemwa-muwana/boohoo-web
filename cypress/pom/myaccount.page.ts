@@ -732,6 +732,11 @@ class MyAccountPage implements AbstractPage {
           cy.get('.secondary-navigation').contains(text, {matchCase: false})
             .invoke('removeAttr', 'target')
             .click({force: true});
+        } else if (brand == 'boohoo.com' && locale == 'DE') {
+          cy.log(`searching for '${text}' in order history`);
+          cy.get('.l-footer-quick').contains(text)
+            .invoke('removeAttr', 'target')
+            .click({force: true});
         } else {
           cy.log(`searching for '${text}' in order history`);
           cy.get('.l-account-main').contains(text)

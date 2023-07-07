@@ -321,7 +321,7 @@ class RegistrationPage implements AbstractPage {
     assertErrorMessageExistingEmail () {
       const emailError = selectors[variables.brand].emailError;
       if (variables.brand == 'boohoo.com') {
-        cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail[variables.language]);
+          cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail[variables.language]);
       } else if (isSiteGenesisBrand) {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailSiteGenesis[variables.language]);
       } else {

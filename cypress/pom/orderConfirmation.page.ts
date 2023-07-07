@@ -1,3 +1,4 @@
+import { brand , locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
@@ -240,8 +241,8 @@ class OrderConfirmation implements AbstractPage {
       cy.get(shippingMethodIsDisplayed).should('not.be.empty');
     },
     assertPaymentMethod (method: string) {
-      const paymentMethod = selectors[variables.brand].paymentMethod;
-      cy.get(paymentMethod).should('contain.text', method);
+      const paymentMethod = selectors[variables.brand].paymentMethod;  
+        cy.get(paymentMethod).should('contain.text', method);
     },
     assertOrderTotalIsVisible () {
       const orderTotalIsVisible = selectors[variables.brand].orderTotalIsVisible;

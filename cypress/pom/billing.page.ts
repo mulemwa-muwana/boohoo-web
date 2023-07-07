@@ -20,6 +20,7 @@ const selectors: SelectorBrandMap = {
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
     shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
     paymentMethodCreditCard: '#payment-button-scheme',
+    paymentMethodCreditCardUS: '#payment-button-CREDIT_CARD > .b-payment_accordion-head > .b-payment_accordion-label',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
     paymentMethodKlarna: '#payment-button-KlarnaUK',
@@ -47,6 +48,7 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
+    creditCardFieldsCardNumberUS:'creditCardFieldsCardNumberUS',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
@@ -660,21 +662,9 @@ class BillingPage implements AbstractPage {
 
     },
     selectCreditCardUS (cardNo: string, cardOwner: string, date: string, code: string) {
-      const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
-
-      const creditCardCardNumberIframe = selectors[brand].creditCardCardNumberIframe;
-      const creditCardFieldsCardNumber = selectors[brand].creditCardFieldsCardNumber;
-      const creditCardExpirationDateIframe = selectors[brand].creditCardExpirationDateIframe;
-      const creditCardFieldsExpirationDate = selectors[brand].creditCardFieldsExpirationDate;
-      const creditCardSecurityCodeIframe = selectors[brand].creditCardSecurityCodeIframe;
-      const creditCardFieldsSecurityCode = selectors[brand].creditCardFieldsSecurityCode;
-      const creditCardFieldsCardOwner = selectors[brand].creditCardFieldsCardOwner;
-
-      // Const paynowBtnCC = selectors[variables.brand].paynowBtnCC;
-      if (brand == 'boohooman.com') {
-        cy.get(':nth-child(3) > .payment-method-option').click({force:true});
-      } else if (brand=='boohoo.com'&&locale=='US') {
-        cy.get(':nth-child(2).b-payment_accordion-submit > .b-checkout_step-controls .b-button').click({force:true});
+      
+      if (brand=='boohoo.com'&&locale=='US') {
+        cy.get('#payment-button-CREDIT_CARD > .b-payment_accordion-head').click({force:true});
       } else {
         cy.get('#payment-button-scheme').click({force: true});
       }
@@ -690,7 +680,7 @@ class BillingPage implements AbstractPage {
       cy.get('#dwfrm_billing_creditCardFields_cardOwner').type(cardOwner);
       cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select('03');
       cy.get('#dwfrm_billing_creditCardFields_expirationYear').select('2030');
-      cy.get('#dwfrm_billing_creditCardFields_securityCode').type('737', {force: true});
+      cy.get('#dwfrm_billing_creditCardFields_securityCode').type('7373', {force: true});
       cy.get('#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
 
     },
@@ -804,7 +794,9 @@ class BillingPage implements AbstractPage {
         cy.get(paymentMethodKlarna).click({force:true});
       } else if ( locale == 'NL') {
         cy.get('#payment-button-Klarna > .b-payment_accordion-head > .b-payment_accordion-label').click({force : true});
-      }
+      } else if (locale == 'US') {
+        cy.get('#payment-button-KlarnaUS > .b-payment_accordion-head').click({force:true});
+      } 
       cy.wait(5000);
       
       // Stub the open method with just a console log to force it not to open a window.
@@ -820,6 +812,8 @@ class BillingPage implements AbstractPage {
         cy.get('#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button').click({force:true});
       } else if (locale == 'NL') {
         cy.get('#payment-details-Klarna > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
+      } else if (locale == 'US') {
+        cy.get('#payment-details-KlarnaUS > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
       } else {
         cy.get(klarnaPayNow).click({force:true});
       }
@@ -1042,7 +1036,12 @@ class BillingPage implements AbstractPage {
     },
     assertPaymentMethodCreditCardIsDisplayed () {
       const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
-      cy.get(paymentMethodCreditCard).should('be.visible');
+      const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
+      if (brand =='boohoo.com' && locale == 'US') {
+        cy.get(paymentMethodCreditCardUS).should('be.visible');
+      } else {
+        cy.get(paymentMethodCreditCard).should('be.visible');
+      }
     },
     assertPaymentMethodGooglePayIsDisplayed () {
       const paymentMethodGooglePay = selectors[brand].paymentMethodGooglePay;
@@ -1062,6 +1061,8 @@ class BillingPage implements AbstractPage {
         cy.get('#payment-button-KlarnaIE').should('be.visible');
       } else if (!isSiteGenesisBrand && locale == 'UK') {
         cy.get('#payment-button-KlarnaUK').should('be.visible');
+      } else if (!isSiteGenesisBrand && locale == 'US') {
+        cy.get('#payment-button-KlarnaUS > .b-payment_accordion-head').should('be.visible');
       }
     },
       
@@ -1096,7 +1097,7 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (brand =='boohoo.com' && locale =='NL' || locale =='NO' || locale == 'DE') {
+      } else if (brand =='boohoo.com' && locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ) {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');

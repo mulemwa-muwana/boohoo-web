@@ -438,7 +438,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '358294500501',
+        phone: '31689124321',
         addressLine: 'Museumstraat 1',
         postcode: '1071 XX',
         addressName: 'PrimaryAddress',
@@ -451,7 +451,7 @@ class Addresses {
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '358294500501',
+        phone: '31689124321',
         addressLine: 'Jaffadwarsstraat 20A',
         postcode: '3061 JS',
         addressName: 'SecondaryAddress',
@@ -464,15 +464,15 @@ class Addresses {
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
         lastName: 'Test',
-        phone: '08082580300',
-        addressLine: '85 Piccadilly',
-        postcode: 'W1J 7NB',
+        phone: '31689124321',
+        addressLine: 'Museumstraat 1',
+        postcode: '1071 XX',
         addressName: 'PrimaryAddress',
-        country: 'United Kingdom',
-        city: 'London',
-        countryCode: 'GB',
-        county: 'London',
-        addressNickname: 'UKNew',
+        country: 'Nederland',
+        city: 'Amsterdam',
+        countryCode: 'NL',
+        county: '',
+        addressNickname: 'NL3',
       }
     },
 

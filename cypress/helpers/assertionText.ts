@@ -995,7 +995,7 @@ class AssertionText {
   };
 
   footerLinkReturns: TranslationMap = {
-    EN: 'Returns',
+    EN: 'Return',
     NL: 'RETOURNERINGEN',
     DE: 'Rücksendungen',
     FR: 'Retours',

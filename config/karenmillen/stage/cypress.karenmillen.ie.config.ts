@@ -21,7 +21,6 @@ export default defineConfig({
   screenshotOnRunFailure: true,
   
   e2e: {
-    experimentalSessionAndOrigin: true,
     setupNodeEvents (on) {
       plugins(on);
     },

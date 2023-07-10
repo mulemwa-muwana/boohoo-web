@@ -34,7 +34,7 @@ describe('Cart basic functionality for guest user', function () {
   });
 
   it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
-    if (locale == 'FR'){
+    if (locale == 'FR') {
       this.skip();
     }
     const internationalBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com'];

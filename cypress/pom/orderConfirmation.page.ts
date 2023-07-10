@@ -242,7 +242,7 @@ class OrderConfirmation implements AbstractPage {
     },
     assertPaymentMethod (method: string) {
       const paymentMethod = selectors[variables.brand].paymentMethod;  
-        cy.get(paymentMethod).should('contain.text', method);
+      cy.get(paymentMethod).should('contain.text', method);
     },
     assertOrderTotalIsVisible () {
       const orderTotalIsVisible = selectors[variables.brand].orderTotalIsVisible;

@@ -157,7 +157,10 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
-  it('Verify that user is able to select 2nd shipping method', function () { 
+  it('Verify that user is able to select 2nd shipping method', function () {
+    if (brand == 'boohoo.com' && locale == 'NO') { // No 2nd shipping method for this brand/locale
+      this.skip();
+    }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
     shippingPage.click.addNewAddress();

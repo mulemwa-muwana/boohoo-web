@@ -550,15 +550,15 @@ class Addresses {
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
         lastName: 'Test',
-        phone: '08082580300',
-        addressLine: '85 Piccadilly',
-        postcode: 'W1J 7NB',
+        phone: '4721982000',
+        addressLine: 'Universitetsgata 13',
+        postcode: '0164',
         addressName: 'PrimaryAddress',
         country: 'United Kingdom',
-        city: 'London',
-        countryCode: 'GB',
-        county: 'London',
-        addressNickname: 'UKNew',
+        city: 'Norway',
+        countryCode: 'Oslo',
+        county: 'NO',
+        addressNickname: 'NO3',
       }
     },
     

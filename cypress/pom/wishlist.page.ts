@@ -278,7 +278,7 @@ class WishListPage implements AbstractPage {
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
-        cy.get(wishListIsEmpty).contains(msg, { matchCase: false }).should('be.visible');
+      cy.get(wishListIsEmpty).contains(msg, { matchCase: false }).should('be.visible');
     },
     assertItemIsAddedtoWishlistAlertText (msg: string) {
       const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;

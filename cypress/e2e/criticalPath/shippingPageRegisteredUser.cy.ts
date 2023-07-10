@@ -230,7 +230,6 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that user is able to select 2nd shipping method', () => {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
-
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);

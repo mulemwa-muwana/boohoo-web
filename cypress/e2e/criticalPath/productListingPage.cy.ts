@@ -88,13 +88,13 @@ describe('Product Listing Page tests', function () {
         this.skip();
       } 
       plpPage.actions.setupChangeIntercept(/style/);
-      if ( brand == 'boohoo.com' && locale == 'AU') {
+      if ( brand == 'boohoo.com' && (locale == 'AU' || locale == 'US')) {
         plpPage.click.selectRefinementVariantStyle(productVariations.productTops[language]);
       } else {
         plpPage.click.selectRefinementVariantStyle(productVariations.productShopByStyle[language]);
       }
       plpPage.actions.waitForPageRefinementUpdate();
-      if ( brand == 'boohoo.com' && locale == 'AU') {
+      if ( brand == 'boohoo.com' && (locale == 'AU' || locale == 'US')) {
         plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productTops[language]);   
       } else {
         plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   

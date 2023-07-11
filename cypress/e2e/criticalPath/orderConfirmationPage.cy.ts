@@ -20,7 +20,12 @@ describe('Order confirmation page for guest user', function () {
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
-    billingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+    if (brand == 'boohoo.com' && locale == 'US') {
+      billingPage.actions.selectCreditCardUS(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+    } else {
+      billingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
+    }
+
     billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.guest);
@@ -50,7 +55,11 @@ describe('Order confirmation page for guest user', function () {
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
-    billingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+    if (brand == 'boohoo.com' && locale == 'US') {
+      billingPage.actions.selectCreditCardUS(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+    } else {
+      billingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
+    }
     billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
 
     const paymentMethod: PaymentMethod = 'CreditCard_Amex';
@@ -63,7 +72,11 @@ describe('Order confirmation page for registered user', function () {
   
   it('Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('RegisteredUser');
-    billingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+    if (brand == 'boohoo.com' && locale =='US') {
+      billingPage.actions.selectCreditCardUS(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+    } else {
+      billingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+    }
     billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       orderConfirmationPage.assertions.assertEmailIsDisplayed(credentials.username);
@@ -98,7 +111,7 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('Verify that guest user can place order using Klarna', function () {
-    if (locale === 'UK' || locale === 'IE' || locale === 'AU'|| locale === 'NL') {
+    if (locale === 'UK' || locale === 'IE' || locale === 'AU'|| locale === 'NL' || locale == 'US') {
       Navigate.toBillingPage('RegisteredUser');
       billingPage.actions.selectKlarna();
       billingPage.assertions.assertOrderConfirmationPageIsDisplayed();

@@ -121,7 +121,7 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   it('Verify that user is able to select standard shipping method', function () {
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
+    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -158,6 +158,9 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   it('Verify that user is able to select 2nd shipping method', function () {
+    if (brand == 'boohoo.com' && locale == 'NO') { // No 2nd shipping method for this brand/locale
+      this.skip();
+    }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
     shippingPage.click.addNewAddress();

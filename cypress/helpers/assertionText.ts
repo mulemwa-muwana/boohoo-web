@@ -4,7 +4,7 @@ class AssertionText {
     EN: 'The product is added to wish list',
     FR: 'Le produit a été ajouté à la liste des favoris',
     NL: 'The product is added to wish list',
-    DE: '\n\nGerettet\n',
+    DE: 'Produkt zur Wunschliste hinzugefügt',
     DK: '\n\nGemt\n',
     FI: '\n\nTallennettu\n',
     NO: '\n\nLagret\n',
@@ -18,7 +18,7 @@ class AssertionText {
     EN: 'return',
     FR: 'retour',
     NL: 'retourzending',
-    DE: '',
+    DE: 'Rücksendungen',
     DK: '',
     FI: '',
     NO: '',
@@ -88,7 +88,7 @@ class AssertionText {
     EN: 'You don\'t have any items saved for later (yet)',
     FR: 'Vous n’avez pas (encore) enregistré d`éléments pour plus tard',
     NL: 'Je hebt (nog) geen items opgeslagen voor later',
-    DE: 'Sie haben (noch) keine Artikel für später gespeichert',
+    DE: 'DU HAST (NOCH) KEINE ARTIKEL FÜR SPÄTER GESPEICHERT.',
     DK: 'Je hebt (nog) geen items opgeslagen voor later',
     FI: 'Sinulla ei ole yhtään kohdetta tallennettuna myöhempää käyttöä varten (vielä)',
     NO: 'Du har ingen elementer lagret for senere (ennå)',
@@ -102,7 +102,7 @@ class AssertionText {
     EN: 'add your favorite items as you start shopping',
     FR: '',
     NL: '',
-    DE: '',
+    DE: 'Verwende zu Beginn deines Einkaufs die Wunschliste, um deine bevorzugten Artikel hinzuzufügen.',
     DK: '',
     FI: '',
     NO: '',
@@ -186,7 +186,7 @@ class AssertionText {
     EN: 'Looks like you already have an account with us. Please try logging in or use a different email address',
     FR: 'Il semble que vous ayez déjà un compte chez nous. Veuillez essayer de vous connecter ou utiliser une autre adresse e-mail',
     NL: 'Het lijkt erop dat je al een account bij ons hebt. Probeer op dit account in te loggen of gebruik een ander e-mailadres',
-    DE: 'Anscheinend haben Sie bereits ein Konto bei uns. Bitte versuchen Sie sich anzumelden oder verwenden Sie eine andere E-Mail-Adresse',
+    DE: 'Anscheinend hast du bereits ein Konto bei uns. Bitte melde dich an oder verwende eine andere E-Mail-Adresse',
     DK: 'Det ser ud til, at du allerede har en konto hos os. Prøv venligst at logge ind eller brug en anden e-mailadresse Log ind',
     FI: 'Näyttää siltä, ​​että sinulla on jo tili meillä. Yritä kirjautua sisään tai käytä toista sähköpostiosoitetta Kirjaudu sisään',
     NO: 'Det ser ut til at du allerede har en konto hos oss. Prøv å logge på eller bruk en annen e-postadresse Logg på',
@@ -214,7 +214,7 @@ class AssertionText {
     EN: 'Email address already taken. Please use different email address or try to log in with current one',
     FR: '',
     NL: '',
-    DE: '',
+    DE: 'E-Mail-Adresse wurde bereits gewählt. Verwende bitte eine andere E-Mail-Adresse oder versuche, dich mit der aktuellen anzumelden.',
     DK: '',
     FI: '',
     NO: '',
@@ -312,7 +312,7 @@ class AssertionText {
     EN: 'Terms & Conditions',
     FR: '',
     NL: 'TERMS & CONDITIONS',
-    DE: '',
+    DE: 'GESCHÄFTSBEDINGUNGEN',
     DK: '',
     FI: '',
     NO: '',
@@ -641,7 +641,7 @@ class AssertionText {
     IL: 'כרטיס אשראי / חיוב',
     IT: 'Carta di credito / debito',
     ES: 'Tarjeta de crédito / débito',
-    DE: 'Kredit-/Debitkarte'
+    DE: 'Card'
   };
 
   assertPaymentMethodSiteGenesis: TranslationMap = {
@@ -655,7 +655,7 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: '',
-    DE: ''
+    DE: 'Karte'
   };
 
   addedToCard: TranslationMap = {
@@ -995,7 +995,7 @@ class AssertionText {
   };
 
   footerLinkReturns: TranslationMap = {
-    EN: 'Returns',
+    EN: 'Return',
     NL: 'RETOURNERINGEN',
     DE: 'Rücksendungen',
     FR: 'Retours',

@@ -246,7 +246,7 @@ class ShippingMethod {
         shippingMethodName: 'Saudi Arabia Express Delivery'
       },
       shippingMethod2: {
-        shippingMethodName: ''
+        shippingMethodName: 'Saudi Arabia Express Delivery'
       },
       shippingMethod3: {
         shippingMethodName: ''

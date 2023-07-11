@@ -4,7 +4,7 @@ import assertionText from '../../helpers/assertionText';
 import pdpPage from '../../pom/pdp.page';
 import LoginPage from 'cypress/pom/login.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-import { sku, brand, language, fullSku } from 'cypress/support/e2e';
+import { sku, brand, language } from 'cypress/support/e2e';
 
 describe('Product Details Page tests', function () {
 

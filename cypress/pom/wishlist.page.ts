@@ -12,7 +12,7 @@ const selectors: SelectorBrandMap = {
     sortByDateAddedFromOld: '//*[@id="wishlist-sort"]/option[2]',
     sortByPriceFromLowToHigh: '//*[@id="wishlist-sort"]/option[3]',
     sortByPriceFromHighToLow: '//*[@id="wishlist-sort"]/option[4]',
-    addToCart: 'div.b-wishlist_tile-actions > button > span',
+    addToCart: 'div.b-wishlist_tile-actions > button > span , .b-wishlist_tile-actions > button',
     removeItemFromWishlist: 'a[data-tau="wishlist_product_delete"]',
     removeItemFromWishlistMobile: '.b-wishlist_tile-sub_action[data-ref="remove"]',
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',

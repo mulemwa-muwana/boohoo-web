@@ -5,12 +5,12 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@fi-dwstg.boohoo.com/',
-    sku: '#FZZ80440',
-    fullSku: 'FZZ80440-157-18',
-    brand: 'boohoo.com',
-    locale: 'FI',
-    language: 'FI',
+    url: 'https://storefront:Oreo2022@stgmena.boohoo.com/om/en',
+    sku: 'AMM09927',
+    fullSku: 'AMM09927-115-56',
+    brand: 'boohoomena.com',
+    locale: 'OM',
+    language: 'EN', 
   },
 
   viewportHeight: 1080,
@@ -20,8 +20,17 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
+  // Create Mochawesome report after 'cypress run' tests finish
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'config/boohoomena/results',
+    overwrite: false,
+    html: false,
+    json: true,
+  },
+
   e2e: {
-    setupNodeEvents (on, config) {
+    setupNodeEvents (on) {
       plugins(on);
     },
     excludeSpecPattern: [

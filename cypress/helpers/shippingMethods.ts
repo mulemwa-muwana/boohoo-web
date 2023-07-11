@@ -36,10 +36,10 @@ class ShippingMethod {
         shippingMethodName: 'Europe and International Delivery'
       },
       shippingMethod2: {
-        shippingMethodName: 'Europe and International Delivery'
+        shippingMethodName: ''
       },
       shippingMethod3: {
-        shippingMethodName: 'Europe and International Delivery'
+        shippingMethodName: ''
       },
       shippingMethod4: {
         shippingMethodName: ''
@@ -244,6 +244,90 @@ class ShippingMethod {
     SA: {
       shippingMethod1: {
         shippingMethodName: 'Saudi Arabia Express Delivery'
+      },
+      shippingMethod2: {
+        shippingMethodName: ''
+      },
+      shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
+    },
+    AE: {
+      shippingMethod1: {
+        shippingMethodName: 'UAE Express Delivery'
+      },
+      shippingMethod2: {
+        shippingMethodName: ''
+      },
+      shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
+    },
+    BH: {
+      shippingMethod1: {
+        shippingMethodName: 'Bahrain Express Delivery'
+      },
+      shippingMethod2: {
+        shippingMethodName: ''
+      },
+      shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
+    },
+    JO: {
+      shippingMethod1: {
+        shippingMethodName: 'Jordan Express Delivery'
+      },
+      shippingMethod2: {
+        shippingMethodName: ''
+      },
+      shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
+    },
+    KW: {
+      shippingMethod1: {
+        shippingMethodName: 'Kuwait Express Delivery'
+      },
+      shippingMethod2: {
+        shippingMethodName: ''
+      },
+      shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
+    },
+    OM: {
+      shippingMethod1: {
+        shippingMethodName: 'Oman Express Delivery'
+      },
+      shippingMethod2: {
+        shippingMethodName: ''
+      },
+      shippingMethod3: {
+        shippingMethodName: ''
+      },
+      shippingMethod4: {
+        shippingMethodName: ''
+      }
+    },
+    QA: {
+      shippingMethod1: {
+        shippingMethodName: 'Qatar Express Delivery'
       },
       shippingMethod2: {
         shippingMethodName: ''

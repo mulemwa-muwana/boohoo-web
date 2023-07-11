@@ -634,7 +634,7 @@ class AssertionText {
     EN: 'Card',
     NL: 'Card',
     DK: 'Kredit-/betalingskort',
-    FR: 'Carte de crédit / débit',
+    FR: 'Se termine dans 111',
     FI: 'Luotto/pankkikortti',
     NO: 'Kreditt-/debetkort',
     SE: 'Kredit / Betalkort',

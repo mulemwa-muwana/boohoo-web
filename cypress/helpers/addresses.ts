@@ -537,7 +537,7 @@ class Addresses {
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '80027476',
+        phone: '4721982000',
         addressLine: 'Akersbakken 39',
         postcode: '0172',
         addressName: 'SecondaryAddress',

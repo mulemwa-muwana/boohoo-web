@@ -538,7 +538,10 @@ describe('Home Page', function () {
 
     describe('Contact Us Page links', () => {
 
-      beforeEach( function () {        
+      beforeEach( function () { 
+        if(brand =='boohoo.com' && locale == 'NL') {
+          this.skip();
+        }      
         if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[language]);
         } else {

@@ -113,7 +113,11 @@ describe('Order confirmation page for registered user', function () {
   it('Verify that guest user can place order using Klarna', function () {
     if (locale === 'UK' || locale === 'IE' || locale === 'AU'|| locale === 'NL' || locale == 'US') {
       Navigate.toBillingPage('RegisteredUser');
-      billingPage.actions.selectKlarna();
+      if(brand == 'boohoo.com'&& locale =='NL'){
+        billingPage.actions.selectKlarnaBoohooNl();
+      }else{
+      billingPage.actions.selectKlarna();}
+
       billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
     } else {
       this.skip();

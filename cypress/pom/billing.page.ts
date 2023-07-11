@@ -784,6 +784,39 @@ class BillingPage implements AbstractPage {
         cy.get(billingAddressFromBook).click({force: true});
       }      
     },
+    selectKlarnaBoohooNl() { // SelectKlarnaNew is created for BOOHOO/NL
+      cy.get('#payment-button-Klarna > .b-payment_accordion-head > .b-payment_accordion-label').click({force : true});
+      cy.wait(5000);
+      
+      // Click on PayNow.
+        cy.get('#payment-details-Klarna > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
+  
+      // Click the Continue button. 
+        cy.iframe('#klarna-klarna-payments-fullscreen').find('#onContinue').click();
+      // Digsusting implicit wait.
+      cy.wait(8000);
+      // Complete the Klarna iframe journey.
+      cy.enter('#klarna-klarna-payments-fullscreen', { timeout: 20000 }).then(body => {
+        body().find('[name="otp_field"]').type('111111', {force: true});
+        cy.wait(8000);
+        body().then($body => { 
+          if ($body.find('#invoice_kp-purchase-review-continue-button__text').length) { // If Payment options popup exists select Pay now
+            body().find('#invoice_kp-purchase-review-continue-button__text').click();
+            cy.wait(3000);
+          }
+        });
+            cy.wait(3000);
+        body().then($body => {
+          if ($body.find('[data-testid="SmoothCheckoutPopUp\\:skip"]').length) { // If 'Faster checkout' popup exists
+            $body.find('[data-testid="SmoothCheckoutPopUp\\:skip"]').click();
+            cy.wait(5000);
+          }
+        });
+        
+      });
+ 
+    },
+
     selectKlarna () {
       const paymentMethodKlarna = selectors[brand].paymentMethodKlarna;
       if (locale == 'AU') {
@@ -792,8 +825,6 @@ class BillingPage implements AbstractPage {
         cy.get('#payment-button-KlarnaIE').click({force : true});
       } else if (locale == 'UK') {
         cy.get(paymentMethodKlarna).click({force:true});
-      } else if ( locale == 'NL') {
-        cy.get('#payment-button-Klarna > .b-payment_accordion-head > .b-payment_accordion-label').click({force : true});
       } else if (locale == 'US') {
         cy.get('#payment-button-KlarnaUS > .b-payment_accordion-head').click({force:true});
       } 
@@ -810,8 +841,6 @@ class BillingPage implements AbstractPage {
       const klarnaPayNow = selectors[brand].klarnaPayNow;
       if (locale == 'AU') {
         cy.get('#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button').click({force:true});
-      } else if (locale == 'NL') {
-        cy.get('#payment-details-Klarna > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
       } else if (locale == 'US') {
         cy.get('#payment-details-KlarnaUS > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
       } else {

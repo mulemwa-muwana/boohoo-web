@@ -22,7 +22,10 @@ describe('Checkout Page', function () {
 
   it('Verify Premier is displayed and can be added to the cart', function () {
     const arcadiaBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
-    if (isSiteGenesisBrand || arcadiaBrands.includes(brand) || brand == 'nastygal.com' && locale == 'FR') {
+    if (isSiteGenesisBrand || arcadiaBrands.includes(brand)) {
+      this.skip();
+    }
+    if (brand == 'nastygal.com' && locale == 'FR'){
       this.skip();
     }
     const includedLocals: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];

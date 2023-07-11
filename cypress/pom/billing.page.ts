@@ -784,37 +784,24 @@ class BillingPage implements AbstractPage {
         cy.get(billingAddressFromBook).click({force: true});
       }      
     },
-    selectKlarnaBoohooNl() { // SelectKlarnaNew is created for BOOHOO/NL
-      cy.get('#payment-button-Klarna > .b-payment_accordion-head > .b-payment_accordion-label').click({force : true});
+    selectKlarnaBoohooNl () { // SelectKlarnaNew is created for BOOHOO/NL
+      cy.get('#payment-button-Klarna').click();
       cy.wait(5000);
-      
+
       // Click on PayNow.
-        cy.get('#payment-details-Klarna > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
-  
-      // Click the Continue button. 
-        cy.iframe('#klarna-klarna-payments-fullscreen').find('#onContinue').click();
-      // Digsusting implicit wait.
-      cy.wait(8000);
-      // Complete the Klarna iframe journey.
-      cy.enter('#klarna-klarna-payments-fullscreen', { timeout: 20000 }).then(body => {
-        body().find('[name="otp_field"]').type('111111', {force: true});
-        cy.wait(8000);
-        body().then($body => { 
-          if ($body.find('#invoice_kp-purchase-review-continue-button__text').length) { // If Payment options popup exists select Pay now
-            body().find('#invoice_kp-purchase-review-continue-button__text').click();
-            cy.wait(3000);
-          }
+      cy.get("[data-id='payButton-Klarna']").click();
+
+      // Click the Continue button inside iframe and make payment
+      cy.enter('#klarna-klarna-payments-fullscreen').then(iframeBody => {
+        cy.wait(3000);
+        iframeBody().find('#onContinue').should('be.visible').click();
+        cy.wait(5000);
+        iframeBody().find('[name="otp_field"]').type('111111', { force: true });
+        cy.wait(5000);
+        iframeBody().then(() => {
+          iframeBody().find('#invoice_kp-purchase-review-dialog__bottom').click();
         });
-            cy.wait(3000);
-        body().then($body => {
-          if ($body.find('[data-testid="SmoothCheckoutPopUp\\:skip"]').length) { // If 'Faster checkout' popup exists
-            $body.find('[data-testid="SmoothCheckoutPopUp\\:skip"]').click();
-            cy.wait(5000);
-          }
-        });
-        
       });
- 
     },
 
     selectKlarna () {

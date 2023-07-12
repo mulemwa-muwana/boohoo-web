@@ -24,6 +24,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.b-checkout_products',
+    orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
     fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
@@ -74,6 +75,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#LoqateAutocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
     cartContainer: '[data-tau="checkout_products"]',
+    orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     cartContainerMobile: '.b-checkout_products',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
@@ -147,6 +149,7 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodName: '.b-option_switch-label',
     cartContainer: '.b-checkout_products',
+    orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -194,6 +197,7 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodName: '.b-option_switch-label',
     cartContainer: '.b-checkout_products',
+    orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -241,6 +245,7 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodName: '.b-option_switch-label',
     cartContainer: "[data-tau='checkout_products']",
+    orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -270,6 +275,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    orderSummaryOnShippingPage: '.summary-inner',
     cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
@@ -329,6 +335,7 @@ const selectors: SelectorBrandMap = {
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
     cartContainerMobile: '.cart-row',
+    orderSummaryOnShippingPage: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -384,6 +391,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    orderSummaryOnShippingPage: '.summary-inner',
     cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
@@ -441,6 +449,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    orderSummaryOnShippingPage: '.summary-inner',
     cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
@@ -498,6 +507,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    orderSummaryOnShippingPage: '.summary-inner',
     cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
@@ -555,6 +565,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    orderSummaryOnShippingPage: '.summary-inner',
     cartContainerMobile: '.cart-row',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
@@ -608,6 +619,7 @@ const selectors: SelectorBrandMap = {
     addressLookup: '#address-autocomplete',
     enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     cartContainer: '.summary-inner',
+    orderSummaryOnShippingPage: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -1026,10 +1038,9 @@ class ShippingPage implements AbstractPage {
       }
     },
     assertShippingMethodIsSelected (shippingMethod: string) {
-      const cartContainer = selectors[brand].cartContainer;
-      cy.get(cartContainer).each(() => {
-        cy.contains(shippingMethod.trim());
-      });
+      const orderSummaryOnShippingPage = selectors[brand].orderSummaryOnShippingPage;
+      const currentShippingMethod = shippingMethod;
+      cy.get(orderSummaryOnShippingPage).should('contain', currentShippingMethod);
     },
 
     // METHODS ONLY FOR SITE GENESIS BRANDS //

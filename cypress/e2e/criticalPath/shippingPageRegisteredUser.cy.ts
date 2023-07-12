@@ -228,7 +228,13 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
   });
 
-  it('Verify that user is able to select 2nd shipping method', () => {
+  it('Verify that user is able to select 2nd shipping method', function () {
+    if (brand == 'boohoo.com' && (locale == 'NO' || locale == 'EU' || locale == 'FI')) { // No 2nd shipping method for these boohoo brands and locales
+      this.skip();
+    }
+    if (brand == 'boohoomena.com') { // No 2nd shipping method for BoohooMENA brand
+      this.skip();
+    }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
@@ -242,7 +248,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (brand == 'boohoomena.com' || locale == 'IE') {
+      if (locale == 'IE') {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {

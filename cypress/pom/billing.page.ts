@@ -784,6 +784,26 @@ class BillingPage implements AbstractPage {
         cy.get(billingAddressFromBook).click({force: true});
       }      
     },
+    selectKlarnaBoohooNl () { // SelectKlarnaNew is created for BOOHOO/NL
+      cy.get('#payment-button-Klarna').click();
+      cy.wait(5000);
+
+      // Click on PayNow.
+      cy.get("[data-id='payButton-Klarna']").click();
+
+      // Click the Continue button inside iframe and make payment
+      cy.enter('#klarna-klarna-payments-fullscreen').then(iframeBody => {
+        cy.wait(3000);
+        iframeBody().find('#onContinue').should('be.visible').click();
+        cy.wait(5000);
+        iframeBody().find('[name="otp_field"]').type('111111', { force: true });
+        cy.wait(5000);
+        iframeBody().then(() => {
+          iframeBody().find('#invoice_kp-purchase-review-dialog__bottom').click();
+        });
+      });
+    },
+
     selectKlarna () {
       const paymentMethodKlarna = selectors[brand].paymentMethodKlarna;
       if (locale == 'AU') {
@@ -792,8 +812,6 @@ class BillingPage implements AbstractPage {
         cy.get('#payment-button-KlarnaIE').click({force : true});
       } else if (locale == 'UK') {
         cy.get(paymentMethodKlarna).click({force:true});
-      } else if ( locale == 'NL') {
-        cy.get('#payment-button-Klarna > .b-payment_accordion-head > .b-payment_accordion-label').click({force : true});
       } else if (locale == 'US') {
         cy.get('#payment-button-KlarnaUS > .b-payment_accordion-head').click({force:true});
       } 
@@ -810,8 +828,6 @@ class BillingPage implements AbstractPage {
       const klarnaPayNow = selectors[brand].klarnaPayNow;
       if (locale == 'AU') {
         cy.get('#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button').click({force:true});
-      } else if (locale == 'NL') {
-        cy.get('#payment-details-Klarna > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
       } else if (locale == 'US') {
         cy.get('#payment-details-KlarnaUS > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
       } else {

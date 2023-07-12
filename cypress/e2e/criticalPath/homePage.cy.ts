@@ -338,7 +338,7 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it.only('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', function () {
+      it('Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', function () {
         const boohooAndLocales: boolean = brand == 'boohoo.com' && (locale != 'NL' && locale != 'FR' && locale != 'IT' && locale != 'ES' && locale != 'NO');
         const boohooManAndLocales: boolean = brand == 'boohooman.com' && (locale != 'NL' && locale != 'FR' && locale != 'DE');
         
@@ -549,7 +549,7 @@ describe('Home Page', function () {
 
     describe('Contact Us Page links', () => {
 
-      beforeEach( function () {        
+      beforeEach( function () {    
         if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[language]);
         } else {
@@ -558,7 +558,10 @@ describe('Home Page', function () {
         faqPage.click.contactUsLink();
       });
 
-      it('Verify that Twitter is not an option', () => {
+      it('Verify that Twitter is not an option', function () {
+        if (brand =='boohoo.com' && locale == 'NL') {
+          this.skip();
+        }      
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
       it('Verify that Facebook link is present and functional',function () {

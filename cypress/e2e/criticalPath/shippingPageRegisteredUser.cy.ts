@@ -115,13 +115,14 @@ describe('Shipping Page Registered user tests', function () {
     }
     const secondaryAddress = Addresses.getAddressByLocale(locale,'secondaryAddress');
     shippingPage.click.addNewAddressButton();
+    shippingPage.actions.firstNameField('New');
+    shippingPage.actions.lastNameField('Test');
+    shippingPage.actions.selectCountry(secondaryAddress.country); // To select similar country from secondary addresses for other locale's assertion purpose
+    shippingPage.actions.phoneNumberField(secondaryAddress.phone);
+
     cy.wait(3000);
     shippingPage.actions.addressLookupSelectFirstAddress(secondaryAddress.addressLine, secondaryAddress.city);
     shippingPage.assertions.assertNewAddedShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode);
-
-    shippingPage.actions.firstNameField('New');
-    shippingPage.actions.lastNameField('Test');
-    shippingPage.actions.phoneNumberField(secondaryAddress.phone);
     shippingPage.click.proceedToBilling();
     billingPage.assertions.assertNewShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode, secondaryAddress.country);
   });
@@ -165,7 +166,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that PREMIER can be added to the cart', function () {
-    if (brand == 'boohoomena.com' || brand == 'nastygal.com' && locale == 'FR') { // No Premier/VIP for this brand/locale
+    if (brand == 'boohoomena.com' || (brand == 'nastygal.com' && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
@@ -230,7 +231,6 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that user is able to select 2nd shipping method', () => {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
-
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);

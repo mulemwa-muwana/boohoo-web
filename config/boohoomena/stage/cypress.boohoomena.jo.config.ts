@@ -3,14 +3,16 @@ import plugins from '../../../cypress/plugins';
 
 export default defineConfig({
   projectId: 'i6d3n8',
+
   env: {
-    url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/ie/',
-    sku: '#AGG50919-1', // Needs hashtag for assertation on PDP
-    fullSku: 'AGG50919-432-16', 
-    brand: 'nastygal.com',
-    locale: 'IE',
-    language: 'EN',
+    url: 'https://storefront:Oreo2022@stgmena.boohoo.com/jo/en',
+    sku: 'AMM09927',
+    fullSku: 'AMM09927-115-56',
+    brand: 'boohoomena.com',
+    locale: 'JO',
+    language: 'EN', 
   },
+
   viewportHeight: 1080,
   viewportWidth: 1920,
   defaultCommandTimeout: 10000,
@@ -18,8 +20,17 @@ export default defineConfig({
   video: false,
   screenshotOnRunFailure: true,
 
+  // Create Mochawesome report after 'cypress run' tests finish
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'config/boohoomena/results',
+    overwrite: false,
+    html: false,
+    json: true,
+  },
+
   e2e: {
-    setupNodeEvents (on, config) {
+    setupNodeEvents (on) {
       plugins(on);
     },
     excludeSpecPattern: [

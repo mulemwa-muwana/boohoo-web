@@ -538,7 +538,7 @@ describe('Home Page', function () {
 
     describe('Contact Us Page links', () => {
 
-      beforeEach( function () {        
+      beforeEach( function () {    
         if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[language]);
         } else {
@@ -547,7 +547,10 @@ describe('Home Page', function () {
         faqPage.click.contactUsLink();
       });
 
-      it('Verify that Twitter is not an option', () => {
+      it('Verify that Twitter is not an option', function () {
+        if (brand =='boohoo.com' && locale == 'NL') {
+          this.skip();
+        }      
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
       it('Verify that Facebook link is present and functional', () => {

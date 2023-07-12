@@ -234,6 +234,11 @@ class HomePage implements AbstractPage {
 
       // It needs to be set again when linking to another page.
     }
+    if (brand == 'misspap.com' && locale == 'UK') { // To make Klarna option available for Misspap UK 
+      cy.setCookie('billingCountryCode','GB');
+      cy.setCookie('dw_locale', 'en_GB');
+    }
+
     cy.visit(url);
 
   }

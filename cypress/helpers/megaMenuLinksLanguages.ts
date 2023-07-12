@@ -204,7 +204,7 @@ class megaMenuLinksLanguages {
     DK: 'sale',
     FI: 'sale',
     NO: 'sale',
-    SE: 'nyheter',
+    SE: 'rea',
     IL: '',
     IT: 'sconti',
     ES: 'rebajas'

@@ -118,7 +118,7 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
-    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"] , :nth-child(2) > .accordion-content > .vertical-menu > :nth-child(3) > a',
     instagramLink: 'a[href="https://www.instagram.com/boohoomanofficial"]',
     facebookLink: 'a[href="https://www.facebook.com/BoohooMAN"]',
     twitterLink: 'a[href="https://twitter.com/boohooMAN"]',
@@ -138,7 +138,7 @@ const selectors: SelectorBrandMap = {
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
-    helpLink: 'a[title="Customer Service"]'
+    helpLink: 'a[title="Customer Service"] , [title="Service client"]'
   },
   'karenmillen.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',

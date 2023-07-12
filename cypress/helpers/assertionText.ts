@@ -22,7 +22,7 @@ class AssertionText {
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Returer',
     IL: '',
     IT: '',
     ES: ''

@@ -1,7 +1,7 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import { isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand } from 'cypress/support/e2e';
+import { brand , locale } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -118,7 +118,7 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
-    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"] , :nth-child(2) > .accordion-content > .vertical-menu > :nth-child(3) > a',
+    copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/boohoomanofficial"]',
     facebookLink: 'a[href="https://www.facebook.com/BoohooMAN"]',
     twitterLink: 'a[href="https://twitter.com/boohooMAN"]',
@@ -296,7 +296,11 @@ class GlobalFooter implements AbstractPage {
     },
     copyrightPrivacyPolicyLink () {
       const copyrightPrivacyPolicyLink = selectors[variables.brand].copyrightPrivacyPolicyLink;
+      if(brand == 'boohooman.com' && locale == 'FR'){
+        cy.get(':nth-child(2) > .accordion-content > .vertical-menu > :nth-child(3) > a').scrollIntoView().click({force:true});
+      }else{
       cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click({force:true});
+      }
     },
     copyrightTermsAndConditionsLink () {
       const copyrightTermAndCondLink = selectors[variables.brand].copyrightTermAndCondLink;

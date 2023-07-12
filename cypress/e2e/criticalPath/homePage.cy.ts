@@ -152,7 +152,7 @@ describe('Home Page', function () {
       });
 
       it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', function () {
-        if(brand == 'boohooman.com' && 'FR'){
+        if(brand == 'boohooman.com' && locale == 'FR'){
           this.skip();
         }
         GlobalFooter.click.copyrightTermsAndConditionsLink();

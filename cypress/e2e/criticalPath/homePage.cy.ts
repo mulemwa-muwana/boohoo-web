@@ -548,7 +548,7 @@ describe('Home Page', function () {
       });
 
       it('Verify that Twitter is not an option', function () {
-        if (brand =='boohoo.com' &&  locale == 'NL'  || locale == 'SE') {
+        if (brand =='boohoo.com' &&  (locale == 'NL'  || locale == 'SE')) {
           this.skip();
         }      
         contactusPage.assertions.assertTwitterIconIsNotPresent();

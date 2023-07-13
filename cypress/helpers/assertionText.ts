@@ -92,7 +92,7 @@ class AssertionText {
     DK: 'Je hebt (nog) geen items opgeslagen voor later',
     FI: 'Sinulla ei ole yhtään kohdetta tallennettuna myöhempää käyttöä varten (vielä)',
     NO: 'Du har ingen elementer lagret for senere (ennå)',
-    SE: 'Du har inga objekt sparade för senare (ännu)',
+    SE: 'DIN ÖNSKELISTA ÄR TOM (JUST NU).',
     IL: 'אין לך פריטים שנשמרו למועד מאוחר יותר (עדיין)',
     IT: 'Non hai elementi salvati per dopo (ancora)',
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
@@ -190,7 +190,7 @@ class AssertionText {
     DK: 'Det ser ud til, at du allerede har en konto hos os. Prøv venligst at logge ind eller brug en anden e-mailadresse Log ind',
     FI: 'Näyttää siltä, ​​että sinulla on jo tili meillä. Yritä kirjautua sisään tai käytä toista sähköpostiosoitetta Kirjaudu sisään',
     NO: 'Det ser ut til at du allerede har en konto hos oss. Prøv å logge på eller bruk en annen e-postadresse Logg på',
-    SE: 'Det verkar som att du redan har ett konto hos oss. Försök att logga in eller använd en annan e-postadress Logga in',
+    SE: 'Det verkar som att du redan har ett konto. Logga in eller använd en annan mejladress.',
     IL: 'נראה שכבר יש לך חשבון איתנו. אנא נסה להתחבר או השתמש בכתובת דוא"ל אחרת התחבר',
     IT: 'Sembra che tu abbia già un account con noi. Prova ad accedere o usa un indirizzo email diverso Accedi',
     ES: 'Parece que ya tienes una cuenta con nosotros. Intente iniciar sesión o use una dirección de correo electrónico diferente Iniciar sesión'
@@ -637,7 +637,7 @@ class AssertionText {
     FR: 'Se termine dans 111',
     FI: 'Luotto/pankkikortti',
     NO: 'Kreditt-/debetkort',
-    SE: 'Kredit / Betalkort',
+    SE: 'Slutar med 111',
     IL: 'כרטיס אשראי / חיוב',
     IT: 'Carta di credito / debito',
     ES: 'Tarjeta de crédito / débito',

@@ -316,7 +316,7 @@ class AssertionText {
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'ALLMÄNNA VILLKOR',
     IL: '',
     IT: '',
     ES: ''
@@ -750,7 +750,7 @@ class AssertionText {
     DK: 'allerede tilmeldt',
     FI: 'jo ilmoittautunut',
     NO: 'Wacht! Er gaat iets mis.',
-    SE: 'redan anmält sig',
+    SE: 'Du prenumererar redan!',
     IL: 'כבר נרשמת',
     IT: 'già iscritto',
     ES: 'ya registrado'

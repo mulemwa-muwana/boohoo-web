@@ -481,7 +481,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '850532370',
+        phone: '+46701740615',
         addressLine: 'Torsgatan 10',
         postcode: '111 23',
         addressName: 'PrimaryAddress',
@@ -494,7 +494,7 @@ class Addresses {
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '483563451',
+        phone: '+46701740615',
         addressLine: 'Stadsgårdshamnen 22',
         postcode: '116 45',
         addressName: 'SecondaryAddress',
@@ -507,15 +507,15 @@ class Addresses {
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
         lastName: 'Test',
-        phone: '08082580300',
-        addressLine: '85 Piccadilly',
-        postcode: 'W1J 7NB',
+        phone: '+46701740615',
+        addressLine: 'Torsgatan 10',
+        postcode: '111 23',
         addressName: 'PrimaryAddress',
-        country: 'United Kingdom',
-        city: 'London',
-        countryCode: 'GB',
-        county: 'London',
-        addressNickname: 'UKNew',
+        country: 'Sverige',
+        city: 'Stockholm',
+        countryCode: 'SE',
+        county: '',
+        addressNickname: 'SE3',
       }
     },
 

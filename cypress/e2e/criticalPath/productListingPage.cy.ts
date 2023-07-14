@@ -83,7 +83,7 @@ describe('Product Listing Page tests', function () {
     });
     
     it('Verify style refinement is applied', function () {
-      const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU', 'US', 'CA'];
+      const nastygalLocalesExcludedStyle: Array<Locale> = ['EU', 'AU', 'US', 'CA'];
       if ((brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(locale)) || (brand =='misspap.com')) {
         this.skip();
       } 
@@ -109,7 +109,7 @@ describe('Product Listing Page tests', function () {
     });
     
     it('Verify price refinement is applied', function () {
-      const brandsExludedPriceRefinement: Array<GroupBrands> = ['nastygal.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+      const brandsExludedPriceRefinement: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
       if (brandsExludedPriceRefinement.includes(brand)) {
         this.skip();
       }
@@ -131,7 +131,7 @@ describe('Product Listing Page tests', function () {
 
     it('Verify occasion refinement is applied', function () {
       const brandsExcludedOccasion: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk'];
-      if (brandsExcludedOccasion.includes(brand)) {
+      if (brandsExcludedOccasion.includes(brand) || (brand == 'nastygal.com'&& locale =='IE')) {
         this.skip();
       }
       plpPage.actions.setupChangeIntercept(/occasion/);

@@ -254,7 +254,7 @@ class AssertionText {
 
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
-    FR: '\n                        Politique de confidentialité\n                    ',
+    FR: 'Avis de confidentialité ',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',

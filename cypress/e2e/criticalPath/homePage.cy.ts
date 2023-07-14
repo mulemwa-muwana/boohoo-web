@@ -190,7 +190,7 @@ describe('Home Page', function () {
       
       it('TikTok', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com', 'misspap.com', 'boohooman.com'];
-        if (!includedBrands.includes(brand) || (brand == 'boohooman.com') && locale == 'FR') {
+        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && locale == 'FR')) {
           this.skip();
         }
         SocialsPage.assertions.assertTikTokIconIsPresent();

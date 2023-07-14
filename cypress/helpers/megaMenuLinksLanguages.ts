@@ -157,7 +157,7 @@ class megaMenuLinksLanguages {
   subnavAllSale: TranslationMap = {
     EN: 'All Sale',
     FR: 'Toutes les promos',
-    NL: 'Alles uitverkoop',
+    NL: 'Alle Uitverkoop',
     DE: 'Alles im Sale',
     DK: 'All Sale',
     FI: 'All Sale',
@@ -199,7 +199,7 @@ class megaMenuLinksLanguages {
   urlValidationSale: TranslationMap = {
     EN: 'sale',
     FR: 'promo',
-    NL: 'vandaag-nieuw-binnen',
+    NL: 'sale',
     DE: 'sale',
     DK: 'sale',
     FI: 'sale',

@@ -1,5 +1,6 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
+import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -123,7 +124,7 @@ class SocialsPage implements AbstractPage {
 
   assertions = {
     assertOnInstagram () {
-      const instagramUrl = selectors[variables.brand].instagramUrl;
+      const instagramUrl = selectors[brand].instagramUrl;
       cy.url().then(url => {
         expect(url).to.contain(instagramUrl);
       });
@@ -131,7 +132,7 @@ class SocialsPage implements AbstractPage {
 
     // Not working for Dorothy Perkins and Wallis 
     assertInstagramIconIsPresent () {
-      const instagram = selectors[variables.brand].instagram;
+      const instagram = selectors[brand].instagram;
       if (isSiteGenesisBrand) {
         cy.get(instagram).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(instagram).should('be.visible');
@@ -140,7 +141,7 @@ class SocialsPage implements AbstractPage {
       }
     },
     assertFacebookIconIsPresent () {
-      const facebook = selectors[variables.brand].facebook;
+      const facebook = selectors[brand].facebook;
       if (isSiteGenesisBrand) {
         cy.get(facebook).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(facebook).should('be.visible');
@@ -149,16 +150,16 @@ class SocialsPage implements AbstractPage {
       }
     },
     assertTheFixIconIsPresent () {
-      const theFix = selectors[variables.brand].theFix;
+      const theFix = selectors[brand].theFix;
       cy.get(theFix).should('be.visible');
     },
     assertSnapchatIconIsPresent () {
-      const snapchat = selectors[variables.brand].snapchat;
+      const snapchat = selectors[brand].snapchat;
       cy.get(snapchat).parent().invoke('attr', 'style', 'overflow:visible');
       cy.get(snapchat).should('be.visible');
     },
     assertPinterestIconIsPresent () {
-      const pinterest = selectors[variables.brand].pinterest;
+      const pinterest = selectors[brand].pinterest;
       if (isSiteGenesisBrand) {
         cy.get(pinterest).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(pinterest).should('be.visible');
@@ -167,11 +168,11 @@ class SocialsPage implements AbstractPage {
       }
     },
     assertTikTokIconIsPresent () {
-      const tiktok = selectors[variables.brand].tiktok;
+      const tiktok = selectors[brand].tiktok;
       cy.get(tiktok).should('be.visible');
     },
     assertTwitterIconIsPresent () {
-      const twitter = selectors[variables.brand].twitter;
+      const twitter = selectors[brand].twitter;
       if (isSiteGenesisBrand) {
         cy.get(twitter).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(twitter).should('be.visible');
@@ -180,8 +181,8 @@ class SocialsPage implements AbstractPage {
       }
     },
     assertYouTubeIconIsPresent () {
-      const youtube = selectors[variables.brand].youtube;
-      if (variables.brand == 'coastfashion.com' || variables.brand == 'karenmillen.com' || variables.brand == 'boohoomena.com' || variables.brand == 'misspap.com') {
+      const youtube = selectors[brand].youtube;
+      if (brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'boohoomena.com' || brand == 'misspap.com') {
         cy.get(youtube).parent().invoke('attr', 'style', 'overflow:visible');
         cy.get(youtube).should('be.visible');
       } else {
@@ -189,7 +190,7 @@ class SocialsPage implements AbstractPage {
       }
     },
     assertOnFacebook () {
-      const facebookUrl = selectors[variables.brand].facebookUrl;
+      const facebookUrl = selectors[brand].facebookUrl;
       cy.url().then(url => {
         expect(url).to.include(facebookUrl);
       });

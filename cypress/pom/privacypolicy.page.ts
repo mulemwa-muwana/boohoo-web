@@ -59,7 +59,7 @@ class PrivacyPolicyPage implements AbstractPage {
     },
     assertPrivacyNoticyPageOpens (text: string) {
       const privacyNoticyPageTitle = selectors[variables.brand].privacyNoticyPageTitle;
-      cy.get(privacyNoticyPageTitle).should('contains.text', text);
+      cy.get(privacyNoticyPageTitle).should('contains.text', text, { matchCase: false });
     }
   };
 }

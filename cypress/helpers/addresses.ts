@@ -119,15 +119,15 @@ class Addresses {
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
         lastName: 'Test',
-        phone: '08082580300',
-        addressLine: '85 Piccadilly',
-        postcode: 'W1J 7NB',
+        phone: '35314850900',
+        addressLine: '32 Marlfield Mall',
+        postcode: 'D24 YT57',
         addressName: 'PrimaryAddress',
-        country: 'United Kingdom',
-        city: 'London',
-        countryCode: 'GB',
-        county: 'London',
-        addressNickname: 'UKNew',
+        country: 'Ireland',
+        city: 'Dublin 24',
+        countryCode: 'IE',
+        county: 'Dublin',
+        addressNickname: 'IE3',
       }
     },
 

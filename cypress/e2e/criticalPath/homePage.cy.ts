@@ -78,9 +78,9 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
       }    
       if (brand == 'boohooman.com') {
-        if(locale == 'FR'){
+        if (locale == 'FR') {
           homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('vetements');
-        }else{
+        } else {
           homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
         }
       } else {
@@ -152,7 +152,7 @@ describe('Home Page', function () {
       });
 
       it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', function () {
-        if(brand == 'boohooman.com' && locale == 'FR'){
+        if (brand == 'boohooman.com' && locale == 'FR') {
           this.skip();
         }
         GlobalFooter.click.copyrightTermsAndConditionsLink();
@@ -565,8 +565,8 @@ describe('Home Page', function () {
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
       it('Verify that Facebook link is present and functional',function () {
-        if(brand == 'boohooman.com' && locale == 'FR') {
-          this.skip(); //facebook link isn't exist on contuct us page
+        if (brand == 'boohooman.com' && locale == 'FR') {
+          this.skip(); // Facebook link isn't exist on contuct us page
         }
         contactusPage.assertions.assertFacebookIconIsPresent();
       });

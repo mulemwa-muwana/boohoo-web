@@ -680,15 +680,15 @@ class Addresses {
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
         lastName: 'Test',
-        phone: '08082580300',
-        addressLine: '85 Piccadilly',
-        postcode: 'W1J 7NB',
+        phone: '64231531376',
+        addressLine: 'Mount Wellington Highway',
+        postcode: '1060',
         addressName: 'PrimaryAddress',
-        country: 'United Kingdom',
-        city: 'London',
-        countryCode: 'GB',
-        county: 'London',
-        addressNickname: 'UKNew',
+        country: 'New Zealand',
+        city: 'Auckland',
+        countryCode: 'NZ',
+        county: 'Kingsland',
+        addressNickname: 'NZ3',
       }
     },
 

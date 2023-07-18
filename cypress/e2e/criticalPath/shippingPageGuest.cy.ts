@@ -110,7 +110,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (isSiteGenesisBrand) {
-      shippingPage.actions.selectDate('23', 'May', '2001');
+        shippingPage.actions.selectDate('23', localeAddress.month, '2001');
       if (brand != 'boohooman.com') {
         shippingPage.actions.emailField(this.guestEmail);
         shippingPage.actions.confirmEmailField(this.guestEmail);
@@ -144,7 +144,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.selectState(localeAddress.county);
     }
     if (isSiteGenesisBrand) {
-      shippingPage.actions.selectDate('23', 'May', '2001');
+        shippingPage.actions.selectDate('23', localeAddress.month, '2001');
       if (brand != 'boohooman.com') {
         shippingPage.actions.emailField(this.guestEmail);
         shippingPage.actions.confirmEmailField(this.guestEmail);
@@ -183,8 +183,8 @@ describe('Shipping Page Guest user tests', function () {
     if (locale == 'AU') {
       shippingPage.actions.selectState(localeAddress.county);
     }
-    if (isSiteGenesisBrand) {
-      shippingPage.actions.selectDate('23', 'May', '2001');
+    if (isSiteGenesisBrand) {     
+        shippingPage.actions.selectDate('23', localeAddress.month, '2001');
       if (brand != 'boohooman.com') {
         shippingPage.actions.emailField(this.guestEmail);
         shippingPage.actions.confirmEmailField(this.guestEmail);
@@ -261,7 +261,7 @@ describe('Shipping Page Guest user tests', function () {
     if (!isSiteGenesisBrand) {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
-    shippingPage.actions.selectDate('Day', 'Month', 'Year');
+    shippingPage.actions.notSelectedDate();
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });

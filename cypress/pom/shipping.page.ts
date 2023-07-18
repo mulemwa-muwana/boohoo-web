@@ -899,6 +899,14 @@ class ShippingPage implements AbstractPage {
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
     },
+    notSelectedDate (){
+      const dobDay = selectors[brand].dobDay;
+      const dobMonth = selectors[brand].dobMonth;
+      const dobYear = selectors[brand].dobYear;
+      cy.get(dobDay).select(0);
+      cy.get(dobMonth).select(0);
+      cy.get(dobYear).select(0);
+    },
     emailField (email: string) {
       const guestEmailField = selectors[brand].guestEmailField;
       cy.get(guestEmailField).clear().type(email);

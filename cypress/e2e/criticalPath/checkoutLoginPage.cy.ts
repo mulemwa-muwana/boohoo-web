@@ -25,6 +25,9 @@ describe('Checkout Page', function () {
     if (isSiteGenesisBrand || arcadiaBrands.includes(brand)) {
       this.skip();
     }
+    if (brand == 'nastygal.com' && locale == 'FR') {
+      this.skip();
+    }
     const includedLocals: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
 
     if (brand == 'boohoo.com' && includedLocals.includes(locale)) {

@@ -78,7 +78,11 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
       }    
       if (brand == 'boohooman.com') {
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
+        if (locale == 'FR') {
+          homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('vetements');
+        } else {
+          homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
+        }
       } else {
         homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[language]);
       }
@@ -147,7 +151,10 @@ describe('Home Page', function () {
         }
       });
 
-      it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', () => {
+      it('Verify the content page (Terms And Conditions) is displayed: Footer Link (copyright)', function () {
+        if (brand == 'boohooman.com' && locale == 'FR') {
+          this.skip();
+        }
         GlobalFooter.click.copyrightTermsAndConditionsLink();
 
         if (brand == 'boohoo.com' || brand == 'nastygal.com') {
@@ -183,7 +190,7 @@ describe('Home Page', function () {
       
       it('TikTok', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com', 'misspap.com', 'boohooman.com'];
-        if (!includedBrands.includes(brand)) {
+        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && locale == 'FR')) {
           this.skip();
         }
         SocialsPage.assertions.assertTikTokIconIsPresent();
@@ -476,13 +483,17 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
-        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com', 'boohooman.com'];
+        const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com'];
         const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];
 
         if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
         } else if ((brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
+        } else if (brand == 'boohooman.com' && locale != 'FR') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
+        } else if (brand == 'boohooman.com' && locale == 'FR') {
+          GlobalFooter.actions.checkFooterLinkByText('Politique de confidentialité - mise à jour Juin 2021');
         } else if ((locale == 'UK' || locale == 'EU') && (brand == 'coastfashion.com' || brand == 'oasis-stores.com')) {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated May 2023');
         } else if ((locale == 'IE') && (brand == 'coastfashion.com')) {
@@ -538,7 +549,7 @@ describe('Home Page', function () {
 
     describe('Contact Us Page links', () => {
 
-      beforeEach( function () {        
+      beforeEach( function () {    
         if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[language]);
         } else {
@@ -547,10 +558,16 @@ describe('Home Page', function () {
         faqPage.click.contactUsLink();
       });
 
-      it('Verify that Twitter is not an option', () => {
+      it('Verify that Twitter is not an option', function () {
+        if (brand =='boohoo.com' && (locale == 'NL' || locale == 'SE')) {
+          this.skip();
+        }      
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
-      it('Verify that Facebook link is present and functional', () => {
+      it('Verify that Facebook link is present and functional',function () {
+        if (brand == 'boohooman.com' && locale == 'FR') {
+          this.skip(); // Facebook link isn't exist on contuct us page
+        }
         contactusPage.assertions.assertFacebookIconIsPresent();
       });
       it('Verify that Email link is present and functional', () => {

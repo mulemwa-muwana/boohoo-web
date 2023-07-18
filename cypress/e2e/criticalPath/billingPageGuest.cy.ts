@@ -116,10 +116,6 @@ describe('Billing page functionality for guest user', function () {
     }
   });
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
-    if (brand == 'misspap.com') {
-      cy.clearCookies();
-      Navigate.toBillingPage('GuestUser');
-    }
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
 

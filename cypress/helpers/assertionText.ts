@@ -4,7 +4,7 @@ class AssertionText {
     EN: 'The product is added to wish list',
     FR: 'Le produit a été ajouté à la liste des favoris',
     NL: 'The product is added to wish list',
-    DE: '\n\nGerettet\n',
+    DE: 'Produkt zur Wunschliste hinzugefügt',
     DK: '\n\nGemt\n',
     FI: '\n\nTallennettu\n',
     NO: '\n\nLagret\n',
@@ -18,11 +18,11 @@ class AssertionText {
     EN: 'return',
     FR: 'retour',
     NL: 'retourzending',
-    DE: '',
+    DE: 'Rücksendungen',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Returer',
     IL: '',
     IT: '',
     ES: ''
@@ -88,11 +88,11 @@ class AssertionText {
     EN: 'You don\'t have any items saved for later (yet)',
     FR: 'Vous n’avez pas (encore) enregistré d`éléments pour plus tard',
     NL: 'Je hebt (nog) geen items opgeslagen voor later',
-    DE: 'Sie haben (noch) keine Artikel für später gespeichert',
+    DE: 'DU HAST (NOCH) KEINE ARTIKEL FÜR SPÄTER GESPEICHERT.',
     DK: 'Je hebt (nog) geen items opgeslagen voor later',
     FI: 'Sinulla ei ole yhtään kohdetta tallennettuna myöhempää käyttöä varten (vielä)',
     NO: 'Du har ingen elementer lagret for senere (ennå)',
-    SE: 'Du har inga objekt sparade för senare (ännu)',
+    SE: 'DIN ÖNSKELISTA ÄR TOM (JUST NU).',
     IL: 'אין לך פריטים שנשמרו למועד מאוחר יותר (עדיין)',
     IT: 'Non hai elementi salvati per dopo (ancora)',
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
@@ -102,7 +102,7 @@ class AssertionText {
     EN: 'add your favorite items as you start shopping',
     FR: '',
     NL: '',
-    DE: '',
+    DE: 'Verwende zu Beginn deines Einkaufs die Wunschliste, um deine bevorzugten Artikel hinzuzufügen.',
     DK: '',
     FI: '',
     NO: '',
@@ -186,11 +186,11 @@ class AssertionText {
     EN: 'Looks like you already have an account with us. Please try logging in or use a different email address',
     FR: 'Il semble que vous ayez déjà un compte chez nous. Veuillez essayer de vous connecter ou utiliser une autre adresse e-mail',
     NL: 'Het lijkt erop dat je al een account bij ons hebt. Probeer op dit account in te loggen of gebruik een ander e-mailadres',
-    DE: 'Anscheinend haben Sie bereits ein Konto bei uns. Bitte versuchen Sie sich anzumelden oder verwenden Sie eine andere E-Mail-Adresse',
+    DE: 'Anscheinend hast du bereits ein Konto bei uns. Bitte melde dich an oder verwende eine andere E-Mail-Adresse',
     DK: 'Det ser ud til, at du allerede har en konto hos os. Prøv venligst at logge ind eller brug en anden e-mailadresse Log ind',
     FI: 'Näyttää siltä, ​​että sinulla on jo tili meillä. Yritä kirjautua sisään tai käytä toista sähköpostiosoitetta Kirjaudu sisään',
     NO: 'Det ser ut til at du allerede har en konto hos oss. Prøv å logge på eller bruk en annen e-postadresse Logg på',
-    SE: 'Det verkar som att du redan har ett konto hos oss. Försök att logga in eller använd en annan e-postadress Logga in',
+    SE: 'Det verkar som att du redan har ett konto. Logga in eller använd en annan mejladress.',
     IL: 'נראה שכבר יש לך חשבון איתנו. אנא נסה להתחבר או השתמש בכתובת דוא"ל אחרת התחבר',
     IT: 'Sembra che tu abbia già un account con noi. Prova ad accedere o usa un indirizzo email diverso Accedi',
     ES: 'Parece que ya tienes una cuenta con nosotros. Intente iniciar sesión o use una dirección de correo electrónico diferente Iniciar sesión'
@@ -214,7 +214,7 @@ class AssertionText {
     EN: 'Email address already taken. Please use different email address or try to log in with current one',
     FR: '',
     NL: '',
-    DE: '',
+    DE: 'E-Mail-Adresse wurde bereits gewählt. Verwende bitte eine andere E-Mail-Adresse oder versuche, dich mit der aktuellen anzumelden.',
     DK: '',
     FI: '',
     NO: '',
@@ -254,7 +254,7 @@ class AssertionText {
 
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
-    FR: '\n                        Politique de confidentialité\n                    ',
+    FR: 'Avis de confidentialité ',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
@@ -296,7 +296,7 @@ class AssertionText {
 
   PrivacyPolicyH1BHM: TranslationMap = {
     EN: 'Privacy',
-    FR: 'avis de confidentialité',
+    FR: 'de confidentialité',
     NL: 'privacyverklaring',
     DE: 'datenschutzerklärung',
     DK: 'bekendtgørelse om beskyttelse af personlige oplysninger',
@@ -312,11 +312,11 @@ class AssertionText {
     EN: 'Terms & Conditions',
     FR: '',
     NL: 'TERMS & CONDITIONS',
-    DE: '',
+    DE: 'GESCHÄFTSBEDINGUNGEN',
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'ALLMÄNNA VILLKOR',
     IL: '',
     IT: '',
     ES: ''
@@ -506,7 +506,7 @@ class AssertionText {
 
   loginAttempts: TranslationMap = {
     EN: 'login attempts',
-    FR: 'tentatives d’enregistrement',
+    FR: 'Tu n’as plus que 4 tentatives d’enregistrement avant que ton compte soit bloqué',
     NL: 'pogingen om in te loggen',
     DE: 'weitere Anmeldeversuche',
     DK: 'flere loginforsøg',
@@ -634,14 +634,14 @@ class AssertionText {
     EN: 'Card',
     NL: 'Card',
     DK: 'Kredit-/betalingskort',
-    FR: 'Carte de crédit / débit',
+    FR: 'Se termine dans 111',
     FI: 'Luotto/pankkikortti',
     NO: 'Kreditt-/debetkort',
-    SE: 'Kredit / Betalkort',
+    SE: 'Slutar med 111',
     IL: 'כרטיס אשראי / חיוב',
     IT: 'Carta di credito / debito',
     ES: 'Tarjeta de crédito / débito',
-    DE: 'Kredit-/Debitkarte'
+    DE: 'Card'
   };
 
   assertPaymentMethodSiteGenesis: TranslationMap = {
@@ -655,7 +655,7 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: '',
-    DE: ''
+    DE: 'Karte'
   };
 
   addedToCard: TranslationMap = {
@@ -676,7 +676,7 @@ class AssertionText {
     EN: 'Thanks for ',
     NL: 'Bedankt voor ',
     DE: 'Danke für',
-    FR: 'Merci pour ',
+    FR: 'Merci ',
     DK: 'Tak for',
     FI: 'Kiitos ',
     NO: 'Takk for ',
@@ -750,7 +750,7 @@ class AssertionText {
     DK: 'allerede tilmeldt',
     FI: 'jo ilmoittautunut',
     NO: 'Wacht! Er gaat iets mis.',
-    SE: 'redan anmält sig',
+    SE: 'Du prenumererar redan!',
     IL: 'כבר נרשמת',
     IT: 'già iscritto',
     ES: 'ya registrado'
@@ -802,7 +802,7 @@ class AssertionText {
     EN: 'customer-service',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'customer-service',
     DK: '',
     FI: '',
     NO: '',
@@ -816,7 +816,7 @@ class AssertionText {
     EN: 'Customer Service',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Service client',
     DK: '',
     FI: '',
     NO: '',
@@ -844,7 +844,7 @@ class AssertionText {
     EN: 'Delivery info',
     NL: 'Bezorginformatie',
     DE: 'Lieferinformationen',
-    FR: 'Information sur la livraison',
+    FR: 'Informations De Livraison',
     DK: 'Shipping Info',
     FI: 'Shipping Info',
     NO: 'Shipping Info',
@@ -872,7 +872,7 @@ class AssertionText {
     EN: 'Delivery',
     NL: 'Leveringsopties',
     DE: 'Lieferinformationen',
-    FR: 'Information sur la livraison',
+    FR: 'livraison',
     DK: '',
     FI: '',
     NO: '',
@@ -984,7 +984,7 @@ class AssertionText {
     EN: 'Student Discount',
     NL: 'Studentenkorting',
     DE: 'Studentenrabatt',
-    FR: 'Réduction Étudiante',
+    FR: 'Réduction étudiant',
     DK: 'Student Discount',
     FI: 'Student Discount',
     NO: 'Student Discount',
@@ -995,7 +995,7 @@ class AssertionText {
   };
 
   footerLinkReturns: TranslationMap = {
-    EN: 'Returns',
+    EN: 'Return',
     NL: 'RETOURNERINGEN',
     DE: 'Rücksendungen',
     FR: 'Retours',
@@ -1166,7 +1166,7 @@ class AssertionText {
     EN: 'T&C\'s',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'CGV',
     DK: '',
     FI: '',
     NO: '',
@@ -1278,7 +1278,7 @@ class AssertionText {
     EN: 'Environment & Social Responsibility',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Responsabilité sociale de',
     DK: '',
     FI: '',
     NO: '',

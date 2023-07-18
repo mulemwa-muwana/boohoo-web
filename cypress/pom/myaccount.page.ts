@@ -34,6 +34,7 @@ const selectors: SelectorBrandMap = {
     addressStateCode: '#dwfrm_address_states_stateCode',
     addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
     addressDeleteBtn: '.b-cards_grid-footer > .b-button',
+    addressDeleteConfirmationBtn: 'button[data-tau="dialog_delete_address_confirm"]',
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
@@ -104,6 +105,7 @@ const selectors: SelectorBrandMap = {
     creditCardSection: '.b-cards_grid section',
     creditCardDeleteBtn: '.b-cards_grid-footer > .b-button',
     cardDeleteConfirmationBtn: 'button[data-event-click\\.prevent="confirm"]',
+    addressDeleteConfirmationBtn: 'button[data-tau="dialog_delete_address_confirm"]',
     orderID: '.b-account-title',
     shippingInfo: '.b-summary_group',
     billingAndPaymentInfo: 'section.l-account_main-section:nth-child(4)',
@@ -204,6 +206,7 @@ const selectors: SelectorBrandMap = {
     addressPostalCodeField: '#dwfrm_address_postalCode',
     addressEnterManualyBtn: '.b-address_lookup > .b-button',
     addressDeleteBtn: '.b-cards_grid-footer > .b-button',
+    addressDeleteConfirmationBtn: 'button[data-tau="dialog_delete_address_confirm"]',
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
@@ -258,6 +261,7 @@ const selectors: SelectorBrandMap = {
     addressCityField: '#dwfrm_address_city',
     addressPostalCodeField: '#dwfrm_address_postalCode',
     addressDeleteBtn: '.b-cards_grid-footer > .b-button',
+    addressDeleteConfirmationBtn: 'button[data-tau="dialog_delete_address_confirm"]',
     creditCardsList: '.b-cards_grid',
     addCreditCardBtn: 'a[data-tau="address_book_addNewAddress"]',
     addCardEditForm: '.l-account_main-section',
@@ -668,16 +672,16 @@ const selectors: SelectorBrandMap = {
     addressDeleteBtn: '.address-delete-link',
     creditCardsList: '.account-payments',
     addCreditCardBtn: '.add-card',
-    addCardEditForm: '#CreditCardForm',
-    addCreditCardNumber: '#encryptedCardNumber',
-    addCreditCardOwner: 'input.adyen-checkout__input',
-    addCreditCardExpDate: '#encryptedExpiryDate',
-    addCreditCardSecurityCode: '#encryptedSecurityCode',
+    addCardEditForm: 'div.account-wrapper',
+    addCreditCardNumber: '.gsf-holder > .input-field.js-iframe-input',
+    addCreditCardOwner: "input[name='holderName']",
+    addCreditCardExpDate: '.gsf-holder > .input-field.js-iframe-input',
+    addCreditCardSecurityCode: '.gsf-holder > .input-field.js-iframe-input',
     addCreditCardSaveBtn: '#add-card-submit',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
     newestOrderHistory: 'li.order-history-item:nth-child(1) button',
-    orderID: '.order-number > .value',
+    orderID: '.orderdetails-header-number > .value',
     shippingInfo: '.order-date > .value',
     billingAndPaymentInfo: '.processing',
     accountDetailsEmailField: '.account-email',
@@ -689,9 +693,9 @@ const selectors: SelectorBrandMap = {
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
     orderHistoryLink: '.account-nav-content [title="Order History"]',
-    viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
+    viewNewestOrderDetails: 'button[value="Order Details"]',
     addressCards:'.account-page-list-inner',
-    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
+    addressDeleteButton:'a[title="Delete this address"]'
   }
 };
 
@@ -730,6 +734,11 @@ class MyAccountPage implements AbstractPage {
         if (isSiteGenesisBrand) {
           cy.log(`searching for '${text}' in account nav panel on the left side`);
           cy.get('.secondary-navigation').contains(text, {matchCase: false})
+            .invoke('removeAttr', 'target')
+            .click({force: true});
+        } else if (brand == 'boohoo.com' && (locale == 'DE' || locale == 'SE')) {
+          cy.log(`searching for '${text}' in order history`);
+          cy.get('.l-footer-quick').contains(text)
             .invoke('removeAttr', 'target')
             .click({force: true});
         } else {
@@ -856,7 +865,7 @@ class MyAccountPage implements AbstractPage {
 
         if (brand == 'boohoomena.com') {
           const addressPhoneCode = selectors[variables.brand].addressPhoneCode;
-          cy.get(addressPhoneCode).select(address.phone.slice(0, 2));
+          cy.get(addressPhoneCode).select(address.phone.slice(0,2));
           cy.get(addressPhoneNumberField).clear().type(address.phone.slice(2));
         } else {
           cy.get(addressPhoneNumberField).type(address.phone, { force: true });
@@ -882,13 +891,14 @@ class MyAccountPage implements AbstractPage {
         
       },
       deleteAddressIfExist () {
+        const addressDeleteConfirmationBtn = selectors[variables.brand].addressDeleteConfirmationBtn;
         cy.get('.b-cards_grid-item .b-address-name').then($addressCards=>{
           if ($addressCards.text().includes('Boohoo')) {
             cy.get('.b-cards_grid-item .b-address-name:contains("Boohoo")').each((deleteAddressCard)=>{
               cy.wait(1000);
               cy.wrap(deleteAddressCard).parentsUntil('[data-tau="address_book_item"]').parent().find('[data-tau="address_book_delete"]').click({force:true});// Finding element by text then going to delete button through parentsUntil and parents
               cy.wait(1000);
-              cy.contains('button', 'Yes, delete').click({ force: true });    
+              cy.get(addressDeleteConfirmationBtn).click({force:true});   
             });            
           }
         });
@@ -896,12 +906,13 @@ class MyAccountPage implements AbstractPage {
       deleteAddress () {
         const addressCards = selectors[variables.brand].addressCards;
         const addressDeleteButton = selectors[variables.brand].addressDeleteButton;
+        const addressDeleteConfirmationBtn = selectors[variables.brand].addressDeleteConfirmationBtn;
         cy.get(addressCards).contains('Boohoo').then(ele=>{
-          cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true});
+          cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true}); 
         });
         if (!isSiteGenesisBrand || locale=='US') {
           cy.wait(1000);
-          cy.contains('button', 'Yes, delete').click({ force: true });
+          cy.get(addressDeleteConfirmationBtn).click({force:true});
         }
       },
       addCard (cardNumber: string, cardOwner: string, expiryDate: string, securityCode: string) {
@@ -914,7 +925,6 @@ class MyAccountPage implements AbstractPage {
         const addCreditCardSaveBtn = selectors[variables.brand].addCreditCardSaveBtn;
         cy.get(addCreditCardBtn).click({ force: true });
         cy.get(addCardEditForm).should('be.visible');
-
         cy.iframe('.adyen-checkout__field--cardNumber .js-iframe').find(addCreditCardNumber).type(cardNumber);
         cy.iframe('.adyen-checkout__field--expiryDate .js-iframe').find(addCreditCardExpDate).should('be.enabled').type(expiryDate, {force:true});
         cy.iframe('.adyen-checkout__card__cvc__input .js-iframe').find(addCreditCardSecurityCode).type(securityCode);

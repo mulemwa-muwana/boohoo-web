@@ -45,11 +45,12 @@ class Navigate {
     // GUEST USER //
     if (userType === 'GuestUser') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
-        if (brand != 'warehousefashion.com' && (locale == 'IE' || locale == 'EU')) {
+        if (!isSiteGenesisBrand || (brand == 'karenmillen.com' && locale == 'UK') || (brand == 'misspap.com' && locale == 'UK')) {
           cy.wait(2000);
+          CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
           CheckoutPage.click.continueAsGuestBtn();
         } else {
-          CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
+          cy.wait(2000);
           CheckoutPage.click.continueAsGuestBtn();
         }
       });

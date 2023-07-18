@@ -48,7 +48,7 @@ class productVariations {
   };
 
   productAccessories: TranslationMap = {
-    EN: 'Accessories',
+    EN: 'Swimwear',
     NL: 'Accessoires',
     DE: 'Oberteile',
     FR: 'Accessoires',

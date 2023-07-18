@@ -30,7 +30,7 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    addedToWishlistMsg: '.b-message',
+    addedToWishlistMsg: '.b-message , .b-global_alerts-item',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
     checkoutBtn: '/checkout-login',

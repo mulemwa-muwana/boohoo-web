@@ -72,9 +72,7 @@ describe('Shipping Page Registered user tests', function () {
     }
     cy.wait(3000);
     shippingPage.click.proceedToBilling();
-    if (locale == 'IE') {
-      shippingPage.click.proceedToBillingVerification();
-    }
+    shippingPage.click.proceedToBillingVerification();  
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
     
@@ -158,9 +156,7 @@ describe('Shipping Page Registered user tests', function () {
     }
 
     shippingPage.click.proceedToBilling();
-    if (locale == 'IE') {
-      shippingPage.click.proceedToBillingVerification();
-    }
+    shippingPage.click.proceedToBillingVerification();
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
   });
@@ -248,9 +244,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (locale == 'IE') {
-        shippingPage.actions.countyField(localeAddress.county);
-      }
+      shippingPage.actions.countyField(localeAddress.county);    
     } else {
       if (brand == 'boohoo.com') {
         shippingPage.click.addNewAddress();

@@ -261,7 +261,7 @@ describe('Shipping Page Guest user tests', function () {
     if (!isSiteGenesisBrand) {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
-    shippingPage.actions.notSelectedDate();
+    shippingPage.actions.notSelectedDate(); //Day, month, and year must be selected as default, and their notations differ in each language. Instead of creating a new array, used index numbers
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });

@@ -265,4 +265,11 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });
+  it('SG: Verify that guest user can add Thrift to the order', function () {
+    if (brand == 'karenmillen.com') {
+      shippingPage.assertions.assertThriftSectionIsVisible();
+      shippingPage.click.addThriftToCart();
+      shippingPage.assertions.assertThriftBagIsAddedToTheCart();
+    }
+  });
 });

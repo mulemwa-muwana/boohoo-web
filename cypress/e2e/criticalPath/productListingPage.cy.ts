@@ -21,9 +21,9 @@ describe('Product Listing Page tests', function () {
       }   
     } else if (brand == 'wallis.co.uk') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
-      HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavAllSale[language]);
-    } else if(brand == 'karenmillen.com'){
-      HomePage.click.selectLinkFromMegaMenu('SALE');
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+    } else if (brand == 'karenmillen.com') {
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
     } else if (brand == 'dorothyperkins.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewInDP[language]);

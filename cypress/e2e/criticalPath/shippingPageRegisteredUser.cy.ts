@@ -289,5 +289,16 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.assertions.assertShopisSelected(resp);
     });
   });
+
+  it('Verify that user can enter valid credentials in w3w', function () {
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+      this.skip();
+    }
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+    shippingPage.click.addNewAddressButton();
+    shippingPage.click.enterManuallyAddressDetails();
+    shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
+    shippingPage.assertions.assertW3WisSelected();
+  });
   
 });

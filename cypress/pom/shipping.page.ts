@@ -61,7 +61,10 @@ const selectors: SelectorBrandMap = {
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
     pudoSelectedShopAddress:"[data-ref='clickAndCollectAddressContainer-pudo-myhermes']",
-    changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]'
+    changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
+    w3Winput:'#w3wInput',
+    w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
+    successMark:"[class='what3words-autosuggest-state valid']"
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -120,7 +123,10 @@ const selectors: SelectorBrandMap = {
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
     pudoSelectedShopAddress:"[data-ref='clickAndCollectAddressContainer-pudo-NUKmyhermes']",
-    changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]'
+    changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
+    w3Winput:'#w3wInput',
+    w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
+    successMark:"[class='what3words-autosuggest-state valid']"
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -225,7 +231,10 @@ const selectors: SelectorBrandMap = {
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
     pudoSelectedShopAddress:"[data-ref='clickAndCollectAddressContainer-pudo-myhermes']",
-    changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]'
+    changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
+    w3Winput:'#w3wInput',
+    w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
+    successMark:"[class='what3words-autosuggest-state valid']"
   },
   'wallis.co.uk': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -281,7 +290,10 @@ const selectors: SelectorBrandMap = {
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
     pudoSelectedShopAddress:"[data-ref='clickAndCollectAddressContainer-pudo-myhermes']",
-    changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]'
+    changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
+    w3Winput:'#w3wInput',
+    w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
+    successMark:"[class='what3words-autosuggest-state valid']"
   },
   'boohooman.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -347,7 +359,10 @@ const selectors: SelectorBrandMap = {
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
-    pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address"
+    pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
+    w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
+    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    successMark:'.field-wrapper-w3w-valid'
   },
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -411,7 +426,10 @@ const selectors: SelectorBrandMap = {
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
-    pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address"
+    pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
+    w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
+    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    successMark:'.field-wrapper-w3w-valid'
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -649,7 +667,10 @@ const selectors: SelectorBrandMap = {
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
-    pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address"
+    pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
+    w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
+    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    successMark:'.field-wrapper-w3w-valid'
   },
   'boohoomena.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -704,6 +725,9 @@ const selectors: SelectorBrandMap = {
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
     cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
     address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
+    w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
+    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    successMark:'.field-wrapper-w3w-valid'
   }
 };
 
@@ -1008,6 +1032,15 @@ class ShippingPage implements AbstractPage {
           return text;
         });
       });
+    },
+    selectW3WAddress (w3Words: string) {
+      const w3Winput=selectors[brand].w3Winput;
+      const w3WAddressSuggestion=selectors[brand].w3WAddressSuggestion;
+
+      cy.get(w3Winput).type(w3Words);
+      cy.wait(10000);
+      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text', 'Manchester');
+      cy.get(w3WAddressSuggestion).click();
     }
   };        
 
@@ -1016,10 +1049,10 @@ class ShippingPage implements AbstractPage {
       const pudoSelectedShopAddress=selectors[brand].pudoSelectedShopAddress;
       cy.get(pudoSelectedShopAddress).should('contain', testvalue);
     },
-
-    // AssertCollectionShopSelected(addressofbook:any){
-    //   Cy.log("I am in second method", +addressofbook)
-    // },
+    assertW3WisSelected () {
+      const successMark=selectors[brand].successMark;
+      cy.get(successMark).should('be.visible');
+    },
     assertPromoCodeFieldIsDisplayed () {
       const coupon = selectors[brand].coupon;
       cy.get(coupon).should('be.visible');

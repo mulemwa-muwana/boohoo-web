@@ -612,9 +612,6 @@ class PlpPage implements AbstractPage {
     },
     waitForPageRefinementUpdate () {
       cy.wait('@updateRefinement', { timeout: 60000 }).its('response.statusCode').should('eq', 200);
-    },
-    hoverOverQuickViewButton () {
-
     }
   };
 

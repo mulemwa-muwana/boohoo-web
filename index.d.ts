@@ -120,6 +120,7 @@ declare type AddressData = {
     countryCode: string;
     addressNickname: string;
     what3Words: string;
+    month: string;
 }
     
 declare type ShippingData = {

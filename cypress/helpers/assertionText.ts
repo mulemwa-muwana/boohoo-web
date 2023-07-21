@@ -784,6 +784,34 @@ class AssertionText {
     ES: ''
   };
 
+  orderNotFound: TranslationMap = {
+    EN: 'Sorry, this order number does not match',
+    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    FR: 'Désolé, ce numéro de commande ne correspond',
+    DK: 'Sorry, this order number does not match',
+    FI: 'Sorry, this order number does not match',
+    NO: 'Sorry, this order number does not match',
+    SE: 'Ordernumret hittades inte',
+    IL: 'מצטערים, אך מספר ההזמנה אינו תואם לרשום אצלנו',
+    IT: 'Ci dispiace, questo numero di ordine non è disponibile',
+    ES: 'Lo sentimos, no hemos encontrado el número de pedido'
+  };
+
+  orderNotFoundSG: TranslationMap = {
+    EN: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
+    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    FR: 'Désolé, ce numéro de commande ne correspond',
+    DK: 'Sorry, this order number does not match',
+    FI: 'Sorry, this order number does not match',
+    NO: 'Sorry, this order number does not match',
+    SE: 'Ordernumret hittades inte',
+    IL: 'מצטערים, אך מספר ההזמנה אינו תואם לרשום אצלנו',
+    IT: 'Ci dispiace, questo numero di ordine non è disponibile',
+    ES: 'Lo sentimos, no hemos encontrado el número de pedido'
+  };
+
   footerHelp: TranslationMap = {
     EN: 'Help',
     NL: 'Klantenservice',
@@ -1511,6 +1539,7 @@ class AssertionText {
     IT: 'acquista-per-fit',
     ES: 'comprar-por-ajuste'
   };
+ 
 }
 
 export default new AssertionText();

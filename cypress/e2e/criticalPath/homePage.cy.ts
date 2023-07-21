@@ -10,6 +10,7 @@ import assertionText from '../../helpers/assertionText';
 import { isSiteGenesisBrand, siteGenesisBrands, isMobileDeviceUsed } from '../../helpers/common';
 import contactusPage from 'cypress/pom/contactus.page';
 import faqPage from 'cypress/pom/faq.page';
+import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
 
 describe('Home Page', function () {
@@ -259,6 +260,13 @@ describe('Home Page', function () {
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrderArcadia[language]);
         }
+        TrackOrderPage.actions.trackOrder('KUK300118644');
+        if (isSiteGenesisBrand) {
+          TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFoundSG[language]);
+        } else {
+          TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFound[language]);
+        }
+        
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
         if (isSiteGenesisBrand && brand != 'misspap.com') {
@@ -527,6 +535,7 @@ describe('Home Page', function () {
         cy.scrollTo('bottom');
         cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
       });
+
     });
 
     describe('Verify that the global header is displayed.', () => {
@@ -576,5 +585,6 @@ describe('Home Page', function () {
         contactusPage.assertions.assertEmailIconIsPresent();
       });
     });
+
   });
 });

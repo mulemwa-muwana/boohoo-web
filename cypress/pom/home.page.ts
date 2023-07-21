@@ -21,6 +21,7 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]',
+    countryBtn: '.b-country-select',
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -39,6 +40,7 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
+    countryBtn: '#country-switcher-menu',
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
@@ -74,7 +76,8 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
     logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    loginIconMobile: '.m-login',
+    countryBtn: '#country-switcher-menu'
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -92,7 +95,8 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
     logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    loginIconMobile: '.m-login',
+    countryBtn: '#country-switcher-menu'
   },
   'boohooman.com': {
     minicartIcon: "[class='js-minicart-quantity minicart-quantity-value is-mobile']",
@@ -110,7 +114,9 @@ const selectors: SelectorBrandMap = {
     logo: '[class="primary-logo"]>a.primary-logo-link',
     logoMobile: '.primary-logo',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
+    countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
+    countryList: 'div[class="selector active"]'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -129,7 +135,9 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
+    countryBtn: '.current-country-arrow > .flag-icon',
+    countryList: '.selector>div>div'
   },
   'coastfashion.com': {
     minicartIcon: '.mini-cart-total>.mini-cart-link',
@@ -202,7 +210,9 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '.header-customer-info'
+    loginIconMobile: '.header-customer-info',
+    countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
+    countryList: 'div[class="selector active"]'
   },
   'boohoomena.com': {
     minicartIcon: '.mini-cart-link',
@@ -218,7 +228,10 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: ':nth-child(1) > .user-link-item'
+    loginIconMobile: ':nth-child(1) > .user-link-item',
+    countryBtn: '.js-header-right-box > .js-appshell-uncached-countryselector-container > .header-countryselector > .content-asset > .country-selector > .current-country > .current-country-arrow > .flag-icon',
+    countryList: '.selector>div>div'
+    
   }
   
 };
@@ -338,6 +351,10 @@ class HomePage implements AbstractPage {
         }
       }
       );
+    },
+    countryDropdown () {
+      const countryBtn = selectors[brand].countryBtn;
+      cy.get(countryBtn).click({force: true});  
     }
   };
 
@@ -373,7 +390,23 @@ class HomePage implements AbstractPage {
       if (isMobileDeviceUsed) {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
-    }
+    },
+    selectCountryFromDropdown () {
+      const countryBtn = selectors[brand].countryBtn;
+      const countryList = selectors[brand].countryList;
+      
+      if (!isSiteGenesisBrand) {
+        if (brand == 'boohoo.com'||brand == 'wallis.co.uk' || brand == 'burton.co.uk') {
+          cy.get(countryBtn).select('IE €',{ force: true });
+        } else if (brand=='nastygal.com') {
+          cy.get(countryBtn).select('IE (€)',{ force: true });
+        }
+      
+      } else {
+        cy.get(countryList).contains('IE €').click({force: true});
+
+      }   
+    }     
   };
 
   assertions = {
@@ -493,6 +526,9 @@ class HomePage implements AbstractPage {
     },
     assertPromoLinkHeaderIsVisible () {
       cy.get('div[class="b-hero_carousel-item m-promotion m-current"]').should('be.visible').click();
+    },
+    assertSelectCountryFromDropdown () {
+      cy.url().should('include', '/ie');
     }
 
   };

@@ -265,4 +265,18 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });
+  it.only('Verify that user can select PUDO location', function () {
+    if (locale != 'UK' || brand == 'boohooman.com') {
+      this.skip();
+    }
+    const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
+  
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
+    shippingPage.click.clickAndCollectShipping();
+
+    // Cy.log('I am the postcode : '+localeAddress.postcode)
+    shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(resp=>{
+      shippingPage.assertions.assertShopisSelected(resp);
+    });
+  });
 });

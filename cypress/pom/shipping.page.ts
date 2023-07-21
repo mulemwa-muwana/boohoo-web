@@ -1053,9 +1053,9 @@ class ShippingPage implements AbstractPage {
   };        
 
   assertions = {
-    assertShopisSelected (testvalue: any) {
+    assertShopisSelected (pudoAddressText: any) {
       const pudoSelectedShopAddress=selectors[brand].pudoSelectedShopAddress;
-      cy.get(pudoSelectedShopAddress).should('contain', testvalue);
+      cy.get(pudoSelectedShopAddress).should('contain', pudoAddressText);
     },
     assertW3WisSelected () {
       const successMark=selectors[brand].successMark;

@@ -285,8 +285,8 @@ describe('Shipping Page Registered user tests', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
 
     shippingPage.click.clickAndCollectShipping();
-    shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(resp=>{
-      shippingPage.assertions.assertShopisSelected(resp);
+    shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(pudoAddress=>{
+      shippingPage.assertions.assertShopisSelected(pudoAddress);
     });
   });
 

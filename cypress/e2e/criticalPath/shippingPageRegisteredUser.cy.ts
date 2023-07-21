@@ -278,5 +278,11 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
   });
+  it.only('Verify that user can select PUDO location', function () {
+    shippingPage.click.clickAndCollectShipping();
+    shippingPage.actions.selectCollectionShop().then(resp=>{
+      shippingPage.assertions.assertShopisSelected(resp);
+    });
+  });
   
 });

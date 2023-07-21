@@ -100,6 +100,7 @@ describe('Product Listing Page tests', function () {
         plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productTops[language]);   
       } else {
         plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   
+      
       }   
     });
     
@@ -140,6 +141,23 @@ describe('Product Listing Page tests', function () {
       plpPage.click.selectRefinementVariantOccasion();
       plpPage.actions.waitForPageRefinementUpdate();
       plpPage.assertions.assertProductVariantIsApplied('occasion', 'Casual');
+    });
+
+    it('Verify that quick view button is displayed over image when hovering ', function () {
+      const isbrandNoQuickView: boolean = (brand =='dorothyperkins.com' || brand =='wallis.co.uk' || brand == 'burton.co.uk');
+      if (isbrandNoQuickView) {
+        this.skip();
+      }
+      plpPage.assertions.assertQuickViewIsDisplayed();
+  
+    });
+    it('Verify that user can add to cart product from quick view', function () {
+      const isbrandNoQuickView: boolean = (brand =='dorothyperkins.com' || brand =='wallis.co.uk' || brand == 'burton.co.uk');
+      if (isbrandNoQuickView) {
+        this.skip();
+      }
+      plpPage.click.quickAddtoCart();
+      plpPage.assertions.assertMiniCartHasValue();
     });
   });
 });

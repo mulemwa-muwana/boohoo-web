@@ -1651,7 +1651,6 @@ class AssertionText {
     IT: 'acquista-per-fit',
     ES: 'comprar-por-ajuste'
   };
- 
 }
 
 export default new AssertionText();

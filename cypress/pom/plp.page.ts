@@ -536,8 +536,13 @@ class PlpPage implements AbstractPage {
         if ($body.find(plpProduct).length) {
           cy.get(plpProduct).eq(0).click({ force: true });
         }
-      }
-      );     
+      });     
+    },
+    selectFourProductsView () {
+      cy.get('.m-fourth').click({force:true});
+    },
+    selectThreeProductsView () {
+      cy.get('.m-triple').click({force:true});
     }
   };
 
@@ -641,12 +646,13 @@ class PlpPage implements AbstractPage {
         .should('contains', 'pmax')
         .should('contains', 'pmin');
     },
-
+    assertItemCountInView (itemCount: string) {
+      cy.get('.l-plp_grid').should('have.attr', 'data-col-count').and('deep.equal', itemCount);
+    },
     assertItemIsAddedToWishlistColorChange () {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
     }
-
   };
 }
 

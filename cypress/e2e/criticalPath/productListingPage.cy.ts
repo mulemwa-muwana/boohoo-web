@@ -142,4 +142,11 @@ describe('Product Listing Page tests', function () {
       plpPage.assertions.assertProductVariantIsApplied('occasion', 'Casual');
     });
   });
+  it('Verify that user can Edit cart from shipping page', () => {
+    plpPage.assertions.assertItemCountInView('5');
+    plpPage.click.selectFourProductsView();
+    plpPage.assertions.assertItemCountInView('4');
+    plpPage.click.selectThreeProductsView();
+    plpPage.assertions.assertItemCountInView('3');
+  });
 });

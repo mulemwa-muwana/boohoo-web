@@ -683,7 +683,7 @@ class PlpPage implements AbstractPage {
         } else {
           cy.get(quickViewButton).eq(0).invoke('css','opacity',1).should('be.visible').then($buttonText=>{
             const button: any = $buttonText;
-            const buttonText = button.text();
+            const buttonText = button.text().trim();
             expect(buttonText).to.be.oneOf([quickViewButtonText, quickBuyButtonText]);
           });
         }

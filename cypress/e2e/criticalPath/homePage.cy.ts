@@ -481,6 +481,26 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[language]);
         }
       });
+      it('Verify that Footer Navigation Component is present and Links are functional - Thrift', () => {
+        if (brand == 'karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.thrift[language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Notebook', () => {
+        if (brand == 'karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.notebook[language], { assertionUrl: 'notebook' });
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Rental', () => {
+        if (brand == 'karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.rental[language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Karen Millen Loyalty', () => {
+        if (brand == 'karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.loyalty[language]);
+        }
+      });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com'];

@@ -299,7 +299,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
     shippingPage.assertions.assertW3WisSelected();
-  })
+  });
   it('SG: Verify that guest user can add Thrift to the order', function () {
     if (brand == 'karenmillen.com') {
       shippingPage.assertions.assertThriftSectionIsVisible();

@@ -547,10 +547,10 @@ class PdpPage implements AbstractPage {
     assertMiniCartIsDisplayed () { 
       const miniCartContent = selectors[brand].miniCartContent;
       if (isMobileDeviceUsed && !isSiteGenesisBrand) {
-        if(brand == 'burton.co.uk') {
+        if (brand == 'burton.co.uk') {
           cy.get('.b-minicart_product-title').should('be.visible');
-        }else {
-        cy.get('[data-tau="global_alerts_item"]').should('be.visible');
+        } else {
+          cy.get('[data-tau="global_alerts_item"]').should('be.visible');
         }
       } else {
         cy.get(miniCartContent).should('be.visible');

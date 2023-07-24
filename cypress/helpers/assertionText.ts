@@ -98,6 +98,34 @@ class AssertionText {
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
   };
 
+  californiaConsumerPrivacyAct: TranslationMap = {
+    EN: 'California Consumer Privacy Act',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  californiaTransparencyInSupplyChainsActStatement: TranslationMap = {
+    EN: 'California Transparency In Supply Chains Act Statement',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   WishListIsEmptySiteGenesis: TranslationMap = {
     EN: 'add your favorite items as you start shopping',
     FR: '',

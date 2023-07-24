@@ -1,7 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { brand } from 'cypress/support/e2e';
+import { brand, locale } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -821,7 +821,13 @@ class ShippingPage implements AbstractPage {
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
       if (brand == 'boohoomena.com') {
         const shippingPhoneCode = selectors[brand].shippingPhoneCode;
-        cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        if (locale == 'KW') {
+          cy.get(shippingPhoneCode).select(phone.slice(1, 2)); // Kuwait has a shorter phone code
+
+        } else {
+          cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        }
+   
         cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
         cy.log(shippingPhoneNumber);
       } else {

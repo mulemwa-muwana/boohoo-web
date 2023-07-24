@@ -1162,6 +1162,34 @@ class AssertionText {
     ES: ''
   };
 
+  keyWorkerDiscount: TranslationMap = {
+    EN: 'Key Worker Discount',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  boohooMANACTIVE: TranslationMap = {
+    EN: 'boohooMAN ACTIVE',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   notebook: TranslationMap = {
     EN: 'Notebook',
     NL: '',

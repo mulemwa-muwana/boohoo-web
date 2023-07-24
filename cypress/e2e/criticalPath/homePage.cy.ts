@@ -501,6 +501,16 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.loyalty[language]);
         }
       });
+      it('Verify that Footer Navigation Component is present and Links are functional - BHM Key Worker Discount', () => {
+        if (brand == 'boohooman.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.keyWorkerDiscount[language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - BHM boohooMAN ACTIVE', () => {
+        if (brand == 'boohooman.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.boohooMANACTIVE[language]);
+        }
+      });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com'];

@@ -573,35 +573,20 @@ class PlpPage implements AbstractPage {
       cy.get(productHover).eq(0).as('hoverOverProduct');
       const quickViewButton: any = selectors[variables.brand].quickView;
       const quickViewSize: any = selectors[variables.brand].quickViewSize;
+      const addToCart: any = selectors[variables.brand].quickAddtoCart;
       cy.get('@hoverOverProduct').scrollIntoView().trigger('mouseover',{force: true}).then(() => {
         if (isSiteGenesisBrand) {
-          cy.get(quickViewButton).eq(0).invoke('css', 'display','inline').then($quickView=>{
-            const quickView: any = $quickView;
-            const addToCart: any = selectors[variables.brand].quickAddtoCart;
-            const selectSize: any = selectors[variables.brand].quickViewSize;
-            cy.wait(5000);
-            cy.get(quickView).click({force:true});
-            cy.wait(5000);
-            cy.get(selectSize).eq(0).click();
-            cy.wait(5000);
-            cy.get(addToCart).click({force: true});
-            cy.wait(5000);
-          });
+          cy.get(quickViewButton).eq(0).invoke('css', 'display','inline').as('quickViewSiteGenesis');
+          cy.get('@hoverOverProduct').click({force:true});
         } else {
-          cy.get(quickViewButton).eq(0).invoke('css','opacity',1).should('be.visible').then($quickView=>{
-            const quickView: any = $quickView;
-            const addToCart: any = selectors[variables.brand].quickAddtoCart;
-            const selectSize: any = selectors[variables.brand].quickViewSize;
-            cy.wait(5000);
-            cy.get(quickView).click({force:true});
-            cy.wait(5000);
-            cy.get(selectSize).eq(0).click();
-            cy.wait(5000);
-            cy.get(addToCart).click({force: true});
-            cy.wait(5000);
-          });
-            
+          cy.get(quickViewButton).eq(0).invoke('css','opacity',1).should('be.visible').as('quickViewBLP')
+          cy.get('@quickViewBLP').click({force:true});
         }
+        cy.wait(5000);
+        cy.get(quickViewSize).eq(0).click();
+        cy.wait(5000);
+        cy.get(addToCart).click({force: true});
+        cy.wait(5000);
       });
     }
   };

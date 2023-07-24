@@ -79,6 +79,13 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.click.clearCart();
     CartPage.assertions.assertCartIsEmpty();
   });
+  it('Verify that user can add Thrift to the cart', function () {
+    if (brand == 'karenmillen.com') {
+      CartPage.assertions.assertThriftSectionIsVisible();
+      CartPage.click.addThriftToCart();
+      CartPage.assertions.assertThriftBagIsAddedToTheCart();
+    }
+  });
 
 });
 
@@ -98,5 +105,12 @@ describe('Cart page for Registered user', function () {
     }
     CartPage.click.proceedToCheckout();
     CheckoutPage.assertions.assertUserProceededToShippingPage();
+  });
+  it('Verify that user can add Thrift to the cart', function () {
+    if (brand == 'karenmillen.com') {
+      CartPage.assertions.assertThriftSectionIsVisible();
+      CartPage.click.addThriftToCart();
+      CartPage.assertions.assertThriftBagIsAddedToTheCart();
+    }
   });
 });

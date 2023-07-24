@@ -429,7 +429,9 @@ const selectors: SelectorBrandMap = {
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
-    successMark:'.field-wrapper-w3w-valid'
+    successMark:'.field-wrapper-w3w-valid',
+    Thrift: '.content-asset > .ls-is-cached',
+    addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -735,7 +737,7 @@ class ShippingPage implements AbstractPage {
 
   goto (): void {
     homePage.goto();
-  }
+  };
 
   click = {
     submitPromoCode () {
@@ -866,7 +868,11 @@ class ShippingPage implements AbstractPage {
         } else {
           cy.get(pudoShippingMethod).click({force:true});          
         }
-      });          
+      }); 
+    },         
+    addThriftToCart () {
+      const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
+      cy.get(addThriftToCartBtn).click({ force: true });
     }
   };
 
@@ -1201,8 +1207,15 @@ class ShippingPage implements AbstractPage {
       const emptyDateFieldError = selectors[brand].emptyDateFieldError;
       cy.get(emptyDateFieldError).should('be.visible').and('contain.text', errorMsg);
     },
+    assertThriftSectionIsVisible () {
+      const Thrift = selectors[brand].Thrift;
+      cy.scrollTo('bottom');
+      cy.get(Thrift).should('be.visible');
+    },
+    assertThriftBagIsAddedToTheCart () {
+      cy.get('.checkout-mini-cart').should('contain', 'Thrift Bags');
+    }
   };
-
 }
 
 export default new ShippingPage();

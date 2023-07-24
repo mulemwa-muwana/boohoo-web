@@ -286,4 +286,11 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
     shippingPage.assertions.assertW3WisSelected();
   });
+  it('SG: Verify that guest user can add Thrift to the order', function () {
+    if (brand == 'karenmillen.com') {
+      shippingPage.assertions.assertThriftSectionIsVisible();
+      shippingPage.click.addThriftToCart();
+      shippingPage.assertions.assertThriftBagIsAddedToTheCart();
+    }
+  });
 });

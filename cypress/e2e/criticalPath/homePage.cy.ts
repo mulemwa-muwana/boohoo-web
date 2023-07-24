@@ -58,7 +58,7 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
       }
-      HomePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[language].toLowerCase());
+      HomePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[language].toLowerCase());
     });
  
     it('Verify Mega Menu - NewIn link opens', () => {
@@ -79,12 +79,12 @@ describe('Home Page', function () {
       }    
       if (brand == 'boohooman.com') {
         if (locale == 'FR') {
-          homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('vetements');
+          homePage.assertions.assertLinkIsOpeningCorrectPage('vetements');
         } else {
-          homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage('promo');
+          homePage.assertions.assertLinkIsOpeningCorrectPage('promo');
         }
       } else {
-        homePage.assertions.assertMegaMenuLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[language]);
+        homePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[language]);
       }
     });
 
@@ -479,6 +479,44 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondBoohooManAndMena[language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Thrift', () => {
+        if (brand == 'karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.thrift[language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Notebook', () => {
+        if (brand == 'karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.notebook[language], { assertionUrl: 'notebook' });
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Rental', () => {
+        if (brand == 'karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.rental[language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Karen Millen Loyalty', () => {
+        if (brand == 'karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.loyalty[language]);
+        }
+      });
+      // skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
+      it.skip('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
+        if (brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);
+        }
+      });
+      // skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
+      it.skip('Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', () => {
+        if (brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaTransparencyInSupplyChainsActStatement[language]);
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Nasty Blog', () => {
+        if (brand == 'nastygal.com') {
+          homePage.click.nastyBlogLink('Nasty Blog');
+          homePage.assertions.assertLinkIsOpeningCorrectPage('https://blog.nastygal.com/');
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {

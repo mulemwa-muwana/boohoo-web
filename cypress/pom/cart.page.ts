@@ -193,7 +193,6 @@ const selectors: SelectorBrandMap = {
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     Thrift: '.content-asset > .ls-is-cached',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    ThriftBags: ''
   },
   'coastfashion.com': {
     productsTable: '#cart-table',

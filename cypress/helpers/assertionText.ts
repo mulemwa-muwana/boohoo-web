@@ -1162,6 +1162,34 @@ class AssertionText {
     ES: ''
   };
 
+  californiaConsumerPrivacyAct: TranslationMap = {
+    EN: 'California Consumer Privacy Act',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  californiaTransparencyInSupplyChainsActStatement: TranslationMap = {
+    EN: 'California Transparency In Supply Chains Act Statement',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  }
+
   notebook: TranslationMap = {
     EN: 'Notebook',
     NL: '',

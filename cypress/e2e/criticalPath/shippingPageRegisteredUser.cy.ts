@@ -166,7 +166,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that PREMIER can be added to the cart', function () {
-    if (brand == 'boohoomena.com' || (brand == 'nastygal.com' && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
+    if (brand == 'boohoomena.com' || ((brand == 'nastygal.com' || brand == 'boohooman.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
@@ -275,6 +275,13 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that user can Edit cart from shipping page', () => {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
+  });
+  it('SG: Verify that guest user can add Thrift to the order', function () {
+    if (brand == 'karenmillen.com') {
+      shippingPage.assertions.assertThriftSectionIsVisible();
+      shippingPage.click.addThriftToCart();
+      shippingPage.assertions.assertThriftBagIsAddedToTheCart();
+    }
   });
   
 });

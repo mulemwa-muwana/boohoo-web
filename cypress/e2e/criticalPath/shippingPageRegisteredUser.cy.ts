@@ -278,5 +278,12 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
   });
+  it('SG: Verify that guest user can add Thrift to the order', function () {
+    if (brand == 'karenmillen.com') {
+      shippingPage.assertions.assertThriftSectionIsVisible();
+      shippingPage.click.addThriftToCart();
+      shippingPage.assertions.assertThriftBagIsAddedToTheCart();
+    }
+  });
   
 });

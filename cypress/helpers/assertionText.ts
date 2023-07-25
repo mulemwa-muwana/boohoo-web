@@ -1176,6 +1176,90 @@ class AssertionText {
     ES: ''
   };
 
+  thrift: TranslationMap = {
+    EN: 'Thrift',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  californiaConsumerPrivacyAct: TranslationMap = {
+    EN: 'California Consumer Privacy Act',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  californiaTransparencyInSupplyChainsActStatement: TranslationMap = {
+    EN: 'California Transparency In Supply Chains Act Statement',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  }
+
+  notebook: TranslationMap = {
+    EN: 'Notebook',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  loyalty: TranslationMap = {
+    EN: 'Karen Millen Loyalty',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  rental: TranslationMap = {
+    EN: 'Rental',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   termsAndCond: TranslationMap = {
     EN: 'T&Cs',
     NL: 'Algemene voorwaarden',

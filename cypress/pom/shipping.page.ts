@@ -366,6 +366,8 @@ const selectors: SelectorBrandMap = {
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
+    Thrift: '.content-asset > .ls-is-cached',
+    addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -774,6 +776,10 @@ class ShippingPage implements AbstractPage {
         const enterManually = selectors[brand].enterManually;
         cy.get(enterManually).click({ force: true });
       }
+    },
+    addThriftToCart () {
+      const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
+      cy.get(addThriftToCartBtn).click({ force: true });
     }
   };
 
@@ -1075,6 +1081,14 @@ class ShippingPage implements AbstractPage {
       const emptyDateFieldError = selectors[brand].emptyDateFieldError;
       cy.get(emptyDateFieldError).should('be.visible').and('contain.text', errorMsg);
     },
+    assertThriftSectionIsVisible () {
+      const Thrift = selectors[brand].Thrift;
+      cy.scrollTo('bottom');
+      cy.get(Thrift).should('be.visible');
+    },
+    assertThriftBagIsAddedToTheCart () {
+      cy.get('.checkout-mini-cart').should('contain', 'Thrift Bags');
+    }
   };
 
 }

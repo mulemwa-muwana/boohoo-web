@@ -229,10 +229,8 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user is able to select 2nd shipping method', function () {
-    if (brand == 'boohoo.com' && (locale == 'NO' || locale == 'EU' || locale == 'FI')) { // No 2nd shipping method for these boohoo brands and locales
-      this.skip();
-    }
-    if (brand == 'boohoomena.com') { // No 2nd shipping method for BoohooMENA brand
+    const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'EU' || locale == 'FI'));
+    if (isBoohooLocaleWithoutSecondShipping || brand == 'boohoomena.com') { // No 2nd shipping method for these
       this.skip();
     }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');

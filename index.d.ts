@@ -119,6 +119,7 @@ declare type AddressData = {
     country: string;
     countryCode: string;
     addressNickname: string;
+    month: string;
 }
     
 declare type ShippingData = {
@@ -140,7 +141,7 @@ declare type SKU = {
 }
     
 declare type Language = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
-declare type Locale = 'UK' | 'EU' | 'US' |'CA' | 'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE' | 'SA';
+declare type Locale = 'UK' | 'EU' | 'US' |'CA' | 'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE' | 'SA' | 'KW';
     
 declare type TranslationMap = { [key in Language]: string };
     

@@ -354,6 +354,7 @@ const selectors: SelectorBrandMap = {
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    countyFieldIE: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state', 
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -696,7 +697,11 @@ class ShippingPage implements AbstractPage {
       if (brand != 'boohoomena.com') {
         const proceedToBillingVerificationBtn = selectors[brand].proceedToBillingVerificationBtn;
         cy.wait(1000);
-        cy.get(proceedToBillingVerificationBtn).click({ force: true });
+        cy.get('body').then($body=>{
+          if ($body.find(proceedToBillingVerificationBtn).length>0) {
+            cy.get(proceedToBillingVerificationBtn).click({ force: true });
+          }
+        });
       }
     },
     proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis brands
@@ -880,7 +885,12 @@ class ShippingPage implements AbstractPage {
     },
     countyField (county: string) {
       const countyField = selectors[brand].countyField;
-      cy.get(countyField).select(county);
+      const countyFieldIE = selectors[brand].countyFieldIE;
+      if (brand=='karenmillen.com' && locale =='IE') {
+        cy.get(countyFieldIE).select(county).invoke('show');
+      } else {
+        cy.get(countyField).select(county);
+      }
     },
     postcodeField (postcode: string) {
       cy.wait(1000);

@@ -89,13 +89,11 @@ describe('Home Page', function () {
       }
     });
     it('Verify that user can change country',()=>{
-      if (!isSiteGenesisBrand) {
+      if (isSiteGenesisBrand) {
+        homePage.click.countryDropdown();
+      }else{
         cy.scrollTo('bottom');
         cy.wait(3000);
-        homePage.actions.selectCountryFromDropdown();
-        homePage.assertions.assertSelectCountryFromDropdown();
-      } else {
-        homePage.click.countryDropdown();
         homePage.actions.selectCountryFromDropdown();
         homePage.assertions.assertSelectCountryFromDropdown();
       }

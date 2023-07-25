@@ -719,7 +719,7 @@ class BillingPage implements AbstractPage {
       const confirmEmailField = selectors[brand].confirmEmailField;
       cy.get(confirmEmailField).clear().type(email);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string,county: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
       const billingPostCode = selectors[brand].billingPostCode;
@@ -727,8 +727,8 @@ class BillingPage implements AbstractPage {
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
-      if (locale == 'AU') {
-        cy.get(billingAddressFieldsStateCode).select(state);
+      if (!isSiteGenesisBrand && locale == 'AU'||locale == 'IE'||locale == 'US') {
+        cy.get(billingAddressFieldsStateCode).select(county);
       } else if (!isSiteGenesisBrand) {
         cy.get(billingAddressFieldsStateCode).clear().type(state);
       }

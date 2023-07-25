@@ -1188,7 +1188,7 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: ''
-  }
+  };
 
   notebook: TranslationMap = {
     EN: 'Notebook',

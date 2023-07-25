@@ -917,7 +917,7 @@ class ShippingPage implements AbstractPage {
       cy.get(dobMonth).select(month);
       cy.get(dobYear).select(year);
     },
-    notSelectedDate (){
+    notSelectedDate () {
       const dobDay = selectors[brand].dobDay;
       const dobMonth = selectors[brand].dobMonth;
       const dobYear = selectors[brand].dobYear;

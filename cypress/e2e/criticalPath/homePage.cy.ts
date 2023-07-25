@@ -94,9 +94,9 @@ describe('Home Page', function () {
       }else{
         cy.scrollTo('bottom');
         cy.wait(3000);
-        homePage.actions.selectCountryFromDropdown();
-        homePage.assertions.assertSelectCountryFromDropdown();
       }
+      homePage.actions.selectCountryFromDropdown();
+      homePage.assertions.assertSelectCountryFromDropdown();   
     });
 
   });

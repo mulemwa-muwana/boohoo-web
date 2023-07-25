@@ -22,7 +22,7 @@ class AssertionText {
     DK: '',
     FI: '',
     NO: '',
-    SE: '',
+    SE: 'Returer',
     IL: '',
     IT: '',
     ES: ''
@@ -92,10 +92,38 @@ class AssertionText {
     DK: 'Je hebt (nog) geen items opgeslagen voor later',
     FI: 'Sinulla ei ole yhtään kohdetta tallennettuna myöhempää käyttöä varten (vielä)',
     NO: 'Du har ingen elementer lagret for senere (ennå)',
-    SE: 'Du har inga objekt sparade för senare (ännu)',
+    SE: 'DIN ÖNSKELISTA ÄR TOM (JUST NU).',
     IL: 'אין לך פריטים שנשמרו למועד מאוחר יותר (עדיין)',
     IT: 'Non hai elementi salvati per dopo (ancora)',
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
+  };
+
+  californiaConsumerPrivacyAct: TranslationMap = {
+    EN: 'California Consumer Privacy Act',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  californiaTransparencyInSupplyChainsActStatement: TranslationMap = {
+    EN: 'California Transparency In Supply Chains Act Statement',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   WishListIsEmptySiteGenesis: TranslationMap = {
@@ -190,7 +218,7 @@ class AssertionText {
     DK: 'Det ser ud til, at du allerede har en konto hos os. Prøv venligst at logge ind eller brug en anden e-mailadresse Log ind',
     FI: 'Näyttää siltä, ​​että sinulla on jo tili meillä. Yritä kirjautua sisään tai käytä toista sähköpostiosoitetta Kirjaudu sisään',
     NO: 'Det ser ut til at du allerede har en konto hos oss. Prøv å logge på eller bruk en annen e-postadresse Logg på',
-    SE: 'Det verkar som att du redan har ett konto hos oss. Försök att logga in eller använd en annan e-postadress Logga in',
+    SE: 'Det verkar som att du redan har ett konto. Logga in eller använd en annan mejladress.',
     IL: 'נראה שכבר יש לך חשבון איתנו. אנא נסה להתחבר או השתמש בכתובת דוא"ל אחרת התחבר',
     IT: 'Sembra che tu abbia già un account con noi. Prova ad accedere o usa un indirizzo email diverso Accedi',
     ES: 'Parece que ya tienes una cuenta con nosotros. Intente iniciar sesión o use una dirección de correo electrónico diferente Iniciar sesión'
@@ -254,7 +282,7 @@ class AssertionText {
 
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
-    FR: '\n                        Politique de confidentialité\n                    ',
+    FR: 'Avis de confidentialité ',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
@@ -296,7 +324,7 @@ class AssertionText {
 
   PrivacyPolicyH1BHM: TranslationMap = {
     EN: 'Privacy',
-    FR: 'avis de confidentialité',
+    FR: 'de confidentialité',
     NL: 'privacyverklaring',
     DE: 'datenschutzerklärung',
     DK: 'bekendtgørelse om beskyttelse af personlige oplysninger',
@@ -637,7 +665,7 @@ class AssertionText {
     FR: 'Se termine dans 111',
     FI: 'Luotto/pankkikortti',
     NO: 'Kreditt-/debetkort',
-    SE: 'Kredit / Betalkort',
+    SE: 'Slutar med 111',
     IL: 'כרטיס אשראי / חיוב',
     IT: 'Carta di credito / debito',
     ES: 'Tarjeta de crédito / débito',
@@ -676,7 +704,7 @@ class AssertionText {
     EN: 'Thanks for ',
     NL: 'Bedankt voor ',
     DE: 'Danke für',
-    FR: 'Merci de t’être ',
+    FR: 'Merci ',
     DK: 'Tak for',
     FI: 'Kiitos ',
     NO: 'Takk for ',
@@ -784,6 +812,34 @@ class AssertionText {
     ES: ''
   };
 
+  orderNotFound: TranslationMap = {
+    EN: 'Sorry, this order number does not match',
+    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    FR: 'Désolé, ce numéro de commande ne correspond',
+    DK: 'Sorry, this order number does not match',
+    FI: 'Sorry, this order number does not match',
+    NO: 'Sorry, this order number does not match',
+    SE: 'Ordernumret hittades inte',
+    IL: 'מצטערים, אך מספר ההזמנה אינו תואם לרשום אצלנו',
+    IT: 'Ci dispiace, questo numero di ordine non è disponibile',
+    ES: 'Lo sentimos, no hemos encontrado el número de pedido'
+  };
+
+  orderNotFoundSG: TranslationMap = {
+    EN: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
+    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    FR: 'Désolé, ce numéro de commande ne correspond',
+    DK: 'Sorry, this order number does not match',
+    FI: 'Sorry, this order number does not match',
+    NO: 'Sorry, this order number does not match',
+    SE: 'Ordernumret hittades inte',
+    IL: 'מצטערים, אך מספר ההזמנה אינו תואם לרשום אצלנו',
+    IT: 'Ci dispiace, questo numero di ordine non è disponibile',
+    ES: 'Lo sentimos, no hemos encontrado el número de pedido'
+  };
+
   footerHelp: TranslationMap = {
     EN: 'Help',
     NL: 'Klantenservice',
@@ -802,7 +858,7 @@ class AssertionText {
     EN: 'customer-service',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'customer-service',
     DK: '',
     FI: '',
     NO: '',
@@ -816,7 +872,7 @@ class AssertionText {
     EN: 'Customer Service',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Service client',
     DK: '',
     FI: '',
     NO: '',
@@ -872,7 +928,7 @@ class AssertionText {
     EN: 'Delivery',
     NL: 'Leveringsopties',
     DE: 'Lieferinformationen',
-    FR: 'Information sur la livraison',
+    FR: 'livraison',
     DK: '',
     FI: '',
     NO: '',
@@ -984,7 +1040,7 @@ class AssertionText {
     EN: 'Student Discount',
     NL: 'Studentenkorting',
     DE: 'Studentenrabatt',
-    FR: 'Réduction Étudiante',
+    FR: 'Réduction étudiant',
     DK: 'Student Discount',
     FI: 'Student Discount',
     NO: 'Student Discount',
@@ -1148,6 +1204,90 @@ class AssertionText {
     ES: ''
   };
 
+  thrift: TranslationMap = {
+    EN: 'Thrift',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  keyWorkerDiscount: TranslationMap = {
+    EN: 'Key Worker Discount',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  boohooMANACTIVE: TranslationMap = {
+    EN: 'boohooMAN ACTIVE',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  notebook: TranslationMap = {
+    EN: 'Notebook',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  loyalty: TranslationMap = {
+    EN: 'Karen Millen Loyalty',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  rental: TranslationMap = {
+    EN: 'Rental',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   termsAndCond: TranslationMap = {
     EN: 'T&Cs',
     NL: 'Algemene voorwaarden',
@@ -1166,7 +1306,7 @@ class AssertionText {
     EN: 'T&C\'s',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'CGV',
     DK: '',
     FI: '',
     NO: '',
@@ -1278,7 +1418,7 @@ class AssertionText {
     EN: 'Environment & Social Responsibility',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Responsabilité sociale de',
     DK: '',
     FI: '',
     NO: '',

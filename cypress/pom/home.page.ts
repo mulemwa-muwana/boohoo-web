@@ -327,6 +327,9 @@ class HomePage implements AbstractPage {
     allShoesLink (opts = { force: true }) {
       cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
     },
+    nastyBlogLink (text: string) {
+      cy.contains(text).click({force:true});
+    },
     investorRelationsAcceptBtn () {
       cy.get('cc-saveAll-startBtn').click(); 
     },
@@ -428,7 +431,7 @@ class HomePage implements AbstractPage {
     },
 
     // Links assertions
-    assertMegaMenuLinkIsOpeningCorrectPage (text: string) {
+    assertLinkIsOpeningCorrectPage (text: string) {
       cy.url().should('include', text);
     },
 

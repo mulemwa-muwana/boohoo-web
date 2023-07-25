@@ -32,7 +32,7 @@ class megaMenuLinksLanguages {
     EN: 'New',
     NL: 'NIEUW',
     DE: '',
-    FR: '',
+    FR: 'NOUVEAUTÉS',
     DK: '',
     FI: '',
     NO: '',
@@ -157,7 +157,7 @@ class megaMenuLinksLanguages {
   subnavAllSale: TranslationMap = {
     EN: 'All Sale',
     FR: 'Toutes les promos',
-    NL: 'Alles uitverkoop',
+    NL: 'Alle Uitverkoop',
     DE: 'Alles im Sale',
     DK: 'All Sale',
     FI: 'All Sale',
@@ -170,7 +170,7 @@ class megaMenuLinksLanguages {
 
   saleLinkBHM: TranslationMap = {
     EN: 'SALE',
-    FR: 'Promos',
+    FR: 'SOLDES',
     NL: 'NIEUWE',
     DE: '',
     DK: '',
@@ -184,7 +184,7 @@ class megaMenuLinksLanguages {
 
   subnavAllSaleBHM: TranslationMap = {
     EN: 'All Sale',
-    FR: 'Promos vêtements',
+    FR: 'Toutes les Soldes',
     NL: 'nieuw',
     DE: 'Alles im Sale',
     DK: 'All Sale',
@@ -199,7 +199,7 @@ class megaMenuLinksLanguages {
   urlValidationSale: TranslationMap = {
     EN: 'sale',
     FR: 'promo',
-    NL: 'vandaag-nieuw-binnen',
+    NL: 'sale',
     DE: 'sale',
     DK: 'sale',
     FI: 'sale',

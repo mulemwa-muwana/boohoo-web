@@ -10,7 +10,6 @@ describe('Product Listing Page tests', function () {
     HomePage.goto();
     HomePage.actions.closeNastygalPopup();
     if (brand == 'nastygal.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
       HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
     } else if (brand == 'boohoo.com' || brand == 'boohooman.com') {
       if ( locale == 'AU') {
@@ -19,8 +18,10 @@ describe('Product Listing Page tests', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
       }   
-    } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'wallis.co.uk') {
+    } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'wallis.co.uk') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
+      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+    } else if (brand == 'karenmillen.com'){
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
     } else if (brand == 'dorothyperkins.com') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
@@ -83,7 +84,7 @@ describe('Product Listing Page tests', function () {
     });
     
     it('Verify style refinement is applied', function () {
-      const nastygalLocalesExcludedStyle: Array<Locale> = ['IE', 'EU', 'AU', 'US', 'CA'];
+      const nastygalLocalesExcludedStyle: Array<Locale> = ['EU', 'AU', 'US', 'CA'];
       if ((brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(locale)) || (brand =='misspap.com')) {
         this.skip();
       } 
@@ -98,6 +99,7 @@ describe('Product Listing Page tests', function () {
         plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productTops[language]);   
       } else {
         plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   
+      
       }   
     });
     
@@ -109,7 +111,7 @@ describe('Product Listing Page tests', function () {
     });
     
     it('Verify price refinement is applied', function () {
-      const brandsExludedPriceRefinement: Array<GroupBrands> = ['nastygal.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
+      const brandsExludedPriceRefinement: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
       if (brandsExludedPriceRefinement.includes(brand)) {
         this.skip();
       }
@@ -131,13 +133,30 @@ describe('Product Listing Page tests', function () {
 
     it('Verify occasion refinement is applied', function () {
       const brandsExcludedOccasion: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk'];
-      if (brandsExcludedOccasion.includes(brand)) {
+      if (brandsExcludedOccasion.includes(brand) || (brand == 'nastygal.com'&& locale =='IE')) {
         this.skip();
       }
       plpPage.actions.setupChangeIntercept(/occasion/);
       plpPage.click.selectRefinementVariantOccasion();
       plpPage.actions.waitForPageRefinementUpdate();
       plpPage.assertions.assertProductVariantIsApplied('occasion', 'Casual');
+    });
+
+    it('Verify that quick view button is displayed over image when hovering ', function () {
+      const isbrandNoQuickView: boolean = (brand =='dorothyperkins.com' || brand =='wallis.co.uk' || brand == 'burton.co.uk');
+      if (isbrandNoQuickView) {
+        this.skip();
+      }
+      plpPage.assertions.assertQuickViewIsDisplayed();
+  
+    });
+    it('Verify that user can add to cart product from quick view', function () {
+      const isbrandNoQuickView: boolean = (brand =='dorothyperkins.com' || brand =='wallis.co.uk' || brand == 'burton.co.uk');
+      if (isbrandNoQuickView) {
+        this.skip();
+      }
+      plpPage.click.quickAddtoCart();
+      plpPage.assertions.assertMiniCartHasValue();
     });
   });
 });

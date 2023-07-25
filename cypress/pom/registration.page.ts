@@ -1,6 +1,7 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import assertionText from '../helpers/assertionText';
 import AbstractPage from './abstract/abstract.page';
+import { brand , language } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -243,36 +244,36 @@ class RegistrationPage implements AbstractPage {
 
   click = {
     chooseEmailConsent () {
-      const emailConsent = selectors[variables.brand].emailConsent;
+      const emailConsent = selectors[brand].emailConsent;
       cy.get(emailConsent).click({force: true});
     },
     choosePostConsent () {
-      const postConsent = selectors[variables.brand].postConsent;
+      const postConsent = selectors[brand].postConsent;
       cy.get(postConsent).click();
     },
     chooseSmsConsent () {
-      const smsConsent = selectors[variables.brand].smsConsent;
+      const smsConsent = selectors[brand].smsConsent;
       cy.get(smsConsent).click();
     },
     chooseThirdPartyConsent () {
-      const thirdPartyConsent = selectors[variables.brand].thirdPartyConsent;
+      const thirdPartyConsent = selectors[brand].thirdPartyConsent;
       cy.get(thirdPartyConsent).click();
     },
     submitButton () {
-      const submitButton = selectors[variables.brand].submitButton;
+      const submitButton = selectors[brand].submitButton;
       cy.get(submitButton).click({force: true});
     }
   };
 
   actions = {
     startRegistration (randomEmail: string) {
-      const emailForRegistration = selectors[variables.brand].emailForRegistration;
-      const confirmEmailForRegistration = selectors[variables.brand].confirmEmailForRegistration;
+      const emailForRegistration = selectors[brand].emailForRegistration;
+      const confirmEmailForRegistration = selectors[brand].confirmEmailForRegistration;
       cy.get(emailForRegistration).click({force: true}).type(randomEmail);
       if (isSiteGenesisBrand) {
         cy.get(confirmEmailForRegistration).click({force: true}).type(randomEmail);
       }
-      if (variables.brand == 'boohoo.com') {
+      if (brand == 'boohoo.com') {
         cy.get('button[data-id="continueButton"]').click();
       }
     },
@@ -284,10 +285,10 @@ class RegistrationPage implements AbstractPage {
       }
     },
     enterNewUserData (password: string, confirmPassword: string, firstName: string, lastName: string) {
-      const passwordField = selectors[variables.brand].passwordField;
-      const passwordConfirmField = selectors[variables.brand].passwordConfirmField;
-      const firstNameField = selectors[variables.brand].firstNameField;
-      const lastNameField = selectors[variables.brand].lastNameField;
+      const passwordField = selectors[brand].passwordField;
+      const passwordConfirmField = selectors[brand].passwordConfirmField;
+      const firstNameField = selectors[brand].firstNameField;
+      const lastNameField = selectors[brand].lastNameField;
 
       cy.get(passwordField).click({force: true}).type(password);
       cy.get(passwordConfirmField).click({force: true}).type(confirmPassword);
@@ -295,9 +296,9 @@ class RegistrationPage implements AbstractPage {
       cy.get(lastNameField).click({force: true}).type(lastName);
     },
     chooseDate (date: string, month: string, year: string) {
-      const dayOfBirth = selectors[variables.brand].dayOfBirth;
-      const monthOfBirth = selectors[variables.brand].monthOfBirth;
-      const yearOfBirth = selectors[variables.brand].yearOfBirth;
+      const dayOfBirth = selectors[brand].dayOfBirth;
+      const monthOfBirth = selectors[brand].monthOfBirth;
+      const yearOfBirth = selectors[brand].yearOfBirth;
 
       cy.get(dayOfBirth).select(date,{force: true});
       cy.get(monthOfBirth).select(month,{force: true});
@@ -308,24 +309,24 @@ class RegistrationPage implements AbstractPage {
 
   assertions = {
     assertRegistrationFormIsPresent () {
-      const registrationForm = selectors[variables.brand].registrationForm;
+      const registrationForm = selectors[brand].registrationForm;
       cy.get(registrationForm).should('be.visible');
     },
     assertCheckboxIsChecked () {
       cy.get('#dwfrm_registration_customer_emailregistationconfirm').should('be.checked');
     },
     assertMyAcountPageIsOpened () {
-      const myAccountUrl = selectors[variables.brand].myAccountUrl;
+      const myAccountUrl = selectors[brand].myAccountUrl;
       cy.url().should('include', myAccountUrl);
     },
     assertErrorMessageExistingEmail () {
-      const emailError = selectors[variables.brand].emailError;
-      if (variables.brand == 'boohoo.com') {
-        cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail[variables.language]);
+      const emailError = selectors[brand].emailError;
+      if (brand == 'boohoo.com') {
+        cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmail[language]);
       } else if (isSiteGenesisBrand) {
-        cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailSiteGenesis[variables.language]);
+        cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailSiteGenesis[language]);
       } else {
-        cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailArcadia[variables.language]);
+        cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailArcadia[language]);
         
       }
       

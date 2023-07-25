@@ -809,7 +809,7 @@ class ShippingPage implements AbstractPage {
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
       if (brand == 'boohoomena.com') {
         const shippingPhoneCode = selectors[brand].shippingPhoneCode;
-        cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        cy.get(shippingPhoneCode).select(phone.slice(0,2));
         cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
         cy.log(shippingPhoneNumber);
       } else {
@@ -849,7 +849,7 @@ class ShippingPage implements AbstractPage {
     cityField (city: string) {
       const cityField = selectors[brand].cityField;
       if (brand == 'boohoomena.com') {
-        cy.get(cityField).select(city);
+        cy.get(cityField).select(city, { force: true });
       } else {
         cy.get(cityField).clear({ force: true }).type(city);
       }

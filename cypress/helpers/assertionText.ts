@@ -98,6 +98,34 @@ class AssertionText {
     ES: 'No tienes ningún elemento guardado para más tarde (todavía)'
   };
 
+  californiaConsumerPrivacyAct: TranslationMap = {
+    EN: 'California Consumer Privacy Act',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  californiaTransparencyInSupplyChainsActStatement: TranslationMap = {
+    EN: 'California Transparency In Supply Chains Act Statement',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   WishListIsEmptySiteGenesis: TranslationMap = {
     EN: 'add your favorite items as you start shopping',
     FR: '',
@@ -784,6 +812,34 @@ class AssertionText {
     ES: ''
   };
 
+  orderNotFound: TranslationMap = {
+    EN: 'Sorry, this order number does not match',
+    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    FR: 'Désolé, ce numéro de commande ne correspond',
+    DK: 'Sorry, this order number does not match',
+    FI: 'Sorry, this order number does not match',
+    NO: 'Sorry, this order number does not match',
+    SE: 'Ordernumret hittades inte',
+    IL: 'מצטערים, אך מספר ההזמנה אינו תואם לרשום אצלנו',
+    IT: 'Ci dispiace, questo numero di ordine non è disponibile',
+    ES: 'Lo sentimos, no hemos encontrado el número de pedido'
+  };
+
+  orderNotFoundSG: TranslationMap = {
+    EN: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
+    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    FR: 'Désolé, ce numéro de commande ne correspond',
+    DK: 'Sorry, this order number does not match',
+    FI: 'Sorry, this order number does not match',
+    NO: 'Sorry, this order number does not match',
+    SE: 'Ordernumret hittades inte',
+    IL: 'מצטערים, אך מספר ההזמנה אינו תואם לרשום אצלנו',
+    IT: 'Ci dispiace, questo numero di ordine non è disponibile',
+    ES: 'Lo sentimos, no hemos encontrado el número de pedido'
+  };
+
   footerHelp: TranslationMap = {
     EN: 'Help',
     NL: 'Klantenservice',
@@ -1162,8 +1218,8 @@ class AssertionText {
     ES: ''
   };
 
-  californiaConsumerPrivacyAct: TranslationMap = {
-    EN: 'California Consumer Privacy Act',
+  keyWorkerDiscount: TranslationMap = {
+    EN: 'Key Worker Discount',
     NL: '',
     DE: '',
     FR: '',
@@ -1176,8 +1232,8 @@ class AssertionText {
     ES: ''
   };
 
-  californiaTransparencyInSupplyChainsActStatement: TranslationMap = {
-    EN: 'California Transparency In Supply Chains Act Statement',
+  boohooMANACTIVE: TranslationMap = {
+    EN: 'boohooMAN ACTIVE',
     NL: '',
     DE: '',
     FR: '',
@@ -1594,6 +1650,34 @@ class AssertionText {
     IL: '',
     IT: 'acquista-per-fit',
     ES: 'comprar-por-ajuste'
+  };
+
+  quickView: TranslationMap = {
+    EN: 'Quick View',
+    NL: 'Pop Up View',
+    DE: 'Schnellansicht',
+    FR: 'Aperçu rapide',
+    DK: 'Quick View',
+    FI: 'Quick View',
+    NO: 'Quick View',
+    SE: 'Snabbvisning',
+    IL: 'מבט מהיר',
+    IT: 'Guarda ora',
+    ES: 'Quick View'
+  };
+
+  quickBuy: TranslationMap = {
+    EN: 'Quick Buy',
+    NL: 'Snel kopen',
+    DE: 'Schnellkauf',
+    FR: 'Achat rapide',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 }
 

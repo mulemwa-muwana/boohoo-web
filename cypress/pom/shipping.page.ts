@@ -1,7 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { brand } from 'cypress/support/e2e';
+import { brand, locale } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -408,6 +408,7 @@ const selectors: SelectorBrandMap = {
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    countyFieldIE: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state', 
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -773,7 +774,11 @@ class ShippingPage implements AbstractPage {
       if (brand != 'boohoomena.com') {
         const proceedToBillingVerificationBtn = selectors[brand].proceedToBillingVerificationBtn;
         cy.wait(1000);
-        cy.get(proceedToBillingVerificationBtn).click({ force: true });
+        cy.get('body').then($body=>{
+          if ($body.find(proceedToBillingVerificationBtn).length>0) {
+            cy.get(proceedToBillingVerificationBtn).click({ force: true });
+          }
+        });
       }
     },
     proceedToBillingVerificationAndWaitBillingPageToLoad () { // Only for SiteGenesis brands
@@ -920,7 +925,13 @@ class ShippingPage implements AbstractPage {
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
       if (brand == 'boohoomena.com') {
         const shippingPhoneCode = selectors[brand].shippingPhoneCode;
-        cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        if (locale == 'KW') {
+          cy.get(shippingPhoneCode).select(phone.slice(1, 2)); // Kuwait has a shorter phone code
+
+        } else {
+          cy.get(shippingPhoneCode).select(phone.slice(0, 2));
+        }
+   
         cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
         cy.log(shippingPhoneNumber);
       } else {
@@ -960,14 +971,19 @@ class ShippingPage implements AbstractPage {
     cityField (city: string) {
       const cityField = selectors[brand].cityField;
       if (brand == 'boohoomena.com') {
-        cy.get(cityField).select(city);
+        cy.get(cityField).select(city, { force: true });
       } else {
         cy.get(cityField).clear({ force: true }).type(city);
       }
     },
     countyField (county: string) {
       const countyField = selectors[brand].countyField;
-      cy.get(countyField).select(county);
+      const countyFieldIE = selectors[brand].countyFieldIE;
+      if (brand=='karenmillen.com' && locale =='IE') {
+        cy.get(countyFieldIE).select(county).invoke('show');
+      } else {
+        cy.get(countyField).select(county);
+      }
     },
     postcodeField (postcode: string) {
       cy.wait(1000);

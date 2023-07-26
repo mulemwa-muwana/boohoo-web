@@ -509,6 +509,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.loyalty[language]);
         }
       });
+
       it('Verify that Footer Navigation Component is present and Links are functional - BHM Key Worker Discount', () => {
         if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.keyWorkerDiscount[language]);
@@ -525,7 +526,8 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);
         }
       });
-      // skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
+
+      // Skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
       it.skip('Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', () => {
         if (brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaTransparencyInSupplyChainsActStatement[language]);

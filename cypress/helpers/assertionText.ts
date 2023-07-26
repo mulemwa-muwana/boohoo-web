@@ -1651,6 +1651,34 @@ class AssertionText {
     IT: 'acquista-per-fit',
     ES: 'comprar-por-ajuste'
   };
+
+  quickView: TranslationMap = {
+    EN: 'Quick View',
+    NL: 'Pop Up View',
+    DE: 'Schnellansicht',
+    FR: 'Aperçu rapide',
+    DK: 'Quick View',
+    FI: 'Quick View',
+    NO: 'Quick View',
+    SE: 'Snabbvisning',
+    IL: 'מבט מהיר',
+    IT: 'Guarda ora',
+    ES: 'Quick View'
+  };
+
+  quickBuy: TranslationMap = {
+    EN: 'Quick Buy',
+    NL: 'Snel kopen',
+    DE: 'Schnellkauf',
+    FR: 'Achat rapide',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 }
 
 export default new AssertionText();

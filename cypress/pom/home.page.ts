@@ -21,6 +21,10 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]',
+    energySaver: '.b-sustainable_toggle',
+    energySlider: 'div.b-sustainable_browsing-desktop > div.b-sustainable_toggle > div > div.b-sustainable_toggle-slide',
+    energySaverActivated: '.b-sustainable_toggle-slide.m-active'
+
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -376,6 +380,12 @@ class HomePage implements AbstractPage {
       if (isMobileDeviceUsed) {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
+    },
+    toggleEnergySaver () {
+      const energySlider = selectors[brand].energySlider;
+      const energySaverActivated = selectors[brand].energySaverActivated;
+      cy.get(energySlider).click();
+      cy.get(energySaverActivated).should('be.visible');
     }
   };
 
@@ -496,6 +506,10 @@ class HomePage implements AbstractPage {
     },
     assertPromoLinkHeaderIsVisible () {
       cy.get('div[class="b-hero_carousel-item m-promotion m-current"]').should('be.visible').click();
+    },
+    assertEnergySaverVisible () {
+      const energySaver = selectors[brand].energySaver;
+      cy.get(energySaver).should('be.visible');
     }
 
   };

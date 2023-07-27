@@ -386,6 +386,9 @@ class HomePage implements AbstractPage {
       const energySaverActivated = selectors[brand].energySaverActivated;
       cy.get(energySlider).click();
       cy.get(energySaverActivated).should('be.visible');
+
+      // Turn it off again 
+      cy.get(energySlider).click();
     }
   };
 

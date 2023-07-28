@@ -3,8 +3,6 @@ import { brand, url, locale, language } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 import assertionText from 'cypress/helpers/assertionText';
 
-
-
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     searchField: '#header-search-input',
@@ -32,7 +30,7 @@ const selectors: SelectorBrandMap = {
     sizeGuideFit: 'div.l-static_page-guide_selectors > :nth-child(3) >.b-form_section-label',
     selectGender:'select#sizeGuideGender', 
     selectCategory: 'select#sizeGuideCategory',
-    selectFit: 'select#sizeGuideFit', 
+    selectFit: 'select#sizeGuideFit'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -252,7 +250,6 @@ class HomePage implements AbstractPage {
     }
   
     cy.visit(url);
-
   }
 
   click = {
@@ -471,7 +468,6 @@ class HomePage implements AbstractPage {
       const sizeGuideCategory = selectors[brand].sizeGuideCategory;
       cy.get(sizeGuideCategory).should('be.visible');
     },
-
     assertSizeGuideFitPresent() {
       const sizeGuideFit = selectors[brand].sizeGuideFit;
       cy.get(sizeGuideFit).should('be.visible');

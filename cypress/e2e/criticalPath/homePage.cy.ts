@@ -13,7 +13,6 @@ import faqPage from 'cypress/pom/faq.page';
 import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
 
-
 describe('Home Page', function () {
 
   // This will execute before every single test, we're just going to the baseURL.
@@ -331,7 +330,6 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-
 
       it('Verify that Footer Navigation Component is present and Links are functional - The boohoo/nastygal App', function () {
         if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE')) {

@@ -3,6 +3,7 @@ import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
 import { brand, language, locale } from 'cypress/support/e2e';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 describe('Product Listing Page tests', function () {
 
@@ -10,7 +11,6 @@ describe('Product Listing Page tests', function () {
     HomePage.goto();
     HomePage.actions.closeNastygalPopup();
     if (brand == 'nastygal.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
       HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
     } else if (brand == 'boohoo.com' || brand == 'boohooman.com') {
       if ( locale == 'AU') {
@@ -19,7 +19,7 @@ describe('Product Listing Page tests', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
       }   
-    } else if (brand == 'wallis.co.uk') {
+    } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'wallis.co.uk') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
     } else if (brand == 'karenmillen.com') {
@@ -100,6 +100,7 @@ describe('Product Listing Page tests', function () {
         plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productTops[language]);   
       } else {
         plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   
+      
       }   
     });
     
@@ -141,12 +142,28 @@ describe('Product Listing Page tests', function () {
       plpPage.actions.waitForPageRefinementUpdate();
       plpPage.assertions.assertProductVariantIsApplied('occasion', 'Casual');
     });
+
+    it('Verify that quick view button is displayed over image when hovering ', function () {
+      const isbrandNoQuickView: boolean = (brand =='dorothyperkins.com' || brand =='wallis.co.uk' || brand == 'burton.co.uk');
+      if (isbrandNoQuickView) {
+        this.skip();
+      }
+      plpPage.assertions.assertQuickViewIsDisplayed();
+  
+    });
+    it('Verify that user can add to cart product from quick view', function () {
+      const isbrandNoQuickView: boolean = (brand =='dorothyperkins.com' || brand =='wallis.co.uk' || brand == 'burton.co.uk');
+      if (isbrandNoQuickView) {
+        this.skip();
+      }
+      plpPage.click.quickAddtoCart();
+      plpPage.assertions.assertMiniCartHasValue();
+    });
   });
-  it('Verify that user can Edit cart from shipping page', () => {
-    plpPage.assertions.assertItemCountInView('5');
-    plpPage.click.selectFourProductsView();
-    plpPage.assertions.assertItemCountInView('4');
-    plpPage.click.selectThreeProductsView();
-    plpPage.assertions.assertItemCountInView('3');
+  it('Verify that user can choose 5,4,3 as view mode', function () {
+    if (isSiteGenesisBrand) {
+      this.skip();
+    }
+    plpPage.click.selectProductsView(plpPage);
   });
 });

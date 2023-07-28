@@ -24,6 +24,9 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]',
+    energySaver: '.b-sustainable_toggle',
+    energySlider: 'div.b-sustainable_browsing-desktop > div.b-sustainable_toggle > div > div.b-sustainable_toggle-slide',
+    energySaverActivated: '.b-sustainable_toggle-slide.m-active',
     sizeGuideGender: 'div.l-static_page-guide_selectors > :nth-child(1) >.b-form_section-label',
     sizeGuideCategory:'div.l-static_page-guide_selectors > :nth-child(2) >.b-form_section-label',
     sizeGuideFit: 'div.l-static_page-guide_selectors > :nth-child(3) >.b-form_section-label',
@@ -386,6 +389,15 @@ class HomePage implements AbstractPage {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
     },
+    toggleEnergySaver () {
+      const energySlider = selectors[brand].energySlider;
+      const energySaverActivated = selectors[brand].energySaverActivated;
+      cy.get(energySlider).click();
+      cy.get(energySaverActivated).should('be.visible');
+
+      // Turn it off again 
+      cy.get(energySlider).click();
+    },
 
     selectDropdown () {
       const selectGender = selectors[brand].selectGender;
@@ -515,8 +527,6 @@ class HomePage implements AbstractPage {
       const loginIconMobile = selectors[brand].loginIconMobile;
       const loginIconLinkMobile = selectors[brand].loginIconLinkMobile;
 
-      
-
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(hamburgerMenu).click({force: true});
@@ -541,6 +551,10 @@ class HomePage implements AbstractPage {
     },
     assertPromoLinkHeaderIsVisible () {
       cy.get('div[class="b-hero_carousel-item m-promotion m-current"]').should('be.visible').click();
+    },
+    assertEnergySaverVisible () {
+      const energySaver = selectors[brand].energySaver;
+      cy.get(energySaver).should('be.visible');
     }
 
   };

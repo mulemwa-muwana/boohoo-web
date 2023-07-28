@@ -90,6 +90,15 @@ describe('Home Page', function () {
       }
     });
 
+    it('Verify that Energy Saver option is present and functional - Boohoo UK', function () {
+      if (brand == 'boohoo.com' && locale == 'UK' && !isMobileDeviceUsed) {
+        homePage.assertions.assertEnergySaverVisible();
+        homePage.actions.toggleEnergySaver();
+      } else {
+        this.skip();
+      }
+    });
+
   });
 
   // FOOTER
@@ -536,7 +545,8 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.boohooMANACTIVE[language]);
         }
       });
-      // skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
+
+      // Skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
       it.skip('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
         if (brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);

@@ -12,7 +12,7 @@ import contactusPage from 'cypress/pom/contactus.page';
 import faqPage from 'cypress/pom/faq.page';
 import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
-import sizeGuidePage from 'cypress/pom/sizeGuide.page';
+
 
 describe('Home Page', function () {
 
@@ -313,10 +313,10 @@ describe('Home Page', function () {
       it('Verify that user can choose gender, category, fit - Size Guide', function ()   {
         if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE') ) {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[language]);
-         sizeGuidePage.assertions.assertSizeGuideGenderPresent();
-         sizeGuidePage.assertions.assertSizeGuideCategoryPresent();
-         sizeGuidePage.assertions.assertSizeGuideFitPresent();
-         sizeGuidePage.actions.selectDropdown();
+         homePage.assertions.assertSizeGuideGenderPresent();
+         homePage.assertions.assertSizeGuideCategoryPresent();
+         homePage.assertions.assertSizeGuideFitPresent();
+         homePage.actions.selectDropdown();
         } 
         else{
           this.skip();

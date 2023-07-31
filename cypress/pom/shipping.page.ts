@@ -1,7 +1,8 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { brand, locale } from 'cypress/support/e2e';
+import { brand, locale, language } from 'cypress/support/e2e';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -15,6 +16,9 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
+    couponCode: '#dwfrm_coupon_couponCode',
+    promoButton: 'button[type="submit"].b-form-inline_button',
+    promoErrorAlert: '#dwfrm_coupon_couponCode-error',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
@@ -885,9 +889,15 @@ class ShippingPage implements AbstractPage {
     clickPreferedShippingMethod (variables: EnvironmentVariables) {
       cy.get('span').contains(variables.shippingMethod).click();
     },
-    promoCodeField (promoCode: string) {
-      const coupon = selectors[brand].coupon;
-      cy.get(coupon).type(promoCode);
+    addPromoCode (promo: string) {
+      const couponCode = selectors[brand].couponCode;
+      const promoButton = selectors[brand].promoButton;
+      cy.get(couponCode).type(promo);
+      cy.get(promoButton).click();
+    },
+    addNoPromoCode () {
+      const promoButton = selectors[brand].promoButton;
+      cy.get(promoButton).click();
     },
     addressLookupSelectFirstAddress (addressLine: string, city: string) {
       const addressLookup = selectors[brand].addressLookup;
@@ -1088,6 +1098,16 @@ class ShippingPage implements AbstractPage {
     assertPromoCodeFieldIsDisplayed () {
       const coupon = selectors[brand].coupon;
       cy.get(coupon).should('be.visible');
+    },
+    assertInvalidPromoError (){
+      const promoErrorAlert = selectors[brand].promoErrorAlert;
+      const promoInvalidErrorMessage = assertionText.promoInvalidErrorMessage[language];
+      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false})
+    },
+    assertEmptyPromoError(){
+      const promoErrorAlert = selectors[brand].promoErrorAlert;
+      const promoEmptydErrorMessage = assertionText.promoEmptydErrorMessage[language];
+      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false})
     },
     assertSavedShippingAddressIsDispayed () {
       const addressName = selectors[brand].addressName;

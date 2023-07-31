@@ -299,5 +299,21 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.assertions.assertThriftBagIsAddedToTheCart();
     }
   });
+
+  it('Verify is correct validation added if code is invalid for guest user', function () {
+    if(brand != 'boohoo.com'){
+      this.skip();
+    }
+    shippingPage.actions.addPromoCode("InvalidPromoCode")
+    shippingPage.assertions.assertInvalidPromoError()
+  });
+
+  it('Verify is correct validation added if code is empty for guest user', function () {
+    if(brand != 'boohoo.com'){
+      this.skip();
+    }
+    shippingPage.actions.addNoPromoCode()
+    shippingPage.assertions.assertEmptyPromoError()
+  });
   
 });

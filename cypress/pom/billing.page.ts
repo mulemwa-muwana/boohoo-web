@@ -17,6 +17,8 @@ const selectors: SelectorBrandMap = {
     billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
     billingPostCode: '#dwfrm_billing_addressFields_postalCode',
     couponCode: '#dwfrm_coupon_couponCode',
+    promoButton: 'button[type="submit"].b-form-inline_button',
+    promoErrorAlert: '#dwfrm_coupon_couponCode-error',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     giftcartApplied:'.b-gift_certificate-code',
     giftcartOrderSummary: 'div.b-summary_order-details',
@@ -543,9 +545,11 @@ const selectors: SelectorBrandMap = {
     addGiftCertificate: '.b-gift_certificate-add',
     billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
     billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
-    couponCode: '#dwfrm_coupon_couponCode',
+    couponCode: '#dwfrm_billing_giftCertCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    promoButton: 'button[type="submit"].b-form-inline_button',
+    promoErrorAlert: '#dwfrm_coupon_couponCode-error',
     giftCardErrorMessage:'',
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
@@ -808,8 +812,14 @@ class BillingPage implements AbstractPage {
     },
     addPromoCode (promo: string) {
       const couponCode = selectors[brand].couponCode;
+      const promoButton = selectors[brand].promoButton;
       cy.get(couponCode).type(promo);
-      cy.get(couponCode).click();
+      cy.get(promoButton).click();
+    },
+
+    addNoPromoCode () {
+      const promoButton = selectors[brand].promoButton;
+      cy.get(promoButton).click();
     },
     addGiftCard (giftCertificate: string) {
       
@@ -1075,9 +1085,19 @@ class BillingPage implements AbstractPage {
     },
     assertGiftCardEmptyError(){
       const errorMessage = selectors[brand].giftCardEmptyError;
-      const giftCardInvalidErrorMessage = assertionText.giftCardEmptydErrorMessage[language]
+      const giftCardInvalidErrorMessage = assertionText.giftCardEmptydErrorMessage[language];
       cy.get(errorMessage).should('be.visible').should('contain.text',giftCardInvalidErrorMessage)
-  },
+    },
+    assertInvalidPromoError (){
+      const promoErrorAlert = selectors[brand].promoErrorAlert;
+      const promoInvalidErrorMessage = assertionText.promoInvalidErrorMessage[language];
+      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false})
+    },
+    assertEmptyPromoError(){
+      const promoErrorAlert = selectors[brand].promoErrorAlert;
+      const promoEmptydErrorMessage = assertionText.promoEmptydErrorMessage[language];
+      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false})
+    },
     assertNewShippingAddress (addressLine: string, city: string, postCode: string, country: string) {
       const shippingAddressSection = selectors[brand].shippingAddressSection;
       cy.get(shippingAddressSection).should('contain.text', addressLine)

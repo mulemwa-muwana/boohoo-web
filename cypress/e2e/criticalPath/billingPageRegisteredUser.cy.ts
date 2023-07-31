@@ -118,7 +118,7 @@ describe('Billing page functionality for registered user', function () {
   it('Verify is correct validation added if code is empty for registered user', function () {
     if (brand == 'boohoo.com') {
       billingPage.actions.addGiftCard(' ');
-      billingPage.assertions.assertGiftCardError();
+      billingPage.assertions.assertGiftCardEmptyError();
     } else {
       this.skip()
     }

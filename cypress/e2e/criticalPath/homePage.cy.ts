@@ -328,6 +328,20 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[language]);
       });
+
+      it('Verify that user can choose gender, category, fit - Size Guide', function ()   {
+        if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE') ) {
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[language]);
+         homePage.assertions.assertSizeGuideGenderPresent();
+         homePage.assertions.assertSizeGuideCategoryPresent();
+         homePage.assertions.assertSizeGuideFitPresent();
+         homePage.actions.selectDropdown();
+        } 
+        else{
+          this.skip();
+        }
+      });
+
       it('Verify that Footer Navigation Component is present and Links are functional - The boohoo/nastygal App', function () {
         if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppBHO[language]);

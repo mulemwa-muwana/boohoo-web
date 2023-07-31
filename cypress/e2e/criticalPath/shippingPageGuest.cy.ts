@@ -265,6 +265,27 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });
+  it('Verify that user can select PUDO location', function () {
+    if (locale != 'UK' || brand == 'boohooman.com') {
+      this.skip();
+    }
+    const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
+  
+    shippingPage.actions.phoneNumberField(localeAddress.phone);
+    shippingPage.click.clickAndCollectShipping();
+    shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(resp=>{
+      shippingPage.assertions.assertShopisSelected(resp);
+    });
+  });
+  it('Verify that user can enter valid credentials in w3w', function () {
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+      this.skip();
+    }
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+    shippingPage.click.enterManuallyAddressDetails();
+    shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
+    shippingPage.assertions.assertW3WisSelected();
+  });
   it('SG: Verify that guest user can add Thrift to the order', function () {
     if (brand == 'karenmillen.com') {
       shippingPage.assertions.assertThriftSectionIsVisible();

@@ -97,7 +97,7 @@ describe('Billing page functionality for guest user', function () {
     if (brand == 'boohooman.com') { // For boohooman there is no adding new billing address, all fields are open for edit
       this.skip();
     }
-    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(locale, 'newAddedPrimaryAddress');
     if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();

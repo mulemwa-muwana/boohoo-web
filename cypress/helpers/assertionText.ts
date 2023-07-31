@@ -1652,6 +1652,48 @@ class AssertionText {
     ES: 'comprar-por-ajuste'
   };
 
+  Womens: TranslationMap = {
+    EN: 'Womens',
+    NL: 'Dames',
+    DE: 'Damen',
+    FR: 'Femmes',
+    DK: 'Womens',
+    FI: 'Womens',
+    NO: 'Womens',
+    SE: 'DAM',
+    IL: '',
+    IT: 'DONNA',
+    ES: 'Mujar'
+  };
+
+  trousers: TranslationMap = {
+    EN: 'trousers',
+    NL: 'Broeken',
+    DE: 'Hosen',
+    FR: 'Pantalons',
+    DK: 'trousers',
+    FI: 'trousers',
+    NO: 'trousers',
+    SE: 'Byxor',
+    IL: '',
+    IT: 'Pantaloni',
+    ES: 'Pantalones'
+  };
+
+  regular: TranslationMap = {
+    EN: 'regular',
+    NL: 'Standaard',
+    DE: 'Standard',
+    FR: 'Collection principale',
+    DK: 'regular',
+    FI: 'regular',
+    NO: 'regular',
+    SE: 'standard',
+    IL: '',
+    IT: 'Regular Fit',
+    ES: 'Regular'
+  };
+
   quickView: TranslationMap = {
     EN: 'Quick View',
     NL: 'Pop Up View',

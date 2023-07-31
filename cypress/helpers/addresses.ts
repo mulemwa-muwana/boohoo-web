@@ -380,7 +380,7 @@ class Addresses {
         addressLine: 'HaMaccabi 2',
         postcode: '6329302',
         addressName: 'PrimaryAddress',
-        country: 'United Kingdom',
+        country: 'ישראל',
         city: 'Tel Aviv',
         countryCode: 'IL',
         county: 'Israel',

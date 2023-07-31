@@ -126,4 +126,14 @@ describe('Billing page functionality for guest user', function () {
 
   });
 
+  it('Verify that user see error when try to add invalid giftCard', function () {
+    BillingPage.actions.addGiftCard('WRONGGIFTCARDERR');
+    BillingPage.assertions.assertGiftCardError();
+  });
+
+  it.only('Verify is correct validation added if code is empty for registered user', function () {
+    BillingPage.actions.addGiftCard(' ');
+    BillingPage.assertions.assertGiftCardEmptyError();
+  });
+
 });

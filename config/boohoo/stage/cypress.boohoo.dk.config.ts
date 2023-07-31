@@ -10,7 +10,8 @@ export default defineConfig({
     fullSku: 'FZZ80440-157-18',
     brand: 'boohoo.com',
     locale: 'DK',
-    language: 'DK',
+    language: 'EN',
+    giftCertificate:'STWIZQPZVYLMQACT'
   },
 
   viewportHeight: 1080,

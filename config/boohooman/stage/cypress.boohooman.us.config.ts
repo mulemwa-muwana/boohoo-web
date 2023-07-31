@@ -11,6 +11,7 @@ export default defineConfig({
     brand: 'boohooman.com',
     locale: 'US',
     language: 'EN',
+    giftCertificate: 'WVZSODJIAVPWLIAK',
   },
 
   viewportHeight: 1080,

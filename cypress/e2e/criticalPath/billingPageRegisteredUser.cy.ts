@@ -4,11 +4,13 @@ import shippingPage from '../../pom/shipping.page';
 import Addresses from '../../helpers/addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
-import { locale, brand } from 'cypress/support/e2e';
+import { locale, brand, giftCertificate } from 'cypress/support/e2e';
+import billingPage from '../../pom/billing.page';
 
 describe('Billing page functionality for registered user', function () {
 
   beforeEach(() => {
+    debugger
     Navigate.toBillingPageUsingSession('RegisteredUser');
   });
 
@@ -93,5 +95,25 @@ describe('Billing page functionality for registered user', function () {
     } else {
       this.skip(); // Promo code field only for Site Genesis brands is displayed on Billing Page.
     }
+  });
+
+  it('Verify that user is able to Add, Remove gift certificate at Billing Page', function () {
+    if (brand == 'boohoo.com') {
+      billingPage.actions.addGiftCard(giftCertificate);
+      billingPage.assertions.assertGiftCardAdded();
+      billingPage.assertions.assertGiftCardinOrderSummary();
+      billingPage.actions.removeGiftCertificate();
+      billingPage.assertions.assertGiftCardRemoved();
+    }
+  });
+
+
+  it.only('Verify that user see error when try to add invalid giftCard', function () {
+    billingPage.actions.addGiftCard('WRONGGIFTCARDERR');
+    billingPage.assertions.assertGiftCardError();
+  });
+  it.only('Verify is correct validation added if code is empty for registered user', function () {
+    billingPage.actions.addGiftCard(' ');
+    billingPage.assertions.assertGiftCardEmptyError();
   });
 });

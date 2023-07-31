@@ -16,6 +16,7 @@ export const language = variables.language;
 export const sku = variables.sku;
 export const url = variables.url;
 export const fullSku = variables.fullSku;
+export const giftCertificate = variables.giftCertificate;
 
 // Set anything we need to before all tests
 beforeEach(() => {

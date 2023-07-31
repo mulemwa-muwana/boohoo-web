@@ -1721,6 +1721,61 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  giftCard: TranslationMap = {
+    EN: 'Gift',
+    NL: 'Cadeaukaart',
+    DE: 'Rabatt',
+    FR: 'Carte cadeau',
+    DK: 'Gift card',
+    FI: 'Gift card',
+    NO: 'Gift card',
+    SE: 'Presentkort',
+    IL: '',
+    IT: 'Buono regalo',
+    ES: 'Tarjeta regalo'
+  };
+  giftCardBLP: TranslationMap = {
+    EN: 'Gift Card',
+    NL: 'Cadeaukaart',
+    DE: 'Rabatt',
+    FR: 'Carte cadeau',
+    DK: 'Gift card',
+    FI: 'Gift card',
+    NO: 'Gift card',
+    SE: 'Presentkort',
+    IL: 'כרטיס מתנה',
+    IT: 'Buono regalo',
+    ES: 'Tarjeta regalo'
+  };
+
+  giftCardInvalidErrorMessage: TranslationMap = {
+    EN: 'Gift certificate with specific code does not exist!',
+    NL: 'De opgegeven promocode bestaat niet.',
+    DE: 'Geschenkgutschein mit spezifischem Code existiert nicht!',
+    FR: 'La carte-cadeau associée à ce code spécifique nexiste pas!',
+    DK: 'Gift certificate with specific code does not exist!',
+    FI: 'Gift certificate with specific code does not exist!',
+    NO: 'Gift certificate with specific code does not exist!',
+    SE: 'Det finns inget presentkort med den koden.',
+    IL: 'שובר מתנה עם הקוד הספציפי אינו קיים!',
+    IT: ' Non esiste un buono regalo con il codice sconto inserito.',
+    ES: 'No existe ningún cupón de regalo con este código específico.'
+  };
+
+  giftCardEmptydErrorMessage: TranslationMap = {
+    EN: 'Please enter a gift voucher code.',
+    NL: 'Voer a.u.b. een cadeaukaartcode in.',
+    DE: 'Bitte gebe einen Gutscheincode ein.',
+    FR: 'Saisir un code de chèque cadeau.',
+    DK: 'Please enter a gift voucher code.',
+    FI: 'Please enter a gift voucher code.',
+    NO: 'Please enter a gift voucher code.',
+    SE: 'Fyll i koden till presentkortet.',
+    IL: 'אנא הזינו קוד שובר מתנה.',
+    IT: 'Inserisci il codice di un Buono Regalo.',
+    ES: 'Introduce el código del cupón de regalo.'
+  };
 }
 
 export default new AssertionText();

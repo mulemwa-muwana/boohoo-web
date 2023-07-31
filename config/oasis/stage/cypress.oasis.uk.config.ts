@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import plugins from 'cypress/plugins';
+import { giftCertificate } from '../../../cypress/support/e2e';
 
 export default defineConfig({
   projectId: 'i6d3n8',
@@ -11,6 +12,7 @@ export default defineConfig({
     brand: 'oasis-stores.com',
     locale: 'UK',
     language: 'EN',
+    giftCertificate: 'OOCLKHARORSASIVG'
   },
 
   viewportHeight: 1080,

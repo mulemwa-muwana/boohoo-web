@@ -11,6 +11,7 @@ export default defineConfig({
     brand: 'wallis.co.uk',
     locale: 'IE',
     language: 'EN',
+    giftCertificate: '',
   },
 
   viewportHeight: 1080,

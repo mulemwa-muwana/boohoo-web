@@ -11,6 +11,7 @@ export default defineConfig({
     brand: 'boohoo.com',
     locale: 'CA',
     language: 'EN',
+    giftCertificate:'YCSQTJWWGVHTDVRC'
   },
 
   viewportHeight: 1080,

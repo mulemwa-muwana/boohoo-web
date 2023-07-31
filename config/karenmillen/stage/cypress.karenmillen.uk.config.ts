@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import plugins from '../../../cypress/plugins';
+import { giftCertificate } from '../../../cypress/support/e2e';
 
 export default defineConfig({
   projectId: 'i6d3n8',
@@ -10,7 +11,8 @@ export default defineConfig({
     fullSku: 'BKK04926-105-18',
     brand: 'karenmillen.com',
     locale: 'UK',
-    language: 'EN'
+    language: 'EN',
+    giftCertificate: 'AOFZAOMQQKIZJIKM'
   },
 
   viewportHeight: 1080,

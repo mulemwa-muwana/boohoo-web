@@ -5,13 +5,12 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@dwstg.wallis.co.uk',
-    sku: '#BYY05628-3', // Needs hashtag for assertation on PDP
-    fullSku: 'BYY05628-173-22',
-    brand: 'wallis.co.uk',
-    locale: 'UK',
+    url: 'https://storefront:Oreo2022@stg.misspap.com/au',
+    sku: 'MPP00243-4',
+    fullSku: 'MPP00243-399-16',
+    brand: 'misspap.com',
+    locale: 'AU',
     language: 'EN',
-    giftCertificate: 'HRMLSLPIVAKQFZFM',
   },
 
   viewportHeight: 1080,
@@ -24,19 +23,19 @@ export default defineConfig({
   // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
-    reportDir: 'config/wallis/results',
+    reportDir: 'config/misspap/results',
     overwrite: false,
     html: false,
     json: true,
   },
 
   e2e: {
-    setupNodeEvents (on) {
+    setupNodeEvents (on, config) {
       plugins(on);
     },
     excludeSpecPattern: [
       '**/backend*/**' // Skip backend tests
     ],
-    numTestsKeptInMemory: 0,
-  },
+    numTestsKeptInMemory: 0
+  },   
 });

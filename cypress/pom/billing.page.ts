@@ -727,11 +727,13 @@ class BillingPage implements AbstractPage {
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
-      if (!isSiteGenesisBrand && locale == 'AU'||locale == 'IE'||locale == 'US') {
+      if (!isSiteGenesisBrand ){
+        if(locale == 'AU'||locale == 'IE'||locale == 'US') {
         cy.get(billingAddressFieldsStateCode).select(county);
-      } else if (!isSiteGenesisBrand) {
-        cy.get(billingAddressFieldsStateCode).clear().type(state);
-      }
+        } else {     
+          cy.get(billingAddressFieldsStateCode).clear().type(state);
+        }
+        }
       if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
       } else {

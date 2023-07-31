@@ -10,7 +10,6 @@ import billingPage from '../../pom/billing.page';
 describe('Billing page functionality for registered user', function () {
 
   beforeEach(() => {
-    debugger
     Navigate.toBillingPageUsingSession('RegisteredUser');
   });
 

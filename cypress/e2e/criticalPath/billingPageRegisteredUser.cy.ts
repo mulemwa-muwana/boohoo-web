@@ -108,11 +108,11 @@ describe('Billing page functionality for registered user', function () {
   });
 
 
-  it.only('Verify that user see error when try to add invalid giftCard', function () {
+  it('Verify that user see error when try to add invalid giftCard', function () {
     billingPage.actions.addGiftCard('WRONGGIFTCARDERR');
     billingPage.assertions.assertGiftCardError();
   });
-  it.only('Verify is correct validation added if code is empty for registered user', function () {
+  it('Verify is correct validation added if code is empty for registered user', function () {
     billingPage.actions.addGiftCard(' ');
     billingPage.assertions.assertGiftCardEmptyError();
   });

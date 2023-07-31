@@ -592,8 +592,8 @@ class PlpPage implements AbstractPage {
           cy.get(quickViewButton).eq(0).invoke('css', 'display', 'inline').as('quickViewSiteGenesis');
           cy.get('@hoverOverProduct').click({ force: true });
         } else {
-          cy.get(quickViewButton).eq(0).invoke('css', 'opacity', 1).should('be.visible').as('quickViewBLP');
-          cy.get('@quickViewBLP').click({ force: true });
+          cy.get(quickViewButton).eq(0).invoke('css','opacity',1).should('be.visible').as('quickViewBLP');
+          cy.get('@quickViewBLP').click({force:true});
         }
         cy.wait(5000);
         cy.get(quickViewSize).eq(0).click();

@@ -939,7 +939,7 @@ class ShippingPage implements AbstractPage {
       }
     },
     selectCountry (country: string) {
-      if (brand != 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
+      if (brand != 'boohoomena.com' || locale != 'IL') { // Country cannot be changed on Shipping page for this brand
         const shippingCountry = selectors[brand].shippingCountry;
         cy.get(shippingCountry).select(country).invoke('show');
       }
@@ -981,6 +981,8 @@ class ShippingPage implements AbstractPage {
       const countyFieldIE = selectors[brand].countyFieldIE;
       if (brand=='karenmillen.com' && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
+      } else if (brand == 'misspap.com') {
+        cy.get(countyField).clear({force:true}).type(county);
       } else {
         cy.get(countyField).select(county);
       }

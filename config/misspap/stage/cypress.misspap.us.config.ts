@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import plugins from '../../../cypress/plugins';
+import { giftCertificate } from '../../../cypress/support/e2e';
 
 export default defineConfig({
   projectId: 'i6d3n8',
@@ -11,6 +12,7 @@ export default defineConfig({
     brand: 'misspap.com',
     locale: 'US',
     language: 'EN',
+    giftCertificate: 'RWHRHFYAZSRILYAR',
   },
 
   viewportHeight: 1080,
@@ -27,6 +29,7 @@ export default defineConfig({
     overwrite: false,
     html: false,
     json: true,
+    giftCertificate: 'JIPYLJDSIZVAGGFD'
   },
 
   e2e: {

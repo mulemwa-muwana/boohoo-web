@@ -89,6 +89,15 @@ describe('Home Page', function () {
       }
     });
 
+    it('Verify that Energy Saver option is present and functional - Boohoo UK', function () {
+      if (brand == 'boohoo.com' && locale == 'UK' && !isMobileDeviceUsed) {
+        homePage.assertions.assertEnergySaverVisible();
+        homePage.actions.toggleEnergySaver();
+      } else {
+        this.skip();
+      }
+    });
+
   });
 
   // FOOTER
@@ -308,6 +317,20 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[language]);
       });
+
+      it('Verify that user can choose gender, category, fit - Size Guide', function ()   {
+        if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE') ) {
+        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[language]);
+         homePage.assertions.assertSizeGuideGenderPresent();
+         homePage.assertions.assertSizeGuideCategoryPresent();
+         homePage.assertions.assertSizeGuideFitPresent();
+         homePage.actions.selectDropdown();
+        } 
+        else{
+          this.skip();
+        }
+      });
+
       it('Verify that Footer Navigation Component is present and Links are functional - The boohoo/nastygal App', function () {
         if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppBHO[language]);
@@ -509,6 +532,7 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.loyalty[language]);
         }
       });
+
       it('Verify that Footer Navigation Component is present and Links are functional - BHM Key Worker Discount', () => {
         if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.keyWorkerDiscount[language]);
@@ -519,13 +543,15 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.boohooMANACTIVE[language]);
         }
       });
-      // skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
+
+      // Skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
       it.skip('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
         if (brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);
         }
       });
-      // skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
+
+      // Skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
       it.skip('Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', () => {
         if (brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaTransparencyInSupplyChainsActStatement[language]);

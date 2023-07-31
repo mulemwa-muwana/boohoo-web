@@ -120,6 +120,7 @@ declare type AddressData = {
     country: string;
     countryCode: string;
     addressNickname: string;
+    what3Words: string;
     month: string;
 }
     

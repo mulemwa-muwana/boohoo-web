@@ -12,6 +12,7 @@ import contactusPage from 'cypress/pom/contactus.page';
 import faqPage from 'cypress/pom/faq.page';
 import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
+import globalfooterPage from '../../pom/globalfooter.page';
 
 describe('Home Page', function () {
 
@@ -96,6 +97,16 @@ describe('Home Page', function () {
       } else {
         this.skip();
       }
+    });
+    it('Verify that user can change country',()=>{
+      if (isSiteGenesisBrand) {
+        homePage.click.countryDropdown();
+      }else{
+        cy.scrollTo('bottom');
+        cy.wait(3000);
+      }
+      homePage.actions.selectCountryFromDropdown();
+      homePage.assertions.assertSelectCountryFromDropdown();   
     });
 
   });

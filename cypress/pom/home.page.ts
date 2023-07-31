@@ -415,7 +415,7 @@ class HomePage implements AbstractPage {
         if (brand == 'boohoo.com'||brand == 'wallis.co.uk' || brand == 'burton.co.uk') {
           cy.get(countryBtn).select('IE €',{ force: true });
         } else if (brand=='nastygal.com') {
-          cy.get(countryBtn).select('IE (€)',{ force: true });
+          cy.get(countryBtn).select('IRL (€)',{ force: true });
         }
       
       } else {

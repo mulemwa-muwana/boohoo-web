@@ -21,7 +21,11 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]',
+    energySaver: '.b-sustainable_toggle',
+    energySlider: 'div.b-sustainable_browsing-desktop > div.b-sustainable_toggle > div > div.b-sustainable_toggle-slide',
+    energySaverActivated: '.b-sustainable_toggle-slide.m-active',
     countryBtn: '.b-country-select',
+
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -340,6 +344,9 @@ class HomePage implements AbstractPage {
     allShoesLink (opts = { force: true }) {
       cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
     },
+    nastyBlogLink (text: string) {
+      cy.contains(text).click({force:true});
+    },
     investorRelationsAcceptBtn () {
       cy.get('cc-saveAll-startBtn').click(); 
     },
@@ -391,6 +398,15 @@ class HomePage implements AbstractPage {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
     },
+    toggleEnergySaver () {
+      const energySlider = selectors[brand].energySlider;
+      const energySaverActivated = selectors[brand].energySaverActivated;
+      cy.get(energySlider).click();
+      cy.get(energySaverActivated).should('be.visible');
+
+      // Turn it off again 
+      cy.get(energySlider).click();
+    },
     selectCountryFromDropdown () {
       const countryBtn = selectors[brand].countryBtn;
       const countryList = selectors[brand].countryList;
@@ -399,15 +415,15 @@ class HomePage implements AbstractPage {
         if (brand == 'boohoo.com'||brand == 'wallis.co.uk' || brand == 'burton.co.uk') {
           cy.get(countryBtn).select('IE €',{ force: true });
         } else if (brand=='nastygal.com') {
-          cy.get(countryBtn).select('IRL (€)',{ force: true });
+          cy.get(countryBtn).select('IE (€)',{ force: true });
         }
       
       } else {
         cy.get(countryList).contains('IE €').click({force: true});
-
       }   
     }     
   };
+
 
   assertions = {
     assertUserPanelTitle (name: string) {
@@ -461,7 +477,7 @@ class HomePage implements AbstractPage {
     },
 
     // Links assertions
-    assertMegaMenuLinkIsOpeningCorrectPage (text: string) {
+    assertLinkIsOpeningCorrectPage (text: string) {
       cy.url().should('include', text);
     },
 
@@ -527,6 +543,10 @@ class HomePage implements AbstractPage {
     assertPromoLinkHeaderIsVisible () {
       cy.get('div[class="b-hero_carousel-item m-promotion m-current"]').should('be.visible').click();
     },
+    assertEnergySaverVisible () {
+      const energySaver = selectors[brand].energySaver;
+      cy.get(energySaver).should('be.visible');
+    }, 
     assertSelectCountryFromDropdown () {
       cy.url().should('include', '/ie');
     }

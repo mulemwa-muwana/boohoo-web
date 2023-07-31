@@ -72,9 +72,7 @@ describe('Shipping Page Registered user tests', function () {
     }
     cy.wait(3000);
     shippingPage.click.proceedToBilling();
-    if (locale == 'IE') {
-      shippingPage.click.proceedToBillingVerification();
-    }
+    shippingPage.click.proceedToBillingVerification();  
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
     
@@ -158,15 +156,13 @@ describe('Shipping Page Registered user tests', function () {
     }
 
     shippingPage.click.proceedToBilling();
-    if (locale == 'IE') {
-      shippingPage.click.proceedToBillingVerification();
-    }
+    shippingPage.click.proceedToBillingVerification();
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
   });
 
   it('Verify that PREMIER can be added to the cart', function () {
-    if (brand == 'boohoomena.com' || (brand == 'nastygal.com' && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
+    if (brand == 'boohoomena.com' || ((brand == 'nastygal.com' || brand == 'boohooman.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
@@ -229,10 +225,8 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user is able to select 2nd shipping method', function () {
-    if (brand == 'boohoo.com' && (locale == 'NO' || locale == 'EU' || locale == 'FI')) { // No 2nd shipping method for these boohoo brands and locales
-      this.skip();
-    }
-    if (brand == 'boohoomena.com') { // No 2nd shipping method for BoohooMENA brand
+    const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'EU' || locale == 'FI'));
+    if (isBoohooLocaleWithoutSecondShipping || brand == 'boohoomena.com') { // No 2nd shipping method for these
       this.skip();
     }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
@@ -248,9 +242,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (locale == 'IE') {
-        shippingPage.actions.countyField(localeAddress.county);
-      }
+      shippingPage.actions.countyField(localeAddress.county);    
     } else {
       if (brand == 'boohoo.com') {
         shippingPage.click.addNewAddress();
@@ -277,6 +269,35 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that user can Edit cart from shipping page', () => {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
+  });
+  it('Verify that user can select PUDO location', function () {
+    if (locale != 'UK' || brand == 'boohooman.com') {
+      this.skip();
+    }
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+
+    shippingPage.click.clickAndCollectShipping();
+    shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(pudoAddress=>{
+      shippingPage.assertions.assertShopisSelected(pudoAddress);
+    });
+  });
+
+  it('Verify that user can enter valid credentials in w3w', function () {
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+      this.skip();
+    }
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+    shippingPage.click.addNewAddressButton();
+    shippingPage.click.enterManuallyAddressDetails();
+    shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
+    shippingPage.assertions.assertW3WisSelected();
+  });
+  it('SG: Verify that guest user can add Thrift to the order', function () {
+    if (brand == 'karenmillen.com') {
+      shippingPage.assertions.assertThriftSectionIsVisible();
+      shippingPage.click.addThriftToCart();
+      shippingPage.assertions.assertThriftBagIsAddedToTheCart();
+    }
   });
   
 });

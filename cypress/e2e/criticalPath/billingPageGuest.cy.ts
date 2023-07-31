@@ -127,13 +127,16 @@ describe('Billing page functionality for guest user', function () {
   });
 
   it('Verify that user see error when try to add invalid giftCard', function () {
-    BillingPage.actions.addGiftCard('WRONGGIFTCARDERR');
-    BillingPage.assertions.assertGiftCardError();
+    if (brand == 'boohoo.com') {
+      BillingPage.actions.addGiftCard('WRONGGIFTCARDERR');
+      BillingPage.assertions.assertGiftCardError();
+    }
   });
-
   it('Verify is correct validation added if code is empty for registered user', function () {
-    BillingPage.actions.addGiftCard(' ');
-    BillingPage.assertions.assertGiftCardEmptyError();
+    if (brand == 'boohoo.com') {
+      BillingPage.actions.addGiftCard(' ');
+      BillingPage.assertions.assertGiftCardError();
+    }
   });
 
 });

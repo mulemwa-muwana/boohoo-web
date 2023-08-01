@@ -765,7 +765,7 @@ class BillingPage implements AbstractPage {
       const confirmEmailField = selectors[brand].confirmEmailField;
       cy.get(confirmEmailField).clear().type(email);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string,county: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
       const billingPostCode = selectors[brand].billingPostCode;
@@ -773,11 +773,13 @@ class BillingPage implements AbstractPage {
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
-      if (locale == 'AU') {
-        cy.get(billingAddressFieldsStateCode).select(state);
-      } else if (!isSiteGenesisBrand) {
-        cy.get(billingAddressFieldsStateCode).clear().type(state);
-      }
+      if (!isSiteGenesisBrand ){
+        if(locale == 'AU'||locale == 'IE'||locale == 'US') {
+        cy.get(billingAddressFieldsStateCode).select(county);
+        } else {     
+          cy.get(billingAddressFieldsStateCode).clear().type(state);
+        }
+        }
       if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
       } else {

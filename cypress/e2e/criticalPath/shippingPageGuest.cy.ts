@@ -95,15 +95,22 @@ describe('Shipping Page Guest user tests', function () {
 
   it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
-    shippingPage.click.addNewAddress();
-    shippingPage.click.addAddressManually();
-
+    if (!isSiteGenesisBrand) {
+      shippingPage.click.addNewAddress();
+      shippingPage.click.addAddressManually();
+    }
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);
     shippingPage.actions.selectCountry(localeAddress.country);
-    shippingPage.click.enterManuallyAddressDetails();
+    if (!isSiteGenesisBrand) {
+      shippingPage.click.enterManuallyAddressDetails();
+    }
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
+    if (isSiteGenesisBrand && (locale=='IE'|| locale=='AU'|| locale=='US')) {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
+
     if (!isSiteGenesisBrand && locale == 'US') {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1);
     }
@@ -117,6 +124,7 @@ describe('Shipping Page Guest user tests', function () {
       }
     }
     shippingPage.click.proceedToBilling();
+    shippingPage.click.proceedToBillingVerification();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 

@@ -1735,6 +1735,7 @@ class AssertionText {
     IT: 'Buono regalo',
     ES: 'Tarjeta regalo'
   };
+
   giftCardBLP: TranslationMap = {
     EN: 'Gift Card',
     NL: 'Cadeaukaart',

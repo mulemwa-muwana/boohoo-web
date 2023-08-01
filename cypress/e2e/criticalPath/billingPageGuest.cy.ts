@@ -128,7 +128,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.addGiftCard('WRONGGIFTCARDERR');
       BillingPage.assertions.assertGiftCardError();
     } else {
-      this.skip()
+      this.skip();
     }
   });
   it('Verify is correct validation added if code is empty for registered user', function () {
@@ -136,7 +136,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.addGiftCard(' ');
       BillingPage.assertions.assertGiftCardEmptyError();
     } else {
-      this.skip()
+      this.skip();
     }
   });
 

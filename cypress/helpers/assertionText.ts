@@ -1776,6 +1776,34 @@ class AssertionText {
     IT: 'Inserisci il codice di un Buono Regalo.',
     ES: 'Introduce el código del cupón de regalo.'
   };
+
+  promoInvalidErrorMessage: TranslationMap = {
+    EN: 'Promo code is not recognised. Please try another.',
+    NL: 'De opgegeven promocode is niet bij ons bekend. Probeer een andere code.',
+    DE: 'Promo-Code wird nicht erkannt. Bitte versuche einen anderen.',
+    FR: 'Le code promo nest pas reconnu. Veuillez essayer à nouveau.',
+    DK: 'Promo code is not recognised. Please try another.',
+    FI: 'Promo code is not recognised. Please try another.',
+    NO: 'Promo code is not recognised. Please try another.',
+    SE: 'Ogiltig rabattkod. Försök igen eller använd en annan kod.',
+    IL: 'פג תוקפו של קוד המבצע שהוזן או שהקוד לא זוהה. יש לבדוק את האיות ולנסות שוב.',
+    IT: 'Il Codice promozionale inserito è scaduto o non è stato riconosciuto, controlla il codice e riprova.',
+    ES: 'El código de promoción introducido ha caducado o no se ha reconocido. Por favor, comprueba que es correcto e inténtalo de nuevo.'
+  };
+
+  promoEmptydErrorMessage: TranslationMap = {
+    EN: 'No promo code entered',
+    NL: 'No promo code entered', 
+    DE: 'No promo code entered',
+    FR: 'Aucun code promo ajouté',
+    DK: 'No promo code entered',
+    FI: 'No promo code entered',
+    NO: 'No promo code entered',
+    SE: 'Fyll i din rabattkod',
+    IL: 'No promo code entered',
+    IT: 'No promo code entered',
+    ES: 'No promo code entered'
+  };
 }
 
 export default new AssertionText();

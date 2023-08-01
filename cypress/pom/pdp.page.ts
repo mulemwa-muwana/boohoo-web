@@ -113,7 +113,9 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     productTitle: '#editProductModalTitle',
+    productTitleMobile:'#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
+    productDeliveryInfoMobile:'#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
     wishListIcon: '.b-header_wishlist',
@@ -545,7 +547,11 @@ class PdpPage implements AbstractPage {
     assertMiniCartIsDisplayed () { 
       const miniCartContent = selectors[brand].miniCartContent;
       if (isMobileDeviceUsed && !isSiteGenesisBrand) {
-        cy.get('[data-tau="global_alerts_item"]').should('be.visible');
+        if (brand == 'burton.co.uk') {
+          cy.get('.b-minicart_product-title').should('be.visible');
+        } else {
+          cy.get('[data-tau="global_alerts_item"]').should('be.visible');
+        }
       } else {
         cy.get(miniCartContent).should('be.visible');
       }

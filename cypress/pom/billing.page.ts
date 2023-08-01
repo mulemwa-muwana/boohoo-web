@@ -1,6 +1,11 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-import { locale, brand } from 'cypress/support/e2e';
+import { locale, brand, language } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
+import cartPage from './cart.page';
+import assertionText from 'cypress/helpers/assertionText';
+
+
+
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -13,7 +18,13 @@ const selectors: SelectorBrandMap = {
     billingPostCode: '#dwfrm_billing_addressFields_postalCode',
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
+    giftcartApplied:'.b-gift_certificate-code',
+    giftcartOrderSummary: 'div.b-summary_order-details',
+    orderSummaryQty: '.b-minicart_product-qty_value',
+    removeCertificate: '.b-gift_certificate-remove.b-link.m-highlight',
     addGiftCert: '#add-giftcert',
+    giftCardErrorMessage: 'div.b-gift_certificate-error',
+    giftCardEmptyError:'#dwfrm_billing_giftCertCode-error',
     shippingAddressSection: 'section[class="b-checkout_card b-summary_group-item m-full-width"]',
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
@@ -79,6 +90,12 @@ const selectors: SelectorBrandMap = {
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',
+    giftCertCode: '#dwfrm_billing_giftCertCode',
+    addGiftCert: '#add-giftcert',
+    giftcartApplied:'.giftcard-redemption-title',
+    giftcartOrderSummary: '.summary-inner > .checkout-order-totals',
+    removeCertificate: '.giftcard-redemption-remove',
+    giftCardErrorMessage:'',
     billingAddressFieldsStateCode: '#dwfrm_billing_addressFields_states_stateCode',
     billingPostCode: '#dwfrm_billing_addressFields_postalCode',
     billingForm: '.b-billing_address-form',
@@ -115,6 +132,11 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftcartApplied:'.b-gift_certificate-code',
+    giftcartOrderSummary: 'div.b-summary_order-details',
+    orderSummaryQty: '.b-minicart_product-qty_value',
+    removeCertificate: '.b-gift_certificate-remove.b-link.m-highlight',
+    giftCardErrorMessage:'',
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
@@ -165,6 +187,11 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftcartApplied:'.b-gift_certificate-code',
+    giftcartOrderSummary: 'div.b-summary_order-details',
+    giftCardErrorMessage:'',
+    orderSummaryQty: '.b-minicart_product-qty_value',
+    removeCertificate: '.b-gift_certificate-remove.b-link.m-highlight',
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
@@ -215,6 +242,11 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftcartApplied:'.b-gift_certificate-code',
+    giftcartOrderSummary: 'div.b-summary_order-details',
+    giftCardErrorMessage:'',
+    orderSummaryQty: '.b-minicart_product-qty_value',
+    removeCertificate: '.b-gift_certificate-remove.b-link.m-highlight',
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
@@ -259,12 +291,17 @@ const selectors: SelectorBrandMap = {
     shippingAddressSection: '.minicheckout-section',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
-    addGiftCertificate: '.b-gift_certificate-add',
+    addGiftCertificate: '#dwfrm_billing_giftCertCode',
     billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
     billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftcartApplied:'.giftcard-redemption-title',
+    giftcartOrderSummary: '.summary-inner > .checkout-order-totals',
+    orderSummaryQty: '.b-minicart_product-qty_value',
+    giftCardErrorMessage:'',
+    removeCertificate: '.b-gift_certificate-remove.b-link.m-highlight',
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
@@ -308,12 +345,16 @@ const selectors: SelectorBrandMap = {
     shippingAddressSection: '.minicheckout-section',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
-    addGiftCertificate: '.b-gift_certificate-add',
+    addGiftCertificate: '#dwfrm_billing_giftCertCode',
     billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
     billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftcartApplied:'.giftcard-redemption-title',
+    giftcartOrderSummary: '.checkout-order-totals.js-checkout-order-totals table.order-totals-table tbody tr td',
+    removeCertificate: '.giftcard-redemption-remove',
+    giftCardErrorMessage:'',
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
@@ -361,6 +402,7 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftCardErrorMessage:'',
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
@@ -408,6 +450,7 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftCardErrorMessage:'',
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
@@ -455,6 +498,7 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftCardErrorMessage:'',
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
@@ -502,6 +546,7 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftCardErrorMessage:'',
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
@@ -549,6 +594,7 @@ const selectors: SelectorBrandMap = {
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
+    giftCardErrorMessage:'',
     changeShippingAddress: '.minicheckout-address-wrapper a[class*="js-edit-shipping"]',
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
@@ -719,7 +765,7 @@ class BillingPage implements AbstractPage {
       const confirmEmailField = selectors[brand].confirmEmailField;
       cy.get(confirmEmailField).clear().type(email);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string,county: string, postcode: string) {
       const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
       const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
       const billingPostCode = selectors[brand].billingPostCode;
@@ -727,11 +773,13 @@ class BillingPage implements AbstractPage {
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
-      if (locale == 'AU') {
-        cy.get(billingAddressFieldsStateCode).select(state);
-      } else if (!isSiteGenesisBrand) {
-        cy.get(billingAddressFieldsStateCode).clear().type(state);
-      }
+      if (!isSiteGenesisBrand ){
+        if(locale == 'AU'||locale == 'IE'||locale == 'US') {
+        cy.get(billingAddressFieldsStateCode).select(county);
+        } else {     
+          cy.get(billingAddressFieldsStateCode).clear().type(state);
+        }
+        }
       if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
       } else {
@@ -765,14 +813,23 @@ class BillingPage implements AbstractPage {
       cy.get(couponCode).type(promo);
       cy.get(couponCode).click();
     },
-    addGiftCard (giftCard: string) {
+    addGiftCard (giftCertificate: string) {
+      
       const addGiftCertificate = selectors[brand].addGiftCertificate;
       const giftCertCode = selectors[brand].giftCertCode;
       const addGiftCert = selectors[brand].addGiftCert;
       cy.get(addGiftCertificate).click();
-      cy.get(giftCertCode).should('be.visible').type(giftCard);
+      cy.get(giftCertCode).should('be.visible').type(giftCertificate);
       cy.get(addGiftCert).click();
     },
+    removeGiftCertificate () {
+      const removeCertificate = selectors[brand].removeCertificate;
+      const giftcartApplied = selectors[brand].giftcartApplied;
+      cy.get(giftcartApplied).should('be.visible').then(()=>{
+        cy.get(removeCertificate).click();
+      })
+    },
+
     selectAddressFromBook () {
       const viewAllBillingAddresses = selectors[brand].viewAllBillingAddresses;
       const billingAddressFromBook = selectors[brand].billingAddressFromBook;
@@ -992,6 +1049,37 @@ class BillingPage implements AbstractPage {
       const shippingAddressSection = selectors[brand].shippingAddressSection;
       cy.get(shippingAddressSection).should('be.visible').and('not.be.empty');
     },
+    assertGiftCardAdded () {
+      const giftcartApplied = selectors[brand].giftcartApplied;
+      cy.get(giftcartApplied).should('be.visible')
+      //add text validation
+    },
+    assertGiftCardinOrderSummary () {
+      const giftcartOrderSummary= selectors[brand].giftcartOrderSummary;
+      const giftCard = assertionText.giftCard[language];
+      cy.get(giftcartOrderSummary).then($orderGiftCard=>{
+        const orderGiftCard:any = $orderGiftCard
+        cy.get(orderGiftCard).invoke('text').should('contain',giftCard)
+      })
+    },
+    assertGiftCardRemoved(){
+      const giftcartOrderSummary= selectors[brand].giftcartOrderSummary;
+      const giftCard = assertionText.giftCard[language];
+      cy.get(giftcartOrderSummary).then($orderGiftCard=>{
+        const orderGiftCard:any = $orderGiftCard
+        cy.get(orderGiftCard).invoke('text').should('not.contain',giftCard)
+      })
+    },
+    assertGiftCardError(){
+        const errorMessage = selectors[brand].giftCardErrorMessage;
+        const giftCardInvalidErrorMessage = assertionText.giftCardInvalidErrorMessage[language]
+        cy.get(errorMessage).invoke('show').should('contain.text',giftCardInvalidErrorMessage)
+    },
+    assertGiftCardEmptyError(){
+      const errorMessage = selectors[brand].giftCardEmptyError;
+      const giftCardInvalidErrorMessage = assertionText.giftCardEmptydErrorMessage[language]
+      cy.get(errorMessage).should('be.visible').should('contain.text',giftCardInvalidErrorMessage)
+  },
     assertNewShippingAddress (addressLine: string, city: string, postCode: string, country: string) {
       const shippingAddressSection = selectors[brand].shippingAddressSection;
       cy.get(shippingAddressSection).should('contain.text', addressLine)

@@ -300,7 +300,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it('Verify is correct validation added if code is invalid for guest user', function () {
+  it('Verify is correct validation added if code is invalid for Registered user', function () {
     if(brand != 'boohoo.com'){
       this.skip();
     }
@@ -308,7 +308,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertInvalidPromoError()
   });
 
-  it('Verify is correct validation added if code is empty for guest user', function () {
+  it('Verify is correct validation added if code is empty for Registered user', function () {
     if(brand != 'boohoo.com'){
       this.skip();
     }

@@ -140,4 +140,19 @@ describe('Billing page functionality for guest user', function () {
     }
   });
 
+  it('Verify is correct validation added if code is invalid for guest user', function () {
+    if(brand != 'boohoo.com'){
+      this.skip();
+    }
+    BillingPage.actions.addPromoCode("InvalidPromoCode")
+    BillingPage.assertions.assertInvalidPromoError()
+  });
+
+  it('Verify is correct validation added if code is empty for guest user', function () {
+    if(brand != 'boohoo.com'){
+      this.skip();
+    }
+    BillingPage.actions.addNoPromoCode()
+    BillingPage.assertions.assertEmptyPromoError()
+  });
 });

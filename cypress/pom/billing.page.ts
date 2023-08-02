@@ -1179,7 +1179,7 @@ class BillingPage implements AbstractPage {
       if (isSiteGenesisBrand && locale == 'UK') {
         cy.get('label[for="is-KlarnaUK"]').should('be.visible');
       } else if (isSiteGenesisBrand && locale == 'AU') {
-        cy.get('label[for="is-KlarnaAU').should('be.visible');
+        cy.get('label[for="is-KlarnaAU"]').should('be.visible');
       } else if (!isSiteGenesisBrand && locale == 'AU') {
         cy.get('#payment-button-KlarnaAU').should('be.visible');
       } else if (!isSiteGenesisBrand && locale == 'IE') {
@@ -1196,7 +1196,7 @@ class BillingPage implements AbstractPage {
       if (locale == 'US') {
         cy.get('#payment-button-AFTERPAY').should('be.visible');
       }else if (locale == 'AU') {
-        cy.get('label[for="is-AFTERPAY').should('be.visible')
+        cy.get('label[for="is-AFTERPAY"]').should('be.visible')
       }
        else if (locale == 'UK') {
         cy.get(paymentMethodClearPay).should('be.visible');

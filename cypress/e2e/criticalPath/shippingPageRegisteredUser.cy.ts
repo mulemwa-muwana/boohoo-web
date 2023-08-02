@@ -143,9 +143,6 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {
-      if (brand == 'boohoo.com') {
-        shippingPage.click.addNewAddress();
-      }
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
@@ -204,9 +201,6 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.countyField(localeAddress.county);
       }
     } else {
-      if (brand == 'boohoo.com') {
-        shippingPage.click.addNewAddress();
-      }
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
@@ -244,9 +238,6 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.phoneNumberField(localeAddress.phone);
       shippingPage.actions.countyField(localeAddress.county);    
     } else {
-      if (brand == 'boohoo.com') {
-        shippingPage.click.addNewAddress();
-      }
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
@@ -270,6 +261,16 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
   });
+  it('Verify that user can enter valid credentials in w3w', function () {
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+      this.skip();
+    }
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+    shippingPage.click.addNewAddressButton();
+    shippingPage.click.enterManuallyAddressDetails();
+    shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
+    shippingPage.assertions.assertW3WisSelected();
+  });
   it('Verify that user can select PUDO location', function () {
     if (locale != 'UK' || brand == 'boohooman.com') {
       this.skip();
@@ -280,17 +281,6 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(pudoAddress=>{
       shippingPage.assertions.assertShopisSelected(pudoAddress);
     });
-  });
-
-  it('Verify that user can enter valid credentials in w3w', function () {
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
-      this.skip();
-    }
-    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
-    shippingPage.click.addNewAddressButton();
-    shippingPage.click.enterManuallyAddressDetails();
-    shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
-    shippingPage.assertions.assertW3WisSelected();
   });
   it('SG: Verify that guest user can add Thrift to the order', function () {
     if (brand == 'karenmillen.com') {

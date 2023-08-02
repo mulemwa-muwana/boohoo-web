@@ -94,7 +94,7 @@ class Navigate {
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
           if (brand != 'boohooman.com') {
             shippingPage.actions.confirmEmailField(credentials.guest);
-          } if ((brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'warehousefashion.com') && locale == 'EU') {
+          } if ((brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'warehousefashion.com') && (locale == 'EU' || locale == 'AU')) {
             shippingPage.actions.emptyEmailField();
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);

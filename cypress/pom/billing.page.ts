@@ -4,9 +4,6 @@ import AbstractPage from './abstract/abstract.page';
 import cartPage from './cart.page';
 import assertionText from 'cypress/helpers/assertionText';
 
-
-
-
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
@@ -777,13 +774,13 @@ class BillingPage implements AbstractPage {
       this.enterManuallyAddressDetails ();
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({force: true}).type(city);
-      if (!isSiteGenesisBrand ){
-        if(locale == 'AU'||locale == 'IE'||locale == 'US') {
-        cy.get(billingAddressFieldsStateCode).select(county);
+      if (!isSiteGenesisBrand ) {
+        if (locale == 'AU'||locale == 'IE'||locale == 'US') {
+          cy.get(billingAddressFieldsStateCode).select(county);
         } else {     
           cy.get(billingAddressFieldsStateCode).clear().type(state);
         }
-        }
+      }
       if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('#dwfrm_billing_addressFields_postalCode').clear().type(postcode);
       } else {
@@ -837,7 +834,7 @@ class BillingPage implements AbstractPage {
       const giftcartApplied = selectors[brand].giftcartApplied;
       cy.get(giftcartApplied).should('be.visible').then(()=>{
         cy.get(removeCertificate).click();
-      })
+      });
     },
 
     selectAddressFromBook () {
@@ -1061,44 +1058,45 @@ class BillingPage implements AbstractPage {
     },
     assertGiftCardAdded () {
       const giftcartApplied = selectors[brand].giftcartApplied;
-      cy.get(giftcartApplied).should('be.visible')
-      //add text validation
+      cy.get(giftcartApplied).should('be.visible');
+
+      // Add text validation
     },
     assertGiftCardinOrderSummary () {
       const giftcartOrderSummary= selectors[brand].giftcartOrderSummary;
       const giftCard = assertionText.giftCard[language];
       cy.get(giftcartOrderSummary).then($orderGiftCard=>{
-        const orderGiftCard:any = $orderGiftCard
-        cy.get(orderGiftCard).invoke('text').should('contain',giftCard)
-      })
+        const orderGiftCard: any = $orderGiftCard;
+        cy.get(orderGiftCard).invoke('text').should('contain',giftCard);
+      });
     },
-    assertGiftCardRemoved(){
+    assertGiftCardRemoved () {
       const giftcartOrderSummary= selectors[brand].giftcartOrderSummary;
       const giftCard = assertionText.giftCard[language];
       cy.get(giftcartOrderSummary).then($orderGiftCard=>{
-        const orderGiftCard:any = $orderGiftCard
-        cy.get(orderGiftCard).invoke('text').should('not.contain',giftCard)
-      })
+        const orderGiftCard: any = $orderGiftCard;
+        cy.get(orderGiftCard).invoke('text').should('not.contain',giftCard);
+      });
     },
-    assertGiftCardError(){
-        const errorMessage = selectors[brand].giftCardErrorMessage;
-        const giftCardInvalidErrorMessage = assertionText.giftCardInvalidErrorMessage[language]
-        cy.get(errorMessage).invoke('show').should('contain.text',giftCardInvalidErrorMessage)
+    assertGiftCardError () {
+      const errorMessage = selectors[brand].giftCardErrorMessage;
+      const giftCardInvalidErrorMessage = assertionText.giftCardInvalidErrorMessage[language];
+      cy.get(errorMessage).invoke('show').should('contain.text',giftCardInvalidErrorMessage);
     },
-    assertGiftCardEmptyError(){
+    assertGiftCardEmptyError () {
       const errorMessage = selectors[brand].giftCardEmptyError;
       const giftCardInvalidErrorMessage = assertionText.giftCardEmptydErrorMessage[language];
-      cy.get(errorMessage).should('be.visible').should('contain.text',giftCardInvalidErrorMessage)
+      cy.get(errorMessage).should('be.visible').should('contain.text',giftCardInvalidErrorMessage);
     },
-    assertInvalidPromoError (){
+    assertInvalidPromoError () {
       const promoErrorAlert = selectors[brand].promoErrorAlert;
       const promoInvalidErrorMessage = assertionText.promoInvalidErrorMessage[language];
-      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false})
+      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false});
     },
-    assertEmptyPromoError(){
+    assertEmptyPromoError () {
       const promoErrorAlert = selectors[brand].promoErrorAlert;
       const promoEmptydErrorMessage = assertionText.promoEmptydErrorMessage[language];
-      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false})
+      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false});
     },
     assertNewShippingAddress (addressLine: string, city: string, postCode: string, country: string) {
       const shippingAddressSection = selectors[brand].shippingAddressSection;
@@ -1176,10 +1174,11 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodPayPal).should('be.visible');
     },
     assertPaymentMethodKlarnaIsDisplayed () {
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && locale == 'UK') {
         cy.get('label[for="is-KlarnaUK"]').should('be.visible');
-      }
-      if (!isSiteGenesisBrand && locale == 'AU') {
+      } else if (isSiteGenesisBrand && locale == 'AU') {
+        cy.get('label[for="is-KlarnaAU"]').should('be.visible');
+      } else if (!isSiteGenesisBrand && locale == 'AU') {
         cy.get('#payment-button-KlarnaAU').should('be.visible');
       } else if (!isSiteGenesisBrand && locale == 'IE') {
         cy.get('#payment-button-KlarnaIE').should('be.visible');
@@ -1192,9 +1191,12 @@ class BillingPage implements AbstractPage {
       
     assertPaymentMethodClearPayIsDisplayed () {
       const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
-      if (locale == 'AU' || locale == 'US') {
+      if (locale == 'US') {
         cy.get('#payment-button-AFTERPAY').should('be.visible');
-      } else if (locale == 'UK') {
+      }else if (locale == 'AU') {
+        cy.get('label[for="is-AFTERPAY"]').should('be.visible')
+      }
+       else if (locale == 'UK') {
         cy.get(paymentMethodClearPay).should('be.visible');
       }
       

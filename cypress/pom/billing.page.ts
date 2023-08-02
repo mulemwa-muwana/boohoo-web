@@ -1176,10 +1176,11 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodPayPal).should('be.visible');
     },
     assertPaymentMethodKlarnaIsDisplayed () {
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && locale == 'UK') {
         cy.get('label[for="is-KlarnaUK"]').should('be.visible');
-      }
-      if (!isSiteGenesisBrand && locale == 'AU') {
+      } else if (isSiteGenesisBrand && locale == 'AU') {
+        cy.get('label[for="is-KlarnaAU').should('be.visible');
+      } else if (!isSiteGenesisBrand && locale == 'AU') {
         cy.get('#payment-button-KlarnaAU').should('be.visible');
       } else if (!isSiteGenesisBrand && locale == 'IE') {
         cy.get('#payment-button-KlarnaIE').should('be.visible');
@@ -1192,9 +1193,12 @@ class BillingPage implements AbstractPage {
       
     assertPaymentMethodClearPayIsDisplayed () {
       const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
-      if (locale == 'AU' || locale == 'US') {
+      if (locale == 'US') {
         cy.get('#payment-button-AFTERPAY').should('be.visible');
-      } else if (locale == 'UK') {
+      }else if (locale == 'AU') {
+        cy.get('label[for="is-AFTERPAY').should('be.visible')
+      }
+       else if (locale == 'UK') {
         cy.get(paymentMethodClearPay).should('be.visible');
       }
       

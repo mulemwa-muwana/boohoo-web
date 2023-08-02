@@ -12,7 +12,7 @@ export default defineConfig({
     brand: 'warehousefashion.com',
     locale: 'UK',
     language: 'EN',
-    giftCertificate: "CMMGKPWWLWWCSFZW"
+    giftCertificate: 'CMMGKPWWLWWCSFZW'
   },
 
   viewportHeight: 1080,

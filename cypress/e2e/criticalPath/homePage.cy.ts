@@ -304,10 +304,11 @@ describe('Home Page', function () {
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
-          if(brand=='nastygal.com'&& locale == 'AU'){
+          if(locale == 'AU'){
             this.skip();
-          }
+          } else {
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
+            }
         } else if (brand == 'boohoo.com' && boohooLocales.includes(locale)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[language]);
         } else {

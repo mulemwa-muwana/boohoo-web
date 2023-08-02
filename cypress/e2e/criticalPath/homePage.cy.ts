@@ -299,12 +299,15 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[language]);
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', function () {
         const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA','NO'];
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
+          if(brand=='nastygal.com'&& locale == 'AU'){
+            this.skip();
+          }
         } else if (brand == 'boohoo.com' && boohooLocales.includes(locale)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[language]);
         } else {

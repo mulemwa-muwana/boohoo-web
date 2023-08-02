@@ -30,7 +30,8 @@ const selectors: SelectorBrandMap = {
     sizeGuideFit: 'div.l-static_page-guide_selectors > :nth-child(3) >.b-form_section-label',
     selectGender:'select#sizeGuideGender', 
     selectCategory: 'select#sizeGuideCategory',
-    selectFit: 'select#sizeGuideFit'
+    selectFit: 'select#sizeGuideFit',
+    countryBtn:'.b-country-select'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',

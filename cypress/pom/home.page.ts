@@ -447,7 +447,6 @@ class HomePage implements AbstractPage {
     }     
   };    
 
-
   assertions = {
     assertUserPanelTitle (name: string) {
       cy.get('.b-header_login-icon > .i-icon').click();
@@ -490,16 +489,17 @@ class HomePage implements AbstractPage {
     assertUserIsNotLoggedIn (msg: string) {
       cy.get('.b-miniaccount-title').should('contain.text', msg);
     },
-     // sizeGuide asserstions
-     assertSizeGuideGenderPresent() {
+
+    // SizeGuide asserstions
+    assertSizeGuideGenderPresent () {
       const sizeGuideGender = selectors[brand].sizeGuideGender;
       cy.get(sizeGuideGender).should('be.visible');
     },
-    assertSizeGuideCategoryPresent() {
+    assertSizeGuideCategoryPresent () {
       const sizeGuideCategory = selectors[brand].sizeGuideCategory;
       cy.get(sizeGuideCategory).should('be.visible');
     },
-    assertSizeGuideFitPresent() {
+    assertSizeGuideFitPresent () {
       const sizeGuideFit = selectors[brand].sizeGuideFit;
       cy.get(sizeGuideFit).should('be.visible');
     },

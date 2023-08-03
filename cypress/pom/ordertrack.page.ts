@@ -19,12 +19,12 @@ const selectors: SelectorBrandMap = {
     errorForm: '.b-form-message',
   },
   'burton.co.uk': {
-    trackOrderField: 'input#dwfrm_trackOrder_orderNumber',
-    submitButton: 'button.b-button.m-width_full',
+    trackOrderField: '#dwfrm_trackOrder_orderNumber',
+    submitButton: '[data-tau="track_order_submit"]',
     errorForm: '.b-form-message',
   },
   'wallis.co.uk': {
-    trackOrderField: '#dwfrm_ordertrack_orderNumber',
+    trackOrderField: '#dwfrm_trackOrder_orderNumber',
     submitButton: '[data-tau="track_order_submit"]',
     errorForm: '.b-form-message',
   },
@@ -86,7 +86,7 @@ class OrderTrackPage implements AbstractPage {
       if (isMobileDeviceUsed && brand == 'nastygal.com') {
         cy.get(trackOrderField).click({force:true}).type(orderNumber);
       } else {
-        cy.get(trackOrderField).type(orderNumber,{force: true});
+        cy.get(trackOrderField).type(orderNumber,{force:true});
       }       
     
       cy.get(submitButton).click({force: true});

@@ -111,7 +111,7 @@ describe('Home Page', function () {
 
   });
 
-  // FOOTER
+  // FOOTER 
   describe('Footer verification', () => {
     it('Verify success message is displayed after signing up - newsletter subscription footer', () => {
       const randomEmail = CommonActions.randomEmail();

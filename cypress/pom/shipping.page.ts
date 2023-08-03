@@ -858,8 +858,11 @@ class ShippingPage implements AbstractPage {
       cy.get(PUDOlocations).click();
     },
     enterManuallyAddressDetails () {
+      const enterManually = selectors[brand].enterManually;
       if (!isSiteGenesisBrand) {
-        const enterManually = selectors[brand].enterManually;
+        if (brand=='boohoo.com') {
+          cy.get('[data-event-click="handleManualEnterClick"]').eq(0).click();
+        }
         cy.get(enterManually).click({ force: true });
       }
     },
@@ -1009,7 +1012,7 @@ class ShippingPage implements AbstractPage {
       cy.get(addressNicknameField).type(addressNickname);
     },
     selectShippingMethod (shippingMethod: string) {
-      const shippingMethodName = selectors[brand].shippingMethodName;
+      const shippingMethodName = selectors[brand].shippingMethodName;    
       cy.get(shippingMethodName).each(() => {
         cy.contains(shippingMethod).click({ force: true });
       });
@@ -1066,7 +1069,7 @@ class ShippingPage implements AbstractPage {
 
       cy.wait(2000);
       cy.get(pudoSearchField).clear().type(`${postCode}{enter}`);
-      cy.wait(3000); 
+      cy.wait(6000); 
       cy.get(pudoFirstShop, {timeout:20000}).should('be.visible');
       cy.get(pudoFirstShop).eq(0).click({force:true});
       return cy.get(pudoSearchTitle).eq(0).invoke('text').then(text=>{
@@ -1099,15 +1102,15 @@ class ShippingPage implements AbstractPage {
       const coupon = selectors[brand].coupon;
       cy.get(coupon).should('be.visible');
     },
-    assertInvalidPromoError (){
+    assertInvalidPromoError () {
       const promoErrorAlert = selectors[brand].promoErrorAlert;
       const promoInvalidErrorMessage = assertionText.promoInvalidErrorMessage[language];
-      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false})
+      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false});
     },
-    assertEmptyPromoError(){
+    assertEmptyPromoError () {
       const promoErrorAlert = selectors[brand].promoErrorAlert;
       const promoEmptydErrorMessage = assertionText.promoEmptydErrorMessage[language];
-      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false})
+      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false});
     },
     assertSavedShippingAddressIsDispayed () {
       const addressName = selectors[brand].addressName;

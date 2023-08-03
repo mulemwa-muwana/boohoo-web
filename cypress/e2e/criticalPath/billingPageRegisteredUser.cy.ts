@@ -124,18 +124,18 @@ describe('Billing page functionality for registered user', function () {
   });
 
   it('Verify is correct validation added if code is invalid for registered user', function () {
-    if(brand != 'boohoo.com'){
+    if (brand != 'boohoo.com') {
       this.skip();
     }
-    billingPage.actions.addPromoCode("InvalidPromoCode")
-    billingPage.assertions.assertInvalidPromoError()
+    billingPage.actions.addPromoCode('InvalidPromoCode');
+    billingPage.assertions.assertInvalidPromoError();
   });
 
   it('Verify is correct validation added if code is empty for registered user', function () {
-    if(brand != 'boohoo.com'){
+    if (brand != 'boohoo.com') {
       this.skip();
     }
-    billingPage.actions.addNoPromoCode()
-    billingPage.assertions.assertEmptyPromoError()
+    billingPage.actions.addNoPromoCode();
+    billingPage.assertions.assertEmptyPromoError();
   });
 });

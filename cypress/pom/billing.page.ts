@@ -1085,18 +1085,18 @@ class BillingPage implements AbstractPage {
     },
     assertGiftCardEmptyError () {
       const errorMessage = selectors[brand].giftCardEmptyError;
-      const giftCardInvalidErrorMessage = assertionText.giftCardEmptydErrorMessage[language];;
+      const giftCardInvalidErrorMessage = assertionText.giftCardEmptydErrorMessage[language];
       cy.get(errorMessage).should('be.visible').should('contain.text',giftCardInvalidErrorMessage);
-      },
-    assertInvalidPromoError (){
+    },
+    assertInvalidPromoError () {
       const promoErrorAlert = selectors[brand].promoErrorAlert;
       const promoInvalidErrorMessage = assertionText.promoInvalidErrorMessage[language];
-      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false})
+      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false});
     },
-    assertEmptyPromoError(){
+    assertEmptyPromoError () {
       const promoErrorAlert = selectors[brand].promoErrorAlert;
       const promoEmptydErrorMessage = assertionText.promoEmptydErrorMessage[language];
-      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false})
+      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false});
     },
     assertNewShippingAddress (addressLine: string, city: string, postCode: string, country: string) {
       const shippingAddressSection = selectors[brand].shippingAddressSection;
@@ -1174,10 +1174,11 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodPayPal).should('be.visible');
     },
     assertPaymentMethodKlarnaIsDisplayed () {
-      if (isSiteGenesisBrand) {
+      if (isSiteGenesisBrand && locale == 'UK') {
         cy.get('label[for="is-KlarnaUK"]').should('be.visible');
-      }
-      if (!isSiteGenesisBrand && locale == 'AU') {
+      } else if (isSiteGenesisBrand && locale == 'AU') {
+        cy.get('label[for="is-KlarnaAU"]').should('be.visible');
+      } else if (!isSiteGenesisBrand && locale == 'AU') {
         cy.get('#payment-button-KlarnaAU').should('be.visible');
       } else if (!isSiteGenesisBrand && locale == 'IE') {
         cy.get('#payment-button-KlarnaIE').should('be.visible');
@@ -1190,9 +1191,12 @@ class BillingPage implements AbstractPage {
       
     assertPaymentMethodClearPayIsDisplayed () {
       const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
-      if (locale == 'AU' || locale == 'US') {
+      if (locale == 'US') {
         cy.get('#payment-button-AFTERPAY').should('be.visible');
-      } else if (locale == 'UK') {
+      }else if (locale == 'AU') {
+        cy.get('label[for="is-AFTERPAY"]').should('be.visible')
+      }
+       else if (locale == 'UK') {
         cy.get(paymentMethodClearPay).should('be.visible');
       }
       

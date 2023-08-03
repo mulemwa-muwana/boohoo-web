@@ -11,6 +11,7 @@ export default defineConfig({
     brand: 'burton.co.uk',
     locale: 'UK',
     language: 'EN',
+    giftCertificate: 'CWSVGCZOYHZSDMWL',
   },
 
   viewportHeight: 1080,

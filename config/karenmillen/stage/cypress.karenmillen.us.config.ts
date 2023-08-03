@@ -10,7 +10,8 @@ export default defineConfig({
     fullSku: 'BKK04926-105-18',
     brand: 'karenmillen.com',
     locale: 'UK',
-    language: 'EN'
+    language: 'EN',
+    giftCertificate: 'PSOWQAFAZGAMFFIS'
   },
 
   viewportHeight: 1080,

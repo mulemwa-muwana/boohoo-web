@@ -9,7 +9,7 @@ export default defineConfig({
     sku: 'BKK04926-1',
     fullSku: 'BKK04926-105-18',
     brand: 'karenmillen.com',
-    locale: 'UK',
+    locale: 'US',
     language: 'EN',
     giftCertificate: 'PSOWQAFAZGAMFFIS'
   },

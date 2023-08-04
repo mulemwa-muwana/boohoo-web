@@ -849,7 +849,7 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'Kundtjänst',
-    IL: '',
+    IL: 'שירות לקוחות',
     IT: '',
     ES: ''
   };
@@ -1679,6 +1679,49 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  customerServicePageTrackOrderButton: TranslationMap = {
+    EN: 'Track order',
+    NL: 'Volg Mijn Bestelling',
+    DE: 'Bestellung verfolgen',
+    FR: 'Suivre ma commande',
+    DK: 'Track order',
+    FI: 'Track order',
+    NO: 'Track order',
+    SE: 'Spåra min beställning',
+    IL: 'מעקב אחר ההזמנה שלי',
+    IT: 'Segui Il Mio Ordine',
+    ES: 'Seguir el estado de mi pedido'
+  };
+
+  customerServicePageReturnButton: TranslationMap = {
+    EN: 'Start a return',
+    NL: 'BEGIN EEN RETOURNERING',
+    DE: 'RÜCKSENDUNG STARTEN',
+    FR: 'Un Retour',
+    DK: 'Start a return',
+    FI: 'Start a return',
+    NO: 'Start a return',
+    SE: 'SKAPA RETUR',
+    IL: 'התחילו בתהליך החזרה',
+    IT: 'AVVIA PROCEDURA DI RESO',
+    ES: 'INICIAR UNA DEVOLUCIÓN'
+  };
+
+  customerServicePageVirtualAssistantButton: TranslationMap = {
+    EN: 'Virtual Assistant',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
 }
 
 export default new AssertionText();

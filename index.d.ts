@@ -58,6 +58,7 @@ declare type EnvironmentVariables = {
     locale: Locale;
     language: 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
     shippingMethod: string;
+    giftCertificate: string;
 }
     
 declare type TestArtefact = {
@@ -119,6 +120,7 @@ declare type AddressData = {
     country: string;
     countryCode: string;
     addressNickname: string;
+    what3Words: string;
     month: string;
 }
     

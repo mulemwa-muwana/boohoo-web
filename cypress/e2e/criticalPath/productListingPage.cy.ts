@@ -3,6 +3,7 @@ import HomePage from '../../pom/home.page';
 import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
 import { brand, language, locale } from 'cypress/support/e2e';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
 describe('Product Listing Page tests', function () {
 
@@ -133,7 +134,7 @@ describe('Product Listing Page tests', function () {
 
     it('Verify occasion refinement is applied', function () {
       const brandsExcludedOccasion: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk'];
-      if (brandsExcludedOccasion.includes(brand) || (brand == 'nastygal.com'&& locale =='IE')) {
+      if (brandsExcludedOccasion.includes(brand) || (brand == 'nastygal.com'&& (locale =='IE'|| locale =='AU'))) {
         this.skip();
       }
       plpPage.actions.setupChangeIntercept(/occasion/);
@@ -158,5 +159,11 @@ describe('Product Listing Page tests', function () {
       plpPage.click.quickAddtoCart();
       plpPage.assertions.assertMiniCartHasValue();
     });
+  });
+  it('Verify that user can choose 5,4,3 as view mode', function () {
+    if (isSiteGenesisBrand) {
+      this.skip();
+    }
+    plpPage.click.selectProductsView(plpPage);
   });
 });

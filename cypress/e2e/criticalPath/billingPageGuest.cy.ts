@@ -97,7 +97,7 @@ describe('Billing page functionality for guest user', function () {
     if (brand == 'boohooman.com') { // For boohooman there is no adding new billing address, all fields are open for edit
       this.skip();
     }
-    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(locale, 'newAddedPrimaryAddress');
     if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
@@ -105,14 +105,11 @@ describe('Billing page functionality for guest user', function () {
       cy.wait(2000);
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addressLine, localeAddress.city, localeAddress.country, localeAddress.postcode);
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addressLine, localeAddress.city, localeAddress.country,localeAddress.county, localeAddress.postcode);
     } else {
       BillingPage.click.uncheckShippingCheckbox();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
-      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addressLine, localeAddress.city, localeAddress.country, localeAddress.postcode);
-      if (locale == 'US' || locale == 'AU') {
-        shippingPage.actions.selectState(localeAddress.county);
-      }
+      BillingPage.actions.addBillingAddressGuestUser(localeAddress.addressLine, localeAddress.city, localeAddress.country, localeAddress.county,localeAddress.postcode);
     }
   });
   it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
@@ -126,4 +123,34 @@ describe('Billing page functionality for guest user', function () {
 
   });
 
+  it('Verify that user see error when try to add invalid giftCard', function () {
+    if (brand != 'boohoo.com') {
+      this.skip();
+    } 
+    BillingPage.actions.addGiftCard('WRONGGIFTCARDERR');
+    BillingPage.assertions.assertGiftCardError();
+  });
+  it('Verify is correct validation added if code is empty for registered user', function () {
+    if (brand != 'boohoo.com') {
+      this.skip();
+    }
+    BillingPage.actions.addGiftCard(' ');
+    BillingPage.assertions.assertGiftCardEmptyError();
+  });
+
+  it('Verify is correct validation added if code is invalid for guest user', function () {
+    if (brand != 'boohoo.com') {
+      this.skip();
+    }
+    BillingPage.actions.addPromoCode('InvalidPromoCode');
+    BillingPage.assertions.assertInvalidPromoError();
+  });
+
+  it('Verify is correct validation added if code is empty for guest user', function () {
+    if (brand != 'boohoo.com') {
+      this.skip();
+    }
+    BillingPage.actions.addNoPromoCode();
+    BillingPage.assertions.assertEmptyPromoError();
+  });
 });

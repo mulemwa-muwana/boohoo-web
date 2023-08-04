@@ -16,6 +16,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'London',
         addressNickname: 'UK1',
+        what3Words:'glue.rocks.output',
         month: 'May',
       },
       secondaryAddress: {
@@ -30,6 +31,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'South Yorkshire',
         addressNickname: 'UK2',
+        what3Words:'',
         month: 'May',
       },
       newAddedPrimaryAddress:{
@@ -44,6 +46,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'London',
         addressNickname: 'NewUK',
+        what3Words:'',
         month: 'May',
       }
     },
@@ -62,6 +65,7 @@ class Addresses {
         countryCode: 'US',
         county: 'Alabama',
         addressNickname: 'US1',
+        what3Words:'',
         month: 'May',
       },
       secondaryAddress:  {
@@ -76,6 +80,7 @@ class Addresses {
         countryCode: 'US',
         county: 'New York',
         addressNickname: 'US2',
+        what3Words:'',
         month: 'May',
       },
       newAddedPrimaryAddress:{
@@ -90,6 +95,7 @@ class Addresses {
         countryCode: 'US',
         county: 'Alabama',
         addressNickname: 'NewUS',
+        what3Words:'',
         month: 'May',
       }
     },
@@ -108,6 +114,7 @@ class Addresses {
         countryCode: 'IE',
         county: 'Dublin',
         addressNickname: 'IE1',
+        what3Words:'',
         month: 'May',
       },
       secondaryAddress:  {
@@ -122,6 +129,7 @@ class Addresses {
         countryCode: 'IE',
         county: 'Dublin',
         addressNickname: 'IE2',
+        what3Words:'',
         month: 'May',
       },
       newAddedPrimaryAddress:{
@@ -136,6 +144,7 @@ class Addresses {
         countryCode: 'IE',
         county: 'Dublin',
         addressNickname: 'IE3',
+        what3Words:'',
         month: 'May',
       }
     },
@@ -154,6 +163,7 @@ class Addresses {
         countryCode: 'DE',
         county: 'Berlin',
         addressNickname: 'DE1',
+        what3Words:'',
         month: 'Mai',
         
       },
@@ -169,6 +179,7 @@ class Addresses {
         countryCode: 'DE',
         county: 'Leverkusen',
         addressNickname: 'DE2',
+        what3Words:'',
         month: 'Mai',
       },
       newAddedPrimaryAddress:{
@@ -183,6 +194,7 @@ class Addresses {
         countryCode: 'DE',
         county: 'Berlin',
         addressNickname: 'DENew',
+        what3Words:'',
         month: 'Mai',
       }
     },
@@ -201,6 +213,7 @@ class Addresses {
         countryCode: 'FR',
         county: '',
         addressNickname: 'FR1',
+        what3Words:'',
         month: 'Mai',
       },
       secondaryAddress:  {
@@ -215,6 +228,7 @@ class Addresses {
         countryCode: 'FR',
         county: 'Paris',
         addressNickname: 'FR2',
+        what3Words:'',
         month: 'Mai',
       },
       newAddedPrimaryAddress:{
@@ -229,6 +243,7 @@ class Addresses {
         countryCode: 'FR',
         county: 'Paris',
         addressNickname: 'FRNew',
+        what3Words:'',
         month: 'Mai',
       }
     },
@@ -247,6 +262,7 @@ class Addresses {
         countryCode: 'IT',
         county: '',
         addressNickname: 'IT1',
+        what3Words:'',
         month: 'Maggio',
       },
       secondaryAddress:  {
@@ -261,6 +277,7 @@ class Addresses {
         countryCode: 'IT',
         county: 'RM',
         addressNickname: 'IT2',
+        what3Words:'',
         month: 'Maggio',
       },
       newAddedPrimaryAddress:{
@@ -275,6 +292,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'London',
         addressNickname: 'UKNew',
+        what3Words:'',
         month: 'Maggio',
       }
     },
@@ -293,6 +311,7 @@ class Addresses {
         countryCode: 'ES',
         county: '',
         addressNickname: 'ES1',
+        what3Words:'',
         month: 'Mayo',
       },
       secondaryAddress:  {
@@ -307,6 +326,7 @@ class Addresses {
         countryCode: 'ES',
         county: 'Barcelona',
         addressNickname: 'ES2',
+        what3Words:'',
         month: 'Mayo',
       },
       newAddedPrimaryAddress:{
@@ -321,6 +341,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'London',
         addressNickname: 'UKNew',
+        what3Words:'',
         month: 'Mayo',
       }
     },
@@ -339,6 +360,7 @@ class Addresses {
         countryCode: 'CA',
         county: '',
         addressNickname: 'CA1',
+        what3Words:'',
         month: 'May',
       },
       secondaryAddress:  {
@@ -353,6 +375,7 @@ class Addresses {
         countryCode: 'CA',
         county: 'Quebec',
         addressNickname: 'CA2',
+        what3Words:'',
         month: 'May',
       },
       newAddedPrimaryAddress:{
@@ -367,6 +390,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'London',
         addressNickname: 'UKNew',
+        what3Words:'',
         month: 'May',
       }
     },
@@ -380,11 +404,12 @@ class Addresses {
         addressLine: 'HaMaccabi 2',
         postcode: '6329302',
         addressName: 'PrimaryAddress',
-        country: 'United Kingdom',
+        country: 'ישראל',
         city: 'Tel Aviv',
         countryCode: 'IL',
         county: 'Israel',
         addressNickname: 'IL1',
+        what3Words:'',
         month: 'מאי',
       },
       secondaryAddress:  {
@@ -399,6 +424,7 @@ class Addresses {
         countryCode: 'IL',
         county: 'Jerusalem',
         addressNickname: 'IL2',
+        what3Words:'',
         month: 'מאי',
       },
       newAddedPrimaryAddress:{
@@ -413,6 +439,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'London',
         addressNickname: 'UKNew',
+        what3Words:'',
         month: 'מאי',
       }
     },
@@ -431,6 +458,7 @@ class Addresses {
         countryCode: 'FI',
         county: '',
         addressNickname: 'FI1',
+        what3Words:'',
         month: 'Toukokuu',
       },
       secondaryAddress:  {
@@ -445,6 +473,7 @@ class Addresses {
         countryCode: 'FI',
         county: '',
         addressNickname: 'FI2',
+        what3Words:'',
         month: 'Toukokuu',
       },
       newAddedPrimaryAddress:{
@@ -459,6 +488,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'London',
         addressNickname: 'UKNew',
+        what3Words:'',
         month: 'Toukokuu',
       }
     },
@@ -477,6 +507,7 @@ class Addresses {
         countryCode: 'NL',
         county: '',
         addressNickname: 'NL1',
+        what3Words:'',
         month: 'Mei',
       },
       secondaryAddress:  {
@@ -491,6 +522,7 @@ class Addresses {
         countryCode: 'NL',
         county: '',
         addressNickname: 'NL2',
+        what3Words:'',
         month: 'Mei',
       },
       newAddedPrimaryAddress:{
@@ -505,6 +537,7 @@ class Addresses {
         countryCode: 'NL',
         county: '',
         addressNickname: 'NL3',
+        what3Words:'',
         month: 'Mei',
       }
     },
@@ -523,6 +556,7 @@ class Addresses {
         countryCode: 'SE',
         county: '',
         addressNickname: 'SE1',
+        what3Words:'',
         month: 'Maj',
       },
       secondaryAddress:  {
@@ -537,6 +571,7 @@ class Addresses {
         countryCode: 'SE',
         county: '',
         addressNickname: 'SE2',
+        what3Words:'',
         month: 'Maj',
       },
       newAddedPrimaryAddress:{
@@ -551,6 +586,7 @@ class Addresses {
         countryCode: 'SE',
         county: '',
         addressNickname: 'SE3',
+        what3Words:'',
         month: 'Maj',
       }
     },
@@ -569,6 +605,7 @@ class Addresses {
         countryCode: 'NO',
         county: '',
         addressNickname: 'NO1',
+        what3Words:'',
         month: 'Mai',
       },
       secondaryAddress:  {
@@ -583,6 +620,7 @@ class Addresses {
         countryCode: 'NO',
         county: '',
         addressNickname: 'NO2',
+        what3Words:'',
         month: 'Mai',
       },
       newAddedPrimaryAddress:{
@@ -597,6 +635,7 @@ class Addresses {
         countryCode: 'Oslo',
         county: 'NO',
         addressNickname: 'NO3',
+        what3Words:'',
         month: 'Mai',
       }
     },
@@ -615,6 +654,7 @@ class Addresses {
         countryCode: 'DK',
         county: '',
         addressNickname: 'DK1',
+        what3Words:'',
         month: 'Maj',
       },
       secondaryAddress:  {
@@ -629,6 +669,7 @@ class Addresses {
         countryCode: 'DK',
         county: '',
         addressNickname: 'DK2',
+        what3Words:'',
         month: 'Maj',
       },
       newAddedPrimaryAddress:{
@@ -643,6 +684,7 @@ class Addresses {
         countryCode: 'GB',
         county: 'London',
         addressNickname: 'UKNew',
+        what3Words:'',
         month: 'Maj',
       }
     },
@@ -661,7 +703,8 @@ class Addresses {
         countryCode: 'AU',
         county: 'ACT',
         addressNickname: 'AU1',
-        month: '',
+        what3Words:'',
+        month: 'May',
         
       },
       secondaryAddress:  {
@@ -676,21 +719,23 @@ class Addresses {
         countryCode: 'AU',
         county: 'Oakleigh South',
         addressNickname: 'AU2',
-        month: '',
+        what3Words:'',
+        month: 'May',
       },
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
         lastName: 'Test',
-        phone: '08082580300',
-        addressLine: '85 Piccadilly',
-        postcode: 'W1J 7NB',
+        phone: '297700270',
+        addressLine: '26 Edward Bennett Drive',
+        postcode: '3805',
         addressName: 'PrimaryAddress',
-        country: 'United Kingdom',
-        city: 'London',
-        countryCode: 'GB',
-        county: 'London',
-        addressNickname: 'UKNew',
-        month: '',
+        country: ' Australia',
+        city: 'Berala',
+        countryCode: 'AU',
+        county: 'New South Wales',
+        addressNickname: 'AU3',
+        what3Words:'',
+        month: 'May',
       }
     },
 
@@ -703,17 +748,18 @@ class Addresses {
         addressLine: '123 Pinehaven Road',
         postcode: '5019',
         addressName: 'PrimaryAddress',
-        country: '',
+        country: 'NZ',
         city: 'Pinehaven',
         countryCode: 'NZ',
         county: 'Upper Hutt',
         addressNickname: 'NZ1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '34351201',
+        phone: '6433456789',
         addressLine: '12 Central Road',
         postcode: '1021',
         addressName: 'SecondaryAddress',
@@ -722,6 +768,7 @@ class Addresses {
         countryCode: 'NZ',
         county: 'Kingsland',
         addressNickname: 'NZ2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -736,6 +783,7 @@ class Addresses {
         countryCode: 'NZ',
         county: 'Kingsland',
         addressNickname: 'NZ3',
+        what3Words:'',
         month: '',
       }
     },
@@ -754,6 +802,7 @@ class Addresses {
         countryCode: 'AT',
         county: '',
         addressNickname: 'AT1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress:  {
@@ -768,6 +817,7 @@ class Addresses {
         countryCode: 'AT',
         county: '',
         addressNickname: 'AT2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -782,6 +832,7 @@ class Addresses {
         countryCode: 'AT',
         county: '',
         addressNickname: 'NewAT1',
+        what3Words:'',
         month: '',
       }
     },
@@ -800,6 +851,7 @@ class Addresses {
         countryCode: 'SA',
         county: 'Eastern Province',
         addressNickname: 'SA1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress: {
@@ -814,6 +866,7 @@ class Addresses {
         countryCode: 'SA',
         county: 'Riyadh Province',
         addressNickname: 'SA2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -828,6 +881,7 @@ class Addresses {
         countryCode: 'SA',
         county: 'Riyadh Province',
         addressNickname: 'SA3',
+        what3Words:'',
         month: '',
       }
     },
@@ -846,6 +900,7 @@ class Addresses {
         countryCode: 'AE',
         county: 'Ajman',
         addressNickname: 'AE1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress: {
@@ -860,6 +915,7 @@ class Addresses {
         countryCode: 'AE',
         county: 'Riyadh Province',
         addressNickname: 'AE2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -874,6 +930,7 @@ class Addresses {
         countryCode: 'SA',
         county: 'Riyadh Province',
         addressNickname: 'AE3',
+        what3Words:'',
         month: '',
       }
     },
@@ -892,6 +949,7 @@ class Addresses {
         countryCode: 'BH',
         county: 'Southern',
         addressNickname: 'BH1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress: {
@@ -906,6 +964,7 @@ class Addresses {
         countryCode: 'BH',
         county: 'Riyadh Province',
         addressNickname: 'BH2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -920,6 +979,7 @@ class Addresses {
         countryCode: 'BA',
         county: 'Riyadh Province',
         addressNickname: 'BA3',
+        what3Words:'',
         month: '',
       }
     },
@@ -938,6 +998,7 @@ class Addresses {
         countryCode: 'JO',
         county: 'Mafraq Governorate',
         addressNickname: 'JO1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress: {
@@ -952,6 +1013,7 @@ class Addresses {
         countryCode: 'JO',
         county: 'Riyadh Province',
         addressNickname: 'JO2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -966,6 +1028,7 @@ class Addresses {
         countryCode: 'JO',
         county: 'Riyadh Province',
         addressNickname: 'JO3',
+        what3Words:'',
         month: '',
       }
     },
@@ -984,6 +1047,7 @@ class Addresses {
         countryCode: 'KW',
         county: 'Hawalli Governorate',
         addressNickname: 'KW1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress: {
@@ -998,6 +1062,7 @@ class Addresses {
         countryCode: 'SA',
         county: 'Riyadh Province',
         addressNickname: 'KW2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -1012,6 +1077,7 @@ class Addresses {
         countryCode: 'KW',
         county: 'Riyadh Province',
         addressNickname: 'KW3',
+        what3Words:'',
         month: '',
       }
     },
@@ -1030,6 +1096,7 @@ class Addresses {
         countryCode: 'OM',
         county: 'Dhofar Governorate',
         addressNickname: 'OM1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress: {
@@ -1044,6 +1111,7 @@ class Addresses {
         countryCode: 'OM',
         county: 'Riyadh Province',
         addressNickname: 'OM2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -1058,6 +1126,7 @@ class Addresses {
         countryCode: 'OM',
         county: 'Riyadh Province',
         addressNickname: 'OM3',
+        what3Words:'',
         month: '',
       }
     },
@@ -1076,6 +1145,7 @@ class Addresses {
         countryCode: 'SA',
         county: 'Al Khor',
         addressNickname: 'QA1',
+        what3Words:'',
         month: '',
       },
       secondaryAddress: {
@@ -1090,6 +1160,7 @@ class Addresses {
         countryCode: 'SA',
         county: 'Riyadh Province',
         addressNickname: 'QA2',
+        what3Words:'',
         month: '',
       },
       newAddedPrimaryAddress:{
@@ -1104,6 +1175,7 @@ class Addresses {
         countryCode: 'SA',
         county: 'Riyadh Province',
         addressNickname: 'QA3',
+        what3Words:'',
         month: '',
       }
     }

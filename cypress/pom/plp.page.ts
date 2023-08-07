@@ -33,13 +33,13 @@ const selectors: SelectorBrandMap = {
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
-    productImageIsDisplayed: '.b-product_tile-image',
+    productImageIsDisplayed: '.b-product_tile-image img',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link',
-    quickView:'.b-product_tile-quick_view',
+    quickView: '.b-product_tile-quick_view',
     quickViewSize: 'button[aria-disabled="false"] .b-variation_swatch-value_text',
-    quickAddtoCart:'.b-button.b-product_addtocard.m-width_full',
-    miniCartQty:'.b-minicart_icon-qty'
+    quickAddtoCart: '.b-button.b-product_addtocard.m-width_full',
+    miniCartQty: '.b-minicart_icon-qty'
   },
   'nastygal.com': {
     categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
@@ -65,10 +65,10 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.b-header_wishlist-count', //  Does not exist for NG 
     productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
-    quickView:'.b-product_tile-quick_view',
+    quickView: '.b-product_tile-quick_view',
     quickViewSize: '.b-product_tile_swatches-swatch.m-quickbuy.m-size:not(.m-disabled)',
-    quickAddtoCart:'.b-quickbuy-addtocart_availability',
-    miniCartQty:'.b-minicart_icon-qty'
+    quickAddtoCart: '.b-quickbuy-addtocart_availability',
+    miniCartQty: '.b-minicart_icon-qty'
   },
   'dorothyperkins.com': {
     styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
@@ -136,7 +136,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
     loadMoreProducts: 'div.b-load_more > a',
-    loadMoreProductsMobile:'.b-load_more-button',
+    loadMoreProductsMobile: '.b-load_more-button',
     numberOfItemsTextIsVisible: 'div.b-load_progress > span',
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
@@ -175,10 +175,10 @@ const selectors: SelectorBrandMap = {
     productNameIsDisplayed: '.product-tile-name > .name-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
     promoTitle: 'promo',
-    quickView:'a#quickviewbutton',
+    quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
-    quickAddtoCart:'button#add-to-cart',
-    miniCartQty:'.js-minicart-quantity '
+    quickAddtoCart: 'button#add-to-cart',
+    miniCartQty: '.js-minicart-quantity '
   },
   'karenmillen.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -208,10 +208,10 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
-    quickView:'a#quickviewbutton',
+    quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
-    quickAddtoCart:'button#add-to-cart',
-    miniCartQty:'.mini-cart-wrapper .minicart-has-products'
+    quickAddtoCart: 'button#add-to-cart',
+    miniCartQty: '.mini-cart-wrapper .minicart-has-products'
   },
   'coastfashion.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -262,7 +262,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
     loadMoreProducts: '.search-result-options [title="Next"]',
-    loadMoreProductsMobile:'.is-mobile.m-pagination-wrapper > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link > .pagination-item-link-text',
+    loadMoreProductsMobile: '.is-mobile.m-pagination-wrapper > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link > .pagination-item-link-text',
     numberOfPagesTextIsVisible: '.search-result-options select[class*="pagination-select"]',
     productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
     newProductPriceIsDispayed: '.product-pricing .product-sales-price',
@@ -271,10 +271,10 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
-    quickView:'a#quickviewbutton',
+    quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
-    quickAddtoCart:'button#add-to-cart',
-    miniCartQty:'.js-minicart-quantity '
+    quickAddtoCart: 'button#add-to-cart',
+    miniCartQty: '.js-minicart-quantity '
   },
   'oasis-stores.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -333,10 +333,10 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
-    quickView:'a#quickviewbutton',
+    quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
-    quickAddtoCart:'button#add-to-cart',
-    miniCartQty:'.mini-cart-wrapper .minicart-has-products'
+    quickAddtoCart: 'button#add-to-cart',
+    miniCartQty: '.mini-cart-wrapper .minicart-has-products'
 
   },
   'boohoomena.com': {
@@ -349,7 +349,7 @@ const selectors: SelectorBrandMap = {
     priceVariant: '',
     selectRefinementVariantCategory: '.js-refinement-category.refinement-dropdown',
     selectRefinementVariantStyle: 'div.js-refinement-style.refinement-dropdown',
-    selectRefinementVariantSize:  'div.js-refinement-sizeRefinement.refinement-dropdown',
+    selectRefinementVariantSize: 'div.js-refinement-sizeRefinement.refinement-dropdown',
     selectRefinementVariantColor: 'div.js-refinement-color.refinement-dropdown',
     selectRefinementVariantPrice: '.js-refinement-price > .clearfix',
     selectRefinementVariantShopByFit: 'div.js-refinement-classification.refinement-dropdown',
@@ -365,10 +365,10 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.product-tile-name > .name-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
-    quickView:'a#quickviewbutton',
+    quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
-    quickAddtoCart:'button#add-to-cart',
-    miniCartQty:'.mini-cart-wrapper .minicart-has-products'
+    quickAddtoCart: 'button#add-to-cart',
+    miniCartQty: '.mini-cart-wrapper .minicart-has-products'
   }
 };
 
@@ -548,9 +548,8 @@ class PlpPage implements AbstractPage {
           }
           cy.wait(10000);
         }
-      } 
+      }
       );
-      
     },
 
     // Product details (image, name, price, wishlist, quickview)
@@ -565,8 +564,22 @@ class PlpPage implements AbstractPage {
         if ($body.find(plpProduct).length) {
           cy.get(plpProduct).eq(0).click({ force: true });
         }
-      }
-      );     
+      });
+    },
+    selectProductsView (pagePlp: any) {
+      let mobileViewMode = 1;
+      let webviewMode = 5;
+      cy.get('.b-view_mode button:visible').each((ele, index) => {
+        cy.wait(3000);
+        cy.wrap(ele).click({ force: true });
+        if (isMobileDeviceUsed) {
+          pagePlp.assertions.assertItemCountInView(mobileViewMode.toString());
+          mobileViewMode++;
+        } else {
+          pagePlp.assertions.assertItemCountInView(webviewMode.toString());
+          webviewMode--;
+        }
+      });
     },
     quickAddtoCart () {
       const productHover = selectors[variables.brand].productImageIsDisplayed;
@@ -574,18 +587,18 @@ class PlpPage implements AbstractPage {
       const quickViewButton: any = selectors[variables.brand].quickView;
       const quickViewSize: any = selectors[variables.brand].quickViewSize;
       const addToCart: any = selectors[variables.brand].quickAddtoCart;
-      cy.get('@hoverOverProduct').scrollIntoView().trigger('mouseover',{force: true}).then(() => {
+      cy.get('@hoverOverProduct').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
         if (isSiteGenesisBrand) {
-          cy.get(quickViewButton).eq(0).invoke('css', 'display','inline').as('quickViewSiteGenesis');
-          cy.get('@hoverOverProduct').click({force:true});
+          cy.get(quickViewButton).eq(0).invoke('css', 'display', 'inline').as('quickViewSiteGenesis');
+          cy.get('@hoverOverProduct').click({ force: true });
         } else {
-          cy.get(quickViewButton).eq(0).invoke('css','opacity',1).should('be.visible').as('quickViewBLP')
+          cy.get(quickViewButton).eq(0).invoke('css','opacity',1).should('be.visible').as('quickViewBLP');
           cy.get('@quickViewBLP').click({force:true});
         }
         cy.wait(5000);
         cy.get(quickViewSize).eq(0).click();
         cy.wait(5000);
-        cy.get(addToCart).click({force: true});
+        cy.get(addToCart).click({ force: true });
         cy.wait(5000);
       });
     }
@@ -657,16 +670,16 @@ class PlpPage implements AbstractPage {
       const productHover = selectors[variables.brand].productImageIsDisplayed;
       cy.get(productHover).eq(0).as('hoverOverProduct');
       const quickViewButton: any = selectors[variables.brand].quickView;
-      cy.get('@hoverOverProduct').scrollIntoView().trigger('mouseover',{force: true}).then(() => {
+      cy.get('@hoverOverProduct').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
         if (isSiteGenesisBrand) {
-          cy.get(quickViewButton).eq(0).invoke('css', 'display','inline').then(($buttonText) =>{
+          cy.get(quickViewButton).eq(0).invoke('css', 'display', 'inline').then(($buttonText) => {
             const button: any = $buttonText;
             const buttonText = button.text();
             cy.wait(1000);
             expect(buttonText).to.be.oneOf([quickViewButtonText, quickBuyButtonText]);
           });
         } else {
-          cy.get(quickViewButton).eq(0).invoke('css','opacity',1).should('be.visible').then($buttonText=>{
+          cy.get(quickViewButton).eq(0).invoke('css', 'opacity', 1).should('be.visible').then($buttonText => {
             const button: any = $buttonText;
             const buttonText = button.text().trim();
             expect(buttonText).to.be.oneOf([quickViewButtonText, quickBuyButtonText]);
@@ -697,10 +710,10 @@ class PlpPage implements AbstractPage {
       }
     },
     assertProductVariantIsApplied (typeOfPrefn: string, productVariations: string) {
-      cy.location('search', {timeout: 60000})
+      cy.location('search', { timeout: 60000 })
         .should('contains', '?prefn1=' + typeOfPrefn + '&prefv1=')
         .then((s) => new URLSearchParams(s))
-        .invoke('get', 'prefv1', {timeout: 60000})
+        .invoke('get', 'prefv1', { timeout: 60000 })
         .should('contains', productVariations);
     },
     assertProductSizeIsDisplayedOnPLP () {
@@ -710,24 +723,25 @@ class PlpPage implements AbstractPage {
         cy.wait(8000); // It takes sometime to display checkbox as checked
         cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]').invoke('attr', 'aria-label').as('selectedSize');
       }
-      cy.location('search', {timeout: 60000})
+      cy.location('search', { timeout: 60000 })
         .should('contains', '?prefn1=sizeRefinement&prefv1=')
         .then((s) => new URLSearchParams(s))
-        .invoke('get', 'prefv1', {timeout: 60000}).then( function (size) {
+        .invoke('get', 'prefv1', { timeout: 60000 }).then(function (size) {
           cy.wrap(size).should('eq', this.selectedSize);
         });
     },
     assertProductPriceIsDisplayedOnPLP () {
-      cy.location('search', {timeout: 60000})
+      cy.location('search', { timeout: 60000 })
         .should('contains', 'pmax')
         .should('contains', 'pmin');
     },
-
+    assertItemCountInView (itemCount: string) {
+      cy.get('.l-plp_grid').should('have.attr', 'data-col-count').and('deep.equal', itemCount);
+    },
     assertItemIsAddedToWishlistColorChange () {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
     }
-
   };
 }
 

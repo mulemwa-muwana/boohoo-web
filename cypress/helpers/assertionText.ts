@@ -1652,6 +1652,48 @@ class AssertionText {
     ES: 'comprar-por-ajuste'
   };
 
+  Womens: TranslationMap = {
+    EN: 'Womens',
+    NL: 'Dames',
+    DE: 'Damen',
+    FR: 'Femmes',
+    DK: 'Womens',
+    FI: 'Womens',
+    NO: 'Womens',
+    SE: 'DAM',
+    IL: '',
+    IT: 'DONNA',
+    ES: 'Mujar'
+  };
+
+  trousers: TranslationMap = {
+    EN: 'trousers',
+    NL: 'Broeken',
+    DE: 'Hosen',
+    FR: 'Pantalons',
+    DK: 'trousers',
+    FI: 'trousers',
+    NO: 'trousers',
+    SE: 'Byxor',
+    IL: '',
+    IT: 'Pantaloni',
+    ES: 'Pantalones'
+  };
+
+  regular: TranslationMap = {
+    EN: 'regular',
+    NL: 'Standaard',
+    DE: 'Standard',
+    FR: 'Collection principale',
+    DK: 'regular',
+    FI: 'regular',
+    NO: 'regular',
+    SE: 'standard',
+    IL: '',
+    IT: 'Regular Fit',
+    ES: 'Regular'
+  };
+
   quickView: TranslationMap = {
     EN: 'Quick View',
     NL: 'Pop Up View',
@@ -1678,6 +1720,90 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: ''
+  };
+
+  giftCard: TranslationMap = {
+    EN: 'Gift',
+    NL: 'Cadeaukaart',
+    DE: 'Rabatt',
+    FR: 'Carte cadeau',
+    DK: 'Gift card',
+    FI: 'Gift card',
+    NO: 'Gift card',
+    SE: 'Presentkort',
+    IL: '',
+    IT: 'Buono regalo',
+    ES: 'Tarjeta regalo'
+  };
+
+  giftCardBLP: TranslationMap = {
+    EN: 'Gift Card',
+    NL: 'Cadeaukaart',
+    DE: 'Rabatt',
+    FR: 'Carte cadeau',
+    DK: 'Gift card',
+    FI: 'Gift card',
+    NO: 'Gift card',
+    SE: 'Presentkort',
+    IL: 'כרטיס מתנה',
+    IT: 'Buono regalo',
+    ES: 'Tarjeta regalo'
+  };
+
+  giftCardInvalidErrorMessage: TranslationMap = {
+    EN: 'Gift certificate with specific code does not exist!',
+    NL: 'De opgegeven promocode bestaat niet.',
+    DE: 'Geschenkgutschein mit spezifischem Code existiert nicht!',
+    FR: 'La carte-cadeau associée à ce code spécifique nexiste pas!',
+    DK: 'Gift certificate with specific code does not exist!',
+    FI: 'Gift certificate with specific code does not exist!',
+    NO: 'Gift certificate with specific code does not exist!',
+    SE: 'Det finns inget presentkort med den koden.',
+    IL: 'שובר מתנה עם הקוד הספציפי אינו קיים!',
+    IT: ' Non esiste un buono regalo con il codice sconto inserito.',
+    ES: 'No existe ningún cupón de regalo con este código específico.'
+  };
+
+  giftCardEmptydErrorMessage: TranslationMap = {
+    EN: 'Please enter a gift voucher code.',
+    NL: 'Voer a.u.b. een cadeaukaartcode in.',
+    DE: 'Bitte gebe einen Gutscheincode ein.',
+    FR: 'Saisir un code de chèque cadeau.',
+    DK: 'Please enter a gift voucher code.',
+    FI: 'Please enter a gift voucher code.',
+    NO: 'Please enter a gift voucher code.',
+    SE: 'Fyll i koden till presentkortet.',
+    IL: 'אנא הזינו קוד שובר מתנה.',
+    IT: 'Inserisci il codice di un Buono Regalo.',
+    ES: 'Introduce el código del cupón de regalo.'
+  };
+
+  promoInvalidErrorMessage: TranslationMap = {
+    EN: 'Promo code is not recognised. Please try another.',
+    NL: 'De opgegeven promocode is niet bij ons bekend. Probeer een andere code.',
+    DE: 'Promo-Code wird nicht erkannt. Bitte versuche einen anderen.',
+    FR: 'Le code promo nest pas reconnu. Veuillez essayer à nouveau.',
+    DK: 'Promo code is not recognised. Please try another.',
+    FI: 'Promo code is not recognised. Please try another.',
+    NO: 'Promo code is not recognised. Please try another.',
+    SE: 'Ogiltig rabattkod. Försök igen eller använd en annan kod.',
+    IL: 'פג תוקפו של קוד המבצע שהוזן או שהקוד לא זוהה. יש לבדוק את האיות ולנסות שוב.',
+    IT: 'Il Codice promozionale inserito è scaduto o non è stato riconosciuto, controlla il codice e riprova.',
+    ES: 'El código de promoción introducido ha caducado o no se ha reconocido. Por favor, comprueba que es correcto e inténtalo de nuevo.'
+  };
+
+  promoEmptydErrorMessage: TranslationMap = {
+    EN: 'No promo code entered',
+    NL: 'No promo code entered', 
+    DE: 'No promo code entered',
+    FR: 'Aucun code promo ajouté',
+    DK: 'No promo code entered',
+    FI: 'No promo code entered',
+    NO: 'No promo code entered',
+    SE: 'Fyll i din rabattkod',
+    IL: 'No promo code entered',
+    IT: 'No promo code entered',
+    ES: 'No promo code entered'
   };
 }
 

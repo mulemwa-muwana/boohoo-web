@@ -84,7 +84,7 @@ class Navigate {
         shippingPage.click.addAddressManually();
         shippingPage.actions.adressLine1(primaryAddress.addressLine);
         shippingPage.actions.cityField(primaryAddress.city);
-        if (locale == 'US' || locale == 'AU') {
+        if (locale == 'US' || locale == 'AU'|| locale == 'IE') {
           shippingPage.actions.selectState(primaryAddress.county);
         }
         shippingPage.actions.postcodeField(primaryAddress.postcode);
@@ -94,12 +94,13 @@ class Navigate {
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
           if (brand != 'boohooman.com') {
             shippingPage.actions.confirmEmailField(credentials.guest);
-          } if ((brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'warehousefashion.com') && locale == 'EU') {
+          } if (isSiteGenesisBrand && (locale == 'EU'||locale == 'IE'||locale == 'AU'||locale == 'US')) {
             shippingPage.actions.emptyEmailField();
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
           }
           shippingPage.click.proceedToBilling();
+          shippingPage.click.proceedToBillingVerification();
         } else {
           shippingPage.click.proceedToBilling();
         }

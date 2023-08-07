@@ -11,6 +11,7 @@ export default defineConfig({
     brand: 'nastygal.com',
     locale: 'FR',
     language: 'FR',
+    giftCertificate: '',
   },
 
   viewportHeight: 1080,

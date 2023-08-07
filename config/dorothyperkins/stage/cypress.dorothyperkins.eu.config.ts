@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import plugins from '../../../cypress/plugins';
+import { giftCertificate } from '../../../cypress/support/e2e';
 
 export default defineConfig({
   projectId: 'i6d3n8',
@@ -11,6 +12,7 @@ export default defineConfig({
     brand: 'dorothyperkins.com',
     locale: 'EU',
     language: 'EN',
+    giftCertificate: 'YWMZZIHRJOQKJQMG'
   },
 
   viewportHeight: 1080,

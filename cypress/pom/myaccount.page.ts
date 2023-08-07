@@ -15,7 +15,7 @@ const selectors: SelectorBrandMap = {
     paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
     viewOrderBtn: 'a[data-tau="account_viewOrder"]:eq(1)',
     viewOrderBtnMobile:'.b-account_dashboard > .b-card > .b-card-body > .b-order_item > .b-order_item-buttons',
-    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    socialAccounts: 'a[data-tau="navigation_paymentDetails"]',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',

@@ -84,4 +84,12 @@ describe('Account page', function () {
     MyAccountPage.assertions.assertCardNotPresent(Cards.visa.end);
   });
 
+  it.only('TC06 Verify that Social Accounts section can be opened in My Account page', function () {
+    MyAccountPage.click.socialAccountsLink();
+  });
+
+  it('TC07 Verify that user can link to Facebook account', function () {
+
+  });
+
 });

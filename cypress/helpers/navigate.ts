@@ -128,7 +128,7 @@ class Navigate {
         shippingPage.actions.addressLine2Clear();
       }
       shippingPage.actions.cityField(primaryAddress.city);
-      if (locale == 'US' || locale == 'AU') {
+      if (locale == 'US' || locale == 'AU'||locale == 'IE') {
         shippingPage.actions.selectState(primaryAddress.county);
       }
       if (brand == 'boohoomena.com') {

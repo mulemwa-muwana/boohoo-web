@@ -598,7 +598,7 @@ class PlpPage implements AbstractPage {
         cy.wait(5000);
         cy.get(quickViewSize).eq(0).click();
         cy.wait(5000);
-        cy.get(addToCart).click({ force: true });
+        cy.get(addToCart).click({ multiple: true });
         cy.wait(5000);
       });
     }

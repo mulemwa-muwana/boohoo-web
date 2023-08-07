@@ -1193,10 +1193,9 @@ class BillingPage implements AbstractPage {
       const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
       if (locale == 'US') {
         cy.get('#payment-button-AFTERPAY').should('be.visible');
-      }else if (locale == 'AU') {
-        cy.get('label[for="is-AFTERPAY"]').should('be.visible')
-      }
-       else if (locale == 'UK') {
+      } else if (locale == 'AU') {
+        cy.get('label[for="is-AFTERPAY"]').should('be.visible');
+      } else if (locale == 'UK') {
         cy.get(paymentMethodClearPay).should('be.visible');
       }
       

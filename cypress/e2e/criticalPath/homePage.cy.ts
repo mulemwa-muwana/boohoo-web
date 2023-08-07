@@ -304,11 +304,11 @@ describe('Home Page', function () {
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
-          if(locale == 'AU'){
+          if (locale == 'AU') {
             this.skip();
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
-            }
+          }
         } else if (brand == 'boohoo.com' && boohooLocales.includes(locale)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[language]);
         } else {
@@ -580,13 +580,14 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com'];
-        const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];
         
         if (brand=='nastygal.com' && locale=='IE') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2022');
+        } if (brand=='karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated July 2023');
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
-        } else if ((brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(brand)) {
+        } else if ((brand == 'boohoo.com' && australianLocales)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
         } else if (brand == 'boohooman.com' && locale != 'FR') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);

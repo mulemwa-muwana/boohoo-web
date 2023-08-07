@@ -124,35 +124,33 @@ describe('Billing page functionality for guest user', function () {
   });
 
   it('Verify that user see error when try to add invalid giftCard', function () {
-    if (brand == 'boohoo.com') {
-      BillingPage.actions.addGiftCard('WRONGGIFTCARDERR');
-      BillingPage.assertions.assertGiftCardError();
-    } else {
-      this.skip()
-    }
+    if (brand != 'boohoo.com') {
+      this.skip();
+    } 
+    BillingPage.actions.addGiftCard('WRONGGIFTCARDERR');
+    BillingPage.assertions.assertGiftCardError();
   });
   it('Verify is correct validation added if code is empty for registered user', function () {
-    if (brand == 'boohoo.com') {
-      BillingPage.actions.addGiftCard(' ');
-      BillingPage.assertions.assertGiftCardEmptyError();
-    } else {
-      this.skip()
+    if (brand != 'boohoo.com') {
+      this.skip();
     }
+    BillingPage.actions.addGiftCard(' ');
+    BillingPage.assertions.assertGiftCardEmptyError();
   });
 
   it('Verify is correct validation added if code is invalid for guest user', function () {
-    if(brand != 'boohoo.com'){
+    if (brand != 'boohoo.com') {
       this.skip();
     }
-    BillingPage.actions.addPromoCode("InvalidPromoCode")
-    BillingPage.assertions.assertInvalidPromoError()
+    BillingPage.actions.addPromoCode('InvalidPromoCode');
+    BillingPage.assertions.assertInvalidPromoError();
   });
 
   it('Verify is correct validation added if code is empty for guest user', function () {
-    if(brand != 'boohoo.com'){
+    if (brand != 'boohoo.com') {
       this.skip();
     }
-    BillingPage.actions.addNoPromoCode()
-    BillingPage.assertions.assertEmptyPromoError()
+    BillingPage.actions.addNoPromoCode();
+    BillingPage.assertions.assertEmptyPromoError();
   });
 });

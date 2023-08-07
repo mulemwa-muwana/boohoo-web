@@ -704,7 +704,7 @@ class Addresses {
         county: 'ACT',
         addressNickname: 'AU1',
         what3Words:'',
-        month: '',
+        month: 'May',
         
       },
       secondaryAddress:  {
@@ -720,7 +720,7 @@ class Addresses {
         county: 'Oakleigh South',
         addressNickname: 'AU2',
         what3Words:'',
-        month: '',
+        month: 'May',
       },
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
@@ -735,7 +735,7 @@ class Addresses {
         county: 'New South Wales',
         addressNickname: 'AU3',
         what3Words:'',
-        month: '',
+        month: 'May',
       }
     },
 
@@ -748,7 +748,7 @@ class Addresses {
         addressLine: '123 Pinehaven Road',
         postcode: '5019',
         addressName: 'PrimaryAddress',
-        country: '',
+        country: 'NZ',
         city: 'Pinehaven',
         countryCode: 'NZ',
         county: 'Upper Hutt',

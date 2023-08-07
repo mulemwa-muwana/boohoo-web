@@ -30,7 +30,8 @@ const selectors: SelectorBrandMap = {
     sizeGuideFit: 'div.l-static_page-guide_selectors > :nth-child(3) >.b-form_section-label',
     selectGender:'select#sizeGuideGender', 
     selectCategory: 'select#sizeGuideCategory',
-    selectFit: 'select#sizeGuideFit'
+    selectFit: 'select#sizeGuideFit',
+    countryBtn:'.b-country-select'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -447,7 +448,6 @@ class HomePage implements AbstractPage {
     }     
   };    
 
-
   assertions = {
     assertUserPanelTitle (name: string) {
       cy.get('.b-header_login-icon > .i-icon').click();
@@ -490,16 +490,17 @@ class HomePage implements AbstractPage {
     assertUserIsNotLoggedIn (msg: string) {
       cy.get('.b-miniaccount-title').should('contain.text', msg);
     },
-     // sizeGuide asserstions
-     assertSizeGuideGenderPresent() {
+
+    // SizeGuide asserstions
+    assertSizeGuideGenderPresent () {
       const sizeGuideGender = selectors[brand].sizeGuideGender;
       cy.get(sizeGuideGender).should('be.visible');
     },
-    assertSizeGuideCategoryPresent() {
+    assertSizeGuideCategoryPresent () {
       const sizeGuideCategory = selectors[brand].sizeGuideCategory;
       cy.get(sizeGuideCategory).should('be.visible');
     },
-    assertSizeGuideFitPresent() {
+    assertSizeGuideFitPresent () {
       const sizeGuideFit = selectors[brand].sizeGuideFit;
       cy.get(sizeGuideFit).should('be.visible');
     },

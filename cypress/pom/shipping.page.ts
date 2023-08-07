@@ -435,7 +435,7 @@ const selectors: SelectorBrandMap = {
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
     successMark:'.field-wrapper-w3w-valid',
-    Thrift: '.content-asset > .ls-is-cached',
+    thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
   },
   'coastfashion.com': {
@@ -1013,9 +1013,8 @@ class ShippingPage implements AbstractPage {
     },
     selectShippingMethod (shippingMethod: string) {
       const shippingMethodName = selectors[brand].shippingMethodName;    
-      cy.get(shippingMethodName).each(() => {
-        cy.contains(shippingMethod).click({ force: true });
-      });
+      cy.wait(3000);
+      cy.get(shippingMethodName).contains(shippingMethod).click({ force: true });
     },
     selectOtherShippingMethod (shippingMethod: string) {
       const shippingMethodName = selectors[brand].shippingMethodName;
@@ -1249,9 +1248,9 @@ class ShippingPage implements AbstractPage {
       cy.get(emptyDateFieldError).should('be.visible').and('contain.text', errorMsg);
     },
     assertThriftSectionIsVisible () {
-      const Thrift = selectors[brand].Thrift;
+      const thrift = selectors[brand].thrift;
       cy.scrollTo('bottom');
-      cy.get(Thrift).should('be.visible');
+      cy.get(thrift).should('be.visible');
     },
     assertThriftBagIsAddedToTheCart () {
       cy.get('.checkout-mini-cart').should('contain', 'Thrift Bags');

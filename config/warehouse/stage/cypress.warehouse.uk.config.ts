@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import plugins from '../../../cypress/plugins';
+import { giftCertificate } from '../../../cypress/support/e2e';
 
 export default defineConfig({
   projectId: 'i6d3n8',
@@ -10,7 +11,8 @@ export default defineConfig({
     fullSku: 'BWW02147-105-20',
     brand: 'warehousefashion.com',
     locale: 'UK',
-    language: 'EN'
+    language: 'EN',
+    giftCertificate: 'CMMGKPWWLWWCSFZW'
   },
 
   viewportHeight: 1080,

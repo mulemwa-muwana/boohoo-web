@@ -1,6 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand, url, locale } from 'cypress/support/e2e';
+import { brand, url, locale, language } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -21,6 +22,16 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-hamburger_account-action_link m-register"]',
+    energySaver: '.b-sustainable_toggle',
+    energySlider: 'div.b-sustainable_browsing-desktop > div.b-sustainable_toggle > div > div.b-sustainable_toggle-slide',
+    energySaverActivated: '.b-sustainable_toggle-slide.m-active',
+    sizeGuideGender: 'div.l-static_page-guide_selectors > :nth-child(1) >.b-form_section-label',
+    sizeGuideCategory:'div.l-static_page-guide_selectors > :nth-child(2) >.b-form_section-label',
+    sizeGuideFit: 'div.l-static_page-guide_selectors > :nth-child(3) >.b-form_section-label',
+    selectGender:'select#sizeGuideGender', 
+    selectCategory: 'select#sizeGuideCategory',
+    selectFit: 'select#sizeGuideFit',
+    countryBtn:'.b-country-select'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -39,6 +50,7 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
+    countryBtn: '#country-switcher-menu',
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
@@ -74,7 +86,8 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
     logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    loginIconMobile: '.m-login',
+    countryBtn: '#country-switcher-menu'
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -92,7 +105,8 @@ const selectors: SelectorBrandMap = {
     logo: '.b-logo',
     logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    loginIconMobile: '.m-login',
+    countryBtn: '#country-switcher-menu'
   },
   'boohooman.com': {
     minicartIcon: "[class='js-minicart-quantity minicart-quantity-value is-mobile']",
@@ -110,7 +124,9 @@ const selectors: SelectorBrandMap = {
     logo: '[class="primary-logo"]>a.primary-logo-link',
     logoMobile: '.primary-logo',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
+    countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
+    countryList: 'div[class="selector active"]'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -129,7 +145,9 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
+    countryBtn: '.current-country-arrow > .flag-icon',
+    countryList: '.selector>div>div'
   },
   'coastfashion.com': {
     minicartIcon: '.mini-cart-total>.mini-cart-link',
@@ -202,7 +220,9 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '.header-customer-info'
+    loginIconMobile: '.header-customer-info',
+    countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
+    countryList: 'div[class="selector active"]'
   },
   'boohoomena.com': {
     minicartIcon: '.mini-cart-link',
@@ -218,7 +238,10 @@ const selectors: SelectorBrandMap = {
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: ':nth-child(1) > .user-link-item'
+    loginIconMobile: ':nth-child(1) > .user-link-item',
+    countryBtn: '.js-header-right-box > .js-appshell-uncached-countryselector-container > .header-countryselector > .content-asset > .country-selector > .current-country > .current-country-arrow > .flag-icon',
+    countryList: '.selector>div>div'
+    
   }
   
 };
@@ -238,9 +261,8 @@ class HomePage implements AbstractPage {
       cy.setCookie('billingCountryCode','GB');
       cy.setCookie('dw_locale', 'en_GB');
     }
-
+  
     cy.visit(url);
-
   }
 
   click = {
@@ -327,6 +349,9 @@ class HomePage implements AbstractPage {
     allShoesLink (opts = { force: true }) {
       cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
     },
+    nastyBlogLink (text: string) {
+      cy.contains(text).click({force:true});
+    },
     investorRelationsAcceptBtn () {
       cy.get('cc-saveAll-startBtn').click(); 
     },
@@ -338,6 +363,10 @@ class HomePage implements AbstractPage {
         }
       }
       );
+    },
+    countryDropdown () {
+      const countryBtn = selectors[brand].countryBtn;
+      cy.get(countryBtn).click({force: true});  
     }
   };
 
@@ -373,8 +402,51 @@ class HomePage implements AbstractPage {
       if (isMobileDeviceUsed) {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
-    }
-  };
+    },
+    toggleEnergySaver () {
+      const energySlider = selectors[brand].energySlider;
+      const energySaverActivated = selectors[brand].energySaverActivated;
+      cy.get(energySlider).click();
+      cy.get(energySaverActivated).should('be.visible');
+
+      // Turn it off again 
+      cy.get(energySlider).click();
+    },
+
+    selectDropdown () {
+      const selectGender = selectors[brand].selectGender;
+      const selectCategory = selectors[brand].selectCategory;
+      const selectFit = selectors[brand].selectFit;
+      const woman = assertionText.Womens[language];
+      const trousers = assertionText.trousers[language];
+      const regular = assertionText.regular[language];
+      
+      if (!isSiteGenesisBrand) {
+        if (isMobileDeviceUsed && brand == 'boohoo.com') {
+          cy.get(selectGender).select(woman).should('have.value', 'woman');
+          cy.get(selectCategory).select(trousers).should('have.value','trousers');
+          cy.get(selectFit).select(regular).should('have.value','regular');
+          
+        } 
+      
+      } 
+    } ,
+    selectCountryFromDropdown () {
+      const countryBtn = selectors[brand].countryBtn;
+      const countryList = selectors[brand].countryList;
+      
+      if (!isSiteGenesisBrand) {
+        if (brand == 'boohoo.com'||brand == 'wallis.co.uk' || brand == 'burton.co.uk') {
+          cy.get(countryBtn).select('IE €',{ force: true });
+        } else if (brand=='nastygal.com') {
+          cy.get(countryBtn).select('IRL (€)',{ force: true });
+        }
+      
+      } else {
+        cy.get(countryList).contains('IE €').click({force: true});
+      }   
+    }     
+  };    
 
   assertions = {
     assertUserPanelTitle (name: string) {
@@ -419,6 +491,20 @@ class HomePage implements AbstractPage {
       cy.get('.b-miniaccount-title').should('contain.text', msg);
     },
 
+    // SizeGuide asserstions
+    assertSizeGuideGenderPresent () {
+      const sizeGuideGender = selectors[brand].sizeGuideGender;
+      cy.get(sizeGuideGender).should('be.visible');
+    },
+    assertSizeGuideCategoryPresent () {
+      const sizeGuideCategory = selectors[brand].sizeGuideCategory;
+      cy.get(sizeGuideCategory).should('be.visible');
+    },
+    assertSizeGuideFitPresent () {
+      const sizeGuideFit = selectors[brand].sizeGuideFit;
+      cy.get(sizeGuideFit).should('be.visible');
+    },
+
     // Counter (header) assertion
     assertPromotionPresent () {
       const promotion = selectors[brand].promotion;
@@ -428,7 +514,7 @@ class HomePage implements AbstractPage {
     },
 
     // Links assertions
-    assertMegaMenuLinkIsOpeningCorrectPage (text: string) {
+    assertLinkIsOpeningCorrectPage (text: string) {
       cy.url().should('include', text);
     },
 
@@ -477,7 +563,7 @@ class HomePage implements AbstractPage {
         } else {
           cy.get(loginIconMobile).invoke('show').click({force: true});
         }
-
+     
       // If Desktop Device is used
       } else {
         if (isSiteGenesisBrand) {
@@ -493,6 +579,13 @@ class HomePage implements AbstractPage {
     },
     assertPromoLinkHeaderIsVisible () {
       cy.get('div[class="b-hero_carousel-item m-promotion m-current"]').should('be.visible').click();
+    },
+    assertEnergySaverVisible () {
+      const energySaver = selectors[brand].energySaver;
+      cy.get(energySaver).should('be.visible');
+    }, 
+    assertSelectCountryFromDropdown () {
+      cy.url().should('include', '/ie');
     }
 
   };

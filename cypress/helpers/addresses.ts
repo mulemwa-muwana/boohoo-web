@@ -763,7 +763,7 @@ class Addresses {
         addressLine: '12 Central Road',
         postcode: '1021',
         addressName: 'SecondaryAddress',
-        country: 'New Zealand',
+        country: 'New Zealand (Aotearoa)',
         city: 'Auckland',
         countryCode: 'NZ',
         county: 'Kingsland',

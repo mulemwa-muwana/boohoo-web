@@ -748,7 +748,7 @@ class Addresses {
         addressLine: '123 Pinehaven Road',
         postcode: '5019',
         addressName: 'PrimaryAddress',
-        country: 'NZ',
+        country: 'New Zealand (Aotearoa)',
         city: 'Pinehaven',
         countryCode: 'NZ',
         county: 'Upper Hutt',

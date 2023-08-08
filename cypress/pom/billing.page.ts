@@ -668,7 +668,7 @@ class BillingPage implements AbstractPage {
 
   actions = {
     waitPageToLoad () {
-      cy.wait(12000);
+      cy.wait(12000); 
       cy.url().should('include', 'billing');
     },
     selectDate (day: string, month: string, year: string) {
@@ -1222,7 +1222,7 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE') ) {
+      } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE'||locale =='NZ') ) {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');

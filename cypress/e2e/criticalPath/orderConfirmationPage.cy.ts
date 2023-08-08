@@ -110,7 +110,7 @@ describe('Order confirmation page for registered user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
 
-  it.only('Verify that guest user can place order using Klarna', function () {
+  it('Verify that guest user can place order using Klarna', function () {
     if (brand == 'boohooman.com' && (locale == 'AU'|| locale == 'IE'||locale == 'US')) {
       this.skip();
     }

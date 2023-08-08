@@ -1,7 +1,8 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import { isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand , locale } from 'cypress/support/e2e';
+import { brand, language } from 'cypress/support/e2e';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -29,7 +30,7 @@ const selectors: SelectorBrandMap = {
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
     footer: '#footercontent',
-    helpLink: 'b-footer_quick_links-link',
+    helpLink: '.content-asset .b-footer_quick_links',
   },
   'nastygal.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -51,7 +52,8 @@ const selectors: SelectorBrandMap = {
     appBanner: '.b-app_banner-actions',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
-    footer: '#footercontent'
+    footer: '#footercontent',
+    helpLink: '.content-asset .b-footer_nav-column:nth-child(1)'
   },
   'dorothyperkins.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -72,7 +74,8 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
-    footer: '#footercontent'
+    footer: '#footercontent',
+    helpLink: '.content-asset .b-footer_quick_links',
   },
   'burton.co.uk': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -93,7 +96,8 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
-    footer: '#footercontent'
+    footer: '#footercontent',
+    helpLink: '.content-asset .b-footer_quick_links',
   },
   'wallis.co.uk': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -114,7 +118,8 @@ const selectors: SelectorBrandMap = {
     footerStickyPromo: '#footer-sticky-promo',
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
-    footer: '#footercontent'
+    footer: '#footercontent',
+    helpLink: '.content-asset .b-footer_quick_links',
   },
   'boohooman.com': {
     privacyPolicyLink: '.footer-copyright-wrapper a:eq(1)',
@@ -254,7 +259,7 @@ const selectors: SelectorBrandMap = {
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
-    helpLink: 'a[title="Customer Service"]'
+    helpLink: 'a[title="Help"]'
   },
   'boohoomena.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -388,13 +393,18 @@ class GlobalFooter implements AbstractPage {
         });
       });
     },
+
     helpLink () {
       const helpLink = selectors[variables.brand].helpLink;
-      cy.get(helpLink).click();
+      if (brand == 'boohooman.com') {
+        cy.get(helpLink).contains(assertionText.footerCustomerServiceBHM[language]).click({force:true});
+      } else {
+        cy.get(helpLink).contains(assertionText.footerHelp[language]).click({force:true});
+      }
+      
     },
     contactLink () {
       const contactLink = selectors[variables.brand].contactLink;
-      cy.get(contactLink).click();
     }
   };
 

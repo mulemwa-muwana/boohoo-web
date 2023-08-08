@@ -7,7 +7,7 @@ export default defineConfig({
   env: {
     url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/gb',
     sku: '#AGG50919-1', // Needs hashtag for assertation on PDP
-    fullSku: 'AGG50919-432-16', 
+    fullSku: 'AGG50919-432-18', 
     brand: 'nastygal.com',
     locale: 'UK',
     language: 'EN',

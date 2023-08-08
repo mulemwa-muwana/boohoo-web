@@ -40,6 +40,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodKlarnaAU: '#payment-button-KlarnaAU',
     paymentMethodKlarnaIE:'#payment-button-KlarnaIE',
+    paymentMethodKlarnaUS: '#payment-button-KlarnaUS',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
@@ -74,16 +75,19 @@ const selectors: SelectorBrandMap = {
   },
   'nastygal.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    payButtonLocator: '[data-testid="confirm-and-pay"]' ,
+    payButtonLocator: '[id$="by_card-purchase-review-continue-button"]' ,
     klarnaPayNowAU: '#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button',
     klarnaPayNowIE: '#payment-details-KlarnaIE > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     klarnaPayNow: '#payment-details-KlarnaUK button',
+    klarnaPayNowUS: '[data-id="payButton-KlarnaUS"]>div>button',
+    payButtonLocatorIE: '[data-testid="confirm-and-pay"]',
     paymentMethodCreditCard: '#payment-button-scheme',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
     paymentMethodKlarna: '#payment-button-KlarnaUK',
     paymentMethodKlarnaAU: '#payment-button-KlarnaAU',
     paymentMethodKlarnaIE: '#payment-button-KlarnaIE',
+    paymentMethodKlarnaUS: '#payment-button-KlarnaUS',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
@@ -359,8 +363,10 @@ const selectors: SelectorBrandMap = {
     klarnaPayNow:'#billingSubmitButton',
     klarnaPayNowAU: '#billingSubmitButton',
     klarnaPayNowIE: '#billingSubmitButton',
+    klarnaPayNowUS: '#billingSubmitButton',
     payButtonLocator:'[data-testid="confirm-and-pay"]',
     payButtonLocatorAU:'[data-testid="confirm-and-pay"]>div>div>span',
+    payButtonLocatorUS:'[data-testid="confirm-and-pay"]',
     shippingAddressSection: '.minicheckout-section',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
@@ -383,6 +389,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodKlarnaAU: '[for="is-KlarnaAU"]',
     paymentMethodKlarnaIE: '[for="is-KlarnaIE"]',
+    paymentMethodKlarnaUS: '[for="is-KlarnaUS"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
@@ -991,10 +998,10 @@ class BillingPage implements AbstractPage {
         });
 
         const payButtonLocator = selectors[brand].payButtonLocator;
-        const payButtonLocatorUS = selectors[brand].payButtonLocatorUS;
+        const payButtonLocatorIE = selectors[brand].payButtonLocatorIE;
        
-        if (brand=='nastygal.com' && locale =='US') {
-          body().find(payButtonLocatorUS).click({force:true});
+        if (brand=='nastygal.com' && locale =='IE') {
+          body().find(payButtonLocatorIE).click({force:true});
         } else { 
           body().find(payButtonLocator).click({force:true});
           cy.wait(5000); 

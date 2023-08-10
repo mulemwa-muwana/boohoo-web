@@ -714,8 +714,6 @@ class BillingPage implements AbstractPage {
     },
     selectCreditCard (cardNo: string, cardOwner: string, date: string, code: string) {
       const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
-      const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
-
       const creditCardCardNumberIframe = selectors[brand].creditCardCardNumberIframe;
       const creditCardFieldsCardNumber = selectors[brand].creditCardFieldsCardNumber;
       const creditCardExpirationDateIframe = selectors[brand].creditCardExpirationDateIframe;
@@ -725,12 +723,7 @@ class BillingPage implements AbstractPage {
       const creditCardFieldsCardOwner = selectors[brand].creditCardFieldsCardOwner;
 
       const paynowBtnCC = selectors[brand].paynowBtnCC;
-      if (brand == 'boohoo.com' && (locale == 'US' || locale == 'CA')) {
-        cy.get(paymentMethodCreditCardUS).click({force: true});
-      } else {
-        cy.get(paymentMethodCreditCard).click({force: true});
-      }
-   
+      cy.get(paymentMethodCreditCard).click({force: true});
       cy.wait(4000);
 
       cy.get('body').then($body=>{ // (Updated) If there is saved Credit Card, click Add new Card button
@@ -748,14 +741,7 @@ class BillingPage implements AbstractPage {
     },
     selectCreditCardUS (cardNo: string, cardOwner: string, date: string, code: string) {
       const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
-      const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
-
-      if (brand=='boohoo.com' && (locale=='US' || locale == 'CA')) {
-        cy.get(paymentMethodCreditCardUS).click({force:true});
-      } else {
-        cy.get(paymentMethodCreditCard).click({force: true});
-      }
-    
+      cy.get(paymentMethodCreditCardUS).click({force:true});   
       cy.wait(4000);
 
       cy.get('body').then($body=>{ // (Updated) If there is saved Credit Card, click Add new Card button

@@ -1805,6 +1805,7 @@ class AssertionText {
     IT: 'No promo code entered',
     ES: 'No promo code entered'
   };
+
   customerServicePageTrackOrderButton: TranslationMap = {
     EN: 'Track order',
     NL: 'Volg Mijn Bestelling',
@@ -1818,6 +1819,7 @@ class AssertionText {
     IT: 'Segui Il Mio Ordine',
     ES: 'Seguir el estado de mi pedido'
   };
+
   customerServicePageReturnButton: TranslationMap = {
     EN: 'Start a return',
     NL: 'BEGIN EEN RETOURNERING',
@@ -1831,6 +1833,7 @@ class AssertionText {
     IT: 'AVVIA PROCEDURA DI RESO',
     ES: 'INICIAR UNA DEVOLUCIÓN'
   };
+
   customerServicePageVirtualAssistantButton: TranslationMap = {
     EN: 'Virtual Assistant',
     NL: '',

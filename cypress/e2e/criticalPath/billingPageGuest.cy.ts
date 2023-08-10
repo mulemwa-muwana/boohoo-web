@@ -102,6 +102,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
+      shippingPage.click.proceedToBillingVerification();
       cy.wait(2000);
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();

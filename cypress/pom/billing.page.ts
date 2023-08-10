@@ -1177,7 +1177,11 @@ class BillingPage implements AbstractPage {
     },
     assertPaymentMethodKlarnaIsDisplayed () {
       if (isSiteGenesisBrand) {
-        cy.get('label[for="is-KlarnaUK"]').should('be.visible');
+        if(brand == 'misspap.com' && locale == 'IE'){
+          cy.get('label[for="is-KlarnaIE"]').should('be.visible');
+        }else{
+          cy.get('label[for="is-KlarnaUK"]').should('be.visible');
+        }
       }
       if (!isSiteGenesisBrand && locale == 'AU') {
         cy.get('#payment-button-KlarnaAU').should('be.visible');

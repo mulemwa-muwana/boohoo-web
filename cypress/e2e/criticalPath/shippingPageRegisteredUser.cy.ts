@@ -230,6 +230,7 @@ describe('Shipping Page Registered user tests', function () {
       this.skip();
     }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
+    const localeShippingMethodForMisspapIE = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod4');
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -256,14 +257,24 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
     cy.wait(5000);
+    if(brand == 'misspap.com' && locale == 'IE'){
+      shippingPage.actions.selectOtherShippingMethod(localeShippingMethodForMisspapIE.shippingMethodName);
+      cy.wait(2000);
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
+    }else{
     shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    }
     shippingPage.click.proceedToBilling();
     if (locale == 'IE') {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();
+    if(brand == 'misspap.com' && locale == 'IE'){
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
+    }else{
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    }
   });
 
   it('Verify that user can Edit cart from shipping page', () => {
@@ -283,7 +294,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');

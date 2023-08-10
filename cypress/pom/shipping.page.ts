@@ -629,7 +629,7 @@ const selectors: SelectorBrandMap = {
     addAddressManually: '.add-new-address',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
-    proceedToBillingVerificationBtn: '#dwfrm_singleshipping_shippingAddress > fieldset.address-container > fieldset:nth-child(3) > div > div > button > span',
+    proceedToBillingVerificationBtn: '.verification-address-button',
     addNewAddress: '.add-new-address',
     newAddedAddressBlock: '.checkout-address-form .address-summary',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
@@ -655,7 +655,7 @@ const selectors: SelectorBrandMap = {
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -777,7 +777,6 @@ class ShippingPage implements AbstractPage {
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {
         const proceedToBillingVerificationBtn = selectors[brand].proceedToBillingVerificationBtn;
-        cy.wait(1000);
         cy.get('body').then($body=>{
           if ($body.find(proceedToBillingVerificationBtn).length>0) {
             cy.get(proceedToBillingVerificationBtn).click({ force: true });
@@ -991,7 +990,7 @@ class ShippingPage implements AbstractPage {
       const countyFieldIE = selectors[brand].countyFieldIE;
       if (brand=='karenmillen.com' && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
-      } else if (brand == 'misspap.com') {
+      } else if (brand == 'misspap.com' && locale == 'UK') {
         cy.get(countyField).clear({force:true}).type(county);
       } else {
         cy.get(countyField).select(county);

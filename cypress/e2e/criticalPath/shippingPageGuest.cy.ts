@@ -104,8 +104,8 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.enterManuallyAddressDetails();
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if (!isSiteGenesisBrand && locale == 'US') {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1);
+    if ((!isSiteGenesisBrand && locale == 'US') || (brand == 'misspap.com' && locale == 'IE')) {
+      shippingPage.actions.countyField(localeAddress.county);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -117,6 +117,7 @@ describe('Shipping Page Guest user tests', function () {
       }
     }
     shippingPage.click.proceedToBilling();
+    shippingPage.click.proceedToBillingVerification();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
@@ -154,6 +155,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     }
     shippingPage.click.proceedToBilling();
+    shippingPage.click.proceedToBillingVerification();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
@@ -162,6 +164,7 @@ describe('Shipping Page Guest user tests', function () {
       this.skip();
     }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
+    const localeShippingMethodForMisspapIE = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod4');
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -175,8 +178,8 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if (!isSiteGenesisBrand && locale == 'US') {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1);
+    if ((!isSiteGenesisBrand && locale == 'US') || (brand == 'misspap.com' && locale == 'IE')) {
+     shippingPage.actions.countyField(localeAddress.county);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -194,10 +197,20 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     }
     cy.wait(5000);
+    if(brand == 'misspap.com' && locale == 'IE'){
+      shippingPage.actions.selectOtherShippingMethod(localeShippingMethodForMisspapIE.shippingMethodName);
+      cy.wait(2000);
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
+    }else{
     shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    }
     shippingPage.click.proceedToBilling();
-    shippingPage.assertions.assertUserProceededToBillingPage();
+    if(brand == 'misspap.com' && locale == 'IE'){
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
+    }else{
+    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    }
   });
 
   it('Verify that guest user can Edit cart from shipping page', function () {
@@ -231,6 +244,7 @@ describe('Shipping Page Guest user tests', function () {
       }
     }
     shippingPage.click.proceedToBilling();
+    shippingPage.click.proceedToBillingVerification();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
@@ -278,7 +292,7 @@ describe('Shipping Page Guest user tests', function () {
     });
   });
   it('Verify that user can enter valid credentials in w3w', function () {
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');

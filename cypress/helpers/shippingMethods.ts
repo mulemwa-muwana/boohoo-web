@@ -140,7 +140,7 @@ class ShippingMethod {
         shippingMethodName: ''
       },
       shippingMethod4: {
-        shippingMethodName: ''
+        shippingMethodName: 'Express'
       }
     },
     DK: {

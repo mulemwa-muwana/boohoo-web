@@ -84,7 +84,7 @@ class Navigate {
         shippingPage.click.addAddressManually();
         shippingPage.actions.adressLine1(primaryAddress.addressLine);
         shippingPage.actions.cityField(primaryAddress.city);
-        if (locale == 'US' || locale == 'AU') {
+        if (locale == 'US' || locale == 'AU' || (brand == 'misspap.com' && locale == 'IE')) {
           shippingPage.actions.selectState(primaryAddress.county);
         }
         shippingPage.actions.postcodeField(primaryAddress.postcode);
@@ -94,12 +94,14 @@ class Navigate {
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
           if (brand != 'boohooman.com') {
             shippingPage.actions.confirmEmailField(credentials.guest);
-          } if ((brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'warehousefashion.com') && locale == 'EU') {
+          } if ((brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'warehousefashion.com') && locale == 'EU' || (brand == 'misspap.com' && locale == 'IE')) {
             shippingPage.actions.emptyEmailField();
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
           }
           shippingPage.click.proceedToBilling();
+          cy.wait(3000);
+          shippingPage.click.proceedToBillingVerification();
         } else {
           shippingPage.click.proceedToBilling();
         }
@@ -130,11 +132,13 @@ class Navigate {
       if (locale == 'US' || locale == 'AU') {
         shippingPage.actions.selectState(primaryAddress.county);
       }
-      if (brand == 'boohoomena.com') {
+      if (brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
         shippingPage.actions.countyField(primaryAddress.county);
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
       shippingPage.click.proceedToBilling();
+      cy.wait(3000);
+      shippingPage.click.proceedToBillingVerification();
       BillingPage.actions.waitPageToLoad();     
     }
   } 

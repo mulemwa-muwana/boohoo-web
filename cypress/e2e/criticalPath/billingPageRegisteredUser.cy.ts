@@ -98,46 +98,44 @@ describe('Billing page functionality for registered user', function () {
   });
 
   it('Verify that user is able to Add, Remove gift certificate at Billing Page', function () {
-    if (brand == 'boohoo.com') {
-      billingPage.actions.addGiftCard(giftCertificate);
-      billingPage.assertions.assertGiftCardAdded();
-      billingPage.assertions.assertGiftCardinOrderSummary();
-      billingPage.actions.removeGiftCertificate();
-      billingPage.assertions.assertGiftCardRemoved();
+    if (brand != 'boohoo.com') {
+      this.skip(); 
     }
+    billingPage.actions.addGiftCard(giftCertificate);
+    billingPage.assertions.assertGiftCardAdded();
+    billingPage.assertions.assertGiftCardinOrderSummary();
+    billingPage.actions.removeGiftCertificate();
+    billingPage.assertions.assertGiftCardRemoved();
   });
-
 
   it('Verify that user see error when try to add invalid giftCard', function () {
-    if (brand == 'boohoo.com') {
-      billingPage.actions.addGiftCard('WRONGGIFTCARDERR');
-      billingPage.assertions.assertGiftCardError();
-    } else {
-      this.skip()
+    if (brand != 'boohoo.com') {
+      this.skip();
     }
+    billingPage.actions.addGiftCard('WRONGGIFTCARDERR');
+    billingPage.assertions.assertGiftCardError();
   });
   it('Verify is correct validation added if code is empty for registered user', function () {
-    if (brand == 'boohoo.com') {
-      billingPage.actions.addGiftCard(' ');
-      billingPage.assertions.assertGiftCardEmptyError();
-    } else {
-      this.skip()
-    }
+    if (brand != 'boohoo.com') {
+      this.skip();
+    } 
+    billingPage.actions.addGiftCard(' ');
+    billingPage.assertions.assertGiftCardEmptyError();
   });
 
   it('Verify is correct validation added if code is invalid for registered user', function () {
-    if(brand != 'boohoo.com'){
+    if (brand != 'boohoo.com') {
       this.skip();
     }
-    billingPage.actions.addPromoCode("InvalidPromoCode")
-    billingPage.assertions.assertInvalidPromoError()
+    billingPage.actions.addPromoCode('InvalidPromoCode');
+    billingPage.assertions.assertInvalidPromoError();
   });
 
   it('Verify is correct validation added if code is empty for registered user', function () {
-    if(brand != 'boohoo.com'){
+    if (brand != 'boohoo.com') {
       this.skip();
     }
-    billingPage.actions.addNoPromoCode()
-    billingPage.assertions.assertEmptyPromoError()
+    billingPage.actions.addNoPromoCode();
+    billingPage.assertions.assertEmptyPromoError();
   });
 });

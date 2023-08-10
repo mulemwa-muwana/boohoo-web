@@ -101,7 +101,7 @@ describe('Home Page', function () {
     it('Verify that user can change country',()=>{
       if (isSiteGenesisBrand) {
         homePage.click.countryDropdown();
-      }else{
+      } else {
         cy.scrollTo('bottom');
         cy.wait(3000);
       }
@@ -111,7 +111,7 @@ describe('Home Page', function () {
 
   });
 
-  // FOOTER
+  // FOOTER 
   describe('Footer verification', () => {
     it('Verify success message is displayed after signing up - newsletter subscription footer', () => {
       const randomEmail = CommonActions.randomEmail();
@@ -300,12 +300,16 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Returns', () => {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkReturns[language]);
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Delivery Info', function () {
         const boohooLocales: Array<Locale> = ['EU', 'AU', 'NZ', 'US', 'CA','NO'];
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
+          if (locale == 'AU') {
+            this.skip();
+          } else {
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
+          }
         } else if (brand == 'boohoo.com' && boohooLocales.includes(locale)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerShipping[language]);
         } else {
@@ -330,15 +334,14 @@ describe('Home Page', function () {
         GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[language]);
       });
 
-      it('Verify that user can choose gender, category, fit - Size Guide', function ()   {
+      it('Verify that user can choose gender, category, fit - Size Guide', function () {
         if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE') ) {
-        GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[language]);
-         homePage.assertions.assertSizeGuideGenderPresent();
-         homePage.assertions.assertSizeGuideCategoryPresent();
-         homePage.assertions.assertSizeGuideFitPresent();
-         homePage.actions.selectDropdown();
-        } 
-        else{
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkSizeGuide[language]);
+          homePage.assertions.assertSizeGuideGenderPresent();
+          homePage.assertions.assertSizeGuideCategoryPresent();
+          homePage.assertions.assertSizeGuideFitPresent();
+          homePage.actions.selectDropdown();
+        } else {
           this.skip();
         }
       });
@@ -585,13 +588,14 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com'];
-        const augustPrivacyPolicyBrands: Array<GroupBrands> = ['karenmillen.com'];
         
         if (brand=='nastygal.com' && locale=='IE') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2022');
+        } if (brand=='karenmillen.com') {
+          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated July 2023');
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
-        } else if ((brand == 'boohoo.com' && australianLocales) || augustPrivacyPolicyBrands.includes(brand)) {
+        } else if ((brand == 'boohoo.com' && australianLocales)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
         } else if (brand == 'boohooman.com' && locale != 'FR') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);

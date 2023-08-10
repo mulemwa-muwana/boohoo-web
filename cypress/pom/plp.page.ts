@@ -33,7 +33,7 @@ const selectors: SelectorBrandMap = {
     productColorIsDisplayedOnPLP: '.b-product_tile_swatches-swatch_image',
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
-    productImageIsDisplayed: '.b-product_tile-image',
+    productImageIsDisplayed: '.b-product_tile-image img',
     itemIsAddedToWishlist: '.b-header_wishlist-count',
     productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link',
     quickView: '.b-product_tile-quick_view',

@@ -191,7 +191,7 @@ const selectors: SelectorBrandMap = {
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
-    Thrift: '.content-asset > .ls-is-cached',
+    thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
   },
   'coastfashion.com': {
@@ -513,8 +513,8 @@ class CartPage implements AbstractPage {
       cy.get(AmazonCTA).should('be.visible');
     },
     assertThriftSectionIsVisible () {
-      const Thrift = selectors[brand].Thrift;
-      cy.get(Thrift).should('be.visible');
+      const thrift = selectors[brand].thrift;
+      cy.get(thrift).should('be.visible');
     },
     assertThriftBagIsAddedToTheCart () {
       cy.get('#wrapper').should('contain', 'Thrift Bags');

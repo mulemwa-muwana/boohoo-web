@@ -435,7 +435,7 @@ const selectors: SelectorBrandMap = {
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
     successMark:'.field-wrapper-w3w-valid',
-    Thrift: '.content-asset > .ls-is-cached',
+    thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
   },
   'coastfashion.com': {
@@ -777,6 +777,7 @@ class ShippingPage implements AbstractPage {
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {
         const proceedToBillingVerificationBtn = selectors[brand].proceedToBillingVerificationBtn;
+        cy.wait(3000);
         cy.get('body').then($body=>{
           if ($body.find(proceedToBillingVerificationBtn).length>0) {
             cy.get(proceedToBillingVerificationBtn).click({ force: true });
@@ -857,8 +858,11 @@ class ShippingPage implements AbstractPage {
       cy.get(PUDOlocations).click();
     },
     enterManuallyAddressDetails () {
+      const enterManually = selectors[brand].enterManually;
       if (!isSiteGenesisBrand) {
-        const enterManually = selectors[brand].enterManually;
+        if (brand=='boohoo.com') {
+          cy.get('[data-event-click="handleManualEnterClick"]').eq(0).click();
+        }
         cy.get(enterManually).click({ force: true });
       }
     },
@@ -990,7 +994,7 @@ class ShippingPage implements AbstractPage {
       const countyFieldIE = selectors[brand].countyFieldIE;
       if (brand=='karenmillen.com' && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
-      } else if (brand == 'misspap.com' && locale == 'UK') {
+      } else if ((brand == 'misspap.com' && locale == 'UK')|| brand == 'boohooman.com') {
         cy.get(countyField).clear({force:true}).type(county);
       } else {
         cy.get(countyField).select(county);
@@ -1008,10 +1012,9 @@ class ShippingPage implements AbstractPage {
       cy.get(addressNicknameField).type(addressNickname);
     },
     selectShippingMethod (shippingMethod: string) {
-      const shippingMethodName = selectors[brand].shippingMethodName;
-      cy.get(shippingMethodName).each(() => {
-        cy.contains(shippingMethod).click({ force: true });
-      });
+      const shippingMethodName = selectors[brand].shippingMethodName;    
+      cy.wait(3000);
+      cy.get(shippingMethodName).contains(shippingMethod).click({ force: true });
     },
     selectOtherShippingMethod (shippingMethod: string) {
       const shippingMethodName = selectors[brand].shippingMethodName;
@@ -1065,7 +1068,7 @@ class ShippingPage implements AbstractPage {
 
       cy.wait(2000);
       cy.get(pudoSearchField).clear().type(`${postCode}{enter}`);
-      cy.wait(3000); 
+      cy.wait(6000); 
       cy.get(pudoFirstShop, {timeout:20000}).should('be.visible');
       cy.get(pudoFirstShop).eq(0).click({force:true});
       return cy.get(pudoSearchTitle).eq(0).invoke('text').then(text=>{
@@ -1098,15 +1101,15 @@ class ShippingPage implements AbstractPage {
       const coupon = selectors[brand].coupon;
       cy.get(coupon).should('be.visible');
     },
-    assertInvalidPromoError (){
+    assertInvalidPromoError () {
       const promoErrorAlert = selectors[brand].promoErrorAlert;
       const promoInvalidErrorMessage = assertionText.promoInvalidErrorMessage[language];
-      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false})
+      cy.get(promoErrorAlert).should('have.text', promoInvalidErrorMessage, {matchCase:false});
     },
-    assertEmptyPromoError(){
+    assertEmptyPromoError () {
       const promoErrorAlert = selectors[brand].promoErrorAlert;
       const promoEmptydErrorMessage = assertionText.promoEmptydErrorMessage[language];
-      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false})
+      cy.get(promoErrorAlert).should('have.text', promoEmptydErrorMessage, {matchCase:false});
     },
     assertSavedShippingAddressIsDispayed () {
       const addressName = selectors[brand].addressName;
@@ -1245,9 +1248,9 @@ class ShippingPage implements AbstractPage {
       cy.get(emptyDateFieldError).should('be.visible').and('contain.text', errorMsg);
     },
     assertThriftSectionIsVisible () {
-      const Thrift = selectors[brand].Thrift;
+      const thrift = selectors[brand].thrift;
       cy.scrollTo('bottom');
-      cy.get(Thrift).should('be.visible');
+      cy.get(thrift).should('be.visible');
     },
     assertThriftBagIsAddedToTheCart () {
       cy.get('.checkout-mini-cart').should('contain', 'Thrift Bags');

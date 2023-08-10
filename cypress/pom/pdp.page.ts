@@ -494,11 +494,11 @@ class PdpPage implements AbstractPage {
 
       // .and('include.text', productName);  // Skus are different 
     },
-    assertProductCodeIsDisplayed (SKU: string) {
+    assertProductCodeIsDisplayed (SKU:string) {
       const productCode = selectors[brand].productCode;
       cy.get(productCode).should('be.visible').invoke('text').then(productCodeText => {
-        productCodeText=productCodeText.replace(/^#/g, ''); // Regex to Remove # from String front
-        expect(SKU).to.contain(productCodeText);
+        productCodeText=productCodeText.replace(/^#/g, '');
+        expect(productCodeText).to.contain(SKU);
       });
     },
     assertProductPriceIsDisplayed () {

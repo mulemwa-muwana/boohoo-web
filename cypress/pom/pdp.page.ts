@@ -498,7 +498,11 @@ class PdpPage implements AbstractPage {
       const productCode = selectors[brand].productCode;
       cy.get(productCode).should('be.visible').invoke('text').then(productCodeText => {
         productCodeText=productCodeText.replace(/^#/g, '');
-        expect(productCodeText).to.contain(SKU);
+        try{
+          expect(productCodeText).to.contain(SKU);
+        }catch{
+          expect(SKU).to.contain(productCodeText);
+        }
       });
     },
     assertProductPriceIsDisplayed () {

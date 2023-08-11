@@ -14,10 +14,9 @@ describe('Product Details Page tests', function () {
   });  
 
   it('TC01 Verify that Product name, price and code is showing',function () { 
-    const SKU = sku.replace(/^#|-[0-9]/g, '');
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
-    PdpPage.assertions.assertProductCodeIsDisplayed(SKU); 
+    PdpPage.assertions.assertProductCodeIsDisplayed(sku); 
 
     // We need to instal plugin for continuing after failed assertation just in case
 

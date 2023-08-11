@@ -26,6 +26,7 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with invalid credentials', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, 'invalid12345');
+      LoginPage.actions.loginPopUpMessage();
       if (brand == 'misspap.com') {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginAttempts[language]);
       } else if (isSiteGenesisBrand) {
@@ -39,6 +40,7 @@ describe('Login Functionality tests', function () {
   it('Verify that user can not login with non-registered mail address and that user can start process of reseting password using the "Forgot your password?" link', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
+      LoginPage.actions.loginPopUpMessage();
       if (brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'boohooman.com' || brand == 'boohoomena.com') {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[language]);
       } else if (brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || brand == 'misspap.com') {

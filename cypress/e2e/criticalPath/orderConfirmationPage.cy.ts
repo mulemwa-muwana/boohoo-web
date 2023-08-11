@@ -41,7 +41,6 @@ describe('Order confirmation page for guest user', function () {
       orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
-
       orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
       orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
     });

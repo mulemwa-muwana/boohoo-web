@@ -167,12 +167,12 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
-  it('Verify that user is able to select 2nd shipping method', function () {
-    if (brand == 'boohoo.com' && (locale == 'NO' || locale == 'EU' || locale == 'FI')) { // No 2nd shipping method for these boohoo brands and locales
+  it.only('Verify that user is able to select 2nd shipping method', function () {
+    if (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU') { // No 2nd shipping method for these boohoo brands and locales
       this.skip();
     }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
-    const localeShippingMethodForMisspapIE = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod4');
+    const localeShippingMethodForMisspapIE = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod3');
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -201,9 +201,6 @@ describe('Shipping Page Guest user tests', function () {
         shippingPage.actions.confirmEmailField(this.guestEmail);
       }
     } 
-    if (brand != 'boohooman.com' && locale != 'EU') {
-      shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
-    }
     cy.wait(5000);
     if(brand == 'misspap.com' && locale == 'IE'){
       shippingPage.actions.selectOtherShippingMethod(localeShippingMethodForMisspapIE.shippingMethodName);

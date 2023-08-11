@@ -137,10 +137,10 @@ class ShippingMethod {
         shippingMethodName: 'Next Day'
       },
       shippingMethod3: {
-        shippingMethodName: ''
+        shippingMethodName: 'Express'
       },
       shippingMethod4: {
-        shippingMethodName: 'Express'
+        shippingMethodName: ''
       }
     },
     DK: {
@@ -348,7 +348,7 @@ class ShippingMethod {
    * @returns AddressData type with all the details for an address.
    */
 
-  getShippingMethodByLocale (locale: string, type: 'shippingMethod1' | 'shippingMethod2' | 'shippingMethod4'): ShippingData {
+  getShippingMethodByLocale (locale: string, type: 'shippingMethod1' | 'shippingMethod2' | 'shippingMethod3' | 'shippingMethod4'): ShippingData {
     if (typeof this.shippingMap[locale] === 'undefined') throw new Error('Shipping method could not be found with locale ' + locale);
     return this.shippingMap[locale][type] as ShippingData;
   }

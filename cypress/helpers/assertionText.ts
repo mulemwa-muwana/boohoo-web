@@ -1848,6 +1848,34 @@ class AssertionText {
     ES: ''
   };
 
+  referFriendText: TranslationMap = {
+    EN: 'Refer a Friend',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  referFriendPage: TranslationMap = {
+    EN: 'refer',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
 }
 
 export default new AssertionText();

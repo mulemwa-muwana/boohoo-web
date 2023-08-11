@@ -364,7 +364,7 @@ describe('Home Page', function () {
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', function () {
         const excludedMisspapWithLocales : boolean = brand == 'misspap.com' && locale == 'IE';
-        const excludedBurtonLocales : boolean = brand == 'burton.co.uk' && locale == 'UK';
+        const excludedBurtonLocales : boolean = brand == 'burton.co.uk' && locale != 'UK';
         const excludedOasisLocales : boolean = brand == 'oasis-stores.com' && locale == 'IE';
         if (brand == 'boohoomena.com' || excludedMisspapWithLocales || excludedBurtonLocales || excludedOasisLocales) {
           this.skip();

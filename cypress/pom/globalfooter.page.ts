@@ -30,7 +30,7 @@ const selectors: SelectorBrandMap = {
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
     footer: '#footercontent',
-    helpLink: '.content-asset .b-footer_quick_links',
+    helpLink: '.content-asset .b-footer_quick_links', 
   },
   'nastygal.com': {
     privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
@@ -143,7 +143,7 @@ const selectors: SelectorBrandMap = {
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
-    helpLink: 'a[title="Customer Service"] , [title="Service client"]'
+    helpLink: 'a[title="Customer Service"] , [title="Service client"]',
   },
   'karenmillen.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -259,7 +259,7 @@ const selectors: SelectorBrandMap = {
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
-    helpLink: 'a[title="Help"]'
+    helpLink: 'a[title="Help"]',
   },
   'boohoomena.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -450,7 +450,7 @@ class GlobalFooter implements AbstractPage {
       const helpLink = selectors[variables.brand].helpLink;
       cy.get(helpLink).click({force: true});
       cy.url().should('include', text);
-    }
+    },
   };
 
   assertions = {
@@ -504,6 +504,9 @@ class GlobalFooter implements AbstractPage {
     assertHeaderIsNotVisible () {
       const headerInner = selectors[variables.brand].headerInner;
       cy.get(headerInner).should('not.be.visible');
+    },
+    assertReferFriendPagePresent (text: string) {
+      cy.url().should('include', text);
     }
   };
 

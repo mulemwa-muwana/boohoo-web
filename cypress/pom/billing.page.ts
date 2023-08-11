@@ -34,7 +34,7 @@ const selectors: SelectorBrandMap = {
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
     shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
     paymentMethodCreditCard: '#payment-button-scheme',
-    paymentMethodCreditCardUS: '#payment-button-CREDIT_CARD > .b-payment_accordion-head > .b-payment_accordion-label',
+    paymentMethodCreditCardUS: '#payment-button-CREDIT_CARD',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
     paymentMethodKlarna: '#payment-button-KlarnaUK',
@@ -714,7 +714,6 @@ class BillingPage implements AbstractPage {
     },
     selectCreditCard (cardNo: string, cardOwner: string, date: string, code: string) {
       const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
-
       const creditCardCardNumberIframe = selectors[brand].creditCardCardNumberIframe;
       const creditCardFieldsCardNumber = selectors[brand].creditCardFieldsCardNumber;
       const creditCardExpirationDateIframe = selectors[brand].creditCardExpirationDateIframe;
@@ -741,13 +740,8 @@ class BillingPage implements AbstractPage {
 
     },
     selectCreditCardUS (cardNo: string, cardOwner: string, date: string, code: string) {
-      
-      if (brand=='boohoo.com'&&locale=='US') {
-        cy.get('#payment-button-CREDIT_CARD > .b-payment_accordion-head').click({force:true});
-      } else {
-        cy.get('#payment-button-scheme').click({force: true});
-      }
-    
+      const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
+      cy.get(paymentMethodCreditCardUS).click({force:true});   
       cy.wait(4000);
 
       cy.get('body').then($body=>{ // (Updated) If there is saved Credit Card, click Add new Card button
@@ -1207,7 +1201,7 @@ class BillingPage implements AbstractPage {
     assertPaymentMethodCreditCardIsDisplayed () {
       const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
       const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
-      if (brand =='boohoo.com' && locale == 'US') {
+      if (brand =='boohoo.com' && (locale == 'US' || locale == 'CA')) {
         cy.get(paymentMethodCreditCardUS).should('be.visible');
       } else {
         cy.get(paymentMethodCreditCard).should('be.visible');
@@ -1270,7 +1264,11 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
+<<<<<<< HEAD
       } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE'||locale =='NZ') ) {
+=======
+      } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE' || locale == 'FR' || locale == 'CA') ) {
+>>>>>>> master
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');

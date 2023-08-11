@@ -358,7 +358,7 @@ class Addresses {
         country: 'Canada',
         city: 'Niagra Falls',
         countryCode: 'CA',
-        county: '',
+        county: 'Alberta',
         addressNickname: 'CA1',
         what3Words:'',
         month: 'May',

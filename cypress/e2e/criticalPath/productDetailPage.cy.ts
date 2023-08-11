@@ -14,7 +14,7 @@ describe('Product Details Page tests', function () {
   });  
 
   it('TC01 Verify that Product name, price and code is showing',function () { 
-    const SKU = sku.replace(/^#/g, '') 
+    const SKU = sku.replace(/^#|-1|-2|-3/g, '') 
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
     PdpPage.assertions.assertProductCodeIsDisplayed(SKU); 

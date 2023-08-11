@@ -30,7 +30,8 @@ const selectors: SelectorBrandMap = {
     resetPasswordBtn: '.b-dialog-footer > .b-button',
     loginForm: '.b-login_form',
     errorLoginMessage: '.b-message-copy',
-    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email',
+    popUpSign: '.b-dialog-header >button',
   },
   'dorothyperkins.com': {
     loginIcon: '.b-header_login-icon > .i-icon',
@@ -304,7 +305,16 @@ class LoginPage implements AbstractPage {
       } else {
         cy.get(resetPasswordEmailField).type(email);
       }
-    }
+    },
+    loginPopUpMessage () { 
+      const popUpSign = selectors[variables.brand].popUpSign;
+        cy.get('body').then($body=>{
+          if ($body.find(popUpSign).length>0) {
+            cy.get(popUpSign).click({ force: true });
+          }
+        });
+      
+    },
   };
 }
 

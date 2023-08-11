@@ -248,9 +248,9 @@ const selectors: SelectorBrandMap = {
 class HomePage implements AbstractPage {
 
   goto () {
-    if (brand == 'nastygal.com' && locale == 'AU') {
+    if (brand == 'nastygal.com') {
 
-      cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
+     // cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
     if ((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU') {
       cy.setCookie('dw_locale', 'default');

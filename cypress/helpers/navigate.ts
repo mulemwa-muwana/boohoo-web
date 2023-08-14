@@ -84,7 +84,7 @@ class Navigate {
         shippingPage.click.addAddressManually();
         shippingPage.actions.adressLine1(primaryAddress.addressLine);
         shippingPage.actions.cityField(primaryAddress.city);
-        if (locale == 'US' || locale == 'AU'|| locale == 'IE') {
+        if (locale == 'US' || locale == 'AU'|| locale == 'IE' || locale == 'CA') {
           shippingPage.actions.selectState(primaryAddress.county);
         }
         shippingPage.actions.postcodeField(primaryAddress.postcode);

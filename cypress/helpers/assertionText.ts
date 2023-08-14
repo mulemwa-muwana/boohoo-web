@@ -1818,6 +1818,7 @@ class AssertionText {
     IT: 'No promo code entered',
     ES: 'No promo code entered'
   };
+
   customerServicePageTrackOrderButton: TranslationMap = {
     EN: 'Track order',
     NL: 'Volg Mijn Bestelling',
@@ -1831,6 +1832,7 @@ class AssertionText {
     IT: 'Segui Il Mio Ordine',
     ES: 'Seguir el estado de mi pedido'
   };
+
   customerServicePageReturnButton: TranslationMap = {
     EN: 'Start a return',
     NL: 'BEGIN EEN RETOURNERING',
@@ -1844,8 +1846,37 @@ class AssertionText {
     IT: 'AVVIA PROCEDURA DI RESO',
     ES: 'INICIAR UNA DEVOLUCIÓN'
   };
+
   customerServicePageVirtualAssistantButton: TranslationMap = {
     EN: 'Virtual Assistant',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  referFriendText: TranslationMap = {
+    EN: 'Refer a Friend',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  referFriendPage: TranslationMap = {
+    EN: 'refer',
     NL: '',
     DE: '',
     FR: '',

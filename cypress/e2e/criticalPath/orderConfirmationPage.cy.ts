@@ -20,7 +20,7 @@ describe('Order confirmation page for guest user', function () {
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
-    if (brand == 'boohoo.com' && locale == 'US') {
+    if (brand == 'boohoo.com' && (locale == 'US' || locale == 'CA')) {
       billingPage.actions.selectCreditCardUS(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     } else {
       billingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
@@ -41,7 +41,6 @@ describe('Order confirmation page for guest user', function () {
       orderConfirmationPage.assertions.assertShippingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertBillingAddressDetails(localeAddress.firstName, localeAddress.lastName, localeAddress.addressLine);
       orderConfirmationPage.assertions.assertShippingMethodIsDisplayed();
-
       orderConfirmationPage.assertions.assertThatPasswordFieldForGuestUserIsDisplayed();
       orderConfirmationPage.assertions.assertThatConfirmPasswordFieldForGuestUserIsDisplayed();
     });
@@ -55,7 +54,7 @@ describe('Order confirmation page for guest user', function () {
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
-    if (brand == 'boohoo.com' && locale == 'US') {
+    if (brand == 'boohoo.com' && (locale == 'US' || locale == 'CA')) {
       billingPage.actions.selectCreditCardUS(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
     } else {
       billingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);

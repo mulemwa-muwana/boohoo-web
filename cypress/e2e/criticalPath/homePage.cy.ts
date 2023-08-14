@@ -408,6 +408,15 @@ describe('Home Page', function () {
         }
       });
 
+      it('Verify that Footer Navigation Component is present and links are functional - Refer a friend', function () {
+        if (brand == 'boohoo.com' || brand == 'boohooman.com' || brand == 'misspap.com'){
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.referFriendText[language]);
+          GlobalFooter.assertions.assertReferFriendPagePresent(assertionText.referFriendPage[language]);
+        } else {
+          this.skip();
+        }
+      });
+
       /*
           It('Verify that Footer Navigation Component is present and Links are functional - Refer a Friend', () => {
           GlobalFooter.actions.checkFooterLinkByText('Refer a Friend');

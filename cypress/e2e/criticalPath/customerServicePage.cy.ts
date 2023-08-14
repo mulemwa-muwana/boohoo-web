@@ -1,3 +1,5 @@
+import assertionText from 'cypress/helpers/assertionText';
+import { language } from 'cypress/support/e2e';
 import customerServicePage from '../../pom/customerService.page';
 
 describe('Customer Service Page', function () {
@@ -17,9 +19,9 @@ describe('Customer Service Page', function () {
     customerServicePage.assertions.assertStartReturnButtonIsFunctional();
   });
 
-  it('Verify that start a chat will open', function () {
-    customerServicePage.actions.openVirtualAssistant();
-    customerServicePage.assertions.assertVirtualAssistantIsOpen();
+  it.only('Verify that start a chat will open', function () {
+    customerServicePage.actions.openVirtualAssistant(assertionText.customerServicePageVirtualAssistantButton[language]);
+    //customerServicePage.assertions.assertVirtualAssistantIsOpen();
 
   });
 

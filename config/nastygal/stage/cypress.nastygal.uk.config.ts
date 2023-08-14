@@ -7,15 +7,15 @@ export default defineConfig({
   env: {
     url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/gb',
     sku: '#AGG50919-1', // Needs hashtag for assertation on PDP
-    fullSku: 'AGG50919-432-16', 
+    fullSku: 'AGG50919-432-20', 
     brand: 'nastygal.com',
     locale: 'UK',
     language: 'EN',
     giftCertificate: 'LJRSWHZFVILSLRYA',
   },
 
-  viewportHeight: 1080,
-  viewportWidth: 1920,
+  viewportHeight: 667,
+  viewportWidth: 365,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,

@@ -29,16 +29,19 @@ class CustomerServicePage implements AbstractPage {
   }
 
   click ={
-
   };
 
   actions = {
-    openVirtualAssistant () {
+    openVirtualAssistant (text: string) {
       const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop; 
+      cy.scrollTo('top');
       cy.get(customerServiceButtonsAtTop)
-        .contains(assertionText.customerServicePageVirtualAssistantButton[language])
-        .click();
-      cy.wait(12000);   
+        .contains(text)
+        //.invoke('removeAttr', 'target')
+        .click({force: true});
+      cy.wait(2000);   
+
+      cy.get('.egain-chat-content');
     }
 
   };

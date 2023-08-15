@@ -84,7 +84,7 @@ describe('Account page', function () {
     MyAccountPage.assertions.assertCardNotPresent(Cards.visa.end);
   });
 
-  it.only('TC06 Verify that Social Accounts section can be opened in My Account page', function () {
+  it('TC06 Verify that Social Accounts section can be opened in My Account page', function () {
     MyAccountPage.click.socialAccountsLink();
   });
 

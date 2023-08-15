@@ -15,8 +15,8 @@ export default defineConfig({
     giftCertificate: 'RWHRHFYAZSRILYAR',
   },
 
-  viewportHeight: 1080,
-  viewportWidth: 1920,
+  viewportHeight: 667,
+  viewportWidth: 370,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,

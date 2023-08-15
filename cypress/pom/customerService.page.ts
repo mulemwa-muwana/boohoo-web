@@ -37,11 +37,9 @@ class CustomerServicePage implements AbstractPage {
       cy.scrollTo('top');
       cy.get(customerServiceButtonsAtTop)
         .contains(text)
-        //.invoke('removeAttr', 'target')
+        .invoke('removeAttr', 'target')
         .click({force: true});
       cy.wait(2000);   
-
-      cy.get('.egain-chat-content');
     }
 
   };

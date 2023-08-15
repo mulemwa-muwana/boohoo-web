@@ -19,7 +19,7 @@ describe('Verify Registration feature', function () {
     RegistrationPage.actions.startRegistration(randomEmail);
     RegistrationPage.assertions.assertRegistrationFormIsPresent();
   });
-  it.only('Verify that user can register new account using valid credentials', function () {
+  it('Verify that user can register new account using valid credentials', function () {
     cy.fixture('newuser').then((credentials) =>{
       const randomEmail = CommonActions.randomEmail();
       RegistrationPage.actions.startRegistration(randomEmail);

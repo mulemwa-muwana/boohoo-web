@@ -342,7 +342,7 @@ const selectors: SelectorBrandMap = {
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    countyField: 'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -994,8 +994,8 @@ class ShippingPage implements AbstractPage {
       const countyFieldIE = selectors[brand].countyFieldIE;
       if (brand=='karenmillen.com' && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
-      } else if (brand == 'misspap.com') {
-        cy.get(countyField).clear({force:true}).type(county);
+      } else if (brand == 'misspap.com' || brand == 'boohooman.com') {
+        cy.get(countyField).clear({force:true}).type(county,{force:true});
       } else {
         cy.get(countyField).select(county);
       }

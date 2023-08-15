@@ -994,7 +994,7 @@ class ShippingPage implements AbstractPage {
       const countyFieldIE = selectors[brand].countyFieldIE;
       if (brand=='karenmillen.com' && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
-      } else if (brand == 'misspap.com' || brand == 'boohooman.com') {
+      } else if (brand == 'misspap.com' || (brand == 'boohooman.com' || brand =='karenmillen.com' && locale == 'UK')) {
         cy.get(countyField).clear({force:true}).type(county,{force:true});
       } else {
         cy.get(countyField).select(county);
@@ -1003,9 +1003,9 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({ force: true }).type(postcode).blur();
+      cy.get(shippingPostcode).clear({ force: true }).type(postcode);
       cy.wait(1000);
-      cy.get(shippingPostcode).click().blur();
+      cy.get(shippingPostcode).click();
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;

@@ -62,11 +62,11 @@ class PrivacyPolicyPage implements AbstractPage {
     assertPrivacyNoticyPageOpens (text: string) {
       const privacyNoticyPageTitle = selectors[variables.brand].privacyNoticyPageTitle;
       const privacyNoticyPageTitleUS = selectors[variables.brand].privacyNoticyPageTitleUS;
-      if(brand == 'karenmillen.com' && locale == 'US'){
-      cy.get(privacyNoticyPageTitleUS).should('contains.text', text, { matchCase: false });
-    } else {
-      cy.get(privacyNoticyPageTitle).should('contains.text', text, { matchCase: false });
-    }
+      if (brand == 'karenmillen.com' && locale == 'US') {
+        cy.get(privacyNoticyPageTitleUS).should('contains.text', text, { matchCase: false });
+      } else {
+        cy.get(privacyNoticyPageTitle).should('contains.text', text, { matchCase: false });
+      }
     }
   };
 }

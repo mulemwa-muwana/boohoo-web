@@ -250,7 +250,7 @@ class HomePage implements AbstractPage {
   goto () {
     if (brand == 'nastygal.com') {
 
-     // cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
+      // Cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
     if ((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU') {
       cy.setCookie('dw_locale', 'default');

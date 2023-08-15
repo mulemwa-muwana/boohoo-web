@@ -177,7 +177,7 @@ const selectors: SelectorBrandMap = {
     promoTitle: 'promo',
     quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
-    quickAddtoCart: 'button#add-to-cart',
+    quickAddtoCart: "[class='button-fancy-large js-add-to-cart']",
     miniCartQty: '.js-minicart-quantity '
   },
   'karenmillen.com': {

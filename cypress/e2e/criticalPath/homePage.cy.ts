@@ -367,9 +367,9 @@ describe('Home Page', function () {
         }
         if (brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromoNG[language]);
-        } else if(brand == 'karenmillen.com' && locale == 'US'){
+        } else if (brand == 'karenmillen.com' && locale == 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentBean[language]);
-         } else { 
+        } else { 
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[language]);
         }
         if (brand == 'warehousefashion.com') {
@@ -409,7 +409,7 @@ describe('Home Page', function () {
       });
 
       it('Verify that Footer Navigation Component is present and links are functional - Refer a friend', function () {
-        if (brand == 'boohoo.com' || brand == 'boohooman.com' || brand == 'misspap.com'){
+        if (brand == 'boohoo.com' || brand == 'boohooman.com' || brand == 'misspap.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.referFriendText[language]);
           GlobalFooter.assertions.assertReferFriendPagePresent(assertionText.referFriendPage[language]);
         } else {
@@ -538,7 +538,7 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Thrift', function () {
-        if (brand == 'karenmillen.com' && locale == 'UK'){
+        if (brand == 'karenmillen.com' && locale == 'UK') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.thrift[language]);
         } else {
           this.skip();
@@ -558,10 +558,10 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Karen Millen Loyalty', function (){
+      it('Verify that Footer Navigation Component is present and Links are functional - Karen Millen Loyalty', function () {
         if (brand == 'karenmillen.com' && locale == 'UK') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.loyalty[language]);
-        }else{
+        } else {
           this.skip();
         }
       });

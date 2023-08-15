@@ -385,12 +385,14 @@ const selectors: SelectorBrandMap = {
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
     shippingCheckbox: 'div[class*="useAsBillingAddress"]',
     paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodCreditCardUS: '[for="is-CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
     paymentMethodKlarnaAU: '[for="is-KlarnaAU"]',
     paymentMethodKlarnaIE: '[for="is-KlarnaIE"]',
     paymentMethodKlarnaUS: '[for="is-KlarnaUS"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
+    paymentMethodAfterPay: '[for="is-AFTERPAY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -1201,7 +1203,7 @@ class BillingPage implements AbstractPage {
     assertPaymentMethodCreditCardIsDisplayed () {
       const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
       const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
-      if (brand =='boohoo.com' && (locale == 'US' || locale == 'CA')) {
+      if (brand =='boohoo.com' || brand == 'karenmillen.com' && (locale == 'US' || locale == 'CA')) {
         cy.get(paymentMethodCreditCardUS).should('be.visible');
       } else {
         cy.get(paymentMethodCreditCard).should('be.visible');
@@ -1242,6 +1244,12 @@ class BillingPage implements AbstractPage {
       }
       
     }, 
+    assertPaymentMethodAfterPayIsDisplayed () {
+      const paymentMethodAfterPay = selectors[brand].paymentMethodAfterPay;
+      if (locale=='US') {
+        cy.get(paymentMethodAfterPay).should('be.visible');
+      } 
+    },
     assertPaymentMethodAmazonPayIsDisplayed () {
       const paymentMethodAmazonPay = selectors[brand].paymentMethodAmazonPay;
       cy.get(paymentMethodAmazonPay).should('be.visible');

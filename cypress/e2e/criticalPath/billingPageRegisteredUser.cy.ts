@@ -81,10 +81,14 @@ describe('Billing page functionality for registered user', function () {
     }
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    if (locale === 'UK' || locale === 'IE' || locale === 'AU') {
+    if (locale === 'UK' || locale === 'IE' || locale === 'AU' || locale === 'US') {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
+      if(brand == 'karenmillen.com' && locale == 'US'){
+        BillingPage.assertions.assertPaymentMethodAfterPayIsDisplayed();
+      } else {
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
+  }
   });
 
   //  TESTS FOR SITE GENESIS BRANDS:  //

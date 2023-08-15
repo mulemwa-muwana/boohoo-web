@@ -136,6 +136,7 @@ class Navigate {
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
       shippingPage.click.proceedToBilling();
+      shippingPage.click.proceedToBillingVerification();
       BillingPage.actions.waitPageToLoad();     
     }
   } 

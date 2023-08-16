@@ -308,11 +308,11 @@ class LoginPage implements AbstractPage {
     },
     loginPopUpMessage () { 
       const popUpSign = selectors[variables.brand].popUpSign;
-        cy.get('body').then($body=>{
-          if ($body.find(popUpSign).length>0) {
-            cy.get(popUpSign).click({ force: true });
-          }
-        });
+      cy.get('body').then($body=>{
+        if ($body.find(popUpSign).length>0) {
+          cy.get(popUpSign).click({ force: true });
+        }
+      });
       
     },
   };

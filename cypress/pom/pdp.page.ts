@@ -494,12 +494,12 @@ class PdpPage implements AbstractPage {
 
       // .and('include.text', productName);  // Skus are different 
     },
-    assertProductCodeIsDisplayed (SKU:string) {
+    assertProductCodeIsDisplayed (SKU: string) {
       const productCode = selectors[brand].productCode;
       cy.get(productCode).should('be.visible').invoke('text').then(productCodeText => {
-        try{
+        try {
           expect(productCodeText).to.contain(SKU);
-        }catch{
+        } catch {
           expect(SKU).to.contain(productCodeText);
         }
       });

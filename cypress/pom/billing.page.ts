@@ -1203,7 +1203,7 @@ class BillingPage implements AbstractPage {
     assertPaymentMethodCreditCardIsDisplayed () {
       const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
       const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
-      if (brand =='boohoo.com' || brand == 'karenmillen.com' && (locale == 'US' || locale == 'CA')) {
+      if ((brand =='boohoo.com' || brand == 'karenmillen.com') && (locale == 'US' || locale == 'CA')) {
         cy.get(paymentMethodCreditCardUS).should('be.visible');
       } else {
         cy.get(paymentMethodCreditCard).should('be.visible');

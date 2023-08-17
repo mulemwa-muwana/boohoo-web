@@ -276,7 +276,7 @@ describe('Shipping Page Guest user tests', function () {
   });
   it('Verify that user can enter valid credentials in w3w', function () {
     if (isSiteGenesisBrand) {
-      if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+      if (brand == 'boohooman.com' || brand == 'boohoomena.com' || brand == 'karenmillen.com' && locale == 'US') {
         this.skip();
       } else {
         cy.clearAllCookies();
@@ -294,7 +294,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertW3WisSelected();
   });
   it('Verify that user can select PUDO location', function () {
-    if (locale != 'UK' || brand == 'boohooman.com') {
+    if (locale != 'UK' || brand == 'boohooman.com' ) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
@@ -309,7 +309,7 @@ describe('Shipping Page Guest user tests', function () {
     });
   });
   it('SG: Verify that guest user can add Thrift to the order', function () {
-    if (brand == 'karenmillen.com') {
+    if (brand == 'karenmillen.com' && locale == 'UK') {
       shippingPage.assertions.assertThriftSectionIsVisible();
       shippingPage.click.addThriftToCart();
       shippingPage.assertions.assertThriftBagIsAddedToTheCart();

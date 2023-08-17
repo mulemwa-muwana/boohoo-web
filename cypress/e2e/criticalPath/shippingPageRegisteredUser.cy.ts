@@ -141,6 +141,8 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.phoneNumberField(localeAddress.phone);
       if (brand == 'boohoomena.com' || locale == 'IE' ) {
         shippingPage.actions.countyField(localeAddress.county);
+      } else if (brand == 'karenmillen.com' && locale == 'US'){
+        shippingPage.actions.selectState(localeAddress.county);
       }
     } else {
       shippingPage.click.enterManuallyAddressDetails();
@@ -199,7 +201,10 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.phoneNumberField(localeAddress.phone);
       if (brand == 'boohoomena.com' || locale == 'IE') {
         shippingPage.actions.countyField(localeAddress.county);
-      }
+       } else if (brand == 'karenmillen.com' && locale == 'US'){
+          shippingPage.actions.selectState(localeAddress.county);
+        }
+      
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
@@ -211,7 +216,8 @@ describe('Shipping Page Registered user tests', function () {
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
-    if (locale == 'IE') {
+
+    if (locale == 'IE' || locale == 'US') {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();
@@ -236,7 +242,11 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      shippingPage.actions.countyField(localeAddress.county);    
+      if (brand == 'karenmillen.com' && locale == 'US'){
+        shippingPage.actions.selectState(localeAddress.county);
+      } else{
+      shippingPage.actions.countyField(localeAddress.county); 
+      }   
     } else {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
@@ -250,7 +260,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
-    if (locale == 'IE') {
+    if (locale == 'IE' || locale == 'US') {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();
@@ -262,7 +272,7 @@ describe('Shipping Page Registered user tests', function () {
     cartPage.assertions.assertTableWithProductIsVisible();
   });
   it('Verify that user can enter valid credentials in w3w', function () {
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com'|| brand == 'karenmillen.com' && locale == 'US') {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
@@ -272,7 +282,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertW3WisSelected();
   });
   it('Verify that user can select PUDO location', function () {
-    if (locale != 'UK' || brand == 'boohooman.com') {
+    if (locale != 'UK' || brand == 'boohooman.com' || brand == 'karenmillen.com') {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
@@ -283,10 +293,12 @@ describe('Shipping Page Registered user tests', function () {
     });
   });
   it('SG: Verify that guest user can add Thrift to the order', function () {
-    if (brand == 'karenmillen.com') {
+    if (brand == 'karenmillen.com' && locale == 'UK') {
       shippingPage.assertions.assertThriftSectionIsVisible();
       shippingPage.click.addThriftToCart();
       shippingPage.assertions.assertThriftBagIsAddedToTheCart();
+    } else {
+      this.skip();
     }
   });
 

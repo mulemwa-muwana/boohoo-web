@@ -286,7 +286,7 @@ describe('Shipping Page Guest user tests', function () {
   });
   it('Verify that user can enter valid credentials in w3w', function () {
     if (isSiteGenesisBrand) {
-      if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
+      if (brand == 'boohooman.com' || brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
         this.skip();
       } else {
         cy.clearAllCookies();

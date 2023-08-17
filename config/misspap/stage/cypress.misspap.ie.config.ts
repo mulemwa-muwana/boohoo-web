@@ -6,7 +6,7 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stg.misspap.com/ie',
-    sku: 'MPP00243-4',
+    sku: 'MPP00243-399',
     fullSku: 'MPP00243-399-16',
     brand: 'misspap.com',
     locale: 'IE',
@@ -37,6 +37,6 @@ export default defineConfig({
     excludeSpecPattern: [
       '**/backend*/**' // Skip backend tests
     ],
-    numTestsKeptInMemory: 0
+    numTestsKeptInMemory: 150
   },   
 });

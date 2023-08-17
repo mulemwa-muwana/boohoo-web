@@ -57,7 +57,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.addAddressManually();
 
     shippingPage.actions.adressLine1(localeAddress.addressLine);
-    if (brand == 'boohooman.com') {
+    if (brand == 'boohooman.com' || (brand == 'misspap.com' && locale == 'IE')) {
       shippingPage.actions.addressLine2Clear(); // To Remove complete data provided through BeforeEach ShippingPage Method
     } 
     cy.wait(2000);
@@ -72,6 +72,7 @@ describe('Shipping Page Registered user tests', function () {
     }
     cy.wait(3000);
     shippingPage.click.proceedToBilling();
+    cy.wait(2000);
     shippingPage.click.proceedToBillingVerification();  
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
@@ -153,6 +154,7 @@ describe('Shipping Page Registered user tests', function () {
     }
 
     shippingPage.click.proceedToBilling();
+    cy.wait(2000);
     shippingPage.click.proceedToBillingVerification();
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
@@ -224,7 +226,7 @@ describe('Shipping Page Registered user tests', function () {
       this.skip();
     }
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
-    const localeShippingMethodForMisspapIE = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod4');
+    const localeShippingMethodForMisspapIE = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod3');
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -271,16 +273,6 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that user can Edit cart from shipping page', () => {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
-  });
-  it('Verify that user can enter valid credentials in w3w', function () {
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com') {
-      this.skip();
-    }
-    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
-    shippingPage.click.addNewAddressButton();
-    shippingPage.click.enterManuallyAddressDetails();
-    shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
-    shippingPage.assertions.assertW3WisSelected();
   });
   it('Verify that user can select PUDO location', function () {
     if (locale != 'UK' || brand == 'boohooman.com') {

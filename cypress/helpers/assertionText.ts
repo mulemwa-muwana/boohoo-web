@@ -1047,7 +1047,21 @@ class AssertionText {
     SE: 'Studentrabatt',
     IL: '',
     IT: 'Sconto Studente',
-    ES: 'Descuento para estudiantes'
+    ES: 'Descuento para estudiantes',
+  };
+
+  footerLinkStudentBean: TranslationMap = {
+    EN: 'Student Bean',
+    NL: 'Studentenkorting',
+    DE: 'Studentenrabatt',
+    FR: 'Réduction étudiant',
+    DK: 'Student Discount',
+    FI: 'Student Discount',
+    NO: 'Student Discount',
+    SE: 'Studentrabatt',
+    IL: '',
+    IT: 'Sconto Studente',
+    ES: 'Descuento para estudiantes',
   };
 
   footerLinkReturns: TranslationMap = {

@@ -539,7 +539,7 @@ const selectors: SelectorBrandMap = {
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
+    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -552,7 +552,17 @@ const selectors: SelectorBrandMap = {
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
-    cityDetailsAreMandatory: 'dwfrm_singleshipping_shippingAddress_addressFields_city-error'
+    cityDetailsAreMandatory: 'dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
+    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    successMark:'.field-wrapper-w3w-valid',
+    clickAndCollectTab:'.js-click-collect-tab',
+    pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
+    pudoSearchField:'.js-pudo-search-field',
+    pudoFirstShop:'.js-shop',
+    pudoSearchTitle:'.js-shop .pudo-title',
+    pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
+    pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
   },
   'oasis-stores.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -995,8 +1005,8 @@ class ShippingPage implements AbstractPage {
       const countyFieldIE = selectors[brand].countyFieldIE;
       if ((brand=='karenmillen.com' || brand  == 'misspap.com') && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
-      } else if ((brand == 'misspap.com' && locale == 'UK')|| brand == 'boohooman.com') {
-        cy.get(countyField).clear({force:true}).type(county, {force:true});
+      } else if ((brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com' || (brand == 'boohooman.com' || brand =='karenmillen.com' && locale == 'UK')) {
+        cy.get(countyField).clear({force:true}).type(county,{force:true});
       } else {
         cy.get(countyField).select(county);
       }
@@ -1004,9 +1014,9 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({ force: true }).type(postcode).blur();
+      cy.get(shippingPostcode).clear({ force: true }).type(postcode);
       cy.wait(1000);
-      cy.get(shippingPostcode).click().blur();
+      cy.get(shippingPostcode).click();
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;

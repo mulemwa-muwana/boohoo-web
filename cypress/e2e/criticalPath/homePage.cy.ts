@@ -371,6 +371,8 @@ describe('Home Page', function () {
         }
         if (brand == 'nastygal.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromoNG[language]);
+        } else if (brand == 'karenmillen.com' && locale == 'US') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentBean[language]);
         } else { 
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[language]);
         }
@@ -425,7 +427,7 @@ describe('Home Page', function () {
         });
         */
       it('Verify that Footer Navigation Component is present and Links are functional - Become an Affiliate', function () {
-        if (brand == 'boohoo.com' || (brand == 'nastygal.com' && locale == 'UK') || (brand == 'coastfashion.com' && locale != 'IE') || brand == 'karenmillen.com' || brand == 'misspap.com' || (brand == 'boohooman.com' != (locale == 'NL' || locale == 'DE'|| locale == 'FR'))) {
+        if (brand == 'boohoo.com' || (brand == 'nastygal.com' && locale == 'UK') || (brand == 'coastfashion.com' && locale != 'IE') || (brand == 'karenmillen.com'&& locale != 'US')|| brand == 'misspap.com' || (brand == 'boohooman.com' != (locale == 'NL' || locale == 'DE'|| locale == 'FR'))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.becomeAnAffiliate[language]);
         } else {
           this.skip();
@@ -543,24 +545,32 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.termsAndCondArcadia[language]);
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Thrift', () => {
-        if (brand == 'karenmillen.com') {
+      it('Verify that Footer Navigation Component is present and Links are functional - Thrift', function () {
+        if (brand == 'karenmillen.com' && locale == 'UK') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.thrift[language]);
+        } else {
+          this.skip();
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Notebook', () => {
-        if (brand == 'karenmillen.com') {
+      it('Verify that Footer Navigation Component is present and Links are functional - Notebook', function () {
+        if (brand == 'karenmillen.com' && locale == 'UK') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.notebook[language], { assertionUrl: 'notebook' });
+        } else {
+          this.skip();
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Rental', () => {
-        if (brand == 'karenmillen.com') {
+      it('Verify that Footer Navigation Component is present and Links are functional - Rental', function () {
+        if (brand == 'karenmillen.com' && locale == 'UK') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.rental[language]);
+        } else {
+          this.skip();
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Karen Millen Loyalty', () => {
-        if (brand == 'karenmillen.com') {
+      it('Verify that Footer Navigation Component is present and Links are functional - Karen Millen Loyalty', function () {
+        if (brand == 'karenmillen.com' && locale == 'UK') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.loyalty[language]);
+        } else {
+          this.skip();
         }
       });
 

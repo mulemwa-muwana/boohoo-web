@@ -183,6 +183,8 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
+    countryBtn: '.current-country-arrow > .flag-icon',
+    countryList: '.selector>div>div',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'oasis-stores.com': {
@@ -250,7 +252,7 @@ class HomePage implements AbstractPage {
   goto () {
     if (brand == 'nastygal.com') {
 
-     // cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
+      // Cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
     }
     if ((brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com') && locale == 'EU') {
       cy.setCookie('dw_locale', 'default');

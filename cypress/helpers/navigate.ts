@@ -45,7 +45,7 @@ class Navigate {
     // GUEST USER //
     if (userType === 'GuestUser') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
-        if (!isSiteGenesisBrand || (brand == 'karenmillen.com' && locale == 'UK') || (brand == 'misspap.com' && locale == 'UK')) {
+        if (!isSiteGenesisBrand || (brand == 'karenmillen.com' && locale == 'UK') || (brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com') {
           cy.wait(2000);
           CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
           CheckoutPage.click.continueAsGuestBtn();

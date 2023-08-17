@@ -1,3 +1,4 @@
+import { brand, locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -21,6 +22,7 @@ const selectors: SelectorBrandMap = {
   },
   'karenmillen.com': {
     privacyNoticyPageTitle: 'h1 > strong',
+    privacyNoticyPageTitleUS: '[class="content-asset cs-privacy-policy "]',
   },
   'coastfashion.com': {
     privacyNoticyPageTitle: 'h1 > strong',
@@ -59,7 +61,12 @@ class PrivacyPolicyPage implements AbstractPage {
     },
     assertPrivacyNoticyPageOpens (text: string) {
       const privacyNoticyPageTitle = selectors[variables.brand].privacyNoticyPageTitle;
-      cy.get(privacyNoticyPageTitle).should('contains.text', text, { matchCase: false });
+      const privacyNoticyPageTitleUS = selectors[variables.brand].privacyNoticyPageTitleUS;
+      if (brand == 'karenmillen.com' && locale == 'US') {
+        cy.get(privacyNoticyPageTitleUS).should('contains.text', text, { matchCase: false });
+      } else {
+        cy.get(privacyNoticyPageTitle).should('contains.text', text, { matchCase: false });
+      }
     }
   };
 }

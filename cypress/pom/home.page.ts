@@ -183,6 +183,8 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
+    countryBtn: '.current-country-arrow > .flag-icon',
+    countryList: '.selector>div>div',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
   },
   'oasis-stores.com': {

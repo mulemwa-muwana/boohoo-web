@@ -99,6 +99,7 @@ class Navigate {
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
           }
+          cy.wait(2000);
           shippingPage.click.proceedToBilling();
           shippingPage.click.proceedToBillingVerification();
         } else {
@@ -135,6 +136,7 @@ class Navigate {
         shippingPage.actions.countyField(primaryAddress.county);
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
+      cy.wait(2000);
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
       shippingPage.click.proceedToBillingVerification();

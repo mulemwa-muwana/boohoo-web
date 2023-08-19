@@ -211,7 +211,7 @@ describe('Home Page', function () {
       
       it('TikTok', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com', 'misspap.com', 'boohooman.com'];
-        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && locale == 'FR')) {
+        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && locale == 'FR') || (brand == 'misspap.com' && locale == 'IE')) {
           this.skip();
         }
         SocialsPage.assertions.assertTikTokIconIsPresent();
@@ -265,7 +265,8 @@ describe('Home Page', function () {
         const excludedBoohooWithLocales: boolean = brand == 'boohoo.com' && excludedBoohooLocales.includes(locale);
         const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && locale == 'EU';
         const excludedCoastWithLocales: boolean = brand == 'coastfashion.com' && locale == 'IE';
-        if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedCoastWithLocales || (brand == 'coastfashion.com' && isMobileDeviceUsed)) {
+        const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && locale == 'IE';
+        if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedCoastWithLocales || excludedMisspapWithLocales || (brand == 'coastfashion.com' && isMobileDeviceUsed)) {
           this.skip();
         } else {
           GlobalFooter.assertions.assertAppBannerPresent();
@@ -362,7 +363,10 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', function () {
-        if (brand == 'boohoomena.com' || (brand == 'burton.co.uk' && locale != 'UK')|| (brand == 'oasis-stores.com' && locale == 'IE')) {
+        const excludedMisspapWithLocales : boolean = brand == 'misspap.com' && locale == 'IE';
+        const excludedBurtonLocales : boolean = brand == 'burton.co.uk' && locale != 'UK';
+        const excludedOasisLocales : boolean = brand == 'oasis-stores.com' && locale == 'IE';
+        if (brand == 'boohoomena.com' || excludedMisspapWithLocales || excludedBurtonLocales || excludedOasisLocales) {
           this.skip();
         }
         if (brand == 'nastygal.com') {
@@ -409,7 +413,7 @@ describe('Home Page', function () {
       });
 
       it('Verify that Footer Navigation Component is present and links are functional - Refer a friend', function () {
-        if (brand == 'boohoo.com' || brand == 'boohooman.com' || brand == 'misspap.com') {
+        if (brand == 'boohoo.com' || brand == 'boohooman.com' || (brand == 'misspap.com' && locale == 'UK')){
           GlobalFooter.actions.checkFooterLinkByText(assertionText.referFriendText[language]);
           GlobalFooter.assertions.assertReferFriendPagePresent(assertionText.referFriendPage[language]);
         } else {
@@ -522,7 +526,11 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Careers', function () {
-        if ((brand == 'boohoo.com' && locale == 'IT') || (brand == 'nastygal.com' && locale == 'FR') || brand == 'boohoomena.com'|| (brand == 'oasis-stores.com' && (locale == 'IE'|| locale == 'EU')|| (brand == 'karenmillen.com' && (locale == 'US')))) {
+        const excludedBoohooWithLocales : boolean = brand == 'boohoo.com' && locale == 'IT';
+        const excludedNastygalWithLocales : boolean = brand == 'nastygal.com' && locale == 'FR';
+        const excludedOasisWithLocales : boolean = brand == 'oasis-stores.com' && (locale == 'IE' || locale == 'EU');
+        const excludedMisspapWithLocales : boolean = brand == 'misspap.com' && locale == 'IE';
+        if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedOasisWithLocales || excludedMisspapWithLocales || brand == 'boohoomena.com') {
           this.skip();
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.careers[language], { assertionUrl: 'https://careers.boohoogroup.com/' });

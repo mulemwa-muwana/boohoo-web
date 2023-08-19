@@ -1,6 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import { brand, locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
+import shippingPage from './shipping.page';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -608,6 +609,7 @@ const selectors: SelectorBrandMap = {
     addressPostalCodeField: '#dwfrm_profile_address_postalcodes_postal',
     addressEnterManualyBtn: 'button[data-event-click="handleManualEnterClick"]',
     addressNicknameField: '#dwfrm_profile_address_addressid',
+    addressStateCode:'#dwfrm_profile_address_states_state',
     proceedToBillingBtn: '.verification-address-button-container .verification-address-button',
     addressDeleteBtn: '.address-delete-link',
     creditCardsList: '.account-payments',
@@ -840,6 +842,7 @@ class MyAccountPage implements AbstractPage {
           cy.get('#dwfrm_address_country').select(country).invoke('show');
         }
         cy.get(addressSubmitBtn).click({ force: true });
+        
     
       },
       createAddress (address: AddressData) {
@@ -858,7 +861,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressFirstNameField).should('be.visible').type(address.firstName, { force: true });
         cy.get(addressLastNameField).should('be.visible').type(address.lastName, { force: true });
         
-        if (locale == 'EU') {
+        if (locale == 'EU' || (brand == 'misspap.com' && locale == 'IE')) {
           cy.get('#dwfrm_profile_address_country').
             select(address.country);
         }
@@ -881,13 +884,14 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressCityField).type(address.city, { force: true });
         }
         cy.get(addressPostalCodeField).type(address.postcode, { force: true });
-        if (locale == 'AU' || brand == 'boohoomena.com' || locale=='US') {
+        if (locale == 'AU' || brand == 'boohoomena.com' || locale=='US' || (brand == 'misspap.com' && locale == 'IE')) {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {
           cy.get(addressNicknameField).type('New1');
         }
         cy.get(addressSubmitBtn).click({ force: true }); 
+        shippingPage.click.proceedToBillingVerification();
         
       },
       deleteAddressIfExist () {

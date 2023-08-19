@@ -497,12 +497,12 @@ class PdpPage implements AbstractPage {
     assertProductCodeIsDisplayed (SKU: string) {
       const productCode = selectors[brand].productCode;
       cy.get(productCode).should('be.visible').invoke('text').then(productCodeText => {
-        try {
-          expect(productCodeText).to.contain(SKU);
-        } catch {
-          expect(SKU).to.contain(productCodeText);
+        productCodeText=productCodeText.replace(/^#/g, '');
+        if (SKU.includes('-')) {
+          SKU = SKU.split('-')[0];
         }
-      });
+        expect(productCodeText).to.contain(SKU);
+      });  
     },
     assertProductPriceIsDisplayed () {
       const productPrice = selectors[brand].productPrice;

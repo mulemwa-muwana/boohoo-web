@@ -99,6 +99,7 @@ class Navigate {
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
           }
+          cy.wait(2000);
           shippingPage.click.proceedToBilling();
           shippingPage.click.proceedToBillingVerification();
         } else {
@@ -131,11 +132,13 @@ class Navigate {
       if (locale == 'US' || locale == 'AU'||locale == 'IE') {
         shippingPage.actions.selectState(primaryAddress.county);
       }
-      if (brand == 'boohoomena.com') {
+      if (brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
         shippingPage.actions.countyField(primaryAddress.county);
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
+      cy.wait(2000);
       shippingPage.click.proceedToBilling();
+      cy.wait(3000);
       shippingPage.click.proceedToBillingVerification();
       BillingPage.actions.waitPageToLoad();     
     }

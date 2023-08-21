@@ -65,7 +65,7 @@ class Addresses {
         countryCode: 'US',
         county: 'Alabama',
         addressNickname: 'US1',
-        what3Words:'',
+        what3Words:'glue.rocks.output',
         month: 'May',
       },
       secondaryAddress:  {

@@ -1049,6 +1049,7 @@ class AssertionText {
     IT: 'Sconto Studente',
     ES: 'Descuento para estudiantes',
   };
+
   footerLinkStudentBean: TranslationMap = {
     EN: 'Student Bean',
     NL: 'Studentenkorting',

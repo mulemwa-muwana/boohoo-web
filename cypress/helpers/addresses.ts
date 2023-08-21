@@ -121,7 +121,7 @@ class Addresses {
         firstName: 'New',
         lastName: 'Test',
         phone: '35316615133',
-        addressLine: '10 Blackhall Green, Arbour Hill',
+        addressLine: '10 Blackhall Green',
         postcode: 'D07 EK13',
         addressName: 'SecondaryAddress',
         country: 'Ireland',

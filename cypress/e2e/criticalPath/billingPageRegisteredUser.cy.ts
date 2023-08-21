@@ -62,6 +62,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.click.changeShippingAddress();
       BillingPage.click.uncheckShippingCheckbox();
       shippingPage.click.proceedToBilling();
+      shippingPage.click.proceedToBillingVerification();
       BillingPage.click.addNewBilingAddress();
       BillingPage.assertions.assertBillingAddressFormIsPresent();
       BillingPage.actions.addBillingAddressRegisteredUser(localeAddress);
@@ -75,7 +76,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
       return; // Only credit card as payment option for this brand
     }
-    if (brand == 'misspap.com') {
+    if (brand == 'misspap.com' && locale == 'UK') {
       cy.clearCookies();
       Navigate.toBillingPage('RegisteredUser');
     }
@@ -83,12 +84,12 @@ describe('Billing page functionality for registered user', function () {
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
     if (locale === 'UK' || locale === 'IE' || locale === 'AU' || locale === 'US') {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
-      if(brand == 'karenmillen.com' && locale == 'US'){
+      if (brand == 'karenmillen.com' && locale == 'US') {
         BillingPage.assertions.assertPaymentMethodAfterPayIsDisplayed();
       } else {
-      BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+        BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+      }
     }
-  }
   });
 
   //  TESTS FOR SITE GENESIS BRANDS:  //

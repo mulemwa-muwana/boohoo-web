@@ -56,7 +56,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '19176409576',
+        phone: '1-917-640-9576',
         addressLine: '1665 St Marks Ave',
         postcode: '11233',
         addressName: 'PrimaryAddress',

@@ -20,6 +20,16 @@ class Cards {
     code: '737',
   };
 
+  masterUS: CardDetails ={
+    cardNo: '5100 0600 0000 0002',
+    end: '0002',
+    owner: 'test',
+    date: '12/29',
+    month: '12',
+    year: '2029',
+    code: '737',
+  };
+
   amex: CardDetails ={
     cardNo: '370000000100018',
     end: '0018',

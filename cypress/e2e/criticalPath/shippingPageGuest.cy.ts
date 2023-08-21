@@ -187,7 +187,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     if ((!isSiteGenesisBrand && locale == 'US') || (brand == 'misspap.com' && locale == 'IE')) {
-     shippingPage.actions.countyField(localeAddress.county);
+      shippingPage.actions.countyField(localeAddress.county);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -202,19 +202,19 @@ describe('Shipping Page Guest user tests', function () {
       }
     } 
     cy.wait(5000);
-    if(brand == 'misspap.com' && locale == 'IE'){
+    if (brand == 'misspap.com' && locale == 'IE') {
       shippingPage.actions.selectOtherShippingMethod(localeShippingMethodForMisspapIE.shippingMethodName);
       cy.wait(2000);
       shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
-    }else{
-    shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
-    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    } else {
+      shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
     }
     shippingPage.click.proceedToBilling();
-    if(brand == 'misspap.com' && locale == 'IE'){
+    if (brand == 'misspap.com' && locale == 'IE') {
       shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
-    }else{
-    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    } else {
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
     }
   });
 

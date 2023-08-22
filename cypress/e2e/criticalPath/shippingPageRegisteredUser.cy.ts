@@ -260,23 +260,23 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
     cy.wait(5000);
-    if(brand == 'misspap.com' && locale == 'IE'){
+    if (brand == 'misspap.com' && locale == 'IE') {
       shippingPage.actions.selectOtherShippingMethod(localeShippingMethodForMisspapIE.shippingMethodName);
       cy.wait(2000);
       shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
-    }else{
-    shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
-    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    } else {
+      shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
     }
     shippingPage.click.proceedToBilling();
     if (locale == 'IE' || locale == 'US') {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();
-    if(brand == 'misspap.com' && locale == 'IE'){
+    if (brand == 'misspap.com' && locale == 'IE') {
       shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
-    }else{
-    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    } else {
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
     }
   });
 

@@ -1014,7 +1014,6 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({ force: true }).type(postcode);
       cy.get(shippingPostcode).clear({ force: true }).type(postcode).blur({force:true});
     },
     addAddressNickname (addressNickname: string) {

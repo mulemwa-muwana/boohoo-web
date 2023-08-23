@@ -142,7 +142,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.phoneNumberField(localeAddress.phone);
       if (brand == 'boohoomena.com' || locale == 'IE' ) {
         shippingPage.actions.countyField(localeAddress.county);
-      } else if (brand == 'karenmillen.com' && locale == 'US'){
+      } else if (brand == 'karenmillen.com' && locale == 'US') {
         shippingPage.actions.selectState(localeAddress.county);
       }
     } else {
@@ -203,9 +203,9 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.phoneNumberField(localeAddress.phone);
       if (brand == 'boohoomena.com' || locale == 'IE') {
         shippingPage.actions.countyField(localeAddress.county);
-       } else if (brand == 'karenmillen.com' && locale == 'US'){
-          shippingPage.actions.selectState(localeAddress.county);
-        }
+      } else if (brand == 'karenmillen.com' && locale == 'US') {
+        shippingPage.actions.selectState(localeAddress.county);
+      }
       
     } else {
       shippingPage.click.enterManuallyAddressDetails();
@@ -245,10 +245,10 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.cityField(localeAddress.city);
       shippingPage.actions.postcodeField(localeAddress.postcode);
       shippingPage.actions.phoneNumberField(localeAddress.phone);
-      if (brand == 'karenmillen.com' && locale == 'US'){
+      if (brand == 'karenmillen.com' && locale == 'US') {
         shippingPage.actions.selectState(localeAddress.county);
-      } else{
-      shippingPage.actions.countyField(localeAddress.county); 
+      } else {
+        shippingPage.actions.countyField(localeAddress.county); 
       }   
     } else {
       shippingPage.click.enterManuallyAddressDetails();

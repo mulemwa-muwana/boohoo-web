@@ -886,7 +886,7 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressCityField).type(address.city, { force: true });
         }
         cy.get(addressPostalCodeField).type(address.postcode, { force: true });
-        if ( (isSiteGenesisBrand || !isSiteGenesisBrand ) && ( locale=='US' || locale == 'IE'|| locale == 'AU' )) {
+        if (  locale=='US' || locale == 'IE'|| locale == 'AU' ) {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {

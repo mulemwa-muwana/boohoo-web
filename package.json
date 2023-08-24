@@ -9,6 +9,7 @@
       "cy:open:boohooman": "cypress open --config-file ./config/boohooman/stage/cypress.boohooman.uk.config.ts",
       "cy:open:karenmillen": "cypress open --config-file ./config/karenmillen/stage/cypress.karenmillen.uk.config.ts",
       "cy:open:boohoomena": "cypress open --config-file ./config/boohoomena/stage/cypress.boohoomena.sa.config.ts",
+      "cy:open:warehouse":"cypress open --config-file ./config/warehouse/stage/cypress.warehouse.uk.config.ts",
     "//": "CYPRESS RUN STAGE",
       "cy:run:boohoo": "cypress run --config-file ./config/boohoo/stage/cypress.boohoo.uk.config.ts",
       "cy:run:burton": "cypress run --config-file ./config/burton/stage/cypress.burton.uk.config.ts",

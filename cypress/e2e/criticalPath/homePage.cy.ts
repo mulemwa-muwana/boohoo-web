@@ -284,6 +284,8 @@ describe('Home Page', function () {
         TrackOrderPage.actions.trackOrder('KUK300118644');
         if (isSiteGenesisBrand) {
           TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFoundSG[language]);
+        } else if (brand == 'boohoo.com'){
+          TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFoundBHO[language]);
         } else {
           TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFound[language]);
         }

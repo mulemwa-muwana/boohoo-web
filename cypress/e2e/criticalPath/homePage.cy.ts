@@ -285,11 +285,7 @@ describe('Home Page', function () {
         if (isSiteGenesisBrand) {
           TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFoundSG[language]);
         } else {
-          if (brand == 'boohoo.com') {
-            TrackOrderPage.assertions.assertTrackOrderErrorMsg('Sorry we don\'t recognize that order number');
-          } else {
-            TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFound[language]);
-          }
+          TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFound[language]);
         } 
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {

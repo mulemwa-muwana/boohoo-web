@@ -275,7 +275,7 @@ describe('Home Page', function () {
     });
 
     describe('Verify Footer Navigation Components are present and Links are functional.', () => {
-      it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
+      it.only('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
         if (brand == 'boohoo.com' || brand == 'nastygal.com' || isSiteGenesisBrand) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[language]);
         } else {

@@ -6,7 +6,10 @@ import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    customerServiceButtonsAtTop: '.l-customer_service-button'
+    trackOrderButton: '.l-customer_service-actions > a:nth-of-type(1)',
+    startReturnButton: '.l-customer_service-actions > a:nth-of-type(2)',
+    virtualAssistantButton:'.l-customer_service-actions > button:nth-of-type(1)'
+
   },
   'nastygal.com': {},
   'dorothyperkins.com':{},
@@ -28,60 +31,41 @@ class CustomerServicePage implements AbstractPage {
     globalfooterPage.click.helpLink();
   }
 
-  click ={
-
+  click = {
   };
 
   actions = {
-    openVirtualAssistant () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop; 
-      cy.get(customerServiceButtonsAtTop)
-        .contains(assertionText.customerServicePageVirtualAssistantButton[language])
-        .click();
-      cy.wait(12000);   
-    }
+    checkTrackOrderButtonByText (text: string, expectedUrlFragment: string) {
+      const trackOrderButton = selectors[brand].trackOrderButton;
+      cy.get(trackOrderButton)
+        .should('be.visible')
+        .contains(text).then(element => {
+          cy.wrap(element).click({force: true});
+          cy.url().should('include', expectedUrlFragment);
+        });
+    },
 
+    checkReturnButtonByText (text: string, expectedUrlFragment: string) {
+      const startReturnButton = selectors[brand].startReturnButton;
+      cy.get(startReturnButton)
+        .should('be.visible')
+        .invoke('removeAttr', 'target')
+        .contains(text).then(element => {
+          cy.wrap(element).click({force: true});
+          cy.url().should('include', expectedUrlFragment);
+        });
+    },
+    checkVirtualAssistantButtonByText (text: string) {
+      const virtualAssistantButton = selectors[brand].virtualAssistantButton;
+      cy.get(virtualAssistantButton)
+        .contains(text)
+        .should('be.visible')
+        .click();
+      cy.wait(12000); // To be implemented once bug is fixed as API is not responding on STG
+    }
   };
 
   assertions = {
-    assertTrackOrderButtonIsPresent () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop;
-      cy.get(customerServiceButtonsAtTop)
-        .contains(assertionText.customerServicePageTrackOrderButton[language])
-        .should('be.visible');
-
-    },
-
-    assertTrackOrderButtonIsFunctional () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop;
-      cy.get(customerServiceButtonsAtTop)
-        .contains(assertionText.customerServicePageTrackOrderButton[language])
-        .click();
-      cy.url().should('include', 'trackform');
-    },
-
-    assertStartReturnButtonIsPresent () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop;
-      cy.get(customerServiceButtonsAtTop)
-        .contains(assertionText.customerServicePageReturnButton[language])
-        .should('be.visible');
-    },
-
-    assertStartReturnButtonIsFunctional () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop;
-      cy.get(customerServiceButtonsAtTop)
-        .invoke('removeAttr', 'target')
-        .contains(assertionText.customerServicePageReturnButton[language])
-        .click();
-      cy.url().should('include', 'returns');
-    },
-
-    assertVirtualAssistantIsOpen () {
-      cy.wait(12000);
-
-      // To be completed in phase 2
-    }
-
   };
 
 }

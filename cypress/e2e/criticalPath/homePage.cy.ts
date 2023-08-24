@@ -275,7 +275,7 @@ describe('Home Page', function () {
     });
 
     describe('Verify Footer Navigation Components are present and Links are functional.', () => {
-      it.only('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Track My Order', () => {
         if (brand == 'boohoo.com' || brand == 'nastygal.com' || isSiteGenesisBrand) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackMyOrder[language]);
         } else {
@@ -284,6 +284,8 @@ describe('Home Page', function () {
         TrackOrderPage.actions.trackOrder('KUK300118644');
         if (isSiteGenesisBrand) {
           TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFoundSG[language]);
+        } else if (brand == 'boohoo.com'){
+          TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFoundBHO[language]);
         } else {
           TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFound[language]);
         }

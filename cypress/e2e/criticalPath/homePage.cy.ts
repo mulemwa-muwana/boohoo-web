@@ -285,9 +285,12 @@ describe('Home Page', function () {
         if (isSiteGenesisBrand) {
           TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFoundSG[language]);
         } else {
-          TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFound[language]);
-        }
-        
+          if (brand == 'boohoo.com') {
+            TrackOrderPage.assertions.assertTrackOrderErrorMsg('Sorry we don\'t recognize that order number');
+          } else {
+            TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFound[language]);
+          }
+        } 
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
         if (isSiteGenesisBrand && brand != 'misspap.com') {

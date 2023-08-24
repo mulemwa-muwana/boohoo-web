@@ -812,8 +812,22 @@ class AssertionText {
     ES: ''
   };
 
+  orderNotFoundBHO: TranslationMap = {
+    EN: "Sorry we don't recognize that order number",
+    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    FR: 'Désolé, ce numéro de commande ne correspond',
+    DK: 'Sorry, this order number does not match',
+    FI: 'Sorry, this order number does not match',
+    NO: 'Sorry, this order number does not match',
+    SE: 'Ordernumret hittades inte',
+    IL: 'מצטערים, אך מספר ההזמנה אינו תואם לרשום אצלנו',
+    IT: 'Ci dispiace, questo numero di ordine non è disponibile',
+    ES: 'Lo sentimos, no hemos encontrado el número de pedido'
+  };
+
   orderNotFound: TranslationMap = {
-    EN: 'Sorry, this order number does not match',
+    EN: 'Sorry, this order number does not match our records.',
     NL: 'Sorry, dit bestellingsnummer komt niet overeen',
     DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
     FR: 'Désolé, ce numéro de commande ne correspond',

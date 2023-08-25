@@ -288,8 +288,7 @@ describe('Home Page', function () {
           TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFoundBHO[language]);
         } else {
           TrackOrderPage.assertions.assertTrackOrderErrorMsg(assertionText.orderNotFound[language]);
-        }
-        
+        } 
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Help', () => {
         if (isSiteGenesisBrand && brand != 'misspap.com') {

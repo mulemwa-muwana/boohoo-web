@@ -515,6 +515,7 @@ const selectors: SelectorBrandMap = {
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
     promoCodeField: '#dwfrm_billing_couponCode',
+    payButtonLocator:"[data-testid='confirm-and-pay']",
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',

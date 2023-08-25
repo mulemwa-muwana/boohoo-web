@@ -1,8 +1,7 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import globalfooterPage from './globalfooter.page';
-import { brand, language } from 'cypress/support/e2e';
-import assertionText from 'cypress/helpers/assertionText';
+import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -39,7 +38,7 @@ class CustomerServicePage implements AbstractPage {
       const trackOrderButton = selectors[brand].trackOrderButton;
       cy.get(trackOrderButton)
         .should('be.visible')
-        .contains(text).then(element => {
+        .should('contain', text).then(element => {
           cy.wrap(element).click({force: true});
           cy.url().should('include', expectedUrlFragment);
         });
@@ -50,7 +49,7 @@ class CustomerServicePage implements AbstractPage {
       cy.get(startReturnButton)
         .should('be.visible')
         .invoke('removeAttr', 'target')
-        .contains(text).then(element => {
+        .should('contain', text).then(element => {
           cy.wrap(element).click({force: true});
           cy.url().should('include', expectedUrlFragment);
         });
@@ -58,7 +57,7 @@ class CustomerServicePage implements AbstractPage {
     checkVirtualAssistantButtonByText (text: string) {
       const virtualAssistantButton = selectors[brand].virtualAssistantButton;
       cy.get(virtualAssistantButton)
-        .contains(text)
+        .should('contain', text)
         .should('be.visible')
         .click();
       cy.wait(12000); // To be implemented once bug is fixed as API is not responding on STG

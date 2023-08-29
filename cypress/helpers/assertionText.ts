@@ -185,7 +185,7 @@ class AssertionText {
   ShippingMandatoryFieldError: TranslationMap = {
     EN: 'This field is required.',
     FR: 'Ce champ est obligatoire',
-    NL: 'Vergeet mij niet!',
+    NL: 'Dit veld is verplicht.',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
     FI: 'Älä unohda minua!',

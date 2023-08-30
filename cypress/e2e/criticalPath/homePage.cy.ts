@@ -703,7 +703,7 @@ describe('Home Page', function () {
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
       it('Verify that Facebook link is present and functional',function () {
-        if (brand == 'boohooman.com' && locale == 'FR' || locale =='NL') {
+        if (brand == 'boohooman.com' && (locale == 'FR' || locale =='NL')) {
           this.skip(); // Facebook link isn't exist on contuct us page
         }
         contactusPage.assertions.assertFacebookIconIsPresent();

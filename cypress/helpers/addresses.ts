@@ -528,7 +528,7 @@ class Addresses {
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
         lastName: 'Test',
-        phone: '31689124321',
+        phone: '+31689124321',
         addressLine: 'Museumstraat 1',
         postcode: '1071 XX',
         addressName: 'PrimaryAddress',

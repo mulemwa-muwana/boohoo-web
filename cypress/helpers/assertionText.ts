@@ -129,7 +129,7 @@ class AssertionText {
   WishListIsEmptySiteGenesis: TranslationMap = {
     EN: 'add your favorite items as you start shopping',
     FR: '',
-    NL: '',
+    NL: 'Gebruik de verlanglijst om je favoriete artikelen toe te voegen als je begint met winkelen.',
     DE: 'Verwende zu Beginn deines Einkaufs die Wunschliste, um deine bevorzugten Artikel hinzuzufügen.',
     DK: '',
     FI: '',

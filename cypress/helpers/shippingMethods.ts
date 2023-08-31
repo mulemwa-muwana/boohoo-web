@@ -89,10 +89,10 @@ class ShippingMethod {
     },
     NL: {
       shippingMethod1: {
-        shippingMethodName: 'Standaardlevering Nederland'
+        shippingMethodName: 'Nederland Standaardlevering'
       },
       shippingMethod2: {
-        shippingMethodName: 'Expressdienst'
+        shippingMethodName: 'Nederland Expreslevering'
       },
       shippingMethod3: {
         shippingMethodName: ''

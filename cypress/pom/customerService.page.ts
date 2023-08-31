@@ -1,12 +1,14 @@
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import globalfooterPage from './globalfooter.page';
-import { brand, language } from 'cypress/support/e2e';
-import assertionText from 'cypress/helpers/assertionText';
+import { brand } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    customerServiceButtonsAtTop: '.l-customer_service-button'
+    trackOrderButton: '.l-customer_service-actions > a:nth-of-type(1)',
+    startReturnButton: '.l-customer_service-actions > a:nth-of-type(2)',
+    virtualAssistantButton:'.l-customer_service-actions > button:nth-of-type(1)'
+
   },
   'nastygal.com': {},
   'dorothyperkins.com':{},
@@ -28,61 +30,41 @@ class CustomerServicePage implements AbstractPage {
     globalfooterPage.click.helpLink();
   }
 
-  click ={
+  click = {
   };
 
   actions = {
-    openVirtualAssistant (text: string) {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop; 
-      cy.scrollTo('top');
-      cy.get(customerServiceButtonsAtTop)
-        .contains(text)
-        .invoke('removeAttr', 'target')
-        .click({force: true});
-      cy.wait(2000);   
-    }
+    checkTrackOrderButtonByText (text: string, expectedUrlFragment: string) {
+      const trackOrderButton = selectors[brand].trackOrderButton;
+      cy.get(trackOrderButton)
+        .should('be.visible')
+        .should('contain', text).then(element => {
+          cy.wrap(element).click({force: true});
+          cy.url().should('include', expectedUrlFragment);
+        });
+    },
 
+    checkReturnButtonByText (text: string, expectedUrlFragment: string) {
+      const startReturnButton = selectors[brand].startReturnButton;
+      cy.get(startReturnButton)
+        .should('be.visible')
+        .invoke('removeAttr', 'target')
+        .should('contain', text).then(element => {
+          cy.wrap(element).click({force: true});
+          cy.url().should('include', expectedUrlFragment);
+        });
+    },
+    checkVirtualAssistantButtonByText (text: string) {
+      const virtualAssistantButton = selectors[brand].virtualAssistantButton;
+      cy.get(virtualAssistantButton)
+        .should('contain', text)
+        .should('be.visible')
+        .click();
+      cy.wait(12000); // To be implemented once bug is fixed as API is not responding on STG
+    }
   };
 
   assertions = {
-    assertTrackOrderButtonIsPresent () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop;
-      cy.get(customerServiceButtonsAtTop)
-        .contains(assertionText.customerServicePageTrackOrderButton[language])
-        .should('be.visible');
-
-    },
-
-    assertTrackOrderButtonIsFunctional () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop;
-      cy.get(customerServiceButtonsAtTop)
-        .contains(assertionText.customerServicePageTrackOrderButton[language])
-        .click();
-      cy.url().should('include', 'trackform');
-    },
-
-    assertStartReturnButtonIsPresent () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop;
-      cy.get(customerServiceButtonsAtTop)
-        .contains(assertionText.customerServicePageReturnButton[language])
-        .should('be.visible');
-    },
-
-    assertStartReturnButtonIsFunctional () {
-      const customerServiceButtonsAtTop = selectors[brand].customerServiceButtonsAtTop;
-      cy.get(customerServiceButtonsAtTop)
-        .invoke('removeAttr', 'target')
-        .contains(assertionText.customerServicePageReturnButton[language])
-        .click();
-      cy.url().should('include', 'returns');
-    },
-
-    assertVirtualAssistantIsOpen () {
-      cy.wait(12000);
-
-      // To be completed in phase 2
-    }
-
   };
 
 }

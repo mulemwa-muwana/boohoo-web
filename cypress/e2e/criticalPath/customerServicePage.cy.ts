@@ -1,5 +1,6 @@
-import { brand } from 'cypress/support/e2e';
+import { brand, language } from 'cypress/support/e2e';
 import customerServicePage from '../../pom/customerService.page';
+import assertionText from 'cypress/helpers/assertionText';
 
 describe('Customer Service Page', function () {
     
@@ -10,27 +11,23 @@ describe('Customer Service Page', function () {
 
   it('Verify that track my order button is present and functional', function () {
     if (brand != 'boohoo.com') {
-      this.skip(); // Will be implemented in next PR
+      this.skip(); // Skipping other brands for now, these will be added in phase 2
     }
-    customerServicePage.assertions.assertTrackOrderButtonIsPresent();
-    customerServicePage.assertions.assertTrackOrderButtonIsFunctional();
+    customerServicePage.actions.checkTrackOrderButtonByText(assertionText.customerServicePageTrackOrderButton[language], 'trackform');
   });
 
   it('Verify that start a return button is present and functional', function () {
     if (brand != 'boohoo.com') {
-      this.skip(); // Will be implemented in next PR
+      this.skip(); // Skipping other brands for now, these will be added in phase 2
     }
-    customerServicePage.assertions.assertStartReturnButtonIsPresent();
-    customerServicePage.assertions.assertStartReturnButtonIsFunctional();
+    customerServicePage.actions.checkReturnButtonByText(assertionText.customerServicePageReturnButton[language], 'returns');
   });
 
   it('Verify that start a chat will open', function () {
     if (brand != 'boohoo.com') {
-      this.skip(); // Will be implemented in next PR
+      this.skip(); // Skipping other brands for now, these will be added in phase 2
     }
-    customerServicePage.actions.openVirtualAssistant();
-    customerServicePage.assertions.assertVirtualAssistantIsOpen();
-
+    customerServicePage.actions.checkVirtualAssistantButtonByText(assertionText.customerServicePageVirtualAssistantButton[language]);
   });
 
 });

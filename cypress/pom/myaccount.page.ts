@@ -842,7 +842,6 @@ class MyAccountPage implements AbstractPage {
           cy.get('#dwfrm_address_country').select(country).invoke('show');
         }
         cy.get(addressSubmitBtn).click({ force: true });
-        
     
       },
       createAddress (address: AddressData) {

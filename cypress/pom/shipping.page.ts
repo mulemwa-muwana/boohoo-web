@@ -1003,7 +1003,7 @@ class ShippingPage implements AbstractPage {
     countyField (county: string) {
       const countyField = selectors[brand].countyField;
       const countyFieldIE = selectors[brand].countyFieldIE;
-      if ((brand=='karenmillen.com' || brand  == 'misspap.com') && locale =='IE') {
+      if ((brand=='karenmillen.com' || brand == 'misspap.com') && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
       } else if ((brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com' || (brand == 'boohooman.com' || brand =='karenmillen.com' && locale == 'UK')) {
         cy.get(countyField).clear({force:true}).type(county,{force:true});
@@ -1014,9 +1014,7 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({ force: true }).type(postcode);
-      cy.wait(1000);
-      cy.get(shippingPostcode).click();
+      cy.get(shippingPostcode).clear({ force: true }).type(postcode).blur({force:true});
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;
@@ -1091,11 +1089,11 @@ class ShippingPage implements AbstractPage {
     selectW3WAddress (w3Words: string) {
       const w3Winput=selectors[brand].w3Winput;
       const w3WAddressSuggestion=selectors[brand].w3WAddressSuggestion;
-
+       cy.wait(3000);
       cy.get(w3Winput).type(w3Words);
       cy.wait(10000);
-      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text', 'Manchester');
-      cy.get(w3WAddressSuggestion).click();
+      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text','Manchester');
+      cy.get(w3WAddressSuggestion).click({force:true});
     }
   };        
 

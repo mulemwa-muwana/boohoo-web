@@ -187,7 +187,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     if ((!isSiteGenesisBrand && locale == 'US') || (brand == 'misspap.com' && locale == 'IE')) {
-     shippingPage.actions.countyField(localeAddress.county);
+      shippingPage.actions.countyField(localeAddress.county);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -202,19 +202,19 @@ describe('Shipping Page Guest user tests', function () {
       }
     } 
     cy.wait(5000);
-    if(brand == 'misspap.com' && locale == 'IE'){
+    if (brand == 'misspap.com' && locale == 'IE') {
       shippingPage.actions.selectOtherShippingMethod(localeShippingMethodForMisspapIE.shippingMethodName);
       cy.wait(2000);
       shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
-    }else{
-    shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
-    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    } else {
+      shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
     }
     shippingPage.click.proceedToBilling();
-    if(brand == 'misspap.com' && locale == 'IE'){
+    if (brand == 'misspap.com' && locale == 'IE') {
       shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
-    }else{
-    shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
+    } else {
+      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
     }
   });
 
@@ -286,7 +286,7 @@ describe('Shipping Page Guest user tests', function () {
   });
   it('Verify that user can enter valid credentials in w3w', function () {
     if (isSiteGenesisBrand) {
-      if (brand == 'boohooman.com' || brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
+      if (brand == 'boohooman.com' || brand == 'boohoomena.com' ||(brand == 'misspap.com' && locale == 'IE')||(brand == 'karenmillen.com' && locale == 'US')) {
         this.skip();
       } else {
         cy.clearAllCookies();
@@ -304,7 +304,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertW3WisSelected();
   });
   it('Verify that user can select PUDO location', function () {
-    if (locale != 'UK' || brand == 'boohooman.com') {
+    if (locale != 'UK' || brand == 'boohooman.com' ) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
@@ -319,7 +319,7 @@ describe('Shipping Page Guest user tests', function () {
     });
   });
   it('SG: Verify that guest user can add Thrift to the order', function () {
-    if (brand == 'karenmillen.com') {
+    if (brand == 'karenmillen.com' && locale == 'UK') {
       shippingPage.assertions.assertThriftSectionIsVisible();
       shippingPage.click.addThriftToCart();
       shippingPage.assertions.assertThriftBagIsAddedToTheCart();

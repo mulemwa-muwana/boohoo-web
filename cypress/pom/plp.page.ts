@@ -164,7 +164,7 @@ const selectors: SelectorBrandMap = {
     selectRefinementVariantOccasion: '.js-refinement-occasion.refinement-dropdown',
     selectRefinementVariantLength: '#searchRefineBarAccordionItemInner-length',
     wishlistPlpIcon: '.b-wishlist_button-icon',
-    loadMoreProducts: '.search-result-options:not([class*="js-search-result-options"]) [title="Next"]',
+    loadMoreProducts: ':nth-child(5) > .pagination > .pagination-list',
     loadMoreProductsMobile: '.is-mobile.m-pagination-wrapper > .pagination > .pagination-list > .pagination-item-next > .pagination-item-link > .pagination-item-link-text',
     numberOfPagesTextIsVisible: '.search-result-options > div > ul.pagination-list',
     productColorIsDisplayedOnPLP: 'img[class*=swatch-image]',
@@ -615,7 +615,7 @@ class PlpPage implements AbstractPage {
 
   assertions = {
     assertOnPage (text: string) {
-      if (variables.brand == 'boohooman.com') {
+      if (brand == 'boohooman.com' && locale == 'UK') {
         cy.url().then(currentUrl => {
           expect(currentUrl).to.contain(selectors[variables.brand].promoTitle);
         });

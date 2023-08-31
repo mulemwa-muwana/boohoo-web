@@ -307,7 +307,7 @@ const selectors: SelectorBrandMap = {
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
-    profileUpdateBtn: '.js-update-details button[value="Update"]',
+    profileUpdateBtn: '.js-update-details button[type="submit"]',
     addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',

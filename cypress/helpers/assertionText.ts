@@ -589,17 +589,17 @@ class AssertionText {
   };
 
   emptyEmailFieldErrorBillingPage: TranslationMap = {
-    EN: '',
-    FR: 'Ce champ est obligatoire',
+    EN: 'Don’t forget about me!',
+    FR: 'Ne m’oubliez pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: '',
     FI: '',
     NO: '',
     SE: 'Glöm inte mig!',
-    IL: '',
-    IT: '',
-    ES: ''
+    IL: 'אל תשכחו אותי!',
+    IT: 'Non dimenticarti di noi!',
+    ES: '¡No te olvides de mí!'
   };
 
   assertUserIsNotLoggedIn: TranslationMap = {

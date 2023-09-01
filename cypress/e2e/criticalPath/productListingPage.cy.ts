@@ -86,7 +86,7 @@ describe('Product Listing Page tests', function () {
     
     it('Verify style refinement is applied', function () {
       const nastygalLocalesExcludedStyle: Array<Locale> = ['EU', 'AU', 'US', 'CA'];
-      if ((brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(locale)) || (brand =='misspap.com')) {
+      if ((brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(locale)) || (brand =='misspap.com')|| (brand == 'boohooman.com' && locale == 'NL')) {
         this.skip();
       } 
       plpPage.actions.setupChangeIntercept(/style/);

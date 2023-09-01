@@ -137,11 +137,9 @@ class Navigate {
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
       cy.wait(2000);
-      cy.get('body').then($btn=>{ // If radio button already checked then click on change other shipping method
-        if ($btn.find('div#deliveryPanel div.b-option_switch.UKSuperSaver > div > label').length>0) {
-          cy.get('div#deliveryPanel div.b-option_switch.UKSuperSaver > div > label').click();
-        }
-      }) ;
+      if(brand == 'boohoo.com'){
+        cy.get('[data-option-id="shippingMethod-UKSuperSaver"]').click({force:true});
+      }
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
       shippingPage.click.proceedToBillingVerification();

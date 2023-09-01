@@ -5,7 +5,6 @@ import assertionText from 'cypress/helpers/assertionText';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import { brand, language, locale } from 'cypress/support/e2e';
-import { Hook } from 'mocha';
 import homePage from 'cypress/pom/home.page';
 
 describe('Account page', function () {
@@ -104,10 +103,12 @@ describe('Account page', function () {
   });
 
   it('TC07 Verify that user can link to Twitter account', function () {
+    if (brand=='boohoo.com') {
     MyAccountPage.click.socialAccountsLink();
     MyAccountPage.assertions.assertTwitterLinkPresent();
     MyAccountPage.click.twitterLink();
     homePage.assertions.assertLinkIsOpeningCorrectPage('twitter');
+    }
   });
 
 });

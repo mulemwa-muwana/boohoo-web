@@ -16,7 +16,7 @@ const selectors: SelectorBrandMap = {
     paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
     viewOrderBtn: 'a[data-tau="account_viewOrder"]:eq(1)',
     viewOrderBtnMobile:'.b-account_dashboard > .b-card > .b-card-body > .b-order_item > .b-order_item-buttons',
-    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    socialAccounts: '.m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
@@ -66,6 +66,8 @@ const selectors: SelectorBrandMap = {
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
     addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
+    twitterLink: '.m-twitter',
+    facebookLink: '.m-facebook'
   },
   'nastygal.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -824,7 +826,15 @@ class MyAccountPage implements AbstractPage {
       },
       saveAnyway () {
         cy.get('.verification-address-button').click();
-      }
+      },
+      facebookLink () {
+        const facebookLink = selectors[variables.brand].facebookLink;
+        cy.get(facebookLink).should('be.visible').click();
+      },
+      twitterLink () {
+        const twitterLink = selectors[variables.brand].twitterLink;
+        cy.get(twitterLink).should('be.visible').click();
+      },
     };
 
   actions =
@@ -1057,6 +1067,14 @@ class MyAccountPage implements AbstractPage {
       assertOrderCanBeTracked () {
         cy.get('.b-form-message').should('include', 'We found your order');
       },
+      assertTwitterLinkPresent () {
+        const twitterLink = selectors[variables.brand].twitterLink;
+        cy.get(twitterLink).should('be.visible');
+      },
+      assertFacebookLinkPresent () {
+        const facebookLink = selectors[variables.brand].facebookLink;
+        cy.get(facebookLink).should('be.visible');
+      }
     };
 }
 

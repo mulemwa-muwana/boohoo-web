@@ -498,7 +498,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '31689124321',
+        phone: '0717863319',
         addressLine: 'Museumstraat 1',
         postcode: '1071 XX',
         addressName: 'PrimaryAddress',
@@ -513,7 +513,7 @@ class Addresses {
       secondaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '31689124321',
+        phone: '0717863319',
         addressLine: 'Jaffadwarsstraat 20A',
         postcode: '3061 JS',
         addressName: 'SecondaryAddress',
@@ -528,7 +528,7 @@ class Addresses {
       newAddedPrimaryAddress:{
         firstName: 'ZBoohooNew',
         lastName: 'Test',
-        phone: '31689124321',
+        phone: '0717863319',
         addressLine: 'Museumstraat 1',
         postcode: '1071 XX',
         addressName: 'PrimaryAddress',

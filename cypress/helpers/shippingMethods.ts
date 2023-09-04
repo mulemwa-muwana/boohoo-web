@@ -92,7 +92,7 @@ class ShippingMethod {
         shippingMethodName: 'Standaardlevering Nederland'
       },
       shippingMethod2: {
-        shippingMethodName: 'Expressdienst'
+        shippingMethodName: 'Expres'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -120,7 +120,7 @@ class ShippingMethod {
         shippingMethodName: 'Livraison standard France'
       },
       shippingMethod2: {
-        shippingMethodName: 'Livraison express France'
+        shippingMethodName: 'Express'
       },
       shippingMethod3: {
         shippingMethodName: ''
@@ -232,10 +232,10 @@ class ShippingMethod {
         shippingMethodName: 'משלוח באירופה ומשלוח בין-לאומי'
       },
       shippingMethod2: {
-        shippingMethodName: 'משלוח רגיל לישראל'
+        shippingMethodName: 'משלוח אקספרס לישראל'
       },
       shippingMethod3: {
-        shippingMethodName: 'משלוח אקספרס לישראל'
+        shippingMethodName: 'משלוח באירופה ומשלוח בין-לאומי'
       },
       shippingMethod4: {
         shippingMethodName: ''

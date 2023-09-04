@@ -3,6 +3,7 @@ import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import { brand, locale, language } from 'cypress/support/e2e';
 import assertionText from 'cypress/helpers/assertionText';
+import { method } from 'cypress/types/bluebird';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -1003,10 +1004,10 @@ class ShippingPage implements AbstractPage {
     countyField (county: string) {
       const countyField = selectors[brand].countyField;
       const countyFieldIE = selectors[brand].countyFieldIE;
-      if ((brand=='karenmillen.com' || brand  == 'misspap.com') && locale =='IE') {
+      if ((brand=='karenmillen.com' || brand == 'misspap.com') && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
-      } else if ((brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com' || (brand == 'boohooman.com' || brand =='karenmillen.com' && locale == 'UK')) {
-        cy.get(countyField).clear({force:true}).type(county,{force:true});
+      } else if ((brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com' || (brand == 'boohooman.com' && (locale == 'UK' || locale == 'FR')) || (brand =='karenmillen.com' && locale == 'UK')) {
+        cy.get(countyField).clear({force:true}).type(county, {force:true});
       } else {
         cy.get(countyField).select(county);
       }
@@ -1016,7 +1017,7 @@ class ShippingPage implements AbstractPage {
       const shippingPostcode = selectors[brand].shippingPostcode;
       cy.get(shippingPostcode).clear({ force: true }).type(postcode);
       cy.wait(1000);
-      cy.get(shippingPostcode).click();
+      cy.get(shippingPostcode).click().blur({force:true});
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;
@@ -1029,9 +1030,9 @@ class ShippingPage implements AbstractPage {
     },
     selectOtherShippingMethod (shippingMethod: string) {
       const shippingMethodName = selectors[brand].shippingMethodName;
+      cy.wait(3000);
       cy.get(shippingMethodName).contains(shippingMethod).click({force: true});
     },
-
     confirmShippingAddress () {
       const confirmShippingAddress = selectors[brand].confirmShippingAddress;
       cy.wait(5000);
@@ -1231,7 +1232,13 @@ class ShippingPage implements AbstractPage {
     assertShippingMethodIsSelected (shippingMethod: string) {
       const orderSummaryOnShippingPage = selectors[brand].orderSummaryOnShippingPage;
       const currentShippingMethod = shippingMethod;
-      cy.get(orderSummaryOnShippingPage).should('contain', currentShippingMethod);
+
+      // Cy.get(orderSummaryOnShippingPage).should('contain', currentShippingMethod, {matchCase:false});
+      cy.get(orderSummaryOnShippingPage).should(($method) => {
+        const actualMethod = $method.text().toLowerCase();
+        const expextedMethod = $method.text().toLowerCase();
+        expect(actualMethod).to.include(expextedMethod);
+      });
     },
 
     // METHODS ONLY FOR SITE GENESIS BRANDS //

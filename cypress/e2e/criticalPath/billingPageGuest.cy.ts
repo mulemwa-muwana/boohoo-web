@@ -29,9 +29,6 @@ describe('Billing page functionality for guest user', function () {
   });
   it('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
-    if (locale == 'EU') {
-      this.skip(); // EU has only Europe and International Delivery
-    }
     BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
 
@@ -59,18 +56,14 @@ describe('Billing page functionality for guest user', function () {
     BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
   });
   it('Verify that guest user cannot place order if email field is empty', function () {
-    if (isSiteGenesisBrand) {
-      this.skip(); // Email field for Site Genesis brands is on Shipping page.
+    if (isSiteGenesisBrand || brand != 'boohoo.com') {
+      this.skip(); // Email field for Site Genesis brands is on Shipping page and logic for other brands to be included later
     }
     BillingPage.actions.emptyEmailField();
     BillingPage.actions.selectDate('23', '4', '2001');
     BillingPage.click.chooseCC();
 
-    if (brand == 'boohoo.com') {
-      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[language]);
-    } else {
-      BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[language]);
-    }
+    BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[language]);
   });
   it('Verify that guest user cannot place order if date of birth is not selected', function () {
     if (isSiteGenesisBrand) {

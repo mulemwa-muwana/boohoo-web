@@ -49,7 +49,7 @@ class productVariations {
 
   productAccessories: TranslationMap = {
     EN: 'Accessories',
-    NL: 'Accessoires',
+    NL: 'Broeken',
     DE: 'Oberteile',
     FR: 'Accessoires',
     DK: 'Accessoires',

@@ -65,13 +65,18 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
-    creditCardFieldsCardNumberUS:'creditCardFieldsCardNumberUS',
+    creditCardFieldsCardNumberUS:'#dwfrm_billing_creditCardFields_cardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsExpirationDateUS: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
+    creditCardFieldsExpirationMonthUS: '#dwfrm_billing_creditCardFields_expirationMonth',
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
     creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
+    creditCardFieldsSecurityCodeUS: '#dwfrm_billing_creditCardFields_securityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    creditCardFieldsCardOwnerUS: '#dwfrm_billing_creditCardFields_cardOwner',
     paynowBtnCC:':nth-child(2).b-payment_accordion-submit > .b-checkout_step-controls .b-button',
+    paynowBtnCCUS:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
   },
   'nastygal.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
@@ -413,12 +418,17 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    creditCardFieldsCardNumberUS: '#cc_cardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    creditCardFieldsExpirationDateUS: '#cc_expDate',
     creditCardSecurityCodeIframe: '#component_scheme .adyen-checkout__field__cvc .js-iframe',
     creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
+    creditCardFieldsSecurityCodeUS: '[class="form-row js-form-row cvn js-cvn cvn required"]>div>input',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    creditCardFieldsCardOwnerUS: '#dwfrm_billing_paymentMethods_creditCard_owner',
     paynowBtnCC:'#billingSubmitButton',
+    paynowBtnCCUS:'#billingSubmitButton',
   },
   'coastfashion.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -505,6 +515,7 @@ const selectors: SelectorBrandMap = {
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
     promoCodeField: '#dwfrm_billing_couponCode',
+    payButtonLocator:"[data-testid='confirm-and-pay']",
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -743,6 +754,13 @@ class BillingPage implements AbstractPage {
     },
     selectCreditCardUS (cardNo: string, cardOwner: string, date: string, code: string) {
       const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
+      const creditCardFieldsCardNumberUS = selectors[brand].creditCardFieldsCardNumberUS;
+      const creditCardFieldsCardOwnerUS = selectors[brand].creditCardFieldsCardOwnerUS;
+      const creditCardFieldsExpirationDateUS= selectors[brand].creditCardFieldsExpirationDateUS;
+      const creditCardFieldsExpirationMonthUS= selectors[brand].creditCardFieldsExpirationMonthUS;
+      const creditCardFieldsSecurityCodeUS = selectors[brand].creditCardFieldsSecurityCodeUS; 
+      const paynowBtnCCUS = selectors[brand].paynowBtnCCUS;  
+
       cy.get(paymentMethodCreditCardUS).click({force:true});   
       cy.wait(4000);
 
@@ -751,12 +769,16 @@ class BillingPage implements AbstractPage {
           cy.get("[class='b-button m-info m-width_full ']").click({force: true});
         }
       });
-      cy.get('#dwfrm_billing_creditCardFields_cardNumber').type(cardNo);
-      cy.get('#dwfrm_billing_creditCardFields_cardOwner').type(cardOwner);
-      cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select('03');
-      cy.get('#dwfrm_billing_creditCardFields_expirationYear').select('2030');
-      cy.get('#dwfrm_billing_creditCardFields_securityCode').type('7373', {force: true});
-      cy.get('#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
+      cy.get(creditCardFieldsCardNumberUS).type(cardNo);
+      cy.get(creditCardFieldsCardOwnerUS).type(cardOwner);
+      if (brand == 'karenmillen.com'&& locale == 'US') {
+        cy.get(creditCardFieldsExpirationDateUS).type(date, {force:true});
+      } else {
+        cy.get(creditCardFieldsExpirationMonthUS).select('12');
+        cy.get(creditCardFieldsExpirationDateUS).select('2029');
+      }
+      cy.get(creditCardFieldsSecurityCodeUS).type(code, {force: true});
+      cy.get(paynowBtnCCUS).click({force:true});
 
     },
     emptyEmailField () {
@@ -1270,7 +1292,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (isSiteGenesisBrand) {
+      } else if (isSiteGenesisBrand && locale == 'UK') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE' || locale == 'FR' || locale == 'CA'|| locale == 'NZ') ) {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

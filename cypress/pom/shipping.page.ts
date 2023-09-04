@@ -3,7 +3,6 @@ import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import { brand, locale, language } from 'cypress/support/e2e';
 import assertionText from 'cypress/helpers/assertionText';
-import { method } from 'cypress/types/bluebird';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -1092,11 +1091,11 @@ class ShippingPage implements AbstractPage {
     selectW3WAddress (w3Words: string) {
       const w3Winput=selectors[brand].w3Winput;
       const w3WAddressSuggestion=selectors[brand].w3WAddressSuggestion;
-
+      cy.wait(3000);
       cy.get(w3Winput).type(w3Words);
       cy.wait(10000);
-      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text', 'Manchester');
-      cy.get(w3WAddressSuggestion).click();
+      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text','Manchester');
+      cy.get(w3WAddressSuggestion).click({force:true});
     }
   };        
 

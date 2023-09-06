@@ -137,7 +137,7 @@ class Navigate {
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
       cy.wait(2000);
-      if (brand == 'boohoo.com') { // To select standard shipping method for boohoo as default address
+      if (brand == 'boohoo.com' && locale =='UK') { // To select standard shipping method for boohoo as default address
         cy.get('[data-option-id="shippingMethod-UKSuperSaver"]').click({force:true});
       }
       shippingPage.click.proceedToBilling();

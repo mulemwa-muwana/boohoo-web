@@ -7,10 +7,13 @@ import assertionText from 'cypress/helpers/assertionText';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaNLContinueBtn: '#onContinue',
+    klarnaNLFrame: '#klarna-klarna-payments-fullscreen',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
     klarnaPayNowAU: '#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button',
     klarnaPayNowUS: '[data-id="payButton-KlarnaUS"]>div>button',
     klarnaPayNowIE: '#payment-details-KlarnaIE > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    klarnaPayNowNL: '[data-id="payButton-Klarna"]',
     payButtonLocator:'[data-testid="confirm-and-pay"]',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
@@ -38,6 +41,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
     paymentMethodKlarna: '#payment-button-KlarnaUK',
+    paymentMethodKlarnaNl:'#payment-button-Klarna',
     paymentMethodKlarnaAU: '#payment-button-KlarnaAU',
     paymentMethodKlarnaIE:'#payment-button-KlarnaIE',
     paymentMethodKlarnaUS: '#payment-button-KlarnaUS',
@@ -310,7 +314,10 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
+    klarnaNLFrame: '#klarna-payments-fullscreen',
+    klarnaNLContinueBtn: '#onContinue__text',
     klarnaPayNow:'#billingSubmitButton > span',
+    klarnaPayNowNL: '#billingSubmitButton',
     payButtonLocator: '[data-testid="confirm-and-pay"]',
     shippingAddressSection: '.minicheckout-section',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
@@ -333,6 +340,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodKlarnaNl: '[for="is-Klarna"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     emailField: '#dwfrm_billing_billingAddress_email_emailAddress',
     confirmEmailField: '#dwfrm_billing_billingAddress_email_emailConfirm',
@@ -899,16 +907,30 @@ class BillingPage implements AbstractPage {
       }      
     },
     selectKlarnaBoohooNl () { // SelectKlarnaNew is created for BOOHOO/NL
-      cy.get('#payment-button-Klarna').click();
-      cy.wait(5000);
+      const paymentMethodKlarnaNl = selectors[brand].paymentMethodKlarnaNl;
+      const klarnaPayNowNL = selectors[brand].klarnaPayNowNL;
+      const klarnaNLFrame = selectors[brand].klarnaNLFrame;
+      const klarnaNLContinueBtn = selectors[brand].klarnaNLContinueBtn;
+      
+      cy.get(paymentMethodKlarnaNl).click();
+      cy.wait(5000);  
+         
+        if(brand == 'boohooman.com' && locale == 'NL'){
+            cy.enter('#klarna-payments-main').then(iframeBody => {
+            cy.wait(3000);
+            iframeBody().find('[id="radio-pay_later__label"]>input').click({force: true});
+        });
+          };
+      
+    
 
       // Click on PayNow.
-      cy.get("[data-id='payButton-Klarna']").click();
+      cy.get(klarnaPayNowNL).click();
 
       // Click the Continue button inside iframe and make payment
-      cy.enter('#klarna-klarna-payments-fullscreen').then(iframeBody => {
+      cy.enter(klarnaNLFrame ).then(iframeBody => {
         cy.wait(3000);
-        iframeBody().find('#onContinue').should('be.visible').click();
+        iframeBody().find(klarnaNLContinueBtn).should('be.visible').click({force: true});
         cy.wait(5000);
         iframeBody().find('[name="otp_field"]').type('111111', { force: true });
         cy.wait(5000);

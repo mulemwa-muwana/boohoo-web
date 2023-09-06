@@ -109,13 +109,15 @@ describe('Order confirmation page for registered user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
 
+
   it('Verify that guest user can place order using Klarna', function () {
     if (brand == 'boohooman.com' && (locale == 'AU'|| locale == 'IE'||locale == 'US')) {
+
       this.skip();
     }
     if (locale === 'UK' || locale === 'IE' || locale === 'AU'|| locale === 'NL' || locale == 'US') {
       Navigate.toBillingPage('RegisteredUser');
-      if (brand == 'boohoo.com'&& locale =='NL') {
+      if ((brand == 'boohoo.com' || brand == 'boohooman.com') && locale =='NL') {
         billingPage.actions.selectKlarnaBoohooNl();
       } else {
         billingPage.actions.selectKlarna();

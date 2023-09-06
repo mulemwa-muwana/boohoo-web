@@ -86,24 +86,24 @@ describe('Account page', function () {
   });
 
   it('TC06 Verify that Social Accounts section can be opened in My Account page', function () {
-    if (brand=='boohoo.com') {
-      MyAccountPage.click.socialAccountsLink();
+    if ((brand=='boohoo.com' || brand=='nastygal.com') && locale=='UK') {
+    MyAccountPage.click.socialAccountsLink();
+    MyAccountPage.assertions.assertFacebookLinkPresent();
+    if (brand=='boohoo.com' && locale=='UK') {
       MyAccountPage.assertions.assertTwitterLinkPresent();
-      MyAccountPage.assertions.assertFacebookLinkPresent();
     }
+  }
   });
-
   it('TC07 Verify that user can link to Facebook account', function () {
     if (brand=='boohoo.com') {
-      MyAccountPage.click.socialAccountsLink();
-      MyAccountPage.assertions.assertFacebookLinkPresent();
-      MyAccountPage.click.facebookLink();
-      homePage.assertions.assertLinkIsOpeningCorrectPage('facebook');
+    MyAccountPage.click.socialAccountsLink();
+    MyAccountPage.assertions.assertFacebookLinkPresent();
+    MyAccountPage.click.facebookLink();
+    homePage.assertions.assertLinkIsOpeningCorrectPage('facebook');
     }
   });
-
   it('TC07 Verify that user can link to Twitter account', function () {
-    if (brand=='boohoo.com') {
+    if (brand=='boohoo.com' && locale=='UK') {
       MyAccountPage.click.socialAccountsLink();
       MyAccountPage.assertions.assertTwitterLinkPresent();
       MyAccountPage.click.twitterLink();

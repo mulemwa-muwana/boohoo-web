@@ -106,7 +106,6 @@ describe('Account page', function () {
 
   it('TC07 Verify that user can link to Twitter account', function () {
     if (brand=='boohoo.com' && locale=='UK') {
-      MyAccountPage.assertions.assertTwitterLinkPresent();
       MyAccountPage.click.socialAccountsLink();
       MyAccountPage.assertions.assertTwitterLinkPresent();
       MyAccountPage.click.twitterLink();

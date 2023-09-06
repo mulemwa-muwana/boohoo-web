@@ -173,3 +173,5 @@ function generateFrontendArtefact (brand: GroupBrands, paymentMethod: PaymentMet
       cy.createArtefact(testArtefactObject, folder, brandName, paymentMethod.toLowerCase());
     });
 }
+
+export { generateFrontendArtefact };

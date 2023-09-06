@@ -94,7 +94,6 @@ describe('Account page', function () {
     }
   }
   });
-
   it('TC07 Verify that user can link to Facebook account', function () {
     if (brand=='boohoo.com') {
     MyAccountPage.click.socialAccountsLink();
@@ -103,7 +102,6 @@ describe('Account page', function () {
     homePage.assertions.assertLinkIsOpeningCorrectPage('facebook');
     }
   });
-
   it('TC07 Verify that user can link to Twitter account', function () {
     if (brand=='boohoo.com' && locale=='UK') {
       MyAccountPage.click.socialAccountsLink();

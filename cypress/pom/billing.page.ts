@@ -1292,7 +1292,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (isSiteGenesisBrand && locale == 'UK') {
+      } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE' || locale == 'FR' || locale == 'CA'|| locale == 'NZ') ) {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

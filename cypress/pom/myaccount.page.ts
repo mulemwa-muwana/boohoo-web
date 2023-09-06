@@ -528,7 +528,8 @@ const selectors: SelectorBrandMap = {
     orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addressCards:'.account-page-list-inner',
-    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]',
+    addressStateCode:'#dwfrm_profile_address_states_state'
   },
   'oasis-stores.com': {
     accountLogout: 'a[title="Log out"]',

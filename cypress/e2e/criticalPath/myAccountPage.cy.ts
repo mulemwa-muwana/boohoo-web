@@ -102,7 +102,7 @@ describe('Account page', function () {
     }
   });
 
-  it('TC07 Verify that user can link to Twitter account', function () {
+  it('TC08 Verify that user can link to Twitter account', function () {
     if (brand=='boohoo.com') {
     MyAccountPage.click.socialAccountsLink();
     MyAccountPage.assertions.assertTwitterLinkPresent();

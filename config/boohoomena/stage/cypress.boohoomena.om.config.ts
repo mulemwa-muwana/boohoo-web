@@ -7,10 +7,11 @@ export default defineConfig({
   env: {
     url: 'https://storefront:Oreo2022@stgmena.boohoo.com/om/en',
     sku: 'AMM09927',
-    fullSku: 'AMM09927-115-56',
+    fullSku: 'AMM09927-115-36',
     brand: 'boohoomena.com',
     locale: 'OM',
     language: 'EN', 
+    giftCertificate: '', // Need to create gift certificate
   },
 
   viewportHeight: 1080,

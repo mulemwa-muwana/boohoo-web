@@ -363,9 +363,9 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Student Discount', function () {
-        const excludedMisspapWithLocales : boolean = brand == 'misspap.com' && locale == 'IE';
-        const excludedBurtonLocales : boolean = brand == 'burton.co.uk' && locale != 'UK';
-        const excludedOasisLocales : boolean = brand == 'oasis-stores.com' && locale == 'IE';
+        const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && locale == 'IE';
+        const excludedBurtonLocales: boolean = brand == 'burton.co.uk' && locale != 'UK';
+        const excludedOasisLocales: boolean = brand == 'oasis-stores.com' && locale == 'IE';
         if (brand == 'boohoomena.com' || excludedMisspapWithLocales || excludedBurtonLocales || excludedOasisLocales) {
           this.skip();
         }
@@ -413,7 +413,7 @@ describe('Home Page', function () {
       });
 
       it('Verify that Footer Navigation Component is present and links are functional - Refer a friend', function () {
-        if (brand == 'boohoo.com' || brand == 'boohooman.com' || (brand == 'misspap.com' && locale == 'UK')){
+        if (brand == 'boohoo.com' || brand == 'boohooman.com' || (brand == 'misspap.com' && locale == 'UK')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.referFriendText[language]);
           GlobalFooter.assertions.assertReferFriendPagePresent(assertionText.referFriendPage[language]);
         } else {
@@ -526,10 +526,10 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Careers', function () {
-        const excludedBoohooWithLocales : boolean = brand == 'boohoo.com' && locale == 'IT';
-        const excludedNastygalWithLocales : boolean = brand == 'nastygal.com' && locale == 'FR';
-        const excludedOasisWithLocales : boolean = brand == 'oasis-stores.com' && (locale == 'IE' || locale == 'EU');
-        const excludedMisspapWithLocales : boolean = brand == 'misspap.com' && locale == 'IE';
+        const excludedBoohooWithLocales: boolean = brand == 'boohoo.com' && locale == 'IT';
+        const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && locale == 'FR';
+        const excludedOasisWithLocales: boolean = brand == 'oasis-stores.com' && (locale == 'IE' || locale == 'EU');
+        const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && locale == 'IE';
         if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedOasisWithLocales || excludedMisspapWithLocales || brand == 'boohoomena.com') {
           this.skip();
         } else {

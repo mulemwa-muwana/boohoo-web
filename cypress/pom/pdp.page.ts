@@ -435,7 +435,7 @@ class PdpPage implements AbstractPage {
     selectSizeFromSku () {
       const sizeVariations = selectors[brand].sizeVariations;
       const sizeFromSku = fullSku.split('-')[2]; // Get size part from fullSku FZZ80440-106-18 => 18
-
+     
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {
           if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected

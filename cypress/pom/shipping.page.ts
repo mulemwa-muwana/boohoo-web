@@ -1003,7 +1003,7 @@ class ShippingPage implements AbstractPage {
     countyField (county: string) {
       const countyField = selectors[brand].countyField;
       const countyFieldIE = selectors[brand].countyFieldIE;
-      if ((brand=='karenmillen.com' || brand  == 'misspap.com') && locale =='IE') {
+      if ((brand=='karenmillen.com' || brand == 'misspap.com') && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
       } else if ((brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com' || (brand == 'boohooman.com' || brand =='karenmillen.com' && locale == 'UK')) {
         cy.get(countyField).clear({force:true}).type(county,{force:true});

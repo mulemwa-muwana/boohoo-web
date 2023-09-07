@@ -917,14 +917,12 @@ class BillingPage implements AbstractPage {
       cy.get(paymentMethodKlarnaNl).click();
       cy.wait(5000);  
          
-        if(brand == 'boohooman.com' && locale == 'NL'){
-            cy.enter('#klarna-payments-main').then(iframeBody => {
-            cy.wait(3000);
-            iframeBody().find('[id="radio-pay_later__label"]>input').click({force: true});
+      if (brand == 'boohooman.com' && locale == 'NL') {
+        cy.enter('#klarna-payments-main').then(iframeBody => {
+          cy.wait(3000);
+          iframeBody().find('[id="radio-pay_later__label"]>input').click({force: true});
         });
-          };
-      
-    
+      }
 
       // Click on PayNow.
       cy.get(klarnaPayNowNL).click();

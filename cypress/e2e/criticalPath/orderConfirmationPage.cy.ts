@@ -109,7 +109,6 @@ describe('Order confirmation page for registered user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
 
-
   it('Verify that guest user can place order using Klarna', function () {
     if (brand == 'boohooman.com' && (locale == 'AU'||locale == 'US')) {
 
@@ -175,3 +174,5 @@ function generateFrontendArtefact (brand: GroupBrands, paymentMethod: PaymentMet
       cy.createArtefact(testArtefactObject, folder, brandName, paymentMethod.toLowerCase());
     });
 }
+
+export { generateFrontendArtefact };

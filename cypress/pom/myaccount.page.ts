@@ -80,7 +80,7 @@ const selectors: SelectorBrandMap = {
     accountAddresses: 'a[data-tau="navigation_addressList"]',
     paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
     viewOrderBtn: 'a[data-tau="account_viewOrder"]',
-    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    socialAccounts: '.m-happySmile',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
     addressCardsList: 'section[class^="b-cards_grid-item "]',
@@ -125,6 +125,8 @@ const selectors: SelectorBrandMap = {
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
     addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
+    twitterLink: '.m-twitter',
+    facebookLink: '.m-facebook'
   },
   'dorothyperkins.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -363,7 +365,7 @@ const selectors: SelectorBrandMap = {
     accountAddresses: 'a[title*="addresses"][href*="addresses"]',
     paymentDetails: 'a[title$="credit cards"]',
     viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
-    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    socialAccounts: '.m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
@@ -528,7 +530,8 @@ const selectors: SelectorBrandMap = {
     orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addressCards:'.account-page-list-inner',
-    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]',
+    addressStateCode:'#dwfrm_profile_address_states_state'
   },
   'oasis-stores.com': {
     accountLogout: 'a[title="Log out"]',
@@ -896,7 +899,7 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressCityField).type(address.city, { force: true });
         }
         cy.get(addressPostalCodeField).type(address.postcode, { force: true });
-        if ( locale=='US' || locale == 'IE'|| locale == 'AU' ) {
+        if ( locale=='US' || locale == 'IE'|| locale == 'AU'|| locale =='BH') {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {

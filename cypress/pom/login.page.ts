@@ -1,5 +1,6 @@
 import AbstractPage from './abstract/abstract.page';
 import { isSiteGenesisBrand, isMobileDeviceUsed } from '../helpers/common';
+import { brand, locale } from 'cypress/support/e2e';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -80,6 +81,7 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': {
     loginIcon: '.user-account',
+    loginIconNl: '.user-links',
     loginLink: '.user-links > a:nth-child(1)',
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
     MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
@@ -210,13 +212,16 @@ class LoginPage implements AbstractPage {
   click = {
     loginIcon () {
       const loginIcon = selectors[variables.brand].loginIcon;
+      const loginIconNl = selectors[variables.brand].loginIconNl;
       const mobileHamburgIcon = selectors[variables.brand].mobileHamburgIcon;
       
       if (isMobileDeviceUsed) {
         cy.get(mobileHamburgIcon).click();
       } else {
-        if (isSiteGenesisBrand && variables.brand != 'misspap.com' && variables.brand != 'boohooman.com') {
+        if (isSiteGenesisBrand && brand != 'misspap.com' && brand != 'boohooman.com') {
           cy.get('.header-customer-info').invoke('show');
+        } else if (brand =='boohooman.com'&& locale == 'NL') {
+          cy.get(loginIconNl).click({force:true});
         } else {
           cy.get(loginIcon).click({ force: true });
         }

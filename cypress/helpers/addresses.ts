@@ -105,7 +105,7 @@ class Addresses {
       primaryAddress:  {
         firstName: 'New',
         lastName: 'Test',
-        phone: '35314850900',
+        phone: '+3536789010',
         addressLine: '32 Marlfield Mall',
         postcode: 'D24 YT57',
         addressName: 'PrimaryAddress',

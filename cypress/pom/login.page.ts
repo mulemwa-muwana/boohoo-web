@@ -220,9 +220,9 @@ class LoginPage implements AbstractPage {
       } else {
         if (isSiteGenesisBrand && brand != 'misspap.com' && brand != 'boohooman.com') {
           cy.get('.header-customer-info').invoke('show');
-        } else if(brand =='boohooman.com'&& locale == 'NL'){
+        } else if (brand =='boohooman.com'&& locale == 'NL') {
           cy.get(loginIconNl).click({force:true});
-        }else {
+        } else {
           cy.get(loginIcon).click({ force: true });
         }
       }

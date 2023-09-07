@@ -64,7 +64,7 @@ describe('Checkout Page', function () {
       CheckoutPage.click.continueAsRegisteredUser();
       CheckoutPage.assertions.assertUserProceededToShippingPage();
     });
-  });
+  }); 
 
 });
 

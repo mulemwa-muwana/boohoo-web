@@ -20,7 +20,7 @@ describe('Order confirmation page for guest user', function () {
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
-    if (brand == 'boohoo.com' && (locale == 'US' || locale == 'CA')) {
+    if ((brand == 'boohoo.com'|| brand == 'karenmillen.com' ) && (locale == 'US' || locale == 'CA')) {
       billingPage.actions.selectCreditCardUS(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     } else {
       billingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
@@ -54,7 +54,7 @@ describe('Order confirmation page for guest user', function () {
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
-    if (brand == 'boohoo.com' && (locale == 'US' || locale == 'CA')) {
+    if ((brand == 'boohoo.com' || brand == 'karenmillen.com') && (locale == 'US' || locale == 'CA')) {
       billingPage.actions.selectCreditCardUS(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
     } else {
       billingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
@@ -71,8 +71,8 @@ describe('Order confirmation page for registered user', function () {
   
   it('Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('RegisteredUser');
-    if (brand == 'boohoo.com' && locale =='US') {
-      billingPage.actions.selectCreditCardUS(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
+    if (( brand == 'boohoo.com' || brand == 'karenmillen.com') && locale =='US') {
+      billingPage.actions.selectCreditCardUS(cards.masterUS.cardNo, cards.masterUS.owner, cards.masterUS.date, cards.masterUS.code);
     } else {
       billingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
     }
@@ -110,12 +110,13 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('Verify that guest user can place order using Klarna', function () {
-    if (brand == 'boohooman.com' && (locale == 'AU'|| locale == 'IE'||locale == 'US')) {
+    if (brand == 'boohooman.com' && (locale == 'AU'||locale == 'US')) {
+
       this.skip();
     }
     if (locale === 'UK' || locale === 'IE' || locale === 'AU'|| locale === 'NL' || locale == 'US') {
       Navigate.toBillingPage('RegisteredUser');
-      if (brand == 'boohoo.com'&& locale =='NL') {
+      if ((brand == 'boohoo.com' || brand == 'boohooman.com') && locale =='NL') {
         billingPage.actions.selectKlarnaBoohooNl();
       } else {
         billingPage.actions.selectKlarna();
@@ -173,3 +174,5 @@ function generateFrontendArtefact (brand: GroupBrands, paymentMethod: PaymentMet
       cy.createArtefact(testArtefactObject, folder, brandName, paymentMethod.toLowerCase());
     });
 }
+
+export { generateFrontendArtefact };

@@ -16,7 +16,7 @@ const selectors: SelectorBrandMap = {
     paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
     viewOrderBtn: 'a[data-tau="account_viewOrder"]:eq(1)',
     viewOrderBtnMobile:'.b-account_dashboard > .b-card > .b-card-body > .b-order_item > .b-order_item-buttons',
-    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    socialAccounts: '.m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
@@ -66,6 +66,8 @@ const selectors: SelectorBrandMap = {
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
     addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
+    twitterLink: '.m-twitter',
+    facebookLink: '.m-facebook'
   },
   'nastygal.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -78,7 +80,7 @@ const selectors: SelectorBrandMap = {
     accountAddresses: 'a[data-tau="navigation_addressList"]',
     paymentDetails: 'a[data-tau="navigation_paymentDetails"]',
     viewOrderBtn: 'a[data-tau="account_viewOrder"]',
-    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    socialAccounts: '.m-happySmile',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: 'button[data-tau="profile_customer_save"]',
     addressCardsList: 'section[class^="b-cards_grid-item "]',
@@ -123,6 +125,8 @@ const selectors: SelectorBrandMap = {
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',
     addressCards:'[data-tau="address_book_item"]',
     addressDeleteButton:'[data-tau="address_book_delete"]',
+    twitterLink: '.m-twitter',
+    facebookLink: '.m-facebook'
   },
   'dorothyperkins.com': {
     accountLogout: 'a[data-tau="account_signout"]',
@@ -305,7 +309,7 @@ const selectors: SelectorBrandMap = {
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
-    profileUpdateBtn: '.js-update-details button[value="Update"]',
+    profileUpdateBtn: '.js-update-details button[type="submit"]',
     addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
     addressEditBtn: '.address-edit-link',
@@ -347,7 +351,8 @@ const selectors: SelectorBrandMap = {
     orderHistoryLink: 'a[href*="order-history"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addressCards:'.account-page-list-inner',
-    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]',
+    addressStateCode: '#dwfrm_profile_address_states_state'
   },
   'karenmillen.com': {
     accountLogout: 'a[title="Log out"]',
@@ -360,7 +365,7 @@ const selectors: SelectorBrandMap = {
     accountAddresses: 'a[title*="addresses"][href*="addresses"]',
     paymentDetails: 'a[title$="credit cards"]',
     viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
-    socialAccounts: '.b-account_nav-item_link m-happySmile',
+    socialAccounts: '.m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
     firstNameField: '#dwfrm_profile_customer_firstname',
     profileUpdateBtn: '.js-update-details button[value="Update"]',
@@ -384,10 +389,14 @@ const selectors: SelectorBrandMap = {
     addCreditCardBtn: '.add-card',
     addCardEditForm: '.account-wrapper > .account-page-title',
     addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    addCreditCardNumberUS:'#cc_cardNumber',
     addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
+    addCreditCardOwnerUS:'#dwfrm_paymentinstruments_creditcards_newcreditcard_owner',
     addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    addCreditCardExpDateUS: '#cc_expDate',
     addCreditCardSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
     addCreditCardSaveBtn: '#add-card-submit',
+    addCreditCardSaveBtnUS: '#applyBtn',
     creditCardSection: '.payment-list-item',
     creditCardDeleteBtn: '.button-delete',
     orderID: '.orderdetails-header-number',
@@ -404,7 +413,8 @@ const selectors: SelectorBrandMap = {
     orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addressCards:'.account-page-list-inner',
-    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]',
+    addressStateCode: '#dwfrm_profile_address_states_state'
   },
   'coastfashion.com': {
     accountLogout: 'a[title="Log out"]',
@@ -520,7 +530,8 @@ const selectors: SelectorBrandMap = {
     orderHistoryLink: '[title="Order History"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addressCards:'.account-page-list-inner',
-    addressDeleteButton:'[class="address-delete-link js-address-delete"]'
+    addressDeleteButton:'[class="address-delete-link js-address-delete"]',
+    addressStateCode:'#dwfrm_profile_address_states_state'
   },
   'oasis-stores.com': {
     accountLogout: 'a[title="Log out"]',
@@ -818,7 +829,15 @@ class MyAccountPage implements AbstractPage {
       },
       saveAnyway () {
         cy.get('.verification-address-button').click();
-      }
+      },
+      facebookLink () {
+        const facebookLink = selectors[variables.brand].facebookLink;
+        cy.get(facebookLink).should('be.visible').click();
+      },
+      twitterLink () {
+        const twitterLink = selectors[variables.brand].twitterLink;
+        cy.get(twitterLink).should('be.visible').click();
+      },
     };
 
   actions =
@@ -838,9 +857,6 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressDefaultBox).find(addressEditBtn).click({ force: true });
         cy.get(addressEditForm).should('be.visible');
         cy.get(addressField).clear({ force: true }).type(line1);
-        if (variables.brand == 'nastygal.com' && variables.locale == 'IE') {
-          cy.get('#dwfrm_address_country').select(country).invoke('show');
-        }
         cy.get(addressSubmitBtn).click({ force: true });
     
       },
@@ -883,7 +899,7 @@ class MyAccountPage implements AbstractPage {
           cy.get(addressCityField).type(address.city, { force: true });
         }
         cy.get(addressPostalCodeField).type(address.postcode, { force: true });
-        if (locale == 'AU' || brand == 'boohoomena.com' || locale=='US' || (brand == 'misspap.com' && locale == 'IE')) {
+        if ( locale=='US' || locale == 'IE'|| locale == 'AU'|| locale =='BH') {
           cy.get(addressStateCode).select(address.county, { force: true });
         }
         if (isSiteGenesisBrand) {
@@ -913,7 +929,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressCards).contains('Boohoo').then(ele=>{
           cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true}); 
         });
-        if (!isSiteGenesisBrand || locale=='US') {
+        if (!isSiteGenesisBrand) {
           cy.wait(1000);
           cy.get(addressDeleteConfirmationBtn).click({force:true});
         }
@@ -934,7 +950,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addCreditCardOwner).click({ force: true }).should('be.visible').type(cardOwner);
         cy.get(addCreditCardSaveBtn).click({ force: true });
       },
-      addCardUS (cardNumber: string, cardOwner: string, cardMonth: string, cardYear: string) {
+      addCardUS (cardNumber: string, cardOwner: string, cardMonth: string, cardYear: string, date: string) {
         const addCreditCardBtn = selectors[variables.brand].addCreditCardBtn;
         const addCreditCardNumberUS = selectors[variables.brand].addCreditCardNumberUS;
         const addCardEditForm = selectors[variables.brand].addCardEditForm;
@@ -942,15 +958,24 @@ class MyAccountPage implements AbstractPage {
         const addCreditCardExpMonthUS = selectors[variables.brand].addCreditCardExpMonthUS;
         const addCreditCardExpYearUS = selectors[variables.brand].addCreditCardExpYearUS;
         const addCreditCardSaveBtn = selectors[variables.brand].addCreditCardSaveBtn;
+        const addCreditCardExpDateUS =selectors[variables.brand].addCreditCardExpDateUS;
+        const addCreditCardSaveBtnUS = selectors[variables.brand].addCreditCardSaveBtnUS;
         cy.get(addCreditCardBtn).click({ force: true });
         cy.get(addCardEditForm).should('be.visible');
 
         cy.get(addCreditCardNumberUS).type(cardNumber);
         cy.get(addCreditCardOwnerUS).click({ force: true }).should('be.visible').type(cardOwner);
-        cy.get(addCreditCardExpMonthUS).select(3).invoke('val').should('eq', '3');
-        cy.get(addCreditCardExpYearUS).select(8) .invoke('val').should('eq', '2030');
-
-        cy.get(addCreditCardSaveBtn).click({ force: true });
+        if (brand == 'karenmillen.com' && locale == 'US') {
+          cy.get(addCreditCardExpDateUS).type(date);
+        } else {
+          cy.get(addCreditCardExpMonthUS).select(3).invoke('val').should('eq', '3');
+          cy.get(addCreditCardExpYearUS).select(8) .invoke('val').should('eq', '2030');
+        }
+        if (brand == 'karenmillen.com' && locale == 'US') {
+          cy.get(addCreditCardSaveBtnUS).click({ force: true });
+        } else {
+          cy.get(addCreditCardSaveBtn).click({ force: true });
+        }
       },
 
       deleteCard (cardEnd: string) {
@@ -1045,6 +1070,14 @@ class MyAccountPage implements AbstractPage {
       assertOrderCanBeTracked () {
         cy.get('.b-form-message').should('include', 'We found your order');
       },
+      assertTwitterLinkPresent () {
+        const twitterLink = selectors[variables.brand].twitterLink;
+        cy.get(twitterLink).should('be.visible');
+      },
+      assertFacebookLinkPresent () {
+        const facebookLink = selectors[variables.brand].facebookLink;
+        cy.get(facebookLink).should('be.visible');
+      }
     };
 }
 

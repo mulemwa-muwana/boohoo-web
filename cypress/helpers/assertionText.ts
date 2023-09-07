@@ -129,7 +129,7 @@ class AssertionText {
   WishListIsEmptySiteGenesis: TranslationMap = {
     EN: 'add your favorite items as you start shopping',
     FR: '',
-    NL: '',
+    NL: 'Gebruik de verlanglijst om je favoriete artikelen toe te voegen als je begint met winkelen.',
     DE: 'Verwende zu Beginn deines Einkaufs die Wunschliste, um deine bevorzugten Artikel hinzuzufügen.',
     DK: '',
     FI: '',
@@ -185,7 +185,7 @@ class AssertionText {
   ShippingMandatoryFieldError: TranslationMap = {
     EN: 'This field is required.',
     FR: 'Ce champ est obligatoire',
-    NL: 'Vergeet mij niet!',
+    NL: 'Dit veld is verplicht.',
     DE: 'Vergiss mich nicht!',
     DK: 'Glem ikke mig!',
     FI: 'Älä unohda minua!',
@@ -283,7 +283,7 @@ class AssertionText {
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
     FR: 'Avis de confidentialité ',
-    NL: 'Privacyverklaring',
+    NL: 'privacyverklaring',
     DE: 'Datenschutzrichtlinien',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
     FI: 'Tietosuojailmoitus',
@@ -367,7 +367,7 @@ class AssertionText {
   TermsAndConditionsSiteGenesisH1: TranslationMap = {
     EN: 'TERMS OF WEBSITE USE',
     FR: '',
-    NL: 'ALGEMENE GEBRUIKSVOORWAARDEN',
+    NL: 'BOOHOO GEBRUIKSVOORWAARDEN VAN DE WEBSITE',
     DE: '',
     DK: '',
     FI: '',
@@ -589,17 +589,17 @@ class AssertionText {
   };
 
   emptyEmailFieldErrorBillingPage: TranslationMap = {
-    EN: '',
-    FR: 'Ce champ est obligatoire',
+    EN: 'Don’t forget about me!',
+    FR: 'Ne m’oubliez pas!',
     NL: 'Vergeet mij niet!',
     DE: 'Vergiss mich nicht!',
     DK: '',
     FI: '',
     NO: '',
     SE: 'Glöm inte mig!',
-    IL: '',
-    IT: '',
-    ES: ''
+    IL: 'אל תשכחו אותי!',
+    IT: 'Non dimenticarti di noi!',
+    ES: '¡No te olvides de mí!'
   };
 
   assertUserIsNotLoggedIn: TranslationMap = {
@@ -772,7 +772,7 @@ class AssertionText {
 
   alreadySubscribed: TranslationMap = {
     EN: 'already signed up',
-    NL: 'al aangemeld',
+    NL: 'Het lijkt erop dat je al een account bij ons aan hebt gemaakt! Log in om je voorkeuren aan te passen.',
     DE: 'bereits angemeldet',
     FR: 'déjà inscrit',
     DK: 'allerede tilmeldt',
@@ -812,8 +812,22 @@ class AssertionText {
     ES: ''
   };
 
+  orderNotFoundBHO: TranslationMap = {
+    EN: "Sorry we don't recognize that order number",
+    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    FR: 'Désolé, ce numéro de commande ne correspond',
+    DK: 'Sorry, this order number does not match',
+    FI: 'Sorry, this order number does not match',
+    NO: 'Sorry, this order number does not match',
+    SE: 'Ordernumret hittades inte',
+    IL: 'מצטערים, אך מספר ההזמנה אינו תואם לרשום אצלנו',
+    IT: 'Ci dispiace, questo numero di ordine non è disponibile',
+    ES: 'Lo sentimos, no hemos encontrado el número de pedido'
+  };
+
   orderNotFound: TranslationMap = {
-    EN: 'Sorry, this order number does not match',
+    EN: 'Sorry, this order number does not match our records.',
     NL: 'Sorry, dit bestellingsnummer komt niet overeen',
     DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
     FR: 'Désolé, ce numéro de commande ne correspond',
@@ -828,7 +842,7 @@ class AssertionText {
 
   orderNotFoundSG: TranslationMap = {
     EN: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
-    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    NL: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
     DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
     FR: 'Désolé, ce numéro de commande ne correspond',
     DK: 'Sorry, this order number does not match',
@@ -870,7 +884,7 @@ class AssertionText {
 
   footerCustomerServiceBHM: TranslationMap = {
     EN: 'Customer Service',
-    NL: '',
+    NL: 'Klantenservice',
     DE: '',
     FR: 'Service client',
     DK: '',
@@ -982,7 +996,7 @@ class AssertionText {
 
   footerLinkSizeGuide: TranslationMap = {
     EN: 'Size Guide',
-    NL: 'Maatwijzer',
+    NL: 'Maatgids',
     DE: 'Größentabelle',
     FR: 'Guide des tailles',
     DK: 'Size Guide',
@@ -1066,7 +1080,7 @@ class AssertionText {
 
   footerLinkReturns: TranslationMap = {
     EN: 'Return',
-    NL: 'RETOURNERINGEN',
+    NL: 'RETOURZENDINGEN',
     DE: 'Rücksendungen',
     FR: 'Retours',
     DK: '',
@@ -1248,7 +1262,7 @@ class AssertionText {
 
   boohooMANACTIVE: TranslationMap = {
     EN: 'boohooMAN ACTIVE',
-    NL: '',
+    NL: 'boohooMAN ACTIVE',
     DE: '',
     FR: '',
     DK: '',
@@ -1318,7 +1332,7 @@ class AssertionText {
 
   termsAndCondBoohooManAndMena: TranslationMap = {
     EN: 'T&C\'s',
-    NL: '',
+    NL: 'Algemene Voorwaarden',
     DE: '',
     FR: 'CGV',
     DK: '',
@@ -1472,7 +1486,7 @@ class AssertionText {
 
   aboutCookies: TranslationMap = {
     EN: 'About Cookies',
-    NL: 'Over cookies',
+    NL: 'cookies',
     DE: 'Über Cookies',
     FR: 'En savoir plus sur les cookies',
     DK: 'About Cookies',

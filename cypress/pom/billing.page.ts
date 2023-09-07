@@ -7,10 +7,13 @@ import assertionText from 'cypress/helpers/assertionText';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
+    klarnaNLContinueBtn: '#onContinue',
+    klarnaNLFrame: '#klarna-klarna-payments-fullscreen',
     klarnaPayNow:'#payment-details-KlarnaUK button[type="submit"]',
     klarnaPayNowAU: '#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button',
     klarnaPayNowUS: '[data-id="payButton-KlarnaUS"]>div>button',
     klarnaPayNowIE: '#payment-details-KlarnaIE > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
+    klarnaPayNowNL: '[data-id="payButton-Klarna"]',
     payButtonLocator:'[data-testid="confirm-and-pay"]',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
@@ -38,6 +41,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
     paymentMethodKlarna: '#payment-button-KlarnaUK',
+    paymentMethodKlarnaNl:'#payment-button-Klarna',
     paymentMethodKlarnaAU: '#payment-button-KlarnaAU',
     paymentMethodKlarnaIE:'#payment-button-KlarnaIE',
     paymentMethodKlarnaUS: '#payment-button-KlarnaUS',
@@ -65,13 +69,18 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
-    creditCardFieldsCardNumberUS:'creditCardFieldsCardNumberUS',
+    creditCardFieldsCardNumberUS:'#dwfrm_billing_creditCardFields_cardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsExpirationDateUS: '#dwfrm_billing_creditCardFields_expirationYear',
     creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
+    creditCardFieldsExpirationMonthUS: '#dwfrm_billing_creditCardFields_expirationMonth',
     creditCardSecurityCodeIframe: '[class*="adyen-checkout__card__exp-cvc"] > [class*="adyen-checkout__field"]:not([class*="storedCard"]) [class*="adyen-checkout__card__cvc__input"] .js-iframe',
     creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
+    creditCardFieldsSecurityCodeUS: '#dwfrm_billing_creditCardFields_securityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    creditCardFieldsCardOwnerUS: '#dwfrm_billing_creditCardFields_cardOwner',
     paynowBtnCC:':nth-child(2).b-payment_accordion-submit > .b-checkout_step-controls .b-button',
+    paynowBtnCCUS:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
   },
   'nastygal.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
@@ -305,7 +314,11 @@ const selectors: SelectorBrandMap = {
   },
   'boohooman.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
+    klarnaNLFrame: '#klarna-payments-fullscreen',
+    klarnaNLContinueBtn: '#onContinue__text',
     klarnaPayNow:'#billingSubmitButton > span',
+    klarnaPayNowIE: '#billingSubmitButton > span',
+    klarnaPayNowNL: '#billingSubmitButton',
     payButtonLocator: '[data-testid="confirm-and-pay"]',
     shippingAddressSection: '.minicheckout-section',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
@@ -328,6 +341,8 @@ const selectors: SelectorBrandMap = {
     paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodKlarnaIE: '[for="is-KlarnaIE"]',
+    paymentMethodKlarnaNl: '[for="is-Klarna"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     emailField: '#dwfrm_billing_billingAddress_email_emailAddress',
     confirmEmailField: '#dwfrm_billing_billingAddress_email_emailConfirm',
@@ -413,12 +428,17 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    creditCardFieldsCardNumberUS: '#cc_cardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    creditCardFieldsExpirationDateUS: '#cc_expDate',
     creditCardSecurityCodeIframe: '#component_scheme .adyen-checkout__field__cvc .js-iframe',
     creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
+    creditCardFieldsSecurityCodeUS: '[class="form-row js-form-row cvn js-cvn cvn required"]>div>input',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    creditCardFieldsCardOwnerUS: '#dwfrm_billing_paymentMethods_creditCard_owner',
     paynowBtnCC:'#billingSubmitButton',
+    paynowBtnCCUS:'#billingSubmitButton',
   },
   'coastfashion.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -505,6 +525,7 @@ const selectors: SelectorBrandMap = {
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     dobForm: '.form-birthday-rows-inner',
     promoCodeField: '#dwfrm_billing_couponCode',
+    payButtonLocator:"[data-testid='confirm-and-pay']",
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -743,6 +764,13 @@ class BillingPage implements AbstractPage {
     },
     selectCreditCardUS (cardNo: string, cardOwner: string, date: string, code: string) {
       const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
+      const creditCardFieldsCardNumberUS = selectors[brand].creditCardFieldsCardNumberUS;
+      const creditCardFieldsCardOwnerUS = selectors[brand].creditCardFieldsCardOwnerUS;
+      const creditCardFieldsExpirationDateUS= selectors[brand].creditCardFieldsExpirationDateUS;
+      const creditCardFieldsExpirationMonthUS= selectors[brand].creditCardFieldsExpirationMonthUS;
+      const creditCardFieldsSecurityCodeUS = selectors[brand].creditCardFieldsSecurityCodeUS; 
+      const paynowBtnCCUS = selectors[brand].paynowBtnCCUS;  
+
       cy.get(paymentMethodCreditCardUS).click({force:true});   
       cy.wait(4000);
 
@@ -751,12 +779,16 @@ class BillingPage implements AbstractPage {
           cy.get("[class='b-button m-info m-width_full ']").click({force: true});
         }
       });
-      cy.get('#dwfrm_billing_creditCardFields_cardNumber').type(cardNo);
-      cy.get('#dwfrm_billing_creditCardFields_cardOwner').type(cardOwner);
-      cy.get('#dwfrm_billing_creditCardFields_expirationMonth').select('03');
-      cy.get('#dwfrm_billing_creditCardFields_expirationYear').select('2030');
-      cy.get('#dwfrm_billing_creditCardFields_securityCode').type('7373', {force: true});
-      cy.get('#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button').click({force:true});
+      cy.get(creditCardFieldsCardNumberUS).type(cardNo);
+      cy.get(creditCardFieldsCardOwnerUS).type(cardOwner);
+      if (brand == 'karenmillen.com'&& locale == 'US') {
+        cy.get(creditCardFieldsExpirationDateUS).type(date, {force:true});
+      } else {
+        cy.get(creditCardFieldsExpirationMonthUS).select('12');
+        cy.get(creditCardFieldsExpirationDateUS).select('2029');
+      }
+      cy.get(creditCardFieldsSecurityCodeUS).type(code, {force: true});
+      cy.get(paynowBtnCCUS).click({force:true});
 
     },
     emptyEmailField () {
@@ -878,16 +910,28 @@ class BillingPage implements AbstractPage {
       }      
     },
     selectKlarnaBoohooNl () { // SelectKlarnaNew is created for BOOHOO/NL
-      cy.get('#payment-button-Klarna').click();
-      cy.wait(5000);
+      const paymentMethodKlarnaNl = selectors[brand].paymentMethodKlarnaNl;
+      const klarnaPayNowNL = selectors[brand].klarnaPayNowNL;
+      const klarnaNLFrame = selectors[brand].klarnaNLFrame;
+      const klarnaNLContinueBtn = selectors[brand].klarnaNLContinueBtn;
+      
+      cy.get(paymentMethodKlarnaNl).click();
+      cy.wait(5000);  
+         
+      if (brand == 'boohooman.com' && locale == 'NL') {
+        cy.enter('#klarna-payments-main').then(iframeBody => {
+          cy.wait(3000);
+          iframeBody().find('[id="radio-pay_later__label"]>input').click({force: true});
+        });
+      }
 
       // Click on PayNow.
-      cy.get("[data-id='payButton-Klarna']").click();
+      cy.get(klarnaPayNowNL).click();
 
       // Click the Continue button inside iframe and make payment
-      cy.enter('#klarna-klarna-payments-fullscreen').then(iframeBody => {
+      cy.enter(klarnaNLFrame ).then(iframeBody => {
         cy.wait(3000);
-        iframeBody().find('#onContinue').should('be.visible').click();
+        iframeBody().find(klarnaNLContinueBtn).should('be.visible').click({force: true});
         cy.wait(5000);
         iframeBody().find('[name="otp_field"]').type('111111', { force: true });
         cy.wait(5000);
@@ -1271,7 +1315,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (isSiteGenesisBrand) {
+      } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE' || locale == 'FR' || locale == 'CA'|| locale == 'NZ') ) {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

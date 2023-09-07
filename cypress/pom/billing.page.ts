@@ -317,6 +317,7 @@ const selectors: SelectorBrandMap = {
     klarnaNLFrame: '#klarna-payments-fullscreen',
     klarnaNLContinueBtn: '#onContinue__text',
     klarnaPayNow:'#billingSubmitButton > span',
+    klarnaPayNowIE: '#billingSubmitButton > span',
     klarnaPayNowNL: '#billingSubmitButton',
     payButtonLocator: '[data-testid="confirm-and-pay"]',
     shippingAddressSection: '.minicheckout-section',
@@ -340,6 +341,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodKlarnaIE: '[for="is-KlarnaIE"]',
     paymentMethodKlarnaNl: '[for="is-Klarna"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     emailField: '#dwfrm_billing_billingAddress_email_emailAddress',
@@ -1314,7 +1316,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL')) {
+      } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE' || locale == 'FR' || locale == 'CA'|| locale == 'NZ') ) {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

@@ -111,7 +111,7 @@ describe('Order confirmation page for registered user', function () {
 
 
   it('Verify that guest user can place order using Klarna', function () {
-    if (brand == 'boohooman.com' && (locale == 'AU'|| locale == 'IE'||locale == 'US')) {
+    if (brand == 'boohooman.com' && (locale == 'AU'||locale == 'US')) {
 
       this.skip();
     }

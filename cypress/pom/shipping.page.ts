@@ -425,7 +425,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodName: '.js-shipping-method-list .form-label',
-    shippingMethodsNameList: '',
+    shippingMethodsNameList: '.shipping-method-name',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -1040,7 +1040,7 @@ class ShippingPage implements AbstractPage {
     secondShippingMethodName(): Cypress.Chainable<string> {
       const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;
       return cy.get(shippingMethodsNameList).eq(1).invoke('text').then((text) => {
-        if((brand == 'boohooman.com' && (locale == 'UK' || locale == 'IE'))|| brand == 'misspap.com'){
+        if((brand == 'boohooman.com' && (locale == 'UK' || locale == 'IE'))|| brand == 'misspap.com' || (brand == 'karenmillen.com' && locale == 'IE')){
           return text.split('-')[0].trimEnd() as string;      
         } else if(brand == 'boohooman.com' && (locale == 'US' || locale == 'FR' || locale == 'NL' || locale == 'DE')){
           return text.split(':')[0].trimEnd() as string;  

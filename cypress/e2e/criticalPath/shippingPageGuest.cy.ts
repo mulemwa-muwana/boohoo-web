@@ -168,8 +168,13 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
-  it('Verify that user is able to select 2nd shipping method', function () {
-    if ((brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI')) || locale == 'EU') { // No 2nd shipping method for these boohoo brands and locales
+  it.only('Verify that user is able to select 2nd shipping method', function () {
+    const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU' );
+    const isKMLocaleWithSelectState: boolean = (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE'));
+    const isMANLocaleWithSelectState: boolean = (brand == 'boohooman.com' && (locale == 'IE' || locale == 'US'));
+    const isMPLocaleWithProceedVrf: boolean = (brand == 'misspap.com' && (locale == 'IE' || locale == 'US' || locale == 'AU'));
+
+    if (isBoohooLocaleWithoutSecondShipping || brand == 'boohoomena.com') { // No 2nd shipping method for these boohoo brands and locales
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
@@ -193,7 +198,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (locale == 'AU' || (brand == 'boohoo.com' && locale == 'CA') || (brand == 'boohooman.com' && (locale == 'US' || locale == 'IE')) || (brand == 'misspap.com' && locale == 'US')) {
+    if (locale == 'AU' || isKMLocaleWithSelectState || (brand == 'boohoo.com' && locale == 'CA') || isMANLocaleWithSelectState || (brand == 'misspap.com' && locale == 'US')) {
       shippingPage.actions.selectState(localeAddress.county);
     }
     if (isSiteGenesisBrand) {     
@@ -208,7 +213,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
       cy.log(secondShippingMethodName);
       shippingPage.click.proceedToBilling();
-      if ((brand == 'boohooman.com' && locale =='US') || (brand == 'misspap.com' && (locale == 'IE' || locale == 'US' || locale == 'AU'))) {
+      if ((brand == 'boohooman.com' && locale =='US') || isMPLocaleWithProceedVrf || (brand == 'karenmillen.com' && locale == 'IE')) {
         shippingPage.click.proceedToBillingVerification();
       } else if (locale == 'IL') {
         cy.wait(2000); // Clicking the first time confirms the address, while clicking it a second time will navigate you to the billing page

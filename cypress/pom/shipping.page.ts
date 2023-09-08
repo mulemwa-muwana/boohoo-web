@@ -49,7 +49,8 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    shippingMethodName: '.b-shipping_method',
+    shippingMethodName: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-label',
+    shippingMethodsNameList: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-name',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -112,7 +113,8 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
-    shippingMethodName: '.b-option_switch-label',
+    shippingMethodName: '.b-shipping_method .b-option_switch-label_surface',
+    shippingMethodsNameList: '.b-option_switch-name',
     shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -354,7 +356,8 @@ const selectors: SelectorBrandMap = {
     postcodeDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodName: '.js-shipping-method-list div.js-form-row',
+    shippingMethodName: '.js-shipping-method-list .form-label',
+    shippingMethodsNameList: '.shipping-method-name',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
     clickAndCollectTab:'.js-click-collect-tab',
@@ -421,7 +424,8 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodName: 'div.form-row.delivery-row',
+    shippingMethodName: '.js-shipping-method-list .form-label',
+    shippingMethodsNameList: '.shipping-method-name',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -675,7 +679,8 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodName: 'div.form-row.delivery-row',
+    shippingMethodName: '.js-shipping-method-list .form-label',
+    shippingMethodsNameList: '.shipping-method-name',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -1005,8 +1010,8 @@ class ShippingPage implements AbstractPage {
       const countyFieldIE = selectors[brand].countyFieldIE;
       if ((brand=='karenmillen.com' || brand == 'misspap.com') && locale =='IE') {
         cy.get(countyFieldIE).select(county).invoke('show');
-      } else if ((brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com' || (brand == 'boohooman.com' || brand =='karenmillen.com' && locale == 'UK')) {
-        cy.get(countyField).clear({force:true}).type(county,{force:true});
+      } else if ((brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com' || (brand == 'boohooman.com' && (locale == 'UK' || locale == 'FR')) || (brand =='karenmillen.com' && locale == 'UK')) {
+        cy.get(countyField).clear({force:true}).type(county, {force:true});
       } else {
         cy.get(countyField).select(county);
       }
@@ -1014,7 +1019,9 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({ force: true }).type(postcode).blur({force:true});
+      cy.get(shippingPostcode).clear({ force: true }).type(postcode);
+      cy.wait(1000);
+      cy.get(shippingPostcode).click().blur({force:true});
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;
@@ -1025,11 +1032,23 @@ class ShippingPage implements AbstractPage {
       cy.wait(3000);
       cy.get(shippingMethodName).contains(shippingMethod).click({ force: true });
     },
-    selectOtherShippingMethod (shippingMethod: string) {
+    selectSecondShippingMethod () {
       const shippingMethodName = selectors[brand].shippingMethodName;
-      cy.get(shippingMethodName).contains(shippingMethod).click({force: true});
+      cy.wait(3000);
+      cy.get(shippingMethodName).eq(1).click({force:true});
     },
-
+    secondShippingMethodName(): Cypress.Chainable<string> {
+      const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;
+      return cy.get(shippingMethodsNameList).eq(1).invoke('text').then((text) => {
+        if((brand == 'boohooman.com' && (locale == 'UK' || locale == 'IE'))|| brand == 'misspap.com' || (brand == 'karenmillen.com' && locale == 'IE')){
+          return text.split('-')[0].trimEnd() as string;      
+        } else if(brand == 'boohooman.com' && (locale == 'US' || locale == 'FR' || locale == 'NL' || locale == 'DE')){
+          return text.split(':')[0].trimEnd() as string;  
+        }else {
+          return text as string; 
+      }
+      });
+    },
     confirmShippingAddress () {
       const confirmShippingAddress = selectors[brand].confirmShippingAddress;
       cy.wait(5000);
@@ -1226,12 +1245,10 @@ class ShippingPage implements AbstractPage {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());
       }
     },
-    assertShippingMethodIsSelected (shippingMethod: string) {
+    assertShippingMethodIsSelected (shippingMethod:string) {
       const orderSummaryOnShippingPage = selectors[brand].orderSummaryOnShippingPage;
-      const currentShippingMethod = shippingMethod;
-      cy.get(orderSummaryOnShippingPage).should('contain', currentShippingMethod);
+      cy.get(orderSummaryOnShippingPage).should('contain.text', shippingMethod);
     },
-
     // METHODS ONLY FOR SITE GENESIS BRANDS //
     assertEmailIsCorrect (email: string) {
       cy.get('#dwfrm_singleshipping_shippingAddress_email_emailAddress').should('have.value', email);

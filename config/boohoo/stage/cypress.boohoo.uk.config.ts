@@ -40,5 +40,6 @@ export default defineConfig({
       plugins(on);
     },
     numTestsKeptInMemory: 0,
+    experimentalMemoryManagement: true
   },
 });

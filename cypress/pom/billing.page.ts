@@ -644,7 +644,7 @@ const selectors: SelectorBrandMap = {
     shippingAddressSection: '.minicheckout-section',
     billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
-    addGiftCertificate: '.b-gift_certificate-add',
+    addGiftCertificate: '#dwfrm_billing_giftCertCode',
     billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
     billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_coupon_couponCode',
@@ -889,6 +889,7 @@ class BillingPage implements AbstractPage {
       cy.get(giftCertCode).should('be.visible').type(giftCertificate);
       cy.get(addGiftCert).click();
     },
+
     removeGiftCertificate () {
       const removeCertificate = selectors[brand].removeCertificate;
       const giftcartApplied = selectors[brand].giftcartApplied;

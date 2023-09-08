@@ -168,7 +168,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
-  it.only('Verify that user is able to select 2nd shipping method', function () {
+  it('Verify that user is able to select 2nd shipping method', function () {
     const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU' );
     const isKMLocaleWithSelectState: boolean = (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE'));
     const isMANLocaleWithSelectState: boolean = (brand == 'boohooman.com' && (locale == 'IE' || locale == 'US'));

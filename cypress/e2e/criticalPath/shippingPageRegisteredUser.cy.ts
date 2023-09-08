@@ -226,7 +226,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
   });
 
-  it.only('Verify that user is able to select 2nd shipping method', function () {
+  it('Verify that user is able to select 2nd shipping method', function () {
     const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU' );
     const isKMLocaleWithSelectState: boolean = (brand == 'karenmillen.com' && (locale == 'US' || locale == 'AU' || locale == 'IE'));
     const isMANLocaleWithSelectState: boolean = (brand == 'boohooman.com' && (locale == 'IE' || locale == 'US'));

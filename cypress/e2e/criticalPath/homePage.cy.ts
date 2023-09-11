@@ -420,7 +420,7 @@ describe('Home Page', function () {
       });
 
       it('Verify that Footer Navigation Component is present and links are functional - Refer a friend', function () {
-        if (brand == 'boohoo.com' || brand == 'boohooman.com' || (brand == 'misspap.com' && locale == 'UK')){
+        if (brand == 'boohoo.com' || brand == 'boohooman.com' || (brand == 'misspap.com' && locale == 'UK')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.referFriendText[language]);
           GlobalFooter.assertions.assertReferFriendPagePresent(assertionText.referFriendPage[language]);
         } else {

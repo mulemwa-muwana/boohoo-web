@@ -1037,16 +1037,16 @@ class ShippingPage implements AbstractPage {
       cy.wait(3000);
       cy.get(shippingMethodName).eq(1).click({force:true});
     },
-    secondShippingMethodName(): Cypress.Chainable<string> {
+    secondShippingMethodName (): Cypress.Chainable<string> {
       const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;
       return cy.get(shippingMethodsNameList).eq(1).invoke('text').then((text) => {
-        if((brand == 'boohooman.com' && (locale == 'UK' || locale == 'IE'))|| brand == 'misspap.com' || (brand == 'karenmillen.com' && locale == 'IE')){
+        if ((brand == 'boohooman.com' && (locale == 'UK' || locale == 'IE'))|| brand == 'misspap.com' || (brand == 'karenmillen.com' && locale == 'IE')) {
           return text.split('-')[0].trimEnd() as string;      
-        } else if(brand == 'boohooman.com' && (locale == 'US' || locale == 'FR' || locale == 'NL' || locale == 'DE')){
+        } else if (brand == 'boohooman.com' && (locale == 'US' || locale == 'FR' || locale == 'NL' || locale == 'DE')) {
           return text.split(':')[0].trimEnd() as string;  
-        }else {
+        } else {
           return text as string; 
-      }
+        }
       });
     },
     confirmShippingAddress () {
@@ -1245,10 +1245,11 @@ class ShippingPage implements AbstractPage {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());
       }
     },
-    assertShippingMethodIsSelected (shippingMethod:string) {
+    assertShippingMethodIsSelected (shippingMethod: string) {
       const orderSummaryOnShippingPage = selectors[brand].orderSummaryOnShippingPage;
       cy.get(orderSummaryOnShippingPage).should('contain.text', shippingMethod);
     },
+
     // METHODS ONLY FOR SITE GENESIS BRANDS //
     assertEmailIsCorrect (email: string) {
       cy.get('#dwfrm_singleshipping_shippingAddress_email_emailAddress').should('have.value', email);

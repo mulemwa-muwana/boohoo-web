@@ -7,6 +7,7 @@ import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import { brand, language, locale } from 'cypress/support/e2e';
 import navigate from 'cypress/helpers/navigate';
+import billingPage from 'cypress/pom/billing.page';
 
 describe('Shipping Page Guest user tests', function () {
   
@@ -168,11 +169,14 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   it('Verify that user is able to select 2nd shipping method', function () {
-    if ((brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI')) || locale == 'EU') { // No 2nd shipping method for these boohoo brands and locales
+    const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU' );
+    const isKMLocaleWithSelectState: boolean = (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE'));
+    const isMANLocaleWithSelectState: boolean = (brand == 'boohooman.com' && (locale == 'IE' || locale == 'US'));
+    const isMPLocaleWithProceedVrf: boolean = (brand == 'misspap.com' && (locale == 'IE' || locale == 'US' || locale == 'AU'));
+
+    if (isBoohooLocaleWithoutSecondShipping || brand == 'boohoomena.com') { // No 2nd shipping method for these boohoo brands and locales
       this.skip();
     }
-    const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod2');
-    const localeShippingMethodForMisspapIE = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod3');
     const localeAddress = Addresses.getAddressByLocale(locale,'primaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -190,8 +194,11 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.actions.countyField(localeAddress.county);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
+    if (brand == 'nastygal.com' && locale == 'CA') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (locale == 'AU') {
+    if (locale == 'AU' || isKMLocaleWithSelectState || (brand == 'boohoo.com' && locale == 'CA') || isMANLocaleWithSelectState || (brand == 'misspap.com' && locale == 'US')) {
       shippingPage.actions.selectState(localeAddress.county);
     }
     if (isSiteGenesisBrand) {     
@@ -202,20 +209,19 @@ describe('Shipping Page Guest user tests', function () {
       }
     } 
     cy.wait(5000);
-    if (brand == 'misspap.com' && locale == 'IE') {
-      shippingPage.actions.selectOtherShippingMethod(localeShippingMethodForMisspapIE.shippingMethodName);
-      cy.wait(2000);
-      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
-    } else {
-      shippingPage.actions.selectOtherShippingMethod(localeShippingMethod.shippingMethodName);
-      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
-    }
-    shippingPage.click.proceedToBilling();
-    if (brand == 'misspap.com' && locale == 'IE') {
-      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethodForMisspapIE.shippingMethodName);
-    } else {
-      shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
-    }
+    shippingPage.actions.selectSecondShippingMethod();
+    shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
+      cy.log(secondShippingMethodName);
+      shippingPage.click.proceedToBilling();
+      if ((brand == 'boohooman.com' && locale =='US') || isMPLocaleWithProceedVrf || (brand == 'karenmillen.com' && locale == 'IE')) {
+        shippingPage.click.proceedToBillingVerification();
+      } else if (locale == 'IL') {
+        cy.wait(2000); // Clicking the first time confirms the address, while clicking it a second time will navigate you to the billing page
+        shippingPage.click.proceedToBilling();
+      }
+      billingPage.actions.waitPageToLoad();
+      shippingPage.assertions.assertShippingMethodIsSelected(secondShippingMethodName);
+    });   
   });
 
   it('Verify that guest user can Edit cart from shipping page', function () {

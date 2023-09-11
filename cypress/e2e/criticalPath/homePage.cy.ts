@@ -84,6 +84,8 @@ describe('Home Page', function () {
           homePage.assertions.assertLinkIsOpeningCorrectPage('vetements');
         } else if (locale == 'NL') {
           homePage.assertions.assertLinkIsOpeningCorrectPage('nieuw-binnen');
+        } else if (locale == 'IE') {
+          homePage.assertions.assertLinkIsOpeningCorrectPage('new-in');
         } else {
           homePage.assertions.assertLinkIsOpeningCorrectPage('promo');
         }
@@ -92,7 +94,8 @@ describe('Home Page', function () {
       }
     });
 
-    it('Verify that Energy Saver option is present and functional - Boohoo UK', function () {
+    it.skip('Verify that Energy Saver option is present and functional - Boohoo UK', function () {  //Skip as it is disable right now.
+      cy.log('Skip this test')
       if (brand == 'boohoo.com' && locale == 'UK' && !isMobileDeviceUsed) {
         homePage.assertions.assertEnergySaverVisible();
         homePage.actions.toggleEnergySaver();
@@ -213,7 +216,7 @@ describe('Home Page', function () {
       
       it('TikTok', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com', 'misspap.com', 'boohooman.com'];
-        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && locale == 'FR'|| locale == 'NL') || (brand == 'misspap.com' && locale == 'IE')) {
+        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && (locale == 'FR'|| locale == 'NL'||locale == 'IE' )) || (brand == 'misspap.com' && locale == 'IE')) {
           this.skip();
         }
         SocialsPage.assertions.assertTikTokIconIsPresent();
@@ -418,7 +421,7 @@ describe('Home Page', function () {
       });
 
       it('Verify that Footer Navigation Component is present and links are functional - Refer a friend', function () {
-        if (brand == 'boohoo.com' || (brand == 'boohooman.com' && locale == 'UK') || brand == 'misspap.com' && locale == 'UK') {
+        if (brand == 'boohoo.com' || brand == 'boohooman.com' || (brand == 'misspap.com' && locale == 'UK')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.referFriendText[language]);
           GlobalFooter.assertions.assertReferFriendPagePresent(assertionText.referFriendPage[language]);
         } else {
@@ -474,7 +477,9 @@ describe('Home Page', function () {
         const includedLocales: Array<Locale> = ['UK', 'US', 'IE', 'AU'];
         if (brand == 'nastygal.com' && (locale == 'UK' || locale == 'US' || locale == 'IE') || brand == 'misspap.com' || (brand == 'karenmillen.com' && locale=='UK')) {
           GlobalFooter.actions.checkFooterLinkByText('Paypal');
-        } else if ((brand == 'coastfashion.com' && locale == 'UK' ) || includedLocales.includes(locale)) {
+        } else if (brand == 'boohooman.com'&& locale =='IE') {
+          this.skip();
+        } else if ((brand == 'coastfashion.com' && locale == 'UK') || includedLocales.includes(locale)) {
           GlobalFooter.actions.checkFooterLinkByText('PayPal');
         } else {
           this.skip();
@@ -703,12 +708,15 @@ describe('Home Page', function () {
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
       it('Verify that Facebook link is present and functional',function () {
-        if (brand == 'boohooman.com' && (locale == 'FR' || locale =='NL')) {
+        if (brand == 'boohooman.com' && (locale == 'FR' || locale =='NL' || locale =='IE')) {
           this.skip(); // Facebook link isn't exist on contuct us page
         }
         contactusPage.assertions.assertFacebookIconIsPresent();
       });
-      it('Verify that Email link is present and functional', () => {
+      it('Verify that Email link is present and functional', function () {
+        if (brand == 'boohooman.com' && (locale =='IE')) {
+          this.skip(); // Email Us link isn't exist on contuct us page
+        }
         contactusPage.assertions.assertEmailIconIsPresent();
       });
     });

@@ -163,6 +163,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
     deselectSize:'[class="swatches size clearfix"] li:eq(0)',
+    deselectSizeIE: '#add-to-cart',
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '.product-detail > h1.product-name',
@@ -435,7 +436,7 @@ class PdpPage implements AbstractPage {
     selectSizeFromSku () {
       const sizeVariations = selectors[brand].sizeVariations;
       const sizeFromSku = fullSku.split('-')[2]; // Get size part from fullSku FZZ80440-106-18 => 18
-
+     
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {
           if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
@@ -537,10 +538,13 @@ class PdpPage implements AbstractPage {
     assertAddToCartBtnDisabled () {
       if (isSiteGenesisBrand) {
         const addToCart = selectors[brand].addToCart;
-        if (brand=='boohooman.com') { 
-          const deselectSize=selectors[brand].deselectSize; // Deselecting Size to Disable addToCart button for BHM
-          cy.get(deselectSize).click();
-        }
+        const deselectSize=selectors[brand].deselectSize;
+        const deselectSizeIE=selectors[brand].deselectSizeIE;
+        if (brand=='boohooman.com' && locale == 'UK') { 
+          cy.get(deselectSize).click();// Deselecting Size to Disable addToCart button for BHM
+        } else if (brand=='boohooman.com' && locale == 'IE') {
+          cy.get(deselectSizeIE).click();
+        }  
         cy.get(addToCart).should('have.attr', 'disabled');
       } else {
         const disabledAddToCart = selectors[brand].disabledAddToCart;

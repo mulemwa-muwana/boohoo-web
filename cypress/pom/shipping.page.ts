@@ -305,9 +305,11 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.premier-add-to-cart',
+    addPremierToCartFromShippingPageIE: '.add-to-cart-text',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR',
+    premierProductTitleIE: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -1239,9 +1241,12 @@ class ShippingPage implements AbstractPage {
       const cartContainer = selectors[brand].cartContainer;
       const cartContainerMobile = selectors[brand].cartContainerMobile;
       const premierProductTitle = selectors[brand].premierProductTitle;
+      const premierProductTitleIE = selectors[brand].premierProductTitleIE;
       if (isMobileDeviceUsed) {
         cy.get(cartContainerMobile, { timeout: 20000 }).should('contain', premierProductTitle.trim());
-      } else {
+      } else if(brand=='boohooman.com'|| locale == 'IE'){
+        cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitleIE.trim());
+      }else {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());
       }
     },

@@ -305,9 +305,11 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.premier-add-to-cart',
+    addPremierToCartFromShippingPageIE: '.add-to-cart-text',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR',
+    premierProductTitleIE: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -1037,16 +1039,16 @@ class ShippingPage implements AbstractPage {
       cy.wait(3000);
       cy.get(shippingMethodName).eq(1).click({force:true});
     },
-    secondShippingMethodName(): Cypress.Chainable<string> {
+    secondShippingMethodName (): Cypress.Chainable<string> {
       const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;
       return cy.get(shippingMethodsNameList).eq(1).invoke('text').then((text) => {
-        if((brand == 'boohooman.com' && (locale == 'UK' || locale == 'IE'))|| brand == 'misspap.com' || (brand == 'karenmillen.com' && locale == 'IE')){
+        if ((brand == 'boohooman.com' && (locale == 'UK' || locale == 'IE'))|| brand == 'misspap.com' || (brand == 'karenmillen.com' && locale == 'IE')) {
           return text.split('-')[0].trimEnd() as string;      
-        } else if(brand == 'boohooman.com' && (locale == 'US' || locale == 'FR' || locale == 'NL' || locale == 'DE')){
+        } else if (brand == 'boohooman.com' && (locale == 'US' || locale == 'FR' || locale == 'NL' || locale == 'DE')) {
           return text.split(':')[0].trimEnd() as string;  
-        }else {
+        } else {
           return text as string; 
-      }
+        }
       });
     },
     confirmShippingAddress () {
@@ -1239,16 +1241,20 @@ class ShippingPage implements AbstractPage {
       const cartContainer = selectors[brand].cartContainer;
       const cartContainerMobile = selectors[brand].cartContainerMobile;
       const premierProductTitle = selectors[brand].premierProductTitle;
+      const premierProductTitleIE = selectors[brand].premierProductTitleIE;
       if (isMobileDeviceUsed) {
         cy.get(cartContainerMobile, { timeout: 20000 }).should('contain', premierProductTitle.trim());
-      } else {
+      } else if(brand=='boohooman.com'|| locale == 'IE'){
+        cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitleIE.trim());
+      }else {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());
       }
     },
-    assertShippingMethodIsSelected (shippingMethod:string) {
+    assertShippingMethodIsSelected (shippingMethod: string) {
       const orderSummaryOnShippingPage = selectors[brand].orderSummaryOnShippingPage;
       cy.get(orderSummaryOnShippingPage).should('contain.text', shippingMethod);
     },
+
     // METHODS ONLY FOR SITE GENESIS BRANDS //
     assertEmailIsCorrect (email: string) {
       cy.get('#dwfrm_singleshipping_shippingAddress_email_emailAddress').should('have.value', email);

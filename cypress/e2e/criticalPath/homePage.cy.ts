@@ -86,7 +86,8 @@ describe('Home Page', function () {
        }
     });
 
-    it('Verify that Energy Saver option is present and functional - Boohoo UK', function () {
+    it.skip('Verify that Energy Saver option is present and functional - Boohoo UK', function () {  //Skip as it is disable right now.
+      cy.log('Skip this test')
       if (brand == 'boohoo.com' && locale == 'UK' && !isMobileDeviceUsed) {
         homePage.assertions.assertEnergySaverVisible();
         homePage.actions.toggleEnergySaver();

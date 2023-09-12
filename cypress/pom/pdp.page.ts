@@ -542,7 +542,7 @@ class PdpPage implements AbstractPage {
         const deselectSizeIE=selectors[brand].deselectSizeIE;
         if (brand=='boohooman.com' && locale == 'UK') { 
           cy.get(deselectSize).click();// Deselecting Size to Disable addToCart button for BHM
-        } else if (brand=='boohooman.com' && locale == 'IE') {
+        } else if (brand=='boohooman.com' && (locale == 'IE'|| locale == 'DE')) {
           cy.get(deselectSizeIE).click();
         }  
         cy.get(addToCart).should('have.attr', 'disabled');

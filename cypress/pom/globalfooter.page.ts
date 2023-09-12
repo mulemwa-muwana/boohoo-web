@@ -1,7 +1,7 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import { isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand, language } from 'cypress/support/e2e';
+import { brand, language, locale } from 'cypress/support/e2e';
 import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
@@ -144,6 +144,7 @@ const selectors: SelectorBrandMap = {
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
     helpLink: 'a[title="Customer Service"] , [title="Service client"]',
+    helpLinkDE: 'a[title="Kundenservice"]'
   },
   'karenmillen.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
@@ -396,12 +397,16 @@ class GlobalFooter implements AbstractPage {
 
     helpLink () {
       const helpLink = selectors[variables.brand].helpLink;
-      if (brand == 'boohooman.com') {
+      const helpLinkDE = selectors[variables.brand].helpLinkDE;
+
+      if (brand == 'boohooman.com'&& locale == 'UK') {
         cy.get(helpLink).contains(assertionText.footerCustomerServiceBHM[language]).click({force:true});
-      } else {
+      }  else if( brand == 'boohooman.com' && locale == 'DE'){
+        cy.get(helpLinkDE).contains(assertionText.footerCustomerServiceBHM[language]).click({force:true});
+       } else {
         cy.get(helpLink).contains(assertionText.footerHelp[language]).click({force:true});
-      }
-      
+       }
+    
     },
     contactLink () {
       const contactLink = selectors[variables.brand].contactLink;
@@ -448,7 +453,12 @@ class GlobalFooter implements AbstractPage {
     },
     checkHelpforSiteG (text: string) {
       const helpLink = selectors[variables.brand].helpLink;
+      const helpLinkDE = selectors[variables.brand].helpLinkDE;
+      if(brand == 'boohooman.com' && locale =='DE'){
+        cy.get(helpLinkDE).click({force: true});
+      }else{
       cy.get(helpLink).click({force: true});
+      }
       cy.url().should('include', text);
     },
   };

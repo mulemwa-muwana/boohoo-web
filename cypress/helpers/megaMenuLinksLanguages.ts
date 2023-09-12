@@ -31,7 +31,7 @@ class megaMenuLinksLanguages {
   linkArkadiaNewIn: TranslationMap = { 
     EN: 'New',
     NL: 'NIEUW',
-    DE: '',
+    DE: 'JETZT NEU',
     FR: 'NOUVEAUTÉS',
     DK: '',
     FI: '',
@@ -59,7 +59,7 @@ class megaMenuLinksLanguages {
   subnavClothingNewIn: TranslationMap = {
     EN: 'New In',
     NL: 'Nieuw Binnen',
-    DE: 'Neu eingetroffen',
+    DE: 'NEUE',
     FR: 'Nouveautés',
     DK: 'New In',
     FI: 'New In',
@@ -87,7 +87,7 @@ class megaMenuLinksLanguages {
   subnavClothingNewInURL: TranslationMap = {
     EN: 'new',
     NL: 'nieuw-binnen',
-    DE: 'neuheiten',
+    DE: 'neu',
     FR: 'nouveautés',
     DK: 'new',
     FI: 'new',
@@ -144,7 +144,7 @@ class megaMenuLinksLanguages {
     EN: 'Sale',
     FR: 'Promos',
     NL: 'UITVERKOOP',
-    DE: '',
+    DE: 'Sale',
     DK: '',
     FI: '',
     NO: '',
@@ -172,7 +172,7 @@ class megaMenuLinksLanguages {
     EN: 'SALE',
     FR: 'SOLDES',
     NL: 'NIEUWE',
-    DE: '',
+    DE: 'SALE',
     DK: '',
     FI: '',
     NO: '',
@@ -186,7 +186,7 @@ class megaMenuLinksLanguages {
     EN: 'All Sale',
     FR: 'Toutes les Soldes',
     NL: 'nieuw',
-    DE: 'Alles im Sale',
+    DE: 'ALLES IM SALE',
     DK: 'All Sale',
     FI: 'All Sale',
     NO: 'All Sale',
@@ -211,10 +211,10 @@ class megaMenuLinksLanguages {
   };
 
   urlValidationNewIn: TranslationMap = {
-    EN: 'new',
+    EN: 'promo',
     NL: 'nieuw-binnen',
-    DE: 'neuheiten',
-    FR: 'nouveautes',
+    DE: 'neu-eingetroffen',
+    FR: 'vetements',
     DK: 'new',
     FI: 'new',
     NO: 'new',

@@ -31,7 +31,7 @@ const selectors: SelectorBrandMap = {
     selectGender:'select#sizeGuideGender', 
     selectCategory: 'select#sizeGuideCategory',
     selectFit: 'select#sizeGuideFit',
-    countryBtn:'.b-country-select'
+    countryBtn:'.b-country-select.b-select-input.m-country'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',

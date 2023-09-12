@@ -10,7 +10,7 @@ class megaMenuLinksLanguages {
     NO: 'ALL CLOTHING',
     SE: 'ALLA KLÄDER',
     IL: 'כל הבגדים',
-    IT: 'TUTTO L/`ABBIGLIAMENTO',
+    IT: 'ABBIGLIAMENTO',
     ES: 'TODA LA ROPA',
   };
 
@@ -65,7 +65,7 @@ class megaMenuLinksLanguages {
     FI: 'New In',
     NO: 'New In',
     SE: 'Nyheter',
-    IL: '',
+    IL: 'פריטים חדשים',
     IT: 'Nuovi arrivi',
     ES: 'Novedades',
   };
@@ -135,7 +135,7 @@ class megaMenuLinksLanguages {
     FI: 'SALE',
     NO: 'SALE',
     SE: 'REA',
-    IL: '',
+    IL: 'מבצע',
     IT: 'SALDI',
     ES: 'REBAJAS'
   };
@@ -163,7 +163,7 @@ class megaMenuLinksLanguages {
     FI: 'All Sale',
     NO: 'All Sale',
     SE: 'Alla Reaprodukter',
-    IL: '',
+    IL: 'כל המבצעים',
     IT: 'Tutti i saldi',
     ES: 'Todas las rebajas'
   };
@@ -205,7 +205,7 @@ class megaMenuLinksLanguages {
     FI: 'sale',
     NO: 'sale',
     SE: 'rea',
-    IL: '',
+    IL: 'sale',
     IT: 'sconti',
     ES: 'rebajas'
   };
@@ -219,9 +219,9 @@ class megaMenuLinksLanguages {
     FI: 'new',
     NO: 'new',
     SE: 'nyheter',
-    IL: '',
-    IT: 'Nuovi arrivi',
-    ES: 'Novedades',
+    IL: 'new',
+    IT: 'nuovi',
+    ES: 'novedades',
   };
 
 }

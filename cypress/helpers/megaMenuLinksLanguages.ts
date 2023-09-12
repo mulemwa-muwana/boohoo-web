@@ -3,7 +3,7 @@ class megaMenuLinksLanguages {
   AllClothing: TranslationMap = { 
     EN: 'CLOTHING',
     NL: 'KLEDING',
-    DE: 'BEKLEIDUNG',
+    DE: 'KLEIDUNG',
     FR: 'VÊTEMENTS',
     DK: 'CLOTHING',
     FI: 'CLOTHING',
@@ -59,7 +59,7 @@ class megaMenuLinksLanguages {
   subnavClothingNewIn: TranslationMap = {
     EN: 'New In',
     NL: 'Nieuw Binnen',
-    DE: 'NEUE',
+    DE: 'NEU EINGETROFFEN',
     FR: 'Nouveautés',
     DK: 'New In',
     FI: 'New In',

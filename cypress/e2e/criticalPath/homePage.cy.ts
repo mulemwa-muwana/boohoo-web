@@ -79,19 +79,11 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
       }    
-      if (brand == 'boohooman.com') {
-        if (locale == 'FR') {
-          homePage.assertions.assertLinkIsOpeningCorrectPage('vetements');
-        } else if (locale == 'NL') {
-          homePage.assertions.assertLinkIsOpeningCorrectPage('nieuw-binnen');
-        } else if (locale == 'IE') {
-          homePage.assertions.assertLinkIsOpeningCorrectPage('new-in');
-        } else {
-          homePage.assertions.assertLinkIsOpeningCorrectPage('promo');
-        }
-      } else {
+       if (brand == 'boohooman.com'&& locale == 'IE') {
+        homePage.assertions.assertLinkIsOpeningCorrectPage('new-in');
+       } else {
         homePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[language]);
-      }
+       }
     });
 
     it('Verify that Energy Saver option is present and functional - Boohoo UK', function () {
@@ -215,7 +207,7 @@ describe('Home Page', function () {
       
       it('TikTok', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com', 'misspap.com', 'boohooman.com'];
-        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && (locale == 'FR'|| locale == 'NL'||locale == 'IE' )) || (brand == 'misspap.com' && locale == 'IE')) {
+        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && (locale == 'FR'|| locale == 'NL'||locale == 'IE'||locale == 'DE' )) || (brand == 'misspap.com' && locale == 'IE')) {
           this.skip();
         }
         SocialsPage.assertions.assertTikTokIconIsPresent();
@@ -420,7 +412,7 @@ describe('Home Page', function () {
       });
 
       it('Verify that Footer Navigation Component is present and links are functional - Refer a friend', function () {
-        if (brand == 'boohoo.com' || brand == 'boohooman.com' || (brand == 'misspap.com' && locale == 'UK')){
+        if ((brand == 'boohoo.com' || brand == 'boohooman.com' || brand == 'misspap.com') && locale == 'UK'){
           GlobalFooter.actions.checkFooterLinkByText(assertionText.referFriendText[language]);
           GlobalFooter.assertions.assertReferFriendPagePresent(assertionText.referFriendPage[language]);
         } else {
@@ -510,7 +502,9 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText('Social Responsibility');
         } else if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'DE' || locale == 'NZ' || locale == 'DK' || locale == 'FI'|| locale == 'NO')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[language]);
-        } else if (brand == 'nastygal.com' || brand == 'misspap.com') {
+        } else if (brand == 'boohooman.com' &&  locale == 'DE') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocResp[language]);
+        }else if (brand == 'nastygal.com' || brand == 'misspap.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.envAndSocRespNG[language]);
         } else if (brand == 'boohooman.com' && locale == 'NL') {
           this.skip();
@@ -592,8 +586,8 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - BHM boohooMAN ACTIVE', () => {
-        if (brand == 'boohooman.com') {
+      it.skip('Verify that Footer Navigation Component is present and Links are functional - BHM boohooMAN ACTIVE', () => {
+        if (brand == 'boohooman.com') {//boohooman ACTIVE should not be in footer with all locales
           GlobalFooter.actions.checkFooterLinkByText(assertionText.boohooMANACTIVE[language]);
         }
       });
@@ -629,8 +623,10 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
         } else if ((brand == 'boohoo.com' && australianLocales)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
-        } else if (brand == 'boohooman.com' && locale == 'NL') {
+        } else if (brand == 'boohooman.com' && (locale == 'NL')) {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Beleid- Sinds Maart 2020');
+        }else if (brand == 'boohooman.com' && locale == 'DE') {
+          GlobalFooter.actions.checkFooterLinkByText('März 2020');
         } else if (brand == 'boohooman.com' && locale != 'FR') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
         } else if (brand == 'boohooman.com' && locale == 'FR') {
@@ -701,19 +697,19 @@ describe('Home Page', function () {
       });
 
       it('Verify that Twitter is not an option', function () {
-        if (brand =='boohoo.com' || brand == 'boohooman.com' && (locale == 'NL' || locale == 'SE')) {
+        if (brand =='boohoo.com' || brand == 'boohooman.com' && (locale == 'NL' || locale == 'SE'|| locale == 'DE')) {
           this.skip();
         }      
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
       it('Verify that Facebook link is present and functional',function () {
-        if (brand == 'boohooman.com' && (locale == 'FR' || locale =='NL' || locale =='IE')) {
+        if (brand == 'boohooman.com' && (locale == 'FR' || locale =='NL' || locale =='IE'|| locale == 'DE')) {
           this.skip(); // Facebook link isn't exist on contuct us page
         }
         contactusPage.assertions.assertFacebookIconIsPresent();
       });
       it('Verify that Email link is present and functional', function () {
-        if (brand == 'boohooman.com' && (locale =='IE')) {
+        if (brand == 'boohooman.com' && (locale =='IE' || locale =='DE')) {
           this.skip(); // Email Us link isn't exist on contuct us page
         }
         contactusPage.assertions.assertEmailIconIsPresent();

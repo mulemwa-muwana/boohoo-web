@@ -39,7 +39,7 @@ export default defineConfig({
     setupNodeEvents (on) {
       plugins(on);
     },
-    numTestsKeptInMemory: 20,
+    numTestsKeptInMemory: 0,
     experimentalMemoryManagement: true
   },
 });

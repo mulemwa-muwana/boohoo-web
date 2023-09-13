@@ -1317,8 +1317,8 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE' || locale == 'FR' || locale == 'CA'|| locale == 'NZ') ) {
-        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
+      } else if (brand =='boohoo.com' && (locale =='NL' || locale =='NO' || locale == 'DE' ||locale =='US' ||locale =='SE' || locale == 'FR' || locale == 'CA'|| locale == 'NZ'|| locale == 'AU'|| locale == 'DK'|| locale == 'ES'|| locale == 'EU'|| locale == 'FI'|| locale == 'IE'|| locale == 'IT') ) {
+        cy.url({timeout: 30000}).should('include', 'Order-Confirm');  
       } else {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');
       }  

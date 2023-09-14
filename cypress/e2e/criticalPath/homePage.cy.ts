@@ -81,7 +81,10 @@ describe('Home Page', function () {
       }    
        if (brand == 'boohooman.com'&& locale == 'IE') {
         homePage.assertions.assertLinkIsOpeningCorrectPage('new-in');
-       } else {
+      } else if (brand == 'karenmillen.com'){
+        homePage.assertions.assertLinkIsOpeningCorrectPage('new-in');
+
+      } else {
         homePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[language]);
        }
     });

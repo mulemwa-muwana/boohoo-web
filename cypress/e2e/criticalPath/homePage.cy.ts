@@ -79,11 +79,14 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
       }    
-       if (brand == 'boohooman.com'&& locale == 'IE') {
-        homePage.assertions.assertLinkIsOpeningCorrectPage('new-in');
-       } else {
+       if (brand == 'boohooman.com') {
+        homePage.assertions.assertLinkIsOpeningCorrectPage('promo');
+      } else if (brand == 'nastygal.com'){
+        homePage.assertions.assertLinkIsOpeningCorrectPage('womens');
+
+      } else {
         homePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[language]);
-       }
+      }
     });
 
     it.skip('Verify that Energy Saver option is present and functional - Boohoo UK', function () {  //Skip as it is disable right now.

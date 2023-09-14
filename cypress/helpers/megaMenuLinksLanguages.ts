@@ -211,7 +211,7 @@ class megaMenuLinksLanguages {
   };
 
   urlValidationNewIn: TranslationMap = {
-    EN: 'promo',
+    EN: 'new-in',
     NL: 'nieuw-binnen',
     DE: 'neu-eingetroffen',
     FR: 'vetements',

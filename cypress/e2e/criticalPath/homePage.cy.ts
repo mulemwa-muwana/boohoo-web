@@ -598,26 +598,23 @@ describe('Home Page', function () {
         }
       });
 
-      // Skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
-      it.skip('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
-        if (brand == 'nastygal.com') {
+      it('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
+        if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);
         }
       });
 
-      // Skipping this test because its missing on STG and exists on PROD, until ints fixed on STG
-      it.skip('Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', () => {
-        if (brand == 'nastygal.com') {
+      it('Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', () => {
+        if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaTransparencyInSupplyChainsActStatement[language]);
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Nasty Blog', function () {
-        if (brand == 'nastygal.com') {
+        const englishLocales: boolean = locale === 'US' || locale === 'UK'
+        if (brand == 'nastygal.com'  && englishLocales) {
           homePage.click.nastyBlogLink('Nasty Blog');
           homePage.assertions.assertLinkIsOpeningCorrectPage('https://blog.nastygal.com/');
-        } else {
-          this.skip();
-        }
+        } 
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';

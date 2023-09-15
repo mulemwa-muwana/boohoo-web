@@ -631,7 +631,7 @@ const selectors: SelectorBrandMap = {
   'misspap.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
-    addPremierToCartFromShippingPage: '#add-to-cart',
+    addPremierToCartFromShippingPage: '.add-to-cart-text',
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'VIP DELIVERY',
@@ -867,7 +867,7 @@ class ShippingPage implements AbstractPage {
       if (isMobileDeviceUsed && isSiteGenesisBrand) {
         cy.get(addPremierToCartFromShippingPageMobile).click({ force: true });
       } else {
-        cy.get(addPremierToCartFromShippingPage).eq(0).click({ force: true });
+        cy.get(addPremierToCartFromShippingPage).click({ force: true });
       }
 
     },

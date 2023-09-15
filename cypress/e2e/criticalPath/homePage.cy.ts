@@ -211,7 +211,9 @@ describe('Home Page', function () {
       
       it('TikTok', function () {
         const includedBrands: Array<GroupBrands> = ['boohoo.com', 'nastygal.com', 'misspap.com', 'boohooman.com'];
-        if (!includedBrands.includes(brand) || (brand == 'boohooman.com' && (locale == 'FR'|| locale == 'NL'||locale == 'IE'||locale == 'DE' )) || (brand == 'misspap.com' && locale == 'IE')) {
+        const excludeBoohoomanLocales: boolean = brand == 'boohooman.com' && (locale == 'FR' || locale == 'NL' || locale == 'IE' || locale == 'DE');
+        const excludeMisspapLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU');
+        if (!includedBrands.includes(brand) || excludeBoohoomanLocales || excludeMisspapLocales) {
           this.skip();
         }
         SocialsPage.assertions.assertTikTokIconIsPresent();
@@ -265,7 +267,7 @@ describe('Home Page', function () {
         const excludedBoohooWithLocales: boolean = brand == 'boohoo.com' && excludedBoohooLocales.includes(locale);
         const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && locale == 'EU';
         const excludedCoastWithLocales: boolean = brand == 'coastfashion.com' && locale == 'IE';
-        const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && locale == 'IE';
+        const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU');
         const excludedBoohoomanWithLocales: boolean = brand == 'boohooman.com' && locale == 'NL';
         if (excludedBoohooWithLocales || excludedNastygalWithLocales || excludedCoastWithLocales || excludedMisspapWithLocales ||excludedBoohoomanWithLocales || (brand == 'coastfashion.com' && isMobileDeviceUsed)) {
           this.skip();
@@ -609,10 +611,12 @@ describe('Home Page', function () {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaTransparencyInSupplyChainsActStatement[language]);
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Nasty Blog', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - Nasty Blog', function () {
         if (brand == 'nastygal.com') {
           homePage.click.nastyBlogLink('Nasty Blog');
           homePage.assertions.assertLinkIsOpeningCorrectPage('https://blog.nastygal.com/');
+        } else {
+          this.skip();
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {

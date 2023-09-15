@@ -1200,6 +1200,11 @@ class ShippingPage implements AbstractPage {
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
       if (brand == 'boohoomena.com') {
         cy.get(shippingPhoneNumber).should('contain.value', text.slice(2));
+      } else if (brand == 'misspap.com' && locale == 'US') {
+        cy.get(shippingPhoneNumber).invoke('val').then(phonenumber => {
+          const phoneNumberWithoutDashes = phonenumber.toString().replace(/-/g, '');
+          expect(phoneNumberWithoutDashes).to.equal(text);
+        });
       } else {
         cy.get(shippingPhoneNumber).should('contain.value', text);
       }

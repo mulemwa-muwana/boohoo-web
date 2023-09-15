@@ -624,7 +624,11 @@ const selectors: SelectorBrandMap = {
     proceedToBillingBtn: '.verification-address-button-container .verification-address-button',
     addressDeleteBtn: '.address-delete-link',
     creditCardsList: '.account-payments',
+    addCreditCardNumberUS:'#cc_cardNumber',
+    addCreditCardOwnerUS: '#dwfrm_paymentinstruments_creditcards_newcreditcard_owner',
     addCreditCardBtn: '.add-card',
+    addCreditCardExpDateUS: '#cc_expDate',
+    addCreditCardSaveBtnUS: '#applyBtn',
     addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
     addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
@@ -965,13 +969,13 @@ class MyAccountPage implements AbstractPage {
 
         cy.get(addCreditCardNumberUS).type(cardNumber);
         cy.get(addCreditCardOwnerUS).click({ force: true }).should('be.visible').type(cardOwner);
-        if (brand == 'karenmillen.com' && locale == 'US') {
+        if ((brand == 'karenmillen.com' || brand == 'misspap.com') && locale == 'US') {
           cy.get(addCreditCardExpDateUS).type(date);
         } else {
           cy.get(addCreditCardExpMonthUS).select(3).invoke('val').should('eq', '3');
           cy.get(addCreditCardExpYearUS).select(8) .invoke('val').should('eq', '2030');
         }
-        if (brand == 'karenmillen.com' && locale == 'US') {
+        if ((brand == 'karenmillen.com' || brand == 'misspap.com') && locale == 'US') {
           cy.get(addCreditCardSaveBtnUS).click({ force: true });
         } else {
           cy.get(addCreditCardSaveBtn).click({ force: true });

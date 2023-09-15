@@ -588,7 +588,7 @@ const selectors: SelectorBrandMap = {
   'misspap.com': {
     dateError: '#dwfrm_profile_customer_yearofbirth-error',
     klarnaPayNow:'#billingSubmitButton',
-    klarnaPayNowAU: '#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button',
+    klarnaPayNowAU: '#billingSubmitButton',
     klarnaPayNowIE: '#payment-details-KlarnaIE > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     payButtonLocator:'[data-testid="confirm-and-pay"]',
     shippingAddressSection: '.minicheckout-section',
@@ -610,6 +610,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarna: '[for="is-KlarnaUK"]',
+    paymentMethodKlarnaAU: '[for="is-KlarnaAU"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
@@ -1315,7 +1316,7 @@ class BillingPage implements AbstractPage {
     assertOrderConfirmationPageIsDisplayed () {
       if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com') {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE')) {
+      } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (brand =='boohoo.com' && (locale =='UK') ) {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');  

@@ -259,12 +259,15 @@ class HomePage implements AbstractPage {
 
       // It needs to be set again when linking to another page.
     }
-    if (brand == 'misspap.com' && locale == 'UK') { // To make Klarna option available for Misspap UK 
+    if (brand == 'misspap.com' && locale == 'UK') { // To make Klarna option available for Misspap UK, IE and AU 
       cy.setCookie('billingCountryCode','GB');
       cy.setCookie('dw_locale', 'en_GB');
     } else if (brand == 'misspap.com' && locale == 'IE') {
       cy.setCookie('billingCountryCode','IE');
       cy.setCookie('dw_locale','en_IE');
+    } else if (brand == 'misspap.com' && locale == 'AU') {
+      cy.setCookie('billingCountryCode','AU');
+      cy.setCookie('dw_locale','en_AU');
     }
   
     cy.visit(url);

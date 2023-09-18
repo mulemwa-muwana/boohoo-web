@@ -268,6 +268,9 @@ class HomePage implements AbstractPage {
     } else if (brand == 'misspap.com' && locale == 'AU') {
       cy.setCookie('billingCountryCode','AU');
       cy.setCookie('dw_locale','en_AU');
+    } else if (brand == 'misspap.com' || locale == 'US') {
+      cy.setCookie('billingCountryCode','US');
+      cy.setCookie('dw_locale','en_US');
     }
   
     cy.visit(url);

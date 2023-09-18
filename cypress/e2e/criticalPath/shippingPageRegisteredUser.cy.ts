@@ -144,9 +144,9 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.countyField(localeAddress.county);
       } else if (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE')) {
         shippingPage.actions.selectState(localeAddress.county);
-      }else if ( brand == 'boohooman.com'  && locale == 'IE' ) {
+      } else if ( brand == 'boohooman.com'  && locale == 'IE' ) {
         shippingPage.actions.selectState(localeAddress.county);
-      } else if ( brand == 'misspap.com'  && (locale == 'IE' || locale == 'AU') ) {
+      } else if ( brand == 'misspap.com'  && (locale == 'IE' || locale == 'AU' || locale == 'US')) {
         shippingPage.actions.selectState(localeAddress.county);
       }
     } else {
@@ -209,9 +209,9 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.countyField(localeAddress.county);
       } else if (brand == 'karenmillen.com' && locale == 'US') {
         shippingPage.actions.selectState(localeAddress.county);
-      } else if ( brand == 'boohooman.com'  && locale == 'IE' ) {
+      } else if (brand == 'boohooman.com'  && locale == 'IE') {
         shippingPage.actions.selectState(localeAddress.county);
-      } else if ( brand == 'misspap.com' && locale == 'AU') {
+      } else if (brand == 'misspap.com' && (locale == 'AU' || locale == 'US')) {
         shippingPage.actions.selectState(localeAddress.county);
       }
       
@@ -303,7 +303,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com' || (brand == 'misspap.com' && (locale == 'IE' || locale == 'AU'))) {
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com' || (brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US'))) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');

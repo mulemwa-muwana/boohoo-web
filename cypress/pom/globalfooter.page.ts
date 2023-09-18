@@ -240,6 +240,7 @@ const selectors: SelectorBrandMap = {
   },
   'misspap.com': {
     privacyPolicyLink: 'a[title="Privacy Notice"]',
+    privacyPolicyLinkUS: ':nth-child(10) > a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright [title="Privacy policy"]',
     instagramLink: 'a[href="https://www.instagram.com/misspap/"]', 
     facebookLink: 'a[href="https://www.facebook.com/MissPapOfficial"]',
@@ -297,19 +298,24 @@ class GlobalFooter implements AbstractPage {
 
   click = {
     privacyPolicyLink () {
-      const privacyPolicyLink = selectors[variables.brand].privacyPolicyLink;
+      const privacyPolicyLink = selectors[brand].privacyPolicyLink;
+      const privacyPolicyLinkUS = selectors[brand].privacyPolicyLinkUS;
+      if(brand == 'misspap.com' && locale == 'US'){
+        cy.get(privacyPolicyLinkUS).click({force:true});
+      } else {
       cy.get(privacyPolicyLink).click({force:true});
+      }
     },
     copyrightPrivacyPolicyLink () {
-      const copyrightPrivacyPolicyLink = selectors[variables.brand].copyrightPrivacyPolicyLink;
+      const copyrightPrivacyPolicyLink = selectors[brand].copyrightPrivacyPolicyLink;
       cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click({force:true});
     },
     copyrightTermsAndConditionsLink () {
-      const copyrightTermAndCondLink = selectors[variables.brand].copyrightTermAndCondLink;
+      const copyrightTermAndCondLink = selectors[brand].copyrightTermAndCondLink;
       cy.get(copyrightTermAndCondLink).scrollIntoView().click({force:true});
     },
     instagramLink () {
-      const instagramLink = selectors[variables.brand].instagramLink;
+      const instagramLink = selectors[brand].instagramLink;
       cy.get(instagramLink).then(link => {
         cy
           .request({
@@ -322,7 +328,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     facebookLink () {
-      const facebookLink = selectors[variables.brand].facebookLink;
+      const facebookLink = selectors[brand].facebookLink;
       cy.get(facebookLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -331,7 +337,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     twitterLink () {
-      const twitterLink = selectors[variables.brand].twitterLink;
+      const twitterLink = selectors[brand].twitterLink;
       cy.get(twitterLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -340,7 +346,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     tiktokLink () {
-      const tiktokLink = selectors[variables.brand].tiktokLink; //  Only boohoo
+      const tiktokLink = selectors[brand].tiktokLink; //  Only boohoo
       cy.get(tiktokLink).then(link => {
         cy
           .request(link.prop('href')) // Get the href attribute value
@@ -349,7 +355,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     youtubeLink () {
-      const youtubeLink = selectors[variables.brand].youtubeLink; //  Only boohoo and coastfashion
+      const youtubeLink = selectors[brand].youtubeLink; //  Only boohoo and coastfashion
       cy.get(youtubeLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -358,7 +364,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     pintrestLink () {
-      const pintrestLink = selectors[variables.brand].pintrestLink; //  Only boohoo and coastfashion
+      const pintrestLink = selectors[brand].pintrestLink; //  Only boohoo and coastfashion
       cy.get(pintrestLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -367,7 +373,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     theFixLink () {
-      const theFixLink = selectors[variables.brand].theFixLink; //  Only boohoo
+      const theFixLink = selectors[brand].theFixLink; //  Only boohoo
       cy.get(theFixLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -376,7 +382,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     snapchatLink () {
-      const snapchatLink = selectors[variables.brand].snapchatLink; // Only boohoomena
+      const snapchatLink = selectors[brand].snapchatLink; // Only boohoomena
       cy.get(snapchatLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -385,7 +391,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     footerPromo () {
-      const footerPromoLink = selectors[variables.brand].footerPromoLink;
+      const footerPromoLink = selectors[brand].footerPromoLink;
       cy.get(footerPromoLink).then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
@@ -396,8 +402,8 @@ class GlobalFooter implements AbstractPage {
     },
 
     helpLink () {
-      const helpLink = selectors[variables.brand].helpLink;
-      const helpLinkDE = selectors[variables.brand].helpLinkDE;
+      const helpLink = selectors[brand].helpLink;
+      const helpLinkDE = selectors[brand].helpLinkDE;
 
       if (brand == 'boohooman.com'&& locale == 'UK') {
         cy.get(helpLink).contains(assertionText.footerCustomerServiceBHM[language]).click({force:true});
@@ -409,15 +415,15 @@ class GlobalFooter implements AbstractPage {
     
     },
     contactLink () {
-      const contactLink = selectors[variables.brand].contactLink;
+      const contactLink = selectors[brand].contactLink;
     }
   };
 
   actions = {
     subscribeToNewsletter (email: string) {
-      const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
-      const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
-      const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
+      const newsletterInputMail = selectors[brand].newsletterInputMail;
+      const agreeToPrivacyCheckbox = selectors[brand].agreeToPrivacyCheckbox;
+      const subscribeSubmitBtn = selectors[brand].subscribeSubmitBtn;
       if (isSiteGenesisBrand) {
         cy.get(newsletterInputMail).type(email, {force:true});
         cy.get(subscribeSubmitBtn).click({force:true});
@@ -430,7 +436,7 @@ class GlobalFooter implements AbstractPage {
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
       cy.log(`searching for '${text}' in footer`);
       cy.scrollTo('bottom');
-      const footer = selectors[variables.brand].footer;
+      const footer = selectors[brand].footer;
 
       cy.get(footer).contains('a', text, { matchCase: false }) // Add Tag a contains Text Help to make it work for SG Brands
         .invoke('removeAttr', 'target')
@@ -444,7 +450,7 @@ class GlobalFooter implements AbstractPage {
         });
     },
     changeCountry (country: CountryCode) {
-      const changeCountryDropdown = selectors[variables.brand].changeCountryDropdown;
+      const changeCountryDropdown = selectors[brand].changeCountryDropdown;
       cy.wait(2000);
       cy.get(changeCountryDropdown).select(country);
     },
@@ -452,8 +458,8 @@ class GlobalFooter implements AbstractPage {
       cy.iframe('.student-beans > iframe').find('#onetrust-accept-btn-handler').click({force:true});
     },
     checkHelpforSiteG (text: string) {
-      const helpLink = selectors[variables.brand].helpLink;
-      const helpLinkDE = selectors[variables.brand].helpLinkDE;
+      const helpLink = selectors[brand].helpLink;
+      const helpLinkDE = selectors[brand].helpLinkDE;
       if(brand == 'boohooman.com' && locale =='DE'){
         cy.get(helpLinkDE).click({force: true});
       }else{
@@ -465,28 +471,28 @@ class GlobalFooter implements AbstractPage {
 
   assertions = {
     assertSuccessfulSubscription (text: string) {
-      const successfulSubscriptionMsg = selectors[variables.brand].successfulSubscriptionMsg;
+      const successfulSubscriptionMsg = selectors[brand].successfulSubscriptionMsg;
       cy.get(successfulSubscriptionMsg).contains(text);
     },
     assertUnsuccessfulSubscription (text: string) {
       if (isSiteGenesisBrand) {
-        const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+        const unsuccessfulSubscriptionMsg = selectors[brand].unsuccessfulSubscriptionMsg;
         cy.get(unsuccessfulSubscriptionMsg).should('be.visible').invoke('text').should('contain', text);
       } else {
-        const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+        const unsuccessfulSubscriptionMsg = selectors[brand].unsuccessfulSubscriptionMsg;
         cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
       }
     },
     asssertAlreadySubscribed (text: string) {
-      const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+      const unsuccessfulSubscriptionMsg = selectors[brand].unsuccessfulSubscriptionMsg;
       cy.get(unsuccessfulSubscriptionMsg).should('contain.text', text);
     },
     assertPaymentOptionsArePresent () {
-      const paymentOptions = selectors[variables.brand].paymentOptions;
+      const paymentOptions = selectors[brand].paymentOptions;
       cy.get(paymentOptions).scrollIntoView().should('be.visible'); //  Only Wallis doesnt have
     },
     assertAppBannerPresent () {
-      const appBanner = selectors[variables.brand].appBanner;
+      const appBanner = selectors[brand].appBanner;
       if (isMobileDeviceUsed && (brand == 'karenmillen.com' || brand == 'boohoomena.com')) {
         cy.get('h5#ui-id-7').click();
       }
@@ -499,20 +505,20 @@ class GlobalFooter implements AbstractPage {
       });
     },
     assertFooterIsFixedAndPresent () {
-      const footerStickyPromo = selectors[variables.brand].footerStickyPromo;
+      const footerStickyPromo = selectors[brand].footerStickyPromo;
       cy.scrollTo('bottom');
       cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');
     },
     assertHeaderIsVisible () {
-      if (variables.brand == 'burton.co.uk' && variables.locale != 'UK') {
+      if (brand == 'burton.co.uk' && locale != 'UK') {
         cy.get('.l-header-inner').invoke('show').should('be.visible');
       } else {
-        const headerInner = selectors[variables.brand].headerInner;
+        const headerInner = selectors[brand].headerInner;
         cy.get(headerInner).invoke('show').should('be.visible');
       }
     },
     assertHeaderIsNotVisible () {
-      const headerInner = selectors[variables.brand].headerInner;
+      const headerInner = selectors[brand].headerInner;
       cy.get(headerInner).should('not.be.visible');
     },
     assertReferFriendPagePresent (text: string) {

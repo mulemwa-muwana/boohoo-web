@@ -3,7 +3,7 @@ import assertionText from '../../helpers/assertionText';
 import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
-import { brand, language } from 'cypress/support/e2e';
+import { brand, language, locale } from 'cypress/support/e2e';
 
 describe('Login Functionality tests', function () {
 
@@ -41,9 +41,9 @@ describe('Login Functionality tests', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
       LoginPage.actions.loginPopUpMessage();
-      if (brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'boohooman.com' || brand == 'boohoomena.com') {
+      if (brand == 'coastfashion.com' || brand == 'karenmillen.com' || brand == 'boohooman.com' || brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'US')) {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisEmailOrPassword[language]);
-      } else if (brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || brand == 'misspap.com') {
+      } else if (brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || (brand == 'misspap.com' && locale != 'US')) {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.loginErrorSiteGenesisCustomer[language]);
       } else {
         LoginPage.assertions.assertErrorLoginMessageIsPresent(assertionText.unknownEmail[language]);

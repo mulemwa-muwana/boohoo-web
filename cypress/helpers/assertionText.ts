@@ -290,8 +290,8 @@ class AssertionText {
     NO: 'Personvernerklæring',
     SE: '\n                Integritetspolicy\n            ',
     IL: 'הודעת פרטיות',
-    IT: 'Informativa sulla Privacy',
-    ES: 'Aviso de Privacidad'
+    IT: 'Politica sulla Privacy',
+    ES: 'Política de privacidad'
   };
 
   PrivacyNoticeMisspap: TranslationMap = {
@@ -345,9 +345,9 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'ALLMÄNNA VILLKOR',
-    IL: '',
-    IT: '',
-    ES: ''
+    IL: 'הודעת פרטיות',
+    IT: 'Termini e Condizioni',
+    ES: 'Términos y condiciones'
   };
 
   TermsAndConditionsArcadiaH1: TranslationMap = {

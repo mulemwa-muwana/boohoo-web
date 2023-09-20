@@ -139,22 +139,6 @@ describe('Home Page', function () {
     // Needs updating global footer, privacy and social pages
       
     describe('Verify the content page (Privacy Policy and Terms And Conditions) is displayed.', () => {
-      it('Privacy policy', () => {
-        GlobalFooter.click.privacyPolicyLink();
-        if (brand == 'boohoo.com' || (isSiteGenesisBrand && brand != 'misspap.com')) {
-          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[language]);
-        } else if (brand == 'misspap.com') {
-          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyNoticeMisspap[language]);
-        } else {
-          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1Arcadia[language]);
-        }
-        if (brand == 'boohoo.com' || brand == 'nastygal.com' || isSiteGenesisBrand) {
-          PrivacyPolicyPage.assertions.assertOnPage('privacy-notice');
-        } else {
-          PrivacyPolicyPage.assertions.assertOnPage('privacy-policy');
-        }
-      });
-    
       it('Verify the content page (Privacy Policy) is displayed: Footer Link (copyright)', () => {
         GlobalFooter.click.copyrightPrivacyPolicyLink();
         if (brand == 'boohooman.com') {

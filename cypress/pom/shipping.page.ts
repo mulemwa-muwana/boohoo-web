@@ -1249,9 +1249,9 @@ class ShippingPage implements AbstractPage {
       const premierProductTitleIE = selectors[brand].premierProductTitleIE;
       if (isMobileDeviceUsed) {
         cy.get(cartContainerMobile, { timeout: 20000 }).should('contain', premierProductTitle.trim());
-      } else if(brand=='boohooman.com'|| locale == 'IE'){
+      } else if (brand=='boohooman.com'|| locale == 'IE') {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitleIE.trim());
-      }else {
+      } else {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());
       }
     },

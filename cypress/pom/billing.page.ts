@@ -1290,10 +1290,10 @@ class BillingPage implements AbstractPage {
     assertPaymentMethodClearPayIsDisplayed () {
       const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
       if (locale == 'US') {
-        if(brand == 'misspap.com'){
+        if (brand == 'misspap.com') {
           cy.get('[for="is-AFTERPAY"]').should('be.visible');
         } else {
-        cy.get('#payment-button-AFTERPAY').should('be.visible');
+          cy.get('#payment-button-AFTERPAY').should('be.visible');
         }
       } else if (locale == 'AU') {
         cy.get('label[for="is-AFTERPAY"]').should('be.visible');

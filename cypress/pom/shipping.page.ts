@@ -970,9 +970,11 @@ class ShippingPage implements AbstractPage {
       }
     },
     selectCountry (country: string) {
-      if (brand != 'boohoomena.com' || locale != 'IL') { // Country cannot be changed on Shipping page for this brand
-        const shippingCountry = selectors[brand].shippingCountry;
-        cy.get(shippingCountry).select(country).invoke('show');
+      if(brand != 'boohoomena.com'){ // Country cannot be changed on Shipping page for this brand
+        if(locale != 'IL'){
+          const shippingCountry = selectors[brand].shippingCountry;
+          cy.get(shippingCountry).select(country).invoke('show');
+        }
       }
     },
     selectState (state: string) {

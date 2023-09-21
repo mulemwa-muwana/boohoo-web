@@ -300,10 +300,10 @@ class GlobalFooter implements AbstractPage {
     privacyPolicyLink () {
       const privacyPolicyLink = selectors[brand].privacyPolicyLink;
       const privacyPolicyLinkUS = selectors[brand].privacyPolicyLinkUS;
-      if(brand == 'misspap.com' && locale == 'US'){
+      if (brand == 'misspap.com' && locale == 'US') {
         cy.get(privacyPolicyLinkUS).click({force:true});
       } else {
-      cy.get(privacyPolicyLink).click({force:true});
+        cy.get(privacyPolicyLink).click({force:true});
       }
     },
     copyrightPrivacyPolicyLink () {
@@ -407,11 +407,11 @@ class GlobalFooter implements AbstractPage {
 
       if (brand == 'boohooman.com'&& locale == 'UK') {
         cy.get(helpLink).contains(assertionText.footerCustomerServiceBHM[language]).click({force:true});
-      }  else if( brand == 'boohooman.com' && locale == 'DE'){
+      } else if ( brand == 'boohooman.com' && locale == 'DE') {
         cy.get(helpLinkDE).contains(assertionText.footerCustomerServiceBHM[language]).click({force:true});
-       } else {
+      } else {
         cy.get(helpLink).contains(assertionText.footerHelp[language]).click({force:true});
-       }
+      }
     
     },
     contactLink () {
@@ -460,10 +460,10 @@ class GlobalFooter implements AbstractPage {
     checkHelpforSiteG (text: string) {
       const helpLink = selectors[brand].helpLink;
       const helpLinkDE = selectors[brand].helpLinkDE;
-      if(brand == 'boohooman.com' && locale =='DE'){
+      if (brand == 'boohooman.com' && locale =='DE') {
         cy.get(helpLinkDE).click({force: true});
-      }else{
-      cy.get(helpLink).click({force: true});
+      } else {
+        cy.get(helpLink).click({force: true});
       }
       cy.url().should('include', text);
     },

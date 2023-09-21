@@ -15,7 +15,7 @@ describe('Order confirmation page for guest user', function () {
     }
   });
 
-  it('Verify that guest user can place order with Visa card and that order confirmation page is displayed correctly', function () {
+  it.only('Verify that guest user can place order with Visa card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('GuestUser');
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');

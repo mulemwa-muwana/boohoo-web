@@ -34,12 +34,15 @@ export default defineConfig({
   },
   e2e: {
     excludeSpecPattern: [
-      '**/backend*/**' // Skip backend tests
+      '**/backend*/**', // Skip backend tests
+      '**/additionalTests*/**' // Skip additional tests
     ],
     setupNodeEvents (on) {
       plugins(on);
     },
     numTestsKeptInMemory: 0,
-    experimentalMemoryManagement: true
+    experimentalMemoryManagement: true,
+    experimentalOriginDependencies: true,
+    experimentalWebKitSupport: true,
   },
 });

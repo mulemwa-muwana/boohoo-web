@@ -144,9 +144,9 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.countyField(localeAddress.county);
       } else if (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE')) {
         shippingPage.actions.selectState(localeAddress.county);
-      } else if ( brand == 'boohooman.com'  && locale == 'IE' ) {
+      } else if ( brand == 'boohooman.com' && locale == 'IE' ) {
         shippingPage.actions.selectState(localeAddress.county);
-      } else if ( brand == 'misspap.com'  && (locale == 'IE' || locale == 'AU' || locale == 'US')) {
+      } else if ( brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US')) {
         shippingPage.actions.selectState(localeAddress.county);
       }
     } else {
@@ -209,7 +209,7 @@ describe('Shipping Page Registered user tests', function () {
         shippingPage.actions.countyField(localeAddress.county);
       } else if (brand == 'karenmillen.com' && locale == 'US') {
         shippingPage.actions.selectState(localeAddress.county);
-      } else if (brand == 'boohooman.com'  && locale == 'IE') {
+      } else if (brand == 'boohooman.com' && locale == 'IE') {
         shippingPage.actions.selectState(localeAddress.county);
       } else if (brand == 'misspap.com' && (locale == 'AU' || locale == 'US')) {
         shippingPage.actions.selectState(localeAddress.county);

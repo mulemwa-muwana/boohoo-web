@@ -8,7 +8,7 @@ const selectors: SelectorBrandMap = {
   'boohoo.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
+    addPremierToCartFromShippingPage: '#deliveryPanel .m-with_actions [type]',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',

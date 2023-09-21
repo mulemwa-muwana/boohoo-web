@@ -6,7 +6,6 @@ import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a',
     instagramLink: 'a[href="https://www.instagram.com/boohoo/"]',
     facebookLink: 'a[href="https://www.facebook.com/boohoo.com"]',
@@ -33,7 +32,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_quick_links', 
   },
   'nastygal.com': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-notice"]',
     instagramLink: 'a[href="https://www.instagram.com/nastygal/"]',
     facebookLink: 'a[href="https://www.facebook.com/nastygal"]',
@@ -56,7 +54,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_nav-column:nth-child(1)'
   },
   'dorothyperkins.com': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/dorothyperkins/"]',
     facebookLink: 'a[href="https://www.facebook.com/dorothyperkins"]',
@@ -78,7 +75,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_quick_links',
   },
   'burton.co.uk': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/burton_menswear/"]',
     facebookLink: 'a[href="https://www.facebook.com/BurtonMenswear/"]',
@@ -100,7 +96,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_quick_links',
   },
   'wallis.co.uk': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
     facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
@@ -122,7 +117,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_quick_links',
   },
   'boohooman.com': {
-    privacyPolicyLink: '.footer-copyright-wrapper a:eq(1)',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper a:eq(1)',
     instagramLink: 'a[href="https://www.instagram.com/boohoomanofficial"]',
     facebookLink: 'a[href="https://www.facebook.com/BoohooMAN"]',
@@ -147,7 +141,6 @@ const selectors: SelectorBrandMap = {
     helpLinkDE: 'a[title="Kundenservice"]'
   },
   'karenmillen.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/karen_millen/"]',
     facebookLink: 'a[href="https://www.facebook.com/karenmillen"]',
@@ -170,7 +163,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Customer Service"]'
   },
   'coastfashion.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/coastfashion/?hl=en"]',
     facebookLink: 'a[href="https://www.facebook.com/coaststores/"]',
@@ -193,7 +185,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Customer Service"]'
   },
   'warehousefashion.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/warehouseuk/"]',
     facebookLink: 'a[href="https://en-gb.facebook.com/WarehouseFashion/"]',
@@ -216,7 +207,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Customer Service"]'
   },
   'oasis-stores.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/oasisfashion/"]', 
     facebookLink: 'a[href="https://en-gb.facebook.com/oasisfashions/"]',
@@ -239,7 +229,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Customer Service"]'
   },
   'misspap.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     privacyPolicyLinkUS: ':nth-child(10) > a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright [title="Privacy policy"]',
     instagramLink: 'a[href="https://www.instagram.com/misspap/"]', 
@@ -264,7 +253,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Help"]',
   },
   'boohoomena.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: '[title="Instagram"]', 
     facebookLink: '[title="Facebook"]',
@@ -297,15 +285,6 @@ class GlobalFooter implements AbstractPage {
   }
 
   click = {
-    privacyPolicyLink () {
-      const privacyPolicyLink = selectors[brand].privacyPolicyLink;
-      const privacyPolicyLinkUS = selectors[brand].privacyPolicyLinkUS;
-      if (brand == 'misspap.com' && locale == 'US') {
-        cy.get(privacyPolicyLinkUS).click({force:true});
-      } else {
-        cy.get(privacyPolicyLink).click({force:true});
-      }
-    },
     copyrightPrivacyPolicyLink () {
       const copyrightPrivacyPolicyLink = selectors[brand].copyrightPrivacyPolicyLink;
       cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click({force:true});

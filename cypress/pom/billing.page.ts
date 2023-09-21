@@ -126,7 +126,7 @@ const selectors: SelectorBrandMap = {
     billingAddressLastName: '#dwfrm_billing_addressFields_lastName',
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
     viewAllBillingAddresses: '.b-form_section > .b-address_selector-actions > .m-link',
-    billingAddressFromBook: '.b-form_section > :nth-child(2) > .b-option_switch-inner > .b-option_switch-label',
+    billingAddressFromBook: '.b-address_selector-actions > .b-button',
     dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
@@ -1290,10 +1290,10 @@ class BillingPage implements AbstractPage {
     assertPaymentMethodClearPayIsDisplayed () {
       const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
       if (locale == 'US') {
-        if(brand == 'misspap.com'){
+        if (brand == 'misspap.com') {
           cy.get('[for="is-AFTERPAY"]').should('be.visible');
         } else {
-        cy.get('#payment-button-AFTERPAY').should('be.visible');
+          cy.get('#payment-button-AFTERPAY').should('be.visible');
         }
       } else if (locale == 'AU') {
         cy.get('label[for="is-AFTERPAY"]').should('be.visible');
@@ -1330,7 +1330,7 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (brand =='boohoo.com' && locale =='UK' || (brand == 'misspap.com' && locale == 'US') ) {
+      } else if (((brand =='boohoo.com' || brand == 'nastygal.com') && locale == 'UK') || (brand == 'misspap.com' && locale == 'US') ) {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');  
       } else {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

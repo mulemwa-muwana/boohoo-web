@@ -40,6 +40,7 @@ describe('Wishlist Page tests', function () {
     if (isSiteGenesisBrand) {
       WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptySiteGenesis[language]);
     } else {
+      cy.wait(1000);
       WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptyBlp[language]);
     }
     cartPage.goto();

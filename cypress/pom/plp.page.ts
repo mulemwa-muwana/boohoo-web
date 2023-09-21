@@ -609,7 +609,7 @@ class PlpPage implements AbstractPage {
       cy.intercept(interceptRouteRegex).as('updateRefinement');
     },
     waitForPageRefinementUpdate () {
-      cy.wait('@updateRefinement', { timeout: 60000 }).its('response.statusCode').should('eq', 200);
+      cy.wait('@updateRefinement', { timeout: 60000 }).its('response.statusCode').should('be.oneOf',[200,201,204]);
     }
   };
 

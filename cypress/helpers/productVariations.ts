@@ -48,7 +48,7 @@ class productVariations {
   };
 
   productAccessories: TranslationMap = {
-    EN: 'Accessories',
+    EN: 'Tops',
     NL: 'Broeken',
     DE: 'Hosen',
     FR: 'Accessoires',

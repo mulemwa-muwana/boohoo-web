@@ -186,7 +186,7 @@ class AssertionText {
     EN: 'This field is required.',
     FR: 'Ce champ est obligatoire',
     NL: 'Dit veld is verplicht.',
-    DE: 'Vergiss mich nicht!',
+    DE: 'Dieses Feld ist erforderlich.',
     DK: 'Glem ikke mig!',
     FI: 'Älä unohda minua!',
     NO: 'Ikke glem meg!',
@@ -1445,7 +1445,7 @@ class AssertionText {
   envAndSocRespSiteGenesis: TranslationMap = {
     EN: 'Environment & Social Responsibility',
     NL: '',
-    DE: '',
+    DE: 'Soziale Verantwortung von boohooMAN',
     FR: 'Responsabilité sociale de',
     DK: '',
     FI: '',

@@ -24,7 +24,7 @@ export default defineConfig({
     setupNodeEvents (on) {
       plugins(on);
     },
-    numTestsKeptInMemory: 50,
+    numTestsKeptInMemory: 0,
   },
 
 });

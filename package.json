@@ -70,8 +70,6 @@
       "cy:open:boohoomena:dev_backend": "cypress open --config-file ./config/boohoomena/dev_backend/cypress.boohoomena.sa.dev.config.ts",
     "//": "CI/CD TESTS",
       "cy:run:boohoo:uk:e2e": "cypress run --config-file ./config/boohoo/dev_backend/cypress.boohoo.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\"  --record --key 8e3450f6-0569-45b7-8d5b-6a42bcf0e286",
-      "cy:run:burton:uk:e2e": "cypress run --config-file ./config/burton/dev_backend/cypress.burton.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 8e3450f6-0569-45b7-8d5b-6a42bcf0e286",
-      "cy:run:wallis:uk:e2e": "cypress run --config-file ./config/wallis/dev_backend/cypress.wallis.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 8e3450f6-0569-45b7-8d5b-6a42bcf0e286",
       "cy:run:nastygal:uk:e2e": "cypress run --config-file ./config/nastygal/dev_backend/cypress.nastygal.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 8e3450f6-0569-45b7-8d5b-6a42bcf0e286",
       "cy:run:misspap:uk:e2e": "cypress run --config-file ./config/misspap/dev_backend/cypress.misspap.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 8e3450f6-0569-45b7-8d5b-6a42bcf0e286",
       "cy:run:karenmillen:uk:e2e": "cypress run --config-file ./config/karenmillen/dev_backend/cypress.karenmillen.uk.dev.config.ts --spec \"cypress/e2e/backend/orderConfirmation.cy.ts\" --record --key 8e3450f6-0569-45b7-8d5b-6a42bcf0e286",

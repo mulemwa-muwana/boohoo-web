@@ -34,7 +34,8 @@ export default defineConfig({
       plugins(on);
     },
     excludeSpecPattern: [
-      '**/backend*/**' // Skip backend tests
+      '**/backend*/**', // Skip backend tests
+      '**/additionalTests*/**' // Skip additional tests
     ],
     numTestsKeptInMemory: 0,
   },

@@ -114,7 +114,7 @@ describe('Order confirmation page for registered user', function () {
 
       this.skip();
     }
-    if (locale === 'UK' || locale === 'IE' || locale === 'AU'|| locale === 'NL' || locale == 'US') {
+    if (locale == 'UK' || locale == 'IE' || locale == 'AU'|| locale == 'NL' || locale == 'US') {
       Navigate.toBillingPage('RegisteredUser');
       if ((brand == 'boohoo.com' || brand == 'boohooman.com') && locale =='NL') {
         billingPage.actions.selectKlarnaBoohooNl();

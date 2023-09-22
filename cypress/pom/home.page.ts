@@ -37,12 +37,12 @@ const selectors: SelectorBrandMap = {
     investorRelationsAcceptBtn: 'cc-saveAll-startBtn',
     forgetPasswordLink: 'button[data-tau="login_password_reset"]', 
     forgetPasswordPopupWindow: '.b-dialog-window',
-    resetPassword_EmailBox: '#dwfrm_profile_resetPassword_email',
+    resetPasswordEmailBox: '#dwfrm_profile_resetPassword_email',
     resetPasswordButton: 'button[data-tau="forgot_password_submit"]',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -62,10 +62,10 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
     countryBtn: '#country-switcher-menu',
-    dialogPopup_NG: '.b-dialog.m-opened',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    dialogPopupNG: '.b-dialog.m-opened',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title'
+    logInSlideManuTitle: '.b-miniaccount-title'
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
@@ -84,10 +84,10 @@ const selectors: SelectorBrandMap = {
     logoMobile: '.l-logo-container>a[class="b-logo"]',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -107,10 +107,10 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     countryBtn: '#country-switcher-menu',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -130,10 +130,10 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
     countryBtn: '#country-switcher-menu',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'boohooman.com': {
     minicartIcon: "[class='js-minicart-quantity minicart-quantity-value is-mobile']",
@@ -154,10 +154,10 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
     countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
     countryList: 'div[class="selector active"]',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -179,10 +179,10 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
     countryBtn: '.current-country-arrow > .flag-icon',
     countryList: '.selector>div>div',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'coastfashion.com': {
     minicartIcon: '.mini-cart-total>.mini-cart-link',
@@ -201,10 +201,10 @@ const selectors: SelectorBrandMap = {
     logoMobile: '.logo-svg',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'warehousefashion.com': {
     minicartIcon: '.mini-cart-link',
@@ -225,10 +225,10 @@ const selectors: SelectorBrandMap = {
     countryBtn: '.current-country-arrow > .flag-icon',
     countryList: '.selector>div>div',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'oasis-stores.com': {
     minicartIcon: '.mini-cart-link',
@@ -248,10 +248,10 @@ const selectors: SelectorBrandMap = {
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'misspap.com': {
     minicartIcon: '.mini-cart-link',
@@ -272,10 +272,10 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '.header-customer-info',
     countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
     countryList: 'div[class="selector active"]',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'boohoomena.com': {
     minicartIcon: '.mini-cart-link',
@@ -294,10 +294,10 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: ':nth-child(1) > .user-link-item',
     countryBtn: '.js-header-right-box > .js-appshell-uncached-countryselector-container > .header-countryselector > .content-asset > .country-selector > .current-country > .current-country-arrow > .flag-icon',
     countryList: '.selector>div>div',
-    myAccountTile_slideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
-    logIn_SlideManuTitle: '.b-miniaccount-title',
-    promoLink_CurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   }
   
 };
@@ -452,20 +452,20 @@ class HomePage implements AbstractPage {
     forgotPassword (email: string) {
       const forgetPasswordLink = selectors[brand].forgetPasswordLink;     
       const forgetPasswordPopupWindow = selectors[brand].forgetPasswordPopupWindow;     
-      const resetPassword_EmailBox = selectors[brand].resetPassword_EmailBox;     
+      const resetPasswordEmailBox = selectors[brand].resetPasswordEmailBox;     
       const resetPasswordButton = selectors[brand].resetPasswordButton;     
 
       cy.get(forgetPasswordLink).click();
       cy.get(forgetPasswordPopupWindow).should('be.visible');   
-      cy.get(resetPassword_EmailBox).type(email);
+      cy.get(resetPasswordEmailBox).type(email);
       cy.get(resetPasswordButton, { timeout: 6000 }).click();
     },
     closeNastygalPopup () {
-      const dialogPopup_NG = selectors[brand].dialogPopup_NG;     
+      const dialogPopupNG = selectors[brand].dialogPopupNG;     
 
       cy.get('body').then($body => {
-        if ($body.find(dialogPopup_NG).length > 0) {
-          cy.get(dialogPopup_NG).invoke('attr', 'style', 'visibility:hidden!important;');
+        if ($body.find(dialogPopupNG).length > 0) {
+          cy.get(dialogPopupNG).invoke('attr', 'style', 'visibility:hidden!important;');
         }
       });
 
@@ -526,11 +526,11 @@ class HomePage implements AbstractPage {
   assertions = {
     assertUserPanelTitle (name: string) {
       const loginIcon = selectors[brand].loginIcon;
-      const myAccountTile_slideMenu = selectors[brand].myAccountTile_slideMenu;     
+      const myAccountTileSlideMenu = selectors[brand].myAccountTileSlideMenu;     
       const myaccountUserPanelGreetingMsg = selectors[brand].myaccountGreetingMsg;     
 
       cy.get(loginIcon).click();
-      cy.get(myAccountTile_slideMenu).click();
+      cy.get(myAccountTileSlideMenu).click();
       cy.get(myaccountUserPanelGreetingMsg).should('contain.text', name);
     },
 
@@ -567,9 +567,9 @@ class HomePage implements AbstractPage {
       // TODO.
     },
     assertUserIsNotLoggedIn (msg: string) {
-      const logIn_SlideManuTitle = selectors[brand].logIn_SlideManuTitle;
+      const logInSlideManuTitle = selectors[brand].logInSlideManuTitle;
 
-      cy.get(logIn_SlideManuTitle).should('contain.text', msg);
+      cy.get(logInSlideManuTitle).should('contain.text', msg);
     },
 
     // SizeGuide asserstions
@@ -659,9 +659,9 @@ class HomePage implements AbstractPage {
       cy.url().should('include', country);
     },
     assertPromoLinkHeaderIsVisible () {
-      const promoLink_CurrentSlide = selectors[brand].promoLink_CurrentSlide;
+      const promoLinkCurrentSlide = selectors[brand].promoLinkCurrentSlide;
 
-      cy.get(promoLink_CurrentSlide).should('be.visible').click();
+      cy.get(promoLinkCurrentSlide).should('be.visible').click();
     },
     assertEnergySaverVisible () {
       const energySaver = selectors[brand].energySaver;

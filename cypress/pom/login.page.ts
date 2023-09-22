@@ -112,7 +112,8 @@ const selectors: SelectorBrandMap = {
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email',
+    headerUserInfo: '.header-customer-info'
   },
   'coastfashion.com': {
     loginIcon: 'span.user-account', 
@@ -197,7 +198,8 @@ const selectors: SelectorBrandMap = {
     loginForm: '#dwfrm_login',
     wishlistLoginTitle: '.login-title',
     errorLoginMessage: '.error-form',
-    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email'
+    resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email',
+    headerUserInfo: '.header-customer-info'
   }
 };
 
@@ -214,12 +216,13 @@ class LoginPage implements AbstractPage {
       const loginIcon = selectors[variables.brand].loginIcon;
       const loginIconNl = selectors[variables.brand].loginIconNl;
       const mobileHamburgIcon = selectors[variables.brand].mobileHamburgIcon;
+      const headerUserInfo = selectors[brand].headerUserInfo;
       
       if (isMobileDeviceUsed) {
         cy.get(mobileHamburgIcon).click();
       } else {
         if (isSiteGenesisBrand && brand != 'misspap.com' && brand != 'boohooman.com') {
-          cy.get('.header-customer-info').invoke('show');
+          cy.get(headerUserInfo).invoke('show');
         } else if (brand =='boohooman.com'&& locale == 'NL') {
           cy.get(loginIconNl).click({force:true});
         } else {

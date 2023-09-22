@@ -7,8 +7,7 @@ import ShippingPage from 'cypress/pom/shipping.page';
 import CartPage from 'cypress/pom/cart.page';
 import { brand, language, locale, url,fullSku } from 'cypress/support/e2e';
 
-
-// const variables = Cypress.env() as EnvironmentVariables;
+// Const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Boohoo order placement', () => {
 

@@ -970,8 +970,8 @@ class ShippingPage implements AbstractPage {
       }
     },
     selectCountry (country: string) {
-      if(brand != 'boohoomena.com'){ // Country cannot be changed on Shipping page for this brand
-        if(locale != 'IL'){
+      if (brand != 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
+        if (locale != 'IL') {
           const shippingCountry = selectors[brand].shippingCountry;
           cy.get(shippingCountry).select(country).invoke('show');
         }

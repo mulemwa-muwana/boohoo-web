@@ -8,7 +8,7 @@ const selectors: SelectorBrandMap = {
   'boohoo.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
-    addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
+    addPremierToCartFromShippingPage: '#deliveryPanel .m-with_actions [type]',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -970,9 +970,11 @@ class ShippingPage implements AbstractPage {
       }
     },
     selectCountry (country: string) {
-      if (brand != 'boohoomena.com' || locale != 'IL') { // Country cannot be changed on Shipping page for this brand
-        const shippingCountry = selectors[brand].shippingCountry;
-        cy.get(shippingCountry).select(country).invoke('show');
+      if (brand != 'boohoomena.com') { // Country cannot be changed on Shipping page for this brand
+        if (locale != 'IL') {
+          const shippingCountry = selectors[brand].shippingCountry;
+          cy.get(shippingCountry).select(country).invoke('show');
+        }
       }
     },
     selectState (state: string) {

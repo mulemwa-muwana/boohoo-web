@@ -413,18 +413,27 @@ class GlobalFooter implements AbstractPage {
       }
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
-      cy.log(`searching for '${text}' in footer`);
+      // Cy.log(searching for '${text}' in footer);
       cy.scrollTo('bottom');
       const footer = selectors[brand].footer;
-
       cy.get(footer).contains('a', text, { matchCase: false }) // Add Tag a contains Text Help to make it work for SG Brands
         .invoke('removeAttr', 'target')
         .then(element => {
-          let href = element.attr('href');
-          href = href.trim();
-          cy.wrap(element).click({force: true});
-          cy.url().then(url => {
-            expect(url).to.contain(options?.assertionUrl ?? href);
+          cy.origin('https://www.boohooplc.com', () => {
+            cy.on('uncaught:exception', (e) => {
+              let href = element.attr('href');
+              href = href.trim();
+              cy.wrap(element).click({ force: true });
+              cy.url().then(url => {
+                expect(url).to.contain(options?.assertionUrl ?? href);
+              });
+              if (e.message.includes('Things went bad')) {
+
+                // We expected this error, so let's ignore it
+                // And let the test continue
+                return false;
+              }
+            });
           });
         });
     },

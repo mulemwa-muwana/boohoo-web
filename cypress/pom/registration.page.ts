@@ -291,8 +291,8 @@ class RegistrationPage implements AbstractPage {
       const confirmEmailCheckboxSiteGenesisBrands = selectors[brand].confirmEmailCheckboxSiteGenesisBrands;
 
       !isSiteGenesisBrand
-      ? cy.get(confirmEmailCheckboxNonSiteGenesisBrands).check({force:true})
-      : cy.get(confirmEmailCheckboxSiteGenesisBrands).check();
+        ? cy.get(confirmEmailCheckboxNonSiteGenesisBrands).check({force:true})
+        : cy.get(confirmEmailCheckboxSiteGenesisBrands).check();
     },
 
     enterNewUserData (password: string, confirmPassword: string, firstName: string, lastName: string) {

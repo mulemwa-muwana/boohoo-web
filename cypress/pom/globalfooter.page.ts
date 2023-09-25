@@ -419,22 +419,32 @@ class GlobalFooter implements AbstractPage {
       cy.get(footer).contains('a', text, { matchCase: false }) // Add Tag a contains Text Help to make it work for SG Brands
         .invoke('removeAttr', 'target')
         .then(element => {
-          cy.origin('https://www.boohooplc.com', () => {
-            cy.on('uncaught:exception', (e) => {
-              let href = element.attr('href');
-              href = href.trim();
-              cy.wrap(element).click({ force: true });
-              cy.url().then(url => {
-                expect(url).to.contain(options?.assertionUrl ?? href);
-              });
-              if (e.message.includes('Things went bad')) {
+          if (locale == 'UK' && (text.match('Sustainability'))) {
+            cy.origin('https://www.boohooplc.com', () => {
+              cy.on('uncaught:exception', (e) => {
+                let href = element.attr('href');
+                href = href.trim();
+                cy.wrap(element).click({ force: true });
+                cy.url().then(url => {
+                  expect(url).to.contain(options?.assertionUrl ?? href);
+                });
+                if (e.message.includes('Things went bad')) {
 
-                // We expected this error, so let's ignore it
-                // And let the test continue
-                return false;
-              }
+                  // We expected this error, so let's ignore it
+                  // And let the test continue
+                  return false;
+                }
+              });
             });
-          });
+          } else {
+            let href = element.attr('href');
+            href = href.trim();
+            cy.wrap(element).click({ force: true });
+            cy.url().then(url => {
+              expect(url).to.contain(options?.assertionUrl ?? href);
+            });
+
+          }
         });
     },
     changeCountry (country: CountryCode) {

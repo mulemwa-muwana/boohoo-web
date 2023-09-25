@@ -186,7 +186,7 @@ class AssertionText {
     EN: 'This field is required.',
     FR: 'Ce champ est obligatoire',
     NL: 'Dit veld is verplicht.',
-    DE: 'Vergiss mich nicht!',
+    DE: 'Dieses Feld ist erforderlich.',
     DK: 'Glem ikke mig!',
     FI: 'Älä unohda minua!',
     NO: 'Ikke glem meg!',
@@ -270,7 +270,7 @@ class AssertionText {
     EN: 'privacy-policy',
     FR: 'avis-de-confidentialité',
     NL: 'privacyverklaring',
-    DE: 'datenschutzerklärung',
+    DE: 'privacy-notice',
     DK: 'fortrolighedserklæring',
     FI: 'tietosuojailmoitus',
     NO: 'personvernerklæring',
@@ -284,14 +284,14 @@ class AssertionText {
     EN: 'Privacy Notice',
     FR: 'Avis de confidentialité ',
     NL: 'privacyverklaring',
-    DE: 'Datenschutzrichtlinien',
+    DE: 'Datenschutzerklärung ',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
     FI: 'Tietosuojailmoitus',
     NO: 'Personvernerklæring',
     SE: '\n                Integritetspolicy\n            ',
     IL: 'הודעת פרטיות',
-    IT: 'Informativa sulla Privacy',
-    ES: 'Aviso de Privacidad'
+    IT: 'Politica sulla Privacy',
+    ES: 'Política de privacidad'
   };
 
   PrivacyNoticeMisspap: TranslationMap = {
@@ -312,7 +312,7 @@ class AssertionText {
     EN: 'Privacy',
     FR: '\nAvis de confidentialité\n',
     NL: '\nPrivacyverklaring\n',
-    DE: '\nDatenschutzerklärung\n',
+    DE: 'DATENSCHUTZERKLÄRUNG',
     DK: '\nBekendtgørelse om beskyttelse af personlige oplysninger\n',
     FI: '\nTietosuojailmoitus\n',
     NO: '\nPersonvernerklæring\n',
@@ -326,7 +326,7 @@ class AssertionText {
     EN: 'Privacy',
     FR: 'de confidentialité',
     NL: 'privacyverklaring',
-    DE: 'datenschutzerklärung',
+    DE: 'Datenschutzerklärung ',
     DK: 'bekendtgørelse om beskyttelse af personlige oplysninger',
     FI: 'tietosuojailmoitus',
     NO: 'personvernerklæring',
@@ -345,9 +345,9 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'ALLMÄNNA VILLKOR',
-    IL: '',
-    IT: '',
-    ES: ''
+    IL: 'הודעת פרטיות',
+    IT: 'Termini e Condizioni',
+    ES: 'Términos y condiciones'
   };
 
   TermsAndConditionsArcadiaH1: TranslationMap = {
@@ -368,7 +368,7 @@ class AssertionText {
     EN: 'TERMS OF WEBSITE USE',
     FR: '',
     NL: 'BOOHOO GEBRUIKSVOORWAARDEN VAN DE WEBSITE',
-    DE: '',
+    DE: 'ALLGEMEINE GESCHÄFTSBEDINGUNGEN',
     DK: '',
     FI: '',
     NO: '',
@@ -843,7 +843,7 @@ class AssertionText {
   orderNotFoundSG: TranslationMap = {
     EN: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
     NL: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
-    DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
+    DE: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
     FR: 'Désolé, ce numéro de commande ne correspond',
     DK: 'Sorry, this order number does not match',
     FI: 'Sorry, this order number does not match',
@@ -871,7 +871,7 @@ class AssertionText {
   footerCustomerService: TranslationMap = {
     EN: 'customer-service',
     NL: '',
-    DE: '',
+    DE: 'customer-service',
     FR: 'customer-service',
     DK: '',
     FI: '',
@@ -885,7 +885,7 @@ class AssertionText {
   footerCustomerServiceBHM: TranslationMap = {
     EN: 'Customer Service',
     NL: 'Klantenservice',
-    DE: '',
+    DE: 'Kundenservice',
     FR: 'Service client',
     DK: '',
     FI: '',
@@ -941,7 +941,7 @@ class AssertionText {
   footerLinkDeliveryInfoArcadia: TranslationMap = {
     EN: 'Delivery',
     NL: 'Leveringsopties',
-    DE: 'Lieferinformationen',
+    DE: 'Lieferoptionen',
     FR: 'livraison',
     DK: '',
     FI: '',
@@ -1333,7 +1333,7 @@ class AssertionText {
   termsAndCondBoohooManAndMena: TranslationMap = {
     EN: 'T&C\'s',
     NL: 'Algemene Voorwaarden',
-    DE: '',
+    DE: 'Geschäftsbedingungen',
     FR: 'CGV',
     DK: '',
     FI: '',
@@ -1431,7 +1431,7 @@ class AssertionText {
   envAndSocResp: TranslationMap = {
     EN: 'Environmental & Social Responsibility',
     NL: 'boohoo Sociale verantwoordelijkheid',
-    DE: 'Soziale Verantwortung von boohoo',
+    DE: 'Soziale Verantwortung von boohooMAN',
     FR: 'Responsabilité sociale de boohoo',
     DK: 'boohoo Social Responsibility',
     FI: 'boohoo Social Responsibility',
@@ -1445,7 +1445,7 @@ class AssertionText {
   envAndSocRespSiteGenesis: TranslationMap = {
     EN: 'Environment & Social Responsibility',
     NL: '',
-    DE: '',
+    DE: 'Soziale Verantwortung von boohooMAN',
     FR: 'Responsabilité sociale de',
     DK: '',
     FI: '',

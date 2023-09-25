@@ -5,16 +5,17 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@stgmena.boohoo.com/en',
-    sku: 'AMM09927',
-    fullSku: 'AMM09927-115-56',
-    brand: 'boohoomena.com',
-    locale: 'SA',
-    language: 'EN', 
+    url: 'https://storefront:Oreo2022@us1-dwstg.nastygal.com/',
+    sku: '#BGG17089', // Needs hashtag for assertation on PDP
+    fullSku: 'BGG17089-808-16', 
+    brand: 'nastygal.com',
+    locale: 'US',
+    language: 'EN',
+    giftCertificate: 'TAWPJRLTHARLALZC',
   },
 
-  viewportHeight: 1080,
-  viewportWidth: 1920,
+  viewportHeight: 896,
+  viewportWidth: 414,
   defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   video: false,
@@ -23,7 +24,7 @@ export default defineConfig({
   // Create Mochawesome report after 'cypress run' tests finish
   reporter: 'mochawesome',
   reporterOptions: {
-    reportDir: 'config/boohoomena/results',
+    reportDir: 'config/nastygal/results',
     overwrite: false,
     html: false,
     json: true,
@@ -34,8 +35,7 @@ export default defineConfig({
       plugins(on);
     },
     excludeSpecPattern: [
-      '**/backend*/**', // Skip backend tests
-      '**/additionalTests*/**' // Skip additional tests
+      '**/backend*/**' // Skip backend tests
     ],
     numTestsKeptInMemory: 0,
   },

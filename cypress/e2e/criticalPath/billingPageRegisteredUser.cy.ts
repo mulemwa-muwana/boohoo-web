@@ -102,14 +102,15 @@ describe('Billing page functionality for registered user', function () {
   });
 
   it('Verify that user is able to Add, Remove gift certificate at Billing Page', function () {
-    if (brand != 'boohoo.com') {
-      this.skip(); 
+    if (brand == 'boohoomena.com' || locale == 'OM') {
+      billingPage.actions.addGiftCard(giftCertificate);
+      billingPage.assertions.assertGiftCardAdded();
+      billingPage.assertions.assertGiftCardinOrderSummary();
+      billingPage.actions.removeGiftCertificate();
+      billingPage.assertions.assertGiftCardRemoved();
+    } else {
+      this.skip();
     }
-    billingPage.actions.addGiftCard(giftCertificate);
-    billingPage.assertions.assertGiftCardAdded();
-    billingPage.assertions.assertGiftCardinOrderSummary();
-    billingPage.actions.removeGiftCertificate();
-    billingPage.assertions.assertGiftCardRemoved();
   });
 
   it('Verify that user see error when try to add invalid giftCard', function () {

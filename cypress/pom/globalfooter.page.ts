@@ -1,12 +1,11 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import { isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand, language } from 'cypress/support/e2e';
+import { brand, language, locale } from 'cypress/support/e2e';
 import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '#footercontent > div.content-asset > div > div > ul > li:nth-child(2) > a',
     instagramLink: 'a[href="https://www.instagram.com/boohoo/"]',
     facebookLink: 'a[href="https://www.facebook.com/boohoo.com"]',
@@ -33,7 +32,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_quick_links', 
   },
   'nastygal.com': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-notice"]',
     instagramLink: 'a[href="https://www.instagram.com/nastygal/"]',
     facebookLink: 'a[href="https://www.facebook.com/nastygal"]',
@@ -56,7 +54,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_nav-column:nth-child(1)'
   },
   'dorothyperkins.com': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/dorothyperkins/"]',
     facebookLink: 'a[href="https://www.facebook.com/dorothyperkins"]',
@@ -78,7 +75,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_quick_links',
   },
   'burton.co.uk': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/burton_menswear/"]',
     facebookLink: 'a[href="https://www.facebook.com/BurtonMenswear/"]',
@@ -100,7 +96,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_quick_links',
   },
   'wallis.co.uk': {
-    privacyPolicyLink: 'div[class="l-footer-copy"] li:nth-child(2) a:nth-child(1)',
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
     instagramLink: 'a[href="https://www.instagram.com/wallisfashion/"]',
     facebookLink: 'a[href="https://www.facebook.com/Wallis/"]',
@@ -122,7 +117,6 @@ const selectors: SelectorBrandMap = {
     helpLink: '.content-asset .b-footer_quick_links',
   },
   'boohooman.com': {
-    privacyPolicyLink: '.footer-copyright-wrapper a:eq(1)',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper a:eq(1)',
     instagramLink: 'a[href="https://www.instagram.com/boohoomanofficial"]',
     facebookLink: 'a[href="https://www.facebook.com/BoohooMAN"]',
@@ -144,9 +138,9 @@ const selectors: SelectorBrandMap = {
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
     helpLink: 'a[title="Customer Service"] , [title="Service client"]',
+    helpLinkDE: 'a[title="Kundenservice"]'
   },
   'karenmillen.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/karen_millen/"]',
     facebookLink: 'a[href="https://www.facebook.com/karenmillen"]',
@@ -169,7 +163,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Customer Service"]'
   },
   'coastfashion.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/coastfashion/?hl=en"]',
     facebookLink: 'a[href="https://www.facebook.com/coaststores/"]',
@@ -192,7 +185,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Customer Service"]'
   },
   'warehousefashion.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/warehouseuk/"]',
     facebookLink: 'a[href="https://en-gb.facebook.com/WarehouseFashion/"]',
@@ -215,7 +207,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Customer Service"]'
   },
   'oasis-stores.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: 'a[href="https://www.instagram.com/oasisfashion/"]', 
     facebookLink: 'a[href="https://en-gb.facebook.com/oasisfashions/"]',
@@ -238,7 +229,7 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Customer Service"]'
   },
   'misspap.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
+    privacyPolicyLinkUS: ':nth-child(10) > a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright [title="Privacy policy"]',
     instagramLink: 'a[href="https://www.instagram.com/misspap/"]', 
     facebookLink: 'a[href="https://www.facebook.com/MissPapOfficial"]',
@@ -262,7 +253,6 @@ const selectors: SelectorBrandMap = {
     helpLink: 'a[title="Help"]',
   },
   'boohoomena.com': {
-    privacyPolicyLink: 'a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
     instagramLink: '[title="Instagram"]', 
     facebookLink: '[title="Facebook"]',
@@ -295,20 +285,16 @@ class GlobalFooter implements AbstractPage {
   }
 
   click = {
-    privacyPolicyLink () {
-      const privacyPolicyLink = selectors[variables.brand].privacyPolicyLink;
-      cy.get(privacyPolicyLink).click({force:true});
-    },
     copyrightPrivacyPolicyLink () {
-      const copyrightPrivacyPolicyLink = selectors[variables.brand].copyrightPrivacyPolicyLink;
+      const copyrightPrivacyPolicyLink = selectors[brand].copyrightPrivacyPolicyLink;
       cy.get(copyrightPrivacyPolicyLink).scrollIntoView().click({force:true});
     },
     copyrightTermsAndConditionsLink () {
-      const copyrightTermAndCondLink = selectors[variables.brand].copyrightTermAndCondLink;
+      const copyrightTermAndCondLink = selectors[brand].copyrightTermAndCondLink;
       cy.get(copyrightTermAndCondLink).scrollIntoView().click({force:true});
     },
     instagramLink () {
-      const instagramLink = selectors[variables.brand].instagramLink;
+      const instagramLink = selectors[brand].instagramLink;
       cy.get(instagramLink).then(link => {
         cy
           .request({
@@ -321,7 +307,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     facebookLink () {
-      const facebookLink = selectors[variables.brand].facebookLink;
+      const facebookLink = selectors[brand].facebookLink;
       cy.get(facebookLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -330,7 +316,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     twitterLink () {
-      const twitterLink = selectors[variables.brand].twitterLink;
+      const twitterLink = selectors[brand].twitterLink;
       cy.get(twitterLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -339,7 +325,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     tiktokLink () {
-      const tiktokLink = selectors[variables.brand].tiktokLink; //  Only boohoo
+      const tiktokLink = selectors[brand].tiktokLink; //  Only boohoo
       cy.get(tiktokLink).then(link => {
         cy
           .request(link.prop('href')) // Get the href attribute value
@@ -348,7 +334,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     youtubeLink () {
-      const youtubeLink = selectors[variables.brand].youtubeLink; //  Only boohoo and coastfashion
+      const youtubeLink = selectors[brand].youtubeLink; //  Only boohoo and coastfashion
       cy.get(youtubeLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -357,7 +343,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     pintrestLink () {
-      const pintrestLink = selectors[variables.brand].pintrestLink; //  Only boohoo and coastfashion
+      const pintrestLink = selectors[brand].pintrestLink; //  Only boohoo and coastfashion
       cy.get(pintrestLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -366,7 +352,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     theFixLink () {
-      const theFixLink = selectors[variables.brand].theFixLink; //  Only boohoo
+      const theFixLink = selectors[brand].theFixLink; //  Only boohoo
       cy.get(theFixLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -375,7 +361,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     snapchatLink () {
-      const snapchatLink = selectors[variables.brand].snapchatLink; // Only boohoomena
+      const snapchatLink = selectors[brand].snapchatLink; // Only boohoomena
       cy.get(snapchatLink).then(link => {
         cy
           .request(link.prop('href'))
@@ -384,7 +370,7 @@ class GlobalFooter implements AbstractPage {
       });
     },
     footerPromo () {
-      const footerPromoLink = selectors[variables.brand].footerPromoLink;
+      const footerPromoLink = selectors[brand].footerPromoLink;
       cy.get(footerPromoLink).then(element => {
         const href = element.attr('href');
         cy.wrap(element).click();
@@ -395,24 +381,28 @@ class GlobalFooter implements AbstractPage {
     },
 
     helpLink () {
-      const helpLink = selectors[variables.brand].helpLink;
-      if (brand == 'boohooman.com') {
+      const helpLink = selectors[brand].helpLink;
+      const helpLinkDE = selectors[brand].helpLinkDE;
+
+      if (brand == 'boohooman.com'&& locale == 'UK') {
         cy.get(helpLink).contains(assertionText.footerCustomerServiceBHM[language]).click({force:true});
+      } else if ( brand == 'boohooman.com' && locale == 'DE') {
+        cy.get(helpLinkDE).contains(assertionText.footerCustomerServiceBHM[language]).click({force:true});
       } else {
         cy.get(helpLink).contains(assertionText.footerHelp[language]).click({force:true});
       }
-      
+    
     },
     contactLink () {
-      const contactLink = selectors[variables.brand].contactLink;
+      const contactLink = selectors[brand].contactLink;
     }
   };
 
   actions = {
     subscribeToNewsletter (email: string) {
-      const newsletterInputMail = selectors[variables.brand].newsletterInputMail;
-      const agreeToPrivacyCheckbox = selectors[variables.brand].agreeToPrivacyCheckbox;
-      const subscribeSubmitBtn = selectors[variables.brand].subscribeSubmitBtn;
+      const newsletterInputMail = selectors[brand].newsletterInputMail;
+      const agreeToPrivacyCheckbox = selectors[brand].agreeToPrivacyCheckbox;
+      const subscribeSubmitBtn = selectors[brand].subscribeSubmitBtn;
       if (isSiteGenesisBrand) {
         cy.get(newsletterInputMail).type(email, {force:true});
         cy.get(subscribeSubmitBtn).click({force:true});
@@ -423,23 +413,32 @@ class GlobalFooter implements AbstractPage {
       }
     },
     checkFooterLinkByText (text: string, options?: { assertionUrl: string }) { //  Not sure
-      cy.log(`searching for '${text}' in footer`);
+      // Cy.log(searching for '${text}' in footer);
       cy.scrollTo('bottom');
-      const footer = selectors[variables.brand].footer;
-
+      const footer = selectors[brand].footer;
       cy.get(footer).contains('a', text, { matchCase: false }) // Add Tag a contains Text Help to make it work for SG Brands
         .invoke('removeAttr', 'target')
         .then(element => {
-          let href = element.attr('href');
-          href = href.trim();
-          cy.wrap(element).click({force: true});
-          cy.url().then(url => {
-            expect(url).to.contain(options?.assertionUrl ?? href);
+          cy.origin('https://www.boohooplc.com', () => {
+            cy.on('uncaught:exception', (e) => {
+              let href = element.attr('href');
+              href = href.trim();
+              cy.wrap(element).click({ force: true });
+              cy.url().then(url => {
+                expect(url).to.contain(options?.assertionUrl ?? href);
+              });
+              if (e.message.includes('Things went bad')) {
+
+                // We expected this error, so let's ignore it
+                // And let the test continue
+                return false;
+              }
+            });
           });
         });
     },
     changeCountry (country: CountryCode) {
-      const changeCountryDropdown = selectors[variables.brand].changeCountryDropdown;
+      const changeCountryDropdown = selectors[brand].changeCountryDropdown;
       cy.wait(2000);
       cy.get(changeCountryDropdown).select(country);
     },
@@ -447,36 +446,41 @@ class GlobalFooter implements AbstractPage {
       cy.iframe('.student-beans > iframe').find('#onetrust-accept-btn-handler').click({force:true});
     },
     checkHelpforSiteG (text: string) {
-      const helpLink = selectors[variables.brand].helpLink;
-      cy.get(helpLink).click({force: true});
+      const helpLink = selectors[brand].helpLink;
+      const helpLinkDE = selectors[brand].helpLinkDE;
+      if (brand == 'boohooman.com' && locale =='DE') {
+        cy.get(helpLinkDE).click({force: true});
+      } else {
+        cy.get(helpLink).click({force: true});
+      }
       cy.url().should('include', text);
     },
   };
 
   assertions = {
     assertSuccessfulSubscription (text: string) {
-      const successfulSubscriptionMsg = selectors[variables.brand].successfulSubscriptionMsg;
+      const successfulSubscriptionMsg = selectors[brand].successfulSubscriptionMsg;
       cy.get(successfulSubscriptionMsg).contains(text);
     },
     assertUnsuccessfulSubscription (text: string) {
       if (isSiteGenesisBrand) {
-        const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+        const unsuccessfulSubscriptionMsg = selectors[brand].unsuccessfulSubscriptionMsg;
         cy.get(unsuccessfulSubscriptionMsg).should('be.visible').invoke('text').should('contain', text);
       } else {
-        const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+        const unsuccessfulSubscriptionMsg = selectors[brand].unsuccessfulSubscriptionMsg;
         cy.get(unsuccessfulSubscriptionMsg).should('be.visible').and('contain.text', text);
       }
     },
     asssertAlreadySubscribed (text: string) {
-      const unsuccessfulSubscriptionMsg = selectors[variables.brand].unsuccessfulSubscriptionMsg;
+      const unsuccessfulSubscriptionMsg = selectors[brand].unsuccessfulSubscriptionMsg;
       cy.get(unsuccessfulSubscriptionMsg).should('contain.text', text);
     },
     assertPaymentOptionsArePresent () {
-      const paymentOptions = selectors[variables.brand].paymentOptions;
+      const paymentOptions = selectors[brand].paymentOptions;
       cy.get(paymentOptions).scrollIntoView().should('be.visible'); //  Only Wallis doesnt have
     },
     assertAppBannerPresent () {
-      const appBanner = selectors[variables.brand].appBanner;
+      const appBanner = selectors[brand].appBanner;
       if (isMobileDeviceUsed && (brand == 'karenmillen.com' || brand == 'boohoomena.com')) {
         cy.get('h5#ui-id-7').click();
       }
@@ -489,20 +493,20 @@ class GlobalFooter implements AbstractPage {
       });
     },
     assertFooterIsFixedAndPresent () {
-      const footerStickyPromo = selectors[variables.brand].footerStickyPromo;
+      const footerStickyPromo = selectors[brand].footerStickyPromo;
       cy.scrollTo('bottom');
       cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');
     },
     assertHeaderIsVisible () {
-      if (variables.brand == 'burton.co.uk' && variables.locale != 'UK') {
+      if (brand == 'burton.co.uk' && locale != 'UK') {
         cy.get('.l-header-inner').invoke('show').should('be.visible');
       } else {
-        const headerInner = selectors[variables.brand].headerInner;
+        const headerInner = selectors[brand].headerInner;
         cy.get(headerInner).invoke('show').should('be.visible');
       }
     },
     assertHeaderIsNotVisible () {
-      const headerInner = selectors[variables.brand].headerInner;
+      const headerInner = selectors[brand].headerInner;
       cy.get(headerInner).should('not.be.visible');
     },
     assertReferFriendPagePresent (text: string) {

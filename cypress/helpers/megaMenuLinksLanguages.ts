@@ -3,14 +3,14 @@ class megaMenuLinksLanguages {
   AllClothing: TranslationMap = { 
     EN: 'CLOTHING',
     NL: 'KLEDING',
-    DE: 'BEKLEIDUNG',
+    DE: 'KLEIDUNG',
     FR: 'VÊTEMENTS',
     DK: 'CLOTHING',
     FI: 'CLOTHING',
     NO: 'ALL CLOTHING',
     SE: 'ALLA KLÄDER',
     IL: 'כל הבגדים',
-    IT: 'TUTTO L/`ABBIGLIAMENTO',
+    IT: 'ABBIGLIAMENTO',
     ES: 'TODA LA ROPA',
   };
 
@@ -31,7 +31,7 @@ class megaMenuLinksLanguages {
   linkArkadiaNewIn: TranslationMap = { 
     EN: 'New',
     NL: 'NIEUW',
-    DE: '',
+    DE: 'JETZT NEU',
     FR: 'NOUVEAUTÉS',
     DK: '',
     FI: '',
@@ -59,13 +59,13 @@ class megaMenuLinksLanguages {
   subnavClothingNewIn: TranslationMap = {
     EN: 'New In',
     NL: 'Nieuw Binnen',
-    DE: 'Neu eingetroffen',
+    DE: 'NEU EINGETROFFEN',
     FR: 'Nouveautés',
     DK: 'New In',
     FI: 'New In',
     NO: 'New In',
     SE: 'Nyheter',
-    IL: '',
+    IL: 'פריטים חדשים',
     IT: 'Nuovi arrivi',
     ES: 'Novedades',
   };
@@ -87,7 +87,7 @@ class megaMenuLinksLanguages {
   subnavClothingNewInURL: TranslationMap = {
     EN: 'new',
     NL: 'nieuw-binnen',
-    DE: 'neuheiten',
+    DE: 'neu',
     FR: 'nouveautés',
     DK: 'new',
     FI: 'new',
@@ -135,7 +135,7 @@ class megaMenuLinksLanguages {
     FI: 'SALE',
     NO: 'SALE',
     SE: 'REA',
-    IL: '',
+    IL: 'מבצע',
     IT: 'SALDI',
     ES: 'REBAJAS'
   };
@@ -144,7 +144,7 @@ class megaMenuLinksLanguages {
     EN: 'Sale',
     FR: 'Promos',
     NL: 'UITVERKOOP',
-    DE: '',
+    DE: 'Sale',
     DK: '',
     FI: '',
     NO: '',
@@ -163,7 +163,7 @@ class megaMenuLinksLanguages {
     FI: 'All Sale',
     NO: 'All Sale',
     SE: 'Alla Reaprodukter',
-    IL: '',
+    IL: 'כל המבצעים',
     IT: 'Tutti i saldi',
     ES: 'Todas las rebajas'
   };
@@ -172,7 +172,7 @@ class megaMenuLinksLanguages {
     EN: 'SALE',
     FR: 'SOLDES',
     NL: 'NIEUWE',
-    DE: '',
+    DE: 'SALE',
     DK: '',
     FI: '',
     NO: '',
@@ -186,7 +186,7 @@ class megaMenuLinksLanguages {
     EN: 'All Sale',
     FR: 'Toutes les Soldes',
     NL: 'nieuw',
-    DE: 'Alles im Sale',
+    DE: 'ALLES IM SALE',
     DK: 'All Sale',
     FI: 'All Sale',
     NO: 'All Sale',
@@ -205,23 +205,23 @@ class megaMenuLinksLanguages {
     FI: 'sale',
     NO: 'sale',
     SE: 'rea',
-    IL: '',
+    IL: 'sale',
     IT: 'sconti',
     ES: 'rebajas'
   };
 
   urlValidationNewIn: TranslationMap = {
-    EN: 'new',
+    EN: 'new-in',
     NL: 'nieuw-binnen',
-    DE: 'neuheiten',
-    FR: 'nouveautes',
+    DE: 'neu-eingetroffen',
+    FR: 'vetements',
     DK: 'new',
     FI: 'new',
     NO: 'new',
     SE: 'nyheter',
-    IL: '',
-    IT: 'Nuovi arrivi',
-    ES: 'Novedades',
+    IL: 'new',
+    IT: 'nuovi',
+    ES: 'novedades',
   };
 
 }

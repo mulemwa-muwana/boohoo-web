@@ -5,16 +5,17 @@ import LoginPage from 'cypress/pom/login.page';
 import Cards from '../../helpers/cards';
 import ShippingPage from 'cypress/pom/shipping.page';
 import CartPage from 'cypress/pom/cart.page';
+import { brand, language, locale, url,fullSku } from 'cypress/support/e2e';
 
-const variables = Cypress.env() as EnvironmentVariables;
+// Const variables = Cypress.env() as EnvironmentVariables;
 
 describe('Boohoo order placement', () => {
 
   beforeEach(() => {
-    cy.createUser(variables.brand).then((credentials: NewCustomerCredentials) => {
+    cy.createUser(brand).then((credentials: NewCustomerCredentials) => {
       cy.log(credentials.email, credentials.password);
 
-      cy.prepareUser(credentials, variables.brand, variables.fullSku);
+      cy.prepareUser(credentials, brand, fullSku);
       LoginPage.goto();
       LoginPage.actions.loginViaPage(credentials.email, credentials.password);
       cy.wait(2000);
@@ -22,9 +23,10 @@ describe('Boohoo order placement', () => {
       CartPage.click.proceedToCheckout();
     });
 
-    const localeAddress = Addresses.getAddressByLocale(variables.locale, 'primaryAddress');
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     ShippingPage.actions.firstNameField(localeAddress.firstName);
     ShippingPage.actions.lastNameField(localeAddress.lastName);
+      
     ShippingPage.actions.selectCountry(localeAddress.country);
     ShippingPage.actions.phoneNumberField(localeAddress.phone);
     
@@ -34,7 +36,7 @@ describe('Boohoo order placement', () => {
     ShippingPage.actions.adressLine1(localeAddress.addressLine);
     ShippingPage.actions.cityField(localeAddress.city);
     ShippingPage.actions.postcodeField(localeAddress.postcode);
-    if (variables.brand == 'boohoomena.com') {
+    if (brand == 'boohoomena.com') {
       ShippingPage.actions.countyField(localeAddress.county);
     }
     ShippingPage.click.proceedToBilling();
@@ -42,44 +44,44 @@ describe('Boohoo order placement', () => {
   });
 
   it('can select Credit Card as payment method and generate an artefact', function () {
-    const paymentMethod: PaymentMethod = getCardProviderByBrand(variables.brand, variables.locale);
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+    const paymentMethod: PaymentMethod = getCardProviderByBrand(brand, locale);
+    if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
       this.skip();
     }
 
     const visa = Cards.visa;
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
-    generateArtefact(variables.brand, paymentMethod);
+    generateArtefact(brand, paymentMethod);
   });
 
   it('can select Klarna as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Klarna';
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+    if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
       this.skip();
     }
 
     BillingPage.actions.selectKlarna();
-    generateArtefact(variables.brand, paymentMethod);
+    generateArtefact(brand, paymentMethod);
   });
 
   it.skip('can select PayPal as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'PayPal';
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+    if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
       this.skip();
     }
 
     BillingPage.actions.selectPayPal();
-    generateArtefact(variables.brand, paymentMethod);
+    generateArtefact(brand, paymentMethod);
   });
 
   it.skip('can select Clearpay as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Clearpay';
-    if (!isBrandSupportingPaymentMethod(variables.brand, paymentMethod)) {
+    if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
       this.skip();
     }
 
     BillingPage.actions.selectClearpay();
-    generateArtefact(variables.brand, paymentMethod);
+    generateArtefact(brand, paymentMethod);
   });
 
   // Method for generating artefact on OrderConfirmation page for back end tests.

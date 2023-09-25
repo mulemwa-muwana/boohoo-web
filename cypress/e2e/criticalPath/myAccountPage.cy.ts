@@ -74,7 +74,7 @@ describe('Account page', function () {
 
   it('TC05 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();
-    if ((brand=='boohoo.com'|| brand=='karenmillen.com') && locale=='US') {
+    if ((brand=='boohoo.com'|| brand=='karenmillen.com' || brand == 'misspap.com') && locale=='US') {
       MyAccountPage.actions.addCardUS(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.month, Cards.visa.year ,Cards.visa.date );
     } else {
       MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.date, Cards.visa.code);
@@ -86,21 +86,13 @@ describe('Account page', function () {
   });
 
   it('TC06 Verify that Social Accounts section can be opened in My Account page', function () {
-<<<<<<< HEAD
-    if (brand=='boohoo.com') {
-      MyAccountPage.click.socialAccountsLink();
-      MyAccountPage.assertions.assertTwitterLinkPresent();
-      MyAccountPage.assertions.assertFacebookLinkPresent();
-    }
-=======
     if ((brand=='boohoo.com' || brand=='nastygal.com') && locale=='UK') {
-    MyAccountPage.click.socialAccountsLink();
-    MyAccountPage.assertions.assertFacebookLinkPresent();
-    if (brand=='boohoo.com' && locale=='UK') {
-      MyAccountPage.assertions.assertTwitterLinkPresent();
+      MyAccountPage.click.socialAccountsLink();
+      MyAccountPage.assertions.assertFacebookLinkPresent();
+      if (brand=='boohoo.com' && locale=='UK') {
+        MyAccountPage.assertions.assertTwitterLinkPresent();
+      }
     }
-  }
->>>>>>> 9955dac50fce868bf47db6fbec83f0d6aba07413
   });
   it('TC07 Verify that user can link to Facebook account', function () {
     if (brand=='boohoo.com') {
@@ -110,12 +102,8 @@ describe('Account page', function () {
       homePage.assertions.assertLinkIsOpeningCorrectPage('facebook');
     }
   });
-  it('TC07 Verify that user can link to Twitter account', function () {
-<<<<<<< HEAD
-    if (brand=='boohoo.com') {
-=======
+  it('TC08 Verify that user can link to Twitter account', function () {
     if (brand=='boohoo.com' && locale=='UK') {
->>>>>>> 9955dac50fce868bf47db6fbec83f0d6aba07413
       MyAccountPage.click.socialAccountsLink();
       MyAccountPage.assertions.assertTwitterLinkPresent();
       MyAccountPage.click.twitterLink();

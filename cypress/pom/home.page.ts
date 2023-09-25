@@ -31,7 +31,18 @@ const selectors: SelectorBrandMap = {
     selectGender:'select#sizeGuideGender', 
     selectCategory: 'select#sizeGuideCategory',
     selectFit: 'select#sizeGuideFit',
-    countryBtn:'.b-country-select'
+    countryBtn:'.b-country-select.b-select-input.m-country',
+    backInStockLink: '#womens > div > ul > li:nth-child(3) > div > div.b-menu_bar-flyout_inner.m-tab_womens > div:nth-child(1) > div > div > div:nth-child(2) > a',
+    allShoesLink: 'a[href="https://uk-dwdev.boohoo.com/womens/shoes"]',
+    investorRelationsAcceptBtn: 'cc-saveAll-startBtn',
+    forgetPasswordLink: 'button[data-tau="login_password_reset"]', 
+    forgetPasswordPopupWindow: '.b-dialog-window',
+    resetPasswordEmailBox: '#dwfrm_profile_resetPassword_email',
+    resetPasswordButton: 'button[data-tau="forgot_password_submit"]',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -51,6 +62,10 @@ const selectors: SelectorBrandMap = {
     loginIconMobile: '.m-login',
     registrationButtonMobiles:'[class="b-menu_panel-guest_action m-register"]',
     countryBtn: '#country-switcher-menu',
+    dialogPopupNG: '.b-dialog.m-opened',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title'
   },
   'dorothyperkins.com': {
     minicartIcon: '.b-minicart_icon-link',
@@ -68,7 +83,11 @@ const selectors: SelectorBrandMap = {
     logo: '#main-menu>a.b-logo',
     logoMobile: '.l-logo-container>a[class="b-logo"]',
     hamburgerMenu: '#main-navigation-toggle',
-    loginIconMobile: '.m-login'
+    loginIconMobile: '.m-login',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'burton.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -87,7 +106,11 @@ const selectors: SelectorBrandMap = {
     logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
-    countryBtn: '#country-switcher-menu'
+    countryBtn: '#country-switcher-menu',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'wallis.co.uk': {
     minicartIcon: '.b-minicart_icon-link',
@@ -106,7 +129,11 @@ const selectors: SelectorBrandMap = {
     logoMobile: '.b-logo',
     hamburgerMenu: '#main-navigation-toggle',
     loginIconMobile: '.m-login',
-    countryBtn: '#country-switcher-menu'
+    countryBtn: '#country-switcher-menu',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'boohooman.com': {
     minicartIcon: "[class='js-minicart-quantity minicart-quantity-value is-mobile']",
@@ -126,7 +153,11 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
     countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
-    countryList: 'div[class="selector active"]'
+    countryList: 'div[class="selector active"]',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -147,7 +178,11 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
     countryBtn: '.current-country-arrow > .flag-icon',
-    countryList: '.selector>div>div'
+    countryList: '.selector>div>div',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'coastfashion.com': {
     minicartIcon: '.mini-cart-total>.mini-cart-link',
@@ -165,7 +200,11 @@ const selectors: SelectorBrandMap = {
     logo: 'a.primary-logo-link',
     logoMobile: '.logo-svg',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'warehousefashion.com': {
     minicartIcon: '.mini-cart-link',
@@ -185,7 +224,11 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '.menu-toggle',
     countryBtn: '.current-country-arrow > .flag-icon',
     countryList: '.selector>div>div',
-    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'oasis-stores.com': {
     minicartIcon: '.mini-cart-link',
@@ -204,7 +247,11 @@ const selectors: SelectorBrandMap = {
     logo: '.primary-logo-link',
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]'
+    loginIconMobile: '#mobile-navigation div div div div div a[href*="login"]',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'misspap.com': {
     minicartIcon: '.mini-cart-link',
@@ -224,7 +271,11 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: '.header-customer-info',
     countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
-    countryList: 'div[class="selector active"]'
+    countryList: 'div[class="selector active"]',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'boohoomena.com': {
     minicartIcon: '.mini-cart-link',
@@ -242,8 +293,11 @@ const selectors: SelectorBrandMap = {
     hamburgerMenu: '.menu-toggle',
     loginIconMobile: ':nth-child(1) > .user-link-item',
     countryBtn: '.js-header-right-box > .js-appshell-uncached-countryselector-container > .header-countryselector > .content-asset > .country-selector > .current-country > .current-country-arrow > .flag-icon',
-    countryList: '.selector>div>div'
-    
+    countryList: '.selector>div>div',
+    myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
+    myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
+    logInSlideManuTitle: '.b-miniaccount-title',
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   }
   
 };
@@ -259,12 +313,18 @@ class HomePage implements AbstractPage {
 
       // It needs to be set again when linking to another page.
     }
-    if (brand == 'misspap.com' && locale == 'UK') { // To make Klarna option available for Misspap UK 
+    if (brand == 'misspap.com' && locale == 'UK') { // To make Klarna option available for Misspap UK, IE and AU 
       cy.setCookie('billingCountryCode','GB');
       cy.setCookie('dw_locale', 'en_GB');
     } else if (brand == 'misspap.com' && locale == 'IE') {
       cy.setCookie('billingCountryCode','IE');
       cy.setCookie('dw_locale','en_IE');
+    } else if (brand == 'misspap.com' && locale == 'AU') {
+      cy.setCookie('billingCountryCode','AU');
+      cy.setCookie('dw_locale','en_AU');
+    } else if (brand == 'misspap.com' || locale == 'US') {
+      cy.setCookie('billingCountryCode','US');
+      cy.setCookie('dw_locale','en_US');
     }
   
     cy.visit(url);
@@ -349,16 +409,19 @@ class HomePage implements AbstractPage {
 
     //  SUB-LINKS FROM MEGA MENU
     backInStockLink (opts = { force: true }) {
-      cy.get('#womens > div > ul > li:nth-child(3) > div > div.b-menu_bar-flyout_inner.m-tab_womens > div:nth-child(1) > div > div > div:nth-child(2) > a').click({ force: opts.force });
+      const backInStockLink = selectors[brand].backInStockLink;     
+      cy.get(backInStockLink).click({ force: opts.force });
     },
     allShoesLink (opts = { force: true }) {
-      cy.get('a[href="https://uk-dwdev.boohoo.com/womens/shoes"]').click({ force: opts.force });
+      const allShoesLink = selectors[brand].allShoesLink;     
+      cy.get(allShoesLink).click({ force: opts.force });
     },
     nastyBlogLink (text: string) {
       cy.contains(text).click({force:true});
     },
     investorRelationsAcceptBtn () {
-      cy.get('cc-saveAll-startBtn').click(); 
+      const investorRelationsAcceptBtn = selectors[brand].investorRelationsAcceptBtn;     
+      cy.get(investorRelationsAcceptBtn).click(); 
     },
     expandHamburgerMenu () {
       const hamburgerMenu = selectors[brand].hamburgerMenu;     
@@ -387,15 +450,22 @@ class HomePage implements AbstractPage {
       cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
     },
     forgotPassword (email: string) {
-      cy.get('button[data-tau="login_password_reset"]').click();
-      cy.get('.b-dialog-window').should('be.visible');
-      cy.get('#dwfrm_profile_resetPassword_email').type(email);
-      cy.get('button[data-tau="forgot_password_submit"]', { timeout: 6000 }).click();
+      const forgetPasswordLink = selectors[brand].forgetPasswordLink;     
+      const forgetPasswordPopupWindow = selectors[brand].forgetPasswordPopupWindow;     
+      const resetPasswordEmailBox = selectors[brand].resetPasswordEmailBox;     
+      const resetPasswordButton = selectors[brand].resetPasswordButton;     
+
+      cy.get(forgetPasswordLink).click();
+      cy.get(forgetPasswordPopupWindow).should('be.visible');   
+      cy.get(resetPasswordEmailBox).type(email);
+      cy.get(resetPasswordButton, { timeout: 6000 }).click();
     },
     closeNastygalPopup () {
+      const dialogPopupNG = selectors[brand].dialogPopupNG;     
+
       cy.get('body').then($body => {
-        if ($body.find('.b-dialog.m-opened').length > 0) {
-          cy.get('.b-dialog.m-opened').invoke('attr', 'style', 'visibility:hidden!important;');
+        if ($body.find(dialogPopupNG).length > 0) {
+          cy.get(dialogPopupNG).invoke('attr', 'style', 'visibility:hidden!important;');
         }
       });
 
@@ -403,7 +473,7 @@ class HomePage implements AbstractPage {
     closeSearchFieldForMobiles () {
 
       // If Mobile Device is used
-      const searchFieldCloseMobile = selectors[brand].searchFieldCloseMobile;
+      const searchFieldCloseMobile = selectors[brand].searchFieldCloseMobile;  
       if (isMobileDeviceUsed) {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
@@ -455,9 +525,13 @@ class HomePage implements AbstractPage {
 
   assertions = {
     assertUserPanelTitle (name: string) {
-      cy.get('.b-header_login-icon > .i-icon').click();
-      cy.get(':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label').click();
-      cy.get('.b-user_greeting-message').should('contain.text', name);
+      const loginIcon = selectors[brand].loginIcon;
+      const myAccountTileSlideMenu = selectors[brand].myAccountTileSlideMenu;     
+      const myaccountUserPanelGreetingMsg = selectors[brand].myaccountGreetingMsg;     
+
+      cy.get(loginIcon).click();
+      cy.get(myAccountTileSlideMenu).click();
+      cy.get(myaccountUserPanelGreetingMsg).should('contain.text', name);
     },
 
     // Search assertions
@@ -493,7 +567,9 @@ class HomePage implements AbstractPage {
       // TODO.
     },
     assertUserIsNotLoggedIn (msg: string) {
-      cy.get('.b-miniaccount-title').should('contain.text', msg);
+      const logInSlideManuTitle = selectors[brand].logInSlideManuTitle;
+
+      cy.get(logInSlideManuTitle).should('contain.text', msg);
     },
 
     // SizeGuide asserstions
@@ -583,7 +659,9 @@ class HomePage implements AbstractPage {
       cy.url().should('include', country);
     },
     assertPromoLinkHeaderIsVisible () {
-      cy.get('div[class="b-hero_carousel-item m-promotion m-current"]').should('be.visible').click();
+      const promoLinkCurrentSlide = selectors[brand].promoLinkCurrentSlide;
+
+      cy.get(promoLinkCurrentSlide).should('be.visible').click();
     },
     assertEnergySaverVisible () {
       const energySaver = selectors[brand].energySaver;

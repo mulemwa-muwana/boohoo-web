@@ -301,10 +301,13 @@ const selectors: SelectorBrandMap = {
     ordersLink: 'a[data-tau="navigation_orderHistory"]',
     wishListBtn: 'a[data-tau="navigation_wishlistShow"]',
     accountDetails: 'a[data-tau="navigation_editProfile"]',
+    accountDetailsDE: 'a[title="Persönliche Angaben anzeigen oder aktualisieren"]',
     changePassword: 'a[data-tau="navigation_passwordChange"]',
     contactPreferences: 'a[data-tau="navigation_contactPreferences"]',
     accountAddresses: 'a[title*="addresses"][href*="addresses"]',
+    accountAddressesDE: 'a[title="Rechnungs- und Lieferadressen verwalten"]',
     paymentDetails: 'a[title$="credit cards"]',
+    paymentDetailsDE: 'a[title="Kreditkarten verwalten"]',
     viewOrderBtn: 'a[data-tau="orders_viewOrder"]',
     socialAccounts: '.b-account_nav-item_link m-happySmile',
     myPremier: 'a[data-tau="navigation_accountPremier"]',
@@ -348,6 +351,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: 'a[data-tau="orders_load_more',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: '.account-nav-content [title*="personal information"]',
+    accountDetailsLinkDE: 'a[title="Persönliche Angaben anzeigen oder aktualisieren"]',
     orderHistoryLink: 'a[href*="order-history"]',
     viewNewestOrderDetails: 'button[class="order-details-btn"]',
     addressCards:'.account-page-list-inner',
@@ -624,7 +628,11 @@ const selectors: SelectorBrandMap = {
     proceedToBillingBtn: '.verification-address-button-container .verification-address-button',
     addressDeleteBtn: '.address-delete-link',
     creditCardsList: '.account-payments',
+    addCreditCardNumberUS:'#cc_cardNumber',
+    addCreditCardOwnerUS: '#dwfrm_paymentinstruments_creditcards_newcreditcard_owner',
     addCreditCardBtn: '.add-card',
+    addCreditCardExpDateUS: '#cc_expDate',
+    addCreditCardSaveBtnUS: '#applyBtn',
     addCreditCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
     addCreditCardOwner: '[id^="adyen-checkout-holderName"]',
     addCreditCardExpDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
@@ -775,8 +783,10 @@ class MyAccountPage implements AbstractPage {
       },
       accountDetailsLink () {
         const accountDetailsLink = selectors[variables.brand].accountDetailsLink;
-        if (brand == 'boohoo.com' && locale == 'AU') {
-          cy.get('a[class="b-account_nav-item_link m-user"]').should('be.visible').click({force: true});
+        const accountDetailsLinkDE = selectors[variables.brand].accountDetailsLinkDE;
+
+        if (brand == 'boohooman.com' && locale == 'DE') {
+          cy.get(accountDetailsLinkDE).should('be.visible').click({force: true});
         } else {
           cy.get(accountDetailsLink).should('be.visible').click({force: true});
         }
@@ -784,11 +794,21 @@ class MyAccountPage implements AbstractPage {
       },
       addressesLink () {
         const accountAddresses = selectors[variables.brand].accountAddresses;
-        cy.get(accountAddresses).should('be.visible').click({ force: true });
+        const accountAddressesDE = selectors[variables.brand].accountAddressesDE;
+        if (brand == 'boohooman.com' && locale == 'DE') {
+          cy.get(accountAddressesDE).should('be.visible').click({ force: true });
+        } else {
+          cy.get(accountAddresses).should('be.visible').click({ force: true });
+        }
       },
       paymentDetailsLink () {
         const paymentDetails = selectors[variables.brand].paymentDetails;
-        cy.get(paymentDetails).should('be.visible').click({force:true});
+        const paymentDetailsDE = selectors[variables.brand].paymentDetailsDE;
+        if (brand == 'boohooman.com' && locale == 'DE') {
+          cy.get(paymentDetailsDE).should('be.visible').click({ force: true });
+        } else {
+          cy.get(paymentDetails).should('be.visible').click({force:true});
+        }
       },
       socialAccountsLink () {
         const socialAccounts = selectors[variables.brand].socialAccounts;
@@ -965,13 +985,13 @@ class MyAccountPage implements AbstractPage {
 
         cy.get(addCreditCardNumberUS).type(cardNumber);
         cy.get(addCreditCardOwnerUS).click({ force: true }).should('be.visible').type(cardOwner);
-        if (brand == 'karenmillen.com' && locale == 'US') {
+        if ((brand == 'karenmillen.com' || brand == 'misspap.com') && locale == 'US') {
           cy.get(addCreditCardExpDateUS).type(date);
         } else {
           cy.get(addCreditCardExpMonthUS).select(3).invoke('val').should('eq', '3');
           cy.get(addCreditCardExpYearUS).select(8) .invoke('val').should('eq', '2030');
         }
-        if (brand == 'karenmillen.com' && locale == 'US') {
+        if ((brand == 'karenmillen.com' || brand == 'misspap.com') && locale == 'US') {
           cy.get(addCreditCardSaveBtnUS).click({ force: true });
         } else {
           cy.get(addCreditCardSaveBtn).click({ force: true });

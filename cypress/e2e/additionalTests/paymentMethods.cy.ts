@@ -30,6 +30,29 @@ describe('Additional payment methods for guest user', function () {
     generateFrontendArtefact(brand, paymentMethod);
 
   });
+
+  it('Verify that guest user can place order with Klarna', function () {
+    if (brand == 'boohooman.com' && (locale == 'AU'||locale == 'US')) {
+      this.skip();
+    }
+    if (locale == 'UK' || locale == 'IE' || locale == 'AU'|| locale == 'NL' || locale == 'US') {
+      Navigate.toBillingPage('GuestUser');
+      if (!isSiteGenesisBrand) {
+        billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
+      }
+      if ((brand == 'boohoo.com' || brand == 'boohooman.com') && locale =='NL') {
+        billingPage.actions.selectKlarnaBoohooNl();
+      } else {
+        billingPage.actions.selectKlarna();
+      }
+
+      billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    } else {
+      this.skip();
+    }
+    const paymentMethod: PaymentMethod = 'Klarna';
+    generateFrontendArtefact(brand, paymentMethod);
+  });
 });
 
 describe('Additional payment methods for registered user', function () {

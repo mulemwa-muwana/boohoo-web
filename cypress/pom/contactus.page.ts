@@ -7,6 +7,7 @@ const selectors: SelectorBrandMap = {
     twitterIcon: '.m-twitter-channel',
     facebookIcon: '.m-facebook-channel',
     emailIcon: '.m-email-channel',
+    emailOptions: '[class="b-accordion-content"]',
   },
   'nastygal.com': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
@@ -14,6 +15,7 @@ const selectors: SelectorBrandMap = {
     twitterIcon: '.m-twitter-channel',
     facebookIcon: '.m-facebook-channel',
     emailIcon: '.m-email-channel',
+    emailOptions: '[class="b-accordion-content"]',
   },
   'dorothyperkins.com': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
@@ -28,6 +30,7 @@ const selectors: SelectorBrandMap = {
     twitterIcon: '.m-twitter-channel',
     facebookIcon: '.m-facebook-channel',
     emailIcon: '.m-email-channel',
+    emailOptions: '[class="b-accordion-content"]',
   },
   'wallis.co.uk': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
@@ -41,14 +44,17 @@ const selectors: SelectorBrandMap = {
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
     facebookIcon:'[class="contact-channel facebook-channel"]',
-    emailIcon:'[class="contact-channel js-contact-channel-email"]'
+    emailIcon:'[class="contact-channel js-contact-channel-email"]',
+    emailOptions: '[class="js-contactus-form form-horizontal"]',
+    
   },
   'karenmillen.com': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
     facebookIcon:'[class="contact-channel facebook-channel"]',
-    emailIcon:'[class="contact-channel js-contact-channel-email"]'
+    emailIcon:'[class="contact-channel js-contact-channel-email"]',
+    emailOptions: '[class="cs_contactus-title"]',
   },
   'coastfashion.com': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
@@ -79,7 +85,8 @@ const selectors: SelectorBrandMap = {
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.contact-channel twitter-channel',
     facebookIcon:'[class="contact-channel facebook-channel"]',
-    emailIcon:'[class="contact-channel js-contact-channel-email"]'
+    emailIcon:'[class="contact-channel js-contact-channel-email"]',
+    emailOptions: '[class="js-contactus-form form-horizontal"]',
   },
   'boohoomena.com': {
     instagram: 'a[href="https://www.instagram.com/boohoo/"] > svg > path',
@@ -97,7 +104,13 @@ class ContactUsPage implements AbstractPage {
     throw new Error('No goto href for the global footer, try HomePage.goto()');
   }
 
-  click = { };
+  click = {
+    emailIconOption () {
+      cy.wait(4000);
+      const emailIcon = selectors[variables.brand].emailIcon;
+      cy.get(emailIcon).invoke('show').click({ multiple: true });
+    },
+   };
   actions = { };
   assertions = {
     assertTwitterIconIsNotPresent () {
@@ -121,6 +134,10 @@ class ContactUsPage implements AbstractPage {
         cy.scrollTo('top');
       }
       cy.get(emailIcon).should('be.visible');
+    },
+    assertEmailOptionsPresent () {
+      const emailOptions = selectors[variables.brand].emailOptions;
+      cy.get(emailOptions).should('be.visible');
     }
   };
 

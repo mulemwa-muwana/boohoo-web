@@ -708,8 +708,10 @@ describe('Home Page', function () {
         }
         contactusPage.assertions.assertFacebookIconIsPresent();
       });
-      it('Verify that Email link is present and functional', () => {
+      it('Verify that Email link and options are present and functional', () => {
         contactusPage.assertions.assertEmailIconIsPresent();
+        contactusPage.click.emailIconOption();
+        contactusPage.assertions.assertEmailOptionsPresent();
       });
     });
 

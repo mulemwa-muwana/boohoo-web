@@ -22,6 +22,8 @@ const selectors: SelectorBrandMap = {
     emailError: '#dwfrm_registration_customer_email-error',
     emailForRegistration: '#dwfrm_registration_customer_email',
     confirmEmailForRegistration: '#dwfrm_registration_login_passwordconfirm',
+    continueButton: 'button[data-id="continueButton"]',
+    confirmEmailCheckboxNonSiteGenesisBrands: '#dwfrm_registration_customer_emailregistationconfirm'
   },
   'nastygal.com': {
     registrationForm: 'form.b-form',
@@ -41,6 +43,7 @@ const selectors: SelectorBrandMap = {
     emailError: '#dwfrm_registration_customer_email-error',
     emailForRegistration: '#dwfrm_registration_customer_email',
     confirmEmailForRegistration: '#dwfrm_registration_login_passwordconfirm',
+    confirmEmailCheckboxNonSiteGenesisBrands: '#dwfrm_registration_customer_emailregistationconfirm'
   },
   'dorothyperkins.com': {
     registrationForm: 'form.b-form',
@@ -117,6 +120,7 @@ const selectors: SelectorBrandMap = {
     emailError: 'div[class^="error error-message"]',
     emailForRegistration: '#dwfrm_profile_customer_email',
     confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
+    confirmEmailCheckboxSiteGenesisBrands: '#dwfrm_profile_customer_emailregistationconfirm'
   },
   'karenmillen.com': {
     registrationForm: '#RegistrationForm',
@@ -136,6 +140,7 @@ const selectors: SelectorBrandMap = {
     emailError: 'div[class="error error-message js-error-message"]',
     emailForRegistration: '#dwfrm_profile_customer_email',
     confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
+    confirmEmailCheckboxSiteGenesisBrands: '#dwfrm_profile_customer_emailregistationconfirm'
   },
   'coastfashion.com': {
     registrationForm: '#RegistrationForm',
@@ -212,6 +217,7 @@ const selectors: SelectorBrandMap = {
     emailError: 'div[class^="error error-message"]',
     emailForRegistration: '#dwfrm_profile_customer_email',
     confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
+    confirmEmailCheckboxSiteGenesisBrands: '#dwfrm_profile_customer_emailregistationconfirm'
   },
   'boohoomena.com': {
     registrationForm: '#RegistrationForm',
@@ -231,6 +237,7 @@ const selectors: SelectorBrandMap = {
     emailError: 'div[class^="error error-message"]',
     emailForRegistration: '#dwfrm_profile_customer_email',
     confirmEmailForRegistration: '#dwfrm_profile_customer_emailconfirm',
+    confirmEmailCheckboxSiteGenesisBrands: '#dwfrm_profile_customer_emailregistationconfirm'
   }
 };
 
@@ -269,21 +276,25 @@ class RegistrationPage implements AbstractPage {
     startRegistration (randomEmail: string) {
       const emailForRegistration = selectors[brand].emailForRegistration;
       const confirmEmailForRegistration = selectors[brand].confirmEmailForRegistration;
+      const continueButton = selectors[brand].continueButton;
       cy.get(emailForRegistration).click({force: true}).type(randomEmail);
       if (isSiteGenesisBrand) {
         cy.get(confirmEmailForRegistration).click({force: true}).type(randomEmail);
       }
       if (brand == 'boohoo.com') {
-        cy.get('button[data-id="continueButton"]').click();
+        cy.get(continueButton).click();
       }
     },
+
     confirmationCheckbox () {
-      if (!isSiteGenesisBrand) {
-        cy.get('#dwfrm_registration_customer_emailregistationconfirm').check({force:true});
-      } else {
-        cy.get('#dwfrm_profile_customer_emailregistationconfirm').check();
-      }
+      const confirmEmailCheckboxNonSiteGenesisBrands = selectors[brand].confirmEmailCheckboxNonSiteGenesisBrands;
+      const confirmEmailCheckboxSiteGenesisBrands = selectors[brand].confirmEmailCheckboxSiteGenesisBrands;
+
+      !isSiteGenesisBrand
+        ? cy.get(confirmEmailCheckboxNonSiteGenesisBrands).check({force:true})
+        : cy.get(confirmEmailCheckboxSiteGenesisBrands).check();
     },
+
     enterNewUserData (password: string, confirmPassword: string, firstName: string, lastName: string) {
       const passwordField = selectors[brand].passwordField;
       const passwordConfirmField = selectors[brand].passwordConfirmField;
@@ -313,7 +324,8 @@ class RegistrationPage implements AbstractPage {
       cy.get(registrationForm).should('be.visible');
     },
     assertCheckboxIsChecked () {
-      cy.get('#dwfrm_registration_customer_emailregistationconfirm').should('be.checked');
+      const confirmEmailCheckboxNonSiteGenesisBrands = selectors[brand].confirmEmailCheckboxNonSiteGenesisBrands;
+      cy.get(confirmEmailCheckboxNonSiteGenesisBrands).should('be.checked');
     },
     assertMyAcountPageIsOpened () {
       const myAccountUrl = selectors[brand].myAccountUrl;
@@ -327,9 +339,9 @@ class RegistrationPage implements AbstractPage {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailSiteGenesis[language]);
       } else {
         cy.get(emailError).should('be.visible').and('include.text', assertionText.RegistrationPageExistingEmailArcadia[language]);
-        
+
       }
-      
+
     }
 
   };

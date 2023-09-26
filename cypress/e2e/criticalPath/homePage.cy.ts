@@ -466,7 +466,7 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', function () {
+      it.skip('Verify that Footer Navigation Component is present and Links are functional - Investor Relations', function () { // Will update in the future
         if (brand == 'boohoo.com' || brand == 'warehousefashion.com' || brand == 'boohooman.com' || brand == 'boohoomena.com' || brand == 'coastfashion.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[language], { assertionUrl: 'www.boohooplc.com' });
         } else {
@@ -578,11 +578,12 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it.skip('Verify that Footer Navigation Component is present and Links are functional - BHM boohooMAN ACTIVE', () => {
-        if (brand == 'boohooman.com') {// Boohooman ACTIVE should not be in footer with all locales
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.boohooMANACTIVE[language]);
-        }
-      });
+
+      // It.skip('Verify that Footer Navigation Component is present and Links are functional - BHM boohooMAN ACTIVE', () => {
+      //  // if (brand == 'boohooman.com') {// Boohooman ACTIVE is not available now for all brands
+      //    // GlobalFooter.actions.checkFooterLinkByText(assertionText.boohooMANACTIVE[language]);
+      //   }
+      // });
 
       it('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
         if (brand == 'nastygal.com' && locale === 'US') {

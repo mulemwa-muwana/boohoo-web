@@ -5,7 +5,8 @@ import { isMobileDeviceUsed } from 'cypress/helpers/common';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     contactUsLink: '.b-folder_nav_list-sublist > :nth-child(7) > .b-folder_nav_list-link',
-    contactUsLinkMobile: '.m-contact-us.m-hide-md_up.b-folder_nav_list-link'
+    contactUsLinkMobile: '.m-contact-us.m-hide-md_up.b-folder_nav_list-link',
+    sizeGuide: "[data-panel-name='cs-size-guide']",
   },
   'nastygal.com': {
     contactUsLink: '.b-folder_nav_list-sublist > :nth-child(9) > .b-folder_nav_list-link',
@@ -73,6 +74,12 @@ class faqPage implements AbstractPage {
       } else {
         cy.get(contactUsLink).click({force:true});
       }
+    },
+
+   sizeGuide () {
+      const sizeGuide = selectors[brand].sizeGuide;
+      cy.get(sizeGuide).click({force:true})
+     
     }
   };
 

@@ -26,7 +26,7 @@ const selectors: SelectorBrandMap = {
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#LoqateAutocomplete',
-    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
     cartContainer: '.b-checkout_products',
     orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     promoCodeField: '#dwfrm_coupon_couponCode',
@@ -89,7 +89,7 @@ const selectors: SelectorBrandMap = {
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#LoqateAutocomplete',
-    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
     cartContainer: '[data-tau="checkout_products"]',
     orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     cartContainerMobile: '.b-checkout_products',
@@ -325,7 +325,7 @@ const selectors: SelectorBrandMap = {
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#address-autocomplete',
-    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
     cartContainer: '.summary-inner',
     orderSummaryOnShippingPage: '.summary-inner',
     cartContainerMobile: '.cart-row',
@@ -395,7 +395,7 @@ const selectors: SelectorBrandMap = {
     newAddedAddressBlock: '.checkout-address-form .address-summary',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#address-autocomplete',
-    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
     cartContainer: '.summary-inner',
     cartContainerMobile: '.cart-row',
     orderSummaryOnShippingPage: '.summary-inner',
@@ -417,7 +417,7 @@ const selectors: SelectorBrandMap = {
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
     countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
-    countyFieldIE: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state', 
+    countyFieldIE: '#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -650,7 +650,7 @@ const selectors: SelectorBrandMap = {
     newAddedAddressBlock: '.checkout-address-form .address-summary',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#address-autocomplete',
-    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
     cartContainer: '.summary-inner',
     orderSummaryOnShippingPage: '.summary-inner',
     cartContainerMobile: '.cart-row',
@@ -716,7 +716,7 @@ const selectors: SelectorBrandMap = {
     newAddedAddressBlock: '.checkout-address-form .address-summary',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#address-autocomplete',
-    enterManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
+    addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
     cartContainer: '.summary-inner',
     orderSummaryOnShippingPage: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
@@ -876,13 +876,8 @@ class ShippingPage implements AbstractPage {
       cy.get(PUDOlocations).click();
     },
     enterManuallyAddressDetails () {
-      const enterManually = selectors[brand].enterManually;
-      if (!isSiteGenesisBrand) {
-        if (brand=='boohoo.com') {
-          cy.get('[data-event-click="handleManualEnterClick"]').eq(0).click();
-        }
-        cy.get(enterManually).click({ force: true });
-      }
+      const addressEnterManualyBtn = selectors[brand].addressEnterManualyBtn;
+      cy.get(addressEnterManualyBtn).eq(0).click({ force: true });
     },
     clickAndCollectShipping () {
       const clickAndCollectTab= selectors[brand].clickAndCollectTab;
@@ -896,10 +891,10 @@ class ShippingPage implements AbstractPage {
         if ($btn.find(changeCollectionAddressBtn).length>0) {
           cy.get(changeCollectionAddressBtn).click();
         } else {
-          cy.get(pudoShippingMethod).click({force:true});          
+          cy.get(pudoShippingMethod).click({force:true});
         }
-      }); 
-    },         
+      });
+    },
     addThriftToCart () {
       const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
       cy.get(addThriftToCartBtn).click({ force: true });
@@ -962,7 +957,7 @@ class ShippingPage implements AbstractPage {
         } else {
           cy.get(shippingPhoneCode).select(phone.slice(0, 2));
         }
-   
+
         cy.get(shippingPhoneNumber).clear().type(phone.slice(2));
         cy.log(shippingPhoneNumber);
       } else {
@@ -1032,7 +1027,7 @@ class ShippingPage implements AbstractPage {
       cy.get(addressNicknameField).type(addressNickname);
     },
     selectShippingMethod (shippingMethod: string) {
-      const shippingMethodName = selectors[brand].shippingMethodName;    
+      const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
       cy.get(shippingMethodName).contains(shippingMethod).click({ force: true });
     },
@@ -1045,20 +1040,20 @@ class ShippingPage implements AbstractPage {
       const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;
       return cy.get(shippingMethodsNameList).eq(1).invoke('text').then((text) => {
         if ((brand == 'boohooman.com' && (locale == 'UK' || locale == 'IE'))|| brand == 'misspap.com' || (brand == 'karenmillen.com' && locale == 'IE')) {
-          return text.split('-')[0].trimEnd() as string;      
+          return text.split('-')[0].trimEnd() as string;
         } else if (brand == 'boohooman.com' && (locale == 'US' || locale == 'FR' || locale == 'NL' || locale == 'DE')) {
-          return text.split(':')[0].trimEnd() as string;  
+          return text.split(':')[0].trimEnd() as string;
         } else {
-          return text as string; 
+          return text as string;
         }
       });
     },
     confirmShippingAddress () {
       const confirmShippingAddress = selectors[brand].confirmShippingAddress;
       cy.wait(5000);
-      cy.get('body').then($body => { 
-        if ($body.find(confirmShippingAddress).length > 0) { 
-          cy.get(confirmShippingAddress).click({force:true});  
+      cy.get('body').then($body => {
+        if ($body.find(confirmShippingAddress).length > 0) {
+          cy.get(confirmShippingAddress).click({force:true});
         }
       });
     },
@@ -1100,7 +1095,7 @@ class ShippingPage implements AbstractPage {
 
       cy.wait(2000);
       cy.get(pudoSearchField).clear().type(`${postCode}{enter}`);
-      cy.wait(6000); 
+      cy.wait(6000);
       cy.get(pudoFirstShop, {timeout:20000}).should('be.visible');
       cy.get(pudoFirstShop).eq(0).click({force:true});
       return cy.get(pudoSearchTitle).eq(0).invoke('text').then(text=>{
@@ -1118,7 +1113,7 @@ class ShippingPage implements AbstractPage {
       cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text','Manchester');
       cy.get(w3WAddressSuggestion).click({force:true});
     }
-  };        
+  };
 
   assertions = {
     assertShopisSelected (pudoAddressText: any) {

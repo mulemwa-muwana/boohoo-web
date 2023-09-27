@@ -20,6 +20,7 @@ const selectors: SelectorBrandMap = {
     addPremierToCart: 'button[data-tau="product_addToCart"]',
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
+    KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
@@ -45,6 +46,7 @@ const selectors: SelectorBrandMap = {
     setQuantity: 'select[id^="quantity"]',
     PayPalCTA: '.zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
+    KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
@@ -155,6 +157,7 @@ const selectors: SelectorBrandMap = {
     addPremierToCart: '#add-to-cart',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
+    KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '.item-total .js-remove-from-bag',
@@ -182,6 +185,7 @@ const selectors: SelectorBrandMap = {
     addPremierToCart: '[data-cmp="PremierAddToCartBtn"]',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
+    KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
@@ -292,6 +296,7 @@ const selectors: SelectorBrandMap = {
     addPremierToCart: '[data-button-text="GET VIP DELIVERY"]',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
+    KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
@@ -316,6 +321,7 @@ const selectors: SelectorBrandMap = {
     addPremierToCart: '#add-to-cart',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button',
+    KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
     clearCart: '[class*="button-remove"]',
@@ -386,6 +392,8 @@ class CartPage implements AbstractPage {
 
     },
     openKlarnaSandbox () {
+      const KlarnaCTA = selectors[brand].KlarnaCTA;
+      const KlarnaFrame = selectors[brand].KlarnaFrame;
 
       // Stub the open method with just a console log to force it not to open a window.
       cy.window().then((window: Cypress.AUTWindow) => {
@@ -393,9 +401,8 @@ class CartPage implements AbstractPage {
           console.log('stop this button click');
         });
       });
-      cy.get('#klarna-express-button-0').shadow().find('#klarna-express-button').click({ force: true });
-
-      cy.frameLoaded('#klarna-express-button-fullscreen');
+      cy.get(KlarnaCTA).click();
+      cy.frameLoaded(KlarnaFrame);
     },
     openAmazonSandbox () {
       cy.get('#OffAmazonPaymentsWidgets0').invoke('removeAttr', 'target').click();

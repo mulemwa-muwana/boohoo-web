@@ -709,6 +709,8 @@ describe('Home Page', function () {
           this.skip(); // Email Us link isn't exist on contuct us page
         }
         contactusPage.assertions.assertEmailIconIsPresent();
+        contactusPage.click.emailIconOption();
+        contactusPage.assertions.assertEmailOptionsPresent();
       });
     });
 

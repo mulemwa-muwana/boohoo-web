@@ -68,7 +68,7 @@ describe('Cart basic functionality for guest user', function () {
   it('Verify that Klarna CTA is displayed and functional', function () {
     const brandsUK: Array<GroupBrands> = ['wallis.co.uk', 'dorothyperkins.com', 'burton.co.uk'];
     const brandsAndLocaleUK: boolean = brandsUK.includes(brand) && locale == 'UK';
-    if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(brand) && ['UK', 'IE', 'AU'].includes(locale) && brand != 'misspap.com' || brandsAndLocaleUK) {
+    if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(brand) && ['UK', 'IE', 'AU','US'].includes(locale) && brand != 'misspap.com' || brandsAndLocaleUK) {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox();
     } else {

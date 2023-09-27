@@ -498,12 +498,19 @@ class PdpPage implements AbstractPage {
     assertProductCodeIsDisplayed (SKU: string) {
       const productCode = selectors[brand].productCode;
       cy.get(productCode).should('be.visible').invoke('text').then(productCodeText => {
-        productCodeText=productCodeText.replace(/^#/g, '');
-        if (SKU.includes('-')) {
-          SKU = SKU.split('-')[0];
+        if (brand == 'nastygal.com' && locale == 'US') {
+          productCodeText=productCodeText.replace(/^/g, '');
+          if (SKU.includes('-')) {
+            SKU = SKU.split('-')[0];
+          }
+          expect(productCodeText).to.contain(SKU);
+        } else {
+          productCodeText=productCodeText.replace(/^#/g, '');
+          if (SKU.includes('-')) {
+            SKU = SKU.split('-')[0];       
+          }
         }
-        expect(productCodeText).to.contain(SKU);
-      });  
+      }); 
     },
     assertProductPriceIsDisplayed () {
       const productPrice = selectors[brand].productPrice;

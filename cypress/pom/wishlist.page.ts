@@ -251,23 +251,24 @@ class WishListPage implements AbstractPage {
   };
 
   actions = {
+
     // TODO : None of this functions are in use, So commented out for future use just incase.
-    // showInStockItemsCheckbox () {
-    //   cy.get('.show-in-stock').check();
+    // ShowInStockItemsCheckbox () {
+    //   Cy.get('.show-in-stock').check();
     // },
-    // chooseSizeDDL (size: string) {
-    //   const chooseSizeDDL = selectors[variables.brand].chooseSizeDDL;
-    //   cy.get(chooseSizeDDL).select(size);
+    // ChooseSizeDDL (size: string) {
+    //   Const chooseSizeDDL = selectors[variables.brand].chooseSizeDDL;
+    //   Cy.get(chooseSizeDDL).select(size);
     // },
-    // chooseSizeBHO () {
-    //   const chooseSizeBHO = selectors[variables.brand].chooseSizeBHO;
-    //   cy.get(chooseSizeBHO).click();
+    // ChooseSizeBHO () {
+    //   Const chooseSizeBHO = selectors[variables.brand].chooseSizeBHO;
+    //   Cy.get(chooseSizeBHO).click();
     // },
-    // selectSizeBHO (size: number) {
-    //   cy.get('#attribute-b42fa661ec3462331eea8571c9-size').select(size);
+    // SelectSizeBHO (size: number) {
+    //   Cy.get('#attribute-b42fa661ec3462331eea8571c9-size').select(size);
     // },
-    // selectColourBHO (colour: number) {
-    //   cy.get('.b-select-input attribute-color').select(colour);
+    // SelectColourBHO (colour: number) {
+    //   Cy.get('.b-select-input attribute-color').select(colour);
     // }
   };
 

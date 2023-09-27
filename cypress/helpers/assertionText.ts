@@ -994,7 +994,7 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkSizeGuide: TranslationMap = {
+  faqLinkSizeGuide: TranslationMap = {
     EN: 'Size Guide',
     NL: 'Maatgids',
     DE: 'Größentabelle',
@@ -1006,6 +1006,32 @@ class AssertionText {
     IL: '',
     IT: 'Guida taglie boohoo',
     ES: 'Guía de tallas'
+  };
+  footerAccordionHelp: TranslationMap = {
+    EN: 'Help',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: 'Help',
+    FI: 'Help',
+    NO: 'Help',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+  footerAccordionTrackMyOrder: TranslationMap = {
+    EN: 'Track My Order',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: 'Track My Order',
+    FI: 'Track My Order',
+    NO: 'Track My Order',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
   };
 
   footerLinkTrackAppBHO: TranslationMap = {

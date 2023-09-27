@@ -19,6 +19,8 @@ const selectors: SelectorBrandMap = {
     premierBlock: '.m-with_actions',
     addPremierToCart: 'button[data-tau="product_addToCart"]',
     PayPalCTA: '.zoid-component-frame',
+    payPalDefaultView: '0.contentDocument.defaultView',
+    cartPayPalButton: '.paypal-button',
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -45,6 +47,8 @@ const selectors: SelectorBrandMap = {
     updateQuantity: '.b-product_update-button_update',
     setQuantity: 'select[id^="quantity"]',
     PayPalCTA: '.zoid-component-frame',
+    payPalDefaultView: '0.contentDocument.defaultView',
+    cartPayPalButton: '.paypal-button',
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -156,6 +160,8 @@ const selectors: SelectorBrandMap = {
     premierBlock: 'div.premier-box-main',
     addPremierToCart: '#add-to-cart',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    payPalDefaultView: '0.contentDocument.defaultView',
+    cartPayPalButton: '.paypal-button',
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -184,6 +190,8 @@ const selectors: SelectorBrandMap = {
     premierBlock: '#cart-unlimited',
     addPremierToCart: '[data-cmp="PremierAddToCartBtn"]',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    payPalDefaultView: '0.contentDocument.defaultView',
+    cartPayPalButton: '.paypal-button',
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -295,6 +303,8 @@ const selectors: SelectorBrandMap = {
     premierBlock: '.html-slot-container',
     addPremierToCart: '[data-button-text="GET VIP DELIVERY"]',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    payPalDefaultView: '0.contentDocument.defaultView',
+    cartPayPalButton: '.paypal-button',
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -320,6 +330,8 @@ const selectors: SelectorBrandMap = {
     premierBlock: 'div.premier-box-main',
     addPremierToCart: '#add-to-cart',
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
+    payPalDefaultView: '0.contentDocument.defaultView',
+    cartPayPalButton: '.paypal-button',
     KlarnaCTA: '#klarna-express-button',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
@@ -383,12 +395,14 @@ class CartPage implements AbstractPage {
     },
     openPayPalSandbox () {
       const payPalCTA = selectors[brand].PayPalCTA;
-      cy.get(payPalCTA).its('0.contentDocument.defaultView')
+      const payPalDefaultView = selectors[brand].payPalDefaultView;
+      const cartPayPalButton = selectors[brand].cartPayPalButton;
+      cy.get(payPalCTA).its(payPalDefaultView)
         .then(win => {
           cy.stub(win, 'open');
         });
       cy.wait(800);
-      cy.iframe(payPalCTA).find('.paypal-button').should('be.visible').click({ force: true });
+      cy.iframe(payPalCTA).find(cartPayPalButton).should('be.visible').click({ force: true });
 
     },
     openKlarnaSandbox () {

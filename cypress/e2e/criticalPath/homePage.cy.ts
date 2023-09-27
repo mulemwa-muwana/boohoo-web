@@ -319,17 +319,17 @@ describe('Home Page', function () {
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
-        if (brand == 'boohooman.com'){
+        if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.faqLinkSizeGuide[language]);
-        }else{
+        } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerAccordionHelp[language]);
         }
       });
 
       it('Verify that user can choose gender, category, fit - Size Guide', function () {
         if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE') ) {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerAccordionHelp[language])
-          faqPage.click.sizeGuide()
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerAccordionHelp[language]);
+          faqPage.click.sizeGuide();
           homePage.assertions.assertSizeGuideGenderPresent();
           homePage.assertions.assertSizeGuideCategoryPresent();
           homePage.assertions.assertSizeGuideFitPresent();

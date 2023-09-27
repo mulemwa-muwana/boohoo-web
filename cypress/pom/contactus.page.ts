@@ -110,7 +110,8 @@ class ContactUsPage implements AbstractPage {
       const emailIcon = selectors[variables.brand].emailIcon;
       cy.get(emailIcon).invoke('show').click({ multiple: true });
     },
-   };
+  };
+
   actions = { };
   assertions = {
     assertTwitterIconIsNotPresent () {

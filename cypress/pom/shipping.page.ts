@@ -439,7 +439,7 @@ const selectors: SelectorBrandMap = {
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
-    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1) > .w3w-description',
     successMark:'.field-wrapper-w3w-valid',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',

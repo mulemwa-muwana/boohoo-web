@@ -303,13 +303,15 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'UK');
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com' || brand == 'karenmillen.com' || excludedmisspapWithLocales) {
+    const excludedmisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US');
+    if (brand == 'boohooman.com' || brand == 'boohoomena.com' || excludedmisspapWithLocales) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddressButton();
-    shippingPage.click.enterManuallyAddressDetails();
+    if (brand == 'boohoo.com' || brand == 'nastygal.com') {
+      shippingPage.click.enterManuallyAddressDetails();
+    }
     shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
     shippingPage.assertions.assertW3WisSelected();
   });

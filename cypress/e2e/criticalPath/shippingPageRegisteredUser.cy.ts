@@ -303,7 +303,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US');
+    const excludedmisspapWithLocales: boolean = brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com'&& (locale == 'IE' || locale == 'AU' || locale == 'US');
     if (brand == 'boohooman.com' || brand == 'boohoomena.com' || excludedmisspapWithLocales) {
       this.skip();
     }

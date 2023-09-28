@@ -407,7 +407,7 @@ class AssertionText {
   };
 
   AddPremierToCartButton: TranslationMap = {
-    EN: 'UNLIMITED',
+    EN: 'Premier',
     FR: 'AJOUTER AU PANIER',
     NL: '',
     DE: '',

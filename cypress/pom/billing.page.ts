@@ -91,6 +91,7 @@ const selectors: SelectorBrandMap = {
     klarnaPayNowUS: '[data-id="payButton-KlarnaUS"]>div>button',
     payButtonLocatorIE: '[data-testid="confirm-and-pay"]',
     paymentMethodCreditCard: '#payment-button-scheme',
+    paymentMethodCreditCardUS: '#payment-button-CREDIT_CARD',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
     paymentMethodPayPal: '#payment-button-PayPal',
     paymentMethodKlarna: '#payment-button-KlarnaUK',
@@ -136,12 +137,18 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
+    creditCardFieldsCardNumberUS:'#dwfrm_billing_creditCardFields_cardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe',
     creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
+    creditCardFieldsExpirationDateUS: '#dwfrm_billing_creditCardFields_expirationYear',
+    creditCardFieldsExpirationMonthUS: '#dwfrm_billing_creditCardFields_expirationMonth',
     creditCardSecurityCodeIframe: '.b-form-set > .b-payment_form .adyen-checkout__field__cvc .js-iframe',
     creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
+    creditCardFieldsSecurityCodeUS: '#dwfrm_billing_creditCardFields_securityCode',
     creditCardFieldsCardOwner : '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    creditCardFieldsCardOwnerUS: '#dwfrm_billing_creditCardFields_cardOwner',
     paynowBtnCC:'.b-payment_accordion-submit > div > .b-button',
+    paynowBtnCCUS:'#payment-details-CREDIT_CARD > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
   },
   'dorothyperkins.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
@@ -1330,7 +1337,7 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU'|| locale == 'DE')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (((brand =='boohoo.com' || brand == 'nastygal.com') && locale == 'UK') || (brand == 'misspap.com' && locale == 'US') ) {
+      } else if (((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK'||locale == 'US' )) ) {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');  
       } else {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

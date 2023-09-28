@@ -407,7 +407,7 @@ class AssertionText {
   };
 
   AddPremierToCartButton: TranslationMap = {
-    EN: 'UNLIMITED',
+    EN: 'Premier',
     FR: 'AJOUTER AU PANIER',
     NL: '',
     DE: '',
@@ -1007,6 +1007,7 @@ class AssertionText {
     IT: 'Guida taglie boohoo',
     ES: 'Guía de tallas'
   };
+  
   footerAccordionHelp: TranslationMap = {
     EN: 'Help',
     NL: '',
@@ -1020,6 +1021,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
   footerAccordionTrackMyOrder: TranslationMap = {
     EN: 'Track My Order',
     NL: '',

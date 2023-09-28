@@ -252,24 +252,6 @@ class WishListPage implements AbstractPage {
 
   actions = {
 
-    // TODO : None of this functions are in use, So commented out for future use just incase.
-    // ShowInStockItemsCheckbox () {
-    //   Cy.get('.show-in-stock').check();
-    // },
-    // ChooseSizeDDL (size: string) {
-    //   Const chooseSizeDDL = selectors[variables.brand].chooseSizeDDL;
-    //   Cy.get(chooseSizeDDL).select(size);
-    // },
-    // ChooseSizeBHO () {
-    //   Const chooseSizeBHO = selectors[variables.brand].chooseSizeBHO;
-    //   Cy.get(chooseSizeBHO).click();
-    // },
-    // SelectSizeBHO (size: number) {
-    //   Cy.get('#attribute-b42fa661ec3462331eea8571c9-size').select(size);
-    // },
-    // SelectColourBHO (colour: number) {
-    //   Cy.get('.b-select-input attribute-color').select(colour);
-    // }
   };
 
   assertions = {

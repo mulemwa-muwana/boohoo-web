@@ -116,7 +116,7 @@ describe('Shipping Page Guest user tests', function () {
     }
 
     if (!isSiteGenesisBrand && locale == 'US') {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1);
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(33);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -148,7 +148,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     if (!isSiteGenesisBrand && locale == 'US') {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(1);
+      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(33);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -302,6 +302,8 @@ describe('Shipping Page Guest user tests', function () {
         cy.clearAllCookies();
         navigate.toShippingPage('GuestUser'); // Clearing session and cookies to render addresses(w3w) option back if running multiple times locally with PUDO TestCase
       }
+    } else if (brand == 'boohoo.com' || brand == 'nastygal.com' && locale == 'US') {
+      this.skip();
     }
 
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');

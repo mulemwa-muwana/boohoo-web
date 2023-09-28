@@ -440,7 +440,7 @@ class PlpPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
         cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
-      } else if (brand == 'boohoo.com' && locale == 'US') {
+      } else if (brand == 'boohoo.com'||brand == 'nastygal.com' && locale == 'US') {
         cy.get('button[id*="-' + (assertionText.color[variables.language] + '"]')).click({ force: true });
         cy.get('#refinementAttributesList-' + (assertionText.color[variables.language])).contains(color).click({ force: true });
       } else {

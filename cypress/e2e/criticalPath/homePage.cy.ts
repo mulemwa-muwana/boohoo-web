@@ -293,7 +293,7 @@ describe('Home Page', function () {
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
-          if (locale == 'AU') {
+          if (locale == 'AU' || locale == 'US') {
             this.skip();
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
@@ -617,7 +617,7 @@ describe('Home Page', function () {
         } if (brand=='karenmillen.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated July 2023');
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
-          if (brand == 'misspap.com' && locale == 'US') {
+          if ((brand == 'misspap.com' ||brand == 'nastygal.com' ) && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);

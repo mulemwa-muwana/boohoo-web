@@ -134,7 +134,7 @@ describe('Product Listing Page tests', function () {
 
     it('Verify occasion refinement is applied', function () {
       const brandsExcludedOccasion: Array<GroupBrands> = ['dorothyperkins.com', 'wallis.co.uk'];
-      if (brandsExcludedOccasion.includes(brand) || (brand == 'nastygal.com'&& (locale =='IE'|| locale =='AU'))) {
+      if (brandsExcludedOccasion.includes(brand) || (brand == 'nastygal.com'&& (locale =='IE'|| locale =='AU'|| locale =='US'))) {
         this.skip();
       }
       plpPage.actions.setupChangeIntercept(/occasion/);

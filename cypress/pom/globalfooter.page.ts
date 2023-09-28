@@ -18,7 +18,7 @@ const selectors: SelectorBrandMap = {
     theFixLink: 'a[href="https://thefix.boohoo.com/"]',
     footerPromoLink: '#footer-sticky-promo > a',
     newsletterInputMail: 'input[id="dwfrm_newslettersubscribe_email"]',
-    agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
+    agreeToPrivacyCheckbox: 'input#dwfrm_newslettersubscribe_agreeToPrivacy',
     subscribeSubmitBtn: 'button[data-id="submitButton"]',
     changeCountryDropdown: '.b-country-select',
     successfulSubscriptionMsg: '.b-newsletters-message_success',
@@ -408,7 +408,8 @@ class GlobalFooter implements AbstractPage {
         cy.get(subscribeSubmitBtn).click({force:true});
       } else {
         cy.get(newsletterInputMail).type(email, {force:true});
-        cy.get(agreeToPrivacyCheckbox).check();
+        cy.get(agreeToPrivacyCheckbox).invoke('css','visibility', 'visible').as('agreeToPrivacyCheckboxVisible');
+        cy.get('@agreeToPrivacyCheckboxVisible').check();
         cy.get(subscribeSubmitBtn).invoke('show').click({force:true});
       }
     },

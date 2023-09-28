@@ -76,10 +76,10 @@ class faqPage implements AbstractPage {
       }
     },
 
-   sizeGuide () {
+    sizeGuide () {
       const sizeGuide = selectors[brand].sizeGuide;
-      cy.get(sizeGuide).click({force:true})
-     
+      cy.get(sizeGuide).click({ force: true });
+
     }
   };
 

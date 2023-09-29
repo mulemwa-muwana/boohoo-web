@@ -619,7 +619,10 @@ describe('Home Page', function () {
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           if ((brand == 'misspap.com' ||brand == 'nastygal.com' ) && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
-          } else {
+          } else if(brand == 'nastygal.com'&& locale == 'IE'){
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
+          }
+          else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
           }
         } else if ((brand == 'boohoo.com' && australianLocales)) {

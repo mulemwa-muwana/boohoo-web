@@ -10,7 +10,7 @@ class ShippingMethod {
     },
     US: {
       shippingMethod1: {
-        shippingMethodName: 'USA Standard Shipping'
+        shippingMethodName: 'Standard'
       }
     },
     EU: {

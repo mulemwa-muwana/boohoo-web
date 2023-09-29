@@ -127,6 +127,7 @@ const selectors: SelectorBrandMap = {
     newBillingAddressForm: 'div[data-ref="summarizedAddressBlock"]',
     viewAllBillingAddresses: '.b-form_section > .b-address_selector-actions > .m-link',
     billingAddressFromBook: '.b-address_selector-actions > .b-button',
+    billingAddressFromBookUS: '.b-address_selector-actions > .m-info',
     dobDate: 'select[id="dwfrm_profile_customer_dayofbirth"]',
     dobMonth: 'select[id="dwfrm_profile_customer_monthofbirth"]',
     dobYear: 'select[id="dwfrm_profile_customer_yearOfBirth"]',
@@ -916,10 +917,13 @@ class BillingPage implements AbstractPage {
     selectAddressFromBook () {
       const viewAllBillingAddresses = selectors[brand].viewAllBillingAddresses;
       const billingAddressFromBook = selectors[brand].billingAddressFromBook;
+      const billingAddressFromBookUS = selectors[brand].billingAddressFromBookUS;
       if (brand == 'boohoo.com' && locale == 'AU') {
         cy.get('button[class="b-button m-link m-width_full"]').click({force: true});
       } else if (brand == 'boohooman.com') {
         cy.get(viewAllBillingAddresses).select(2);
+      } else if (brand == 'nastygal.com'&& locale == 'US') {
+        cy.get(billingAddressFromBookUS).click({force: true});
       } else { 
         cy.get(billingAddressFromBook).click({force: true});
       }      
@@ -1263,7 +1267,7 @@ class BillingPage implements AbstractPage {
     assertPaymentMethodCreditCardIsDisplayed () {
       const paymentMethodCreditCard = selectors[brand].paymentMethodCreditCard;
       const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
-      if ((brand =='boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com') && (locale == 'US' || locale == 'CA')) {
+      if ((brand =='boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com'|| brand == 'nastygal.com') && (locale == 'US' || locale == 'CA')) {
         cy.get(paymentMethodCreditCardUS).should('be.visible');
       } else {
         cy.get(paymentMethodCreditCard).should('be.visible');
@@ -1336,7 +1340,7 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU'|| locale == 'DE')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK'||locale == 'US' )) ) {
+      } else if (((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK'||locale == 'US'||locale == 'IE' )) ) {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');  
       } else {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

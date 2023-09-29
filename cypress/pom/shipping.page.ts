@@ -443,6 +443,7 @@ const selectors: SelectorBrandMap = {
     successMark:'.field-wrapper-w3w-valid',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
+    checkoutMiniBagSummery: '.checkout-mini-cart'
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -1232,9 +1233,6 @@ class ShippingPage implements AbstractPage {
       const addressLookup = selectors[brand].addressLookup;
       cy.get(addressLookup).should('be.visible');
     },
-    assertOtherAddressesAreVisible () {
-      cy.get('.m-list > :nth-child(3) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface').should('be.visible');
-    },
     assertCartShippingPageContainsProduct (product: string) {
       const cartContainer = selectors[brand].cartContainer;
       cy.get(cartContainer, { timeout: 20000 }).should('contain', product.trim());
@@ -1259,7 +1257,8 @@ class ShippingPage implements AbstractPage {
 
     // METHODS ONLY FOR SITE GENESIS BRANDS //
     assertEmailIsCorrect (email: string) {
-      cy.get('#dwfrm_singleshipping_shippingAddress_email_emailAddress').should('have.value', email);
+      const guestEmailField = selectors[brand].guestEmailField;
+      cy.get(guestEmailField).should('have.value', email);
     },
     assertDateFormIsPresent () {
       const dateOfBirthForm = selectors[brand].dateOfBirthForm;
@@ -1287,7 +1286,8 @@ class ShippingPage implements AbstractPage {
       cy.get(thrift).should('be.visible');
     },
     assertThriftBagIsAddedToTheCart () {
-      cy.get('.checkout-mini-cart').should('contain', 'Thrift Bags');
+      const checkoutMiniBagSummery = selectors[brand].checkoutMiniBagSummery;
+      cy.get(checkoutMiniBagSummery).should('contain', 'Thrift Bags');
     }
   };
 }

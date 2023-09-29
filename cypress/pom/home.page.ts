@@ -278,7 +278,7 @@ const selectors: SelectorBrandMap = {
     promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   },
   'boohoomena.com': {
-    minicartIcon: '.mini-cart-link',
+    minicartIcon: '#js-minicart-quantity',
     loginIcon: ' span.user-account',
     registrationButton: '.js-header-right-box [title="Register"]',
     wishListIcon: '.icon-wishlist',

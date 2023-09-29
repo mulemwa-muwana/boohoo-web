@@ -1341,7 +1341,7 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
       } else if (isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU'|| locale == 'DE')) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
-      } else if (((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK'||locale == 'US' )) ) {
+      } else if (((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK'||locale == 'US'||locale == 'IE' )) ) {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');  
       } else {
         cy.url({timeout: 30000}).should('include', 'Order-Confirm');

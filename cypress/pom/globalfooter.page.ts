@@ -29,7 +29,7 @@ const selectors: SelectorBrandMap = {
     headerInner: '.b-header_utility-inner',
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
     footer: '#footercontent',
-    helpLink: '.content-asset .b-footer_quick_links', 
+    helpLink: '.content-asset .b-footer_quick_links',
   },
   'nastygal.com': {
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-notice"]',
@@ -94,6 +94,7 @@ const selectors: SelectorBrandMap = {
     copyrightTermAndCondLink: '.l-footer-copy ul li a[href*="terms-and-conditions"]',
     footer: '#footercontent',
     helpLink: '.content-asset .b-footer_quick_links',
+    headerInnerBurton: '.l-header-inner'
   },
   'wallis.co.uk': {
     copyrightPrivacyPolicyLink: '.l-footer-copy ul li a[href*="privacy-policy"]',
@@ -145,7 +146,7 @@ const selectors: SelectorBrandMap = {
     instagramLink: 'a[href="https://www.instagram.com/karen_millen/"]',
     facebookLink: 'a[href="https://www.facebook.com/karenmillen"]',
     twitterLink: 'a[href="https://twitter.com/karenmillen"]',
-    pintrestLink: 'a[href="https://www.pinterest.co.uk/karenmillen/"]', 
+    pintrestLink: 'a[href="https://www.pinterest.co.uk/karenmillen/"]',
     youtubeLink: 'a[href="https://www.youtube.com/user/KarenMillen10"]',
     newsletterInputMail: 'input[id^="footer_newsletter_email"]',
     agreeToPrivacyCheckbox: '#dwfrm_newslettersubscribe_agreeToPrivacy',
@@ -160,7 +161,8 @@ const selectors: SelectorBrandMap = {
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
-    helpLink: 'a[title="Customer Service"]'
+    helpLink: 'a[title="Customer Service"]',
+    getTheAppCTA: 'h5#ui-id-7'
   },
   'coastfashion.com': {
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
@@ -204,11 +206,13 @@ const selectors: SelectorBrandMap = {
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
-    helpLink: 'a[title="Customer Service"]'
+    helpLink: 'a[title="Customer Service"]',
+    studentBeansCookiePopup: '.student-beans > iframe',
+    studentbeansCookieAcceptCTA: '#onetrust-accept-btn-handler'
   },
   'oasis-stores.com': {
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
-    instagramLink: 'a[href="https://www.instagram.com/oasisfashion/"]', 
+    instagramLink: 'a[href="https://www.instagram.com/oasisfashion/"]',
     facebookLink: 'a[href="https://en-gb.facebook.com/oasisfashions/"]',
     twitterLink: 'a[href="https://twitter.com/oasisfashion"]',
     pintrestLink: 'a[href="https://www.pinterest.co.uk/oasisfashion/"]',
@@ -231,7 +235,7 @@ const selectors: SelectorBrandMap = {
   'misspap.com': {
     privacyPolicyLinkUS: ':nth-child(10) > a[title="Privacy Notice"]',
     copyrightPrivacyPolicyLink: '.footer-copyright [title="Privacy policy"]',
-    instagramLink: 'a[href="https://www.instagram.com/misspap/"]', 
+    instagramLink: 'a[href="https://www.instagram.com/misspap/"]',
     facebookLink: 'a[href="https://www.facebook.com/MissPapOfficial"]',
     twitterLink: 'a[href="https://twitter.com/misspap"]',
     pintrestLink: 'a[href="https://www.pinterest.co.uk/oasisfashion/"]',
@@ -254,10 +258,10 @@ const selectors: SelectorBrandMap = {
   },
   'boohoomena.com': {
     copyrightPrivacyPolicyLink: '.footer-copyright-wrapper [title="Privacy notice"]',
-    instagramLink: '[title="Instagram"]', 
+    instagramLink: '[title="Instagram"]',
     facebookLink: '[title="Facebook"]',
     twitterLink: '[title="Twitter"]',
-    pintrestLink: '[title="Pinterest"]', 
+    pintrestLink: '[title="Pinterest"]',
     youtubeLink: '[title="YouTube"]',
     snapchatLink: 'a[href="https://www.snapchat.com/add/boohooofficial"]',
     newsletterInputMail: 'input[id^="footer_newsletter_email"]',
@@ -273,7 +277,8 @@ const selectors: SelectorBrandMap = {
     headerInner: '.sticky-header',
     copyrightTermAndCondLink: '.footer-copyright-wrapper a[href*="terms-of-use"]',
     footer: '.footer',
-    helpLink: 'a[title="Customer Service"]'
+    helpLink: 'a[title="Customer Service"]',
+    getTheAppCTA: 'h5#ui-id-7'
   }
 };
 
@@ -298,12 +303,12 @@ class GlobalFooter implements AbstractPage {
       cy.get(instagramLink).then(link => {
         cy
           .request({
-            method:'HEAD', 
+            method:'HEAD',
             url: link.prop('href'),
-            log:false                             
-          })  
+            log:false
+          })
           .its('status')
-          .should('eq', 200); 
+          .should('eq', 200);
       });
     },
     facebookLink () {
@@ -312,7 +317,7 @@ class GlobalFooter implements AbstractPage {
         cy
           .request(link.prop('href'))
           .its('status')
-          .should('eq', 200); 
+          .should('eq', 200);
       });
     },
     twitterLink () {
@@ -321,7 +326,7 @@ class GlobalFooter implements AbstractPage {
         cy
           .request(link.prop('href'))
           .its('status')
-          .should('eq', 200); 
+          .should('eq', 200);
       });
     },
     tiktokLink () {
@@ -330,7 +335,7 @@ class GlobalFooter implements AbstractPage {
         cy
           .request(link.prop('href')) // Get the href attribute value
           .its('status')
-          .should('eq', 200); 
+          .should('eq', 200);
       });
     },
     youtubeLink () {
@@ -339,7 +344,7 @@ class GlobalFooter implements AbstractPage {
         cy
           .request(link.prop('href'))
           .its('status')
-          .should('eq', 200); 
+          .should('eq', 200);
       });
     },
     pintrestLink () {
@@ -348,7 +353,7 @@ class GlobalFooter implements AbstractPage {
         cy
           .request(link.prop('href'))
           .its('status')
-          .should('eq', 200); 
+          .should('eq', 200);
       });
     },
     theFixLink () {
@@ -357,7 +362,7 @@ class GlobalFooter implements AbstractPage {
         cy
           .request(link.prop('href'))
           .its('status')
-          .should('eq', 200); 
+          .should('eq', 200);
       });
     },
     snapchatLink () {
@@ -366,7 +371,7 @@ class GlobalFooter implements AbstractPage {
         cy
           .request(link.prop('href'))
           .its('status')
-          .should('eq', 200); 
+          .should('eq', 200);
       });
     },
     footerPromo () {
@@ -391,11 +396,8 @@ class GlobalFooter implements AbstractPage {
       } else {
         cy.get(helpLink).contains(assertionText.footerHelp[language]).click({force:true});
       }
-    
+
     },
-    contactLink () {
-      const contactLink = selectors[brand].contactLink;
-    }
   };
 
   actions = {
@@ -454,7 +456,9 @@ class GlobalFooter implements AbstractPage {
       cy.get(changeCountryDropdown).select(country);
     },
     studentDiscountAcceptCookiesOnPopup () {
-      cy.iframe('.student-beans > iframe').find('#onetrust-accept-btn-handler').click({force:true});
+      const studentBeansCookiePopup = selectors[brand].studentBeansCookiePopup;
+      const studentbeansCookieAcceptCTA = selectors[brand].studentbeansCookieAcceptCTA;
+      cy.iframe(studentBeansCookiePopup).find(studentbeansCookieAcceptCTA).click({force:true});
     },
     checkHelpforSiteG (text: string) {
       const helpLink = selectors[brand].helpLink;
@@ -492,16 +496,11 @@ class GlobalFooter implements AbstractPage {
     },
     assertAppBannerPresent () {
       const appBanner = selectors[brand].appBanner;
+      const getTheAppCTA = selectors[brand].getTheAppCTA;
       if (isMobileDeviceUsed && (brand == 'karenmillen.com' || brand == 'boohoomena.com')) {
-        cy.get('h5#ui-id-7').click();
+        cy.get(getTheAppCTA).click();
       }
       cy.get(appBanner).scrollIntoView().should('be.visible');
-    },
-    assertCurrencyByPageContext (currency: string) { //  N/A
-      cy.get('.js-page-context').invoke('attr', 'data-page-context').then(context => {
-        const json = JSON.parse(context);
-        expect(json.currencyCode).to.equal(currency);
-      });
     },
     assertFooterIsFixedAndPresent () {
       const footerStickyPromo = selectors[brand].footerStickyPromo;
@@ -509,10 +508,12 @@ class GlobalFooter implements AbstractPage {
       cy.get(footerStickyPromo).should('have.css', 'position', 'fixed');
     },
     assertHeaderIsVisible () {
+      const headerInner = selectors[brand].headerInner;
+      const headerInnerBurton = selectors[brand].headerInnerBurton;
+
       if (brand == 'burton.co.uk' && locale != 'UK') {
-        cy.get('.l-header-inner').invoke('show').should('be.visible');
+        cy.get(headerInnerBurton).invoke('show').should('be.visible');
       } else {
-        const headerInner = selectors[brand].headerInner;
         cy.get(headerInner).invoke('show').should('be.visible');
       }
     },

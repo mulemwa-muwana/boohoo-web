@@ -1932,6 +1932,19 @@ class AssertionText {
     ES: ''
   };
 
+  clickHereLink: TranslationMap = {
+    EN: 'Click here',
+    NL: 'Click here',
+    DE: 'Klicke hier',
+    FR: 'Cliquez ici',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 }
 
 export default new AssertionText();

@@ -518,6 +518,9 @@ class CartPage implements AbstractPage {
     },
     assertThriftBagIsAddedToTheCart () {
       cy.get('#wrapper').should('contain', 'Thrift Bags');
+    },
+    assertSelectedProductIsAddedToTheCart (text: string) {
+      cy.get('.item-details').should('contains',text.toLocaleLowerCase);
     }
   };
 }

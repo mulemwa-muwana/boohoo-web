@@ -1,7 +1,6 @@
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import { locale, brand, language } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
-import cartPage from './cart.page';
 import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {

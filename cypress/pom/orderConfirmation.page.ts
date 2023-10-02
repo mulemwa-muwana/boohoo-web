@@ -193,16 +193,7 @@ class OrderConfirmation implements AbstractPage {
   }
 
   click = {
-    closePopUp () {
-      const closePopUP = selectors[variables.brand].closePopUP;
-      cy.get(closePopUP, { timeout: 60000 }).click();
-    },
-    closeCancellationPopup () { // Only for Boohoo DE and SE
-      cy.get('[rokt-frame-type="plugin-runtime"]', { timeout: 20000 }).then((iframe) => {
-        const innerIframe = iframe.contents().find('[id^="rokt-placements-frame"]').contents();
-        cy.wrap(innerIframe, {timeout: 5000}).find('[data-e2e="lightboxClose"]').click();
-      });
-    }
+
   };
 
   actions = {
@@ -241,7 +232,7 @@ class OrderConfirmation implements AbstractPage {
       cy.get(shippingMethodIsDisplayed).should('not.be.empty');
     },
     assertPaymentMethod (method: string) {
-      const paymentMethod = selectors[variables.brand].paymentMethod;  
+      const paymentMethod = selectors[variables.brand].paymentMethod;
       cy.get(paymentMethod).should('contain.text', method);
     },
     assertOrderTotalIsVisible () {

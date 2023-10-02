@@ -547,7 +547,7 @@ class CartPage implements AbstractPage {
     },
     assertSelectedProductIsAddedToTheCart (text: string) {
       const itemDetails = selectors[brand].itemDetails;
-      cy.get('.item-details').should('contains',text.toLocaleLowerCase);
+      cy.get(itemDetails).should('contains',text.toLocaleLowerCase);
   }
   };
 }

@@ -32,6 +32,7 @@ const selectors: SelectorBrandMap = {
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    itemDetails: ".item-details",
   },
   'nastygal.com': {
     productsTable: '.b-cart_products',
@@ -62,6 +63,7 @@ const selectors: SelectorBrandMap = {
     premierBlock: '.b-ngvip',
     addPremierToCart: '.b-ngvip-button',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    itemDetails: ".item-details",
   },
   'dorothyperkins.com': {
     productsTable: '.b-cart_products',
@@ -173,6 +175,7 @@ const selectors: SelectorBrandMap = {
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
+    itemDetails: ".item-details",
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -205,7 +208,8 @@ const selectors: SelectorBrandMap = {
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    cartPage: '#wrapper'
+    cartPage: '#wrapper',
+    itemDetails: ".item-details",
   },
   'coastfashion.com': {
     productsTable: '#cart-table',
@@ -318,6 +322,7 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a',
     updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
+    itemDetails: ".item-details",
   },
   'boohoomena.com': {
     productsTable: '#cart-table',
@@ -344,6 +349,7 @@ const selectors: SelectorBrandMap = {
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    itemDetails: ".item-details",
   },
 };
 
@@ -540,6 +546,7 @@ class CartPage implements AbstractPage {
       cy.get(cartPage).should('contain', 'Thrift Bags');
     },
     assertSelectedProductIsAddedToTheCart (text: string) {
+      const itemDetails = selectors[brand].itemDetails;
       cy.get('.item-details').should('contains',text.toLocaleLowerCase);
   }
   };

@@ -398,6 +398,10 @@ class GlobalFooter implements AbstractPage {
       }
 
     },
+    womanSizeGuide(){
+      const womanSizeGuide = selectors[brand].womanSizeGuide;
+      cy.get(womanSizeGuide).scrollIntoView().click({force: true});
+    }
   };
 
   actions = {
@@ -525,7 +529,6 @@ class GlobalFooter implements AbstractPage {
       cy.url().should('include', text);
     }
   };
-
 }
 
 export default new GlobalFooter();

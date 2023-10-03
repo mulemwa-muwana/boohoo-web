@@ -1252,7 +1252,7 @@ class ShippingPage implements AbstractPage {
     },
     assertShippingMethodIsSelected (shippingMethod: string) {
       const orderSummaryOnShippingPage = selectors[brand].orderSummaryOnShippingPage;
-      cy.get(orderSummaryOnShippingPage).should('contain.text', shippingMethod);
+      cy.get(orderSummaryOnShippingPage).should('contain.text', shippingMethod.trim());
     },
 
     // METHODS ONLY FOR SITE GENESIS BRANDS //

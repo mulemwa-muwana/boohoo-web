@@ -176,10 +176,13 @@ const selectors: SelectorBrandMap = {
     miniCartProductIner: '.mini-cart-content-inner',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.del-table',
-    productReturnsInfoButton: '#product-returns-info-tab',
+    productReturnsInfoButton: '#product-returns-info-tab .js-global-accordion-header',
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    productDeliveryInfo: '.product-delivery-info a',
+    productDeliveryInfo: '#ui-id-4',
+    productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
+    productReturnsInfo:'#ui-id-6',
+    premierBanner: '#pdp-premier'
   },
   'karenmillen.com': {
     searchField: '#header-search-input',
@@ -209,7 +212,11 @@ const selectors: SelectorBrandMap = {
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
     productDeliveryInfoMobile: '#product-delivery-info-tab',
-    productReturnsInfoButton: '#ui-id-5'
+    productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
+    productReturnsInfoButton: '#product-returns-info-tab > .js-global-accordion-header',
+    productReturnsInfo:'#product-returns-info-tab',
+    premierBanner:'#pdpMain .banner-wrapper',
+    
   },
   'coastfashion.com': {
     searchField: '#header-search-input',
@@ -325,9 +332,11 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    productDeliveryInfo: '.product-delivery-link > .product-info-link-text',
+    productDeliveryInfo: '.ui-dialog-content-wrapper',
     productReturnsInfoButton: '.product-returns-link > .product-info-link-text',
-    showAllContentButton: '[class="show-all js-show-all"]'
+    showAllContentButton: '[class="show-all js-show-all"]',
+    productDeliveryInfoButton: '.product-delivery-link',
+    productReturnsInfo:'.ui-dialog-content-wrapper',
   },
   'boohoomena.com': {
     searchField: '#header-search-input',
@@ -410,7 +419,27 @@ class PdpPage implements AbstractPage {
     wishListIcon () {
       const wishListIcon = selectors[brand].wishListIcon;
       cy.get(wishListIcon).click({force:true});
+    },
+    addToCartPremier () {
+      const premierBanner = selectors[brand].premierBanner;
+      const addToCart = selectors[brand].addToCart;
+      cy.get(premierBanner).then(($el) => {
+        cy.wrap($el).find(addToCart).click({force:true});
+      });
+    },
+    premierLink (text: string) {
+      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      cy.get(productDeliveryInfo).contains(text).click({force:true});
+    },
+    deliveryInfo () {
+      const productDeliveryInfoButton = selectors[brand].productDeliveryInfoButton;
+      cy.get(productDeliveryInfoButton).click({force:true});
+    },
+    returnsInfo () {
+      const productReturnsInfoButton = selectors[brand].productReturnsInfoButton;
+      cy.get(productReturnsInfoButton).click({force:true});
     }
+    
   };
 
   actions = {
@@ -598,13 +627,13 @@ class PdpPage implements AbstractPage {
       
     },
     assertDeliveryOptionsAreDisplayed () {
-      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      const productDeliveryInfoButton = selectors[brand].productDeliveryInfoButton;
       const productDeliveryInfoMobile = selectors[brand].productDeliveryInfoMobile;
     
       if (isMobileDeviceUsed) {
         cy.get(productDeliveryInfoMobile).should('be.visible');
       } else {
-        cy.get(productDeliveryInfo).should('be.visible');
+        cy.get(productDeliveryInfoButton).should('be.visible');
     
       }
     },
@@ -641,6 +670,34 @@ class PdpPage implements AbstractPage {
 
       // Temp: const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.url().should('include', text); //  Only boohoo brand //need to be change
+    },
+    assertPremierBannerIsVisible () {
+      const premierBanner = selectors[brand].premierBanner;
+      cy.get(premierBanner).then(element => {
+        cy.wrap(element).invoke('width').should('be.gt', 10);
+      });
+    },
+    assertLinkPremierIsLinked (text: string) {
+      cy.url().should('include',text.toLocaleLowerCase());
+    },
+    assertDeliveryHereLinkIsDisplayedAndLinked (text: string) {
+      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      cy.get(productDeliveryInfo).contains(text).then(($el) => {
+        const hereLink = text.split(' ')[1];
+        cy.wrap($el).contains(hereLink).click({force:true});
+      });
+      cy.url().should('include','delivery');
+    },
+    assertReturnsHereLinkIsDisplayedAndLinked (text: string) {
+      const productReturnsInfo = selectors[brand].productReturnsInfo;
+      if (brand == 'boohooman.com' && (locale == 'IE' || locale == 'UK')) {
+        text = 'policy here';
+      } 
+      cy.get(productReturnsInfo).contains(text).then(($el) => {
+        const hereLink = text.split(' ')[1];
+        cy.wrap($el).contains(hereLink).click({force:true});
+      });
+      cy.url().should('include','returns');
     }
 
   };

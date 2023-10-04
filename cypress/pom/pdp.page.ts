@@ -34,6 +34,8 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
     checkoutBtn: '/checkout-login',
+    sizeGuidePlp: '[data-widget="productDetail"]',
+    sizeGuidePlpIsDisplayed: 'b-dialog-header'
   },
   'nastygal.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -410,6 +412,10 @@ class PdpPage implements AbstractPage {
     wishListIcon () {
       const wishListIcon = selectors[brand].wishListIcon;
       cy.get(wishListIcon).click({force:true});
+    },
+    sizeGuidePlp () {
+      const sizeGuidePlp = selectors[brand].sizeGuidePlp;
+      cy.get(sizeGuidePlp).click({ force: true });
     }
   };
 
@@ -641,6 +647,9 @@ class PdpPage implements AbstractPage {
 
       // Temp: const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.url().should('include', text); //  Only boohoo brand //need to be change
+    },
+    assertSizeGuidePlpIsDisplayed () {
+      const sizeGuidePlpIsDisplayed = selectors[brand].sizeGuidePlpIsDisplayed;
     }
 
   };

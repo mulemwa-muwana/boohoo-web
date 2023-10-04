@@ -89,4 +89,10 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
+
+  it.only('Verify that Size guide link opens tab with according to category size chart', function () {
+    pdpPage.click.sizeGuidePlp();
+    pdpPage.assertions.assertSizeGuidePlpIsDisplayed();
+   });
+
 }); 

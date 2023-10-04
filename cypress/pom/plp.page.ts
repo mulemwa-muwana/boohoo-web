@@ -39,7 +39,7 @@ const selectors: SelectorBrandMap = {
     quickView: '.b-product_tile-quick_view',
     quickViewSize: 'button[aria-disabled="false"] .b-variation_swatch-value_text',
     quickAddtoCart: '.b-button.b-product_addtocard.m-width_full',
-    miniCartQty: '.b-minicart_icon-qty'
+    miniCartQty: '.b-minicart_icon-qty',
   },
   'nastygal.com': {
     categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
@@ -601,7 +601,7 @@ class PlpPage implements AbstractPage {
         cy.get(addToCart).click({ force: true });
         cy.wait(5000);
       });
-    }
+    },
   };
 
   actions = {
@@ -741,7 +741,7 @@ class PlpPage implements AbstractPage {
     assertItemIsAddedToWishlistColorChange () {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
-    }
+    },
   };
 }
 

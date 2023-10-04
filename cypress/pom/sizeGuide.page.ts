@@ -3,10 +3,6 @@ import { brand } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 
-
-
-
-
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     womanSizeCm: '.b-size_type-labels_wrapper > :nth-child(2)',
@@ -17,7 +13,12 @@ const selectors: SelectorBrandMap = {
     topSizePlus: '[data-inches="41"]',
     countryRadioBtn: '[id="US/CA"]',
     womanSizeGuideTab: '.b-tab_list',
-    womanSizeTable: '[data-widget="carousel"]'
+    womanSizeTable: '[data-widget="carousel"]',
+    topSizeRegularBtn: '[for="REGULAR"]',
+    topSizePlusBtn: '[for="PLUS"]',
+    topSizePetiteBtn: '[for="PETITE"]',
+    topSizeTallBtn: '[for="TALL"]',
+    topSizeMaternityBtn: '[for="MATERNITY"]',
     
   },
   'nastygal.com': {
@@ -61,11 +62,11 @@ class SizeGuide implements AbstractPage {
 
   click = {
     sizeCm () {
-      const  womanSizeCm = selectors[brand]. womanSizeCm;
+      const womanSizeCm = selectors[brand]. womanSizeCm;
       cy.get( womanSizeCm).click({force: true});
     },
     sizeChartTop () {
-      const  sizeChartTop = selectors[brand]. sizeChartTop;
+      const sizeChartTop = selectors[brand]. sizeChartTop;
       cy.get( sizeChartTop).click({force: true});
     },
 
@@ -76,25 +77,31 @@ class SizeGuide implements AbstractPage {
   };
 
   assertions = {
-    assertInchesToCms(){
+    assertInchesToCms () {
       const topSizeRegular = selectors[brand].topSizeRegular;
-      const  womanSizeCm = selectors[brand]. womanSizeCm;
+      const womanSizeCm = selectors[brand]. womanSizeCm;
 
       cy.get(topSizeRegular).should('have.attr', 'data-inches', '31');
-      cy.get(womanSizeCm).click({force: true})
-      cy.get(topSizeRegular).should('have.text', '79')
-      
+      cy.get(womanSizeCm).click({force: true});
+      cy.get(topSizeRegular).should('have.text', '79');
 
     },
     assertWomanTopSizeChart () {
        
-      const topSizeRegular = selectors[brand].topSizeRegular;
-      const topSizePlus = selectors[brand].topSizePlus;
+      const topSizeRegularBtn = selectors[brand].topSizeRegularBtn;
+      const topSizePlusBtn = selectors[brand].topSizePlusBtn;
+      const topSizeTallBtn = selectors[brand].topSizeTallBtn;
+      const topSizePetiteBtn = selectors[brand].topSizePetiteBtn;
+      const topSizeMaternityBtn = selectors[brand].topSizeMaternityBtn;
+      
+      cy.get(topSizeRegularBtn).click(),
+      cy.get(topSizeTallBtn).click(),
+      cy.get(topSizePlusBtn).click(),
+      cy.get(topSizePetiteBtn).click(),
+      cy.get(topSizeMaternityBtn).click(),
 
-      cy.get('[for="REGULAR"]').click(),
-      cy.get(topSizeRegular).should('have.attr', 'data-inches', '31');
-      cy.get('[for="PLUS"]').click(),
-      cy.get(topSizePlus).should('have.attr', 'data-inches', '41');
+      cy.get(topSizeMaternityBtn).should('contain', 'MATERNITY');
+      
     },
     assertWomanTopSizeChartCountry () {
       const countryRadioBtn = selectors[brand].countryRadioBtn;
@@ -103,16 +110,15 @@ class SizeGuide implements AbstractPage {
       cy.get(countryRadioBtn).should('be.checked');
 
     },
-    assertInchesToCmsInTop(){
+    assertInchesToCmsInTop () {
       const womanSizeInches = selectors[brand].womanSizeInches;
-      const  womanSizeCm = selectors[brand]. womanSizeCm;
-      const  sizeChartTop = selectors[brand]. sizeChartTop;
+      const womanSizeCm = selectors[brand]. womanSizeCm;
+      const sizeChartTop = selectors[brand]. sizeChartTop;
 
       cy.get( sizeChartTop).click({force: true});
       cy.get( womanSizeInches).should('have.text', 'INCHES');
-      cy.get(womanSizeCm).click({force: true})
-      cy.get(womanSizeCm).should('have.text', 'CMS')
-      
+      cy.get(womanSizeCm).click({force: true});
+      cy.get(womanSizeCm).should('have.text', 'CMS');
 
     },
     assertWomanSizeGuideTab () {

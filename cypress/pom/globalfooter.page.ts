@@ -398,7 +398,7 @@ class GlobalFooter implements AbstractPage {
       }
 
     },
-    womanSizeGuide(){
+    womanSizeGuide () {
       const womanSizeGuide = selectors[brand].womanSizeGuide;
       cy.get(womanSizeGuide).scrollIntoView().click({force: true});
     }

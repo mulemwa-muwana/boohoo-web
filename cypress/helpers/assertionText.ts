@@ -1931,6 +1931,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
   womanSizeGuideText: TranslationMap = {
     EN: 'Women Size Guide',
     NL: '',

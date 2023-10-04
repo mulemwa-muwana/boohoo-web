@@ -858,23 +858,25 @@ class MyAccountPage implements AbstractPage {
         const socialAccounts = selectors[variables.brand].socialAccounts;
         cy.get(socialAccounts).should('be.visible').click();
       },
-      viewOrderBtn () {
-        const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
-        const viewOrderBtnMobile = selectors[variables.brand].viewOrderBtnMobile;
-        if (isMobileDeviceUsed) {
-          cy.get(viewOrderBtnMobile).click({force: true});
-        } else {
-          if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
-            cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
-          } else {
-            cy.get(viewOrderBtn).should('be.visible').click({force:true});
-          }
-        }
-      },
+      // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
+      // viewOrderBtn () {
+      //   const viewOrderBtn = selectors[variables.brand].viewOrderBtn;
+      //   const viewOrderBtnMobile = selectors[variables.brand].viewOrderBtnMobile;
+      //   if (isMobileDeviceUsed) {
+      //     cy.get(viewOrderBtnMobile).click({force: true});
+      //   } else {
+      //     if (variables.brand == 'boohoo.com' && variables.locale == 'AU') {
+      //       cy.get('#maincontent > div > div.l-account.b-account.m-account_landing > main > div > div.b-account_dashboard-body > section > div > div > div.b-order_item-buttons > a:nth-child(2)').should('be.visible').click({force: true});
+      //     } else {
+      //       cy.get(viewOrderBtn).should('be.visible').click({force:true});
+      //     }
+      //   }
+      // },
       orderHistoryLink () {
         const orderHistoryLink = selectors[variables.brand].orderHistoryLink;
         cy.get(orderHistoryLink).should('be.visible').click({force:true});
       },
+      // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
       // viewNewestOrderHistory () {
       //   const newestOrderHistory = selectors[variables.brand].newestOrderHistory;
       //   if (brand == 'boohoo.com' &&locale == 'AU') {
@@ -887,6 +889,7 @@ class MyAccountPage implements AbstractPage {
         const viewNewestOrderDetails = selectors[variables.brand].viewNewestOrderDetails;
         cy.get(viewNewestOrderDetails).eq(0).click({ force: true });
       },
+      // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
       // saveAnyway () {
       //   cy.get('.verification-address-button').click();
       // },
@@ -1058,6 +1061,7 @@ class MyAccountPage implements AbstractPage {
           cy.get(cardDeleteConfirmationBtn).click({ force: true });
         }
       },
+      // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
       // trackOrderByNumber () {
       //   cy.get('b-order_item-button b-button m-small m-info m-view_order').eq(1).click(); //  Should be checked
       //   cy.get('#dwfrm_trackOrder_orderNumber').clear().type('UK300151163');
@@ -1078,6 +1082,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(shippingInfo).should('be.visible');
         cy.get(billingAndPaymentInfo).should('be.visible');
       },
+      // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
       // assertLoadedOrders () {
       //   if (variables.brand == 'boohooman.com' || variables.brand == 'coastfashion.com') {
       //     cy.get('.search-result-items').children().should('have.length', '6');
@@ -1135,6 +1140,7 @@ class MyAccountPage implements AbstractPage {
         const creditCardsList = selectors[variables.brand].creditCardsList;
         cy.get(creditCardsList).should('not.contain', cardEnd);
       },
+      // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
       // assertOrderCantBeTracked () {
       //   cy.get('.b-form-message').should('include', 'Sorry, this order number does not match our records.');
       // },

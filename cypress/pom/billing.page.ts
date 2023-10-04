@@ -1308,12 +1308,10 @@ class BillingPage implements AbstractPage {
     
       if (isOrderorderconfirmationBrand) {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (isCheckoutConfirmationBrandAndLocale) {
+      } else if (isCheckoutConfirmationBrandAndLocale||brand == 'boohoomena.com') {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (isOrderConfirmationBrandAndLocale ) {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');  
-      } else {
-        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       }  
     },
     assertEmailFieldCantBeChanged () {

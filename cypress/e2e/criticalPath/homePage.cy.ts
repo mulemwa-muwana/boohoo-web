@@ -12,7 +12,6 @@ import contactusPage from 'cypress/pom/contactus.page';
 import faqPage from 'cypress/pom/faq.page';
 import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
-import globalfooterPage from '../../pom/globalfooter.page';
 
 describe('Home Page', function () {
 
@@ -619,10 +618,9 @@ describe('Home Page', function () {
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           if ((brand == 'misspap.com' ||brand == 'nastygal.com' ) && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
-          } else if(brand == 'nastygal.com'&& locale == 'IE'){
+          } else if (brand == 'nastygal.com'&& locale == 'IE') {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
-          }
-          else {
+          } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
           }
         } else if ((brand == 'boohoo.com' && australianLocales)) {

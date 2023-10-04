@@ -4,7 +4,9 @@ import assertionText from '../../helpers/assertionText';
 import pdpPage from '../../pom/pdp.page';
 import LoginPage from 'cypress/pom/login.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-import { sku, brand, language } from 'cypress/support/e2e';
+import { sku, brand, language, locale } from 'cypress/support/e2e';
+import cartPage from 'cypress/pom/cart.page';
+import homePage from '../../pom/home.page';
 
 describe('Product Details Page tests', function () {
 
@@ -86,6 +88,54 @@ describe('Product Details Page tests', function () {
   it('TC08 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
     if (brand == 'boohoo.com') {
       PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[language]);
+    } else {
+      this.skip();
+    }
+  });
+  it('Verify that PREMIER banner is visible and can be added to the basket', function () {
+    if ((brand == 'karenmillen.com'&& (locale == 'US' || locale == 'IE' || locale == 'EU')) || (brand == 'boohooman.com') && locale == 'UK') {
+      if (brand == 'karenmillen.com') {
+        PdpPage.click.deliveryInfo();
+        PdpPage.click.premierLink(assertionText.Premier[language]);
+      }
+      PdpPage.assertions.assertPremierBannerIsVisible();
+      PdpPage.click.addToCartPremier();
+
+      cy.wait(5000);
+      homePage.click.cartIcon();
+      cy.wait(10000);
+      cartPage.assertions.assertSelectedProductIsAddedToTheCart(assertionText.Premier[language]);
+
+    } else {
+      this.skip();
+    }
+  });
+  it('Verify that PREMIER link is visible and can be opened from Delivery info accordian', function () {
+    if (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE' || locale == 'EU')) {
+      PdpPage.click.deliveryInfo();
+      PdpPage.click.premierLink(assertionText.Premier[language]);
+      PdpPage.assertions.assertLinkPremierIsLinked(assertionText.Premier[language]);
+    } else {
+      this.skip();
+    }
+  });
+  it('Verify that "Here" link below shipping table is visible and can be opened from Delivery info accordia', function () {
+    const BMANhereLinkFromDelivery: boolean = brand == 'boohooman.com' && (locale == 'UK' || locale == 'DE' || locale == 'EU' || locale == 'FR' || locale == 'IE' || locale == 'NL' || locale == 'US');
+    const MPhereLinkFromDelivery: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'AU' || locale == 'IE');
+    if (brand == 'karenmillen.com' || BMANhereLinkFromDelivery || MPhereLinkFromDelivery) {
+      PdpPage.click.deliveryInfo();
+      PdpPage.assertions.assertDeliveryHereLinkIsDisplayedAndLinked(assertionText.clickHereLink[language]);
+    } else {
+      this.skip();
+    }
+  });
+  it('Verify that "Here" link below returns details is visible and can be opened from Returns info accordian', function () {
+    const BMANhereLinkFromReturns: boolean = brand == 'boohooman.com' && (locale == 'UK' || locale == 'EU' || locale == 'IE' || locale == 'US');
+    const MPhereLinkFromReturns: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'AU' || locale == 'IE');
+    if (brand == 'karenmillen.com' || BMANhereLinkFromReturns || MPhereLinkFromReturns) {
+      PdpPage.click.returnsInfo();
+      cy.wait(3000);
+      PdpPage.assertions.assertReturnsHereLinkIsDisplayedAndLinked(assertionText.clickHereLink[language]);
     } else {
       this.skip();
     }

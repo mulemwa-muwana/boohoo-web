@@ -1260,7 +1260,7 @@ class ShippingPage implements AbstractPage {
       const premierProductTitleIE = selectors[brand].premierProductTitleIE;
       if (isMobileDeviceUsed) {
         cy.get(cartContainerMobile, { timeout: 20000 }).should('contain', premierProductTitle.trim());
-      } else if (brand=='boohooman.com'|| locale == 'IE') {
+      } else if (brand=='boohooman.com' && locale == 'IE') {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitleIE.trim());
       } else {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());
@@ -1268,7 +1268,7 @@ class ShippingPage implements AbstractPage {
     },
     assertShippingMethodIsSelected (shippingMethod: string) {
       const orderSummaryOnShippingPage = selectors[brand].orderSummaryOnShippingPage;
-      cy.get(orderSummaryOnShippingPage).should('contain.text', shippingMethod);
+      cy.get(orderSummaryOnShippingPage).should('contain.text', shippingMethod.trim());
     },
 
     // METHODS ONLY FOR SITE GENESIS BRANDS //

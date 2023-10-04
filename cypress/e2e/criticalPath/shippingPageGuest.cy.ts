@@ -302,7 +302,7 @@ describe('Shipping Page Guest user tests', function () {
         cy.clearAllCookies();
         navigate.toShippingPage('GuestUser'); // Clearing session and cookies to render addresses(w3w) option back if running multiple times locally with PUDO TestCase
       }
-    } else if (brand == 'boohoo.com' || brand == 'nastygal.com' && locale == 'US') {
+    } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && (locale == 'US'||locale == 'IE')) {
       this.skip();
     }
 

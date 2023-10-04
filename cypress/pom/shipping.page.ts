@@ -9,6 +9,8 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
     addPremierToCartFromShippingPage: '#deliveryPanel .m-with_actions [type]',
+    premierFindOutMore: '.b-icon_chevron',
+    premierMoreInfoSection: '#ngvip-details',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -76,6 +78,8 @@ const selectors: SelectorBrandMap = {
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
     addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
     premierProductTitle: 'NGVIP',
+    premierFindOutMore: '.b-ngvip_accordion-button',
+    premierMoreInfoSection: '.b-ngvip_accordion-content_inner',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -310,6 +314,8 @@ const selectors: SelectorBrandMap = {
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR',
     premierProductTitleIE: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY',
+    premierFindOutMore: '.premier-find-out',
+    premierMoreInfoSection: '.premier-box-extra',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -380,6 +386,8 @@ const selectors: SelectorBrandMap = {
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'Karen Millen Premier',
+    premierFindOutMore: '.premier-find-out',
+    premierMoreInfoSection: '.premier-box-extra',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -783,6 +791,14 @@ class ShippingPage implements AbstractPage {
     },
     addPremierByButtonName (text: string) {
       cy.contains(text).click({ force: true });
+    },
+    premierFindOutMoreLink () {
+      const premierFindOutMore = selectors[brand].premierFindOutMore;
+      if (brand == 'boohoo.com') {
+        cy.get(premierFindOutMore).eq(0).click();
+      } else {
+        cy.get(premierFindOutMore).click();
+      }
     },
     cancelAddingNewAddress () {
       const cancelAddingNewAddress = selectors[brand].cancelAddingNewAddress;
@@ -1288,6 +1304,26 @@ class ShippingPage implements AbstractPage {
     assertThriftBagIsAddedToTheCart () {
       const checkoutMiniBagSummery = selectors[brand].checkoutMiniBagSummery;
       cy.get(checkoutMiniBagSummery).should('contain', 'Thrift Bags');
+    },
+    assertPremierSectionExpands () {
+      const premierMoreInfoSection = selectors[brand].premierMoreInfoSection;
+      if (brand == 'boohoo.com') {
+        cy.get(premierMoreInfoSection).eq(0).should('be.visible');
+      } else {
+        cy.get(premierMoreInfoSection).should('be.visible');
+      }
+    },
+    assertPremierDetailsText () {
+      const premierMoreInfoSection = selectors[brand].premierMoreInfoSection;
+      const premierMoreInfoText = assertionText.premierMoreInfoTextShippingPage[language];
+      const premierMoreInfoTextKM = assertionText.premierMoreInfoTextShippingPageKarenMillen[language];
+      if (brand == 'boohoo.com') {
+        cy.get(premierMoreInfoSection).eq(0).contains(premierMoreInfoText, {matchCase:false});
+      } else if (brand == 'karenmillen.com') {
+        cy.get(premierMoreInfoSection).contains(premierMoreInfoTextKM, {matchCase:false});
+      } else {
+        cy.get(premierMoreInfoSection).contains(premierMoreInfoText, {matchCase:false});
+      }
     }
   };
 }

@@ -1303,12 +1303,12 @@ class BillingPage implements AbstractPage {
     },
     assertOrderConfirmationPageIsDisplayed () {
       const isOrderorderconfirmationBrand: boolean = brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com';
-      const isCheckoutConfirmationBrandAndLocale: boolean = isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU'|| locale == 'DE');
+      const isCheckoutConfirmationBrandAndLocale: boolean = isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU'|| locale == 'DE') ||(brand == 'boohoomena.com' && locale == 'SA');
       const isOrderConfirmationBrandAndLocale: boolean = ((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK'||locale == 'US'||locale == 'IE' ));
     
       if (isOrderorderconfirmationBrand) {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
-      } else if (isCheckoutConfirmationBrandAndLocale||brand == 'boohoomena.com') {
+      } else if (isCheckoutConfirmationBrandAndLocale) {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (isOrderConfirmationBrandAndLocale ) {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');  

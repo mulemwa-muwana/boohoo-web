@@ -34,8 +34,8 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
     checkoutBtn: '/checkout-login',
-    sizeGuidePlp: '[data-widget="productDetail"]',
-    sizeGuidePlpIsDisplayed: 'b-dialog-header'
+    sizeGuidePlp: '[data-ref="productForm"] .b-size_guide_link-text',
+    sizeGuidePlpIsDisplayed: '.b-dialog-header'
   },
   'nastygal.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',

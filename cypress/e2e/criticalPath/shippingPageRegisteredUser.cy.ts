@@ -190,6 +190,19 @@ describe('Shipping Page Registered user tests', function () {
 
   });
 
+  it('Verify that "Find out more" link for Premier section expands and displays correct details ', function () {
+    if ((brand == 'boohoomena.com' || brand == 'misspap.com') || ((brand == 'nastygal.com' || brand == 'boohooman.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier and no find out more link for MissPap
+      this.skip();
+    }
+    const includedLocales: Array<Locale> = ['UK', 'IE', 'FR'];
+    if (!includedLocales.includes(locale)) {
+      this.skip(); // Other locales are not supported for Premier promotion
+    }
+    shippingPage.click.premierFindOutMoreLink();
+    shippingPage.assertions.assertPremierSectionExpands();
+    shippingPage.assertions.assertPremierDetailsText();
+  });
+
   it('Verify that user is able to select standard shipping method', () => {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');

@@ -448,6 +448,34 @@ class AssertionText {
     ES: '\nENTREGA GRATUITA AL DÍA SIGUIENTE DURANTE 1 AÑO!\n'
   };
 
+  premierMoreInfoTextShippingPage: TranslationMap = {
+    EN: 'Next day delivery',
+    FR: 'Livraison Standard Illimitée',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  premierMoreInfoTextShippingPageKarenMillen: TranslationMap = {
+    EN: 'UK Standard Delivery is included and available free',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   GiftCard: TranslationMap = {
     EN: 'GIFT CARD APPLIED',
     FR: 'CARTE CADEAU APPLIQUÉE',
@@ -1920,6 +1948,20 @@ class AssertionText {
 
   referFriendPage: TranslationMap = {
     EN: 'refer',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  womanSizeGuideText: TranslationMap = {
+    EN: 'Women Size Guide',
     NL: '',
     DE: '',
     FR: '',

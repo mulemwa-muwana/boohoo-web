@@ -611,14 +611,12 @@ describe('Home Page', function () {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com'];
         
-        if (brand=='nastygal.com' && locale=='IE') {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2022');
-        } if (brand=='karenmillen.com') {
+        if (brand=='karenmillen.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated July 2023');
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           if ((brand == 'misspap.com' ||brand == 'nastygal.com' ) && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
-          } else if (brand == 'nastygal.com'&& locale == 'IE') {
+          } else if (brand == 'nastygal.com'&& locale == 'IE' || locale=='EU') {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);

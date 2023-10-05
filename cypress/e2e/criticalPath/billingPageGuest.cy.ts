@@ -130,7 +130,7 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.addGiftCard(' ');
       BillingPage.assertions.assertGiftCardEmptyError();
     } else {
-      this.skip()
+      this.skip();
     }
 
   });

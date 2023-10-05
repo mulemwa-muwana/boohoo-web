@@ -1303,7 +1303,7 @@ class BillingPage implements AbstractPage {
     },
     assertOrderConfirmationPageIsDisplayed () {
       const isOrderorderconfirmationBrand: boolean = brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com';
-      const isCheckoutConfirmationBrandAndLocale: boolean = isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU' || locale == 'DE');
+      const isCheckoutConfirmationBrandAndLocale: boolean = isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU' || locale == 'DE'|| locale == 'BH');
       const isOrderConfirmationBrandAndLocale: boolean = ((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK' || locale == 'US' || locale == 'IE' || locale == 'EU'));
     
       if (isOrderorderconfirmationBrand) {

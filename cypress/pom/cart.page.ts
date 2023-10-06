@@ -296,13 +296,13 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    productPriceMobile: '.price-total',
+    productPriceMobile: '.order-subtotal > :nth-child(2)',
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
-    editQuantityMobile: '#Quantity',
+    editQuantityMobile: '.ui-dialog  #Quantity',
     editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
-    updateBtnMobile: '.add-to-cart-text',
+    updateBtnMobile: '#add-to-cart[title="Update Bag"]',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '.html-slot-container',
@@ -458,6 +458,7 @@ class CartPage implements AbstractPage {
       } else {
         cy.get(editQuantity).clear().type(quantity);
         cy.intercept('**/cart').as('cartPage');
+
         cy.get(editQuantity).blur();
         cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
       }

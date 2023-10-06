@@ -656,6 +656,7 @@ const selectors: SelectorBrandMap = {
     addressNicknameField: '#dwfrm_profile_address_addressid',
     addressStateCode:'#dwfrm_profile_address_states_state',
     proceedToBillingBtn: '.verification-address-button-container .verification-address-button',
+    verificationAddressBtn:'.verification-address-button',
     addressDeleteBtn: '.address-delete-link',
     creditCardsList: '.account-payments',
     addCreditCardNumberUS:'#cc_cardNumber',
@@ -908,6 +909,13 @@ class MyAccountPage implements AbstractPage {
         const twitterLink = selectors[variables.brand].twitterLink;
         cy.get(twitterLink).should('be.visible').click();
       },
+      verificationAddress () {
+        const verificationAddressBtn = selectors[variables.brand].verificationAddressBtn;
+        if (verificationAddressBtn.length > 0) {
+          cy.wait(3000);
+          cy.get(verificationAddressBtn).click({ force: true });
+        }
+      }
     };
 
   actions =
@@ -978,7 +986,6 @@ class MyAccountPage implements AbstractPage {
         }
         cy.get(addressSubmitBtn).click({ force: true });
         shippingPage.click.proceedToBillingVerification();
-
       },
       deleteAddressIfExist () {
         const addressDeleteConfirmationBtn = selectors[variables.brand].addressDeleteConfirmationBtn;

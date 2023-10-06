@@ -618,14 +618,14 @@ describe('Home Page', function () {
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           if ((brand == 'misspap.com' || brand == 'nastygal.com') && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
-          } else if  (brand == 'nastygal.com'&& locale == 'IE' || locale=='EU' || locale=='CA')  {
+          } else if  (brand == 'nastygal.com' && (locale == 'IE' || locale=='EU' || locale=='CA'))  {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
           }
         } else if ((brand == 'boohoo.com' && australianLocales)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
-        } else if (brand == 'boohooman.com' && (locale == 'NL')) {
+        } else if (brand == 'boohooman.com' && (locale == 'NL')) { 
           GlobalFooter.actions.checkFooterLinkByText('Privacy Beleid- Sinds Maart 2020');
         } else if (brand == 'boohooman.com' && locale == 'DE') {
           GlobalFooter.actions.checkFooterLinkByText('März 2020');

@@ -248,7 +248,7 @@ describe('Home Page', function () {
       it('Verify that App Banner is present as content slot.', function () {
         const excludedBoohooLocales: Array<Locale> = ['EU', 'NL', 'NO', 'DK', 'FI', 'IT', 'ES'];
         const excludedBoohooWithLocales: boolean = brand == 'boohoo.com' && excludedBoohooLocales.includes(locale);
-        const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && locale == 'EU';
+        const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'EU' || locale == 'CA');
         const excludedCoastWithLocales: boolean = brand == 'coastfashion.com' && locale == 'IE';
         const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US');
         const excludedBoohoomanWithLocales: boolean = brand == 'boohooman.com' && locale == 'NL';
@@ -292,7 +292,7 @@ describe('Home Page', function () {
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
-          if (locale == 'AU' || locale == 'US') {
+          if (locale == 'AU' || locale == 'US' || locale == 'CA') {
             this.skip();
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
@@ -341,6 +341,8 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - The boohoo/nastygal App', function () {
         if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppBHO[language]);
+        } else if (brand == 'nastygal.com' && locale == 'CA') {
+          this.skip();
         } else if (brand == 'nastygal.com' && locale != 'EU') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppNG[language]);
         } else {
@@ -614,9 +616,9 @@ describe('Home Page', function () {
         if (brand=='karenmillen.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated July 2023');
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
-          if ((brand == 'misspap.com' ||brand == 'nastygal.com' ) && locale == 'US') {
+          if ((brand == 'misspap.com' || brand == 'nastygal.com') && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
-          } else if  (brand == 'nastygal.com'&& locale == 'IE' || locale=='EU')  {
+          } else if (brand == 'nastygal.com' && locale == 'IE' || locale == 'EU' || locale == 'CA') {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);

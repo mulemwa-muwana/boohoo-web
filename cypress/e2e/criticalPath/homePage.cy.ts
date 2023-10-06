@@ -618,7 +618,7 @@ describe('Home Page', function () {
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
           if ((brand == 'misspap.com' || brand == 'nastygal.com') && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
-          } else if  (brand == 'nastygal.com' && (locale == 'IE' || locale=='EU' || locale=='CA'))  {
+          } else if (brand == 'nastygal.com' && (locale == 'IE' || locale=='EU' || locale=='CA')) {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);

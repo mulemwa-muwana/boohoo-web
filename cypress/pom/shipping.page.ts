@@ -377,7 +377,8 @@ const selectors: SelectorBrandMap = {
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
-    successMark:'.field-wrapper-w3w-valid'
+    successMark:'.field-wrapper-w3w-valid',
+    helpAndInfoLink: '.checkout-help-link'
   },
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -451,7 +452,8 @@ const selectors: SelectorBrandMap = {
     successMark:'.field-wrapper-w3w-valid',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    checkoutMiniBagSummery: '.checkout-mini-cart'
+    checkoutMiniBagSummery: '.checkout-mini-cart',
+    helpAndInfoLink: '.checkout-help-link'
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -704,7 +706,8 @@ const selectors: SelectorBrandMap = {
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
-    successMark:'.field-wrapper-w3w-valid'
+    successMark:'.field-wrapper-w3w-valid',
+    helpAndInfoLink: 'a[title="Help & Info"]'
   },
   'boohoomena.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -761,7 +764,8 @@ const selectors: SelectorBrandMap = {
     address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
-    successMark:'.field-wrapper-w3w-valid'
+    successMark:'.field-wrapper-w3w-valid',
+    helpAndInfoLink: '.checkout-help-link'
   }
 };
 
@@ -915,6 +919,10 @@ class ShippingPage implements AbstractPage {
     addThriftToCart () {
       const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
       cy.get(addThriftToCartBtn).click({ force: true });
+    },
+    helpAndInfoLink () {
+      const helpAndInfoLink = selectors[brand].helpAndInfoLink;
+      cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click();
     }
   };
 
@@ -1324,6 +1332,11 @@ class ShippingPage implements AbstractPage {
       } else {
         cy.get(premierMoreInfoSection).contains(premierMoreInfoText, {matchCase:false});
       }
+    },
+    assertCustomerServicePageIsOpened () {
+      const customerServiceURL = assertionText.customerServiceURL[language];
+      cy.url().should('contain' , customerServiceURL);
+
     }
   };
 }

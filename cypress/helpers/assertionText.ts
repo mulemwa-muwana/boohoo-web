@@ -1932,6 +1932,20 @@ class AssertionText {
     ES: ''
   };
 
+  customerServiceURL: TranslationMap = {
+    EN: 'customer-service',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   referFriendText: TranslationMap = {
     EN: 'Refer a Friend',
     NL: '',

@@ -357,7 +357,7 @@ describe('Shipping Page Registered user tests', function () {
 
   it('Verify that "Help & info" link on header opens corresponding page', function () {
     if (brand == 'boohoo.com' || brand == 'nastygal.com') {
-      this.skip();
+      this.skip(); // No help and info link on these brands
     }
     shippingPage.click.helpAndInfoLink();
     shippingPage.assertions.assertCustomerServicePageIsOpened();

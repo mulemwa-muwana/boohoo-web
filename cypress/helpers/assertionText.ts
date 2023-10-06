@@ -1035,7 +1035,7 @@ class AssertionText {
     IT: 'Guida taglie boohoo',
     ES: 'Guía de tallas'
   };
-  
+
   footerAccordionHelp: TranslationMap = {
     EN: 'Help',
     NL: '',
@@ -1878,7 +1878,7 @@ class AssertionText {
 
   promoEmptydErrorMessage: TranslationMap = {
     EN: 'No promo code entered',
-    NL: 'No promo code entered', 
+    NL: 'No promo code entered',
     DE: 'No promo code entered',
     FR: 'Aucun code promo ajouté',
     DK: 'No promo code entered',
@@ -1920,6 +1920,20 @@ class AssertionText {
 
   customerServicePageVirtualAssistantButton: TranslationMap = {
     EN: 'Virtual Assistant',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  customerServiceURL: TranslationMap = {
+    EN: 'customer-service',
     NL: '',
     DE: '',
     FR: '',
@@ -1979,6 +1993,20 @@ class AssertionText {
     NL: 'Click here',
     DE: 'Klicke hier',
     FR: 'Cliquez ici',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  productDeliveryOptions: TranslationMap = {
+    EN: '\nFewer shipping options\n',
+    NL: '',
+    DE: '',
+    FR: '',
     DK: '',
     FI: '',
     NO: '',

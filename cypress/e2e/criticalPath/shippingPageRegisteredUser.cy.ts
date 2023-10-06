@@ -26,7 +26,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     shippingPage.click.addNewAddressButton();
 
     shippingPage.actions.firstNameFieldClear();
@@ -108,7 +108,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
-  it('Verify that ADDRESS LOOKUP field is dispayed and functional', function () {
+  it('Verify that ADDRESS LOOKUP field is displayed and functional', function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // There is no Address Lookup for this brand
     }
@@ -316,8 +316,8 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com'&& (locale == 'IE' || locale == 'AU' || locale == 'US');
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com' || excludedmisspapWithLocales) {
+    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com')&& (locale == 'IE' || locale == 'AU' || locale == 'US')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
+    if (excludedmisspapWithLocales) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
@@ -355,4 +355,11 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertEmptyPromoError();
   });
 
+  it('Verify that "Help & info" link on header opens corresponding page', function () {
+    if (brand == 'boohoo.com' || brand == 'nastygal.com') {
+      this.skip(); // No help and info link on these brands
+    }
+    shippingPage.click.helpAndInfoLink();
+    shippingPage.assertions.assertCustomerServicePageIsOpened();
+  });
 });

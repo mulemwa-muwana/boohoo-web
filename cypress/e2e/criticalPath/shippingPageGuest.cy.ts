@@ -355,4 +355,12 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.addNoPromoCode();
     shippingPage.assertions.assertEmptyPromoError();
   });
+
+  it('Verify that "Help & info" link on header opens corresponding page', function () {
+    if (brand == 'boohoo.com' || brand == 'nastygal.com') {
+      this.skip(); // No help and info link on these brands
+    }
+    shippingPage.click.helpAndInfoLink();
+    shippingPage.assertions.assertCustomerServicePageIsOpened();
+  });
 });

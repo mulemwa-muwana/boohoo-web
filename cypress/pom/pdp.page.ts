@@ -437,15 +437,11 @@ class PdpPage implements AbstractPage {
     },
     sizeGuidePdpCms () {
       const sizeGuidePdpCms = selectors[brand].sizeGuidePdpCms;
-      cy.get(sizeGuidePdpCms).click({force: true})
+      cy.get(sizeGuidePdpCms).click({force: true});
     },
     howToMeasurePdp () {
       const howToMeasurePdp = selectors[brand].howToMeasurePdp;
       cy.get(howToMeasurePdp).click({force: true});
-    },
-    usCaLocale () {
-      const usCaLocale = selectors[brand].usCaLocale;
-      cy.get(usCaLocale).click({force: true});
     },
     ausNzLocale () {
       const ausNzLocale = selectors[brand].ausNzLocale;
@@ -463,8 +459,6 @@ class PdpPage implements AbstractPage {
       const frLocale = selectors[brand].frLocale;
       cy.get(frLocale).click({force: true});
     }
-    
-    
   };
 
   actions = {

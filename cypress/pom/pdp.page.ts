@@ -337,6 +337,7 @@ const selectors: SelectorBrandMap = {
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '#product-content > .product-name',
+    productTitleMobile:'.is-mobile > .product-name',
     productCode: '.product-number > [itemprop="sku"]',
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
@@ -347,6 +348,7 @@ const selectors: SelectorBrandMap = {
     productDescription: '.product-care-info',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
+    productReturnsDescriptionMobile:'#dialog-container',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.ui-dialog-content-wrapper',
     productReturnsInfoButton: '.product-returns-link > .product-info-link-text',
@@ -663,6 +665,7 @@ class PdpPage implements AbstractPage {
     assertReturnInfoIsDisplayed() {
       const productReturnsInfoButton = selectors[brand].productReturnsInfoButton;
       const productReturnsDescription = selectors[brand].productReturnsDescription;
+      const productReturnsDescriptionMobile = selectors[brand].productReturnsDescriptionMobile;
 
       if (isSiteGenesisBrand) {
         cy.get(productReturnsInfoButton).click({ force: true });
@@ -673,7 +676,12 @@ class PdpPage implements AbstractPage {
 
         cy.get(productReturnsInfoButton).click({ force: true });
       }
-      cy.get(productReturnsDescription).should('be.visible');
+
+      if (brand == 'misspap.com' && isMobileDeviceUsed) {
+        cy.get(productReturnsDescriptionMobile).should('be.visible');
+      } else {
+        cy.get(productReturnsDescription).should('be.visible');
+      }
     },
     assertStartReturnPageIsDisplayed() {
 

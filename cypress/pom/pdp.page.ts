@@ -34,8 +34,17 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
     checkoutBtn: '/checkout-login',
-    sizeGuidePlp: '[data-ref="productForm"] .b-size_guide_link-text',
-    sizeGuidePlpIsDisplayed: '.b-dialog-header'
+    sizeGuidePdp: '[data-ref="productForm"] .b-size_guide_link-text',
+    sizeGuidePdpIsDisplayed: '.b-dialog-header',
+    sizeGuidePdpCms: '.b-size_type-switcher > div > span:nth-of-type(2)',
+    sizeGuidePdpTable: '.b-custom_table-cell',
+    howToMeasurePdp: 'button#product-details-btn > .b-icon_chevron',
+    howToMeasurePdpContent: '.b-measure_tips-subheader',
+    usCaLocale: '[id="US/CA"]',
+    ausNzLocale: '[id="AUS/NZ"]',
+    deLocale: '[id="DE"]',
+    itLocale: '[id="IT"]',
+    frLocale: '[id="FR"]',
   },
   'nastygal.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -178,10 +187,13 @@ const selectors: SelectorBrandMap = {
     miniCartProductIner: '.mini-cart-content-inner',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.del-table',
-    productReturnsInfoButton: '#product-returns-info-tab',
+    productReturnsInfoButton: '#product-returns-info-tab .js-global-accordion-header',
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    productDeliveryInfo: '.product-delivery-info a',
+    productDeliveryInfo: '#ui-id-4',
+    productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
+    productReturnsInfo:'#ui-id-6',
+    premierBanner: '#pdp-premier'
   },
   'karenmillen.com': {
     searchField: '#header-search-input',
@@ -211,7 +223,11 @@ const selectors: SelectorBrandMap = {
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
     productDeliveryInfoMobile: '#product-delivery-info-tab',
-    productReturnsInfoButton: '#ui-id-5'
+    productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
+    productReturnsInfoButton: '#product-returns-info-tab > .js-global-accordion-header',
+    productReturnsInfo:'#product-returns-info-tab',
+    premierBanner:'#pdpMain .banner-wrapper',
+    
   },
   'coastfashion.com': {
     searchField: '#header-search-input',
@@ -327,9 +343,11 @@ const selectors: SelectorBrandMap = {
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    productDeliveryInfo: '.product-delivery-link > .product-info-link-text',
+    productDeliveryInfo: '.ui-dialog-content-wrapper',
     productReturnsInfoButton: '.product-returns-link > .product-info-link-text',
-    showAllContentButton: '[class="show-all js-show-all"]'
+    showAllContentButton: '[class="show-all js-show-all"]',
+    productDeliveryInfoButton: '.product-delivery-link',
+    productReturnsInfo:'.ui-dialog-content-wrapper',
   },
   'boohoomena.com': {
     searchField: '#header-search-input',
@@ -413,10 +431,40 @@ class PdpPage implements AbstractPage {
       const wishListIcon = selectors[brand].wishListIcon;
       cy.get(wishListIcon).click({force:true});
     },
-    sizeGuidePlp () {
-      const sizeGuidePlp = selectors[brand].sizeGuidePlp;
-      cy.get(sizeGuidePlp).click({ force: true });
+    sizeGuidePdp () {
+      const sizeGuidePdp = selectors[brand].sizeGuidePdp;
+      cy.get(sizeGuidePdp).click({ force: true });
+    },
+    sizeGuidePdpCms () {
+      const sizeGuidePdpCms = selectors[brand].sizeGuidePdpCms;
+      cy.get(sizeGuidePdpCms).click({force: true})
+    },
+    howToMeasurePdp () {
+      const howToMeasurePdp = selectors[brand].howToMeasurePdp;
+      cy.get(howToMeasurePdp).click({force: true});
+    },
+    usCaLocale () {
+      const usCaLocale = selectors[brand].usCaLocale;
+      cy.get(usCaLocale).click({force: true});
+    },
+    ausNzLocale () {
+      const ausNzLocale = selectors[brand].ausNzLocale;
+      cy.get(ausNzLocale).click({force: true});
+    },
+    deLocale () {
+      const deLocale = selectors[brand].deLocale;
+      cy.get(deLocale).click({force: true});
+    },
+    itLocale () {
+      const itLocale = selectors[brand].itLocale;
+      cy.get(itLocale).click({force: true});
+    },
+    frLocale () {
+      const frLocale = selectors[brand].frLocale;
+      cy.get(frLocale).click({force: true});
     }
+    
+    
   };
 
   actions = {
@@ -604,13 +652,13 @@ class PdpPage implements AbstractPage {
       
     },
     assertDeliveryOptionsAreDisplayed () {
-      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      const productDeliveryInfoButton = selectors[brand].productDeliveryInfoButton;
       const productDeliveryInfoMobile = selectors[brand].productDeliveryInfoMobile;
     
       if (isMobileDeviceUsed) {
         cy.get(productDeliveryInfoMobile).should('be.visible');
       } else {
-        cy.get(productDeliveryInfo).should('be.visible');
+        cy.get(productDeliveryInfoButton).should('be.visible');
     
       }
     },
@@ -648,8 +696,52 @@ class PdpPage implements AbstractPage {
       // Temp: const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.url().should('include', text); //  Only boohoo brand //need to be change
     },
-    assertSizeGuidePlpIsDisplayed () {
-      const sizeGuidePlpIsDisplayed = selectors[brand].sizeGuidePlpIsDisplayed;
+    assertSizeGuidePdpIsDisplayed () {
+      const sizeGuidePdpIsDisplayed = selectors[brand].sizeGuidePdpIsDisplayed;
+    },
+
+    assertSizeGuidePdpCms () {
+      const sizeGuidePdpTable = selectors[brand].sizeGuidePdpTable;
+      cy.get(sizeGuidePdpTable).should('contain', '79');
+    },
+    assertSizeGuidePdpInches () {
+      const sizeGuidePdpInches = selectors[brand].sizeGuidePdpInches;
+      cy.get(sizeGuidePdpInches).should('have.text', '31');
+    },
+    assertHowToMeasurePdpDisplayed () {
+      const howToMeasurePdpContent = selectors[brand].howToMeasurePdpContent;
+      cy.get(howToMeasurePdpContent).should('be.visible');
+
+    },
+    assertUsCaLocaleSelected () {
+      const usCaLocale = selectors[brand].usCaLocale;
+
+      cy.get(usCaLocale).click(),
+      cy.get(usCaLocale).should('be.checked');
+    },
+    assertausNzLocaleSelected () {
+      const ausNzLocale = selectors[brand].ausNzLocale;
+
+      cy.get(ausNzLocale).click(),
+      cy.get(ausNzLocale).should('be.checked');
+    },
+    assertDeLocaleSelected () {
+      const deLocale = selectors[brand].deLocale;
+
+      cy.get(deLocale).click(),
+      cy.get(deLocale).should('be.checked');
+    },
+    assertItLocaleSelected () {
+      const itLocale = selectors[brand].itLocale;
+
+      cy.get(itLocale).click(),
+      cy.get(itLocale).should('be.checked');
+    },
+    assertFrLocaleSelected () {
+      const frLocale = selectors[brand].frLocale;
+      
+      cy.get(frLocale).click(),
+      cy.get(frLocale).should('be.checked');
     }
 
   };

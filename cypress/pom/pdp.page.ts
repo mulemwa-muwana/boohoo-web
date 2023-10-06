@@ -1,7 +1,8 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { brand, locale, fullSku } from 'cypress/support/e2e';
+import { brand, locale, fullSku, language } from 'cypress/support/e2e';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -618,13 +619,13 @@ class PdpPage implements AbstractPage {
       const productDeliveryNonUKLocale = selectors[brand].productDeliveryNonUKLocale;
       const productDeliveryOptions = selectors[brand].productDeliveryOptions;
 
-      brand == 'boohoo.com' && locale != 'UK'
+      (brand == 'boohoo.com' && locale != 'UK')
         ? cy.get(productDeliveryNonUKLocale).should('be.visible')
         : isSiteGenesisBrand
           ? cy.get(productDelivery).should('be.visible')
           : cy.get(productDelivery).should('be.visible')
             .get(productDeliveryOptions).should('be.visible').click()
-            .get(productDeliveryOptions).should('have.text', '\nFewer shipping options\n')
+            .get(productDeliveryOptions).should('have.text', assertionText.productDeliveryOptions[language])
     },
 
     assertDeliveryOptionsAreDisplayed() {

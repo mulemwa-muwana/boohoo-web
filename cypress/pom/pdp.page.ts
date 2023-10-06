@@ -37,7 +37,17 @@ const selectors: SelectorBrandMap = {
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
     checkoutBtn: '/checkout-login',
-    miniCartProductTitle: '[data-tau="global_alerts_item"]'
+    sizeGuidePdp: '[data-ref="productForm"] .b-size_guide_link-text',
+    sizeGuidePdpIsDisplayed: '.b-dialog-header',
+    sizeGuidePdpCms: '.b-size_type-switcher > div > span:nth-of-type(2)',
+    sizeGuidePdpTable: '.b-custom_table-cell',
+    howToMeasurePdp: 'button#product-details-btn > .b-icon_chevron',
+    howToMeasurePdpContent: '.b-measure_tips-subheader',
+    usCaLocale: '[id="US/CA"]',
+    ausNzLocale: '[id="AUS/NZ"]',
+    deLocale: '[id="DE"]',
+    itLocale: '[id="IT"]',
+    frLocale: '[id="FR"]',
   },
   'nastygal.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -443,9 +453,20 @@ class PdpPage implements AbstractPage {
     },
     returnsInfo() {
       const productReturnsInfoButton = selectors[brand].productReturnsInfoButton;
-      cy.get(productReturnsInfoButton).click({ force: true });
+      cy.get(productReturnsInfoButton).click({force:true});
+    },
+    sizeGuidePdp () {
+      const sizeGuidePdp = selectors[brand].sizeGuidePdp;
+      cy.get(sizeGuidePdp).click({ force: true });
+    },
+    sizeGuidePdpCms () {
+      const sizeGuidePdpCms = selectors[brand].sizeGuidePdpCms;
+      cy.get(sizeGuidePdpCms).click({force: true});
+    },
+    howToMeasurePdp () {
+      const howToMeasurePdp = selectors[brand].howToMeasurePdp;
+      cy.get(howToMeasurePdp).click({force: true});
     }
-
   };
 
   actions = {
@@ -699,7 +720,55 @@ class PdpPage implements AbstractPage {
         const hereLink = text.split(' ')[1];
         cy.wrap($el).contains(hereLink).click({ force: true });
       });
-      cy.url().should('include', 'returns');
+      cy.url().should('include','returns');
+    },
+    assertSizeGuidePdpIsDisplayed () {
+      const sizeGuidePdpIsDisplayed = selectors[brand].sizeGuidePdpIsDisplayed;
+      cy.get(sizeGuidePdpIsDisplayed).should('be.visible');
+    },
+
+    assertSizeGuidePdpCms () {
+      const sizeGuidePdpTable = selectors[brand].sizeGuidePdpTable;
+      cy.get(sizeGuidePdpTable).should('contain', '79');
+    },
+    assertSizeGuidePdpInches () {
+      const sizeGuidePdpInches = selectors[brand].sizeGuidePdpInches;
+      cy.get(sizeGuidePdpInches).should('have.text', '31');
+    },
+    assertHowToMeasurePdpDisplayed () {
+      const howToMeasurePdpContent = selectors[brand].howToMeasurePdpContent;
+      cy.get(howToMeasurePdpContent).should('be.visible');
+
+    },
+    assertUsCaLocaleSelected () {
+      const usCaLocale = selectors[brand].usCaLocale;
+
+      cy.get(usCaLocale).click(),
+      cy.get(usCaLocale).should('be.checked');
+    },
+    assertausNzLocaleSelected () {
+      const ausNzLocale = selectors[brand].ausNzLocale;
+
+      cy.get(ausNzLocale).click(),
+      cy.get(ausNzLocale).should('be.checked');
+    },
+    assertDeLocaleSelected () {
+      const deLocale = selectors[brand].deLocale;
+
+      cy.get(deLocale).click(),
+      cy.get(deLocale).should('be.checked');
+    },
+    assertItLocaleSelected () {
+      const itLocale = selectors[brand].itLocale;
+
+      cy.get(itLocale).click(),
+      cy.get(itLocale).should('be.checked');
+    },
+    assertFrLocaleSelected () {
+      const frLocale = selectors[brand].frLocale;
+
+      cy.get(frLocale).click(),
+      cy.get(frLocale).should('be.checked');
     }
 
   };

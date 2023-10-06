@@ -30,7 +30,7 @@ const selectors: SelectorBrandMap = {
     addGiftCert: '#add-giftcert',
     giftCardErrorMessage: 'div.b-gift_certificate-error',
     giftCardEmptyError:'#dwfrm_billing_giftCertCode-error',
-    shippingAddressSection: '.b-billing_address-summary_address.b-summary_address  .b-address-summary',
+    shippingAddressSection: '[data-id="useShippingDescription"]',
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     shippingMethodSelector: '[data-tau="summary_shipping"]',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
@@ -1303,8 +1303,8 @@ class BillingPage implements AbstractPage {
     },
     assertOrderConfirmationPageIsDisplayed () {
       const isOrderorderconfirmationBrand: boolean = brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'dorothyperkins.com';
-      const isCheckoutConfirmationBrandAndLocale: boolean = isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU' || locale == 'DE'|| locale == 'BH');
-      const isOrderConfirmationBrandAndLocale: boolean = ((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK' || locale == 'US' || locale == 'IE' || locale == 'EU'));
+      const isCheckoutConfirmationBrandAndLocale: boolean = isSiteGenesisBrand && (locale == 'UK' || locale == 'NL'|| locale == 'IE' || locale == 'AU'|| locale == 'DE') ||(brand == 'boohoomena.com');
+      const isOrderConfirmationBrandAndLocale: boolean = ((brand =='boohoo.com' || brand == 'nastygal.com' || brand == 'misspap.com') && (locale == 'UK'||locale == 'US'||locale == 'IE' ));
     
       if (isOrderorderconfirmationBrand) {
         cy.url({timeout: 30000}).should('include', 'orderconfirmation');
@@ -1312,8 +1312,6 @@ class BillingPage implements AbstractPage {
         cy.url({timeout: 30000}).should('include', 'checkout-confirmation');
       } else if (isOrderConfirmationBrandAndLocale ) {
         cy.url({timeout: 30000}).should('include', 'order-confirmation');  
-      } else {
-        cy.url({timeout: 30000}).should('include', 'Order-Confirm');
       }  
     },
     assertEmailFieldCantBeChanged () {

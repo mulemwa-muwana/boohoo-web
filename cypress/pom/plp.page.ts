@@ -601,7 +601,7 @@ class PlpPage implements AbstractPage {
         cy.get(addToCart).click({ force: true });
         cy.wait(5000);
       });
-    }
+    },
   };
 
   actions = {
@@ -745,7 +745,7 @@ class PlpPage implements AbstractPage {
     assertItemIsAddedToWishlistColorChange() {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
-    }
+    },
   };
 }
 

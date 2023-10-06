@@ -19,7 +19,7 @@ describe('Product Details Page tests', function () {
     const SKU = sku.replace(/^#/g, '');
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
-    PdpPage.assertions.assertProductCodeIsDisplayed(SKU); 
+    PdpPage.assertions.assertProductCodeIsDisplayed(SKU);  
 
     // We need to instal plugin for continuing after failed assertation just in case
 
@@ -92,6 +92,7 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
+
   it('Verify that PREMIER banner is visible and can be added to the basket', function () {
     if ((brand == 'karenmillen.com'&& (locale == 'US' || locale == 'IE' || locale == 'EU')) || (brand == 'boohooman.com') && locale == 'UK') {
       if (brand == 'karenmillen.com') {
@@ -100,12 +101,10 @@ describe('Product Details Page tests', function () {
       }
       PdpPage.assertions.assertPremierBannerIsVisible();
       PdpPage.click.addToCartPremier();
-
       cy.wait(5000);
       homePage.click.cartIcon();
       cy.wait(10000);
       cartPage.assertions.assertSelectedProductIsAddedToTheCart(assertionText.Premier[language]);
-
     } else {
       this.skip();
     }
@@ -140,4 +139,5 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
+
 }); 

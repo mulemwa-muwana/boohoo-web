@@ -30,7 +30,7 @@ const selectors: SelectorBrandMap = {
     addGiftCert: '#add-giftcert',
     giftCardErrorMessage: 'div.b-gift_certificate-error',
     giftCardEmptyError:'#dwfrm_billing_giftCertCode-error',
-    shippingAddressSection: '.b-billing_address-summary_address.b-summary_address  .b-address-summary',
+    shippingAddressSection: '[data-id="useShippingDescription"]',
     changeShippingAddress: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     shippingMethodSelector: '[data-tau="summary_shipping"]',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',

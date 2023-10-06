@@ -26,7 +26,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     shippingPage.click.addNewAddressButton();
 
     shippingPage.actions.firstNameFieldClear();
@@ -108,7 +108,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
-  it('Verify that ADDRESS LOOKUP field is dispayed and functional', function () {
+  it('Verify that ADDRESS LOOKUP field is displayed and functional', function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // There is no Address Lookup for this brand
     }
@@ -355,4 +355,11 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertEmptyPromoError();
   });
 
+  it('Verify that "Help & info" link on header opens corresponding page', function () {
+    if (brand == 'boohoo.com' || brand == 'nastygal.com') {
+      this.skip();
+    }
+    shippingPage.click.helpAndInfoLink();
+    shippingPage.assertions.assertCustomerServicePageIsOpened();
+  });
 });

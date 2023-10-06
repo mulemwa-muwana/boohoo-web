@@ -431,6 +431,25 @@ class PdpPage implements AbstractPage {
       const wishListIcon = selectors[brand].wishListIcon;
       cy.get(wishListIcon).click({force:true});
     },
+    addToCartPremier () {
+      const premierBanner = selectors[brand].premierBanner;
+      const addToCart = selectors[brand].addToCart;
+      cy.get(premierBanner).then(($el) => {
+        cy.wrap($el).find(addToCart).click({force:true});
+      });
+    },
+    premierLink (text: string) {
+      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      cy.get(productDeliveryInfo).contains(text).click({force:true});
+    },
+    deliveryInfo () {
+      const productDeliveryInfoButton = selectors[brand].productDeliveryInfoButton;
+      cy.get(productDeliveryInfoButton).click({force:true});
+    },
+    returnsInfo () {
+      const productReturnsInfoButton = selectors[brand].productReturnsInfoButton;
+      cy.get(productReturnsInfoButton).click({force:true});
+    },
     sizeGuidePdp () {
       const sizeGuidePdp = selectors[brand].sizeGuidePdp;
       cy.get(sizeGuidePdp).click({ force: true });
@@ -442,22 +461,6 @@ class PdpPage implements AbstractPage {
     howToMeasurePdp () {
       const howToMeasurePdp = selectors[brand].howToMeasurePdp;
       cy.get(howToMeasurePdp).click({force: true});
-    },
-    ausNzLocale () {
-      const ausNzLocale = selectors[brand].ausNzLocale;
-      cy.get(ausNzLocale).click({force: true});
-    },
-    deLocale () {
-      const deLocale = selectors[brand].deLocale;
-      cy.get(deLocale).click({force: true});
-    },
-    itLocale () {
-      const itLocale = selectors[brand].itLocale;
-      cy.get(itLocale).click({force: true});
-    },
-    frLocale () {
-      const frLocale = selectors[brand].frLocale;
-      cy.get(frLocale).click({force: true});
     }
   };
 
@@ -690,8 +693,37 @@ class PdpPage implements AbstractPage {
       // Temp: const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.url().should('include', text); //  Only boohoo brand //need to be change
     },
+    assertPremierBannerIsVisible () {
+      const premierBanner = selectors[brand].premierBanner;
+      cy.get(premierBanner).then(element => {
+        cy.wrap(element).invoke('width').should('be.gt', 10);
+      });
+    },
+    assertLinkPremierIsLinked (text: string) {
+      cy.url().should('include',text.toLocaleLowerCase());
+    },
+    assertDeliveryHereLinkIsDisplayedAndLinked (text: string) {
+      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      cy.get(productDeliveryInfo).contains(text).then(($el) => {
+        const hereLink = text.split(' ')[1];
+        cy.wrap($el).contains(hereLink).click({force:true});
+      });
+      cy.url().should('include','delivery');
+    },
+    assertReturnsHereLinkIsDisplayedAndLinked (text: string) {
+      const productReturnsInfo = selectors[brand].productReturnsInfo;
+      if (brand == 'boohooman.com' && (locale == 'IE' || locale == 'UK')) {
+        text = 'policy here';
+      } 
+      cy.get(productReturnsInfo).contains(text).then(($el) => {
+        const hereLink = text.split(' ')[1];
+        cy.wrap($el).contains(hereLink).click({force:true});
+      });
+      cy.url().should('include','returns');
+    },
     assertSizeGuidePdpIsDisplayed () {
       const sizeGuidePdpIsDisplayed = selectors[brand].sizeGuidePdpIsDisplayed;
+      cy.get(sizeGuidePdpIsDisplayed).should('be.visible');
     },
 
     assertSizeGuidePdpCms () {

@@ -82,6 +82,12 @@ const selectors: SelectorBrandMap = {
     payPalIFramePasswoedBox: '#password',
     payPalIFrameLoginCTA: '#btnLogin',
     payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
+    billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
+    clearPaySummeryButton: '[data-testid="summary-button"]',
+    clearPayIdInput: '[data-testid="login-identity-input"]',
+    clearPayIdCTA: '[data-testid="login-identity-button"]',
+    clearPayPasswordInput: '[data-testid="login-password-input"]',
+    clearPayPasswordCTA: '[data-testid="login-password-button"]',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -170,6 +176,12 @@ const selectors: SelectorBrandMap = {
     payPalIFramePasswoedBox: '#password',
     payPalIFrameLoginCTA: '#btnLogin',
     payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
+    billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
+    clearPaySummeryButton: '[data-testid="summary-button"]',
+    clearPayIdInput: '[data-testid="login-identity-input"]',
+    clearPayIdCTA: '[data-testid="login-identity-button"]',
+    clearPayPasswordInput: '[data-testid="login-password-input"]',
+    clearPayPasswordCTA: '[data-testid="login-password-button"]',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -427,6 +439,12 @@ const selectors: SelectorBrandMap = {
     payPalIFramePasswoedBox: '#password',
     payPalIFrameLoginCTA: '#btnLogin',
     payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
+    billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
+    clearPaySummeryButton: '[data-testid="summary-button"]',
+    clearPayIdInput: '[data-testid="login-identity-input"]',
+    clearPayIdCTA: '[data-testid="login-identity-button"]',
+    clearPayPasswordInput: '[data-testid="login-password-input"]',
+    clearPayPasswordCTA: '[data-testid="login-password-button"]',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -507,6 +525,12 @@ const selectors: SelectorBrandMap = {
     payPalIFramePasswoedBox: '#password',
     payPalIFrameLoginCTA: '#btnLogin',
     payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
+    billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
+    clearPaySummeryButton: '[data-testid="summary-button"]',
+    clearPayIdInput: '[data-testid="login-identity-input"]',
+    clearPayIdCTA: '[data-testid="login-identity-button"]',
+    clearPayPasswordInput: '[data-testid="login-password-input"]',
+    clearPayPasswordCTA: '[data-testid="login-password-button"]',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -731,6 +755,12 @@ const selectors: SelectorBrandMap = {
     payPalIFramePasswoedBox: '#password',
     payPalIFrameLoginCTA: '#btnLogin',
     payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
+    billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
+    clearPaySummeryButton: '[data-testid="summary-button"]',
+    clearPayIdInput: '[data-testid="login-identity-input"]',
+    clearPayIdCTA: '[data-testid="login-identity-button"]',
+    clearPayPasswordInput: '[data-testid="login-password-input"]',
+    clearPayPasswordCTA: '[data-testid="login-password-button"]',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -805,6 +835,12 @@ const selectors: SelectorBrandMap = {
     payPalIFramePasswoedBox: '#password',
     payPalIFrameLoginCTA: '#btnLogin',
     payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
+    billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
+    clearPaySummeryButton: '[data-testid="summary-button"]',
+    clearPayIdInput: '[data-testid="login-identity-input"]',
+    clearPayIdCTA: '[data-testid="login-identity-button"]',
+    clearPayPasswordInput: '[data-testid="login-password-input"]',
+    clearPayPasswordCTA: '[data-testid="login-password-button"]',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -1277,6 +1313,12 @@ class BillingPage implements AbstractPage {
       const siteGenesisClearPayButton = '#billingSubmitButton';
       const blpClearPay = '#payment-button-CLEARPAY';
       const blpClearPayButton = '#payment-details-CLEARPAY button[type="submit"]';
+      const clearPaySummeryButton = selectors[brand].clearPaySummeryButton;
+      const clearPayIdInput = selectors[brand].clearPayIdInput;
+      const clearPayIdCTA = selectors[brand].clearPayIdCTA;
+      const clearPayPasswordInput = selectors[brand].clearPayPasswordInput;
+      const clearPayPasswordCTA = selectors[brand].clearPayPasswordCTA;
+
       if (isSiteGenesisBrand) {
         cy.get(siteGenesisClearPay, { timeout: 15000 }).click({ force: true });
         cy.get(siteGenesisClearPayButton).click({ force: true });
@@ -1286,19 +1328,19 @@ class BillingPage implements AbstractPage {
       }
 
       cy.get('body', { timeout: 20000 }).then($body => {
-        if ($body.find('[data-testid="summary-button"]').length > 0) {
-          cy.get('[data-testid="summary-button"]').click();
+        if ($body.find(clearPaySummeryButton).length > 0) {
+          cy.get(clearPaySummeryButton).click();
         }
       });
 
       cy.wait(5000);
-      cy.get('[data-testid="login-identity-input"]', { timeout: 30000 }).clear();
+      cy.get(clearPayIdInput, { timeout: 30000 }).clear();
       cy.wait(5000);
-      cy.get('[data-testid="login-identity-input"]', { timeout: 30000 }).type('ukboohoo@outlook.com');
-      cy.get('[data-testid="login-identity-button"]', { timeout: 30000 }).click();
-      cy.get('[data-testid="login-password-input"]', { timeout: 30000 }).type('Boohoo!23');
-      cy.get('[data-testid="login-password-button"]', { timeout: 30000 }).click();
-      cy.get('[data-testid="summary-button"]', { timeout: 30000 }).click();
+      cy.get(clearPayIdInput, { timeout: 30000 }).type('ukboohoo@outlook.com');
+      cy.get(clearPayIdCTA, { timeout: 30000 }).click();
+      cy.get(clearPayPasswordInput, { timeout: 30000 }).type('Boohoo!23');
+      cy.get(clearPayPasswordCTA, { timeout: 30000 }).click();
+      cy.get(clearPaySummeryButton, { timeout: 30000 }).click();
     },
   };
 
@@ -1362,12 +1404,14 @@ class BillingPage implements AbstractPage {
     },
 
     assertEmailIsCorrect(email: string) {
-      cy.get('input[id="dwfrm_billing_contactInfoFields_email"]').should('have.value', email);
+      const billingInfoEmailBox = selectors[brand].billingInfoEmailBox;
+      cy.get(billingInfoEmailBox).should('have.value', email);
     },
 
-    assertSubscriptionBlockPresent() {
-      cy.get('div[class="b-create_account_form-subscription"]').should('be.visible');
-    },
+    // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
+    // assertSubscriptionBlockPresent() {
+    //   cy.get('div[class="b-create_account_form-subscription"]').should('be.visible');
+    // },
     assertDateFormIsPresent() {
       const dobForm = selectors[brand].dobForm;
       cy.get(dobForm).should('be.visible');

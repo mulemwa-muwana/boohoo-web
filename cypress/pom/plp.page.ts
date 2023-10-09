@@ -4,7 +4,6 @@ import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import assertionText from 'cypress/helpers/assertionText';
 import { brand, language, locale } from 'cypress/support/e2e';
-import { CompletionTriggerKind } from 'typescript';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -739,9 +738,9 @@ class PlpPage implements AbstractPage {
     },
 
     // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
-    // assertItemCountInView(itemCount: string) {
-    //   cy.get('.l-plp_grid').should('have.attr', 'data-col-count').and('deep.equal', itemCount);
-    // },
+    assertItemCountInView(itemCount: string) {
+      cy.get('.l-plp_grid').should('have.attr', 'data-col-count').and('deep.equal', itemCount);
+    },
     assertItemIsAddedToWishlistColorChange() {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');

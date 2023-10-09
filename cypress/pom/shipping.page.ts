@@ -29,7 +29,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#LoqateAutocomplete',
     addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
-    cartContainer: '.b-checkout_products',
+    cartContainer: '[data-id="checkoutProducts"]',
     orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',

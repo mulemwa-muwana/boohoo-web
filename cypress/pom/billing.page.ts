@@ -73,15 +73,6 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
-    payPalZoidFrame: '.zoid-component-frame',
-    payPalButton: '.paypal-button',
-    payPalIFrame: '.paypal-checkout-sandbox-iframe',
-    payPalIFrameCookieCTA: '#acceptAllButton',
-    payPalIFrameEmailBox: '#email',
-    payPalIFrameNextCTA: '#btnNext',
-    payPalIFramePasswoedBox: '#password',
-    payPalIFrameLoginCTA: '#btnLogin',
-    payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -167,15 +158,6 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
-    payPalZoidFrame: '.zoid-component-frame',
-    payPalButton: '.paypal-button',
-    payPalIFrame: '.paypal-checkout-sandbox-iframe',
-    payPalIFrameCookieCTA: '#acceptAllButton',
-    payPalIFrameEmailBox: '#email',
-    payPalIFrameNextCTA: '#btnNext',
-    payPalIFramePasswoedBox: '#password',
-    payPalIFrameLoginCTA: '#btnLogin',
-    payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -430,15 +412,6 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '',
-    payPalZoidFrame: '.zoid-component-frame',
-    payPalButton: '.paypal-button',
-    payPalIFrame: '.paypal-checkout-sandbox-iframe',
-    payPalIFrameCookieCTA: '#acceptAllButton',
-    payPalIFrameEmailBox: '#email',
-    payPalIFrameNextCTA: '#btnNext',
-    payPalIFramePasswoedBox: '#password',
-    payPalIFrameLoginCTA: '#btnLogin',
-    payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -516,15 +489,6 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
-    payPalZoidFrame: '.zoid-component-frame',
-    payPalButton: '.paypal-button',
-    payPalIFrame: '.paypal-checkout-sandbox-iframe',
-    payPalIFrameCookieCTA: '#acceptAllButton',
-    payPalIFrameEmailBox: '#email',
-    payPalIFrameNextCTA: '#btnNext',
-    payPalIFramePasswoedBox: '#password',
-    payPalIFrameLoginCTA: '#btnLogin',
-    payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -746,15 +710,6 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
-    payPalZoidFrame: '.zoid-component-frame',
-    payPalButton: '.paypal-button',
-    payPalIFrame: '.paypal-checkout-sandbox-iframe',
-    payPalIFrameCookieCTA: '#acceptAllButton',
-    payPalIFrameEmailBox: '#email',
-    payPalIFrameNextCTA: '#btnNext',
-    payPalIFramePasswoedBox: '#password',
-    payPalIFrameLoginCTA: '#btnLogin',
-    payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -826,15 +781,6 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
-    payPalZoidFrame: '.zoid-component-frame',
-    payPalButton: '.paypal-button',
-    payPalIFrame: '.paypal-checkout-sandbox-iframe',
-    payPalIFrameCookieCTA: '#acceptAllButton',
-    payPalIFrameEmailBox: '#email',
-    payPalIFrameNextCTA: '#btnNext',
-    payPalIFramePasswoedBox: '#password',
-    payPalIFrameLoginCTA: '#btnLogin',
-    payPalIFramePaymentSubmitCTA: '#payment-submit-btn',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -1250,50 +1196,41 @@ class BillingPage implements AbstractPage {
 
     },
 
-    selectPayPal() {
+    //TODO : Didn't create locator obj because it's failling due to stub
+    selectPayPal () {
       const paymentMethodPayPal = selectors[brand].paymentMethodPayPal;
-      const payPalZoidFrame = selectors[brand].payPalZoidFrame;
-      const payPalButton = selectors[brand].payPalButton;
-      const payPalIFrame = selectors[brand].payPalIFrame;
-      const payPalIFrameCookieCTA = selectors[brand].payPalIFrameCookieCTA;
-      const payPalIFrameEmailBox = selectors[brand].payPalIFrame;
-      const payPalIFrameNextCTA = selectors[brand].payPalIFrame;
-      const payPalIFramePasswoedBox = selectors[brand].payPalIFrame;
-      const payPalIFrameLoginCTA = selectors[brand].payPalIFrame;
-      const payPalIFramePaymentSubmitCTA = selectors[brand].payPalIFramePaymentSubmitCTA;
-
       cy.get(paymentMethodPayPal).click();
       cy.wait(2000);
 
       // Stub the open method inside iframe to force it not to open a window.
-      cy.get(payPalZoidFrame).its('0.contentDocument.defaultView').then(win => {
+      cy.get('.zoid-component-frame').its('0.contentDocument.defaultView').then(win => {
         cy.stub(win, 'open');
       });
 
       // Click PayPal button
-      cy.iframe(payPalZoidFrame).find(payPalButton).eq(0).should('be.visible').click({ force: true });
+      cy.iframe('.zoid-component-frame').find('.paypal-button').eq(0).should('be.visible').click({force:true});
 
       // Wait for PayPal window to load
       cy.wait(8000);
 
       // Get first iframe, inside its body get inner iframe and then find button
-      cy.get(payPalIFrame).then((iframe) => {
-        const innerIframe = iframe.contents().find(payPalZoidFrame).contents();
+      cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
+        const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
 
         // If accept cookies button appears
         cy.wrap(innerIframe).then($body => {
-          if ($body.find(payPalIFrameCookieCTA).length) {
-            cy.wrap(innerIframe).find(payPalIFrameCookieCTA).click();
+          if ($body.find('#acceptAllButton').length) {
+            cy.wrap(innerIframe).find('#acceptAllButton').click();
           }
         });
 
         // If Login form appears
         cy.wrap(innerIframe).then($body => {
-          if ($body.find(payPalIFrameEmailBox).length) {
-            cy.wrap(innerIframe).find(payPalIFrameEmailBox).clear().type('test.user@boohoo.com');
-            cy.wrap(innerIframe).find(payPalIFrameNextCTA).click();
-            cy.wrap(innerIframe).find(payPalIFramePasswoedBox).type('boohoo123');
-            cy.wrap(innerIframe).find(payPalIFrameLoginCTA).click();
+          if ($body.find('#email').length) {
+            cy.wrap(innerIframe).find('#email').clear().type('test.user@boohoo.com');
+            cy.wrap(innerIframe).find('#btnNext').click();
+            cy.wrap(innerIframe).find('#password').type('boohoo123');
+            cy.wrap(innerIframe).find('#btnLogin').click();
           }
         });
       });
@@ -1301,12 +1238,13 @@ class BillingPage implements AbstractPage {
       cy.wait(12000);
 
       // New iframe opens after PayPal user logs in
-      cy.get(payPalIFrame).then((iframe) => {
-        const innerIframe = iframe.contents().find(payPalZoidFrame).contents();
-        cy.wrap(innerIframe).find(payPalIFramePaymentSubmitCTA).click({ force: true });
+      cy.get('.paypal-checkout-sandbox-iframe').then((iframe) => {
+        const innerIframe = iframe.contents().find('.zoid-component-frame').contents();
+        cy.wrap(innerIframe).find('#payment-submit-btn').click({force: true});
 
       });
     },
+
 
     selectClearpay() {
       const siteGenesisClearPay = '[for="is-CLEARPAY"]';

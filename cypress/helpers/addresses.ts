@@ -65,7 +65,7 @@ class Addresses {
         countryCode: 'US',
         county: 'New York',
         addressNickname: 'US1',
-        what3Words:'glue.rocks.output',
+        what3Words:'',
         month: 'May',
       },
       secondaryAddress:  {

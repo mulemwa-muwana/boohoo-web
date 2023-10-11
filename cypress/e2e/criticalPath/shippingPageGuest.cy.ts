@@ -111,6 +111,9 @@ describe('Shipping Page Guest user tests', function () {
     }
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
+     if (locale == 'CA') {
+       shippingPage.actions.selectState(localeAddress.county);
+     }
     if (isSiteGenesisBrand && (locale == 'IE' || locale == 'AU' || locale == 'US')) {
       shippingPage.actions.selectState(localeAddress.county);
     }
@@ -147,12 +150,15 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if (!isSiteGenesisBrand && locale == 'US') {
+    if (!isSiteGenesisBrand && locale == 'US' ) {
       cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(33);
+    }  else if ( !isSiteGenesisBrand && locale == 'CA'){
+       cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(6);
+
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (locale == 'AU') {
+    if (locale == 'AU' || locale == 'CA') {
       shippingPage.actions.selectState(localeAddress.county);
     }
     if (isSiteGenesisBrand) {
@@ -192,13 +198,10 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if ((!isSiteGenesisBrand && locale == 'US') || (brand == 'misspap.com' && locale == 'IE')) {
+    if ((!isSiteGenesisBrand && (locale == 'US' || locale == 'CA')) || (brand == 'misspap.com' && locale == 'IE')) {
       shippingPage.actions.countyField(localeAddress.county);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
-    if (brand == 'nastygal.com' && locale == 'CA') {
-      shippingPage.actions.selectState(localeAddress.county);
-    }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if (locale == 'AU' || isKMLocaleWithSelectState || (brand == 'boohoo.com' && locale == 'CA') || isMANLocaleWithSelectState || (brand == 'misspap.com' && locale == 'US')) {
       shippingPage.actions.selectState(localeAddress.county);
@@ -245,7 +248,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
-    if (locale == 'US' || locale == 'AU') {
+    if (locale == 'US' || locale == 'AU' || locale == 'CA') {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);

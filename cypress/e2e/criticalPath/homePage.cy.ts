@@ -709,7 +709,7 @@ describe('Home Page', function () {
         }
         contactusPage.assertions.assertFacebookIconIsPresent();
       });
-      it.only('Verify that Email link is present and functional', function () {
+      it('Verify that Email link is present and functional', function () {
         if (brand == 'boohooman.com' && (locale =='IE' || locale =='DE')) {
           this.skip(); // Email Us link isn't exist on contuct us page
         }

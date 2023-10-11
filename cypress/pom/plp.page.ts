@@ -379,55 +379,55 @@ const selectors: SelectorBrandMap = {
 const variables = Cypress.env() as EnvironmentVariables;
 
 class PlpPage implements AbstractPage {
-  goto(): void {
+  goto (): void {
     homePage.goto();
   }
 
   click = {
 
     // Refinements
-    categoryRefinement() {
+    categoryRefinement () {
       const categoryRefinement = selectors[variables.brand].categoryRefinement;
       cy.get(categoryRefinement).click({ force: true });
     },
-    sizeRefinement() {
+    sizeRefinement () {
       const sizeRefinement = selectors[variables.brand].sizeRefinement;
       cy.get(sizeRefinement).click({ force: true });
     },
-    styleRefinement() {
+    styleRefinement () {
       const styleRefinement = selectors[variables.brand].styleRefinement;
       cy.get(styleRefinement).click({ force: true });
     },
-    colorRefinement() {
+    colorRefinement () {
       const colorRefinement = selectors[variables.brand].colorRefinement;
       cy.get(colorRefinement).click({ force: true });
     },
-    priceRefinements() {
+    priceRefinements () {
       const priceRefinements = selectors[variables.brand].priceRefinements;
       cy.get(priceRefinements).click({ force: true });
     },
-    shopByFitRefinements() {
+    shopByFitRefinements () {
       const shopByFitRefinements = selectors[variables.brand].shopByFitRefinements;
       cy.get(shopByFitRefinements).click({ force: true });
     },
-    fitRefinements() {
+    fitRefinements () {
       const fitRefinements = selectors[variables.brand].fitRefinements;
       cy.get(fitRefinements).click({ force: true });
     },
-    occassionRefinement() {
+    occassionRefinement () {
       const occassionRefinement = selectors[variables.brand].occassionRefinement;
       cy.get(occassionRefinement).click({ force: true });
     },
-    sortProducts() {
+    sortProducts () {
       const sortProducts = selectors[variables.brand].sortProducts;
       cy.get(sortProducts).click({ force: true });
     },
-    priceVariant() {
+    priceVariant () {
       const priceVariant = selectors[variables.brand].priceVariant;
       cy.get(priceVariant).click({ force: true });
     },
 
-    selectRefinementVariantShopByFit(productVariation: string) {
+    selectRefinementVariantShopByFit (productVariation: string) {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantShopByFit = selectors[variables.brand].selectRefinementVariantShopByFit;
         cy.get(selectRefinementVariantShopByFit).contains(productVariation).click({ force: true });
@@ -440,7 +440,7 @@ class PlpPage implements AbstractPage {
       }
     },
 
-    selectRefinementVariantColor(color: string) {
+    selectRefinementVariantColor (color: string) {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
         cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
@@ -453,7 +453,7 @@ class PlpPage implements AbstractPage {
       }
     },
 
-    selectRefinementVariantStyle(style: string) {
+    selectRefinementVariantStyle (style: string) {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantStyle = selectors[variables.brand].selectRefinementVariantStyle;
         cy.get(selectRefinementVariantStyle).contains(style).click({ force: true });
@@ -463,7 +463,7 @@ class PlpPage implements AbstractPage {
       }
     },
 
-    selectRefinementVariantSize() {
+    selectRefinementVariantSize () {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
         cy.get(selectRefinementVariantSize).find('li').each(($element) => {
@@ -483,7 +483,7 @@ class PlpPage implements AbstractPage {
       }
     },
 
-    selectRefinementVariantSizePerLanguages() {
+    selectRefinementVariantSizePerLanguages () {
       const selectRefinementVariantSize = selectors[variables.brand].selectRefinementVariantSize;
       cy.get(selectRefinementVariantSize).find('li').each(($element) => {
         if ($element.attr('data-value')) {
@@ -493,7 +493,7 @@ class PlpPage implements AbstractPage {
       });
     },
 
-    selectRefinementVariantCategory(category: string) {
+    selectRefinementVariantCategory (category: string) {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantCategory = selectors[variables.brand].selectRefinementVariantCategory;
         cy.get(selectRefinementVariantCategory).contains(category).click({ force: true });
@@ -503,12 +503,12 @@ class PlpPage implements AbstractPage {
       }
     },
 
-    selectCategoryPerLanguages(language: string) {
+    selectCategoryPerLanguages (language: string) {
       const selectRefinementVariantCategoryOtherLanguages = selectors[variables.brand].selectRefinementVariantCategoryOtherLanguages;
       cy.get(selectRefinementVariantCategoryOtherLanguages + language).click({ force: true });
     },
 
-    selectRefinementVariantOccasion() {
+    selectRefinementVariantOccasion () {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantOccasion = selectors[variables.brand].selectRefinementVariantOccasion;
         cy.get(selectRefinementVariantOccasion).contains('Casual').click({ force: true });
@@ -518,14 +518,14 @@ class PlpPage implements AbstractPage {
       }
     },
 
-    selectRefinementVariantPrice() {
+    selectRefinementVariantPrice () {
       const selectRefinementVariantPrice = selectors[variables.brand].selectRefinementVariantPrice;
 
       isSiteGenesisBrand
         ? cy.get(selectRefinementVariantPrice).find('li').each(($element) => {
           $element.find('span').trigger('click');
           return false;
-          })
+        })
         : cy.get('button[id*="-' + (assertionText.price[variables.language] + '"]')).click({ force: true })
           .get(selectRefinementVariantPrice).find('li').each(($element) => {
             $element.find('span').trigger('click');
@@ -534,7 +534,7 @@ class PlpPage implements AbstractPage {
     },
 
     // Load more products
-    loadMoreProducts() {
+    loadMoreProducts () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       cy.get('body').then($body => {
@@ -552,12 +552,12 @@ class PlpPage implements AbstractPage {
     },
 
     // Product details (image, name, price, wishlist, quickview)
-    wishlistOnPlpImage() {
+    wishlistOnPlpImage () {
       const brand: GroupBrands = 'boohoo.com';
       const wishlistPlpIcon = selectors[brand].wishlistPlpIcon;
       cy.get(wishlistPlpIcon).eq(1).click({ force: true });
     },
-    selectItem() {
+    selectItem () {
       const plpProduct = selectors[variables.brand].plpProduct;
       cy.get('body').then($body => {
         if ($body.find(plpProduct).length) {
@@ -565,7 +565,7 @@ class PlpPage implements AbstractPage {
         }
       });
     },
-    selectProductsView(pagePlp: any) {
+    selectProductsView (pagePlp: any) {
       let mobileViewMode = 1;
       let webviewMode = 5;
       cy.get('.b-view_mode button:visible').each((ele, index) => {
@@ -580,7 +580,7 @@ class PlpPage implements AbstractPage {
         }
       });
     },
-    quickAddtoCart() {
+    quickAddtoCart () {
       const productHover = selectors[variables.brand].productImageIsDisplayed;
       cy.get(productHover).eq(0).as('hoverOverProduct');
       const quickViewButton: any = selectors[variables.brand].quickView;
@@ -604,16 +604,16 @@ class PlpPage implements AbstractPage {
   };
 
   actions = {
-    setupChangeIntercept(interceptRouteRegex: RouteMatcher) {
+    setupChangeIntercept (interceptRouteRegex: RouteMatcher) {
       cy.intercept(interceptRouteRegex).as('updateRefinement');
     },
-    waitForPageRefinementUpdate() {
+    waitForPageRefinementUpdate () {
       cy.wait('@updateRefinement', { timeout: 60000 }).its('response.statusCode').should('be.oneOf', [200, 201, 204]);
     }
   };
 
   assertions = {
-    assertOnPage(text: string) {
+    assertOnPage (text: string) {
       if (brand == 'boohooman.com' && locale == 'UK') {
         cy.url().then(currentUrl => {
           expect(currentUrl).to.contain(selectors[variables.brand].promoTitle);
@@ -624,13 +624,13 @@ class PlpPage implements AbstractPage {
         });
       }
     },
-    assertMiniCartHasValue() {
+    assertMiniCartHasValue () {
       const miniCartQty = selectors[variables.brand].miniCartQty;
       cy.scrollTo('topRight');
       cy.get(miniCartQty).should('be.visible');
 
     },
-    assertNumberOfItemsTextIsVisible() {
+    assertNumberOfItemsTextIsVisible () {
       cy.scrollTo('bottom');
       if (isSiteGenesisBrand) {
         const numberOfPagesTextIsVisible = selectors[variables.brand].numberOfPagesTextIsVisible;
@@ -640,7 +640,7 @@ class PlpPage implements AbstractPage {
         cy.get(numberOfItemsTextIsVisible).should('be.visible');
       }
     },
-    assertLoadMoreBtnIsVisible() {
+    assertLoadMoreBtnIsVisible () {
       cy.scrollTo('bottom');
       const loadMoreProducts = selectors[variables.brand].loadMoreProducts;
       const loadMoreProductsMobile = selectors[variables.brand].loadMoreProductsMobile;
@@ -651,7 +651,7 @@ class PlpPage implements AbstractPage {
         cy.get(loadMoreProducts).invoke('show').should('be.visible');
       }
     },
-    assertProductImageIsDisplayed() {
+    assertProductImageIsDisplayed () {
       const productImageIsDisplayed = selectors[variables.brand].productImageIsDisplayed;
       if (variables.brand == 'nastygal.com') {
         cy.get(productImageIsDisplayed).should('be.visible').and('have.prop', 'naturalWidth').should('be.greaterThan', 0);
@@ -659,11 +659,11 @@ class PlpPage implements AbstractPage {
         cy.get(productImageIsDisplayed).eq(1).should('be.visible').should('have.attr', 'src');
       }
     },
-    assertItemIsAddedToWishlist() {
+    assertItemIsAddedToWishlist () {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
       cy.get(itemIsAddedToWishlist).should('contain', '01');
     },
-    assertQuickViewIsDisplayed() {
+    assertQuickViewIsDisplayed () {
       const quickViewButtonText = assertionText.quickView[language];
       const quickBuyButtonText = assertionText.quickBuy[language];
       const productHover = selectors[variables.brand].productImageIsDisplayed;
@@ -688,19 +688,19 @@ class PlpPage implements AbstractPage {
       });
 
     },
-    assertProductNameIsDisplayed() {
+    assertProductNameIsDisplayed () {
       const productNameIsDisplayed = selectors[variables.brand].productNameIsDisplayed;
       cy.get(productNameIsDisplayed).eq(0).should('have.css', 'font-family');
     },
-    assertProductPriceIsDispayed() {
+    assertProductPriceIsDispayed () {
       const productPriceIsDispayed = selectors[variables.brand].productPriceIsDispayed;
       cy.get(productPriceIsDispayed).eq(1).should('be.visible').and('not.be.null');
     },
-    assertNewProductPriceIsDispayed() {
+    assertNewProductPriceIsDispayed () {
       const newProductPriceIsDispayed = selectors[variables.brand].newProductPriceIsDispayed;
       cy.get(newProductPriceIsDispayed).eq(1).should('be.visible').should('have.css', 'font-family');
     },
-    assertProductColorIsDisplayedOnPLP() {
+    assertProductColorIsDisplayedOnPLP () {
       const productColorIsDisplayedOnPLP = selectors[variables.brand].productColorIsDisplayedOnPLP;
       if (variables.brand == 'nastygal.com') {
         cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'href'); // Attribute changed from src to href for NastyGal
@@ -708,19 +708,19 @@ class PlpPage implements AbstractPage {
         cy.get(productColorIsDisplayedOnPLP).eq(1).should('have.attr', 'src');
       }
     },
-    assertProductVariantIsApplied(typeOfPrefn: string, productVariations: string) {
+    assertProductVariantIsApplied (typeOfPrefn: string, productVariations: string) {
       cy.location('search', { timeout: 60000 })
         .should('contains', '?prefn1=' + typeOfPrefn + '&prefv1=')
         .then((s) => new URLSearchParams(s))
         .invoke('get', 'prefv1', { timeout: 60000 })
         .should('contains', productVariations);
     },
-    assertProductSizeIsDisplayedOnPLP() {
+    assertProductSizeIsDisplayedOnPLP () {
       const selectedSizeCheckbox = selectors[variables.brand].selectedSizeCheckbox;
 
       isSiteGenesisBrand
-      ? cy.get(selectedSizeCheckbox).invoke('attr', 'data-value').as('selectedSize')
-      : cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]')
+        ? cy.get(selectedSizeCheckbox).invoke('attr', 'data-value').as('selectedSize')
+        : cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]')
           .invoke('attr', 'aria-label').as('selectedSize');
 
       cy.location('search', { timeout: 60000 })
@@ -731,17 +731,17 @@ class PlpPage implements AbstractPage {
         });
     },
 
-    assertProductPriceIsDisplayedOnPLP() {
+    assertProductPriceIsDisplayedOnPLP () {
       cy.location('search', { timeout: 60000 })
         .should('contains', 'pmax')
         .should('contains', 'pmin');
     },
 
     // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
-    assertItemCountInView(itemCount: string) {
+    assertItemCountInView (itemCount: string) {
       cy.get('.l-plp_grid').should('have.attr', 'data-col-count').and('deep.equal', itemCount);
     },
-    assertItemIsAddedToWishlistColorChange() {
+    assertItemIsAddedToWishlistColorChange () {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
     },

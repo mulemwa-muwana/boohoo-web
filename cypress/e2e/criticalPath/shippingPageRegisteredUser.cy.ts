@@ -179,7 +179,10 @@ describe('Shipping Page Registered user tests', function () {
 
     const includededBlpBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
     if (includededBlpBrands.includes(brand)) {
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.AddPremierToCartButton[language]);
+      const AddPremierToCartButton = (assertionText.AddPremierToCartButton[language]).toUpperCase()
+      shippingPage.assertions.assertCartShippingPageContainsProduct(AddPremierToCartButton);
+    } else if (brand == 'misspap.com' || brand == 'karenmillen.com'){
+      this.skip(); // redirecting to live site
     } else {
       shippingPage.assertions.assertShippingPageCartContainsVipProduct();
     }

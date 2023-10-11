@@ -4,7 +4,6 @@ import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import assertionText from 'cypress/helpers/assertionText';
 import { brand, language, locale } from 'cypress/support/e2e';
-import { CompletionTriggerKind } from 'typescript';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {

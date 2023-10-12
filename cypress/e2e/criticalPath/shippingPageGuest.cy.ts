@@ -111,15 +111,11 @@ describe('Shipping Page Guest user tests', function () {
     }
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if (locale == 'CA') {
-      shippingPage.actions.selectState(localeAddress.county);
-    }
     if (isSiteGenesisBrand && (locale == 'IE' || locale == 'AU' || locale == 'US')) {
       shippingPage.actions.selectState(localeAddress.county);
     }
-
-    if (!isSiteGenesisBrand && locale == 'US') {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(33);
+    if (!isSiteGenesisBrand && (locale == 'US' || locale == 'CA')) {
+      shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -150,17 +146,10 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if (!isSiteGenesisBrand && locale == 'US' ) {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(33);
-    } else if ( !isSiteGenesisBrand && locale == 'CA') {
-      cy.get('#dwfrm_shipping_shippingAddress_addressFields_states_stateCode').select(6);
-
-    }
+    shippingPage.actions.selectState(localeAddress.county)
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-    if (locale == 'AU' || locale == 'CA') {
-      shippingPage.actions.selectState(localeAddress.county);
-    }
+  
     if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', localeAddress.month, '2001');
       if (brand != 'boohooman.com') {

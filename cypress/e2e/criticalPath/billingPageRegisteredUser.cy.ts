@@ -102,34 +102,24 @@ describe('Billing page functionality for registered user', function () {
   });
 
   it('Verify that user is able to Add, Remove gift certificate at Billing Page', function () {
-    if (brand == 'boohoo.com') {
-      billingPage.actions.addGiftCard(giftCertificate);
-      billingPage.assertions.assertGiftCardAdded();
-      billingPage.assertions.assertGiftCardinOrderSummary();
-      billingPage.actions.removeGiftCertificate();
-      billingPage.assertions.assertGiftCardRemoved();
-    } else {
-      this.skip();
-    }
+    billingPage.actions.addGiftCard(giftCertificate);
+    billingPage.assertions.assertGiftCardAdded();
+    cy.wait(1000);
+    billingPage.assertions.assertGiftCardinOrderSummary();
+    cy.wait(1000);
+    billingPage.actions.removeGiftCertificate();
+    cy.wait(1000);
+    billingPage.assertions.assertGiftCardRemoved();
+
   });
 
   it('Verify that user see error when try to add invalid giftCard', function () {
-    if (brand == 'boohoo.com') {
-      billingPage.actions.addGiftCard('WRONGGIFTCARDERR');
-      billingPage.assertions.assertGiftCardError();
-    } else {
-      this.skip();
-    }
-
+    billingPage.actions.addGiftCard('WRONGGIFTCARDERR');
+    billingPage.assertions.assertGiftCardError();
   });
   it('Verify is correct validation added if code is empty for registered user', function () {
-    if (brand == 'boohoo.com') {
-      billingPage.actions.addGiftCard(' ');
-      billingPage.assertions.assertGiftCardEmptyError();
-    } else {
-      this.skip();
-    }
-
+    billingPage.actions.addGiftCard('{backspace}');
+    billingPage.assertions.assertGiftCardEmptyError();
   });
 
   it('Verify is correct validation added if code is invalid for registered user', function () {

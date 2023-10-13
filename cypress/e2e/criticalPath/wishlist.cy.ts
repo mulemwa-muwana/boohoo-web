@@ -19,33 +19,33 @@ describe('Wishlist Page tests', function () {
     });
   });
 
-    it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
-      HomePage.actions.findItemUsingSKU(sku);
-      pdpPage.actions.selectColorFromSku();
-      pdpPage.actions.selectSizeFromSku();
-      pdpPage.click.addToWishList();
-      if (brand == 'boohoo.com') {
-        WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[language]);
-      }
-      cy.wait(7000);
-      HomePage.click.wishListIcon();
-      WishListPage.assertions.assertItemIsAddedToWishlist();
+  it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
+    HomePage.actions.findItemUsingSKU(sku);
+    pdpPage.actions.selectColorFromSku();
+    pdpPage.actions.selectSizeFromSku();
+    pdpPage.click.addToWishList();
+    if (brand == 'boohoo.com') {
+      WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[language]);
+    }
+    cy.wait(7000);
+    HomePage.click.wishListIcon();
+    WishListPage.assertions.assertItemIsAddedToWishlist();
 
-      // Assert item can be added to cart
-      WishListPage.click.addToCart();
-      pdpPage.assertions.assertMiniCartIsDisplayed();
+    // Assert item can be added to cart
+    WishListPage.click.addToCart();
+    pdpPage.assertions.assertMiniCartIsDisplayed();
 
-      // Cleanup of Whishlist and Cart
-      WishListPage.click.removeItemFromWishlist();
-      if (isSiteGenesisBrand) {
-        WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptySiteGenesis[language]);
-      } else {
-        cy.wait(1000);
-        WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptyBlp[language]);
-      }
-      cartPage.goto();
-      cy.wait(10000);
-      cartPage.click.clearCart();
-      cartPage.assertions.assertCartIsEmpty();
-    });
+    // Cleanup of Whishlist and Cart
+    WishListPage.click.removeItemFromWishlist();
+    if (isSiteGenesisBrand) {
+      WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptySiteGenesis[language]);
+    } else {
+      cy.wait(1000);
+      WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptyBlp[language]);
+    }
+    cartPage.goto();
+    cy.wait(10000);
+    cartPage.click.clearCart();
+    cartPage.assertions.assertCartIsEmpty();
+  });
 });

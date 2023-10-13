@@ -154,7 +154,6 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
       if (locale == 'US' || locale == 'AU' || locale == 'CA') {
-      if (locale == 'US' || locale == 'AU' || locale == 'CA') {
         shippingPage.actions.selectState(localeAddress.county);
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);

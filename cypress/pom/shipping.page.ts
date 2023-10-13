@@ -1001,10 +1001,10 @@ class ShippingPage implements AbstractPage {
     selectState (state: string) {
       const shippingState = selectors[brand].shippingState;
       const shippingStateUS = selectors[brand].shippingState;
-      if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA' ){
-      cy.get(shippingStateUS).select(state);
+      if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA' ) {
+        cy.get(shippingStateUS).select(state);
       } else {
-      cy.get(shippingState).select(state).invoke('show');
+        cy.get(shippingState).select(state).invoke('show');
       }
     },
     adressLine1 (address1: string) {

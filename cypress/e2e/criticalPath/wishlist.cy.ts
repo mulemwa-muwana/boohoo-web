@@ -19,7 +19,7 @@ describe('Wishlist Page tests', function () {
     });
   });
 
-  if (brand !== 'boohoo.com') {    // TODO : Remove this if condition for boohoo when this https://jira.ontrq.com/browse/BHO-37648 ticket is get resolved.
+  if (brand !== 'boohoo.com') { // TODO : Remove this if condition for boohoo when this https://jira.ontrq.com/browse/BHO-37648 ticket is get resolved.
     it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
       HomePage.actions.findItemUsingSKU(sku);
       pdpPage.actions.selectColorFromSku();

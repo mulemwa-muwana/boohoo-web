@@ -30,7 +30,7 @@ class ShippingMethod {
     },
     CA: {
       shippingMethod1: {
-        shippingMethodName: 'Express'
+        shippingMethodName: 'Standard'
       }
     },
     NL: {

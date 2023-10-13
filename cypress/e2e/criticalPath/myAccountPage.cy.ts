@@ -76,7 +76,7 @@ describe('Account page', function () {
 
   it('TC05 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();
-    if (locale=='US') {
+    if (locale=='US' || locale=='CA') {
       MyAccountPage.actions.addCardUS(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.month, Cards.visa.year ,Cards.visa.date );
     } else {
       MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.date, Cards.visa.code);

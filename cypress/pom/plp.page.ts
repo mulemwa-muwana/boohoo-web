@@ -444,7 +444,7 @@ class PlpPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
         cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
-      } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && locale == 'US') {
+      } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'CA')) {
         cy.get('button[id*="-' + (assertionText.color[variables.language] + '"]')).click({ force: true });
         cy.get('#refinementAttributesList-' + (assertionText.color[variables.language])).contains(color).click({ force: true });
       } else {
@@ -737,7 +737,6 @@ class PlpPage implements AbstractPage {
         .should('contains', 'pmin');
     },
 
-    // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
     assertItemCountInView (itemCount: string) {
       cy.get('.l-plp_grid').should('have.attr', 'data-col-count').and('deep.equal', itemCount);
     },

@@ -952,7 +952,7 @@ class BillingPage implements AbstractPage {
       cy.get(billingAddressFieldsAddress1).clear().type(line1);
       cy.get(billingAddressFieldCity).clear({ force: true }).type(city);
       if (!isSiteGenesisBrand) {
-        if (locale == 'AU' || locale == 'IE' || locale == 'US') {
+        if (locale == 'AU' || locale == 'IE' || locale == 'US' || locale == 'CA') {
           cy.get(billingAddressFieldsStateCode).select(county);
         } else {
           cy.get(billingAddressFieldsStateCode).clear().type(state);

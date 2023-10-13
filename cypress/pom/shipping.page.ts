@@ -928,10 +928,8 @@ class ShippingPage implements AbstractPage {
       cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click();
     },
     makeShippingAddressDefault () {
-      const standartShipping = selectors[brand].standartShipping;
-      if (brand == 'boohoo.com' && locale =='UK') { // To select standard shipping method for boohoo as default address
-        cy.get(standartShipping).click({force:true});
-      } else if (brand == 'nastygal.com' && locale =='US' || locale =='CA') {// To select standard shipping method for ngal/us/ca as default address
+      const standartShipping = selectors[brand].standartShipping;     
+      if ((brand == 'boohoo.com' && locale =='UK') || (brand == 'nastygal.com' && locale =='US' || locale =='CA')) { // To select standard shipping method for boohoo and ngal as default address
         cy.get(standartShipping).click({force:true});
       }
     }

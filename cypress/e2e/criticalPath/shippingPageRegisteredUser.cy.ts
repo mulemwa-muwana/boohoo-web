@@ -126,7 +126,7 @@ describe('Shipping Page Registered user tests', function () {
     billingPage.assertions.assertNewShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode, secondaryAddress.country);
   });
 
-  it('Verify that user is able to add address details manually', () => {
+  it.only('Verify that user is able to add address details manually', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
 
     shippingPage.click.addNewAddressButton();
@@ -153,7 +153,6 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
-      if (locale == 'US' || locale == 'AU' || locale == 'CA') {
       if (locale == 'US' || locale == 'AU' || locale == 'CA') {
         shippingPage.actions.selectState(localeAddress.county);
       }

@@ -228,23 +228,26 @@ class WishListPage implements AbstractPage {
       const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
       if (isMobileDeviceUsed) {
         this.removeItemFuncForWebAndMobile(removeItemFromWishListMobile);
-      } else {
+      } else {  
         this.removeItemFuncForWebAndMobile(removeItemFromWishlist);
       }
     },
-    removeItemFuncForWebAndMobile (deviceLocator: string) { // Function to remove item from wishlist for both Mobile and Web Resolution
+    removeItemFuncForWebAndMobile (deviceLocator: string) { // Function to remove item from wishlist for both Mobile and Web Resolution 
       const confirmRemoveWishlistItem=selectors[variables.brand].confirmRemoveWishlistItem;
       cy.get(deviceLocator).each(item => {
         cy.get(deviceLocator).eq(0).click({force:true});
         if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'nastygal.com') {
           cy.get(confirmRemoveWishlistItem).click({ force: true });
         }
+        cy.wait(3000);
       });
+
     },
     wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;
       cy.get(wishlistLoginBtn).eq(0).click();
     }
+
   };
 
   actions = {
@@ -254,9 +257,8 @@ class WishListPage implements AbstractPage {
   assertions = {
     assertItemIsAddedToWishlist () {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
-      cy.waitUntil(() => {
-        return cy.get(itemIsAddedToWishlist, {timeout: 2000}).should('be.visible');
-      })
+      cy.wait(2000);
+      cy.get(itemIsAddedToWishlist).should('be.visible');
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
@@ -264,9 +266,7 @@ class WishListPage implements AbstractPage {
     },
     assertItemIsAddedtoWishlistAlertText (msg: string) {
       const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;
-      cy.waitUntil(() => {
-        return cy.get(itemIsAddedtoWishlistAlertText, {timeout: 4000}).should('have.text', msg);
-      })
+      cy.get(itemIsAddedtoWishlistAlertText).should('have.text', msg);
     }
   };
 }

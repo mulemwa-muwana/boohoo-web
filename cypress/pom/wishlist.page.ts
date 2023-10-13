@@ -239,15 +239,12 @@ class WishListPage implements AbstractPage {
         if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'nastygal.com') {
           cy.get(confirmRemoveWishlistItem).click({ force: true });
         }
-        // cy.wait(3000);
       });
-
     },
     wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;
       cy.get(wishlistLoginBtn).eq(0).click();
     }
-
   };
 
   actions = {
@@ -257,11 +254,9 @@ class WishListPage implements AbstractPage {
   assertions = {
     assertItemIsAddedToWishlist () {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
-      // cy.wait(2000);
       cy.waitUntil(() => {
         return cy.get(itemIsAddedToWishlist, {timeout: 2000}).should('be.visible');
       })
-      // cy.get(itemIsAddedToWishlist).should('be.visible');
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
@@ -272,7 +267,6 @@ class WishListPage implements AbstractPage {
       cy.waitUntil(() => {
         return cy.get(itemIsAddedtoWishlistAlertText, {timeout: 4000}).should('have.text', msg);
       })
-      // cy.get(itemIsAddedtoWishlistAlertText).should('have.text', msg);
     }
   };
 }

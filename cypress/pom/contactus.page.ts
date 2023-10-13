@@ -46,7 +46,7 @@ const selectors: SelectorBrandMap = {
     facebookIcon:'[class="contact-channel facebook-channel"]',
     emailIcon:'[class="contact-channel js-contact-channel-email"]',
     emailOptions: '[class="js-contactus-form form-horizontal"]',
-
+    
   },
   'karenmillen.com': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
@@ -94,11 +94,10 @@ const selectors: SelectorBrandMap = {
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
     facebookIcon:'[class="contact-channel facebook-channel"]',
-    emailIcon:'[class="contact-channel js-contact-channel-email"]',
-    emailOptions: '[class="js-contactus-form form-horizontal"]',
+    emailIcon:'[class="contact-channel js-contact-channel-email"]'
   }
 };
-
+ 
 const variables = Cypress.env() as EnvironmentVariables;
 class ContactUsPage implements AbstractPage {
   goto () {
@@ -107,6 +106,7 @@ class ContactUsPage implements AbstractPage {
 
   click = {
     emailIconOption () {
+      cy.wait(4000);
       const emailIcon = selectors[variables.brand].emailIcon;
       cy.get(emailIcon).invoke('show').click({ multiple: true });
     },
@@ -116,7 +116,7 @@ class ContactUsPage implements AbstractPage {
   assertions = {
     assertTwitterIconIsNotPresent () {
       const twitterIcon = selectors[variables.brand].twitterIcon;
-
+     
       if (variables.brand !== 'dorothyperkins.com') {
         cy.scrollTo('top');
       }
@@ -142,6 +142,6 @@ class ContactUsPage implements AbstractPage {
     }
   };
 
-}
+} 
 
 export default new ContactUsPage();

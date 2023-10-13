@@ -363,6 +363,7 @@ class CartPage implements AbstractPage {
       const clearCart = selectors[brand].clearCart;
       cy.get(clearCart).each(($el) => {
         cy.get(clearCart,{timeout:20000}).eq(0).click({ force: true });
+        cy.wait(7000);
       });
     },
     removePremierFromCart () {

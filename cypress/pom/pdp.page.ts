@@ -19,6 +19,7 @@ const selectors: SelectorBrandMap = {
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
+    productTitleMobile: '#editProductModalTitle',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
@@ -27,11 +28,13 @@ const selectors: SelectorBrandMap = {
     miniCartContent: '.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     miniCartProductInerMobile: '',
+    miniCartProductTitle: '[data-tau="global_alerts_item"]',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productDeliveryNonUKLocale: '.b-product_shipping-delivery',
     productDeliveryOptions: 'a[data-event-click="loadDeliveryList"]',
     productReturnsDescription: '.b-product_shipping-returns',
+    productReturnsInfoButton: '#product-details-btn-shipping',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     addedToWishlistMsg: '.b-message , .b-global_alerts-item',
     wishListIcon: '.b-header_wishlist',
@@ -673,8 +676,7 @@ class PdpPage implements AbstractPage {
       }
 
       // If Mobile Device is used
-      if (isMobileDeviceUsed) {
-
+      if (brand !== 'boohoo.com' && isMobileDeviceUsed) {
         cy.get(productReturnsInfoButton).click({ force: true });
       }
 

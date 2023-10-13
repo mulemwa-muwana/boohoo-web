@@ -110,7 +110,7 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('Verify that registered user can place order using Klarna', function () {
-    if ((brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU'||locale == 'US' ||locale == 'CA')) {
+    if ((brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU'||locale == 'US' || locale == 'CA')) {
 
       this.skip();
     }

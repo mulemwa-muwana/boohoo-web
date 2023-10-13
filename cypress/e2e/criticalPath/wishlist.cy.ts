@@ -30,9 +30,9 @@ describe('Wishlist Page tests', function () {
       HomePage.click.wishListIcon();
       WishListPage.assertions.assertItemIsAddedToWishlist();
 
-      // Assert item can be added to cart
-      WishListPage.click.addToCart();
-      pdpPage.assertions.assertMiniCartIsDisplayed();
+    // Assert item can be added to cart
+    WishListPage.click.addToCart();
+    pdpPage.assertions.assertMiniCartIsDisplayed();
 
       // Cleanup of Whishlist and Cart
       WishListPage.click.removeItemFromWishlist();

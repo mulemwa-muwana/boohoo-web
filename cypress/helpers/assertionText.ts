@@ -1848,8 +1848,22 @@ class AssertionText {
     ES: 'No existe ningún cupón de regalo con este código específico.'
   };
 
+  giftCardInvalidErrorMessageKM: TranslationMap = {
+    EN: 'could not be found.',
+    NL: 'De opgegeven promocode bestaat niet.',
+    DE: 'Geschenkgutschein mit spezifischem Code existiert nicht!',
+    FR: 'La carte-cadeau associée à ce code spécifique nexiste pas!',
+    DK: 'Gift certificate with specific code does not exist!',
+    FI: 'Gift certificate with specific code does not exist!',
+    NO: 'Gift certificate with specific code does not exist!',
+    SE: 'Det finns inget presentkort med den koden.',
+    IL: 'שובר מתנה עם הקוד הספציפי אינו קיים!',
+    IT: ' Non esiste un buono regalo con il codice sconto inserito.',
+    ES: 'No existe ningún cupón de regalo con este código específico.'
+  };
+
   giftCardEmptydErrorMessage: TranslationMap = {
-    EN: 'Please enter a gift voucher code.',
+    EN: 'Please enter a gift',
     NL: 'Voer a.u.b. een cadeaukaartcode in.',
     DE: 'Bitte gebe einen Gutscheincode ein.',
     FR: 'Saisir un code de chèque cadeau.',

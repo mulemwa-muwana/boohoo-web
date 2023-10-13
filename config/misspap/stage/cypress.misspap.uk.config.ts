@@ -11,7 +11,7 @@ export default defineConfig({
     brand: 'misspap.com',
     locale: 'UK',
     language: 'EN',
-    giftCertificate: 'OCMKLMTMOPMFQKIS',
+    giftCertificate: 'LOODQVAOGAOFKGRP',
   },
   viewportHeight: 1080,
   viewportWidth: 1920,

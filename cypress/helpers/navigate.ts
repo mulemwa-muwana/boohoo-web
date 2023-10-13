@@ -133,7 +133,7 @@ class Navigate {
         shippingPage.actions.addressLine2Clear();
       }
       shippingPage.actions.cityField(primaryAddress.city);
-      if (locale == 'US' || locale == 'AU'||locale == 'IE') {
+      if (locale == 'US' || locale == 'AU'|| locale == 'IE' || locale == 'CA') {
         shippingPage.actions.selectState(primaryAddress.county);
       }
       if (brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
@@ -141,11 +141,7 @@ class Navigate {
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
       cy.wait(2000);
-      if (brand == 'boohoo.com' && locale =='UK') { // To select standard shipping method for boohoo as default address
-        cy.get('[data-option-id="shippingMethod-UKSuperSaver"]').click({force:true});
-      } else if (brand == 'nastygal.com' && locale =='US') {// To select standard shipping method for ngal/us as default address
-        cy.get('[for="shippingMethod-USUsdStandardDelivery"]').click({force:true});
-      }
+      shippingPage.click.makeShippingAddressDefault;
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
       shippingPage.click.proceedToBillingVerification();

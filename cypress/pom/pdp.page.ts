@@ -1,12 +1,13 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
-import { brand, locale,fullSku } from 'cypress/support/e2e';
+import { brand, locale, fullSku, language } from 'cypress/support/e2e';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     searchField: '#header-search-input',
-    addToCart:'.b-product_actions-inner [data-id="addToCart"]',
+    addToCart: '.b-product_actions-inner [data-id="addToCart"]',
     addToWishListButton: '.m-outline > span',
     shippingInfoButton: '#product-details-btn-shipping',
     returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
@@ -18,22 +19,38 @@ const selectors: SelectorBrandMap = {
     selectColor: '.b-product_details-variations > .m-swatch.m-color button',
     sizeVariations: '.b-product_details-variations > .m-size',
     productTitle: '#editProductModalTitle',
+    productTitleMobile: '#editProductModalTitle',
     productCode: 'span[data-tau="b-product_details-id"]',
     productPrice: '.b-product_details-price',
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner',
-    miniCartContent:'.b-minicart-inner',
+    miniCartContent: '.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
-    miniCartProductInerMobile:'',
+    miniCartProductInerMobile: '',
+    miniCartProductTitle: '[data-tau="global_alerts_item"]',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
+    productDeliveryNonUKLocale: '.b-product_shipping-delivery',
+    productDeliveryOptions: 'a[data-event-click="loadDeliveryList"]',
     productReturnsDescription: '.b-product_shipping-returns',
+    productReturnsInfoButton: '#product-details-btn-shipping',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     addedToWishlistMsg: '.b-message , .b-global_alerts-item',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
     checkoutBtn: '/checkout-login',
+    sizeGuidePdp: '[data-ref="productForm"] .b-size_guide_link-text',
+    sizeGuidePdpIsDisplayed: '.b-dialog-header',
+    sizeGuidePdpCms: '.b-size_type-switcher > div > span:nth-of-type(2)',
+    sizeGuidePdpTable: '.b-custom_table-cell',
+    howToMeasurePdp: 'button#product-details-btn > .b-icon_chevron',
+    howToMeasurePdpContent: '.b-measure_tips-subheader',
+    usCaLocale: '[id="US/CA"]',
+    ausNzLocale: '[id="AUS/NZ"]',
+    deLocale: '[id="DE"]',
+    itLocale: '[id="IT"]',
+    frLocale: '[id="FR"]',
   },
   'nastygal.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -49,7 +66,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner',
-    miniCartContent:'.b-minicart-inner',
+    miniCartContent: '.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -62,7 +79,8 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_delivery',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
-    disabledAddToCart: '[data-widget="processButton"]'
+    disabledAddToCart: '[data-widget="processButton"]',
+    miniCartProductTitle: '[data-tau="global_alerts_item"]'
   },
   'dorothyperkins.com': {
     addToCart: '.b-product_actions-inner [data-id="addToCart"]',
@@ -79,7 +97,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-global_alerts-item',
-    miniCartContent:'.b-global_alerts-item',
+    miniCartContent: '.b-global_alerts-item',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -107,20 +125,21 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-minicart-inner',
-    miniCartContent:'.b-minicart-inner',
+    miniCartContent: '.b-minicart-inner',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.b-product_shipping-returns',
     productTitle: '#editProductModalTitle',
-    productTitleMobile:'#editProductModalTitle',
+    productTitleMobile: '#editProductModalTitle',
     shippingInfoButton: '#product-details-btn-shipping',
-    productDeliveryInfoMobile:'#product-details-btn-shipping',
+    productDeliveryInfoMobile: '#product-details-btn-shipping',
     addedToWishlistMsg: '.b-message',
     productDeliveryInfo: '.b-product_tabs-list',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
-    disabledAddToCart: '[data-widget="processButton"]'
+    disabledAddToCart: '[data-widget="processButton"]',
+    miniCartProductTitle: '.b-minicart_product-title'
   },
   'wallis.co.uk': {
     addToCart: '[data-id="addToCart"]',
@@ -136,7 +155,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: 'div[role="radiogroup"]',
     productImage: '#product-image-0',
     addToCartTitle: '.b-global_alerts',
-    miniCartContent:'.b-global_alerts',
+    miniCartContent: '.b-global_alerts',
     miniCartProductIner: '.b-minicart_product-inner',
     productDescription: 'div[data-id="descriptions"]',
     productDelivery: '.b-product_delivery',
@@ -162,7 +181,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
-    deselectSize:'[class="swatches size clearfix"] li:eq(0)',
+    deselectSize: '[class="swatches size clearfix"] li:eq(0)',
     deselectSizeIE: '#add-to-cart',
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
@@ -172,14 +191,17 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-product-added',
-    miniCartContent:'.mini-cart-content-inner',
+    miniCartContent: '.mini-cart-content-inner',
     miniCartProductIner: '.mini-cart-content-inner',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.del-table',
-    productReturnsInfoButton: '#product-returns-info-tab',
+    productReturnsInfoButton: '#product-returns-info-tab .js-global-accordion-header',
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    productDeliveryInfo: '.product-delivery-info a',
+    productDeliveryInfo: '#ui-id-4',
+    productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
+    productReturnsInfo: '#ui-id-6',
+    premierBanner: '#pdp-premier',
   },
   'karenmillen.com': {
     searchField: '#header-search-input',
@@ -192,7 +214,7 @@ const selectors: SelectorBrandMap = {
     minicartCloseBtn: '#minicart-dialog-close > .b-close_button',
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.b-minicart-actions > .m-outline',
-    miniCartProductIner:'[class="mini-cart-content-inner js-mini-cart-content-inner"]',
+    miniCartProductIner: '[class="mini-cart-content-inner js-mini-cart-content-inner"]',
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '.product-detail > h1.product-name',
@@ -202,14 +224,18 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-text',
-    miniCartContent:'.mini-cart-header-text',
+    miniCartContent: '.mini-cart-header-text',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
     productDeliveryInfoMobile: '#product-delivery-info-tab',
-    productReturnsInfoButton: '#ui-id-5'
+    productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
+    productReturnsInfoButton: '#product-returns-info-tab > .js-global-accordion-header',
+    productReturnsInfo: '#product-returns-info-tab',
+    premierBanner: '#pdpMain .banner-wrapper',
+
   },
   'coastfashion.com': {
     searchField: '#header-search-input',
@@ -231,7 +257,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-text',
-    miniCartContent:'.mini-cart-header-text',
+    miniCartContent: '.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-3',
     productDelivery: '.del-table',
@@ -259,7 +285,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '#product-image-0',
     addToCartTitle: '.mini-cart-header-text',
-    miniCartContent:'.mini-cart-header-text',
+    miniCartContent: '.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2',
     productDelivery: '.del-table',
@@ -289,7 +315,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-header-text',
-    miniCartContent:'.mini-cart-header-text',
+    miniCartContent: '.mini-cart-header-text',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
@@ -314,20 +340,24 @@ const selectors: SelectorBrandMap = {
     selectColor: '.swatches.color',
     sizeVariations: '.swatches.size',
     productTitle: '#product-content > .product-name',
+    productTitleMobile:'.is-mobile > .product-name',
     productCode: '.product-number > [itemprop="sku"]',
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-link',
-    miniCartContent:'.mini-cart-link',
+    miniCartContent: '.mini-cart-link',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '.product-care-info',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
+    productReturnsDescriptionMobile:'#dialog-container',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
-    productDeliveryInfo: '.product-delivery-link > .product-info-link-text',
+    productDeliveryInfo: '.ui-dialog-content-wrapper',
     productReturnsInfoButton: '.product-returns-link > .product-info-link-text',
-    showAllContentButton: '[class="show-all js-show-all"]'
+    showAllContentButton: '[class="show-all js-show-all"]',
+    productDeliveryInfoButton: '.product-delivery-link',
+    productReturnsInfo: '.ui-dialog-content-wrapper',
   },
   'boohoomena.com': {
     searchField: '#header-search-input',
@@ -348,7 +378,7 @@ const selectors: SelectorBrandMap = {
     colorSwatches: '.swatches.color',
     productImage: '.primary-image',
     addToCartTitle: '.mini-cart-header-product-added',
-    miniCartContent:'.mini-cart-content-inner',
+    miniCartContent: '.mini-cart-content-inner',
     miniCartProductIner: '.mini-cart-product',
     productDescription: '#ui-id-2 > p',
     productDelivery: '.b-product_delivery',
@@ -356,7 +386,7 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
-    cartValidation: '.b-product_actions-error_msg'
+    cartValidation: '.b-product_actions-error_msg',
   }
 };
 
@@ -370,12 +400,12 @@ class PdpPage implements AbstractPage {
     addToCart () {
       cy.wait(4000);
       const addToCart = selectors[brand].addToCart;
-      cy.get(addToCart).invoke('show').click({force: true});
+      cy.get(addToCart).invoke('show').click({ force: true });
     },
     addToWishList () {
       cy.wait(4000);
       const addToWishListButton = selectors[brand].addToWishListButton;
-      cy.get(addToWishListButton).invoke('show').click({force: true});
+      cy.get(addToWishListButton).invoke('show').click({ force: true });
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[brand].shippingInfoButton;
@@ -399,17 +429,48 @@ class PdpPage implements AbstractPage {
     },
     miniCartIcon () {
       const miniCartIcon = selectors[brand].minicartIcon;
-      cy.get(miniCartIcon).click({force: true});
+      cy.get(miniCartIcon).click({ force: true });
     },
     miniCartViewCartBtn () {
       const miniCartViewCartBtn = selectors[brand].miniCartViewCartBtn;
       if (!isMobileDeviceUsed) {
-        cy.get(miniCartViewCartBtn).click({force: true}); 
+        cy.get(miniCartViewCartBtn).click({ force: true });
       }
     },
     wishListIcon () {
       const wishListIcon = selectors[brand].wishListIcon;
-      cy.get(wishListIcon).click({force:true});
+      cy.get(wishListIcon).click({ force: true });
+    },
+    addToCartPremier () {
+      const premierBanner = selectors[brand].premierBanner;
+      const addToCart = selectors[brand].addToCart;
+      cy.get(premierBanner).then(($el) => {
+        cy.wrap($el).find(addToCart).click({ force: true });
+      });
+    },
+    premierLink (text: string) {
+      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      cy.get(productDeliveryInfo).contains(text).click({ force: true });
+    },
+    deliveryInfo () {
+      const productDeliveryInfoButton = selectors[brand].productDeliveryInfoButton;
+      cy.get(productDeliveryInfoButton).click({ force: true });
+    },
+    returnsInfo () {
+      const productReturnsInfoButton = selectors[brand].productReturnsInfoButton;
+      cy.get(productReturnsInfoButton).click({force:true});
+    },
+    sizeGuidePdp () {
+      const sizeGuidePdp = selectors[brand].sizeGuidePdp;
+      cy.get(sizeGuidePdp).click({ force: true });
+    },
+    sizeGuidePdpCms () {
+      const sizeGuidePdpCms = selectors[brand].sizeGuidePdpCms;
+      cy.get(sizeGuidePdpCms).click({force: true});
+    },
+    howToMeasurePdp () {
+      const howToMeasurePdp = selectors[brand].howToMeasurePdp;
+      cy.get(howToMeasurePdp).click({force: true});
     }
   };
 
@@ -429,14 +490,14 @@ class PdpPage implements AbstractPage {
           }
         });
       } else {
-        cy.get(selectColor + `[data-tau-color-id="${colorFromSku}"]`).click({force:true});
+        cy.get(selectColor + `[data-tau-color-id="${colorFromSku}"]`).click({ force: true });
       }
       cy.wait(3000);
     },
     selectSizeFromSku () {
       const sizeVariations = selectors[brand].sizeVariations;
       const sizeFromSku = fullSku.split('-')[2]; // Get size part from fullSku FZZ80440-106-18 => 18
-     
+
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {
           if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
@@ -444,7 +505,7 @@ class PdpPage implements AbstractPage {
           }
         });
       } else {
-        cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({force:true});
+        cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({ force: true });
       }
       cy.wait(3000);
     },
@@ -452,11 +513,11 @@ class PdpPage implements AbstractPage {
       const sizeVariations = selectors[brand].sizeVariations;
       if (isSiteGenesisBrand) {
         cy.get(sizeVariations).find('li').each(($element) => {
-          if ($element.hasClass('selectable')) { // If size is available(selectable) 
+          if ($element.hasClass('selectable')) { // If size is available(selectable)
             if (!$element.hasClass('selected')) { // If size not already selected
               $element.find('span').trigger('click');
               return false;
-            } 
+            }
             return false;
           }
         });
@@ -466,7 +527,7 @@ class PdpPage implements AbstractPage {
             if ($element.attr('data-attr-is-selected').includes('false')) { // If size not already selected
               $element.trigger('click');
               return false;
-            } 
+            }
             return false;
           }
         });
@@ -474,7 +535,7 @@ class PdpPage implements AbstractPage {
     },
     miniCartProceedToCheckout () {
       const checkoutBtn = selectors[brand].checkoutBtn;
-      cy.get(checkoutBtn).click({force: true});
+      cy.get(checkoutBtn).click({ force: true });
     }
   };
 
@@ -485,32 +546,32 @@ class PdpPage implements AbstractPage {
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
-        
+
         cy.get(productTitleMobile).should('be.visible');
-        
+
         // If Desktop Device is used
       } else {
         cy.get(productTitle).should('be.visible');
       }
 
-      // .and('include.text', productName);  // Skus are different 
+      // .and('include.text', productName);  // Skus are different
     },
     assertProductCodeIsDisplayed (SKU: string) {
       const productCode = selectors[brand].productCode;
       cy.get(productCode).should('be.visible').invoke('text').then(productCodeText => {
         if (brand == 'nastygal.com' && locale == 'US') {
-          productCodeText=productCodeText.replace(/^/g, '');
+          productCodeText = productCodeText.replace(/^/g, '');
           if (SKU.includes('-')) {
             SKU = SKU.split('-')[0];
           }
           expect(productCodeText).to.contain(SKU);
         } else {
-          productCodeText=productCodeText.replace(/^#/g, '');
+          productCodeText = productCodeText.replace(/^#/g, '');
           if (SKU.includes('-')) {
-            SKU = SKU.split('-')[0];       
+            SKU = SKU.split('-')[0];
           }
         }
-      }); 
+      });
     },
     assertProductPriceIsDisplayed () {
       const productPrice = selectors[brand].productPrice;
@@ -523,105 +584,107 @@ class PdpPage implements AbstractPage {
     },
     assertColorSwatchesAreVisible () {
       const colorSwatches = selectors[brand].colorSwatches;
-      cy.get(colorSwatches).should('be.visible'); // Check how it works with single color 
+      cy.get(colorSwatches).should('be.visible'); // Check how it works with single color
     },
     assertColorIsDisplayed (color: string) {
       const productImage = selectors[brand].productImage;
       cy.get(productImage).should('have.attr', 'src').and('include', color);
     },
-    assertSizeIsAvailable (msg: string) {
-      cy.get('.b-availability-status').should('contain.text', msg); // N/a need check
-    },
+
+    // TODO : This function is un-used but keep it commented just for investigation and future use if we can.
+    // AssertSizeIsAvailable (msg: string) {
+    //   Cy.get('.b-availability-status').should('contain.text', msg); // N/a need check
+    // },
     assertProductIsAddedToCart (text: string) {
-      const addToCartTitle = selectors[brand].addToCartTitle;         
+      const addToCartTitle = selectors[brand].addToCartTitle;
       cy.get(addToCartTitle).should('be.visible').and('contain.text', text);
     },
     assertAddToCartBtnIsNotAvailable (msg: string) {
       const addToCart = selectors[brand].addToCart;
       const cartValidation = selectors[brand].cartValidation;
-      cy.get(addToCart).click({force: true} );
+      cy.get(addToCart).click({ force: true });
       cy.get(cartValidation).should('contain.text', msg);
     },
     assertAddToCartBtnDisabled () {
       if (isSiteGenesisBrand) {
         const addToCart = selectors[brand].addToCart;
-        const deselectSize=selectors[brand].deselectSize;
-        const deselectSizeIE=selectors[brand].deselectSizeIE;
-        if (brand=='boohooman.com' && locale == 'UK') { 
+        const deselectSize = selectors[brand].deselectSize;
+        const deselectSizeIE = selectors[brand].deselectSizeIE;
+        if (brand == 'boohooman.com' && locale == 'UK') {
           cy.get(deselectSize).click();// Deselecting Size to Disable addToCart button for BHM
-        } else if (brand=='boohooman.com' && (locale == 'IE'|| locale == 'DE')) {
+        } else if (brand == 'boohooman.com' && (locale == 'IE' || locale == 'DE')) {
           cy.get(deselectSizeIE).click();
-        }  
+        }
         cy.get(addToCart).should('have.attr', 'disabled');
       } else {
         const disabledAddToCart = selectors[brand].disabledAddToCart;
-        cy.get(disabledAddToCart).should('have.attr', 'disabled');  
-      }   
-    },
-    assertMiniCartIsDisplayed () { 
-      const miniCartContent = selectors[brand].miniCartContent;
-      if (isMobileDeviceUsed && !isSiteGenesisBrand) {
-        if (brand == 'burton.co.uk') {
-          cy.get('.b-minicart_product-title').should('be.visible');
-        } else {
-          cy.get('[data-tau="global_alerts_item"]').should('be.visible');
-        }
-      } else {
-        cy.get(miniCartContent).should('be.visible');
+        cy.get(disabledAddToCart).should('have.attr', 'disabled');
       }
     },
+    assertMiniCartIsDisplayed () {
+      const miniCartContent = selectors[brand].miniCartContent;
+      const miniCartProductTitle = selectors[brand].miniCartProductTitle;
+
+      isMobileDeviceUsed && !isSiteGenesisBrand
+        ? cy.get(miniCartProductTitle).should('be.visible')
+        : cy.get(miniCartContent).should('be.visible');
+    },
     assertProductIsAddedToWishlist (msg: string) {
-      const addedToWishlistMsg = selectors[brand].addedToWishlistMsg; 
+      const addedToWishlistMsg = selectors[brand].addedToWishlistMsg;
       cy.get(addedToWishlistMsg).should('contains.text', msg); //  Check how to switch between brands
     },
     assertProductDescriptionIsPresent () {
       const productDescription = selectors[brand].productDescription;
       const showAllContentButton = selectors[brand].showAllContentButton;
       if (brand == 'misspap.com') {
-        cy.get(showAllContentButton).click({force: true});
+        cy.get(showAllContentButton).click({ force: true });
       }
       cy.get(productDescription).should('be.visible').and('not.be.null');
     },
     assertDeliveryInfoIsDisplayed () {
       const productDelivery = selectors[brand].productDelivery;
-      
-      if (brand == 'boohoo.com' && locale != 'UK') {
-        cy.get('.b-product_shipping-delivery').should('be.visible');
-      } else if (isSiteGenesisBrand) {
-        cy.get(productDelivery).should('be.visible');
-        
-      } else {
-        cy.get(productDelivery).should('be.visible');
-        cy.get('a[data-event-click="loadDeliveryList"]').should('be.visible').click();
-        cy.get('a[data-event-click="loadDeliveryList"]').should('have.text', '\nFewer shipping options\n');
-      }
-      
+      const productDeliveryNonUKLocale = selectors[brand].productDeliveryNonUKLocale;
+      const productDeliveryOptions = selectors[brand].productDeliveryOptions;
+
+      (brand == 'boohoo.com' && locale != 'UK')
+        ? cy.get(productDeliveryNonUKLocale).should('be.visible')
+        : isSiteGenesisBrand
+          ? cy.get(productDelivery).should('be.visible')
+          : cy.get(productDelivery).should('be.visible')
+            .get(productDeliveryOptions).should('be.visible').click()
+            .get(productDeliveryOptions).should('have.text', assertionText.productDeliveryOptions[language]);
     },
+
     assertDeliveryOptionsAreDisplayed () {
-      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      const productDeliveryInfoButton = selectors[brand].productDeliveryInfoButton;
       const productDeliveryInfoMobile = selectors[brand].productDeliveryInfoMobile;
-    
+
       if (isMobileDeviceUsed) {
         cy.get(productDeliveryInfoMobile).should('be.visible');
       } else {
-        cy.get(productDeliveryInfo).should('be.visible');
-    
+        cy.get(productDeliveryInfoButton).should('be.visible');
+
       }
     },
     assertReturnInfoIsDisplayed () {
       const productReturnsInfoButton = selectors[brand].productReturnsInfoButton;
       const productReturnsDescription = selectors[brand].productReturnsDescription;
+      const productReturnsDescriptionMobile = selectors[brand].productReturnsDescriptionMobile;
 
       if (isSiteGenesisBrand) {
-        cy.get(productReturnsInfoButton).click({force: true});
-      } 
+        cy.get(productReturnsInfoButton).click({ force: true });
+      }
 
       // If Mobile Device is used
-      if (isMobileDeviceUsed) {
-        
-        cy.get(productReturnsInfoButton).click({force:true});
+      if (brand !== 'boohoo.com' && isMobileDeviceUsed) {
+        cy.get(productReturnsInfoButton).click({ force: true });
       }
-      cy.get(productReturnsDescription).should('be.visible');
+
+      if (brand == 'misspap.com' && isMobileDeviceUsed) {
+        cy.get(productReturnsDescriptionMobile).should('be.visible');
+      } else {
+        cy.get(productReturnsDescription).should('be.visible');
+      }
     },
     assertStartReturnPageIsDisplayed () {
 
@@ -641,6 +704,82 @@ class PdpPage implements AbstractPage {
 
       // Temp: const shopNowLinkSA = selectors[variables.brand].shopNowLinkSA;
       cy.url().should('include', text); //  Only boohoo brand //need to be change
+    },
+    assertPremierBannerIsVisible () {
+      const premierBanner = selectors[brand].premierBanner;
+      cy.get(premierBanner).then(element => {
+        cy.wrap(element).invoke('width').should('be.gt', 10);
+      });
+    },
+    assertLinkPremierIsLinked (text: string) {
+      cy.url().should('include', text.toLocaleLowerCase());
+    },
+    assertDeliveryHereLinkIsDisplayedAndLinked (text: string) {
+      const productDeliveryInfo = selectors[brand].productDeliveryInfo;
+      cy.get(productDeliveryInfo).contains(text).then(($el) => {
+        const hereLink = text.split(' ')[1];
+        cy.wrap($el).contains(hereLink).click({ force: true });
+      });
+      cy.url().should('include', 'delivery');
+    },
+    assertReturnsHereLinkIsDisplayedAndLinked (text: string) {
+      const productReturnsInfo = selectors[brand].productReturnsInfo;
+      if (brand == 'boohooman.com' && (locale == 'IE' || locale == 'UK')) {
+        text = 'policy here';
+      }
+      cy.get(productReturnsInfo).contains(text).then(($el) => {
+        const hereLink = text.split(' ')[1];
+        cy.wrap($el).contains(hereLink).click({ force: true });
+      });
+      cy.url().should('include','returns');
+    },
+    assertSizeGuidePdpIsDisplayed () {
+      const sizeGuidePdpIsDisplayed = selectors[brand].sizeGuidePdpIsDisplayed;
+      cy.get(sizeGuidePdpIsDisplayed).should('be.visible');
+    },
+
+    assertSizeGuidePdpCms () {
+      const sizeGuidePdpTable = selectors[brand].sizeGuidePdpTable;
+      cy.get(sizeGuidePdpTable).should('contain', '79');
+    },
+    assertSizeGuidePdpInches () {
+      const sizeGuidePdpInches = selectors[brand].sizeGuidePdpInches;
+      cy.get(sizeGuidePdpInches).should('have.text', '31');
+    },
+    assertHowToMeasurePdpDisplayed () {
+      const howToMeasurePdpContent = selectors[brand].howToMeasurePdpContent;
+      cy.get(howToMeasurePdpContent).should('be.visible');
+
+    },
+    assertUsCaLocaleSelected () {
+      const usCaLocale = selectors[brand].usCaLocale;
+
+      cy.get(usCaLocale).click(),
+      cy.get(usCaLocale).should('be.checked');
+    },
+    assertausNzLocaleSelected () {
+      const ausNzLocale = selectors[brand].ausNzLocale;
+
+      cy.get(ausNzLocale).click(),
+      cy.get(ausNzLocale).should('be.checked');
+    },
+    assertDeLocaleSelected () {
+      const deLocale = selectors[brand].deLocale;
+
+      cy.get(deLocale).click(),
+      cy.get(deLocale).should('be.checked');
+    },
+    assertItLocaleSelected () {
+      const itLocale = selectors[brand].itLocale;
+
+      cy.get(itLocale).click(),
+      cy.get(itLocale).should('be.checked');
+    },
+    assertFrLocaleSelected () {
+      const frLocale = selectors[brand].frLocale;
+
+      cy.get(frLocale).click(),
+      cy.get(frLocale).should('be.checked');
     }
 
   };

@@ -9,6 +9,8 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
     addPremierToCartFromShippingPage: '#deliveryPanel .m-with_actions [type]',
+    premierFindOutMore: '.b-icon_chevron',
+    premierMoreInfoSection: '#ngvip-details',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -27,7 +29,7 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#LoqateAutocomplete',
     addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
-    cartContainer: '.b-checkout_products',
+    cartContainer: '[data-id="checkoutProducts"]',
     orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
@@ -69,13 +71,16 @@ const selectors: SelectorBrandMap = {
     changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
-    successMark:"[class='what3words-autosuggest-state valid']"
+    successMark:"[class='what3words-autosuggest-state valid']",
+    standartShipping: '[data-option-id="shippingMethod-UKSuperSaver"]'
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: '#deliveryTabs > div.b-tab_list > button:nth-child(2)',
     addPremierToCartFromShippingPage: '[data-widget="processButtonNGVIP"]',
     premierProductTitle: 'NGVIP',
+    premierFindOutMore: '.b-ngvip_accordion-button',
+    premierMoreInfoSection: '.b-ngvip_accordion-content_inner',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.b-address_form-header > .b-button',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -116,6 +121,7 @@ const selectors: SelectorBrandMap = {
     shippingMethodName: '.b-shipping_method .b-option_switch-label_surface',
     shippingMethodsNameList: '.b-option_switch-name',
     shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    shippingStateUS:'#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearOfBirth',
@@ -132,7 +138,8 @@ const selectors: SelectorBrandMap = {
     changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
-    successMark:"[class='what3words-autosuggest-state valid']"
+    successMark:"[class='what3words-autosuggest-state valid']",
+    standartShipping: '[for="shippingMethod-USUsdStandardDelivery"]'
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -310,6 +317,8 @@ const selectors: SelectorBrandMap = {
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY + EXCLUSIVE FREE RETURNS FOR 1 YEAR',
     premierProductTitleIE: 'BOOHOOMAN PREMIER - UNLIMITED NEXT DAY DELIVERY',
+    premierFindOutMore: '.premier-find-out',
+    premierMoreInfoSection: '.premier-box-extra',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -371,7 +380,8 @@ const selectors: SelectorBrandMap = {
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
-    successMark:'.field-wrapper-w3w-valid'
+    successMark:'.field-wrapper-w3w-valid',
+    helpAndInfoLink: '.checkout-help-link'
   },
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -380,6 +390,8 @@ const selectors: SelectorBrandMap = {
     addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'Karen Millen Premier',
+    premierFindOutMore: '.premier-find-out',
+    premierMoreInfoSection: '.premier-box-extra',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
     cancelAddingNewAddressForRegisteredUser: '.new-address-header-link',
     editExistingAddressButton: '.b-option_switch-label_surface > .b-button',
@@ -443,7 +455,8 @@ const selectors: SelectorBrandMap = {
     successMark:'.field-wrapper-w3w-valid',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    checkoutMiniBagSummery: '.checkout-mini-cart'
+    checkoutMiniBagSummery: '.checkout-mini-cart',
+    helpAndInfoLink: '.checkout-help-link'
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -633,7 +646,7 @@ const selectors: SelectorBrandMap = {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
     PUDOlocations: 'a.delivery-tabs-link:nth-child(2)',
     addPremierToCartFromShippingPage: '.add-to-cart-text',
-    addPremierToCartFromShippingPageMobile: '.premier-box-btn.js-premier-box-link',
+    addPremierToCartFromShippingPageMobile: '.add-to-cart-text',
     addPremierToBagMobile: '#add-to-cart',
     premierProductTitle: 'VIP DELIVERY',
     viewAllAddressesLink: '.b-address_selector-actions > .m-link',
@@ -654,7 +667,7 @@ const selectors: SelectorBrandMap = {
     addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
     cartContainer: '.summary-inner',
     orderSummaryOnShippingPage: '.summary-inner',
-    cartContainerMobile: '.cart-row',
+    cartContainerMobile: '.summary-inner',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: '#dwfrm_singleshipping_shippingAddress_addressFields_addressid',
     fnameValidationMsg: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName-error',
@@ -696,7 +709,8 @@ const selectors: SelectorBrandMap = {
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
-    successMark:'.field-wrapper-w3w-valid'
+    successMark:'.field-wrapper-w3w-valid',
+    helpAndInfoLink: 'a[title="Help & Info"]'
   },
   'boohoomena.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -753,7 +767,8 @@ const selectors: SelectorBrandMap = {
     address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
-    successMark:'.field-wrapper-w3w-valid'
+    successMark:'.field-wrapper-w3w-valid',
+    helpAndInfoLink: '.checkout-help-link'
   }
 };
 
@@ -783,6 +798,14 @@ class ShippingPage implements AbstractPage {
     },
     addPremierByButtonName (text: string) {
       cy.contains(text).click({ force: true });
+    },
+    premierFindOutMoreLink () {
+      const premierFindOutMore = selectors[brand].premierFindOutMore;
+      if (brand == 'boohoo.com') {
+        cy.get(premierFindOutMore).eq(0).click();
+      } else {
+        cy.get(premierFindOutMore).click();
+      }
     },
     cancelAddingNewAddress () {
       const cancelAddingNewAddress = selectors[brand].cancelAddingNewAddress;
@@ -899,6 +922,16 @@ class ShippingPage implements AbstractPage {
     addThriftToCart () {
       const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
       cy.get(addThriftToCartBtn).click({ force: true });
+    },
+    helpAndInfoLink () {
+      const helpAndInfoLink = selectors[brand].helpAndInfoLink;
+      cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click();
+    },
+    makeShippingAddressDefault () {
+      const standartShipping = selectors[brand].standartShipping;     
+      if ((brand == 'boohoo.com' && locale =='UK') || (brand == 'nastygal.com' && locale =='US' || locale =='CA')) { // To select standard shipping method for boohoo and ngal as default address
+        cy.get(standartShipping).click({force:true});
+      }
     }
   };
 
@@ -975,7 +1008,12 @@ class ShippingPage implements AbstractPage {
     },
     selectState (state: string) {
       const shippingState = selectors[brand].shippingState;
-      cy.get(shippingState).select(state).invoke('show');
+      const shippingStateUS = selectors[brand].shippingState;
+      if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA' ) {
+        cy.get(shippingStateUS).select(state);
+      } else {
+        cy.get(shippingState).select(state).invoke('show');
+      }
     },
     adressLine1 (address1: string) {
       const addressLine1Field = selectors[brand].addressLine1Field;
@@ -1035,7 +1073,12 @@ class ShippingPage implements AbstractPage {
     selectSecondShippingMethod () {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
-      cy.get(shippingMethodName).eq(1).click({force:true});
+      if (brand == 'nastygal.com' && locale == 'CA') {
+        cy.get(shippingMethodName).eq(0).click({force:true});
+      } else {
+        cy.get(shippingMethodName).eq(1).click({force:true});
+      }
+      
     },
     secondShippingMethodName (): Cypress.Chainable<string> {
       const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;
@@ -1244,7 +1287,7 @@ class ShippingPage implements AbstractPage {
       const premierProductTitleIE = selectors[brand].premierProductTitleIE;
       if (isMobileDeviceUsed) {
         cy.get(cartContainerMobile, { timeout: 20000 }).should('contain', premierProductTitle.trim());
-      } else if (brand=='boohooman.com'|| locale == 'IE') {
+      } else if (brand=='boohooman.com' && locale == 'IE') {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitleIE.trim());
       } else {
         cy.get(cartContainer, { timeout: 20000 }).should('contain', premierProductTitle.trim());
@@ -1288,6 +1331,31 @@ class ShippingPage implements AbstractPage {
     assertThriftBagIsAddedToTheCart () {
       const checkoutMiniBagSummery = selectors[brand].checkoutMiniBagSummery;
       cy.get(checkoutMiniBagSummery).should('contain', 'Thrift Bags');
+    },
+    assertPremierSectionExpands () {
+      const premierMoreInfoSection = selectors[brand].premierMoreInfoSection;
+      if (brand == 'boohoo.com') {
+        cy.get(premierMoreInfoSection).eq(0).should('be.visible');
+      } else {
+        cy.get(premierMoreInfoSection).should('be.visible');
+      }
+    },
+    assertPremierDetailsText () {
+      const premierMoreInfoSection = selectors[brand].premierMoreInfoSection;
+      const premierMoreInfoText = assertionText.premierMoreInfoTextShippingPage[language];
+      const premierMoreInfoTextKM = assertionText.premierMoreInfoTextShippingPageKarenMillen[language];
+      if (brand == 'boohoo.com') {
+        cy.get(premierMoreInfoSection).eq(0).contains(premierMoreInfoText, {matchCase:false});
+      } else if (brand == 'karenmillen.com') {
+        cy.get(premierMoreInfoSection).contains(premierMoreInfoTextKM, {matchCase:false});
+      } else {
+        cy.get(premierMoreInfoSection).contains(premierMoreInfoText, {matchCase:false});
+      }
+    },
+    assertCustomerServicePageIsOpened () {
+      const customerServiceURL = assertionText.customerServiceURL[language];
+      cy.url().should('contain' , customerServiceURL);
+
     }
   };
 }

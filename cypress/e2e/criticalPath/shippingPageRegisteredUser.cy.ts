@@ -26,7 +26,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it('Verify that in Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
+  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', () => {
     shippingPage.click.addNewAddressButton();
 
     shippingPage.actions.firstNameFieldClear();
@@ -63,7 +63,7 @@ describe('Shipping Page Registered user tests', function () {
     cy.wait(2000);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
-    if (locale == 'US' || locale == 'AU' || locale == 'IE') {
+    if (locale == 'US' || locale == 'AU' || locale == 'IE' || locale == 'CA') {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -108,7 +108,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertCountryIsSelected(localeAddress.countryCode);
   });
 
-  it('Verify that ADDRESS LOOKUP field is dispayed and functional', function () {
+  it('Verify that ADDRESS LOOKUP field is displayed and functional', function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // There is no Address Lookup for this brand
     }
@@ -153,21 +153,22 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
-      if (locale == 'US' || locale == 'AU') {
-        shippingPage.actions.selectState(localeAddress.county);
+      if (locale == 'US' || locale == 'AU' || locale == 'CA') {
+          shippingPage.actions.selectState(localeAddress.county);
+        }
+        shippingPage.actions.postcodeField(localeAddress.postcode);
       }
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-    }
-
-    shippingPage.click.proceedToBilling();
-    cy.wait(2000);
-    shippingPage.click.proceedToBillingVerification();
-    billingPage.actions.waitPageToLoad();
-    billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
+      shippingPage.click.proceedToBilling();
+      cy.wait(2000);
+      shippingPage.click.proceedToBillingVerification();
+      billingPage.actions.waitPageToLoad();
+      billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
+    
   });
 
+
   it('Verify that PREMIER can be added to the cart', function () {
-    if (brand == 'boohoomena.com' || ((brand == 'nastygal.com' || brand == 'boohooman.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
+    if ((brand == 'boohoomena.com' || brand == 'boohooman.com') || ((brand == 'nastygal.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
@@ -179,7 +180,10 @@ describe('Shipping Page Registered user tests', function () {
 
     const includededBlpBrands: Array<GroupBrands> = ['boohoo.com', 'dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
     if (includededBlpBrands.includes(brand)) {
-      shippingPage.assertions.assertCartShippingPageContainsProduct(assertionText.AddPremierToCartButton[language]);
+      const AddPremierToCartButton = (assertionText.AddPremierToCartButton[language]).toUpperCase();
+      shippingPage.assertions.assertCartShippingPageContainsProduct(AddPremierToCartButton);
+    } else if (brand == 'misspap.com' || brand == 'karenmillen.com') {
+      this.skip(); // Redirecting to live site
     } else {
       shippingPage.assertions.assertShippingPageCartContainsVipProduct();
     }
@@ -188,6 +192,19 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.editCart();
     cartPage.click.removePremierFromCart();
 
+  });
+
+  it('Verify that "Find out more" link for Premier section expands and displays correct details ', function () {
+    if ((brand == 'boohoomena.com' || brand == 'misspap.com') || ((brand == 'nastygal.com' || brand == 'boohooman.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier and no find out more link for MissPap
+      this.skip();
+    }
+    const includedLocales: Array<Locale> = ['UK', 'IE', 'FR'];
+    if (!includedLocales.includes(locale)) {
+      this.skip(); // Other locales are not supported for Premier promotion
+    }
+    shippingPage.click.premierFindOutMoreLink();
+    shippingPage.assertions.assertPremierSectionExpands();
+    shippingPage.assertions.assertPremierDetailsText();
   });
 
   it('Verify that user is able to select standard shipping method', () => {
@@ -219,7 +236,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
-      if (locale == 'US' || locale == 'AU') {
+      if (locale == 'US' || locale == 'AU' || locale == 'CA') {
         shippingPage.actions.selectState(localeAddress.county);
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -303,8 +320,8 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com'&& (locale == 'IE' || locale == 'AU' || locale == 'US');
-    if (brand == 'boohooman.com' || brand == 'boohoomena.com' || excludedmisspapWithLocales) {
+    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com')&& (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'CA')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
+    if (excludedmisspapWithLocales) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
@@ -342,4 +359,11 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertEmptyPromoError();
   });
 
+  it('Verify that "Help & info" link on header opens corresponding page', function () {
+    if (brand == 'boohoo.com' || brand == 'nastygal.com') {
+      this.skip(); // No help and info link on these brands
+    }
+    shippingPage.click.helpAndInfoLink();
+    shippingPage.assertions.assertCustomerServicePageIsOpened();
+  });
 });

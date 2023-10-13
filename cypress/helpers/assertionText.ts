@@ -448,6 +448,34 @@ class AssertionText {
     ES: '\nENTREGA GRATUITA AL DÍA SIGUIENTE DURANTE 1 AÑO!\n'
   };
 
+  premierMoreInfoTextShippingPage: TranslationMap = {
+    EN: 'Next day delivery',
+    FR: 'Livraison Standard Illimitée',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  premierMoreInfoTextShippingPageKarenMillen: TranslationMap = {
+    EN: 'UK Standard Delivery is included and available free',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   GiftCard: TranslationMap = {
     EN: 'GIFT CARD APPLIED',
     FR: 'CARTE CADEAU APPLIQUÉE',
@@ -1007,7 +1035,7 @@ class AssertionText {
     IT: 'Guida taglie boohoo',
     ES: 'Guía de tallas'
   };
-  
+
   footerAccordionHelp: TranslationMap = {
     EN: 'Help',
     NL: '',
@@ -1820,8 +1848,22 @@ class AssertionText {
     ES: 'No existe ningún cupón de regalo con este código específico.'
   };
 
+  giftCardInvalidErrorMessageKM: TranslationMap = {
+    EN: 'could not be found.',
+    NL: 'De opgegeven promocode bestaat niet.',
+    DE: 'Geschenkgutschein mit spezifischem Code existiert nicht!',
+    FR: 'La carte-cadeau associée à ce code spécifique nexiste pas!',
+    DK: 'Gift certificate with specific code does not exist!',
+    FI: 'Gift certificate with specific code does not exist!',
+    NO: 'Gift certificate with specific code does not exist!',
+    SE: 'Det finns inget presentkort med den koden.',
+    IL: 'שובר מתנה עם הקוד הספציפי אינו קיים!',
+    IT: ' Non esiste un buono regalo con il codice sconto inserito.',
+    ES: 'No existe ningún cupón de regalo con este código específico.'
+  };
+
   giftCardEmptydErrorMessage: TranslationMap = {
-    EN: 'Please enter a gift voucher code.',
+    EN: 'Please enter a gift',
     NL: 'Voer a.u.b. een cadeaukaartcode in.',
     DE: 'Bitte gebe einen Gutscheincode ein.',
     FR: 'Saisir un code de chèque cadeau.',
@@ -1850,7 +1892,7 @@ class AssertionText {
 
   promoEmptydErrorMessage: TranslationMap = {
     EN: 'No promo code entered',
-    NL: 'No promo code entered', 
+    NL: 'No promo code entered',
     DE: 'No promo code entered',
     FR: 'Aucun code promo ajouté',
     DK: 'No promo code entered',
@@ -1904,6 +1946,20 @@ class AssertionText {
     ES: ''
   };
 
+  customerServiceURL: TranslationMap = {
+    EN: 'customer-service',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   referFriendText: TranslationMap = {
     EN: 'Refer a Friend',
     NL: '',
@@ -1932,6 +1988,47 @@ class AssertionText {
     ES: ''
   };
 
+  womanSizeGuideText: TranslationMap = {
+    EN: 'Women Size Guide',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  clickHereLink: TranslationMap = {
+    EN: 'Click here',
+    NL: 'Click here',
+    DE: 'Klicke hier',
+    FR: 'Cliquez ici',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  productDeliveryOptions: TranslationMap = {
+    EN: '\nFewer shipping options\n',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 }
 
 export default new AssertionText();

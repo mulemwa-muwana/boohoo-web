@@ -32,6 +32,7 @@ const selectors: SelectorBrandMap = {
     productDetails: '.l-cart_product-details',
     productName: 'a[class="b-cart_product-name"]',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    itemDetails: '.item-details',
   },
   'nastygal.com': {
     productsTable: '.b-cart_products',
@@ -62,6 +63,7 @@ const selectors: SelectorBrandMap = {
     premierBlock: '.b-ngvip',
     addPremierToCart: '.b-ngvip-button',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    itemDetails: '.item-details',
   },
   'dorothyperkins.com': {
     productsTable: '.b-cart_products',
@@ -173,6 +175,7 @@ const selectors: SelectorBrandMap = {
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
+    itemDetails: '.item-details',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -205,7 +208,8 @@ const selectors: SelectorBrandMap = {
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    cartPage: '#wrapper'
+    cartPage: '#wrapper',
+    itemDetails: '.item-details',
   },
   'coastfashion.com': {
     productsTable: '#cart-table',
@@ -292,13 +296,13 @@ const selectors: SelectorBrandMap = {
     productsTable: '#cart-table',
     productImage: '[class*="item-image"] img[class*="product-tile-image"]',
     productPrice: '[class*="item-price"]',
-    productPriceMobile: '.price-total',
+    productPriceMobile: '.order-subtotal > :nth-child(2)',
     subtotal: '.order-subtotal > :nth-child(2)',
     cartQuantity: '.cart-input-quantity',
     editQuantity: '.cart-input-quantity',
-    editQuantityMobile: '#Quantity',
+    editQuantityMobile: '.ui-dialog  #Quantity',
     editDetailsMobile: '.item-actions-btns > .item-edit-details > .item-actions-inner > .item-actions-copy',
-    updateBtnMobile: '.add-to-cart-text',
+    updateBtnMobile: '#add-to-cart[title="Update Bag"]',
     updateQuantity: '.b-product_update-button_update',
     setQuantity: '#quantity-129d21f4236e7c5fcb9485c2d2',
     premierBlock: '.html-slot-container',
@@ -318,6 +322,7 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a',
     updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
+    itemDetails: '.item-details',
   },
   'boohoomena.com': {
     productsTable: '#cart-table',
@@ -344,6 +349,7 @@ const selectors: SelectorBrandMap = {
     productDetails: '.variations',
     productName: '.name > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
+    itemDetails: '.item-details',
   },
 };
 
@@ -452,6 +458,7 @@ class CartPage implements AbstractPage {
       } else {
         cy.get(editQuantity).clear().type(quantity);
         cy.intercept('**/cart').as('cartPage');
+
         cy.get(editQuantity).blur();
         cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
       }
@@ -538,6 +545,10 @@ class CartPage implements AbstractPage {
     assertThriftBagIsAddedToTheCart () {
       const cartPage = selectors[brand].cartPage;
       cy.get(cartPage).should('contain', 'Thrift Bags');
+    },
+    assertSelectedProductIsAddedToTheCart (text: string) {
+      const itemDetails = selectors[brand].itemDetails;
+      cy.get(itemDetails).should('contains',text.toLocaleLowerCase);
     }
   };
 }

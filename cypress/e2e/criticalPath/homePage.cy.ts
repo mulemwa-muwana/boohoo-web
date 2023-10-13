@@ -12,7 +12,6 @@ import contactusPage from 'cypress/pom/contactus.page';
 import faqPage from 'cypress/pom/faq.page';
 import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
-import globalfooterPage from '../../pom/globalfooter.page';
 
 describe('Home Page', function () {
 
@@ -249,7 +248,7 @@ describe('Home Page', function () {
       it('Verify that App Banner is present as content slot.', function () {
         const excludedBoohooLocales: Array<Locale> = ['EU', 'NL', 'NO', 'DK', 'FI', 'IT', 'ES'];
         const excludedBoohooWithLocales: boolean = brand == 'boohoo.com' && excludedBoohooLocales.includes(locale);
-        const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && locale == 'EU';
+        const excludedNastygalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'EU' || locale == 'CA');
         const excludedCoastWithLocales: boolean = brand == 'coastfashion.com' && locale == 'IE';
         const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US');
         const excludedBoohoomanWithLocales: boolean = brand == 'boohooman.com' && locale == 'NL';
@@ -293,7 +292,7 @@ describe('Home Page', function () {
         if ((brand == 'boohoo.com' && !boohooLocales.includes(locale))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfo[language]);
         } else if (brand == 'nastygal.com') {
-          if (locale == 'AU' || locale == 'US') {
+          if (locale == 'AU' || locale == 'US' || locale == 'CA') {
             this.skip();
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDeliveryInfoNG[language]);
@@ -342,6 +341,8 @@ describe('Home Page', function () {
       it('Verify that Footer Navigation Component is present and Links are functional - The boohoo/nastygal App', function () {
         if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE')) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppBHO[language]);
+        } else if (brand == 'nastygal.com' && locale == 'CA') {
+          this.skip();
         } else if (brand == 'nastygal.com' && locale != 'EU') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppNG[language]);
         } else {
@@ -612,22 +613,19 @@ describe('Home Page', function () {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
         const julyPrivacyPolicyBrands: Array<GroupBrands> = ['nastygal.com', 'warehousefashion.com', 'misspap.com'];
         
-        if (brand=='nastygal.com' && locale=='IE') {
-          GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated August 2022');
-        } if (brand=='karenmillen.com') {
+        if (brand=='karenmillen.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated July 2023');
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
-          if ((brand == 'misspap.com' ||brand == 'nastygal.com' ) && locale == 'US') {
+          if ((brand == 'misspap.com' || brand == 'nastygal.com') && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
-          } else if(brand == 'nastygal.com'&& locale == 'IE'){
+          } else if (brand == 'nastygal.com' && (locale == 'IE' || locale=='EU' || locale=='CA')) {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
-          }
-          else {
+          } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
           }
         } else if ((brand == 'boohoo.com' && australianLocales)) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
-        } else if (brand == 'boohooman.com' && (locale == 'NL')) {
+        } else if (brand == 'boohooman.com' && (locale == 'NL')) { 
           GlobalFooter.actions.checkFooterLinkByText('Privacy Beleid- Sinds Maart 2020');
         } else if (brand == 'boohooman.com' && locale == 'DE') {
           GlobalFooter.actions.checkFooterLinkByText('März 2020');
@@ -720,7 +718,22 @@ describe('Home Page', function () {
         contactusPage.click.emailIconOption();
         contactusPage.assertions.assertEmailOptionsPresent();
       });
-    });
-
+ 
+  })
   });
+
+  describe('insta', ()=>{
+
+    it('Verify that Instashop is present on Homepage and opens instashop',function(){
+      if (brand == 'boohooman.com' && locale == 'UK') {
+        cy.wait(2000);
+        HomePage.assertions.assertInstaShopPresent();
+        HomePage.click.shopInstagramButton();
+        cy.wait(2000);
+        HomePage.assertions.assertInstaURL();
+      } else {
+          this.skip();
+      }
+  });
+  })
 });

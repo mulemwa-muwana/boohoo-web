@@ -140,6 +140,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: 'span.user-account',
     registrationButton: '.user-links > a:nth-child(2)',
     registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
+    shopInstagramBtn: '.background-white.border-black.cta-button.cta-button-border.text-black > .text-white',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
     wishListIconMobile: '.header-wishlist-link',
     searchField: '.js-header-search-input',
@@ -264,12 +265,12 @@ const selectors: SelectorBrandMap = {
     searchFieldMobile: '.js-header-search-input',
     searchIcon: '.icon-search',
     searchIconMobile:'.icon-search',
-    searchFieldCloseMobile: '.icon-close',
+    searchFieldCloseMobile: '.header-search .icon-close',
     promotion: 'div.product-category-slider',
     logo: '.primary-logo-link',
     logoMobile: '.primary-logo-link',
     hamburgerMenu: '.menu-toggle',
-    loginIconMobile: '.header-customer-info',
+    loginIconMobile: '.mobile-mega-menu .link-item-login',
     countryBtn: 'li.hidden-on-mobile.js-appshell-uncached-countryselector-container > div > div > div > div.current-country > span > i',
     countryList: 'div[class="selector active"]',
     myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
@@ -347,6 +348,15 @@ class HomePage implements AbstractPage {
       } else {
         cy.get(loginIcon).should('be.visible');
       }
+    },
+
+    shopInstagramButton() {
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn;
+      cy.get(shopInstagramBtn).should('be.visible')
+      .invoke('removeAttr', 'target').click();
+      //.should('contain', text).then(element => {
+         // cy.wrap(element).click({force: true});
+         // cy.url().should('include', expectedUrlFragment);
     },
     
     forgotPasswordLink () {
@@ -534,6 +544,11 @@ class HomePage implements AbstractPage {
       cy.get(myaccountUserPanelGreetingMsg).should('contain.text', name);
     },
 
+    assertInstaShopPresent () {
+      const shopInstagramBtn  = selectors[brand].shopInstagramBtn ;
+      cy.get(shopInstagramBtn ).should('be.visible');
+    },
+
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[brand].searchField;
@@ -669,8 +684,11 @@ class HomePage implements AbstractPage {
     }, 
     assertSelectCountryFromDropdown () {
       cy.url().should('include', '/ie');
-    }
+    },
 
+    assertInstaURL () {
+      cy.url().should('contain','instashop')
+    },
   };
 
 }

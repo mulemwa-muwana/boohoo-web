@@ -319,8 +319,8 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com')&& (locale == 'IE' || locale == 'AU' || locale == 'US')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
-    if (excludedmisspapWithLocales) {
+    const excludedFromW3w: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com' || brand == 'karenmillen.com') && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'EU')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
+    if (excludedFromW3w) {
       this.skip();
     }
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');

@@ -23,9 +23,11 @@ const selectors: SelectorBrandMap = {
     orderValueIsDisplayed: '.b-summary_shipping-cost',
     shippingAddressDetailsName: '[aria-label="Shipping Details"] p.b-address-name',
     shippingAddressDetailsSummary: '[aria-label="Shipping Details"] p.b-address-summary',
+    shippingAddressDetailsSummaryCA: '.b-summary_group-item',
     orderNumberIsDisplayed: ':nth-child(1) > .b-summary_group-details',
     billingAddressDetailsName: '[aria-label="Payment Details"] p.b-address-name',
     billingAddressDetailsSummary: '[aria-label="Payment Details"] p.b-address-summary',
+    billingAddressDetailsSummaryCA: '.b-summary_group-item',
     shippingMethodIsDisplayed: 'b-summary_shipping-name',
     paymentMethod: '.b-summary_payment',
     orderTotalIsVisible: '.b-summary_shipping-cost',
@@ -213,8 +215,14 @@ class OrderConfirmation implements AbstractPage {
       const shippingAddressDetailsName = selectors[variables.brand].shippingAddressDetailsName;
       cy.get(shippingAddressDetailsName).should('contain', fname);
       cy.get(shippingAddressDetailsName).should('contain', lname);
+      const shippingAddressDetailsSummaryCA = selectors[variables.brand].shippingAddressDetailsSummaryCA;
       const shippingAddressDetailsSummary = selectors[variables.brand].shippingAddressDetailsSummary;
-      cy.get(shippingAddressDetailsSummary).should('contain', addressLine1);
+      if (brand == 'nastygal.com' && locale == 'CA' ) {
+        cy.get(shippingAddressDetailsSummaryCA).should('contain', addressLine1);
+      } else {
+        cy.get(shippingAddressDetailsSummary).should('contain', addressLine1);
+      } 
+
     },
     assertOrderNumberIsDisplayed () {
       const orderNumberIsDisplayed = selectors[variables.brand].orderNumberIsDisplayed;
@@ -225,7 +233,12 @@ class OrderConfirmation implements AbstractPage {
       cy.get(billingAddressDetailsName).should('contain', fname);
       cy.get(billingAddressDetailsName).should('contain', lname);
       const billingAddressDetailsSummary = selectors[variables.brand].billingAddressDetailsSummary;
-      cy.get(billingAddressDetailsSummary).should('contain', addressLine1);
+      const billingAddressDetailsSummaryCA = selectors[variables.brand].billingAddressDetailsSummaryCA;
+      if (brand == 'nastygal.com' && locale == 'CA' ) {
+        cy.get(billingAddressDetailsSummaryCA).should('contain', addressLine1);
+      } else {
+        cy.get(billingAddressDetailsSummary).should('contain', addressLine1);
+      }
     },
     assertShippingMethodIsDisplayed () {
       const shippingMethodIsDisplayed = selectors[variables.brand].shippingMethodIsDisplayed;

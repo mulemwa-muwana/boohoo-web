@@ -154,17 +154,18 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
       if (locale == 'US' || locale == 'AU' || locale == 'CA') {
-        shippingPage.actions.selectState(localeAddress.county);
+          shippingPage.actions.selectState(localeAddress.county);
+        }
+        shippingPage.actions.postcodeField(localeAddress.postcode);
       }
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-    }
-
-    shippingPage.click.proceedToBilling();
-    cy.wait(2000);
-    shippingPage.click.proceedToBillingVerification();
-    billingPage.actions.waitPageToLoad();
-    billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
+      shippingPage.click.proceedToBilling();
+      cy.wait(2000);
+      shippingPage.click.proceedToBillingVerification();
+      billingPage.actions.waitPageToLoad();
+      billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
+    
   });
+
 
   it('Verify that PREMIER can be added to the cart', function () {
     if ((brand == 'boohoomena.com' || brand == 'boohooman.com') || ((brand == 'nastygal.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale

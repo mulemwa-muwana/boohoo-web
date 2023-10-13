@@ -354,9 +354,6 @@ class HomePage implements AbstractPage {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn).should('be.visible')
       .invoke('removeAttr', 'target').click();
-      //.should('contain', text).then(element => {
-         // cy.wrap(element).click({force: true});
-         // cy.url().should('include', expectedUrlFragment);
     },
     
     forgotPasswordLink () {

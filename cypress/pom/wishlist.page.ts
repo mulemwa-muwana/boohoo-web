@@ -228,11 +228,11 @@ class WishListPage implements AbstractPage {
       const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
       if (isMobileDeviceUsed) {
         this.removeItemFuncForWebAndMobile(removeItemFromWishListMobile);
-      } else {  
+      } else {
         this.removeItemFuncForWebAndMobile(removeItemFromWishlist);
       }
     },
-    removeItemFuncForWebAndMobile (deviceLocator: string) { // Function to remove item from wishlist for both Mobile and Web Resolution 
+    removeItemFuncForWebAndMobile (deviceLocator: string) { // Function to remove item from wishlist for both Mobile and Web Resolution
       const confirmRemoveWishlistItem=selectors[variables.brand].confirmRemoveWishlistItem;
       cy.get(deviceLocator).each(item => {
         cy.get(deviceLocator).eq(0).click({force:true});
@@ -257,8 +257,9 @@ class WishListPage implements AbstractPage {
   assertions = {
     assertItemIsAddedToWishlist () {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
-      cy.wait(2000);
-      cy.get(itemIsAddedToWishlist).should('be.visible');
+      cy.waitUntil(() => {
+        return cy.get(itemIsAddedToWishlist, {timeout: 2000}).should('be.visible');
+      });
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
@@ -266,7 +267,9 @@ class WishListPage implements AbstractPage {
     },
     assertItemIsAddedtoWishlistAlertText (msg: string) {
       const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;
-      cy.get(itemIsAddedtoWishlistAlertText).should('have.text', msg);
+      cy.waitUntil(() => {
+        return cy.get(itemIsAddedtoWishlistAlertText, {timeout: 4000}).should('have.text', msg);
+      });
     }
   };
 }

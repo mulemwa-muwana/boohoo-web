@@ -493,7 +493,6 @@ class PdpPage implements AbstractPage {
       } else {
         cy.get(selectColor + `[data-tau-color-id="${colorFromSku}"]`).click({ force: true });
       }
-      cy.wait(3000);
     },
     selectSizeFromSku () {
       const sizeVariations = selectors[brand].sizeVariations;
@@ -508,7 +507,6 @@ class PdpPage implements AbstractPage {
       } else {
         cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({ force: true });
       }
-      cy.wait(3000);
     },
     selectFirstAvailableSize () {
       const sizeVariations = selectors[brand].sizeVariations;

@@ -239,9 +239,7 @@ class WishListPage implements AbstractPage {
         if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'nastygal.com') {
           cy.get(confirmRemoveWishlistItem).click({ force: true });
         }
-        cy.wait(3000);
       });
-
     },
     wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;

@@ -256,7 +256,7 @@ class WishListPage implements AbstractPage {
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
       cy.waitUntil(() => {
         return cy.get(itemIsAddedToWishlist, {timeout: 2000}).should('be.visible');
-      })
+      });
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
@@ -266,7 +266,7 @@ class WishListPage implements AbstractPage {
       const itemIsAddedtoWishlistAlertText = selectors[variables.brand].itemIsAddedtoWishlistAlertText;
       cy.waitUntil(() => {
         return cy.get(itemIsAddedtoWishlistAlertText, {timeout: 4000}).should('have.text', msg);
-      })
+      });
     }
   };
 }

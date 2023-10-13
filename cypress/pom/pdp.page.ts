@@ -406,7 +406,7 @@ class PdpPage implements AbstractPage {
       const addToWishListButton = selectors[brand].addToWishListButton;
       cy.waitUntil(() => {
         return cy.get(addToWishListButton, {timeout: 4000}).invoke('show').click({ force: true });
-      })
+      });
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[brand].shippingInfoButton;

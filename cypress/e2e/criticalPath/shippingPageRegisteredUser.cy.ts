@@ -126,7 +126,7 @@ describe('Shipping Page Registered user tests', function () {
     billingPage.assertions.assertNewShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode, secondaryAddress.country);
   });
 
-  it.only('Verify that user is able to add address details manually', () => {
+  it('Verify that user is able to add address details manually', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
 
     shippingPage.click.addNewAddressButton();

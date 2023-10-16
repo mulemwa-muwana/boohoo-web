@@ -71,7 +71,8 @@ const selectors: SelectorBrandMap = {
     changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
-    successMark:"[class='what3words-autosuggest-state valid']"
+    successMark:"[class='what3words-autosuggest-state valid']",
+    standartShipping: '[data-option-id="shippingMethod-UKSuperSaver"]'
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -120,6 +121,7 @@ const selectors: SelectorBrandMap = {
     shippingMethodName: '.b-shipping_method .b-option_switch-label_surface',
     shippingMethodsNameList: '.b-option_switch-name',
     shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
+    shippingStateUS:'#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
     dobYear: '#dwfrm_profile_customer_yearOfBirth',
@@ -136,7 +138,8 @@ const selectors: SelectorBrandMap = {
     changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
-    successMark:"[class='what3words-autosuggest-state valid']"
+    successMark:"[class='what3words-autosuggest-state valid']",
+    standartShipping: '[for="shippingMethod-USUsdStandardDelivery"]'
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -924,6 +927,12 @@ class ShippingPage implements AbstractPage {
     helpAndInfoLink () {
       const helpAndInfoLink = selectors[brand].helpAndInfoLink;
       cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click();
+    },
+    makeShippingAddressDefault () {
+      const standartShipping = selectors[brand].standartShipping;     
+      if ((brand == 'boohoo.com' && locale =='UK') || (brand == 'nastygal.com' && locale =='US' || locale =='CA')) { // To select standard shipping method for boohoo and ngal as default address
+        cy.get(standartShipping).click({force:true});
+      }
     }
   };
 
@@ -1000,7 +1009,12 @@ class ShippingPage implements AbstractPage {
     },
     selectState (state: string) {
       const shippingState = selectors[brand].shippingState;
-      cy.get(shippingState).select(state).invoke('show');
+      const shippingStateUS = selectors[brand].shippingState;
+      if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA' ) {
+        cy.get(shippingStateUS).select(state);
+      } else {
+        cy.get(shippingState).select(state).invoke('show');
+      }
     },
     adressLine1 (address1: string) {
       const addressLine1Field = selectors[brand].addressLine1Field;
@@ -1060,7 +1074,12 @@ class ShippingPage implements AbstractPage {
     selectSecondShippingMethod () {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
-      cy.get(shippingMethodName).eq(1).click({force:true});
+      if (brand == 'nastygal.com' && locale == 'CA') {
+        cy.get(shippingMethodName).eq(0).click({force:true});
+      } else {
+        cy.get(shippingMethodName).eq(1).click({force:true});
+      }
+      
     },
     secondShippingMethodName (): Cypress.Chainable<string> {
       const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;

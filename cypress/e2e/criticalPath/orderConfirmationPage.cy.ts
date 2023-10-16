@@ -71,7 +71,7 @@ describe('Order confirmation page for registered user', function () {
   
   it('Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('RegisteredUser');
-    if (( brand == 'boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com'|| brand == 'nastygal.com') && locale =='US') {
+    if (( brand == 'boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'nastygal.com') && (locale =='US' || locale =='CA')) {
       billingPage.actions.selectCreditCardUS(cards.masterUS.cardNo, cards.masterUS.owner, cards.masterUS.date, cards.masterUS.code);
     } else {
       billingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
@@ -110,11 +110,11 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('Verify that registered user can place order using Klarna', function () {
-    if (brand == 'boohooman.com' && (locale == 'AU'||locale == 'US')) {
+    if ((brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU'||locale == 'US' || locale == 'CA')) {
 
       this.skip();
     }
-    if (locale == 'UK' || locale == 'IE' || locale == 'AU'|| locale == 'NL' || locale == 'US') {
+    if (locale == 'UK' || locale == 'IE' || locale == 'AU'|| locale == 'NL' || locale == 'US' || locale == 'CA') {
       Navigate.toBillingPage('RegisteredUser');
       if ((brand == 'boohoo.com' || brand == 'boohooman.com') && locale =='NL') {
         billingPage.actions.selectKlarnaBoohooNl();

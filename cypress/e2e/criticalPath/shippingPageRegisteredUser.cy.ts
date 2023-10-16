@@ -63,7 +63,7 @@ describe('Shipping Page Registered user tests', function () {
     cy.wait(2000);
     shippingPage.actions.cityField(localeAddress.city);
     shippingPage.actions.postcodeField(localeAddress.postcode);
-    if (locale == 'US' || locale == 'AU' || locale == 'IE') {
+    if (locale == 'US' || locale == 'AU' || locale == 'IE' || locale == 'CA') {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
@@ -153,21 +153,22 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
-      if (locale == 'US' || locale == 'AU') {
-        shippingPage.actions.selectState(localeAddress.county);
+      if (locale == 'US' || locale == 'AU' || locale == 'CA') {
+          shippingPage.actions.selectState(localeAddress.county);
+        }
+        shippingPage.actions.postcodeField(localeAddress.postcode);
       }
-      shippingPage.actions.postcodeField(localeAddress.postcode);
-    }
-
-    shippingPage.click.proceedToBilling();
-    cy.wait(2000);
-    shippingPage.click.proceedToBillingVerification();
-    billingPage.actions.waitPageToLoad();
-    billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
+      shippingPage.click.proceedToBilling();
+      cy.wait(2000);
+      shippingPage.click.proceedToBillingVerification();
+      billingPage.actions.waitPageToLoad();
+      billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
+    
   });
 
+
   it('Verify that PREMIER can be added to the cart', function () {
-    if (brand == 'boohoomena.com' || ((brand == 'nastygal.com' || brand == 'boohooman.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
+    if ((brand == 'boohoomena.com' || brand == 'boohooman.com') || ((brand == 'nastygal.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
@@ -235,7 +236,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.click.enterManuallyAddressDetails();
       shippingPage.actions.adressLine1(localeAddress.addressLine);
       shippingPage.actions.cityField(localeAddress.city);
-      if (locale == 'US' || locale == 'AU') {
+      if (locale == 'US' || locale == 'AU' || locale == 'CA') {
         shippingPage.actions.selectState(localeAddress.county);
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);
@@ -319,7 +320,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com')&& (locale == 'IE' || locale == 'AU' || locale == 'US')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
+    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com')&& (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'CA')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
     if (excludedmisspapWithLocales) {
       this.skip();
     }

@@ -350,10 +350,10 @@ class HomePage implements AbstractPage {
       }
     },
 
-    shopInstagramButton() {
+    shopInstagramButton () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn).should('be.visible')
-      .invoke('removeAttr', 'target').click();
+        .invoke('removeAttr', 'target').click();
     },
     
     forgotPasswordLink () {
@@ -441,7 +441,12 @@ class HomePage implements AbstractPage {
     },
     countryDropdown () {
       const countryBtn = selectors[brand].countryBtn;
-      cy.get(countryBtn).click({force: true});  
+      const hamburgerMenu = selectors[brand].hamburgerMenu;
+      if (isSiteGenesisBrand && isMobileDeviceUsed) {
+        cy.get(hamburgerMenu).click(({force: true}));  
+      } else {
+        cy.get(countryBtn).click({force: true});  
+      }
     }
   };
 
@@ -542,7 +547,7 @@ class HomePage implements AbstractPage {
     },
 
     assertInstaShopPresent () {
-      const shopInstagramBtn  = selectors[brand].shopInstagramBtn ;
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn ;
       cy.get(shopInstagramBtn ).should('be.visible');
     },
 
@@ -684,7 +689,7 @@ class HomePage implements AbstractPage {
     },
 
     assertInstaURL () {
-      cy.url().should('contain','instashop')
+      cy.url().should('contain','instashop');
     },
   };
 

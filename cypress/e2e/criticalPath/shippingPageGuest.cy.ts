@@ -3,7 +3,7 @@ import shippingPage from '../../pom/shipping.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isMobileDeviceUsed, isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import { brand, language, locale } from 'cypress/support/e2e';
 import navigate from 'cypress/helpers/navigate';
@@ -352,7 +352,11 @@ describe('Shipping Page Guest user tests', function () {
     if (brand == 'boohoo.com' || brand == 'nastygal.com') {
       this.skip(); // No help and info link on these brands
     }
+    if (isMobileDeviceUsed) {
+      cy.scrollTo('bottom');
+    } 
     shippingPage.click.helpAndInfoLink();
     shippingPage.assertions.assertCustomerServicePageIsOpened();
+    
   });
 });

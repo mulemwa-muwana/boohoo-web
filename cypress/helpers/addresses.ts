@@ -803,7 +803,7 @@ class Addresses {
         county: '',
         addressNickname: 'AT1',
         what3Words:'',
-        month: '',
+        month: 'May',
       },
       secondaryAddress:  {
         firstName: 'New',

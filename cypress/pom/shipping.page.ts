@@ -453,7 +453,8 @@ const selectors: SelectorBrandMap = {
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
     checkoutMiniBagSummery: '.checkout-mini-cart',
-    helpAndInfoLink: '.checkout-help-link'
+    helpAndInfoLink: '.checkout-help-link',
+    deliverySection:  '.js-shipping-method-list.js-cmp-inited.js-cmp-ShippingMethodModals',
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -1337,6 +1338,12 @@ class ShippingPage implements AbstractPage {
       const customerServiceURL = assertionText.customerServiceURL[language];
       cy.url().should('contain' , customerServiceURL);
 
+    },
+    assertDeliverySection (text: string) {
+      const deliverySection = selectors[brand].deliverySection;
+      cy.get (deliverySection).invoke('text').as('deliverySection');
+      cy.get('@deliverySection').should('contain', text);
+      
     }
   };
 }

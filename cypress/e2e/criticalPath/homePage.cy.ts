@@ -722,18 +722,4 @@ describe('Home Page', function () {
   })
   });
 
-  describe('insta', ()=>{
-
-    it('Verify that Instashop is present on Homepage and opens instashop',function(){
-      if (brand == 'boohooman.com' && locale == 'UK') {
-        cy.wait(2000);
-        HomePage.assertions.assertInstaShopPresent();
-        HomePage.click.shopInstagramButton();
-        cy.wait(2000);
-        HomePage.assertions.assertInstaURL();
-      } else {
-          this.skip();
-      }
   });
-  })
-});

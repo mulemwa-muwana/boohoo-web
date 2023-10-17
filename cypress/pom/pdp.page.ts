@@ -424,9 +424,10 @@ class PdpPage implements AbstractPage {
       cy.get(addToCart).invoke('show').click({ force: true });
     },
     addToWishList () {
-      cy.wait(4000);
       const addToWishListButton = selectors[brand].addToWishListButton;
-      cy.get(addToWishListButton).invoke('show').click({ force: true });
+      cy.waitUntil(() => {
+        return cy.get(addToWishListButton, {timeout: 4000}).invoke('show').click({ force: true });
+      })
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[brand].shippingInfoButton;
@@ -534,7 +535,6 @@ class PdpPage implements AbstractPage {
       } else {
         cy.get(selectColor + `[data-tau-color-id="${colorFromSku}"]`).click({ force: true });
       }
-      cy.wait(3000);
     },
     selectSizeFromSku () {
       const sizeVariations = selectors[brand].sizeVariations;
@@ -549,7 +549,6 @@ class PdpPage implements AbstractPage {
       } else {
         cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({ force: true });
       }
-      cy.wait(3000);
     },
     selectFirstAvailableSize () {
       const sizeVariations = selectors[brand].sizeVariations;

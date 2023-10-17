@@ -140,6 +140,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: 'span.user-account',
     registrationButton: '.user-links > a:nth-child(2)',
     registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
+    shopInstagramBtn: '.background-white.border-black.cta-button.cta-button-border.text-black > .text-white',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
     wishListIconMobile: '.header-wishlist-link',
     searchField: '.js-header-search-input',
@@ -348,6 +349,12 @@ class HomePage implements AbstractPage {
         cy.get(loginIcon).should('be.visible');
       }
     },
+
+    shopInstagramButton() {
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn;
+      cy.get(shopInstagramBtn).should('be.visible')
+      .invoke('removeAttr', 'target').click();
+    },
     
     forgotPasswordLink () {
       const resetPassword = selectors[brand].resetPassword;
@@ -534,6 +541,11 @@ class HomePage implements AbstractPage {
       cy.get(myaccountUserPanelGreetingMsg).should('contain.text', name);
     },
 
+    assertInstaShopPresent () {
+      const shopInstagramBtn  = selectors[brand].shopInstagramBtn ;
+      cy.get(shopInstagramBtn ).should('be.visible');
+    },
+
     // Search assertions
     assertSearchIconPresent () {
       const searchIcon = selectors[brand].searchField;
@@ -669,8 +681,11 @@ class HomePage implements AbstractPage {
     }, 
     assertSelectCountryFromDropdown () {
       cy.url().should('include', '/ie');
-    }
+    },
 
+    assertInstaURL () {
+      cy.url().should('contain','instashop')
+    },
   };
 
 }

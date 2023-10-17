@@ -21,7 +21,7 @@ describe ('InstaShop Tests', ()=>{
         }
 
     });
-        it.only('Verify that hovering over product tile shopNow button appears that after being clikced opens quick view',function(){ 
+        it('Verify that hovering over product tile shopNow button appears that after being clikced opens quick view',function(){ 
             if (brand == 'boohooman.com' && locale == 'UK') {
                 cy.wait(2000);
                 HomePage.assertions.assertInstaShopPresent();

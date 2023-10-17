@@ -496,7 +496,7 @@ class PdpPage implements AbstractPage {
     paypalMoreInfo () {
       const moreInfoPaypal = selectors[brand].moreInfoPaypal;
       const moreInfoPaypalAU = selectors[brand].moreInfoPaypalAU;
-      if(brand == 'nastygal.com' && locale == 'AU') {
+      if (brand == 'nastygal.com' && locale == 'AU') {
         cy.get(moreInfoPaypalAU).invoke('removeAttr', 'target').click({ force : true });
       } else {
         cy.get(moreInfoPaypal).invoke('removeAttr', 'target').click({ force : true });

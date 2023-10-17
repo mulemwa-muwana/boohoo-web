@@ -144,10 +144,10 @@ describe('Product Details Page tests', function () {
     const includedNastyGalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'US' || locale == 'UK' || locale == 'AU' || locale == 'FR');
     const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
     const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
-    if(includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales){
-    pdpPage.click.paypalMoreInfo();
-    cy.wait(3000);
-    pdpPage.assertions.assertPaypalRelatedPageIsDisplayed();
+    if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
+      pdpPage.click.paypalMoreInfo();
+      cy.wait(3000);
+      pdpPage.assertions.assertPaypalRelatedPageIsDisplayed();
     } else {
       this.skip();
     }
@@ -159,8 +159,8 @@ describe('Product Details Page tests', function () {
     const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
     const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
     const afterPayWithLocales: boolean = locale == 'US' || locale == 'AU' || locale == 'NZ' || locale == 'CA';
-    if(includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
-      if(afterPayWithLocales) {
+    if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
+      if (afterPayWithLocales) {
         pdpPage.click.afterPayMoreInfo();
         cy.wait(3000);
         pdpPage.assertions.assertAfterPayRelatedPageIsDisplayed();
@@ -179,10 +179,10 @@ describe('Product Details Page tests', function () {
     const includedNastyGalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'US' || locale == 'IE' || locale == 'UK' || locale == 'AU' || locale == 'FR');
     const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'EU' || locale == 'IE' || locale == 'AU');
     const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'IE' || locale == 'US' || locale == 'AU');
-    if(includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales){
-    pdpPage.click.klarnaMoreInfo();
-    cy.wait(3000);
-    pdpPage.assertions.assertKlarnaRelatedPageIsDisplayed();
+    if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
+      pdpPage.click.klarnaMoreInfo();
+      cy.wait(3000);
+      pdpPage.assertions.assertKlarnaRelatedPageIsDisplayed();
     } else {
       this.skip();
     }

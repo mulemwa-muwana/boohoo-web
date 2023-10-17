@@ -158,7 +158,10 @@ const selectors: SelectorBrandMap = {
     myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
     logInSlideManuTitle: '.b-miniaccount-title',
-    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]',
+    mangamingSlot: '.home-container > div:nth-of-type(1) img',
+    mangamingPage: '.boohooman-app-img.content-asset > .col-5.disc'
+  
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -350,10 +353,14 @@ class HomePage implements AbstractPage {
       }
     },
 
-    shopInstagramButton() {
+    shopInstagramButton () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn).should('be.visible')
-      .invoke('removeAttr', 'target').click();
+        .invoke('removeAttr', 'target').click();
+    },
+    Mangamingslot () {
+      const mangamingSlot = selectors[brand].mangamingSlot;
+      cy.get(mangamingSlot).click();
     },
     
     forgotPasswordLink () {
@@ -542,8 +549,18 @@ class HomePage implements AbstractPage {
     },
 
     assertInstaShopPresent () {
-      const shopInstagramBtn  = selectors[brand].shopInstagramBtn ;
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn ;
       cy.get(shopInstagramBtn ).should('be.visible');
+    },
+
+    assertMangamingPresent () {
+      const mangamingSlot = selectors[brand].mangamingSlot;
+      cy.get(mangamingSlot).should('be.visible');
+    },
+    assertMangamingOpen () {
+      const mangamingPage = selectors[brand].mangamingPage;
+      cy.get(mangamingPage).should('be.visible');
+
     },
 
     // Search assertions

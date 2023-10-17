@@ -719,12 +719,12 @@ describe('Home Page', function () {
         contactusPage.assertions.assertEmailOptionsPresent();
       });
  
-  })
+    });
   });
 
   describe('insta', ()=>{
 
-    it('Verify that Instashop is present on Homepage and opens instashop',function(){
+    it('Verify that Instashop is present on Homepage and opens instashop',function () {
       if (brand == 'boohooman.com' && locale == 'UK') {
         cy.wait(2000);
         HomePage.assertions.assertInstaShopPresent();
@@ -732,8 +732,22 @@ describe('Home Page', function () {
         cy.wait(2000);
         HomePage.assertions.assertInstaURL();
       } else {
-          this.skip();
+        this.skip();
       }
+    });
   });
-  })
+
+  describe('MANGAMING Slot', ()=> {
+    it('Verify that Mangaming slot is present and clicking on it displays related content', function () {
+      if (brand == 'boohooman.com' && locale != 'UK') {
+        HomePage.assertions.assertMangamingPresent();
+        HomePage.click.Mangamingslot();
+        HomePage.assertions.assertMangamingOpen();
+      } else {
+        this.skip();
+      }
+
+    });
+
+  });
 });

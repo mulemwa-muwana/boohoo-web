@@ -139,5 +139,53 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
+  it('Verify that link "More info" for PayPal below Add to Cart section opens corresponsing page', function () {
+    const includedBoohooWithLocales: boolean = brand == 'boohoo.com' && (locale == 'UK' || locale == 'DE' || locale == 'US' || locale == 'FR' || locale == 'AU' || locale == 'CA' || locale == 'IT' || locale == 'ES');
+    const includedNastyGalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'US' || locale == 'UK' || locale == 'AU' || locale == 'FR');
+    const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
+    const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
+    if(includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales){
+    pdpPage.click.paypalMoreInfo();
+    cy.wait(3000);
+    pdpPage.assertions.assertPaypalRelatedPageIsDisplayed();
+    } else {
+      this.skip();
+    }
+  });
+
+  it('Verify that link "More info" for Clearpay or Afterpay below Add to Cart section opens corresponsing page', function () {
+    const includedBoohooWithLocales: boolean = brand == 'boohoo.com' && (locale == 'UK' || locale == 'US' || locale == 'AU' || locale == 'NZ' || locale == 'CA');
+    const includedNastyGalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'US' || locale == 'UK' || locale == 'AU' || locale == 'CA');
+    const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
+    const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
+    const afterPayWithLocales: boolean = locale == 'US' || locale == 'AU' || locale == 'NZ' || locale == 'CA';
+    if(includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
+      if(afterPayWithLocales) {
+        pdpPage.click.afterPayMoreInfo();
+        cy.wait(3000);
+        pdpPage.assertions.assertAfterPayRelatedPageIsDisplayed();
+      } else {
+        pdpPage.click.clearPayMoreInfo();
+        cy.wait(3000);
+        pdpPage.assertions.assertClearPayRelatedPageIsDisplayed();
+      }
+    } else {
+      this.skip();
+    }
+  });
+
+  it('Verify that link "More info" for Klarna below Add to Cart section opens corresponsing page', function () {
+    const includedBoohooWithLocales: boolean = brand == 'boohoo.com' && (locale == 'UK' || locale == 'DE' || locale == 'US' || locale == 'FR' || locale == 'AU' || locale == 'CA' || locale == 'IT' || locale == 'ES');
+    const includedNastyGalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'US' || locale == 'IE' || locale == 'UK' || locale == 'AU' || locale == 'FR');
+    const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'EU' || locale == 'IE' || locale == 'AU');
+    const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'IE' || locale == 'US' || locale == 'AU');
+    if(includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales){
+    pdpPage.click.klarnaMoreInfo();
+    cy.wait(3000);
+    pdpPage.assertions.assertKlarnaRelatedPageIsDisplayed();
+    } else {
+      this.skip();
+    }
+  });
 
 }); 

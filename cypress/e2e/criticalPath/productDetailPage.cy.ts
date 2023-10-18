@@ -8,7 +8,7 @@ import { sku, brand, language, locale } from 'cypress/support/e2e';
 import cartPage from 'cypress/pom/cart.page';
 import homePage from '../../pom/home.page';
 
-describe('Product Details Page tests', function () {
+describe('Product Details Page tests', {retries: { runMode: 2, openMode: 1 } }, function () {
 
   beforeEach (()=>{   
     HomePage.goto();

@@ -734,5 +734,5 @@ describe('Home Page', {retries: { runMode: 2, openMode: 1 } }, function () {
         this.skip();
       }
     });
-  })
+  });
 });

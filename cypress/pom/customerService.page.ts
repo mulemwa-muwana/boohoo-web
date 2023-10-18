@@ -7,7 +7,7 @@ const selectors: SelectorBrandMap = {
   'boohoo.com': {
     trackOrderButton: '.l-customer_service-actions > a:nth-of-type(1)',
     startReturnButton: '.l-customer_service-actions > a:nth-of-type(2)',
-    virtualAssistantButton:'.l-customer_service-actions > button:nth-of-type(1)'
+    virtualAssistantButton:'.l-customer_service-button.egain-btn'
 
   },
   'nastygal.com': {},
@@ -59,8 +59,7 @@ class CustomerServicePage implements AbstractPage {
       cy.get(virtualAssistantButton)
         .should('contain', text)
         .should('be.visible')
-        .click();
-      cy.wait(12000); // To be implemented once bug is fixed as API is not responding on STG
+        .should('have.attr','onclick')
     }
   };
 

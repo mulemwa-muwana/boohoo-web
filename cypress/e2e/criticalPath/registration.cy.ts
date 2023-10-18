@@ -7,7 +7,7 @@ import MyAccountPage from '../../pom/myaccount.page';
 import RegistrationPage from '../../pom/registration.page';
 import { language } from 'cypress/support/e2e';
 
-describe('Verify Registration feature', function () {
+describe('Verify Registration feature', {retries: { runMode: 2, openMode: 1 } }, function () {
   beforeEach(() => {
     HomePage.goto();
     

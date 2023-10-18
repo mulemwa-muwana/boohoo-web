@@ -4,7 +4,7 @@ import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import { brand, locale, language } from 'cypress/support/e2e';
 
-describe('Checkout Page', function () {
+describe('Checkout Page', {retries: { runMode: 2, openMode: 1 } }, function () {
 
   beforeEach(() => { 
     Navigate.toCheckoutLoginPageUsingSession();

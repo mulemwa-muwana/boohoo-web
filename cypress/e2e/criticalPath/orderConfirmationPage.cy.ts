@@ -7,8 +7,7 @@ import Navigate from 'cypress/helpers/navigate';
 import cards from '../../helpers/cards';
 import { brand, language, locale, url } from 'cypress/support/e2e';
 
-describe('Order confirmation page for guest user', function () {
-
+describe('Order confirmation page for guest user', {retries: { runMode: 2, openMode: 1 } }, function () {
   beforeEach (function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones

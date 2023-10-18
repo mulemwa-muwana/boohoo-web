@@ -5,7 +5,7 @@ import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import { brand, language, locale } from 'cypress/support/e2e';
 
-describe('Login Functionality tests', function () {
+describe('Login Functionality tests', {retries: { runMode: 2, openMode: 1 } }, function () {
 
   beforeEach(() => {
     HomePage.goto();

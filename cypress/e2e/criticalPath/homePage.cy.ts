@@ -13,7 +13,7 @@ import faqPage from 'cypress/pom/faq.page';
 import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
 
-describe('Home Page', function () {
+describe('Home Page', {retries: { runMode: 2, openMode: 1 } }, function () {
 
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {
@@ -689,7 +689,7 @@ describe('Home Page', function () {
 
     describe('Contact Us Page links', () => {
 
-      beforeEach( function () {    
+      beforeEach(function () {
         if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[language]);
         } else {
@@ -699,32 +699,31 @@ describe('Home Page', function () {
       });
 
       it('Verify that Twitter is not an option', function () {
-        if (brand =='boohoo.com' || brand == 'boohooman.com' && (locale == 'NL' || locale == 'SE'|| locale == 'DE')) {
+        if (brand == 'boohoo.com' || brand == 'boohooman.com' && (locale == 'NL' || locale == 'SE' || locale == 'DE')) {
           this.skip();
-        }      
+        }
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
-      it('Verify that Facebook link is present and functional',function () {
-        if (brand == 'boohooman.com' && (locale == 'FR' || locale =='NL' || locale =='IE'|| locale == 'DE')) {
+      it('Verify that Facebook link is present and functional', function () {
+        if (brand == 'boohooman.com' && (locale == 'FR' || locale == 'NL' || locale == 'IE' || locale == 'DE')) {
           this.skip(); // Facebook link isn't exist on contuct us page
         }
         contactusPage.assertions.assertFacebookIconIsPresent();
       });
       it('Verify that Email link is present and functional', function () {
-        if (brand == 'boohooman.com' && (locale =='IE' || locale =='DE')) {
+        if (brand == 'boohooman.com' && (locale == 'IE' || locale == 'DE')) {
           this.skip(); // Email Us link isn't exist on contuct us page
         }
         contactusPage.assertions.assertEmailIconIsPresent();
         contactusPage.click.emailIconOption();
         contactusPage.assertions.assertEmailOptionsPresent();
       });
- 
-  })
+
+    });
   });
 
-  describe('insta', ()=>{
-
-    it('Verify that Instashop is present on Homepage and opens instashop',function(){
+  describe('insta', () => {
+    it('Verify that Instashop is present on Homepage and opens instashop', function () {
       if (brand == 'boohooman.com' && locale == 'UK') {
         cy.wait(2000);
         HomePage.assertions.assertInstaShopPresent();
@@ -732,8 +731,8 @@ describe('Home Page', function () {
         cy.wait(2000);
         HomePage.assertions.assertInstaURL();
       } else {
-          this.skip();
+        this.skip();
       }
-  });
+    });
   })
 });

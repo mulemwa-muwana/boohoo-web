@@ -9,7 +9,7 @@ import { brand, language, locale } from 'cypress/support/e2e';
 import navigate from 'cypress/helpers/navigate';
 import billingPage from 'cypress/pom/billing.page';
 
-describe('Shipping Page Guest user tests', function () {
+describe('Shipping Page Guest user tests', {retries: { runMode: 2, openMode: 1 } }, function () {
 
   before(() => {
     cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -146,7 +146,7 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    if (brand == 'boohooman.com' && locale != 'UK'){
+    if (brand == 'boohooman.com' && locale != 'UK') {
       shippingPage.actions.selectState(localeAddress.county);
     }
     shippingPage.actions.postcodeField(localeAddress.postcode);

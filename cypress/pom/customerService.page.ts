@@ -59,7 +59,7 @@ class CustomerServicePage implements AbstractPage {
       cy.get(virtualAssistantButton)
         .should('contain', text)
         .should('be.visible')
-        .should('have.attr','onclick')
+        .should('have.attr','onclick');
     }
   };
 

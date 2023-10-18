@@ -306,11 +306,10 @@ describe('Shipping Page Registered user tests', {retries: { runMode: 2, openMode
   });
 
   it('Verify that user can select PUDO location', function () {
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     if (locale != 'UK' || brand == 'boohooman.com') {
       this.skip();
     }
-    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
-
     shippingPage.click.clickAndCollectShipping();
     shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(pudoAddress=>{
       shippingPage.assertions.assertShopisSelected(pudoAddress);

@@ -1138,7 +1138,7 @@ class ShippingPage implements AbstractPage {
       const pudoSelectShop=selectors[brand].pudoSelectShop;
 
       cy.wait(2000);
-      cy.get(pudoSearchField).clear().type(`${postCode}{enter}`);
+      cy.get(pudoSearchField).clear().type(postCode+'{enter}');
       cy.wait(6000);
       cy.get(pudoFirstShop, {timeout:20000}).should('be.visible');
       cy.get(pudoFirstShop).eq(0).click({force:true});

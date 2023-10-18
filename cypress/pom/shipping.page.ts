@@ -33,7 +33,7 @@ const selectors: SelectorBrandMap = {
     orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_firstName-error',
     lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
     phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
     postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
@@ -100,7 +100,7 @@ const selectors: SelectorBrandMap = {
     cartContainerMobile: '.b-checkout_products',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_firstName-error',
     lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
     phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
     postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
@@ -978,7 +978,7 @@ class ShippingPage implements AbstractPage {
     },
     phoneNumberFieldClear () {
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).clear({ force: true }).blur();
+      cy.get(shippingPhoneNumber).clear({ force: true }).focus().blur();
     },
     phoneNumberField (phone: string) {
       cy.wait(1000);
@@ -1204,15 +1204,15 @@ class ShippingPage implements AbstractPage {
     },
     assertFirstNameIsMandatory (requiredFieldError: string) {
       const fnameValidationMsg = selectors[brand].fnameValidationMsg;
-      cy.get(fnameValidationMsg).should('contain.text', requiredFieldError);
+      cy.get(fnameValidationMsg).should('be.visible').should('contain.text', requiredFieldError);
     },
     assertLastNameIsMandatory (requiredFieldError: string) {
       const lnameValidationMsg = selectors[brand].lnameValidationMsg;
-      cy.get(lnameValidationMsg).should('contain.text', requiredFieldError);
+      cy.get(lnameValidationMsg).should('be.visible').should('contain.text', requiredFieldError);
     },
     assertPhoneNumberIsMandatory (requiredFieldError: string) {
       const phoneValidationMsg = selectors[brand].phoneValidationMsg;
-      cy.get(phoneValidationMsg).should('contain.text', requiredFieldError);
+      cy.get(phoneValidationMsg).should('be.visible').should('contain.text', requiredFieldError);
     },
     assertCityIsMandatory (city: string) {
       const cityField = selectors[brand].cityField;

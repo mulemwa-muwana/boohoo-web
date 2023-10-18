@@ -350,7 +350,7 @@ class HomePage implements AbstractPage {
       }
     },
 
-    shopInstagramButton() {
+    shopInstagramButton () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn).should('be.visible')
       .invoke('removeAttr', 'target').click();
@@ -542,7 +542,7 @@ class HomePage implements AbstractPage {
     },
 
     assertInstaShopPresent () {
-      const shopInstagramBtn  = selectors[brand].shopInstagramBtn ;
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn ).should('be.visible');
     },
 
@@ -684,7 +684,7 @@ class HomePage implements AbstractPage {
     },
 
     assertInstaURL () {
-      cy.url().should('contain','instashop')
+      cy.url().should('contain','instashop');
     },
   };
 

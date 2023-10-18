@@ -149,7 +149,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectState(localeAddress.county);
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-  
+
     if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', localeAddress.month, '2001');
       if (brand != 'boohooman.com') {
@@ -164,16 +164,13 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBillingVerification();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
-  it('KMEU: Verify that new shipping option displays', function () {
+
+  it('KMEU: Verify that new shipping options display', function () {
     if (brand == 'karenmillen.com' && locale == 'EU') {
-      const CountriesEU: Array<string> = ['Estonia','France','Denmark','Netherlands'];
+      const CountriesEU: Array<string> = ['Germany', 'Spain', 'France', 'Netherlands'];
       for (let i = 0; i < CountriesEU.length; i++) {
         shippingPage.actions.selectCountry(CountriesEU[i]);
-        if (CountriesEU[i]== ('Denmark')) {
-          shippingPage.assertions.assertDeliverySection('Denmark Express');
-        } else {
-          shippingPage.assertions.assertDeliverySection('Europe and International Delivery');
-        }
+        shippingPage.assertions.assertDeliverySection(`${CountriesEU[i]} Standard`);
       }
     }
   });
@@ -297,7 +294,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });
-  it('Verify that user can enter valid credentials in w3w', function () {
+  it ('Verify that user can enter valid credentials in w3w', function () {
     if (isSiteGenesisBrand) {
       const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'UK');
       const excludedkarenmillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'US' || locale == 'EU');
@@ -307,7 +304,7 @@ describe('Shipping Page Guest user tests', function () {
         cy.clearAllCookies();
         navigate.toShippingPage('GuestUser'); // Clearing session and cookies to render addresses(w3w) option back if running multiple times locally with PUDO TestCase
       }
-    } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && (locale == 'US'||locale == 'IE')) {
+    } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'IE')) {
       this.skip();
     }
 

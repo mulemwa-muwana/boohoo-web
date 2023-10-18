@@ -1160,7 +1160,7 @@ class ShippingPage implements AbstractPage {
   };
 
   assertions = {
-    assertShopisSelected (pudoAddressText: any) {
+    assertShopisSelected (pudoAddressText: string) {
       const pudoSelectedShopAddress=selectors[brand].pudoSelectedShopAddress;
       cy.get(pudoSelectedShopAddress).should('contain', pudoAddressText);
     },

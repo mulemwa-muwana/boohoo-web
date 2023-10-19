@@ -5,7 +5,7 @@ import LoginPage from 'cypress/pom/login.page';
 import Cards from '../../helpers/cards';
 import ShippingPage from 'cypress/pom/shipping.page';
 import CartPage from 'cypress/pom/cart.page';
-import { brand, language, locale, url,fullSku } from 'cypress/support/e2e';
+import { brand, locale, fullSku } from 'cypress/support/e2e';
 
 // Const variables = Cypress.env() as EnvironmentVariables;
 

@@ -33,7 +33,7 @@ const selectors: SelectorBrandMap = {
     orderSummaryOnShippingPage: '.b-summary_order-item.m-order',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_firstName-error',
     lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
     phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
     postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
@@ -100,7 +100,7 @@ const selectors: SelectorBrandMap = {
     cartContainerMobile: '.b-checkout_products',
     promoCodeField: '#dwfrm_coupon_couponCode',
     addressName: 'b-address-name',
-    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
+    fnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_firstName-error',
     lnameValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_lastName-error',
     phoneValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_phone-error',
     postCodeValidationMsg: '#dwfrm_shipping_shippingAddress_addressFields_postalCode-error',
@@ -450,6 +450,7 @@ const selectors: SelectorBrandMap = {
     pudoSearchField:'.js-pudo-search-field',
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
+    pudoSearchListMobile: '[data-target="js-pudo-side"]',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
@@ -458,7 +459,8 @@ const selectors: SelectorBrandMap = {
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
     checkoutMiniBagSummery: '.checkout-mini-cart',
-    helpAndInfoLink: '.checkout-help-link'
+    helpAndInfoLink: '.checkout-help-link',
+    deliverySection:  '.js-shipping-method-list.js-cmp-inited.js-cmp-ShippingMethodModals',
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -929,7 +931,7 @@ class ShippingPage implements AbstractPage {
     },
     helpAndInfoLink () {
       const helpAndInfoLink = selectors[brand].helpAndInfoLink;
-      cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click();
+      cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click({force:true});
     },
     makeShippingAddressDefault () {
       const standartShipping = selectors[brand].standartShipping;     
@@ -982,7 +984,7 @@ class ShippingPage implements AbstractPage {
     },
     phoneNumberFieldClear () {
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
-      cy.get(shippingPhoneNumber).clear({ force: true }).blur();
+      cy.get(shippingPhoneNumber).clear({ force: true }).focus().blur();
     },
     phoneNumberField (phone: string) {
       cy.wait(1000);
@@ -1013,12 +1015,13 @@ class ShippingPage implements AbstractPage {
     selectState (state: string) {
       const shippingState = selectors[brand].shippingState;
       const shippingStateUS = selectors[brand].shippingState;
-      if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA' ) {
+      if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA') {
         cy.get(shippingStateUS).select(state);
-      } else {
+      } else if ((brand != 'karenmillen.com' && locale !='EU') && ( locale !='UK')) {
         cy.get(shippingState).select(state).invoke('show');
-      }
+      } 
     },
+        
     adressLine1 (address1: string) {
       const addressLine1Field = selectors[brand].addressLine1Field;
       cy.get(addressLine1Field).clear({ force: true }).type(address1);
@@ -1140,10 +1143,14 @@ class ShippingPage implements AbstractPage {
       const pudoFirstShop=selectors[brand].pudoFirstShop;
       const pudoSearchTitle=selectors[brand].pudoSearchTitle;
       const pudoSelectShop=selectors[brand].pudoSelectShop;
+      const pudoSearchListMobile=selectors[brand].pudoSearchListMobile;
 
       cy.wait(2000);
-      cy.get(pudoSearchField).clear().type(`${postCode}{enter}`);
+      cy.get(pudoSearchField).clear().type(postCode+'{enter}');
       cy.wait(6000);
+      if (brand == 'karenmillen.com' && isMobileDeviceUsed) {
+        cy.get(pudoSearchListMobile).click({force:true});
+      }
       cy.get(pudoFirstShop, {timeout:20000}).should('be.visible');
       cy.get(pudoFirstShop).eq(0).click({force:true});
       return cy.get(pudoSearchTitle).eq(0).invoke('text').then(text=>{
@@ -1164,7 +1171,7 @@ class ShippingPage implements AbstractPage {
   };
 
   assertions = {
-    assertShopisSelected (pudoAddressText: any) {
+    assertShopisSelected (pudoAddressText: string) {
       const pudoSelectedShopAddress=selectors[brand].pudoSelectedShopAddress;
       cy.get(pudoSelectedShopAddress).should('contain', pudoAddressText);
     },
@@ -1208,15 +1215,15 @@ class ShippingPage implements AbstractPage {
     },
     assertFirstNameIsMandatory (requiredFieldError: string) {
       const fnameValidationMsg = selectors[brand].fnameValidationMsg;
-      cy.get(fnameValidationMsg).should('contain.text', requiredFieldError);
+      cy.get(fnameValidationMsg).should('be.visible').should('contain.text', requiredFieldError);
     },
     assertLastNameIsMandatory (requiredFieldError: string) {
       const lnameValidationMsg = selectors[brand].lnameValidationMsg;
-      cy.get(lnameValidationMsg).should('contain.text', requiredFieldError);
+      cy.get(lnameValidationMsg).should('be.visible').should('contain.text', requiredFieldError);
     },
     assertPhoneNumberIsMandatory (requiredFieldError: string) {
       const phoneValidationMsg = selectors[brand].phoneValidationMsg;
-      cy.get(phoneValidationMsg).should('contain.text', requiredFieldError);
+      cy.get(phoneValidationMsg).should('be.visible').should('contain.text', requiredFieldError);
     },
     assertCityIsMandatory (city: string) {
       const cityField = selectors[brand].cityField;
@@ -1360,6 +1367,12 @@ class ShippingPage implements AbstractPage {
       const customerServiceURL = assertionText.customerServiceURL[language];
       cy.url().should('contain' , customerServiceURL);
 
+    },
+    assertDeliverySection (text: string) {
+      const deliverySection = selectors[brand].deliverySection;
+      cy.get (deliverySection).invoke('text').as('deliverySection');
+      cy.get('@deliverySection').should('contain', text);
+      
     }
   };
 }

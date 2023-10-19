@@ -3,7 +3,7 @@ import shippingPage from '../../pom/shipping.page';
 import assertionText from '../../helpers/assertionText';
 import shippingMethods from '../../helpers/shippingMethods';
 import Addresses from '../../helpers/addresses';
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isMobileDeviceUsed, isSiteGenesisBrand } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import { brand, language, locale } from 'cypress/support/e2e';
 import navigate from 'cypress/helpers/navigate';
@@ -146,10 +146,12 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    shippingPage.actions.selectState(localeAddress.county);
+    if (brand == 'boohooman.com' && locale != 'UK') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
-  
+
     if (isSiteGenesisBrand) {
       shippingPage.actions.selectDate('23', localeAddress.month, '2001');
       if (brand != 'boohooman.com') {
@@ -163,6 +165,16 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.click.proceedToBillingVerification();
     shippingPage.assertions.assertUserProceededToBillingPage();
+  });
+
+  it('KMEU: Verify that new shipping options display', function () {
+    if (brand == 'karenmillen.com' && locale == 'EU') {
+      const CountriesEU: Array<string> = ['Germany', 'Spain', 'France', 'Netherlands'];
+      for (let i = 0; i < CountriesEU.length; i++) {
+        shippingPage.actions.selectCountry(CountriesEU[i]);
+        shippingPage.assertions.assertDeliverySection(`${CountriesEU[i]} Standard`);
+      }
+    }
   });
 
   it('Verify that user is able to select 2nd shipping method', function () {
@@ -284,17 +296,17 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });
-  it('Verify that user can enter valid credentials in w3w', function () {
+  it ('Verify that user can enter valid credentials in w3w', function () {
     if (isSiteGenesisBrand) {
       const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'UK');
-      const excludedkarenmillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'US');
+      const excludedkarenmillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'US' || locale == 'EU');
       if (brand == 'boohooman.com' || brand == 'boohoomena.com' || excludedMisspapWithLocales || excludedkarenmillenWithLocales) {
         this.skip();
       } else {
         cy.clearAllCookies();
         navigate.toShippingPage('GuestUser'); // Clearing session and cookies to render addresses(w3w) option back if running multiple times locally with PUDO TestCase
       }
-    } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && (locale == 'US'||locale == 'IE')) {
+    } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'IE')) {
       this.skip();
     }
 
@@ -352,7 +364,11 @@ describe('Shipping Page Guest user tests', function () {
     if (brand == 'boohoo.com' || brand == 'nastygal.com') {
       this.skip(); // No help and info link on these brands
     }
+    if (isMobileDeviceUsed) {
+      cy.scrollTo('bottom');
+    } 
     shippingPage.click.helpAndInfoLink();
     shippingPage.assertions.assertCustomerServicePageIsOpened();
+    
   });
 });

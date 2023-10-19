@@ -158,7 +158,8 @@ const selectors: SelectorBrandMap = {
     myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
     logInSlideManuTitle: '.b-miniaccount-title',
-    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]',
+    shopNowBtn: 'div[class="shop-button"]'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -350,13 +351,24 @@ class HomePage implements AbstractPage {
       }
     },
 
+    // Shop instagram button
     shopInstagramButton () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn)
         .should('be.visible')
         .invoke('removeAttr', 'target').click();
     },
-    
+
+    shopNowButton () {
+      cy.get('.instashop-tile.instashop-tile-one-product.js-insta-shop-tile').eq(0).as('hoverOverTile');
+      cy.get('@hoverOverTile').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
+        cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
+        cy.get('@InstaShopNowButton').click({ force: true });
+
+      });
+
+    },
+      
     forgotPasswordLink () {
       const resetPassword = selectors[brand].resetPassword;
       cy.get(resetPassword).click();
@@ -534,7 +546,7 @@ class HomePage implements AbstractPage {
         cy.get(countryList).contains('IE €').click({force: true});
       }   
     }     
-  };    
+  }; 
 
   assertions = {
     assertUserPanelTitle (name: string) {
@@ -547,9 +559,17 @@ class HomePage implements AbstractPage {
       cy.get(myaccountUserPanelGreetingMsg).should('contain.text', name);
     },
 
+    // Insta shop assertions
     assertInstaShopPresent () {
-      const shopInstagramBtn = selectors[brand].shopInstagramBtn ;
-      cy.get(shopInstagramBtn ).should('be.visible');
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn;
+      cy.get(shopInstagramBtn).should('be.visible');
+    },
+    assertShopNowDisplayed () {
+      cy.get('.instashop-tile.instashop-tile-one-product.js-insta-shop-tile').eq(0).as('hoverOverTile');
+      cy.get('@hoverOverTile').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
+        cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
+        cy.get('@InstaShopNowButton').should('contain', 'Shop now');
+      });
     },
 
     // Search assertions

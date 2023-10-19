@@ -1,12 +1,12 @@
 import HomePage from '../../pom/home.page';
 import { brand, locale } from 'cypress/support/e2e';
 
-describe('InstaShop Tests', () => {
-
+describe('InstaShop Tests', () => {  
+   
     // This will execute before every single test, we're just going to the baseURL.
-    beforeEach(() => {
-        HomePage.goto();
-    })
+    beforeEach(() => {     
+         HomePage.goto();
+        });
 
     it('Verify that Instashop is present on Homepage and opens instashop', function () {
         if (brand == 'boohooman.com' && locale == 'UK') {
@@ -21,6 +21,7 @@ describe('InstaShop Tests', () => {
         }
 
     });
+
     it('Verify that hovering over product tile shopNow button appears that after being clikced opens quick view', function () {
         if (brand == 'boohooman.com' && locale == 'UK') {
             cy.wait(2000);
@@ -31,6 +32,5 @@ describe('InstaShop Tests', () => {
             HomePage.assertions.assertShopNowDisplayed();
             HomePage.click.shopNowButton();
         }
-
-    })
-})
+    });
+});

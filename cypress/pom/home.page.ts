@@ -351,24 +351,24 @@ class HomePage implements AbstractPage {
       }
     },
 
+    // Shop instagram button
     shopInstagramButton () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn)
         .should('be.visible')
         .invoke('removeAttr', 'target').click();
     },
-    
-    shopNowButton(){
-      cy.get(".instashop-tile.instashop-tile-one-product.js-insta-shop-tile").eq(0).as('hoverOverTile')
+
+    shopNowButton () {
+      cy.get('.instashop-tile.instashop-tile-one-product.js-insta-shop-tile').eq(0).as('hoverOverTile');
       cy.get('@hoverOverTile').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
-      cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
-          cy.get('@InstaShopNowButton').click({ force: true });
- 
-        
-      })
-  
-    
+        cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
+        cy.get('@InstaShopNowButton').click({ force: true });
+
+      });
+
     },
+      
     forgotPasswordLink () {
       const resetPassword = selectors[brand].resetPassword;
       cy.get(resetPassword).click();
@@ -540,7 +540,7 @@ class HomePage implements AbstractPage {
       } else {
         cy.get(countryList).contains('IE €').click({force: true});
       }   
-    }    
+    }     
   }; 
 
   assertions = {
@@ -553,20 +553,19 @@ class HomePage implements AbstractPage {
       cy.get(myAccountTileSlideMenu).click();
       cy.get(myaccountUserPanelGreetingMsg).should('contain.text', name);
     },
-   //insta shop assertions
+
+    // Insta shop assertions
     assertInstaShopPresent () {
-      const shopInstagramBtn = selectors[brand].shopInstagramBtn ;
-      cy.get(shopInstagramBtn ).should('be.visible');
-     },
-    assertShopNowDisplayed() {
-      cy.get(".instashop-tile.instashop-tile-one-product.js-insta-shop-tile").eq(0).as('hoverOverTile');
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn;
+      cy.get(shopInstagramBtn).should('be.visible');
+    },
+    assertShopNowDisplayed () {
+      cy.get('.instashop-tile.instashop-tile-one-product.js-insta-shop-tile').eq(0).as('hoverOverTile');
       cy.get('@hoverOverTile').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
-          cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
-          cy.get('@InstaShopNowButton').should('contain','Shop now')
-   });
-
-  },
-
+        cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
+        cy.get('@InstaShopNowButton').should('contain', 'Shop now');
+      });
+    },
 
     // Search assertions
     assertSearchIconPresent () {
@@ -587,7 +586,6 @@ class HomePage implements AbstractPage {
         cy.get(searchField).should('be.visible');
       }
     },
-    
     assertSearchFieldContains (text: string) {
       const searchField = selectors[brand].searchField;
       cy.get(searchField).contains(text);
@@ -707,13 +705,11 @@ class HomePage implements AbstractPage {
     },
 
     assertInstaURL () {
-      cy.url().should('contain','instashop')
-    }
-  
+      cy.url().should('contain','instashop');
+    },
+  };
 
-};
 }
-
 
 export default new HomePage();
 

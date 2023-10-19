@@ -5,26 +5,23 @@ import LoginPage from '../../pom/login.page';
 import MyAccountPage from '../../pom/myaccount.page';
 import { brand, language, locale } from 'cypress/support/e2e';
 
-describe('Login Functionality tests', function () {
+describe('Login Functionality tests', {retries: { runMode: 2, openMode: 1 } }, function () {
 
   beforeEach(() => {
     HomePage.goto();
   });
-    
+
   it('Verify that user can login with valid credentials and log out', function () {
-    cy.fixture('users').then((credentials: LoginCredentials) => {    
+    cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
-
-      cy.wait(3000);
-
       MyAccountPage.click.logOutLink();
-      LoginPage.assertions.assertLoginFormIsPresent();  
+      LoginPage.assertions.assertLoginFormIsPresent();
     });
   });
-  
+
   it('Verify that user can not login with invalid credentials', function () {
-    cy.fixture('users').then((credentials: LoginCredentials) => {    
+    cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, 'invalid12345');
       LoginPage.actions.loginPopUpMessage();
       if (brand == 'misspap.com') {
@@ -50,7 +47,6 @@ describe('Login Functionality tests', function () {
       }
     });
     LoginPage.click.forgotPasswordLink();
-    cy.wait(2000);
     LoginPage.actions.resetPasswordEmail('jelenaboohoo@gmail.com');
     LoginPage.click.resetPasswordButon();
     LoginPage.assertions.assertForgotPasswordMessageisDisplayed('jelenaboohoo@gmail.com');

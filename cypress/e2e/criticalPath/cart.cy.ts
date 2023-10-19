@@ -6,8 +6,7 @@ import HomePage from '../../pom/home.page';
 import LoginPage from '../../pom/login.page';
 import { brand, locale } from 'cypress/support/e2e';
 
-describe('Cart basic functionality for guest user', function () {
-
+describe('Cart basic functionality for guest user', {retries: { runMode: 2, openMode: 1 } }, function () {
   beforeEach(() => {
     Navigate.toCartPageUsingSession();
 

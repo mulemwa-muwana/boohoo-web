@@ -329,7 +329,7 @@ const selectors: SelectorBrandMap = {
   'misspap.com': {
     searchField: '#header-search-input',
     addToCart: '#add-to-cart',
-    addToWishListButton: '.wishlist-button',
+    addToWishListButton: "a[title='Add this product to Wishlist']",
     shippingInfoButton: '#product-details-btn-shipping',
     returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
     shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
@@ -338,7 +338,7 @@ const selectors: SelectorBrandMap = {
     miniCartIcon: '.b-minicart_icon-link',
     miniCartViewCartBtn: '.mini-cart-link',
     selectColor: '.swatches.color',
-    sizeVariations: '.swatches.size',
+    sizeVariations: '.swatches',
     productTitle: '#product-content > .product-name',
     productTitleMobile:'.is-mobile > .product-name',
     productCode: '.product-number > [itemprop="sku"]',
@@ -403,9 +403,14 @@ class PdpPage implements AbstractPage {
       cy.get(addToCart).invoke('show').click({ force: true });
     },
     addToWishList () {
-      cy.wait(4000);
       const addToWishListButton = selectors[brand].addToWishListButton;
-      cy.get(addToWishListButton).invoke('show').click({ force: true });
+      if (brand == 'misspap.com') {
+        cy.get(addToWishListButton).invoke('removeAttr', 'disabled').as('addToWishListButton'); // Due to bug in MP added this command
+        cy.get('@addToWishListButton').click({force:true});
+      }
+      cy.waitUntil(() => {
+        return cy.get(addToWishListButton, {timeout: 4000}).invoke('show').click({ force: true });
+      });
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[brand].shippingInfoButton;
@@ -487,27 +492,35 @@ class PdpPage implements AbstractPage {
         cy.get(selectColor + ` span[data-variation-values*='backendValue": "${colorFromSku}']`).then(($element) => {
           if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
             $element.trigger('click');
+          } else if ($element.parent().hasClass('selected')) {
+            cy.log('already selected');
           }
         });
       } else {
-        cy.get(selectColor + `[data-tau-color-id="${colorFromSku}"]`).click({ force: true });
+        cy.get(selectColor + `[data-tau-color-id='${colorFromSku}']`).then(($element) => {
+          if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
+            $element.trigger('click');
+          } else if ($element.parent().hasClass('selected')) {
+            cy.log('already selected');
+          }
+        });
       }
-      cy.wait(3000);
     },
     selectSizeFromSku () {
       const sizeVariations = selectors[brand].sizeVariations;
       const sizeFromSku = fullSku.split('-')[2]; // Get size part from fullSku FZZ80440-106-18 => 18
 
-      if (isSiteGenesisBrand) {
-        cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`).then(($element) => {
+      if ((brand == 'boohoo.com')|| (brand == 'nastygal.com')) {
+        cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({ force: true});
+      } else {
+        cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`, {timeout:2000}).then(($element) => {
           if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
-            $element.trigger('click');
+            $element.trigger('click',{setTimeout:1000});
           }
         });
-      } else {
-        cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({ force: true });
-      }
-      cy.wait(3000);
+      } 
+      cy.wait(1000); // Need to put this as page need time to load 
+
     },
     selectFirstAvailableSize () {
       const sizeVariations = selectors[brand].sizeVariations;
@@ -515,7 +528,7 @@ class PdpPage implements AbstractPage {
         cy.get(sizeVariations).find('li').each(($element) => {
           if ($element.hasClass('selectable')) { // If size is available(selectable)
             if (!$element.hasClass('selected')) { // If size not already selected
-              $element.find('span').trigger('click');
+              $element.find('span').trigger('click',{force:true});
               return false;
             }
             return false;

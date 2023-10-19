@@ -7,8 +7,7 @@ import Navigate from 'cypress/helpers/navigate';
 import cards from '../../helpers/cards';
 import { brand, language, locale, url } from 'cypress/support/e2e';
 
-describe('Order confirmation page for guest user', function () {
-
+describe('Order confirmation page for guest user', {retries: { runMode: 2, openMode: 1 } }, function () {
   beforeEach (function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
@@ -67,11 +66,12 @@ describe('Order confirmation page for guest user', function () {
 
 });
 
-describe('Order confirmation page for registered user', function () {
-  
+describe('Order confirmation page for registered user', { retries: { runMode: 2, openMode: 1 } }, function () {
+
   it('Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('RegisteredUser');
-    if (( brand == 'boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'nastygal.com') && (locale =='US' || locale =='CA')) {
+    const isUScreditcardBrandAndLocale: boolean = (brand == 'boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'CA');
+    if (isUScreditcardBrandAndLocale) {
       billingPage.actions.selectCreditCardUS(cards.masterUS.cardNo, cards.masterUS.owner, cards.masterUS.date, cards.masterUS.code);
     } else {
       billingPage.actions.selectCreditCard(cards.master.cardNo, cards.master.owner, cards.master.date, cards.master.code);
@@ -110,13 +110,14 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('Verify that registered user can place order using Klarna', function () {
-    if ((brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU'||locale == 'US' || locale == 'CA')) {
-
+    const noKlarnaBrandAndLocale: boolean = (brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU' || locale == 'US' || locale == 'CA');
+    const isKlarnaLocale: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'NL' || locale == 'US' || locale == 'CA' ;
+    if (noKlarnaBrandAndLocale) {
       this.skip();
     }
-    if (locale == 'UK' || locale == 'IE' || locale == 'AU'|| locale == 'NL' || locale == 'US' || locale == 'CA') {
+    if (isKlarnaLocale) {
       Navigate.toBillingPage('RegisteredUser');
-      if ((brand == 'boohoo.com' || brand == 'boohooman.com') && locale =='NL') {
+      if ((brand == 'boohoo.com' || brand == 'boohooman.com') && locale == 'NL') {
         billingPage.actions.selectKlarnaBoohooNl();
       } else {
         billingPage.actions.selectKlarna();

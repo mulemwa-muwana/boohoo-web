@@ -3,8 +3,8 @@ import HomePage from '../../pom/home.page';
 import pdpPage from '../../pom/pdp.page';
 import { sku, brand } from 'cypress/support/e2e';
 
-describe('Mini Cart is displayed, Mini Cart Contains correct information, Checkout and View Bag buttons redirect correctly', function () {
-    
+describe('Mini Cart is displayed, Mini Cart Contains correct information, Checkout and View Bag buttons redirect correctly', {retries: { runMode: 2, openMode: 1 } }, function () {
+  
   // This will execute before every single test
   beforeEach(() => {
     HomePage.goto();

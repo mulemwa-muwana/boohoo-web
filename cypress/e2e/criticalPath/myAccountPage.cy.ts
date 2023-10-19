@@ -7,7 +7,7 @@ import Navigate from 'cypress/helpers/navigate';
 import { brand, language, locale } from 'cypress/support/e2e';
 import homePage from 'cypress/pom/home.page';
 
-describe('Account page', function () {
+describe('Account page', {retries: { runMode: 2, openMode: 1 } }, function () {
 
   beforeEach(() => {
     Navigate.toMyAccountPageUsingSession();

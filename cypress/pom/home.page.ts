@@ -350,11 +350,17 @@ class HomePage implements AbstractPage {
         cy.get(loginIcon).should('be.visible');
       }
     },
+<<<<<<< HEAD
     
     shopInstagramButton() {
+=======
+
+    shopInstagramButton () {
+>>>>>>> master
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
-      cy.get(shopInstagramBtn).should('be.visible')
-      .invoke('removeAttr', 'target').click();
+      cy.get(shopInstagramBtn)
+        .should('be.visible')
+        .invoke('removeAttr', 'target').click();
     },
     
     shopNowButton(){
@@ -466,7 +472,7 @@ class HomePage implements AbstractPage {
       const searchField = selectors[brand].searchField;
       const searchIcon = selectors[brand].searchIcon;
       cy.get(searchIcon).click({ force: true });
-      cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
+      cy.get(searchField).type(SKU +'{enter}', {force: true});
     },
     forgotPassword (email: string) {
       const forgetPasswordLink = selectors[brand].forgetPasswordLink;     
@@ -554,7 +560,7 @@ class HomePage implements AbstractPage {
     },
    //insta shop assertions
     assertInstaShopPresent () {
-      const shopInstagramBtn  = selectors[brand].shopInstagramBtn ;
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn ;
       cy.get(shopInstagramBtn ).should('be.visible');
      },
     assertShopNowDisplayed() {
@@ -706,9 +712,15 @@ class HomePage implements AbstractPage {
     },
 
     assertInstaURL () {
+<<<<<<< HEAD
       cy.url().should('contain','instashop')
     }
   
+=======
+      cy.url().should('contain','instashop');
+    },
+  };
+>>>>>>> master
 
 };
 }

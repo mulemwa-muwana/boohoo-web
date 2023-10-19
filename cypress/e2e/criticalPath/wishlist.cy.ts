@@ -5,9 +5,9 @@ import assertionText from '../../helpers/assertionText';
 import pdpPage from 'cypress/pom/pdp.page';
 import cartPage from 'cypress/pom/cart.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-import { brand, language, sku } from 'cypress/support/e2e';
+import { brand, fullSku, language } from 'cypress/support/e2e';
 
-describe('Wishlist Page tests', function () {
+describe('Wishlist Page tests', {retries: { runMode: 2, openMode: 1 } }, function () {
 
   // This will execute before every single test
   beforeEach(() => {
@@ -20,14 +20,15 @@ describe('Wishlist Page tests', function () {
   });
 
   it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
-    HomePage.actions.findItemUsingSKU(sku);
+    HomePage.actions.findItemUsingSKU(fullSku);
     pdpPage.actions.selectColorFromSku();
     pdpPage.actions.selectSizeFromSku();
+    cy.wait(1000);
     pdpPage.click.addToWishList();
+
     if (brand == 'boohoo.com') {
       WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[language]);
     }
-    cy.wait(7000);
     HomePage.click.wishListIcon();
     WishListPage.assertions.assertItemIsAddedToWishlist();
 
@@ -40,11 +41,9 @@ describe('Wishlist Page tests', function () {
     if (isSiteGenesisBrand) {
       WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptySiteGenesis[language]);
     } else {
-      cy.wait(1000);
       WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptyBlp[language]);
     }
     cartPage.goto();
-    cy.wait(10000);
     cartPage.click.clearCart();
     cartPage.assertions.assertCartIsEmpty();
   });

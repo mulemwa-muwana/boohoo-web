@@ -926,7 +926,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(firstNameField).clear({ force: true }).type(newName);
         cy.get(profileUpdateBtn).click({ force: true });
       },
-      editDefaultAddress (line1: string, country: string) {
+      editDefaultAddress (line1: string) {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         const addressEditBtn = selectors[variables.brand].addressEditBtn;
         const addressEditForm = selectors[variables.brand].addressEditForm;

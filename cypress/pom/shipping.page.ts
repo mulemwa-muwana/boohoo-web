@@ -1011,13 +1011,12 @@ class ShippingPage implements AbstractPage {
     selectState (state: string) {
       const shippingState = selectors[brand].shippingState;
       const shippingStateUS = selectors[brand].shippingState;
-      const countyField = selectors[brand].countyField;
       if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA') {
         cy.get(shippingStateUS).select(state);
       } else if ((brand != 'karenmillen.com' && locale !='EU') && ( locale !='UK')) {
         cy.get(shippingState).select(state).invoke('show');
       } 
-      },
+    },
         
     adressLine1 (address1: string) {
       const addressLine1Field = selectors[brand].addressLine1Field;

@@ -350,13 +350,8 @@ class HomePage implements AbstractPage {
         cy.get(loginIcon).should('be.visible');
       }
     },
-<<<<<<< HEAD
-    
-    shopInstagramButton() {
-=======
 
     shopInstagramButton () {
->>>>>>> master
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn)
         .should('be.visible')
@@ -712,15 +707,9 @@ class HomePage implements AbstractPage {
     },
 
     assertInstaURL () {
-<<<<<<< HEAD
       cy.url().should('contain','instashop')
     }
   
-=======
-      cy.url().should('contain','instashop');
-    },
-  };
->>>>>>> master
 
 };
 }

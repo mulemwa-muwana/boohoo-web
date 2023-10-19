@@ -2,7 +2,7 @@ import { brand, language } from 'cypress/support/e2e';
 import customerServicePage from '../../pom/customerService.page';
 import assertionText from 'cypress/helpers/assertionText';
 
-describe('Customer Service Page', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Customer Service Page', function () {
 
   beforeEach(() => {
     customerServicePage.goto();

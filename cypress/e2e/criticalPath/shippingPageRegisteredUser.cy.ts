@@ -8,7 +8,7 @@ import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import { brand, language, locale } from 'cypress/support/e2e';
 
-describe('Shipping Page Registered user tests', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
     Navigate.toShippingPageUsingSession('RegisteredUser');

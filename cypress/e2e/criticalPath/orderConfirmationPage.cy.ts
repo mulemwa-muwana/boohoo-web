@@ -7,7 +7,7 @@ import Navigate from 'cypress/helpers/navigate';
 import cards from '../../helpers/cards';
 import { brand, language, locale, url } from 'cypress/support/e2e';
 
-describe('Order confirmation page for guest user', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Order confirmation page for guest user', function () {
   beforeEach (function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
@@ -66,7 +66,7 @@ describe('Order confirmation page for guest user', {retries: { runMode: 2, openM
 
 });
 
-describe('Order confirmation page for registered user', { retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Order confirmation page for registered user', function () {
 
   it('Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('RegisteredUser');

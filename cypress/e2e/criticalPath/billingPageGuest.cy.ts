@@ -8,7 +8,7 @@ import Navigate from 'cypress/helpers/navigate';
 import cards from 'cypress/helpers/cards';
 import { brand, locale, language } from 'cypress/support/e2e';
 
-describe('Billing page functionality for guest user', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Billing page functionality for guest user', function () {
 
   before(() => {
     cy.fixture('users').then((credentials: LoginCredentials) => {

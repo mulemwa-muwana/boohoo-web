@@ -7,7 +7,7 @@ import Navigate from 'cypress/helpers/navigate';
 import { locale, brand, giftCertificate } from 'cypress/support/e2e';
 import billingPage from '../../pom/billing.page';
 
-describe('Billing page functionality for registered user', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Billing page functionality for registered user', function () {
 
   beforeEach(() => {
     Navigate.toBillingPageUsingSession('RegisteredUser');

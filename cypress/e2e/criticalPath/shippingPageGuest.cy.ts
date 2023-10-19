@@ -9,7 +9,7 @@ import { brand, language, locale } from 'cypress/support/e2e';
 import navigate from 'cypress/helpers/navigate';
 import billingPage from 'cypress/pom/billing.page';
 
-describe('Shipping Page Guest user tests', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Shipping Page Guest user tests', function () {
 
   before(() => {
     cy.fixture('users').then((credentials: LoginCredentials) => {

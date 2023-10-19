@@ -5,7 +5,7 @@ import productVariations from '../../helpers/productVariations';
 import { brand, language, locale } from 'cypress/support/e2e';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 
-describe('Product Listing Page tests', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Product Listing Page tests', function () {
 
   beforeEach(() => {
     HomePage.goto();

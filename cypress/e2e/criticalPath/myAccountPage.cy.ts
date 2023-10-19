@@ -7,7 +7,7 @@ import Navigate from 'cypress/helpers/navigate';
 import { brand, language, locale } from 'cypress/support/e2e';
 import homePage from 'cypress/pom/home.page';
 
-describe('Account page', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Account page', function () {
 
   beforeEach(() => {
     Navigate.toMyAccountPageUsingSession();
@@ -64,7 +64,7 @@ describe('Account page', {retries: { runMode: 2, openMode: 1 } }, function () {
     MyAccountPage.actions.createAddress(localeNewAddress);
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
-    MyAccountPage.actions.editDefaultAddress(localeAddress.addressLine, localeAddress.country);
+    MyAccountPage.actions.editDefaultAddress(localeAddress.addressLine);
 
     // MyAccountPage.click.verificationAddress(); need to check as this pop up is not visible now
     MyAccountPage.assertions.assertDefaultAddressData(localeAddress.firstName);

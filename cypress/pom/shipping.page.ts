@@ -1017,7 +1017,7 @@ class ShippingPage implements AbstractPage {
       } else if ((brand != 'karenmillen.com' && locale !='EU') && ( locale !='UK')) {
         cy.get(shippingState).select(state).invoke('show');
       } 
-      },
+    },
         
     adressLine1 (address1: string) {
       const addressLine1Field = selectors[brand].addressLine1Field;

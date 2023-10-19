@@ -84,3 +84,5 @@ Cypress.Commands.overwrite('visit', function (originalFn, url) {
 
   return originalFn({ url: urlPath });
 });
+
+import 'cypress-wait-until';

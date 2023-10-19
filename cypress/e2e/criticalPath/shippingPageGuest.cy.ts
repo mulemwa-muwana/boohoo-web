@@ -146,7 +146,9 @@ describe('Shipping Page Guest user tests', function () {
     cy.wait(5000);
     shippingPage.actions.adressLine1(localeAddress.addressLine);
     shippingPage.actions.cityField(localeAddress.city);
-    shippingPage.actions.selectState(localeAddress.county);
+    if (brand == 'boohooman.com' && locale != 'UK') {
+      shippingPage.actions.selectState(localeAddress.county);
+    }
     shippingPage.actions.postcodeField(localeAddress.postcode);
     shippingPage.actions.phoneNumberField(localeAddress.phone);
 

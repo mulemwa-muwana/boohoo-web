@@ -39,5 +39,10 @@ export default defineConfig({
       '**/additionalTests*/**' // Skip additional tests
     ],
     numTestsKeptInMemory: 0,
+    retries: 
+    { 
+      runMode: 2, 
+      openMode: 1 
+    } ,
   },
 });

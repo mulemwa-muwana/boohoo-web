@@ -50,15 +50,15 @@ const selectors: SelectorBrandMap = {
     resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
   'burton.co.uk': {
-    loginIcon: 'a.b-header_login-icon', 
+    loginIcon: 'a.b-header_login-icon',
     mobileHamburgIcon: "[class='i-icon i-icon-hamburger']",
     MobileLoginLink: '[class="b-menu_panel-guest_action m-login"]',
-    loginEmail: 'input#dwfrm_login_email', 
+    loginEmail: 'input#dwfrm_login_email',
     loginPassword: '#dwfrm_login_password[type=password]',
     loginButton:'button[data-tau="login_submit"]',
-    forgotPassword:'button#password-reset', 
+    forgotPassword:'button#password-reset',
     forgotPasswordMessage: '.b-dialog-window.m-active.m-top_dialog',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email', 
+    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '.b-dialog-footer.m-actions > .b-button[type="submit"]',
     loginForm: ':nth-child(1) > .l-service-section_inner',
     errorLoginMessage: '.b-message-inner>.b-message-copy',
@@ -75,7 +75,7 @@ const selectors: SelectorBrandMap = {
     forgotPasswordMessage: '[class*="b-dialog-window"]',
     resetPasswordEmailField: 'input#dwfrm_profile_resetPassword_email',
     resetPasswordBtn: '[class*="b-dialog-footer"]>.b-button.m-width_full',
-    loginForm: ':nth-child(1) > .l-service-section_inner', 
+    loginForm: ':nth-child(1) > .l-service-section_inner',
     errorLoginMessage: '.b-message-inner .b-message-copy',
     resetPasswordEmailFieldMobile: '#dwfrm_registration_resetPassword_email'
   },
@@ -116,12 +116,12 @@ const selectors: SelectorBrandMap = {
     headerUserInfo: '.header-customer-info'
   },
   'coastfashion.com': {
-    loginIcon: 'span.user-account', 
-    loginLink: '.user-links > [title="Log In"]', 
+    loginIcon: 'span.user-account',
+    loginLink: '.user-links > [title="Log In"]',
     mobileHamburgIcon: "[class='menu-toggle js-menu-toggle']",
     MobileLoginLink :'.user-link-item[title^="Log"]:eq(1)',
-    loginEmail: '.field-wrapper.js-field-wrapper>[id^=dwfrm_login_username][type=email]', 
-    loginPassword: 'input[id^=dwfrm_login_password][type="password"]', 
+    loginEmail: '.field-wrapper.js-field-wrapper>[id^=dwfrm_login_username][type=email]',
+    loginPassword: 'input[id^=dwfrm_login_password][type="password"]',
     loginButton:'.login-page-button.js-login-page-button[type="submit"]',
     forgotPassword: '.password-reset',
     forgotPasswordMessage: '#ShowResetPasswordDialog',
@@ -217,7 +217,7 @@ class LoginPage implements AbstractPage {
       const loginIconNl = selectors[variables.brand].loginIconNl;
       const mobileHamburgIcon = selectors[variables.brand].mobileHamburgIcon;
       const headerUserInfo = selectors[brand].headerUserInfo;
-      
+
       if (isMobileDeviceUsed) {
         cy.get(mobileHamburgIcon).click();
       } else {
@@ -255,7 +255,7 @@ class LoginPage implements AbstractPage {
       const errorLoginMessage = selectors[variables.brand].errorLoginMessage;
       cy.get(errorLoginMessage).should('be.visible').and('contain.text', text);
     },
- 
+
     assertForgotPasswordMessageisDisplayed (email: string) {
       const forgotPasswordMessage = selectors[variables.brand].forgotPasswordMessage;
       if (isSiteGenesisBrand) {
@@ -274,31 +274,27 @@ class LoginPage implements AbstractPage {
       const MobileLoginLink = selectors[variables.brand].MobileLoginLink;
 
       if (isMobileDeviceUsed) {
-        cy.get(mobileHamburgIcon).click({force:true});
-        cy.wait(2000);
-        cy.get(MobileLoginLink).click({force:true});
+        cy.get(mobileHamburgIcon).click({force:true})
+          .get(MobileLoginLink).click({force:true});
       } else { // Web Device logic start from this else statement
         if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
-          cy.get(loginIcon).invoke('show');
-          cy.get(loginLink).click({force:true});
+          cy.get(loginIcon).invoke('show')
+            .get(loginLink).click({force:true});
         } else {
           cy.get(loginIcon).click({force:true});
         }
-      } 
+      }
 
-      cy.wait(3000);
       const loginEmail = selectors[variables.brand].loginEmail;
-      cy.get(loginEmail).type(user, {force: true}); 
-      cy.wait(3000);
+      cy.get(loginEmail).type(user, {force: true});
       const loginPassword = selectors[variables.brand].loginPassword;
       cy.get(loginPassword).type(pass, {force: true});
-      cy.wait(3000);
       const loginButton = selectors[variables.brand].loginButton;
       cy.get(loginButton).click({force: true});
     },
     loginViaPage (user: string, pass: string) {
       const loginEmail = selectors[variables.brand].loginEmail;
-      cy.get(loginEmail).type(user, {force: true}); 
+      cy.get(loginEmail).type(user, {force: true});
       const loginPassword = selectors[variables.brand].loginPassword;
       cy.get(loginPassword).type(pass, {force: true});
       const loginButton = selectors[variables.brand].loginButton;
@@ -314,14 +310,14 @@ class LoginPage implements AbstractPage {
         cy.get(resetPasswordEmailField).type(email);
       }
     },
-    loginPopUpMessage () { 
+    loginPopUpMessage () {
       const popUpSign = selectors[variables.brand].popUpSign;
       cy.get('body').then($body=>{
         if ($body.find(popUpSign).length>0) {
           cy.get(popUpSign).click({ force: true });
         }
       });
-      
+
     },
   };
 }

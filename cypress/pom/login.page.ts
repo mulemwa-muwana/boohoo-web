@@ -274,13 +274,12 @@ class LoginPage implements AbstractPage {
       const MobileLoginLink = selectors[variables.brand].MobileLoginLink;
 
       if (isMobileDeviceUsed) {
-        cy.get(mobileHamburgIcon).click({force:true});
-        cy.wait(2000);
-        cy.get(MobileLoginLink).click({force:true});
+        cy.get(mobileHamburgIcon).click({force:true})
+          .get(MobileLoginLink).click({force:true});
       } else { // Web Device logic start from this else statement
         if (isSiteGenesisBrand && variables.brand != 'misspap.com') {
-          cy.get(loginIcon).invoke('show');
-          cy.get(loginLink).click({force:true});
+          cy.get(loginIcon).invoke('show')
+            .get(loginLink).click({force:true});
         } else {
           cy.get(loginIcon).click({force:true});
         }

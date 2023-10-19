@@ -187,7 +187,7 @@ const selectors: SelectorBrandMap = {
     removeItemFromWishlist: 'form[name="dwfrm_wishlist_items_i0"] [class*="hidden-on-mobile"] .button-remove',
     removeItemFromWishlistMobile: "[class='item-options-button is-mobile'] .button-remove-text",
     wishlistLoginBtn: '#maincontent > div > main > div.b-wishlist.m-guest > div > div > div.b-wishlist-empty > div.b-wishlist-actions > a',
-    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
+    itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`, 
     wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'

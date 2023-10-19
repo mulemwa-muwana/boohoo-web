@@ -739,10 +739,21 @@ describe('Home Page', function () {
         HomePage.assertions.assertInstaURL();
       } else {
         this.skip();
-        this.skip();
       }
     });
   });
+
+  describe('MANGAMING Slot', ()=> {
+    it('Verify that Mangaming slot is present and clicking on it displays related content', function () {
+      if (brand == 'boohooman.com' && locale != 'UK') {
+        HomePage.assertions.assertMangamingPresent();
+        HomePage.click.Mangamingslot();
+        HomePage.assertions.assertMangamingOpen();
+      } else {
+        this.skip();
+      }
+
     });
+
   });
 });

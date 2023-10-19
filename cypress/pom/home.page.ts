@@ -159,6 +159,8 @@ const selectors: SelectorBrandMap = {
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
     logInSlideManuTitle: '.b-miniaccount-title',
     promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]',
+    mangamingSlot: '.home-container > div:nth-of-type(1) img',
+    mangamingPage: '.boohooman-app-img.content-asset > .col-5.disc',
     shopNowBtn: 'div[class="shop-button"]'
   },
   'karenmillen.com': {
@@ -351,12 +353,14 @@ class HomePage implements AbstractPage {
       }
     },
 
-    // Shop instagram button
     shopInstagramButton () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
-      cy.get(shopInstagramBtn)
-        .should('be.visible')
+      cy.get(shopInstagramBtn).should('be.visible')
         .invoke('removeAttr', 'target').click();
+    },
+    Mangamingslot () {
+      const mangamingSlot = selectors[brand].mangamingSlot;
+      cy.get(mangamingSlot).click();
     },
 
     shopNowButton () {
@@ -570,6 +574,16 @@ class HomePage implements AbstractPage {
         cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
         cy.get('@InstaShopNowButton').should('contain', 'Shop now');
       });
+    },
+
+    assertMangamingPresent () {
+      const mangamingSlot = selectors[brand].mangamingSlot;
+      cy.get(mangamingSlot).should('be.visible');
+    },
+    assertMangamingOpen () {
+      const mangamingPage = selectors[brand].mangamingPage;
+      cy.get(mangamingPage).should('be.visible');
+
     },
 
     // Search assertions

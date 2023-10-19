@@ -7,7 +7,7 @@ import cartPage from 'cypress/pom/cart.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import { brand, fullSku, language } from 'cypress/support/e2e';
 
-describe('Wishlist Page tests', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Wishlist Page tests', function () {
 
   // This will execute before every single test
   beforeEach(() => {

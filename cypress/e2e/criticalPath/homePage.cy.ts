@@ -13,7 +13,7 @@ import faqPage from 'cypress/pom/faq.page';
 import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
 
-describe('Home Page', {retries: { runMode: 2, openMode: 1 } }, function () {
+describe('Home Page', function () {
 
   // This will execute before every single test, we're just going to the baseURL.
   beforeEach(() => {

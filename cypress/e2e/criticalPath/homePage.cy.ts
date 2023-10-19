@@ -591,15 +591,19 @@ describe('Home Page', function () {
       //   }
       // });
 
-      it('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act',function () {
         if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);
+        } else {
+          this.skip();
         }
       });
 
-      it('Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', () => {
+      it('Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', function () {
         if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaTransparencyInSupplyChainsActStatement[language]);
+        } else {
+          this.skip();
         }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Nasty Blog', function () {
@@ -607,7 +611,9 @@ describe('Home Page', function () {
         if (brand == 'nastygal.com' && englishLocales) {
           homePage.click.nastyBlogLink('Nasty Blog');
           homePage.assertions.assertLinkIsOpeningCorrectPage('https://blog.nastygal.com/');
-        } 
+        } else {
+          this.skip();
+        }
       });
       it('Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
@@ -718,12 +724,13 @@ describe('Home Page', function () {
         contactusPage.click.emailIconOption();
         contactusPage.assertions.assertEmailOptionsPresent();
       });
-
+ 
     });
   });
 
-  describe('insta', () => {
-    it('Verify that Instashop is present on Homepage and opens instashop', function () {
+  describe('insta', ()=>{
+
+    it('Verify that Instashop is present on Homepage and opens instashop',function () {
       if (brand == 'boohooman.com' && locale == 'UK') {
         cy.wait(2000);
         HomePage.assertions.assertInstaShopPresent();
@@ -732,7 +739,10 @@ describe('Home Page', function () {
         HomePage.assertions.assertInstaURL();
       } else {
         this.skip();
+        this.skip();
       }
+    });
+  });
     });
   });
 });

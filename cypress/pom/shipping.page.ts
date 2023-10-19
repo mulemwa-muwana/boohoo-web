@@ -448,6 +448,7 @@ const selectors: SelectorBrandMap = {
     pudoSearchField:'.js-pudo-search-field',
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
+    pudoSearchListMobile: '[data-target="js-pudo-side"]',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
@@ -925,7 +926,7 @@ class ShippingPage implements AbstractPage {
     },
     helpAndInfoLink () {
       const helpAndInfoLink = selectors[brand].helpAndInfoLink;
-      cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click();
+      cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click({force:true});
     },
     makeShippingAddressDefault () {
       const standartShipping = selectors[brand].standartShipping;     
@@ -1136,10 +1137,14 @@ class ShippingPage implements AbstractPage {
       const pudoFirstShop=selectors[brand].pudoFirstShop;
       const pudoSearchTitle=selectors[brand].pudoSearchTitle;
       const pudoSelectShop=selectors[brand].pudoSelectShop;
+      const pudoSearchListMobile=selectors[brand].pudoSearchListMobile;
 
       cy.wait(2000);
       cy.get(pudoSearchField).clear().type(postCode+'{enter}');
       cy.wait(6000);
+      if (brand == 'karenmillen.com' && isMobileDeviceUsed) {
+        cy.get(pudoSearchListMobile).click({force:true});
+      }
       cy.get(pudoFirstShop, {timeout:20000}).should('be.visible');
       cy.get(pudoFirstShop).eq(0).click({force:true});
       return cy.get(pudoSearchTitle).eq(0).invoke('text').then(text=>{

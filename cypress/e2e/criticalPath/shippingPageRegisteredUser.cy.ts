@@ -163,6 +163,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.proceedToBillingVerification();
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
+    
   });
 
   it('Verify that PREMIER can be added to the cart', function () {
@@ -359,6 +360,9 @@ describe('Shipping Page Registered user tests', function () {
   it('Verify that "Help & info" link on header opens corresponding page', function () {
     if (brand == 'boohoo.com' || brand == 'nastygal.com') {
       this.skip(); // No help and info link on these brands
+    }
+    if (isMobileDeviceUsed) {
+      cy.scrollTo('bottom');
     }
     shippingPage.click.helpAndInfoLink();
     shippingPage.assertions.assertCustomerServicePageIsOpened();

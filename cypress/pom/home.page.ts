@@ -442,7 +442,12 @@ class HomePage implements AbstractPage {
     },
     countryDropdown () {
       const countryBtn = selectors[brand].countryBtn;
-      cy.get(countryBtn).click({force: true});  
+      const hamburgerMenu = selectors[brand].hamburgerMenu;
+      if (isSiteGenesisBrand && isMobileDeviceUsed) {
+        cy.get(hamburgerMenu).click(({force: true}));  
+      } else {
+        cy.get(countryBtn).click({force: true});  
+      }
     }
   };
 

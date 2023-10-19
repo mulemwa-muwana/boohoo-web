@@ -48,6 +48,21 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
+  it('Verify that in "DELIVERY INFORMATION" address is mandatory', () => {
+    if (brand == 'boohooman.com') {
+      shippingPage.actions.addressLine1Clear();
+      shippingPage.actions.cityFieldClear();
+    } else {
+      shippingPage.click.addNewAddressButton();
+    }
+    shippingPage.click.proceedToBilling();
+    if (brand == 'boohoo.com') {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[language]);
+    } else {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldError[language]);
+    }
+  });
+
   it('Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'secondaryAddress');
     cy.wait(4000);

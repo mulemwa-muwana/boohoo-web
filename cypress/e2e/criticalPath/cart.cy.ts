@@ -84,6 +84,8 @@ describe('Cart basic functionality for guest user', function () {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
       CartPage.assertions.assertThriftBagIsAddedToTheCart();
+    } else {
+      this.skip();
     }
   });
 
@@ -111,6 +113,8 @@ describe('Cart page for Registered user', function () {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
       CartPage.assertions.assertThriftBagIsAddedToTheCart();
+    } else {
+      this.skip();
     }
   });
 });

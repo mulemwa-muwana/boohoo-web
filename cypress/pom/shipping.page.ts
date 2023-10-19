@@ -457,7 +457,8 @@ const selectors: SelectorBrandMap = {
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
     checkoutMiniBagSummery: '.checkout-mini-cart',
-    helpAndInfoLink: '.checkout-help-link'
+    helpAndInfoLink: '.checkout-help-link',
+    deliverySection:  '.js-shipping-method-list.js-cmp-inited.js-cmp-ShippingMethodModals',
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -1010,12 +1011,14 @@ class ShippingPage implements AbstractPage {
     selectState (state: string) {
       const shippingState = selectors[brand].shippingState;
       const shippingStateUS = selectors[brand].shippingState;
-      if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA' ) {
+      const countyField = selectors[brand].countyField;
+      if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA') {
         cy.get(shippingStateUS).select(state);
-      } else {
+      } else if ((brand != 'karenmillen.com' && locale !='EU') && ( locale !='UK')) {
         cy.get(shippingState).select(state).invoke('show');
-      }
-    },
+      } 
+      },
+        
     adressLine1 (address1: string) {
       const addressLine1Field = selectors[brand].addressLine1Field;
       cy.get(addressLine1Field).clear({ force: true }).type(address1);
@@ -1361,6 +1364,12 @@ class ShippingPage implements AbstractPage {
       const customerServiceURL = assertionText.customerServiceURL[language];
       cy.url().should('contain' , customerServiceURL);
 
+    },
+    assertDeliverySection (text: string) {
+      const deliverySection = selectors[brand].deliverySection;
+      cy.get (deliverySection).invoke('text').as('deliverySection');
+      cy.get('@deliverySection').should('contain', text);
+      
     }
   };
 }

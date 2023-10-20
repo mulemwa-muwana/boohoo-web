@@ -398,7 +398,7 @@ class PdpPage implements AbstractPage {
   click = {
 
     addToCart () {
-      cy.wait(4000);  //Need to keep this wait as it needed
+      cy.wait(4000); // Need to keep this wait as it needed
       const addToCart = selectors[brand].addToCart;
       cy.get(addToCart).invoke('show').click({ force: true });
     },

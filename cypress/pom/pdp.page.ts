@@ -402,7 +402,7 @@ class PdpPage implements AbstractPage {
       const addToCart = selectors[brand].addToCart;
       cy.get(addToCart).invoke('show').click({ force: true });
     },
-    addToWishList() {
+    addToWishList () {
       const addToWishListButton = selectors[brand].addToWishListButton;
       if (brand == 'misspap.com' || brand == 'karenmillen.com') {
         cy.get(addToWishListButton).invoke('removeAttr', 'disabled').as('addToWishListButton'); // Due to bug in MP added this command

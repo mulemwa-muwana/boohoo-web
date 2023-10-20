@@ -22,7 +22,7 @@ describe('Wishlist Page tests', function () {
   it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
     HomePage.actions.findItemUsingSKU(fullSku);
     pdpPage.actions.selectColorFromSku();
-    cy.wait(1000)
+    cy.wait(1000);
     pdpPage.actions.selectSizeFromSku();
     cy.wait(1000);
     pdpPage.click.addToWishList();

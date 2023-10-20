@@ -407,7 +407,6 @@ class CartPage implements AbstractPage {
         .then(win => {
           cy.stub(win, 'open');
         });
-      cy.wait(800);
       cy.iframe(payPalCTA).find(cartPayPalButton).should('be.visible').click({ force: true });
 
     },

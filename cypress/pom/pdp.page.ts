@@ -206,7 +206,7 @@ const selectors: SelectorBrandMap = {
   'karenmillen.com': {
     searchField: '#header-search-input',
     addToCart: '#add-to-cart',
-    addToWishListButton: '.wishlist-button',
+    addToWishListButton: '[data-action="wishlist"]',
     shippingInfoButton: '#product-details-btn-shipping',
     returnLink: 'a[href="https://uk-dwdev.boohoo.com/page/returns-information.html"]',
     shopNowLinkNL: ':nth-child(1) > .b-product_look-item > .b-product_look-panel > .b-product_look-link',
@@ -402,15 +402,16 @@ class PdpPage implements AbstractPage {
       const addToCart = selectors[brand].addToCart;
       cy.get(addToCart).invoke('show').click({ force: true });
     },
-    addToWishList () {
+    addToWishList() {
       const addToWishListButton = selectors[brand].addToWishListButton;
-      if (brand == 'misspap.com') {
+      if (brand == 'misspap.com' || brand == 'karenmillen.com') {
         cy.get(addToWishListButton).invoke('removeAttr', 'disabled').as('addToWishListButton'); // Due to bug in MP added this command
-        cy.get('@addToWishListButton').click({force:true});
+        cy.get('@addToWishListButton').click({ force: true });
+      } else {
+        cy.waitUntil(() => {
+          return cy.get(addToWishListButton, { timeout: 4000 }).invoke('show').click({ force: true });
+        });
       }
-      cy.waitUntil(() => {
-        return cy.get(addToWishListButton, {timeout: 4000}).invoke('show').click({ force: true });
-      });
     },
     shippingInfoButton () {
       const shippingInfoButton = selectors[brand].shippingInfoButton;
@@ -510,12 +511,16 @@ class PdpPage implements AbstractPage {
       const sizeVariations = selectors[brand].sizeVariations;
       const sizeFromSku = fullSku.split('-')[2]; // Get size part from fullSku FZZ80440-106-18 => 18
 
-      if ((brand == 'boohoo.com')|| (brand == 'nastygal.com')) {
-        cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({ force: true});
+      if ((brand == 'boohoo.com') || (brand == 'nastygal.com')) {
+        cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({ force: true });
       } else {
-        cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`, {timeout:2000}).then(($element) => {
+        cy.get(sizeVariations + ` span[data-variation-values*='backendValue": "${sizeFromSku}']`, { timeout: 2000 }).then(($element) => {
           if (!$element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
-            $element.trigger('click',{setTimeout:1000});
+            $element.trigger('click', { setTimeout: 1000 });
+          } else {
+            if ($element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
+              $element.trigger('click', { setTimeout: 1000 });
+            }
           }
         });
       }

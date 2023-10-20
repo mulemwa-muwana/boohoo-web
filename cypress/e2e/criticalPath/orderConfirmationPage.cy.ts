@@ -2,13 +2,13 @@ import orderConfirmationPage from '../../pom/orderConfirmation.page';
 import billingPage from 'cypress/pom/billing.page';
 import assertionText from '../../helpers/assertionText';
 import Addresses from '../../helpers/addresses';
-import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import { isSiteGenesisBrand, siteGenesisBrands } from 'cypress/helpers/common';
 import Navigate from 'cypress/helpers/navigate';
 import cards from '../../helpers/cards';
 import { brand, language, locale, url } from 'cypress/support/e2e';
 
 describe('Order confirmation page for guest user', function () {
-  beforeEach (function () {
+  beforeEach(function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // BoohooMena brand doesn't support guest users, only registered ones
     }
@@ -19,7 +19,7 @@ describe('Order confirmation page for guest user', function () {
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
-    if ((brand == 'boohoo.com'|| brand == 'karenmillen.com' || brand == 'misspap.com'||brand == 'nastygal.com') && (locale == 'US' || locale == 'CA')) {
+    if ((brand == 'boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'CA')) {
       billingPage.actions.selectCreditCardUS(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
     } else {
       billingPage.actions.selectCreditCard(cards.visa.cardNo, cards.visa.owner, cards.visa.date, cards.visa.code);
@@ -46,14 +46,14 @@ describe('Order confirmation page for guest user', function () {
 
     const paymentMethod: PaymentMethod = 'CreditCard_Visa';
     generateFrontendArtefact(brand, paymentMethod);
-  }); 
+  });
 
   it('Verify that guest user can place order using Credit Card - Amex)', function () {
     Navigate.toBillingPage('GuestUser');
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     }
-    if ((brand == 'boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com'|| brand == 'nastygal.com') && (locale == 'US' || locale == 'CA')) {
+    if ((brand == 'boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'CA')) {
       billingPage.actions.selectCreditCardUS(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
     } else {
       billingPage.actions.selectCreditCard(cards.amex.cardNo, cards.amex.owner, cards.amex.date, cards.amex.code);
@@ -98,20 +98,20 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('Verify that registered user can place order using PayPal', function () {
-    if (brand == 'boohoomena.com') {
-      this.skip(); // Only credit card as payment option for this brand
+    if (!isSiteGenesisBrand) {
+      Navigate.toBillingPage('RegisteredUser');
+      billingPage.actions.selectPayPal();
+      billingPage.assertions.assertOrderConfirmationPageIsDisplayed(); // Not working on Site Genesis
+      const paymentMethod: PaymentMethod = 'PayPal';
+      generateFrontendArtefact(brand, paymentMethod);
+    } else {
+      this.skip();
     }
-    Navigate.toBillingPage('RegisteredUser');
-    billingPage.actions.selectPayPal();
-    billingPage.assertions.assertOrderConfirmationPageIsDisplayed(); // Not working on Site Genesis
-
-    const paymentMethod: PaymentMethod = 'PayPal';
-    generateFrontendArtefact(brand, paymentMethod);
   });
 
   it('Verify that registered user can place order using Klarna', function () {
     const noKlarnaBrandAndLocale: boolean = (brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU' || locale == 'US' || locale == 'CA');
-    const isKlarnaLocale: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'NL' || locale == 'US' || locale == 'CA' ;
+    const isKlarnaLocale: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'NL' || locale == 'US' || locale == 'CA';
     if (noKlarnaBrandAndLocale) {
       this.skip();
     }
@@ -137,8 +137,8 @@ describe('Order confirmation page for registered user', function () {
 // Method for generating .json artefact on Order Confirmation page for testing Business Manager.
 function generateFrontendArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
 
-  cy.url({timeout: 60000}).should('match', /confirm/i);
-  
+  cy.url({ timeout: 60000 }).should('match', /confirm/i);
+
   if (isSiteGenesisBrand) {
     cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
     cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');

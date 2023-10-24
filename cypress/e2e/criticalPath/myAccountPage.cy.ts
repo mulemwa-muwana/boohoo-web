@@ -64,7 +64,9 @@ describe('Account page', function () {
     MyAccountPage.actions.createAddress(localeNewAddress);
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
-    MyAccountPage.actions.editDefaultAddress(localeAddress.addressLine, localeAddress.country);
+    MyAccountPage.actions.editDefaultAddress(localeAddress.addressLine);
+
+    // MyAccountPage.click.verificationAddress(); need to check as this pop up is not visible now
     MyAccountPage.assertions.assertDefaultAddressData(localeAddress.firstName);
 
     MyAccountPage.click.addressesLink();
@@ -74,7 +76,7 @@ describe('Account page', function () {
 
   it('TC05 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();
-    if ((brand=='boohoo.com'|| brand=='karenmillen.com' || brand == 'misspap.com') && locale=='US') {
+    if (locale=='US' || locale=='CA') {
       MyAccountPage.actions.addCardUS(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.month, Cards.visa.year ,Cards.visa.date );
     } else {
       MyAccountPage.actions.addCard(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.date, Cards.visa.code);

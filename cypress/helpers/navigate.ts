@@ -12,7 +12,7 @@ import pdpPage from '../pom/pdp.page';
 import { locale, brand, url, sku, language } from 'cypress/support/e2e';
 
 class Navigate {
-  
+
   toHomePage () {
     HomePage.goto();
   }
@@ -27,8 +27,7 @@ class Navigate {
     PdpPage.actions.selectColorFromSku();
     PdpPage.actions.selectSizeFromSku();
     PdpPage.click.addToCart();
-    cy.wait(7000);
-    HomePage.click.cartIcon();    
+    HomePage.click.cartIcon();
   }
 
   toCheckoutLoginPage () {
@@ -36,7 +35,7 @@ class Navigate {
     if (!isSiteGenesisBrand) {
       pdpPage.click.miniCartViewCartBtn();
     }
-    cartPage.click.proceedToCheckout();       
+    cartPage.click.proceedToCheckout();
   }
 
   toShippingPage (userType: UserType) {
@@ -54,7 +53,7 @@ class Navigate {
           CheckoutPage.click.continueAsGuestBtn();
         }
       });
-    
+
     // REGISTERED USER //
     } else {
       cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -105,11 +104,15 @@ class Navigate {
         } else {
           shippingPage.click.proceedToBilling();
         }
+        if (brand == 'nastygal.com' && locale =='US') {// To select standard shipping method for ngal/us as default address
+          cy.get('[for="shippingMethod-USUsdStandardDelivery"]').click({force:true});
+        }
+
         if (brand == 'boohooman.com') {
           BillingPage.actions.billingEmailField(credentials.guest);
           BillingPage.actions.billingConfirmEmailField(credentials.guest);
         }
-        BillingPage.actions.waitPageToLoad(); 
+        BillingPage.actions.waitPageToLoad();
       });
 
     // REGISTERED USER //
@@ -123,13 +126,13 @@ class Navigate {
       shippingPage.actions.selectCountry(primaryAddress.country);
       shippingPage.actions.phoneNumberField(primaryAddress.phone);
       cy.wait(5000);
-      shippingPage.click.addAddressManually();  
+      shippingPage.click.addAddressManually();
       shippingPage.actions.adressLine1(primaryAddress.addressLine);
       if (brand == 'boohooman.com') {
         shippingPage.actions.addressLine2Clear();
       }
       shippingPage.actions.cityField(primaryAddress.city);
-      if (locale == 'US' || locale == 'AU'||locale == 'IE') {
+      if (locale == 'US' || locale == 'AU'|| locale == 'IE' || locale == 'CA') {
         shippingPage.actions.selectState(primaryAddress.county);
       }
       if (brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
@@ -137,15 +140,13 @@ class Navigate {
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
       cy.wait(2000);
-      if (brand == 'boohoo.com' && locale =='UK') { // To select standard shipping method for boohoo as default address
-        cy.get('[data-option-id="shippingMethod-UKSuperSaver"]').click({force:true});
-      }
+      shippingPage.click.makeShippingAddressDefault;
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
       shippingPage.click.proceedToBillingVerification();
-      BillingPage.actions.waitPageToLoad();     
+      BillingPage.actions.waitPageToLoad();
     }
-  } 
+  }
 
   toMyAccountPage () {
     HomePage.goto();

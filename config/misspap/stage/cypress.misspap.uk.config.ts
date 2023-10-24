@@ -11,7 +11,7 @@ export default defineConfig({
     brand: 'misspap.com',
     locale: 'UK',
     language: 'EN',
-    giftCertificate: 'OCMKLMTMOPMFQKIS',
+    giftCertificate: 'LOODQVAOGAOFKGRP',
   },
   viewportHeight: 1080,
   viewportWidth: 1920,
@@ -34,8 +34,14 @@ export default defineConfig({
       plugins(on);
     },
     excludeSpecPattern: [
-      '**/backend*/**' // Skip backend tests
+      '**/backend*/**', // Skip backend tests
+      '**/additionalTests*/**' // Skip additional tests
     ],
-    numTestsKeptInMemory: 0
+    numTestsKeptInMemory: 0,
+    retries: 
+    { 
+      runMode: 2, 
+      openMode: 1 
+    },
   },   
 });

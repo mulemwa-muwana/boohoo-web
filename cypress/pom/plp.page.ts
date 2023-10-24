@@ -4,7 +4,6 @@ import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import assertionText from 'cypress/helpers/assertionText';
 import { brand, language, locale } from 'cypress/support/e2e';
-import { CompletionTriggerKind } from 'typescript';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -39,7 +38,8 @@ const selectors: SelectorBrandMap = {
     quickView: '.b-product_tile-quick_view',
     quickViewSize: 'button[aria-disabled="false"] .b-variation_swatch-value_text',
     quickAddtoCart: '.b-button.b-product_addtocard.m-width_full',
-    miniCartQty: '.b-minicart_icon-qty'
+    miniCartQty: '.b-minicart_icon-qty',
+    selectRefinementVariantPrice: '#refinementAttributesList-price',
   },
   'nastygal.com': {
     categoryRefinement: '#searchRefineBarAccordionItemBtn-category > span',
@@ -62,13 +62,14 @@ const selectors: SelectorBrandMap = {
     newProductPriceIsDispayed: '.m-new',
     productPriceIsDispayed: '.b-price-item',
     productImageIsDisplayed: '#product-grid > div.l-plp_grid > section:nth-child(3) > div.b-product_tile-container > div:nth-child(1) > div.b-product_tile-top > a > picture > img',
-    itemIsAddedToWishlist: '.b-header_wishlist-count', //  Does not exist for NG 
+    itemIsAddedToWishlist: '.b-header_wishlist-count', //  Does not exist for NG
     productNameIsDisplayed: '.b-product_tile-container > [data-ref="gridTileTopContainer"] > .b-product_tile-title > .b-product_tile-link',
     wishListIconColor: '.b-wishlist_button.m-tile .b-wishlist_button-icon',
     quickView: '.b-product_tile-quick_view',
     quickViewSize: '.b-product_tile_swatches-swatch.m-quickbuy.m-size:not(.m-disabled)',
     quickAddtoCart: '.b-quickbuy-addtocart_availability',
-    miniCartQty: '.b-minicart_icon-qty'
+    miniCartQty: '.b-minicart_icon-qty',
+    selectRefinementVariantPrice: '#refinementAttributesList-price',
   },
   'dorothyperkins.com': {
     styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
@@ -178,7 +179,8 @@ const selectors: SelectorBrandMap = {
     quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
     quickAddtoCart: "[class='button-fancy-large js-add-to-cart']",
-    miniCartQty: '.js-minicart-quantity '
+    miniCartQty: '.js-minicart-quantity ',
+    selectedSizeCheckbox: '.sizeRefinement > div > ul > li.swatches-item.selected'
   },
   'karenmillen.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -211,7 +213,8 @@ const selectors: SelectorBrandMap = {
     quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
     quickAddtoCart: 'button#add-to-cart',
-    miniCartQty: '.mini-cart-wrapper .minicart-has-products'
+    miniCartQty: '.mini-cart-wrapper .minicart-has-products',
+    selectedSizeCheckbox: '.sizeRefinement > div > ul > li.swatches-item.selected'
   },
   'coastfashion.com': {
     categoryRefinement: 'div[class="refinement js-refinement category"] input',
@@ -336,8 +339,8 @@ const selectors: SelectorBrandMap = {
     quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
     quickAddtoCart: 'button#add-to-cart',
-    miniCartQty: '.mini-cart-wrapper .minicart-has-products'
-
+    miniCartQty: '.mini-cart-wrapper .minicart-has-products',
+    selectedSizeCheckbox: '.sizeRefinement > div > ul > li.swatches-item.selected'
   },
   'boohoomena.com': {
     styleRefinement: '#searchRefineBarAccordionItemBtn-style > span',
@@ -368,7 +371,8 @@ const selectors: SelectorBrandMap = {
     quickView: 'a#quickviewbutton',
     quickViewSize: 'ul.swatches.size.clearfix li.selectable',
     quickAddtoCart: 'button#add-to-cart',
-    miniCartQty: '.mini-cart-wrapper .minicart-has-products'
+    miniCartQty: '.mini-cart-wrapper .minicart-has-products',
+    selectedSizeCheckbox: '.sizeRefinement > div > ul > li.swatches-item.selected'
   }
 };
 
@@ -440,7 +444,7 @@ class PlpPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
         cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
-      } else if (brand == 'boohoo.com' && locale == 'US') {
+      } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'CA')) {
         cy.get('button[id*="-' + (assertionText.color[variables.language] + '"]')).click({ force: true });
         cy.get('#refinementAttributesList-' + (assertionText.color[variables.language])).contains(color).click({ force: true });
       } else {
@@ -515,23 +519,18 @@ class PlpPage implements AbstractPage {
     },
 
     selectRefinementVariantPrice () {
-      if (isSiteGenesisBrand) {
-        const selectRefinementVariantPrice = selectors[variables.brand].selectRefinementVariantPrice;
-        cy.get(selectRefinementVariantPrice).find('li').each(($element) => {
-          if ($element.attr('data-value')) {
+      const selectRefinementVariantPrice = selectors[variables.brand].selectRefinementVariantPrice;
+
+      isSiteGenesisBrand
+        ? cy.get(selectRefinementVariantPrice).find('li').each(($element) => {
+          $element.find('span').trigger('click');
+          return false;
+        })
+        : cy.get('button[id*="-' + (assertionText.price[variables.language] + '"]')).click({ force: true })
+          .get(selectRefinementVariantPrice).find('li').each(($element) => {
             $element.find('span').trigger('click');
             return false;
-          }
-        });
-      } else {
-        cy.get('button[id*="-' + (assertionText.price[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-price').find('li').each(($element) => {
-          if ($element.attr('data-tau')) {
-            $element.find('span').trigger('click');
-            return false;
-          }
-        });
-      }
+          });
     },
 
     // Load more products
@@ -592,8 +591,8 @@ class PlpPage implements AbstractPage {
           cy.get(quickViewButton).eq(0).invoke('css', 'display', 'inline').as('quickViewSiteGenesis');
           cy.get('@hoverOverProduct').click({ force: true });
         } else {
-          cy.get(quickViewButton).eq(0).invoke('css','opacity',1).should('be.visible').as('quickViewBLP');
-          cy.get('@quickViewBLP').click({force:true});
+          cy.get(quickViewButton).eq(0).invoke('css', 'opacity', 1).should('be.visible').as('quickViewBLP');
+          cy.get('@quickViewBLP').click({ force: true });
         }
         cy.wait(5000);
         cy.get(quickViewSize).eq(0).click();
@@ -601,7 +600,7 @@ class PlpPage implements AbstractPage {
         cy.get(addToCart).click({ force: true });
         cy.wait(5000);
       });
-    }
+    },
   };
 
   actions = {
@@ -609,7 +608,7 @@ class PlpPage implements AbstractPage {
       cy.intercept(interceptRouteRegex).as('updateRefinement');
     },
     waitForPageRefinementUpdate () {
-      cy.wait('@updateRefinement', { timeout: 60000 }).its('response.statusCode').should('be.oneOf',[200,201,204]);
+      cy.wait('@updateRefinement', { timeout: 60000 }).its('response.statusCode').should('be.oneOf', [200, 201, 204]);
     }
   };
 
@@ -717,12 +716,13 @@ class PlpPage implements AbstractPage {
         .should('contains', productVariations);
     },
     assertProductSizeIsDisplayedOnPLP () {
-      if (isSiteGenesisBrand) {
-        cy.get('.sizeRefinement > div > ul > li.swatches-item.selected').invoke('attr', 'data-value').as('selectedSize');
-      } else {
-        cy.wait(8000); // It takes sometime to display checkbox as checked
-        cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]').invoke('attr', 'aria-label').as('selectedSize');
-      }
+      const selectedSizeCheckbox = selectors[variables.brand].selectedSizeCheckbox;
+
+      isSiteGenesisBrand
+        ? cy.get(selectedSizeCheckbox).invoke('attr', 'data-value').as('selectedSize')
+        : cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]')
+          .invoke('attr', 'aria-label').as('selectedSize');
+
       cy.location('search', { timeout: 60000 })
         .should('contains', '?prefn1=sizeRefinement&prefv1=')
         .then((s) => new URLSearchParams(s))
@@ -730,18 +730,20 @@ class PlpPage implements AbstractPage {
           cy.wrap(size).should('eq', this.selectedSize);
         });
     },
+
     assertProductPriceIsDisplayedOnPLP () {
       cy.location('search', { timeout: 60000 })
         .should('contains', 'pmax')
         .should('contains', 'pmin');
     },
+
     assertItemCountInView (itemCount: string) {
       cy.get('.l-plp_grid').should('have.attr', 'data-col-count').and('deep.equal', itemCount);
     },
     assertItemIsAddedToWishlistColorChange () {
       const wishListIconColor = selectors[variables.brand].wishListIconColor;
       cy.get(wishListIconColor).should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');
-    }
+    },
   };
 }
 

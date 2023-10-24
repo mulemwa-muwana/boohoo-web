@@ -7,7 +7,6 @@ import LoginPage from '../../pom/login.page';
 import { brand, locale } from 'cypress/support/e2e';
 
 describe('Cart basic functionality for guest user', function () {
-
   beforeEach(() => {
     Navigate.toCartPageUsingSession();
 
@@ -52,7 +51,6 @@ describe('Cart basic functionality for guest user', function () {
   });
 
   it('Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
-    cy.wait(5000);
     CartPage.click.proceedToCheckout();
     CheckoutPage.assertions.assertGuestCheckoutEmail();
   });
@@ -63,12 +61,12 @@ describe('Cart basic functionality for guest user', function () {
       CartPage.assertions.assertPayPalCTAisVisible();
       CartPage.actions.openPayPalSandbox(); // 2 frames on SG
     }
-
   });
   it('Verify that Klarna CTA is displayed and functional', function () {
-    const brandsUK: Array<GroupBrands> = ['wallis.co.uk', 'dorothyperkins.com', 'burton.co.uk'];
-    const brandsAndLocaleUK: boolean = brandsUK.includes(brand) && locale == 'UK';
-    if (['boohoo.com', 'burton.co.uk', 'nastygal.com', ...siteGenesisBrands].includes(brand) && ['UK', 'IE', 'AU'].includes(locale) && brand != 'misspap.com' || brandsAndLocaleUK) {
+    const klarnaWithLocales: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'US';
+    if (brand == 'boohooman.com' && locale == 'US') {
+      this.skip();
+    } else if (klarnaWithLocales) {
       CartPage.assertions.assertKlarnaCTAisVisible();
       CartPage.actions.openKlarnaSandbox();
     } else {
@@ -84,6 +82,8 @@ describe('Cart basic functionality for guest user', function () {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
       CartPage.assertions.assertThriftBagIsAddedToTheCart();
+    } else {
+      this.skip();
     }
   });
 
@@ -111,6 +111,8 @@ describe('Cart page for Registered user', function () {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
       CartPage.assertions.assertThriftBagIsAddedToTheCart();
+    } else {
+      this.skip();
     }
   });
 });

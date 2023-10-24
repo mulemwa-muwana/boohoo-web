@@ -3,10 +3,10 @@ import customerServicePage from '../../pom/customerService.page';
 import assertionText from 'cypress/helpers/assertionText';
 
 describe('Customer Service Page', function () {
-    
+
   beforeEach(() => {
     customerServicePage.goto();
-        
+
   });
 
   it('Verify that track my order button is present and functional', function () {
@@ -23,7 +23,7 @@ describe('Customer Service Page', function () {
     customerServicePage.actions.checkReturnButtonByText(assertionText.customerServicePageReturnButton[language], 'returns');
   });
 
-  it('Verify that start a chat will open', function () {
+  it('Verify that start a chat is present and clickable', function () {
     if (brand != 'boohoo.com') {
       this.skip(); // Skipping other brands for now, these will be added in phase 2
     }

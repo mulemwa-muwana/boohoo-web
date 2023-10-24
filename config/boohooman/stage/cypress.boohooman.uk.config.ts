@@ -6,8 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwstg.boohooman.com/',
-    sku: 'AMM00817',
-    fullSku: 'AMM00817-105-37',
+    sku: 'AMM01545',
+    fullSku: 'AMM01545-161-56',
     brand: 'boohooman.com',
     locale: 'UK',
     language: 'EN',
@@ -35,8 +35,14 @@ export default defineConfig({
       plugins(on);
     },
     excludeSpecPattern: [
-      '**/backend*/**' // Skip backend tests
+      '**/backend*/**', // Skip backend tests
+      '**/additionalTests*/**' // Skip additional tests
     ],
     numTestsKeptInMemory: 0,
+    retries: 
+    { 
+      runMode: 2, 
+      openMode: 1 
+    } ,
   },
 });

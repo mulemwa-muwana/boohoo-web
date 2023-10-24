@@ -51,7 +51,6 @@ describe('Cart basic functionality for guest user', function () {
   });
 
   it('Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
-    cy.wait(5000);
     CartPage.click.proceedToCheckout();
     CheckoutPage.assertions.assertGuestCheckoutEmail();
   });
@@ -62,7 +61,6 @@ describe('Cart basic functionality for guest user', function () {
       CartPage.assertions.assertPayPalCTAisVisible();
       CartPage.actions.openPayPalSandbox(); // 2 frames on SG
     }
-
   });
   it('Verify that Klarna CTA is displayed and functional', function () {
     const klarnaWithLocales: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'US';

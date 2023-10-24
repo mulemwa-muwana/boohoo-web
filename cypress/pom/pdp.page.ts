@@ -398,7 +398,7 @@ class PdpPage implements AbstractPage {
   click = {
 
     addToCart () {
-      cy.wait(4000);
+      cy.wait(4000); // Need to keep this wait as it needed
       const addToCart = selectors[brand].addToCart;
       cy.get(addToCart).invoke('show').click({ force: true });
     },
@@ -524,7 +524,7 @@ class PdpPage implements AbstractPage {
           }
         });
       }
-      cy.wait(1000); // Need to put this as page need time to load 
+      cy.wait(1000); // Need to put this as page need time to load
 
     },
     selectFirstAvailableSize () {

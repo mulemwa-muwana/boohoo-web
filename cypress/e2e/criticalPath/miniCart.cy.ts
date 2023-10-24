@@ -16,7 +16,7 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
     });
   });
   {
-    it('Verify that the Mini Cart is displayed', () => {     
+    it('CYP-134 Verify that the Mini Cart is displayed', () => {     
       HomePage.click.searchIcon();
       HomePage.actions.findItemUsingSKU(sku);
       pdpPage.actions.selectFirstAvailableSize();

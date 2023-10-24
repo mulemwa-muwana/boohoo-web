@@ -19,7 +19,7 @@ describe('Wishlist Page tests', function () {
     });
   });
 
-  it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
+  it('CYP-215 Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
     HomePage.actions.findItemUsingSKU(sku);
     pdpPage.actions.selectColorFromSku();
     pdpPage.actions.selectSizeFromSku();

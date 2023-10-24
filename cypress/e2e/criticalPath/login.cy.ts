@@ -11,7 +11,7 @@ describe('Login Functionality tests', function () {
     HomePage.goto();
   });
     
-  it('Verify that user can login with valid credentials and log out', function () {
+  it('CYP-131 Verify that user can login with valid credentials and log out', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
@@ -23,7 +23,7 @@ describe('Login Functionality tests', function () {
     });
   });
   
-  it('Verify that user can not login with invalid credentials', function () {
+  it('CYP-132 Verify that user can not login with invalid credentials', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, 'invalid12345');
       LoginPage.actions.loginPopUpMessage();
@@ -37,7 +37,7 @@ describe('Login Functionality tests', function () {
     });
   });
 
-  it('Verify that user can not login with non-registered mail address and that user can start process of reseting password using the "Forgot your password?" link', function () {
+  it('CYP-133 Verify that user can not login with non-registered mail address and that user can start process of reseting password using the "Forgot your password?" link', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login('invalid_email@gmail.com', credentials.password);
       LoginPage.actions.loginPopUpMessage();

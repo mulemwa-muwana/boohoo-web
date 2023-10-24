@@ -14,7 +14,7 @@ describe('Account page', function () {
   });
 
   // Order History test cases
-  it('TC01 Verify that Order history page works as expected and user is able to view order details', function () {
+  it('CYP-135 Verify that Order history page works as expected and user is able to view order details', function () {
     MyAccountPage.click.orderHistoryLink();
     if (brand == 'boohoo.com' || brand == 'nastygal.com' || isSiteGenesisBrand) {
       MyAccountPage.assertions.assertUrlContains('order-history');
@@ -25,13 +25,13 @@ describe('Account page', function () {
     MyAccountPage.assertions.assertOrderDetailsContent();
   });
 
-  it('TC02 Verify that returns option links to correct page', function () {
+  it('CYP-136 Verify that returns option links to correct page', function () {
     MyAccountPage.click.startReturnButton(assertionText.startReturnButtonText[language]);
     MyAccountPage.assertions.assertUrlContains('return');
   });
 
   // My Acount Details test cases
-  it('TC03 Verify that account details display correct email and that account details are editable', function () {
+  it('CYP-137 Verify that account details display correct email and that account details are editable', function () {
     if (!isSiteGenesisBrand) {
       MyAccountPage.click.accountDetailsLink();
     }
@@ -48,7 +48,7 @@ describe('Account page', function () {
     }
   });
 
-  it('TC04 Verify that addresses are editable; user can add and delete new address', function () {
+  it('CYP-138 Verify that addresses are editable; user can add and delete new address', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     const localeNewAddress = Addresses.getAddressByLocale(locale, 'newAddedPrimaryAddress');
 
@@ -74,7 +74,7 @@ describe('Account page', function () {
     MyAccountPage.assertions.assertAddressNotPresent(localeNewAddress.firstName); 
   });
 
-  it('TC05 Verify that card can be viewed / saved / deleted', function () {
+  it('CYP-138 Verify that card can be viewed / saved / deleted', function () {
     MyAccountPage.click.paymentDetailsLink();
     if (locale=='US' || locale=='CA') {
       MyAccountPage.actions.addCardUS(Cards.visa.cardNo, Cards.visa.owner, Cards.visa.month, Cards.visa.year ,Cards.visa.date );
@@ -87,7 +87,7 @@ describe('Account page', function () {
     MyAccountPage.assertions.assertCardNotPresent(Cards.visa.end);
   });
 
-  it('TC06 Verify that Social Accounts section can be opened in My Account page', function () {
+  it('CYP-139 Verify that Social Accounts section can be opened in My Account page', function () {
     if ((brand=='boohoo.com' || brand=='nastygal.com') && locale=='UK') {
       MyAccountPage.click.socialAccountsLink();
       MyAccountPage.assertions.assertFacebookLinkPresent();
@@ -96,7 +96,7 @@ describe('Account page', function () {
       }
     }
   });
-  it('TC07 Verify that user can link to Facebook account', function () {
+  it('CYP-140 Verify that user can link to Facebook account', function () {
     if (brand=='boohoo.com') {
       MyAccountPage.click.socialAccountsLink();
       MyAccountPage.assertions.assertFacebookLinkPresent();
@@ -104,7 +104,7 @@ describe('Account page', function () {
       homePage.assertions.assertLinkIsOpeningCorrectPage('facebook');
     }
   });
-  it('TC08 Verify that user can link to Twitter account', function () {
+  it('CYP-141 Verify that user can link to Twitter account', function () {
     if (brand=='boohoo.com' && locale=='UK') {
       MyAccountPage.click.socialAccountsLink();
       MyAccountPage.assertions.assertTwitterLinkPresent();

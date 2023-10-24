@@ -7,7 +7,6 @@ import LoginPage from '../../pom/login.page';
 import { brand, locale } from 'cypress/support/e2e';
 
 describe('Cart basic functionality for guest user', function () {
-
   beforeEach(() => {
     Navigate.toCartPageUsingSession();
 
@@ -63,7 +62,6 @@ describe('Cart basic functionality for guest user', function () {
       CartPage.assertions.assertPayPalCTAisVisible();
       CartPage.actions.openPayPalSandbox(); // 2 frames on SG
     }
-
   });
   it('CYP-51 Verify that Klarna CTA is displayed and functional', function () {
     const klarnaWithLocales: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'US';
@@ -85,6 +83,8 @@ describe('Cart basic functionality for guest user', function () {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
       CartPage.assertions.assertThriftBagIsAddedToTheCart();
+    } else {
+      this.skip();
     }
   });
 
@@ -112,6 +112,8 @@ describe('Cart page for Registered user', function () {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
       CartPage.assertions.assertThriftBagIsAddedToTheCart();
+    } else {
+      this.skip();
     }
   });
 });

@@ -594,12 +594,16 @@ describe('Home Page', function () {
       it('CYP-118 Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
         if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);
+        } else {
+          this.skip();
         }
       });
 
       it('CYP-119 Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', () => {
         if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaTransparencyInSupplyChainsActStatement[language]);
+        } else {
+          this.skip();
         }
       });
       it('CYP-120 Verify that Footer Navigation Component is present and Links are functional - Nasty Blog', function () {
@@ -607,7 +611,9 @@ describe('Home Page', function () {
         if (brand == 'nastygal.com' && englishLocales) {
           homePage.click.nastyBlogLink('Nasty Blog');
           homePage.assertions.assertLinkIsOpeningCorrectPage('https://blog.nastygal.com/');
-        } 
+        } else {
+          this.skip();
+        }
       });
       it('CYP-121 Verify that Footer Navigation Component is present and Links are functional - Privacy Notice - Updated month year', () => {
         const australianLocales: boolean = locale == 'AU' || locale == 'NZ';
@@ -689,7 +695,7 @@ describe('Home Page', function () {
 
     describe('Contact Us Page links', () => {
 
-      beforeEach( function () {    
+      beforeEach(function () {
         if (brand == 'boohooman.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerCustomerServiceBHM[language]);
         } else {
@@ -701,7 +707,7 @@ describe('Home Page', function () {
       it('CYP-127 Verify that Twitter is not an option', function () {
         if (brand =='boohoo.com' || brand == 'boohooman.com' && (locale == 'NL' || locale == 'SE'|| locale == 'DE')) {
           this.skip();
-        }      
+        }
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
       it('CYP-128 Verify that Facebook link is present and functional',function () {
@@ -719,7 +725,7 @@ describe('Home Page', function () {
         contactusPage.assertions.assertEmailOptionsPresent();
       });
  
-  })
+    });
   });
 
   describe('insta', ()=>{
@@ -732,8 +738,22 @@ describe('Home Page', function () {
         cy.wait(2000);
         HomePage.assertions.assertInstaURL();
       } else {
-          this.skip();
+        this.skip();
       }
+    });
   });
-  })
+
+  describe('MANGAMING Slot', ()=> {
+    it('Verify that Mangaming slot is present and clicking on it displays related content', function () {
+      if (brand == 'boohooman.com' && locale != 'UK') {
+        HomePage.assertions.assertMangamingPresent();
+        HomePage.click.Mangamingslot();
+        HomePage.assertions.assertMangamingOpen();
+      } else {
+        this.skip();
+      }
+
+    });
+
+  });
 });

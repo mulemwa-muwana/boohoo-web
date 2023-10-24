@@ -3,10 +3,10 @@ import customerServicePage from '../../pom/customerService.page';
 import assertionText from 'cypress/helpers/assertionText';
 
 describe('Customer Service Page', function () {
-    
+
   beforeEach(() => {
     customerServicePage.goto();
-        
+
   });
 
   it('CYP-60 Verify that track my order button is present and functional', function () {

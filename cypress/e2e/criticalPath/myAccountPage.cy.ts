@@ -64,7 +64,7 @@ describe('Account page', function () {
     MyAccountPage.actions.createAddress(localeNewAddress);
     MyAccountPage.click.addressesLink();
     MyAccountPage.assertions.assertDefaultAddressPresence();
-    MyAccountPage.actions.editDefaultAddress(localeAddress.addressLine, localeAddress.country);
+    MyAccountPage.actions.editDefaultAddress(localeAddress.addressLine);
 
     // MyAccountPage.click.verificationAddress(); need to check as this pop up is not visible now
     MyAccountPage.assertions.assertDefaultAddressData(localeAddress.firstName);

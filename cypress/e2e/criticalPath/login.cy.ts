@@ -15,11 +15,8 @@ describe('Login Functionality tests', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    
       LoginPage.actions.login(credentials.username, credentials.password);
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
-
-      cy.wait(3000);
-
       MyAccountPage.click.logOutLink();
-      LoginPage.assertions.assertLoginFormIsPresent();  
+      LoginPage.assertions.assertLoginFormIsPresent();
     });
   });
   
@@ -50,7 +47,6 @@ describe('Login Functionality tests', function () {
       }
     });
     LoginPage.click.forgotPasswordLink();
-    cy.wait(2000);
     LoginPage.actions.resetPasswordEmail('jelenaboohoo@gmail.com');
     LoginPage.click.resetPasswordButon();
     LoginPage.assertions.assertForgotPasswordMessageisDisplayed('jelenaboohoo@gmail.com');

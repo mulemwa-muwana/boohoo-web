@@ -28,14 +28,14 @@ const selectors: SelectorBrandMap = {
     sizeGuideGender: 'div.l-static_page-guide_selectors > :nth-child(1) >.b-form_section-label',
     sizeGuideCategory:'div.l-static_page-guide_selectors > :nth-child(2) >.b-form_section-label',
     sizeGuideFit: 'div.l-static_page-guide_selectors > :nth-child(3) >.b-form_section-label',
-    selectGender:'select#sizeGuideGender', 
+    selectGender:'select#sizeGuideGender',
     selectCategory: 'select#sizeGuideCategory',
     selectFit: 'select#sizeGuideFit',
     countryBtn:'.b-country-select.b-select-input.m-country',
     backInStockLink: '#womens > div > ul > li:nth-child(3) > div > div.b-menu_bar-flyout_inner.m-tab_womens > div:nth-child(1) > div > div > div:nth-child(2) > a',
     allShoesLink: 'a[href="https://uk-dwdev.boohoo.com/womens/shoes"]',
     investorRelationsAcceptBtn: 'cc-saveAll-startBtn',
-    forgetPasswordLink: 'button[data-tau="login_password_reset"]', 
+    forgetPasswordLink: 'button[data-tau="login_password_reset"]',
     forgetPasswordPopupWindow: '.b-dialog-window',
     resetPasswordEmailBox: '#dwfrm_profile_resetPassword_email',
     resetPasswordButton: 'button[data-tau="forgot_password_submit"]',
@@ -158,7 +158,10 @@ const selectors: SelectorBrandMap = {
     myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
     logInSlideManuTitle: '.b-miniaccount-title',
-    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]',
+    mangamingSlot: '.home-container > div:nth-of-type(1) img',
+    mangamingPage: '.boohooman-app-img.content-asset > .col-5.disc',
+    shopNowBtn: 'div[class="shop-button"]'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -300,7 +303,7 @@ const selectors: SelectorBrandMap = {
     logInSlideManuTitle: '.b-miniaccount-title',
     promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
   }
-  
+
 };
 class HomePage implements AbstractPage {
 
@@ -314,7 +317,7 @@ class HomePage implements AbstractPage {
 
       // It needs to be set again when linking to another page.
     }
-    if (brand == 'misspap.com' && locale == 'UK') { // To make Klarna option available for Misspap UK, IE and AU 
+    if (brand == 'misspap.com' && locale == 'UK') { // To make Klarna option available for Misspap UK, IE and AU
       cy.setCookie('billingCountryCode','GB');
       cy.setCookie('dw_locale', 'en_GB');
     } else if (brand == 'misspap.com' && locale == 'IE') {
@@ -327,7 +330,7 @@ class HomePage implements AbstractPage {
       cy.setCookie('billingCountryCode','US');
       cy.setCookie('dw_locale','en_US');
     }
-  
+
     cy.visit(url);
   }
 
@@ -350,12 +353,26 @@ class HomePage implements AbstractPage {
       }
     },
 
-    shopInstagramButton() {
+    shopInstagramButton () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn).should('be.visible')
-      .invoke('removeAttr', 'target').click();
+        .invoke('removeAttr', 'target').click();
     },
-    
+    Mangamingslot () {
+      const mangamingSlot = selectors[brand].mangamingSlot;
+      cy.get(mangamingSlot).click();
+    },
+
+    shopNowButton () {
+      cy.get('.instashop-tile.instashop-tile-one-product.js-insta-shop-tile').eq(0).as('hoverOverTile');
+      cy.get('@hoverOverTile').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
+        cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
+        cy.get('@InstaShopNowButton').click({ force: true });
+
+      });
+
+    },
+
     forgotPasswordLink () {
       const resetPassword = selectors[brand].resetPassword;
       cy.get(resetPassword).click();
@@ -368,9 +385,9 @@ class HomePage implements AbstractPage {
         cy.get(registrationButtonMobiles).click({force:true});
       } else {
         cy.get(registrationButton).click({force:true});
-      }   
+      }
     },
-   
+
     // Objects for search subsystem tests
     searchIcon (opts = { force: true }) {
       const searchIcon = selectors[brand].searchIcon;
@@ -378,12 +395,12 @@ class HomePage implements AbstractPage {
       if (isMobileDeviceUsed ) {
         cy.get(searchIconMobile).click({force: opts.force});
       } else {
-        cy.get(searchIcon).click({force: opts.force});        
+        cy.get(searchIcon).click({force: opts.force});
       }
     },
     searchField () {
       const searchField = selectors[brand].searchField;
-      cy.get(searchField).click({force: true});   
+      cy.get(searchField).click({force: true});
     },
     wishListIcon () {
       const wishListIcon = selectors[brand].wishListIcon;
@@ -391,7 +408,9 @@ class HomePage implements AbstractPage {
     },
     cartIcon () {
       const minicartIcon = selectors[brand].minicartIcon;
-      cy.get(minicartIcon).click({force: true});
+      cy.waitUntil(() => {
+        return cy.get(minicartIcon, {timeout: 7000}).invoke('show').click({ force: true });
+      });
     },
 
     // MEGA MENU - MAIN NAV
@@ -416,22 +435,22 @@ class HomePage implements AbstractPage {
 
     //  SUB-LINKS FROM MEGA MENU
     backInStockLink (opts = { force: true }) {
-      const backInStockLink = selectors[brand].backInStockLink;     
+      const backInStockLink = selectors[brand].backInStockLink;
       cy.get(backInStockLink).click({ force: opts.force });
     },
     allShoesLink (opts = { force: true }) {
-      const allShoesLink = selectors[brand].allShoesLink;     
+      const allShoesLink = selectors[brand].allShoesLink;
       cy.get(allShoesLink).click({ force: opts.force });
     },
     nastyBlogLink (text: string) {
       cy.contains(text).click({force:true});
     },
     investorRelationsAcceptBtn () {
-      const investorRelationsAcceptBtn = selectors[brand].investorRelationsAcceptBtn;     
-      cy.get(investorRelationsAcceptBtn).click(); 
+      const investorRelationsAcceptBtn = selectors[brand].investorRelationsAcceptBtn;
+      cy.get(investorRelationsAcceptBtn).click();
     },
     expandHamburgerMenu () {
-      const hamburgerMenu = selectors[brand].hamburgerMenu;     
+      const hamburgerMenu = selectors[brand].hamburgerMenu;
       cy.get('body').then($body => {
         if ($body.find(hamburgerMenu).length) {
           cy.get(hamburgerMenu).click({force: true});
@@ -441,11 +460,16 @@ class HomePage implements AbstractPage {
     },
     countryDropdown () {
       const countryBtn = selectors[brand].countryBtn;
-      cy.get(countryBtn).click({force: true});  
+      const hamburgerMenu = selectors[brand].hamburgerMenu;
+      if (isSiteGenesisBrand && isMobileDeviceUsed) {
+        cy.get(hamburgerMenu).click(({force: true}));
+      } else {
+        cy.get(countryBtn).click({force: true});
+      }
     }
   };
 
-  actions = { 
+  actions = {
     findItemUsingSKU (SKU: string) {
       if (brand != 'boohoo.com') {
         const searchIcon = selectors[brand].searchIcon;
@@ -454,21 +478,21 @@ class HomePage implements AbstractPage {
       const searchField = selectors[brand].searchField;
       const searchIcon = selectors[brand].searchIcon;
       cy.get(searchIcon).click({ force: true });
-      cy.get(searchField).click({ force: true }).type(SKU + '{enter}', {force: true});
+      cy.get(searchField).type(SKU +'{enter}', {force: true});
     },
     forgotPassword (email: string) {
-      const forgetPasswordLink = selectors[brand].forgetPasswordLink;     
-      const forgetPasswordPopupWindow = selectors[brand].forgetPasswordPopupWindow;     
-      const resetPasswordEmailBox = selectors[brand].resetPasswordEmailBox;     
-      const resetPasswordButton = selectors[brand].resetPasswordButton;     
+      const forgetPasswordLink = selectors[brand].forgetPasswordLink;
+      const forgetPasswordPopupWindow = selectors[brand].forgetPasswordPopupWindow;
+      const resetPasswordEmailBox = selectors[brand].resetPasswordEmailBox;
+      const resetPasswordButton = selectors[brand].resetPasswordButton;
 
       cy.get(forgetPasswordLink).click();
-      cy.get(forgetPasswordPopupWindow).should('be.visible');   
+      cy.get(forgetPasswordPopupWindow).should('be.visible');
       cy.get(resetPasswordEmailBox).type(email);
       cy.get(resetPasswordButton, { timeout: 6000 }).click();
     },
     closeNastygalPopup () {
-      const dialogPopupNG = selectors[brand].dialogPopupNG;     
+      const dialogPopupNG = selectors[brand].dialogPopupNG;
 
       cy.get('body').then($body => {
         if ($body.find(dialogPopupNG).length > 0) {
@@ -480,7 +504,7 @@ class HomePage implements AbstractPage {
     closeSearchFieldForMobiles () {
 
       // If Mobile Device is used
-      const searchFieldCloseMobile = selectors[brand].searchFieldCloseMobile;  
+      const searchFieldCloseMobile = selectors[brand].searchFieldCloseMobile;
       if (isMobileDeviceUsed) {
         cy.get(searchFieldCloseMobile).click({force: true});
       }
@@ -491,7 +515,7 @@ class HomePage implements AbstractPage {
       cy.get(energySlider).click();
       cy.get(energySaverActivated).should('be.visible');
 
-      // Turn it off again 
+      // Turn it off again
       cy.get(energySlider).click();
     },
 
@@ -502,48 +526,66 @@ class HomePage implements AbstractPage {
       const woman = assertionText.Womens[language];
       const trousers = assertionText.trousers[language];
       const regular = assertionText.regular[language];
-      
+
       if (!isSiteGenesisBrand) {
         if (isMobileDeviceUsed && brand == 'boohoo.com') {
           cy.get(selectGender).select(woman).should('have.value', 'woman');
           cy.get(selectCategory).select(trousers).should('have.value','trousers');
           cy.get(selectFit).select(regular).should('have.value','regular');
-          
-        } 
-      
-      } 
+
+        }
+
+      }
     } ,
     selectCountryFromDropdown () {
       const countryBtn = selectors[brand].countryBtn;
       const countryList = selectors[brand].countryList;
-      
+
       if (!isSiteGenesisBrand) {
         if (brand == 'boohoo.com'||brand == 'wallis.co.uk' || brand == 'burton.co.uk') {
           cy.get(countryBtn).select('IE €',{ force: true });
         } else if (brand=='nastygal.com') {
           cy.get(countryBtn).select('IRL (€)',{ force: true });
         }
-      
+
       } else {
         cy.get(countryList).contains('IE €').click({force: true});
-      }   
-    }     
-  };    
+      }
+    }
+  };
 
   assertions = {
     assertUserPanelTitle (name: string) {
       const loginIcon = selectors[brand].loginIcon;
-      const myAccountTileSlideMenu = selectors[brand].myAccountTileSlideMenu;     
-      const myaccountUserPanelGreetingMsg = selectors[brand].myaccountGreetingMsg;     
+      const myAccountTileSlideMenu = selectors[brand].myAccountTileSlideMenu;
+      const myaccountUserPanelGreetingMsg = selectors[brand].myaccountGreetingMsg;
 
       cy.get(loginIcon).click();
       cy.get(myAccountTileSlideMenu).click();
       cy.get(myaccountUserPanelGreetingMsg).should('contain.text', name);
     },
 
+    // Insta shop assertions
     assertInstaShopPresent () {
-      const shopInstagramBtn  = selectors[brand].shopInstagramBtn ;
-      cy.get(shopInstagramBtn ).should('be.visible');
+      const shopInstagramBtn = selectors[brand].shopInstagramBtn;
+      cy.get(shopInstagramBtn).should('be.visible');
+    },
+    assertShopNowDisplayed () {
+      cy.get('.instashop-tile.instashop-tile-one-product.js-insta-shop-tile').eq(0).as('hoverOverTile');
+      cy.get('@hoverOverTile').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
+        cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
+        cy.get('@InstaShopNowButton').should('contain', 'Shop now');
+      });
+    },
+
+    assertMangamingPresent () {
+      const mangamingSlot = selectors[brand].mangamingSlot;
+      cy.get(mangamingSlot).should('be.visible');
+    },
+    assertMangamingOpen () {
+      const mangamingPage = selectors[brand].mangamingPage;
+      cy.get(mangamingPage).should('be.visible');
+
     },
 
     // Search assertions
@@ -624,7 +666,7 @@ class HomePage implements AbstractPage {
 
     // Header icons
     assertWishListIconPresent () {
-      
+
       const wishListIconMobile = selectors[brand].wishListIconMobile;
 
       // If Mobile Device is used
@@ -634,9 +676,9 @@ class HomePage implements AbstractPage {
       // If Desktop Device is used
       } else {
         const wishListIcon = selectors[brand].wishListIcon;
-        cy.get(wishListIcon).should('be.visible'); 
+        cy.get(wishListIcon).should('be.visible');
       }
-      
+
     },
     assertCartIconPresent () {
       const minicartIcon = selectors[brand].minicartIcon;
@@ -651,12 +693,12 @@ class HomePage implements AbstractPage {
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(hamburgerMenu).click({force: true});
-        if (brand == 'karenmillen.com') {  
+        if (brand == 'karenmillen.com') {
           cy.get(loginIconLinkMobile).should('be.visible');
         } else {
           cy.get(loginIconMobile).invoke('show').click({force: true});
         }
-     
+
       // If Desktop Device is used
       } else {
         if (isSiteGenesisBrand) {
@@ -678,13 +720,13 @@ class HomePage implements AbstractPage {
     assertEnergySaverVisible () {
       const energySaver = selectors[brand].energySaver;
       cy.get(energySaver).should('be.visible');
-    }, 
+    },
     assertSelectCountryFromDropdown () {
       cy.url().should('include', '/ie');
     },
 
     assertInstaURL () {
-      cy.url().should('contain','instashop')
+      cy.url().should('contain','instashop');
     },
   };
 

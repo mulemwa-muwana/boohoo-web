@@ -112,7 +112,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
-    changeShippingAddress: '#checkout-main > div > div > main > section:nth-child(3) > section.b-checkout_step-item.m-summary > div > div > section:nth-child(1) > h3 > button',
+    changeShippingAddress: 'h3.b-summary_group-subtitle button[aria-label="Change Shipping"][data-edit="address"]',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: '.b-form_section > .b-address_selector-actions > .b-address_selector-button',

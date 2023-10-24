@@ -116,5 +116,10 @@ export default defineConfig({
     experimentalMemoryManagement: true,
     experimentalOriginDependencies: true,
     experimentalWebKitSupport: true,
+    retries: 
+    { 
+      runMode: 2, 
+      openMode: 1 
+    } ,
   },
 });

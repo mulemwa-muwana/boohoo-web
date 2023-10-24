@@ -12,7 +12,7 @@ export default defineConfig({
     brand: 'misspap.com',
     locale: 'US',
     language: 'EN',
-    giftCertificate: 'RWHRHFYAZSRILYAR',
+    giftCertificate: 'JIPYLJDSIZVAGGFD',
   },
 
   viewportHeight: 1080,
@@ -29,7 +29,6 @@ export default defineConfig({
     overwrite: false,
     html: false,
     json: true,
-    giftCertificate: 'JIPYLJDSIZVAGGFD'
   },
 
   e2e: {

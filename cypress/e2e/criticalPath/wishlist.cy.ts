@@ -5,7 +5,7 @@ import assertionText from '../../helpers/assertionText';
 import pdpPage from 'cypress/pom/pdp.page';
 import cartPage from 'cypress/pom/cart.page';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
-import { brand, language, sku } from 'cypress/support/e2e';
+import { brand, fullSku, language } from 'cypress/support/e2e';
 
 describe('Wishlist Page tests', function () {
 
@@ -22,8 +22,11 @@ describe('Wishlist Page tests', function () {
   it('CYP-215 Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
     HomePage.actions.findItemUsingSKU(sku);
     pdpPage.actions.selectColorFromSku();
+    cy.wait(1000);
     pdpPage.actions.selectSizeFromSku();
+    cy.wait(1000);
     pdpPage.click.addToWishList();
+
     if (brand == 'boohoo.com') {
       WishListPage.assertions.assertItemIsAddedtoWishlistAlertText(assertionText.WishlistItemsAddedAlert[language]);
     }

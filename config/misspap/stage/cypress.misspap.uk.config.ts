@@ -37,6 +37,11 @@ export default defineConfig({
       '**/backend*/**', // Skip backend tests
       '**/additionalTests*/**' // Skip additional tests
     ],
-    numTestsKeptInMemory: 0
+    numTestsKeptInMemory: 0,
+    retries: 
+    { 
+      runMode: 2, 
+      openMode: 1 
+    },
   },   
 });

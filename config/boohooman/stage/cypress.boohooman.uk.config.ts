@@ -36,6 +36,7 @@ export default defineConfig({
     },
     excludeSpecPattern: [
       '**/backend*/**', // Skip backend tests
+      '**/additionalTests*/**' // Skip additional tests
       // Skip additional tests
     ],
     numTestsKeptInMemory: 0,

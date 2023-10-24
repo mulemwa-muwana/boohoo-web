@@ -88,7 +88,7 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
-    addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    addAddressManually: 'button[class="b-button m-info m-width_full"]:eq(0)',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: '[data-tau="add_new_address"]',
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
@@ -1011,7 +1011,6 @@ class ShippingPage implements AbstractPage {
     selectState (state: string) {
       const shippingState = selectors[brand].shippingState;
       const shippingStateUS = selectors[brand].shippingState;
-      const countyField = selectors[brand].countyField;
       if (!isSiteGenesisBrand && locale == 'US' || locale == 'CA') {
         cy.get(shippingStateUS).select(state);
       } else if ((brand != 'karenmillen.com' && locale !='EU') && ( locale !='UK')) {

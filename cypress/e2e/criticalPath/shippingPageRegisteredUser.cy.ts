@@ -250,6 +250,20 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
   });
 
+  it('KMEU: Verify that user can select the standard shipping method for EU locale only', function () {
+    if (brand == 'karenmillen.com' && locale == 'EU') {
+      const CountriesEU: Array<string> = ['Germany', 'Spain', 'France', 'Netherlands'];
+      shippingPage.click.addNewAddressButton();
+      for (let i = 0; i < CountriesEU.length; i++) {
+        shippingPage.actions.selectCountry(CountriesEU[i]);
+        shippingPage.assertions.assertDeliverySection(`${CountriesEU[i]} Standard`);
+      }
+    } else {
+      this.skip();
+    }
+  }
+  );
+
   it('Verify that user is able to select 2nd shipping method', function () {
     const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU' );
     const isKMLocaleWithSelectState: boolean = (brand == 'karenmillen.com' && (locale == 'US' || locale == 'AU' || locale == 'IE'));
@@ -318,7 +332,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com')&& (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'CA')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
+    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com' || brand == 'karenmillen.com') && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'EU' || locale == 'CA')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
     if (excludedmisspapWithLocales) {
       this.skip();
     }

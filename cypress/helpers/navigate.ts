@@ -27,6 +27,7 @@ class Navigate {
     PdpPage.actions.selectColorFromSku();
     PdpPage.actions.selectSizeFromSku();
     PdpPage.click.addToCart();
+    cy.wait(1000); // Wait is needed otherwise test is failing
     HomePage.click.cartIcon();
   }
 

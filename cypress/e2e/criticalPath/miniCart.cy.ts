@@ -4,7 +4,7 @@ import pdpPage from '../../pom/pdp.page';
 import { sku, brand } from 'cypress/support/e2e';
 
 describe('Mini Cart is displayed, Mini Cart Contains correct information, Checkout and View Bag buttons redirect correctly', function () {
-  
+
   // This will execute before every single test
   beforeEach(() => {
     HomePage.goto();
@@ -16,17 +16,12 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
     });
   });
   {
-    it('Verify that the Mini Cart is displayed', () => {     
+    it('Verify that the Mini Cart is displayed', () => {
       HomePage.click.searchIcon();
       HomePage.actions.findItemUsingSKU(sku);
       pdpPage.actions.selectFirstAvailableSize();
-      if (brand == 'burton.co.uk' || brand == 'boohoo.com') {
-        cy.wait(3000);
-      }
       pdpPage.click.addToCart();
       pdpPage.assertions.assertMiniCartIsDisplayed();
-    
     });
   }
-
 });

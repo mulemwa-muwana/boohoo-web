@@ -710,7 +710,7 @@ const selectors: SelectorBrandMap = {
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
-    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    w3WAddressSuggestion:'li:nth-of-type(1) > .w3w-description',
     successMark:'.field-wrapper-w3w-valid',
     helpAndInfoLink: 'a[title="Help & Info"]'
   },
@@ -1162,7 +1162,7 @@ class ShippingPage implements AbstractPage {
       cy.get(w3Winput).type(w3Words);
       cy.wait(10000);
       cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text','Manchester');
-      cy.get(w3WAddressSuggestion).click({force:true});
+      cy.get(w3WAddressSuggestion).eq(0).click({force:true});
     }
   };
 

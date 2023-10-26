@@ -51,16 +51,14 @@ describe('Product Details Page tests', function () {
   it('TC05 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColorByIndex(0);
     PdpPage.actions.selectFirstAvailableSize();
-    if (brand == 'burton.co.uk') {
-      cy.wait(3000);
-    }
+    
     PdpPage.click.addToCart(); 
     PdpPage.assertions.assertMiniCartIsDisplayed();
   }); 
   it('TC06 Verify that save for later (heart icon) is functional when selected', function () {
     PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToWishList();
-    cy.wait(3000);
+   
     if (brand == 'boohoo.com') {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[language]);
     } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || brand == 'karenmillen.com' || brand == 'boohooman.com' || brand == 'boohoomena.com') {
@@ -101,7 +99,7 @@ describe('Product Details Page tests', function () {
       }
       PdpPage.assertions.assertPremierBannerIsVisible();
       PdpPage.click.addToCartPremier();
-      cy.wait(5000);
+      cy.wait(5000);     
       homePage.click.cartIcon();
       cy.wait(10000);
       cartPage.assertions.assertSelectedProductIsAddedToTheCart(assertionText.Premier[language]);

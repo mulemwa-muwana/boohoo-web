@@ -58,6 +58,20 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
+  it('Verify that in "DELIVERY INFORMATION" address is mandatory', function () {
+    const brandHasEnterManuallyButton: boolean = (brand == 'boohoo.com' || brand == 'nastygal.com');
+    if (brandHasEnterManuallyButton) {
+      shippingPage.click.addAddressManually();
+    }
+    shippingPage.click.proceedToBilling();
+    if (brand == 'boohoo.com') {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[language]);
+    } else {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldError[language]);
+    }
+
+  });
+
   it('CYP-179 Verify that in "DELIVERY INFORMATION" user can add first name, last name, select country from drop down list, add phone number', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddress();

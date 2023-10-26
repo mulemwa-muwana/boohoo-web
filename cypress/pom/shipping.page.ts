@@ -54,8 +54,8 @@ const selectors: SelectorBrandMap = {
     shippingMethodName: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-label',
     shippingMethodsNameList: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-name',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
-    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
@@ -128,6 +128,7 @@ const selectors: SelectorBrandMap = {
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
     postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    shippingTab : '[data-id="button-deliveryPanel"]',
     clickAndCollectTab:"[data-id='button-clickCollectPanel']",
     pudoShippingMethod:"[for='shippingMethod-pudo-NUKmyhermes']",
     pudoSearchField:'.b-pudo-search_field',
@@ -408,6 +409,8 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#address-autocomplete',
     addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
+    cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
     cartContainer: '.summary-inner',
     cartContainerMobile: '.cart-row',
     orderSummaryOnShippingPage: '.summary-inner',
@@ -695,6 +698,8 @@ const selectors: SelectorBrandMap = {
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     orderTotal: '.order-total',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodName: '.js-shipping-method-list .form-label',
@@ -710,7 +715,7 @@ const selectors: SelectorBrandMap = {
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
-    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    w3WAddressSuggestion:'li:nth-of-type(1) > .w3w-description',
     successMark:'.field-wrapper-w3w-valid',
     helpAndInfoLink: 'a[title="Help & Info"]'
   },
@@ -1043,7 +1048,7 @@ class ShippingPage implements AbstractPage {
       if (brand == 'boohoomena.com') {
         cy.get(cityField).select(city, { force: true });
       } else {
-        cy.get(cityField).clear({ force: true }).type(city);
+        cy.get(cityField).clear({ force: true }).type(city,{ force: true });
       }
     },
     countyField (county: string) {
@@ -1060,9 +1065,9 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({ force: true }).type(postcode);
+      cy.get(shippingPostcode).clear({ force: true }).type(postcode,{force: true});
       cy.wait(1000);
-      cy.get(shippingPostcode).click().blur({force:true});
+      cy.get(shippingPostcode).click({force:true});
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;
@@ -1072,6 +1077,10 @@ class ShippingPage implements AbstractPage {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
       cy.get(shippingMethodName).contains(shippingMethod).click({ force: true });
+    },
+    selectShippingTab () {
+      const shippingTab = selectors[brand].shippingTab;
+      cy.get(shippingTab,{timeout:1000}).click({ force: true });
     },
     selectSecondShippingMethod () {
       const shippingMethodName = selectors[brand].shippingMethodName;
@@ -1156,13 +1165,13 @@ class ShippingPage implements AbstractPage {
       });
     },
     selectW3WAddress (w3Words: string) {
-      const w3Winput=selectors[brand].w3Winput;
-      const w3WAddressSuggestion=selectors[brand].w3WAddressSuggestion;
+      const w3Winput = selectors[brand].w3Winput;
+      const w3WAddressSuggestion = selectors[brand].w3WAddressSuggestion;
       cy.wait(3000);
-      cy.get(w3Winput).type(w3Words);
-      cy.wait(10000);
-      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text','Manchester');
-      cy.get(w3WAddressSuggestion).click({force:true});
+      cy.get(w3Winput).type(w3Words, { force: true });
+      cy.wait(1000);
+      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text', 'Manchester');
+      cy.get(w3WAddressSuggestion).eq(0).click({ force: true });
     }
   };
 

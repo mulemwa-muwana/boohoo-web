@@ -128,6 +128,7 @@ const selectors: SelectorBrandMap = {
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
     postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    shippingTab : '[data-id="button-deliveryPanel"]',
     clickAndCollectTab:"[data-id='button-clickCollectPanel']",
     pudoShippingMethod:"[for='shippingMethod-pudo-NUKmyhermes']",
     pudoSearchField:'.b-pudo-search_field',
@@ -1047,7 +1048,7 @@ class ShippingPage implements AbstractPage {
       if (brand == 'boohoomena.com') {
         cy.get(cityField).select(city, { force: true });
       } else {
-        cy.get(cityField).clear({ force: true }).type(city);
+        cy.get(cityField).clear({ force: true }).type(city,{ force: true });
       }
     },
     countyField (county: string) {
@@ -1064,9 +1065,9 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({ force: true }).type(postcode);
+      cy.get(shippingPostcode).clear({ force: true }).type(postcode,{force: true});
       cy.wait(1000);
-      cy.get(shippingPostcode).click().blur({force:true});
+      cy.get(shippingPostcode).click({force:true});
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;
@@ -1076,6 +1077,10 @@ class ShippingPage implements AbstractPage {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
       cy.get(shippingMethodName).contains(shippingMethod).click({ force: true });
+    },
+    selectShippingTab () {
+      const shippingTab = selectors[brand].shippingTab;
+      cy.get(shippingTab,{timeout:1000}).click({ force: true });
     },
     selectSecondShippingMethod () {
       const shippingMethodName = selectors[brand].shippingMethodName;
@@ -1160,13 +1165,13 @@ class ShippingPage implements AbstractPage {
       });
     },
     selectW3WAddress (w3Words: string) {
-      const w3Winput=selectors[brand].w3Winput;
-      const w3WAddressSuggestion=selectors[brand].w3WAddressSuggestion;
+      const w3Winput = selectors[brand].w3Winput;
+      const w3WAddressSuggestion = selectors[brand].w3WAddressSuggestion;
       cy.wait(3000);
-      cy.get(w3Winput).type(w3Words);
-      cy.wait(10000);
-      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text','Manchester');
-      cy.get(w3WAddressSuggestion).eq(0).click({force:true});
+      cy.get(w3Winput).type(w3Words, { force: true });
+      cy.wait(1000);
+      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text', 'Manchester');
+      cy.get(w3WAddressSuggestion).eq(0).click({ force: true });
     }
   };
 

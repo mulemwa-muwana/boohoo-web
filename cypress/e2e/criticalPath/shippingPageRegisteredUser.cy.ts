@@ -255,29 +255,17 @@ describe('Shipping Page Registered user tests', function () {
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
+    if (brand == 'nastygal.com') {
+      shippingPage.actions.selectShippingTab();
+    }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
-
     if (locale == 'IE' || locale == 'US' || locale == 'AU') {
       shippingPage.click.proceedToBillingVerification();
     }
     billingPage.actions.waitPageToLoad();
     shippingPage.assertions.assertShippingMethodIsSelected(localeShippingMethod.shippingMethodName);
   });
-
-  it('KMEU: Verify that user can select the standard shipping method for EU locale only', function () {
-    if (brand == 'karenmillen.com' && locale == 'EU') {
-      const CountriesEU: Array<string> = ['Germany', 'Spain', 'France', 'Netherlands'];
-      shippingPage.click.addNewAddressButton();
-      for (let i = 0; i < CountriesEU.length; i++) {
-        shippingPage.actions.selectCountry(CountriesEU[i]);
-        shippingPage.assertions.assertDeliverySection(`${CountriesEU[i]} Standard`);
-      }
-    } else {
-      this.skip();
-    }
-  }
-  );
 
   it('Verify that user is able to select 2nd shipping method', function () {
     const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU' );
@@ -318,6 +306,9 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectSecondShippingMethod();
     shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
       cy.log(secondShippingMethodName);
+      if (brand == 'nastygal.com') {
+        shippingPage.actions.selectShippingTab();
+      }
       shippingPage.click.proceedToBilling();
       if (locale == 'IE' || (brand == 'boohooman.com' && locale == 'US') || (brand == 'karenmillen.com' && locale == 'US') || (brand == 'misspap.com' && (locale == 'US' || locale == 'AU'))) {
         shippingPage.click.proceedToBillingVerification();
@@ -396,4 +387,18 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.helpAndInfoLink();
     shippingPage.assertions.assertCustomerServicePageIsOpened();
   });
+
+  it('KMEU: Verify that user can select the standard shipping method for EU locale only', function () {
+    if (brand == 'karenmillen.com' && locale == 'EU') {
+      const CountriesEU: Array<string> = ['Germany', 'Spain', 'France', 'Netherlands'];
+      shippingPage.click.addNewAddressButton();
+      for (let i = 0; i < CountriesEU.length; i++) {
+        shippingPage.actions.selectCountry(CountriesEU[i]);
+        shippingPage.assertions.assertDeliverySection(`${CountriesEU[i]} Standard`);
+      }
+    } else {
+      this.skip();
+    }
+  }
+  );
 });

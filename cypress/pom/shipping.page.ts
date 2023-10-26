@@ -329,7 +329,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
+    proceedToBilling: '.address-container button[name="dwfrm_singleshipping_shippingAddress_save"]',
     proceedToBillingVerificationBtn: '.verification-address-button',
     addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
@@ -356,7 +356,7 @@ const selectors: SelectorBrandMap = {
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    countyField: '[name="dwfrm_singleshipping_shippingAddress_addressFields_county"]',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -821,7 +821,7 @@ class ShippingPage implements AbstractPage {
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
       cy.wait(3000);
-      cy.get(proceedToBilling).click({ force: true });
+      cy.get(proceedToBilling,{timeout:1000}).trigger('click',{force:true})
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {

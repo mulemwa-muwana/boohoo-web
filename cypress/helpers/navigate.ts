@@ -200,7 +200,7 @@ class Navigate {
   toMyAccountPageUsingSession () {
     cy.session('myaccount-page-session', () => {
       this.toMyAccountPage();
-      cy.wait(7000);
+      cy.wait(1000);
     });
     cy.visit(url + '/myaccount');
   }

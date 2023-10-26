@@ -996,9 +996,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressNameLine).then($addressCards=>{
           if ($addressCards.text().includes('Boohoo')) {
             cy.get(addressNameLine).contains('Boohoo').each((deleteAddressCard)=>{
-              cy.wait(1000);
               cy.wrap(deleteAddressCard).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true});// Finding element by text then going to delete button through parentsUntil and parents
-              cy.wait(1000);
               cy.get(addressDeleteConfirmationBtn).click({force:true});
             });
           }
@@ -1012,7 +1010,6 @@ class MyAccountPage implements AbstractPage {
           cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true});
         });
         if (!isSiteGenesisBrand) {
-          cy.wait(1000);
           cy.get(addressDeleteConfirmationBtn).click({force:true});
         }
       },
@@ -1143,7 +1140,7 @@ class MyAccountPage implements AbstractPage {
       },
       assertAddressNotPresent (addressName: string) {
         const addressCardsList = selectors[variables.brand].addressCardsList;
-        cy.wait(5000);
+        cy.wait(3000);//Needed to keep this
         cy.get(addressCardsList).each(($el)=>{
           cy.wrap($el).should('be.visible').and('not.contain', addressName);
         });

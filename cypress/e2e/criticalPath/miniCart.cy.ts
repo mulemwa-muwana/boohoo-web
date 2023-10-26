@@ -7,7 +7,6 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
 
   // This will execute before every single test
   beforeEach(() => {
-    HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       HomePage.goto();
       HomePage.click.logInIcon();

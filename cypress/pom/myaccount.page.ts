@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import { brand, locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 import shippingPage from './shipping.page';
@@ -975,7 +975,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressField).should('be.visible').type(address.addressLine, { force: true });
         if (brand == 'boohoomena.com') {
           cy.get(addressCityField).select(address.city);
-          cy.get(addressStateCode).select(address.county)
+          cy.get(addressStateCode).select(address.county);
         } else {
           cy.get(addressCityField).type(address.city, { force: true });
         }
@@ -1126,7 +1126,7 @@ class MyAccountPage implements AbstractPage {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
         const addressDefaultlinkCTA = selectors[variables.brand].addressDefaultlinkCTA;
         if (brand == 'boohoomena.com') {
-          cy.get(addressDefaultlinkCTA).click()
+          cy.get(addressDefaultlinkCTA).click();
         }
         cy.get(addressDefaultBox).should('be.visible');
       },
@@ -1146,7 +1146,7 @@ class MyAccountPage implements AbstractPage {
       },
       assertAddressNotPresent (addressName: string) {
         const addressCardsList = selectors[variables.brand].addressCardsList;
-        cy.wait(3000);//Needed to keep this
+        cy.wait(3000);// Needed to keep this
         cy.get(addressCardsList).each(($el)=>{
           cy.wrap($el).should('be.visible').and('not.contain', addressName);
         });

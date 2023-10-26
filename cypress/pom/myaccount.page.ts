@@ -712,6 +712,7 @@ const selectors: SelectorBrandMap = {
     profileUpdateBtn: '.js-update-details button[value="Update"]',
     addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
+    addressDefaultlinkCTA: ':nth-child(1) > .account-page-list-inner > .account-page-list-footer > .address-make-default > .address-make-default-link',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#primary > .edit-address',
     addressField: '#dwfrm_profile_address_address1',
@@ -974,6 +975,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressField).should('be.visible').type(address.addressLine, { force: true });
         if (brand == 'boohoomena.com') {
           cy.get(addressCityField).select(address.city);
+          cy.get(addressStateCode).select(address.county)
         } else {
           cy.get(addressCityField).type(address.city, { force: true });
         }
@@ -1122,6 +1124,10 @@ class MyAccountPage implements AbstractPage {
       },
       assertDefaultAddressPresence () {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
+        const addressDefaultlinkCTA = selectors[variables.brand].addressDefaultlinkCTA;
+        if (brand == 'boohoomena.com') {
+          cy.get(addressDefaultlinkCTA).click()
+        }
         cy.get(addressDefaultBox).should('be.visible');
       },
       assertDefaultAddressData (addressName: string) {

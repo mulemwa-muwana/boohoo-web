@@ -459,7 +459,7 @@ const selectors: SelectorBrandMap = {
     successMark:'.field-wrapper-w3w-valid',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    checkoutMiniBagSummery: '.checkout-mini-cart',
+    checkoutMiniBagSummery: '[data-tau="minicart_start_checkout_bottom"]',
     helpAndInfoLink: '.checkout-help-link',
     deliverySection:  '.js-shipping-method-list.js-cmp-inited.js-cmp-ShippingMethodModals',
   },

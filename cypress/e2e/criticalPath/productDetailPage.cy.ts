@@ -133,7 +133,7 @@ describe('Product Details Page tests', function () {
     const MPhereLinkFromReturns: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'AU' || locale == 'IE');
     if (brand == 'karenmillen.com' || BMANhereLinkFromReturns || MPhereLinkFromReturns) {
       PdpPage.click.returnsInfo();
-      cy.wait(3000);
+    
       PdpPage.assertions.assertReturnsHereLinkIsDisplayedAndLinked(assertionText.clickHereLink[language]);
     } else {
       this.skip();
@@ -146,7 +146,7 @@ describe('Product Details Page tests', function () {
     const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
     if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
       pdpPage.click.paypalMoreInfo();
-      cy.wait(3000);
+      
       pdpPage.assertions.assertPaypalRelatedPageIsDisplayed();
     } else {
       this.skip();
@@ -162,11 +162,11 @@ describe('Product Details Page tests', function () {
     if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
       if (afterPayWithLocales) {
         pdpPage.click.afterPayMoreInfo();
-        cy.wait(3000);
+        
         pdpPage.assertions.assertAfterPayRelatedPageIsDisplayed();
       } else {
         pdpPage.click.clearPayMoreInfo();
-        cy.wait(3000);
+       
         pdpPage.assertions.assertClearPayRelatedPageIsDisplayed();
       }
     } else {
@@ -181,7 +181,7 @@ describe('Product Details Page tests', function () {
     const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'IE' || locale == 'US' || locale == 'AU');
     if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
       pdpPage.click.klarnaMoreInfo();
-      cy.wait(3000);
+      
       pdpPage.assertions.assertKlarnaRelatedPageIsDisplayed();
     } else {
       this.skip();

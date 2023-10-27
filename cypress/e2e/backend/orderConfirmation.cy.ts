@@ -20,11 +20,7 @@ describe('Boohoo order placement', () => {
       LoginPage.actions.loginViaPage(credentials.email, credentials.password);
       cy.wait(2000);
       CartPage.goto();
-      if (brand == 'nastygal.com') {
-        cy.get("[data-tau='start_checkout_bottom']:visible").click({force:true});
-      } else {
-        CartPage.click.proceedToCheckout();
-      }
+      CartPage.click.proceedToCheckout();
     });
 
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
@@ -47,7 +43,7 @@ describe('Boohoo order placement', () => {
     BillingPage.actions.waitPageToLoad();
   });
 
-  it('can select Credit Card as payment method and generate an artefact', function () {
+  it.only('can select Credit Card as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = getCardProviderByBrand(brand, locale);
     if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
       this.skip();

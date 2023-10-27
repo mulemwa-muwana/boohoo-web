@@ -1,4 +1,4 @@
-import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
+import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import { brand, locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 import shippingPage from './shipping.page';
@@ -712,6 +712,7 @@ const selectors: SelectorBrandMap = {
     profileUpdateBtn: '.js-update-details button[value="Update"]',
     addressCardsList: '.address-list-item',
     addressDefaultBox: 'li.account-page-list-item.default',
+    addressDefaultlinkCTA: 'div [class="address-make-default-link"]',
     addressEditBtn: '.address-edit-link',
     addressEditForm: '#primary > .edit-address',
     addressField: '#dwfrm_profile_address_address1',
@@ -974,6 +975,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressField).should('be.visible').type(address.addressLine, { force: true });
         if (brand == 'boohoomena.com') {
           cy.get(addressCityField).select(address.city);
+          cy.get(addressStateCode).select(address.county);
         } else {
           cy.get(addressCityField).type(address.city, { force: true });
         }
@@ -996,9 +998,7 @@ class MyAccountPage implements AbstractPage {
         cy.get(addressNameLine).then($addressCards=>{
           if ($addressCards.text().includes('Boohoo')) {
             cy.get(addressNameLine).contains('Boohoo').each((deleteAddressCard)=>{
-              cy.wait(1000);
               cy.wrap(deleteAddressCard).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true});// Finding element by text then going to delete button through parentsUntil and parents
-              cy.wait(1000);
               cy.get(addressDeleteConfirmationBtn).click({force:true});
             });
           }
@@ -1012,7 +1012,6 @@ class MyAccountPage implements AbstractPage {
           cy.wrap(ele).parentsUntil(addressCards).parent().find(addressDeleteButton).click({force:true});
         });
         if (!isSiteGenesisBrand) {
-          cy.wait(1000);
           cy.get(addressDeleteConfirmationBtn).click({force:true});
         }
       },
@@ -1125,6 +1124,10 @@ class MyAccountPage implements AbstractPage {
       },
       assertDefaultAddressPresence () {
         const addressDefaultBox = selectors[variables.brand].addressDefaultBox;
+        const addressDefaultlinkCTA = selectors[variables.brand].addressDefaultlinkCTA;
+        if (brand == 'boohoomena.com') {
+          cy.get(addressDefaultlinkCTA).eq(0).click();
+        }
         cy.get(addressDefaultBox).should('be.visible');
       },
       assertDefaultAddressData (addressName: string) {
@@ -1143,7 +1146,7 @@ class MyAccountPage implements AbstractPage {
       },
       assertAddressNotPresent (addressName: string) {
         const addressCardsList = selectors[variables.brand].addressCardsList;
-        cy.wait(5000);
+        cy.wait(3000);// Needed to keep this
         cy.get(addressCardsList).each(($el)=>{
           cy.wrap($el).should('be.visible').and('not.contain', addressName);
         });

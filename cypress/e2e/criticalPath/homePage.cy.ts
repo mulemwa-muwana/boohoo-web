@@ -591,7 +591,7 @@ describe('Home Page', function () {
       //   }
       // });
 
-      it('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act',function () {
+      it('Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', function () {
         if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);
         } else {
@@ -670,6 +670,22 @@ describe('Home Page', function () {
         cy.scrollTo('bottom');
         cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
       });
+      it('Verify that Footer Navigation Component is present and Links are functional - Recycling Options', function () {
+        if (brand == 'misspap.com' && locale == 'UK') {
+          homePage.click.recyclingOptions(assertionText.recyclingOptions[language]);
+          homePage.assertions.assertRecyclingOptionsPageIsDisplayed();
+        } else {
+          this.skip();
+        }
+      });
+      it('Verify that Footer Navigation Component is present and Links are functional - Unidays', function () {
+        if (brand == 'misspap.com' && locale == 'UK') {
+          homePage.click.unidays(assertionText.unidays[language]);
+          homePage.assertions.assertUnidaysPageIsDisplayed();
+        } else {
+          this.skip();
+        }
+      });
 
     });
 
@@ -705,19 +721,19 @@ describe('Home Page', function () {
       });
 
       it('Verify that Twitter is not an option', function () {
-        if (brand == 'boohoo.com' || brand == 'boohooman.com' && (locale == 'NL' || locale == 'SE' || locale == 'DE')) {
+        if (brand =='boohoo.com' || brand == 'boohooman.com' && (locale == 'NL' || locale == 'SE'|| locale == 'DE')) {
           this.skip();
         }
         contactusPage.assertions.assertTwitterIconIsNotPresent();
       });
-      it('Verify that Facebook link is present and functional', function () {
-        if (brand == 'boohooman.com' && (locale == 'FR' || locale == 'NL' || locale == 'IE' || locale == 'DE')) {
+      it('Verify that Facebook link is present and functional',function () {
+        if (brand == 'boohooman.com' && (locale == 'FR' || locale =='NL' || locale =='IE'|| locale == 'DE')) {
           this.skip(); // Facebook link isn't exist on contuct us page
         }
         contactusPage.assertions.assertFacebookIconIsPresent();
       });
       it('Verify that Email link is present and functional', function () {
-        if (brand == 'boohooman.com' && (locale == 'IE' || locale == 'DE')) {
+        if (brand == 'boohooman.com' && (locale =='IE' || locale =='DE')) {
           this.skip(); // Email Us link isn't exist on contuct us page
         }
         contactusPage.assertions.assertEmailIconIsPresent();

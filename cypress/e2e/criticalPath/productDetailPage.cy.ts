@@ -20,6 +20,7 @@ describe('Product Details Page tests', function () {
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
     PdpPage.assertions.assertProductCodeIsDisplayed(SKU);
+
     // We need to instal plugin for continuing after failed assertation just in case
     if (isSiteGenesisBrand) {
       PdpPage.assertions.assertImageIsDisplayed('.thumb-image');
@@ -28,6 +29,7 @@ describe('Product Details Page tests', function () {
       PdpPage.assertions.assertImageIsDisplayed('#product-image-1');
       PdpPage.assertions.assertImageIsDisplayed('#product-image-2');
     }
+
     // PdpPage.assertions.assertImageIsDisplayed('#product-image-3');  some products have only 3 images
   });
 
@@ -76,6 +78,7 @@ describe('Product Details Page tests', function () {
     } else {
       PdpPage.assertions.assertReturnInfoIsDisplayed();
     }
+
     // We need to instal plugin for continuing after failed assertation just in case
   });
   it('TC08 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {

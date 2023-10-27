@@ -83,6 +83,10 @@ const selectors: SelectorBrandMap = {
     iDEALBankSelection: '#ideal_bank',
     iDEALPaymentButton: '#payment-details-IDEAL-SSL .b-button',
     iDEALAuthoriseButton: '#op-Auth',
+    sofortSelectionButton: '#payment-button-SOFORT-SSL',
+    sofortPaymentButton: '#payment-details-SOFORT-SSL .b-button',
+    sofortPaymentOutcomeSelection: '[name="status"]',
+    sofortContinueButton: 'a > img',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -1308,6 +1312,21 @@ class BillingPage implements AbstractPage {
       cy.wait(5000);
       cy.get(iDEALAuthoriseButton).click({ force : true });
     },
+
+    selectSofortBoohooDe () {
+
+      const sofortSelectionButton = selectors[brand].sofortSelectionButton;
+      const sofortPaymentButton = selectors[brand].sofortPaymentButton;
+      const sofortPaymentOutcomeSelection = selectors[brand].sofortPaymentOutcomeSelection;
+      const sofortContinueButton = selectors[brand].sofortContinueButton;
+
+      cy.get(sofortSelectionButton).click({ force : true });
+      cy.get(sofortPaymentButton).click({ force : true });
+      cy.wait(5000);
+      cy.get(sofortPaymentOutcomeSelection).select('Authorised');
+      cy.get(sofortContinueButton).click({ force : true });
+    },
+    
   };
 
   assertions = {

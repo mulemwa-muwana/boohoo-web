@@ -75,6 +75,18 @@ describe('Order confirmation page for guest user', function () {
       this.skip();
     }
   });
+  
+  it('Verify that guest user can place order using Sofort - BHO De', function () {
+    if (brand == 'boohoo.com' && locale == 'DE') { 
+      Navigate.toBillingPage('GuestUser');
+      billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
+
+      billingPage.actions.selectSofortBoohooDe();
+      billingPage.assertions.assertOrderConfirmationPageIsDisplayed();
+    } else {
+      this.skip();
+    }
+  });
 });
 
 describe('Order confirmation page for registered user', function () {

@@ -704,7 +704,7 @@ describe('Home Page', function () {
           GlobalFooter.assertions.assertHeaderIsVisible();
         }
       });
-      it('CYP-126 Check global header displays.', () => {
+      it('Check global header displays.', () => {
         GlobalFooter.assertions.assertHeaderIsVisible();
       });
     });

@@ -24,7 +24,7 @@ const selectors: SelectorBrandMap = {
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
+    proceedToCheckout: '[href="https://de-dwstg.boohoo.com/checkout-login"]',
     clearCart: '.b-cart_product-remove',
     clearCartMobile: 'button.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',

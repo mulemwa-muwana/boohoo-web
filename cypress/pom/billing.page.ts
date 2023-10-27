@@ -79,6 +79,10 @@ const selectors: SelectorBrandMap = {
     clearPayIdCTA: '[data-testid="login-identity-button"]',
     clearPayPasswordInput: '[data-testid="login-password-input"]',
     clearPayPasswordCTA: '[data-testid="login-password-button"]',
+    sofortSelectionButton: '#payment-button-SOFORT-SSL',
+    sofortPaymentButton: '#payment-details-SOFORT-SSL .b-button',
+    sofortPaymentOutcomeSelection: '[name="status"]',
+    sofortContinueButton: 'a > img',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -1290,6 +1294,20 @@ class BillingPage implements AbstractPage {
       cy.get(clearPayPasswordInput, { timeout: 30000 }).type('Boohoo!23');
       cy.get(clearPayPasswordCTA, { timeout: 30000 }).click();
       cy.get(clearPaySummeryButton, { timeout: 30000 }).click();
+    },
+
+    selectSofortBoohooDe() {
+
+      const sofortSelectionButton = selectors[brand].sofortSelectionButton;
+      const sofortPaymentButton = selectors[brand].sofortPaymentButton;
+      const sofortPaymentOutcomeSelection = selectors[brand].sofortPaymentOutcomeSelection;
+      const sofortContinueButton = selectors[brand].sofortContinueButton;
+
+      cy.get(sofortSelectionButton).click({ force : true });
+      cy.get(sofortPaymentButton).click({ force : true });
+      cy.wait(5000);
+      cy.get(sofortPaymentOutcomeSelection).select('Authorised');
+      cy.get(sofortContinueButton).click({ force : true });
     },
   };
 

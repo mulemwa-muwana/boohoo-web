@@ -79,6 +79,10 @@ const selectors: SelectorBrandMap = {
     clearPayIdCTA: '[data-testid="login-identity-button"]',
     clearPayPasswordInput: '[data-testid="login-password-input"]',
     clearPayPasswordCTA: '[data-testid="login-password-button"]',
+    iDEALSelectionButton: '#payment-button-IDEAL-SSL',
+    iDEALBankSelection: '#ideal_bank',
+    iDEALPaymentButton: '#payment-details-IDEAL-SSL .b-button',
+    iDEALAuthoriseButton: '#op-Auth',
     sofortSelectionButton: '#payment-button-SOFORT-SSL',
     sofortPaymentButton: '#payment-details-SOFORT-SSL .b-button',
     sofortPaymentOutcomeSelection: '[name="status"]',
@@ -1295,8 +1299,21 @@ class BillingPage implements AbstractPage {
       cy.get(clearPayPasswordCTA, { timeout: 30000 }).click();
       cy.get(clearPaySummeryButton, { timeout: 30000 }).click();
     },
+    	
+    selectiDEALBoohooNL () {
+      const iDEALSelectionButton = selectors[brand].iDEALSelectionButton;
+      const iDEALBankSelection = selectors[brand].iDEALBankSelection;
+      const iDEALPaymentButton = selectors[brand].iDEALPaymentButton;
+      const iDEALAuthoriseButton = selectors[brand].iDEALAuthoriseButton;
 
-    selectSofortBoohooDe() {
+      cy.get(iDEALSelectionButton).click({ force : true });
+      cy.get(iDEALBankSelection).select('ING');
+      cy.get(iDEALPaymentButton).click({ force : true });
+      cy.wait(5000);
+      cy.get(iDEALAuthoriseButton).click({ force : true });
+    },
+
+    selectSofortBoohooDe () {
 
       const sofortSelectionButton = selectors[brand].sofortSelectionButton;
       const sofortPaymentButton = selectors[brand].sofortPaymentButton;
@@ -1309,6 +1326,7 @@ class BillingPage implements AbstractPage {
       cy.get(sofortPaymentOutcomeSelection).select('Authorised');
       cy.get(sofortContinueButton).click({ force : true });
     },
+    
   };
 
   assertions = {

@@ -10,19 +10,18 @@ import homePage from '../../pom/home.page';
 
 describe('Product Details Page tests', function () {
 
-  beforeEach (()=>{   
+  beforeEach (()=>{
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(sku);
-  });  
+  });
 
-  it('TC01 Verify that Product name, price and code is showing',function () { 
+  it('TC01 Verify that Product name, price and code is showing',function () {
     const SKU = sku.replace(/^#/g, '');
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
-    PdpPage.assertions.assertProductCodeIsDisplayed(SKU);  
+    PdpPage.assertions.assertProductCodeIsDisplayed(SKU);
 
     // We need to instal plugin for continuing after failed assertation just in case
-
     if (isSiteGenesisBrand) {
       PdpPage.assertions.assertImageIsDisplayed('.thumb-image');
     } else {
@@ -33,12 +32,12 @@ describe('Product Details Page tests', function () {
 
     // PdpPage.assertions.assertImageIsDisplayed('#product-image-3');  some products have only 3 images
   });
-  
+
   it('TC02 Verify that colour swatches are displayed',function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
   });
   it('TC03 Verify that it is possible to select a size when available', function () {
-    PdpPage.actions.selectFirstAvailableSize();  
+    PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToCart();
   });
   it('TC04 Verify if size is not selected user cannot add product to a bag', function () {
@@ -47,18 +46,17 @@ describe('Product Details Page tests', function () {
     } else {
       PdpPage.assertions.assertAddToCartBtnDisabled();
     }
-  });   
+  });
   it('TC05 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColorByIndex(0);
     PdpPage.actions.selectFirstAvailableSize();
-    
-    PdpPage.click.addToCart(); 
+    PdpPage.click.addToCart();
     PdpPage.assertions.assertMiniCartIsDisplayed();
-  }); 
+  });
   it('TC06 Verify that save for later (heart icon) is functional when selected', function () {
     PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToWishList();
-   
+
     if (brand == 'boohoo.com') {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAdded[language]);
     } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'warehousefashion.com' || brand == 'karenmillen.com' || brand == 'boohooman.com' || brand == 'boohoomena.com') {
@@ -78,7 +76,7 @@ describe('Product Details Page tests', function () {
     if (brand == 'dorothyperkins.com' || brand == 'burton.co.uk' || brand == 'wallis.co.uk'||brand == 'oasis-stores.com') {
       pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
     } else {
-      PdpPage.assertions.assertReturnInfoIsDisplayed(); 
+      PdpPage.assertions.assertReturnInfoIsDisplayed();
     }
 
     // We need to instal plugin for continuing after failed assertation just in case
@@ -99,9 +97,7 @@ describe('Product Details Page tests', function () {
       }
       PdpPage.assertions.assertPremierBannerIsVisible();
       PdpPage.click.addToCartPremier();
-      cy.wait(5000);     
       homePage.click.cartIcon();
-      cy.wait(10000);
       cartPage.assertions.assertSelectedProductIsAddedToTheCart(assertionText.Premier[language]);
     } else {
       this.skip();
@@ -131,7 +127,6 @@ describe('Product Details Page tests', function () {
     const MPhereLinkFromReturns: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'AU' || locale == 'IE');
     if (brand == 'karenmillen.com' || BMANhereLinkFromReturns || MPhereLinkFromReturns) {
       PdpPage.click.returnsInfo();
-    
       PdpPage.assertions.assertReturnsHereLinkIsDisplayedAndLinked(assertionText.clickHereLink[language]);
     } else {
       this.skip();
@@ -144,7 +139,6 @@ describe('Product Details Page tests', function () {
     const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
     if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
       pdpPage.click.paypalMoreInfo();
-      
       pdpPage.assertions.assertPaypalRelatedPageIsDisplayed();
     } else {
       this.skip();
@@ -160,11 +154,9 @@ describe('Product Details Page tests', function () {
     if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
       if (afterPayWithLocales) {
         pdpPage.click.afterPayMoreInfo();
-        
         pdpPage.assertions.assertAfterPayRelatedPageIsDisplayed();
       } else {
         pdpPage.click.clearPayMoreInfo();
-       
         pdpPage.assertions.assertClearPayRelatedPageIsDisplayed();
       }
     } else {
@@ -179,11 +171,9 @@ describe('Product Details Page tests', function () {
     const includedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'IE' || locale == 'US' || locale == 'AU');
     if (includedBoohooWithLocales || includedNastyGalWithLocales || includedKarenMillenWithLocales || includedMisspapWithLocales) {
       pdpPage.click.klarnaMoreInfo();
-      
       pdpPage.assertions.assertKlarnaRelatedPageIsDisplayed();
     } else {
       this.skip();
     }
   });
-
-}); 
+});

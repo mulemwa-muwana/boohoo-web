@@ -670,17 +670,17 @@ describe('Home Page', function () {
         cy.scrollTo('bottom');
         cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
       });
-      it.only('Verify that Footer Navigation Component is present and Links are functional - Recycling Options', function () {
-        if(brand == 'misspap.com'){
+      it('Verify that Footer Navigation Component is present and Links are functional - Recycling Options', function () {
+        if (brand == 'misspap.com' && locale == 'UK') {
           homePage.click.recyclingOptions(assertionText.recyclingOptions[language]);
           homePage.assertions.assertRecyclingOptionsPageIsDisplayed();
         } else {
           this.skip();
         }
       });
-      it.only('Verify that Footer Navigation Component is present and Links are functional - Unidays', function () {
-        if(brand == 'misspap.com'){
-          homePage.click.unidays(assertionText.recyclingOptions[language]);
+      it('Verify that Footer Navigation Component is present and Links are functional - Unidays', function () {
+        if (brand == 'misspap.com' && locale == 'UK') {
+          homePage.click.unidays(assertionText.unidays[language]);
           homePage.assertions.assertUnidaysPageIsDisplayed();
         } else {
           this.skip();
@@ -746,7 +746,7 @@ describe('Home Page', function () {
 
   describe('insta', ()=>{
 
-    it('Verify that Instashop is present on Homepage and opens instashop',function(){
+    it('Verify that Instashop is present on Homepage and opens instashop',function () {
       if (brand == 'boohooman.com' && locale == 'UK') {
         cy.wait(2000);
         HomePage.assertions.assertInstaShopPresent();

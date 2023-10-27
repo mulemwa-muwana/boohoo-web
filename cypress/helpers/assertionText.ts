@@ -2056,7 +2056,7 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: ''
-  }
+  };
 }
 
 export default new AssertionText();

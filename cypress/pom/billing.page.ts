@@ -1296,7 +1296,7 @@ class BillingPage implements AbstractPage {
       cy.get(clearPaySummeryButton, { timeout: 30000 }).click();
     },
     	
-    selectiDEALBoohooNL() {
+    selectiDEALBoohooNL () {
       const iDEALSelectionButton = selectors[brand].iDEALSelectionButton;
       const iDEALBankSelection = selectors[brand].iDEALBankSelection;
       const iDEALPaymentButton = selectors[brand].iDEALPaymentButton;

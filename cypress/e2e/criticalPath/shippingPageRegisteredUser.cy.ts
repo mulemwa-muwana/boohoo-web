@@ -328,6 +328,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('CYP-209 Verify that user can select PUDO location', function () {
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     if (locale != 'UK' || brand == 'boohooman.com') {
       this.skip();
     }

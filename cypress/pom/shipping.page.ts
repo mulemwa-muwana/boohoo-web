@@ -51,7 +51,7 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    shippingMethodName: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-label',
+    shippingMethodName: '[data-tau="shipping_name"]',
     shippingMethodsNameList: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-name',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -1076,7 +1076,12 @@ class ShippingPage implements AbstractPage {
     selectShippingMethod (shippingMethod: string) {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
-      cy.get(shippingMethodName).contains(shippingMethod).click({ force: true });
+      if(brand == 'boohoo.com' && locale == 'UK'){
+        cy.get('[data-option-id="shippingMethod-UKSuperSaver"]').trigger('click',{force:true});
+        cy.wait(1000)
+      } else {
+        cy.get(shippingMethodName).contains(shippingMethod).trigger('click',{force:true});
+      }
     },
     selectShippingTab () {
       const shippingTab = selectors[brand].shippingTab;
@@ -1086,9 +1091,12 @@ class ShippingPage implements AbstractPage {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
       if (brand == 'nastygal.com' && locale == 'CA') {
-        cy.get(shippingMethodName).eq(0).click({force:true});
+        cy.get(shippingMethodName).eq(0).trigger('click',{force:true});
+      } else if (brand == 'boohoo.com') {
+        cy.get('[data-option-id="shippingMethod-UKNextDayDelivery"]').trigger('click',{force:true});
       } else {
-        cy.get(shippingMethodName).eq(1).click({force:true});
+        cy.get(shippingMethodName).eq(1).trigger('click',{force:true});
+
       }
       
     },
@@ -1109,7 +1117,7 @@ class ShippingPage implements AbstractPage {
       cy.wait(5000);
       cy.get('body').then($body => {
         if ($body.find(confirmShippingAddress).length > 0) {
-          cy.get(confirmShippingAddress).click({force:true});
+          cy.get(confirmShippingAddress).trigger('click'),{force:true};
         }
       });
     },

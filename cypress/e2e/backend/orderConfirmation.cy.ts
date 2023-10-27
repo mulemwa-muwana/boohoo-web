@@ -43,7 +43,7 @@ describe('Boohoo order placement', () => {
     BillingPage.actions.waitPageToLoad();
   });
 
-  it.only('can select Credit Card as payment method and generate an artefact', function () {
+  it('can select Credit Card as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = getCardProviderByBrand(brand, locale);
     if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
       this.skip();

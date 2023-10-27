@@ -2029,6 +2029,34 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  recyclingOptions: TranslationMap = {
+    EN: 'Recycling Options',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  unidays: TranslationMap = {
+    EN: 'Unidays',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  }
 }
 
 export default new AssertionText();

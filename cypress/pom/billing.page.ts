@@ -79,6 +79,10 @@ const selectors: SelectorBrandMap = {
     clearPayIdCTA: '[data-testid="login-identity-button"]',
     clearPayPasswordInput: '[data-testid="login-password-input"]',
     clearPayPasswordCTA: '[data-testid="login-password-button"]',
+    iDEALSelectionButton: '#payment-button-IDEAL-SSL',
+    iDEALBankSelection: '#ideal_bank',
+    iDEALPaymentButton: '#payment-details-IDEAL-SSL .b-button',
+    iDEALAuthoriseButton: '#op-Auth',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -1290,6 +1294,19 @@ class BillingPage implements AbstractPage {
       cy.get(clearPayPasswordInput, { timeout: 30000 }).type('Boohoo!23');
       cy.get(clearPayPasswordCTA, { timeout: 30000 }).click();
       cy.get(clearPaySummeryButton, { timeout: 30000 }).click();
+    },
+    	
+    selectiDEALBoohooNL () {
+      const iDEALSelectionButton = selectors[brand].iDEALSelectionButton;
+      const iDEALBankSelection = selectors[brand].iDEALBankSelection;
+      const iDEALPaymentButton = selectors[brand].iDEALPaymentButton;
+      const iDEALAuthoriseButton = selectors[brand].iDEALAuthoriseButton;
+
+      cy.get(iDEALSelectionButton).click({ force : true });
+      cy.get(iDEALBankSelection).select('ING');
+      cy.get(iDEALPaymentButton).click({ force : true });
+      cy.wait(5000);
+      cy.get(iDEALAuthoriseButton).click({ force : true });
     },
   };
 

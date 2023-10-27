@@ -64,7 +64,7 @@ describe('Order confirmation page for guest user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
   
-  it.only('Verify that guest user can place order using iDEAL - BHO NL', function () {
+  it('Verify that guest user can place order using iDEAL - BHO NL', function () {
     if (brand == 'boohoo.com' && locale == 'NL') {
       Navigate.toBillingPage('GuestUser');
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');

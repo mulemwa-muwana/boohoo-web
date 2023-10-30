@@ -33,7 +33,7 @@ class Navigate {
 
   toCheckoutLoginPage () {
     this.toCartPage();
-    cartPage.click.proceedToCheckout();
+    cartPage.click.proceedToCheckoutminiCart();
   }
 
   toShippingPage (userType: UserType) {

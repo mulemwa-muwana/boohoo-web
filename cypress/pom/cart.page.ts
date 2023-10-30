@@ -53,7 +53,7 @@ const selectors: SelectorBrandMap = {
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '.b-summary_section .b-cart_actions-button',
+    proceedToCheckout: '[data-tau="minicart_start_checkout_bottom"]',
     clearCart: '.b-cart_product-remove',
     clearCartMobile: '.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',
@@ -375,7 +375,7 @@ class CartPage implements AbstractPage {
         }
       });
     },
-    proceedToCheckout () {
+    proceedToCheckoutminiCart () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
 
@@ -385,7 +385,27 @@ class CartPage implements AbstractPage {
 
         // If Desktop Device is used
       } else {
+        cy.wait(1000);
         cy.get(proceedToCheckout).invoke('show').click({ force: true });
+      }
+    },
+
+    proceedToCheckoutCart () {
+      const proceedToCheckout = selectors[brand].proceedToCheckout;
+      const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
+
+      // If Mobile Device is used
+      if (isMobileDeviceUsed) {
+        cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
+
+        // If Desktop Device is used
+      } else {
+        cy.wait(1000);
+        if(brand == 'nastygal.com'){
+          cy.get('[data-tau="start_checkout_bottom"]').eq(0).invoke('show').click({ force: true });
+        } else {
+          cy.get(proceedToCheckout).invoke('show').click({ force: true });
+        }
       }
     },
     addThriftToCart () {

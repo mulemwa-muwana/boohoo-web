@@ -133,8 +133,9 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('CYP-146 Verify that registered user can place order using Klarna', function () {
+    const noKlarnaBrandAndLocale: boolean = (brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU' || locale == 'US' || locale == 'CA');
+    const isKlarnaLocale: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'NL' || locale == 'US' || locale == 'CA';
     if ((brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU'||locale == 'US' || locale == 'CA')) {
-
       this.skip();
     }
     if (isKlarnaLocale) {

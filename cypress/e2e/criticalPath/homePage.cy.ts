@@ -670,6 +670,22 @@ describe('Home Page', function () {
         cy.scrollTo('bottom');
         cy.contains(`COPYRIGHT © ${currentYear}`, { matchCase: false }).should('be.visible');
       });
+      it('CYP-246 Verify that Footer Navigation Component is present and Links are functional - Recycling Options', function () {
+        if (brand == 'misspap.com' && locale == 'UK') {
+          homePage.click.recyclingOptions(assertionText.recyclingOptions[language]);
+          homePage.assertions.assertRecyclingOptionsPageIsDisplayed();
+        } else {
+          this.skip();
+        }
+      });
+      it('CYP-247 Verify that Footer Navigation Component is present and Links are functional - Unidays', function () {
+        if (brand == 'misspap.com' && locale == 'UK') {
+          homePage.click.unidays(assertionText.unidays[language]);
+          homePage.assertions.assertUnidaysPageIsDisplayed();
+        } else {
+          this.skip();
+        }
+      });
 
     });
 

@@ -466,7 +466,13 @@ class HomePage implements AbstractPage {
       } else {
         cy.get(countryBtn).click({force: true});
       }
-    }
+    },
+    recyclingOptions (text: string) {
+      cy.contains(text).click({ force : true });
+    },
+    unidays (text: string) {
+      cy.contains(text).click({ force : true });
+    },
   };
 
   actions = {
@@ -724,9 +730,14 @@ class HomePage implements AbstractPage {
     assertSelectCountryFromDropdown () {
       cy.url().should('include', '/ie');
     },
-
     assertInstaURL () {
       cy.url().should('contain','instashop');
+    },
+    assertRecyclingOptionsPageIsDisplayed () {
+      cy.url({ timeout : 30000 }).should('include','recycling');
+    },
+    assertUnidaysPageIsDisplayed () {
+      cy.url({ timeout : 30000 }).should('include','unidays');
     },
   };
 

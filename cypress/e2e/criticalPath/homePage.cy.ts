@@ -591,7 +591,7 @@ describe('Home Page', function () {
       //   }
       // });
 
-      it('CYP-118 Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', () => {
+      it('CYP-118 Verify that Footer Navigation Component is present and Links are functional - NastyGal California Consumer Privacy Act', function () {
         if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaConsumerPrivacyAct[language]);
         } else {
@@ -599,7 +599,7 @@ describe('Home Page', function () {
         }
       });
 
-      it('CYP-119 Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', () => {
+      it('CYP-119 Verify that Footer Navigation Component is present and Links are functional - California Transparency In Supply Chains Act Statement', function () {
         if (brand == 'nastygal.com' && locale === 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.californiaTransparencyInSupplyChainsActStatement[language]);
         } else {
@@ -744,7 +744,7 @@ describe('Home Page', function () {
   });
 
   describe('MANGAMING Slot', ()=> {
-    it('Verify that Mangaming slot is present and clicking on it displays related content', function () {
+    it('CYP-220 Verify that Mangaming slot is present and clicking on it displays related content', function () {
       if (brand == 'boohooman.com' && locale != 'UK') {
         HomePage.assertions.assertMangamingPresent();
         HomePage.click.Mangamingslot();

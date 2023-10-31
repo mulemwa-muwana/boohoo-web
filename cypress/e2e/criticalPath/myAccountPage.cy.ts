@@ -48,7 +48,7 @@ describe('Account page', function () {
     }
   });
 
-  it('CYP-138 Verify that addresses are editable; user can add and delete new address', function () {
+  it('CYP-221 Verify that addresses are editable; user can add and delete new address', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     const localeNewAddress = Addresses.getAddressByLocale(locale, 'newAddedPrimaryAddress');
 

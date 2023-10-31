@@ -58,7 +58,7 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
-  it('Verify that in "DELIVERY INFORMATION" address is mandatory', function () {
+  it('CYP-222 Verify that in "DELIVERY INFORMATION" address is mandatory', function () {
     const brandHasEnterManuallyButton: boolean = (brand == 'boohoo.com' || brand == 'nastygal.com');
     if (brandHasEnterManuallyButton) {
       shippingPage.click.addAddressManually();

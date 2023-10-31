@@ -181,7 +181,6 @@ describe('Shipping Page Registered user tests', function () {
     
   });
 
-
   it('CYP-204 Verify that PREMIER can be added to the cart', function () {
     if ((brand == 'boohoomena.com' || brand == 'boohooman.com') || ((brand == 'nastygal.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
       this.skip();

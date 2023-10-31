@@ -22,14 +22,14 @@ export default defineConfig({
   screenshotOnRunFailure: true,
     
   e2e: {
-    async setupNodeEvents(on, config) {
+    async setupNodeEvents (on, config) {
       plugins(on);
-      (await import('dotenv')).config({ path: '../../../.env', });
+      (await import('dotenv')).config({ path: '../../../.env' });
 
-        config.env.JIRA_USERNAME = process.env.CYPRESS_JIRA_USERNAME,
-        config.env.JIRA_API_TOKEN = process.env.CYPRESS_JIRA_API_TOKEN,
-        config.env.XRAY_CLIENT_ID = process.env.CYPRESS_XRAY_CLIENT_ID,
-        config.env.XRAY_CLIENT_SECRET = process.env.CYPRESS_XRAY_CLIENT_SECRET;
+      config.env.JIRA_USERNAME = process.env.CYPRESS_JIRA_USERNAME,
+      config.env.JIRA_API_TOKEN = process.env.CYPRESS_JIRA_API_TOKEN,
+      config.env.XRAY_CLIENT_ID = process.env.CYPRESS_XRAY_CLIENT_ID,
+      config.env.XRAY_CLIENT_SECRET = process.env.CYPRESS_XRAY_CLIENT_SECRET;
 
       const currentDateTime: Date = new Date();
       const brand: string = config.env.brand.split('.')[0];
@@ -37,7 +37,7 @@ export default defineConfig({
       const executionName = brand + '/' + locale + ' ' + currentDateTime;
       await configureXrayPlugin(config, {
         jira: {
-          projectKey: "CYP",
+          projectKey: 'CYP',
           url: 'https://boohoo.atlassian.net',
           testExecutionIssueSummary: executionName,
         },
@@ -51,7 +51,7 @@ export default defineConfig({
       });
       await addXrayResultUpload(on);
     },   
-     excludeSpecPattern: [
+    excludeSpecPattern: [
       '**/backend*/**', // Skip backend tests
       '**/additionalTests*/**'
     ],

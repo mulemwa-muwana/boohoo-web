@@ -51,7 +51,7 @@ describe('Cart basic functionality for guest user', function () {
   });
 
   it('Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
-    CartPage.click.proceedToCheckout();
+    CartPage.click.proceedToCheckoutCart();
     CheckoutPage.assertions.assertGuestCheckoutEmail();
   });
   it('Verify that PayPal CTA is displayed and functional', function () {
@@ -103,7 +103,7 @@ describe('Cart page for Registered user', function () {
     if (['burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk', 'nastygal.com', 'boohoo.com'].includes(brand) && !isMobileDeviceUsed) {
       cy.get('[class="b-button m-outline b-minicart-button"]').click({ force: true });
     }
-    CartPage.click.proceedToCheckout();
+    CartPage.click.proceedToCheckoutCart();
     CheckoutPage.assertions.assertUserProceededToShippingPage();
   });
   it('Verify that user can add Thrift to the cart', function () {

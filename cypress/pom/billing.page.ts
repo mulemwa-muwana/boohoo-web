@@ -1142,7 +1142,7 @@ class BillingPage implements AbstractPage {
       cy.enter(klarnaIFrame, { timeout: 20000 }).then(body => {
         body().find(klarnaIFrameContinueCTA).click({ force: true });
         cy.wait(2000);
-        body().find(klarnaIFrameOtpField).type('111111', { force: true });
+        body().find(klarnaIFrameOtpField).type('123456', { force: true });
         cy.wait(12000);
 
         body().then($body => {

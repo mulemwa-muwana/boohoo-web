@@ -2057,6 +2057,34 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  pressAndMore: TranslationMap = {
+    EN: 'Press & More',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  hireStreet: TranslationMap = {
+    EN: 'Hire Street',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 }
 
 export default new AssertionText();

@@ -18,7 +18,7 @@ describe('Product Listing Page tests', function () {
       } else {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
-      }   
+      }
     } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'wallis.co.uk') {
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
       HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
@@ -34,7 +34,7 @@ describe('Product Listing Page tests', function () {
   });
 
   it('Verify that plp page opens', () => {
-    cy.wait(3000);
+    // cy.wait(3000);
     if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'wallis.co.uk' || ( brand == 'boohoo.com' && locale == 'AU')) {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[language]);
     } else {
@@ -45,7 +45,7 @@ describe('Product Listing Page tests', function () {
     plpPage.assertions.assertLoadMoreBtnIsVisible();
     plpPage.click.loadMoreProducts();
   });
-  describe('Products details are displayed', () => {  
+  describe('Products details are displayed', () => {
     it('Verify product image, name and price are displayed', () => {
       plpPage.assertions.assertProductImageIsDisplayed();
       plpPage.assertions.assertProductNameIsDisplayed();
@@ -69,7 +69,7 @@ describe('Product Listing Page tests', function () {
   });
 
   describe('Product refinements', () => {
-    
+
     it('Verify category refinement is applied', () => {
       plpPage.actions.setupChangeIntercept(/category/);
       plpPage.click.selectRefinementVariantCategory(productVariations.productAccessories[language]);
@@ -83,12 +83,12 @@ describe('Product Listing Page tests', function () {
       plpPage.actions.waitForPageRefinementUpdate();
       plpPage.assertions.assertProductSizeIsDisplayedOnPLP();
     });
-    
+
     it('Verify style refinement is applied', function () {
       const nastygalLocalesExcludedStyle: Array<Locale> = ['EU', 'AU', 'US', 'CA'];
       if ((brand == 'nastygal.com' && nastygalLocalesExcludedStyle.includes(locale)) || (brand =='misspap.com')|| (brand == 'boohooman.com' && locale == 'NL')) {
         this.skip();
-      } 
+      }
       plpPage.actions.setupChangeIntercept(/style/);
       if ( brand == 'boohoo.com' && (locale == 'AU' || locale == 'US')) {
         plpPage.click.selectRefinementVariantStyle(productVariations.productTops[language]);
@@ -97,20 +97,20 @@ describe('Product Listing Page tests', function () {
       }
       plpPage.actions.waitForPageRefinementUpdate();
       if ( brand == 'boohoo.com' && (locale == 'AU' || locale == 'US')) {
-        plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productTops[language]);   
+        plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productTops[language]);
       } else {
-        plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);   
-      
-      }   
+        plpPage.assertions.assertProductVariantIsApplied('style', productVariations.productShopByStyle[language]);
+
+      }
     });
-    
+
     it('Verify color refinement is applied', () => {
       plpPage.actions.setupChangeIntercept(/color/);
       plpPage.click.selectRefinementVariantColor(productVariations.ColorBlack[language]);
       plpPage.actions.waitForPageRefinementUpdate();
       plpPage.assertions.assertProductVariantIsApplied('color', productVariations.ColorBlack[language]);
     });
-    
+
     it('Verify price refinement is applied', function () {
       const brandsExludedPriceRefinement: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
       if (brandsExludedPriceRefinement.includes(brand)) {
@@ -125,7 +125,7 @@ describe('Product Listing Page tests', function () {
     it('Verify shop by fit refinement is applied', function () {
       if (brand == 'burton.co.uk' || brand == 'boohooman.com' || brand == 'misspap.com') {
         this.skip();
-      }  
+      }
       plpPage.actions.setupChangeIntercept(/classification/);
       plpPage.click.selectRefinementVariantShopByFit('Petite');
       plpPage.actions.waitForPageRefinementUpdate();
@@ -149,7 +149,7 @@ describe('Product Listing Page tests', function () {
         this.skip();
       }
       plpPage.assertions.assertQuickViewIsDisplayed();
-  
+
     });
     it('Verify that user can add to cart product from quick view', function () {
       const isbrandNoQuickView: boolean = (brand =='dorothyperkins.com' || brand =='wallis.co.uk' || brand == 'burton.co.uk');

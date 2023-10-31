@@ -545,7 +545,7 @@ class PlpPage implements AbstractPage {
           } else {
             cy.get(loadMoreProducts).click({ force: true });
           }
-          cy.wait(10000);
+          // cy.wait(10000);
         }
       }
       );

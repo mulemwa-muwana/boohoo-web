@@ -1,7 +1,6 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import { brand, url } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
-import { update } from 'cypress/types/lodash';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -377,6 +376,7 @@ class CartPage implements AbstractPage {
         }
       });
     },
+
     proceedToCheckoutminiCart () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
@@ -388,10 +388,13 @@ class CartPage implements AbstractPage {
         // If Desktop Device is used
       } else {
         cy.wait(1000);
-        cy.get(proceedToCheckout).invoke('show').click({ force: true });
+        if (brand == 'boohoo.com') {
+          cy.get('[data-tau="minicart_start_open_cart_bottom"]').click();
+        } else {
+          cy.get(proceedToCheckout).invoke('show').click({ force: true });
+        }
       }
     },
-
     proceedToCheckoutCart () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
@@ -399,17 +402,18 @@ class CartPage implements AbstractPage {
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
-
+        
         // If Desktop Device is used
       } else {
         cy.wait(1000);
-        if(brand == 'nastygal.com'){
+        if (brand == 'nastygal.com') {
           cy.get('[data-tau="start_checkout_bottom"]').eq(0).invoke('show').click({ force: true });
         } else {
           cy.get(proceedToCheckout).invoke('show').click({ force: true });
         }
       }
     },
+
     addThriftToCart () {
       const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
       cy.get(addThriftToCartBtn).click({ force: true });

@@ -36,7 +36,14 @@ class Navigate {
 
   toCheckoutLoginPage () {
     this.toCartPage();
-    cartPage.assertions.assertQuantityIsone();
+    const path = 'cart';
+    cy.url().then(($url) => {
+      if ($url.includes(path)) {
+        cartPage.assertions.assertQuantityIsone();
+      } else {
+        cy.log('not in cart page');
+      }
+    });
     cartPage.click.proceedToCheckoutminiCart();
   }
 

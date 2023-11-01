@@ -820,13 +820,13 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
-      cy.wait(3000);
+      // cy.wait(3000);
       cy.get(proceedToBilling,{timeout:1000}).trigger('click',{force:true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {
         const proceedToBillingVerificationBtn = selectors[brand].proceedToBillingVerificationBtn;
-        cy.wait(3000);
+        // cy.wait(3000);
         cy.get('body').then($body=>{
           if ($body.find(proceedToBillingVerificationBtn).length>0) {
             cy.get(proceedToBillingVerificationBtn).click({ force: true });
@@ -848,7 +848,7 @@ class ShippingPage implements AbstractPage {
     addAddressManually () {
       if (!isSiteGenesisBrand) {
         const addAddressManually = selectors[brand].addAddressManually;
-        cy.wait(5000);
+        // cy.wait(5000);
         cy.get('body').then($body => {
           if ($body.find(addAddressManually).length) {
             cy.get(addAddressManually).click({ force: true });
@@ -935,7 +935,7 @@ class ShippingPage implements AbstractPage {
       cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click({force:true});
     },
     makeShippingAddressDefault () {
-      const standartShipping = selectors[brand].standartShipping;     
+      const standartShipping = selectors[brand].standartShipping;
       if ((brand == 'boohoo.com' && locale =='UK') || (brand == 'nastygal.com' && locale =='US' || locale =='CA')) { // To select standard shipping method for boohoo and ngal as default address
         cy.get(standartShipping).click({force:true});
       }
@@ -988,7 +988,7 @@ class ShippingPage implements AbstractPage {
       cy.get(shippingPhoneNumber).clear({ force: true }).focus().blur();
     },
     phoneNumberField (phone: string) {
-      cy.wait(1000);
+      // cy.wait(1000);
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
       if (brand == 'boohoomena.com') {
         const shippingPhoneCode = selectors[brand].shippingPhoneCode;
@@ -1020,9 +1020,9 @@ class ShippingPage implements AbstractPage {
         cy.get(shippingStateUS).select(state);
       } else if ((brand != 'karenmillen.com' && locale !='EU') && ( locale !='UK')) {
         cy.get(shippingState).select(state).invoke('show');
-      } 
+      }
     },
-        
+
     adressLine1 (address1: string) {
       const addressLine1Field = selectors[brand].addressLine1Field;
       cy.get(addressLine1Field).clear({ force: true }).type(address1);
@@ -1063,10 +1063,10 @@ class ShippingPage implements AbstractPage {
       }
     },
     postcodeField (postcode: string) {
-      cy.wait(1000);
+      // cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
       cy.get(shippingPostcode).clear({ force: true }).type(postcode,{force: true});
-      cy.wait(1000);
+      // cy.wait(1000);
       cy.get(shippingPostcode).click({force:true});
     },
     addAddressNickname (addressNickname: string) {
@@ -1098,7 +1098,7 @@ class ShippingPage implements AbstractPage {
         cy.get(shippingMethodName).eq(1).trigger('click',{force:true});
 
       }
-      
+
     },
     secondShippingMethodName (): Cypress.Chainable<string> {
       const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;
@@ -1385,7 +1385,7 @@ class ShippingPage implements AbstractPage {
       const deliverySection = selectors[brand].deliverySection;
       cy.get (deliverySection).invoke('text').as('deliverySection');
       cy.get('@deliverySection').should('contain', text);
-      
+
     }
   };
 }

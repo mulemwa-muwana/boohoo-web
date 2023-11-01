@@ -851,7 +851,7 @@ class BillingPage implements AbstractPage {
 
   actions = {
     waitPageToLoad () {
-      cy.wait(12000);
+      // cy.wait(12000);
       cy.url().should('include', 'billing');
     },
     selectDate (day: string, month: string, year: string) {
@@ -1299,7 +1299,7 @@ class BillingPage implements AbstractPage {
       cy.get(clearPayPasswordCTA, { timeout: 30000 }).click();
       cy.get(clearPaySummeryButton, { timeout: 30000 }).click();
     },
-    	
+
     selectiDEALBoohooNL () {
       const iDEALSelectionButton = selectors[brand].iDEALSelectionButton;
       const iDEALBankSelection = selectors[brand].iDEALBankSelection;
@@ -1326,7 +1326,7 @@ class BillingPage implements AbstractPage {
       cy.get(sofortPaymentOutcomeSelection).select('Authorised');
       cy.get(sofortContinueButton).click({ force : true });
     },
-    
+
   };
 
   assertions = {

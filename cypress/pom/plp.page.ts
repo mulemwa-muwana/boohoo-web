@@ -545,7 +545,6 @@ class PlpPage implements AbstractPage {
           } else {
             cy.get(loadMoreProducts).click({ force: true });
           }
-          cy.wait(10000);
         }
       }
       );
@@ -569,7 +568,6 @@ class PlpPage implements AbstractPage {
       let mobileViewMode = 1;
       let webviewMode = 5;
       cy.get('.b-view_mode button:visible').each((ele, index) => {
-        cy.wait(3000);
         cy.wrap(ele).click({ force: true });
         if (isMobileDeviceUsed) {
           pagePlp.assertions.assertItemCountInView(mobileViewMode.toString());
@@ -594,11 +592,11 @@ class PlpPage implements AbstractPage {
           cy.get(quickViewButton).eq(0).invoke('css', 'opacity', 1).should('be.visible').as('quickViewBLP');
           cy.get('@quickViewBLP').click({ force: true });
         }
-        cy.wait(5000);
+        cy.wait(1000);// Needed this waits
         cy.get(quickViewSize).eq(0).click();
-        cy.wait(5000);
+        cy.wait(1000);// Needed this waits
         cy.get(addToCart).click({ force: true });
-        cy.wait(5000);
+        cy.wait(1000);// Needed this waits
       });
     },
   };

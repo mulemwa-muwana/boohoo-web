@@ -495,8 +495,9 @@ class CartPage implements AbstractPage {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const updateQuantity = selectors[brand].updateQuantity;
       const editQuantityMobile = selectors[brand].editQuantityMobile;
+      const cartQuantityValue = selectors[brand].cartQuantityValue;
   
-      cy.get('.b-cart_product-qty_value').then(($span) => {
+      cy.get(cartQuantityValue).then(($span) => {
         const value = $span.text();
         if (value == '1') { 
           cy.get(proceedToCheckout).invoke('show').click({ force: true });

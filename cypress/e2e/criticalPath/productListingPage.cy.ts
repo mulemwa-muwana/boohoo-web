@@ -34,7 +34,6 @@ describe('Product Listing Page tests', function () {
   });
 
   it('Verify that plp page opens', () => {
-    // cy.wait(3000);
     if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'karenmillen.com' || brand == 'wallis.co.uk' || ( brand == 'boohoo.com' && locale == 'AU')) {
       plpPage.assertions.assertOnPage(megaMenuLinksLanguages.urlValidationSale[language]);
     } else {

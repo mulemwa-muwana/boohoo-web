@@ -1,6 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
 import { brand, url } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
+import { update } from 'cypress/types/lodash';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -10,6 +11,7 @@ const selectors: SelectorBrandMap = {
     productPriceMobile: '.b-cart_product-price > .b-price > .m-new',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
+    cartQuantityValue: '.b-cart_product-qty_value',
     editQuantity: 'button[data-tau="cart_product_edit"]',
     editQuantityMobile: '[data-tau="cart_product_quantity"]',
     editDetailsMobile: '.b-cart_product-edit',
@@ -465,6 +467,24 @@ class CartPage implements AbstractPage {
   };
 
   assertions = {
+    assertQuantityIsone () {
+      const editQuantity = selectors[brand].editQuantity;
+      const proceedToCheckout = selectors[brand].proceedToCheckout;
+      const updateQuantity = selectors[brand].updateQuantity;
+      const editQuantityMobile = selectors[brand].editQuantityMobile;
+  
+      cy.get('.b-cart_product-qty_value').then(($span) => {
+        const value = $span.text();
+        if (value == '1') { 
+          cy.get(proceedToCheckout).invoke('show').click({ force: true });
+        } else {
+          cy.get(editQuantity).click();
+          cy.get(editQuantityMobile).select('1');
+          cy.get(updateQuantity).click();
+        }
+      });
+    },
+
     assertTableWithProductIsVisible () {
       const productsTable = selectors[brand].productsTable;
       cy.get(productsTable).should('be.visible');

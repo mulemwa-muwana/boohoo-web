@@ -27,6 +27,7 @@ class Navigate {
     PdpPage.actions.selectColorFromSku();
     PdpPage.actions.selectSizeFromSku();
     PdpPage.click.addToCart();
+    PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();    
   }
@@ -36,6 +37,7 @@ class Navigate {
     if (!isSiteGenesisBrand) {
       pdpPage.click.miniCartViewCartBtn();
     }
+    cartPage.assertions.assertQuantityIsone();
     cartPage.click.proceedToCheckout();       
   }
 

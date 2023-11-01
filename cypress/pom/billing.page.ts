@@ -79,6 +79,14 @@ const selectors: SelectorBrandMap = {
     clearPayIdCTA: '[data-testid="login-identity-button"]',
     clearPayPasswordInput: '[data-testid="login-password-input"]',
     clearPayPasswordCTA: '[data-testid="login-password-button"]',
+    iDEALSelectionButton: '#payment-button-IDEAL-SSL',
+    iDEALBankSelection: '#ideal_bank',
+    iDEALPaymentButton: '#payment-details-IDEAL-SSL .b-button',
+    iDEALAuthoriseButton: '#op-Auth',
+    sofortSelectionButton: '#payment-button-SOFORT-SSL',
+    sofortPaymentButton: '#payment-details-SOFORT-SSL .b-button',
+    sofortPaymentOutcomeSelection: '[name="status"]',
+    sofortContinueButton: 'a > img',
 
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
@@ -1134,7 +1142,7 @@ class BillingPage implements AbstractPage {
       cy.enter(klarnaIFrame, { timeout: 20000 }).then(body => {
         body().find(klarnaIFrameContinueCTA).click({ force: true });
         cy.wait(2000);
-        body().find(klarnaIFrameOtpField).type('111111', { force: true });
+        body().find(klarnaIFrameOtpField).type('123456', { force: true });
         cy.wait(12000);
 
         body().then($body => {
@@ -1291,6 +1299,34 @@ class BillingPage implements AbstractPage {
       cy.get(clearPayPasswordCTA, { timeout: 30000 }).click();
       cy.get(clearPaySummeryButton, { timeout: 30000 }).click();
     },
+    	
+    selectiDEALBoohooNL () {
+      const iDEALSelectionButton = selectors[brand].iDEALSelectionButton;
+      const iDEALBankSelection = selectors[brand].iDEALBankSelection;
+      const iDEALPaymentButton = selectors[brand].iDEALPaymentButton;
+      const iDEALAuthoriseButton = selectors[brand].iDEALAuthoriseButton;
+
+      cy.get(iDEALSelectionButton).click({ force : true });
+      cy.get(iDEALBankSelection).select('ING');
+      cy.get(iDEALPaymentButton).click({ force : true });
+      cy.wait(5000);
+      cy.get(iDEALAuthoriseButton).click({ force : true });
+    },
+
+    selectSofortBoohooDe () {
+
+      const sofortSelectionButton = selectors[brand].sofortSelectionButton;
+      const sofortPaymentButton = selectors[brand].sofortPaymentButton;
+      const sofortPaymentOutcomeSelection = selectors[brand].sofortPaymentOutcomeSelection;
+      const sofortContinueButton = selectors[brand].sofortContinueButton;
+
+      cy.get(sofortSelectionButton).click({ force : true });
+      cy.get(sofortPaymentButton).click({ force : true });
+      cy.wait(5000);
+      cy.get(sofortPaymentOutcomeSelection).select('Authorised');
+      cy.get(sofortContinueButton).click({ force : true });
+    },
+    
   };
 
   assertions = {

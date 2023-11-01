@@ -20,7 +20,7 @@ describe('Boohoo order placement', () => {
       LoginPage.actions.loginViaPage(credentials.email, credentials.password);
       cy.wait(2000);
       CartPage.goto();
-      CartPage.click.proceedToCheckout();
+      CartPage.click.proceedToCheckoutCart();
     });
 
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');

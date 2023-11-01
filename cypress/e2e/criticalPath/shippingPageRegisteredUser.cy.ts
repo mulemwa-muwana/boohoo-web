@@ -48,6 +48,21 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
+  it('Verify that in "DELIVERY INFORMATION" address is mandatory', () => {
+    if (brand == 'boohooman.com') {
+      shippingPage.actions.addressLine1Clear();
+      shippingPage.actions.cityFieldClear();
+    } else {
+      shippingPage.click.addNewAddressButton();
+    }
+    shippingPage.click.proceedToBilling();
+    if (brand == 'boohoo.com') {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[language]);
+    } else {
+      shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldError[language]);
+    }
+  });
+
   it('Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'secondaryAddress');
     cy.wait(4000);
@@ -240,9 +255,11 @@ describe('Shipping Page Registered user tests', function () {
       }
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
+    if (brand == 'nastygal.com') {
+      shippingPage.actions.selectShippingTab();
+    }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     shippingPage.click.proceedToBilling();
-
     if (locale == 'IE' || locale == 'US' || locale == 'AU') {
       shippingPage.click.proceedToBillingVerification();
     }
@@ -289,6 +306,9 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectSecondShippingMethod();
     shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
       cy.log(secondShippingMethodName);
+      if (brand == 'nastygal.com') {
+        shippingPage.actions.selectShippingTab();
+      }
       shippingPage.click.proceedToBilling();
       if (locale == 'IE' || (brand == 'boohooman.com' && locale == 'US') || (brand == 'karenmillen.com' && locale == 'US') || (brand == 'misspap.com' && (locale == 'US' || locale == 'AU'))) {
         shippingPage.click.proceedToBillingVerification();
@@ -318,7 +338,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com')&& (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'CA')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
+    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com' || brand == 'karenmillen.com') && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'EU' || locale == 'CA')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
     if (excludedmisspapWithLocales) {
       this.skip();
     }
@@ -367,4 +387,18 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.helpAndInfoLink();
     shippingPage.assertions.assertCustomerServicePageIsOpened();
   });
+
+  it('KMEU: Verify that user can select the standard shipping method for EU locale only', function () {
+    if (brand == 'karenmillen.com' && locale == 'EU') {
+      const CountriesEU: Array<string> = ['Germany', 'Spain', 'France', 'Netherlands'];
+      shippingPage.click.addNewAddressButton();
+      for (let i = 0; i < CountriesEU.length; i++) {
+        shippingPage.actions.selectCountry(CountriesEU[i]);
+        shippingPage.assertions.assertDeliverySection(`${CountriesEU[i]} Standard`);
+      }
+    } else {
+      this.skip();
+    }
+  }
+  );
 });

@@ -12,7 +12,7 @@ import pdpPage from '../pom/pdp.page';
 import { locale, brand, url, sku, language } from 'cypress/support/e2e';
 
 class Navigate {
-  
+
   toHomePage () {
     HomePage.goto();
   }
@@ -30,15 +30,14 @@ class Navigate {
     PdpPage.click.addToCart();
     cy.wait(7000);
     HomePage.click.cartIcon();    
+    cy.wait(1000); // Wait is needed otherwise test is failing
+    HomePage.click.cartIcon();
   }
 
   toCheckoutLoginPage () {
     this.toCartPage();
-    if (!isSiteGenesisBrand) {
-      pdpPage.click.miniCartViewCartBtn();
-    }
     cartPage.assertions.assertQuantityIsone();
-    cartPage.click.proceedToCheckout();       
+    cartPage.click.proceedToCheckoutminiCart();
   }
 
   toShippingPage (userType: UserType) {
@@ -56,7 +55,7 @@ class Navigate {
           CheckoutPage.click.continueAsGuestBtn();
         }
       });
-    
+
     // REGISTERED USER //
     } else {
       cy.fixture('users').then((credentials: LoginCredentials) => {
@@ -115,7 +114,7 @@ class Navigate {
           BillingPage.actions.billingEmailField(credentials.guest);
           BillingPage.actions.billingConfirmEmailField(credentials.guest);
         }
-        BillingPage.actions.waitPageToLoad(); 
+        BillingPage.actions.waitPageToLoad();
       });
 
     // REGISTERED USER //
@@ -129,7 +128,7 @@ class Navigate {
       shippingPage.actions.selectCountry(primaryAddress.country);
       shippingPage.actions.phoneNumberField(primaryAddress.phone);
       cy.wait(5000);
-      shippingPage.click.addAddressManually();  
+      shippingPage.click.addAddressManually();
       shippingPage.actions.adressLine1(primaryAddress.addressLine);
       if (brand == 'boohooman.com') {
         shippingPage.actions.addressLine2Clear();
@@ -147,9 +146,9 @@ class Navigate {
       shippingPage.click.proceedToBilling();
       cy.wait(3000);
       shippingPage.click.proceedToBillingVerification();
-      BillingPage.actions.waitPageToLoad();     
+      BillingPage.actions.waitPageToLoad();
     }
-  } 
+  }
 
   toMyAccountPage () {
     HomePage.goto();
@@ -205,7 +204,7 @@ class Navigate {
   toMyAccountPageUsingSession () {
     cy.session('myaccount-page-session', () => {
       this.toMyAccountPage();
-      cy.wait(7000);
+      cy.wait(1000);
     });
     cy.visit(url + '/myaccount');
   }

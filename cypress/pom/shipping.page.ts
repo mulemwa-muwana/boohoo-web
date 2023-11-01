@@ -51,11 +51,11 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    shippingMethodName: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-label',
+    shippingMethodName: '[data-tau="shipping_name"]',
     shippingMethodsNameList: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-name',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
-    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
-    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
@@ -88,7 +88,7 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCart: '.b-summary_order-header > .b-link',
-    addAddressManually: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    addAddressManually: 'button[class="b-button m-info m-width_full"]:eq(0)',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
     addNewAddress: '[data-tau="add_new_address"]',
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
@@ -128,6 +128,7 @@ const selectors: SelectorBrandMap = {
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_address1-error',
     address1DetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
     postcodeDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
+    shippingTab : '[data-id="button-deliveryPanel"]',
     clickAndCollectTab:"[data-id='button-clickCollectPanel']",
     pudoShippingMethod:"[for='shippingMethod-pudo-NUKmyhermes']",
     pudoSearchField:'.b-pudo-search_field',
@@ -328,7 +329,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
+    proceedToBilling: '.address-container button[name="dwfrm_singleshipping_shippingAddress_save"]',
     proceedToBillingVerificationBtn: '.verification-address-button',
     addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
@@ -355,7 +356,7 @@ const selectors: SelectorBrandMap = {
     addressLine1Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address1',
     addressLine2Field: '#dwfrm_singleshipping_shippingAddress_addressFields_address2',
     cityField: '#dwfrm_singleshipping_shippingAddress_addressFields_city',
-    countyField: '#dwfrm_singleshipping_shippingAddress_addressFields_county',
+    countyField: '[name="dwfrm_singleshipping_shippingAddress_addressFields_county"]',
     postCodeField: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
     dobMonth: '#dwfrm_profile_customer_monthofbirth',
@@ -408,6 +409,8 @@ const selectors: SelectorBrandMap = {
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#address-autocomplete',
     addressEnterManualyBtn: '[data-event-click="handleManualEnterClick"]',
+    cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
     cartContainer: '.summary-inner',
     cartContainerMobile: '.cart-row',
     orderSummaryOnShippingPage: '.summary-inner',
@@ -456,7 +459,7 @@ const selectors: SelectorBrandMap = {
     successMark:'.field-wrapper-w3w-valid',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    checkoutMiniBagSummery: '.checkout-mini-cart',
+    checkoutMiniBagSummery: '[data-tau="minicart_start_checkout_bottom"]',
     helpAndInfoLink: '.checkout-help-link',
     deliverySection:  '.js-shipping-method-list.js-cmp-inited.js-cmp-ShippingMethodModals',
   },
@@ -695,6 +698,8 @@ const selectors: SelectorBrandMap = {
     dobYear: '#dwfrm_profile_customer_yearofbirth',
     orderTotal: '.order-total',
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
+    cityDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_city-error',
+    address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodName: '.js-shipping-method-list .form-label',
@@ -710,7 +715,7 @@ const selectors: SelectorBrandMap = {
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
-    w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
+    w3WAddressSuggestion:'li:nth-of-type(1) > .w3w-description',
     successMark:'.field-wrapper-w3w-valid',
     helpAndInfoLink: 'a[title="Help & Info"]'
   },
@@ -816,7 +821,7 @@ class ShippingPage implements AbstractPage {
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
       cy.wait(3000);
-      cy.get(proceedToBilling).click({ force: true });
+      cy.get(proceedToBilling,{timeout:1000}).trigger('click',{force:true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {
@@ -1043,7 +1048,7 @@ class ShippingPage implements AbstractPage {
       if (brand == 'boohoomena.com') {
         cy.get(cityField).select(city, { force: true });
       } else {
-        cy.get(cityField).clear({ force: true }).type(city);
+        cy.get(cityField).clear({ force: true }).type(city,{ force: true });
       }
     },
     countyField (county: string) {
@@ -1060,9 +1065,9 @@ class ShippingPage implements AbstractPage {
     postcodeField (postcode: string) {
       cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
-      cy.get(shippingPostcode).clear({ force: true }).type(postcode);
+      cy.get(shippingPostcode).clear({ force: true }).type(postcode,{force: true});
       cy.wait(1000);
-      cy.get(shippingPostcode).click().blur({force:true});
+      cy.get(shippingPostcode).click({force:true});
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;
@@ -1071,15 +1076,27 @@ class ShippingPage implements AbstractPage {
     selectShippingMethod (shippingMethod: string) {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
-      cy.get(shippingMethodName).contains(shippingMethod).click({ force: true });
+      if(brand == 'boohoo.com' && locale == 'UK'){
+        cy.get('[data-option-id="shippingMethod-UKSuperSaver"]').trigger('click',{force:true});
+        cy.wait(1000)
+      } else {
+        cy.get(shippingMethodName).contains(shippingMethod).trigger('click',{force:true});
+      }
+    },
+    selectShippingTab () {
+      const shippingTab = selectors[brand].shippingTab;
+      cy.get(shippingTab,{timeout:1000}).click({ force: true });
     },
     selectSecondShippingMethod () {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
       if (brand == 'nastygal.com' && locale == 'CA') {
-        cy.get(shippingMethodName).eq(0).click({force:true});
+        cy.get(shippingMethodName).eq(0).trigger('click',{force:true});
+      } else if (brand == 'boohoo.com') {
+        cy.get('[data-option-id="shippingMethod-UKNextDayDelivery"]').trigger('click',{force:true});
       } else {
-        cy.get(shippingMethodName).eq(1).click({force:true});
+        cy.get(shippingMethodName).eq(1).trigger('click',{force:true});
+
       }
       
     },
@@ -1100,7 +1117,7 @@ class ShippingPage implements AbstractPage {
       cy.wait(5000);
       cy.get('body').then($body => {
         if ($body.find(confirmShippingAddress).length > 0) {
-          cy.get(confirmShippingAddress).click({force:true});
+          cy.get(confirmShippingAddress).trigger('click'),{force:true};
         }
       });
     },
@@ -1156,13 +1173,13 @@ class ShippingPage implements AbstractPage {
       });
     },
     selectW3WAddress (w3Words: string) {
-      const w3Winput=selectors[brand].w3Winput;
-      const w3WAddressSuggestion=selectors[brand].w3WAddressSuggestion;
+      const w3Winput = selectors[brand].w3Winput;
+      const w3WAddressSuggestion = selectors[brand].w3WAddressSuggestion;
       cy.wait(3000);
-      cy.get(w3Winput).type(w3Words);
-      cy.wait(10000);
-      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text','Manchester');
-      cy.get(w3WAddressSuggestion).click({force:true});
+      cy.get(w3Winput).type(w3Words, { force: true });
+      cy.wait(1000);
+      cy.get(w3WAddressSuggestion).should('be.visible').and('contain.text', 'Manchester');
+      cy.get(w3WAddressSuggestion).eq(0).click({ force: true });
     }
   };
 

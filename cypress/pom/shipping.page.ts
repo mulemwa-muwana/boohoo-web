@@ -820,13 +820,11 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
-      // cy.wait(3000);
       cy.get(proceedToBilling,{timeout:1000}).trigger('click',{force:true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {
         const proceedToBillingVerificationBtn = selectors[brand].proceedToBillingVerificationBtn;
-        // cy.wait(3000);
         cy.get('body').then($body=>{
           if ($body.find(proceedToBillingVerificationBtn).length>0) {
             cy.get(proceedToBillingVerificationBtn).click({ force: true });
@@ -848,7 +846,6 @@ class ShippingPage implements AbstractPage {
     addAddressManually () {
       if (!isSiteGenesisBrand) {
         const addAddressManually = selectors[brand].addAddressManually;
-        // cy.wait(5000);
         cy.get('body').then($body => {
           if ($body.find(addAddressManually).length) {
             cy.get(addAddressManually).click({ force: true });
@@ -988,7 +985,6 @@ class ShippingPage implements AbstractPage {
       cy.get(shippingPhoneNumber).clear({ force: true }).focus().blur();
     },
     phoneNumberField (phone: string) {
-      // cy.wait(1000);
       const shippingPhoneNumber = selectors[brand].shippingPhoneNumber;
       if (brand == 'boohoomena.com') {
         const shippingPhoneCode = selectors[brand].shippingPhoneCode;
@@ -1063,10 +1059,8 @@ class ShippingPage implements AbstractPage {
       }
     },
     postcodeField (postcode: string) {
-      // cy.wait(1000);
       const shippingPostcode = selectors[brand].shippingPostcode;
       cy.get(shippingPostcode).clear({ force: true }).type(postcode,{force: true});
-      // cy.wait(1000);
       cy.get(shippingPostcode).click({force:true});
     },
     addAddressNickname (addressNickname: string) {

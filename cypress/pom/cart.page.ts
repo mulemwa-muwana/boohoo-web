@@ -10,6 +10,7 @@ const selectors: SelectorBrandMap = {
     productPriceMobile: '.b-cart_product-price > .b-price > .m-new',
     subtotal: '.m-total > .b-summary_table-value',
     cartQuantity: '.b-cart_product-qty',
+    cartQuantityValue: '.b-cart_product-qty_value',
     editQuantity: 'button[data-tau="cart_product_edit"]',
     editQuantityMobile: '[data-tau="cart_product_quantity"]',
     editDetailsMobile: '.b-cart_product-edit',
@@ -375,6 +376,7 @@ class CartPage implements AbstractPage {
         }
       });
     },
+
     proceedToCheckoutminiCart () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
@@ -386,10 +388,13 @@ class CartPage implements AbstractPage {
         // If Desktop Device is used
       } else {
         cy.wait(1000);
-        cy.get(proceedToCheckout).invoke('show').click({ force: true });
+        if (brand == 'boohoo.com') {
+          cy.get('[data-tau="minicart_start_open_cart_bottom"]').click();
+        } else {
+          cy.get(proceedToCheckout).invoke('show').click({ force: true });
+        }
       }
     },
-
     proceedToCheckoutCart () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
@@ -397,17 +402,18 @@ class CartPage implements AbstractPage {
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
-
+        
         // If Desktop Device is used
       } else {
         cy.wait(1000);
-        if(brand == 'nastygal.com'){
+        if (brand == 'nastygal.com') {
           cy.get('[data-tau="start_checkout_bottom"]').eq(0).invoke('show').click({ force: true });
         } else {
           cy.get(proceedToCheckout).invoke('show').click({ force: true });
         }
       }
     },
+
     addThriftToCart () {
       const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
       cy.get(addThriftToCartBtn).click({ force: true });
@@ -484,6 +490,25 @@ class CartPage implements AbstractPage {
   };
 
   assertions = {
+    assertQuantityIsone () {
+      const editQuantity = selectors[brand].editQuantity;
+      const proceedToCheckout = selectors[brand].proceedToCheckout;
+      const updateQuantity = selectors[brand].updateQuantity;
+      const editQuantityMobile = selectors[brand].editQuantityMobile;
+      const cartQuantityValue = selectors[brand].cartQuantityValue;
+  
+      cy.get(cartQuantityValue).then(($span) => {
+        const value = $span.text();
+        if (value == '1') { 
+          cy.get(proceedToCheckout).invoke('show').click({ force: true });
+        } else {
+          cy.get(editQuantity).click();
+          cy.get(editQuantityMobile).select('1');
+          cy.get(updateQuantity).click();
+        }
+      });
+    },
+
     assertTableWithProductIsVisible () {
       const productsTable = selectors[brand].productsTable;
       cy.get(productsTable).should('be.visible');

@@ -48,7 +48,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it('Verify that in "DELIVERY INFORMATION" address is mandatory', () => {
+  it('CYP-242 Verify that in "DELIVERY INFORMATION" address is mandatory', () => {
     if (brand == 'boohooman.com') {
       shippingPage.actions.addressLine1Clear();
       shippingPage.actions.cityFieldClear();
@@ -63,7 +63,7 @@ describe('Shipping Page Registered user tests', function () {
     }
   });
 
-  it('Verify that user can edit saved shipping address', () => {
+  it('CYP-199 Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'secondaryAddress');
     cy.wait(4000);
     shippingPage.click.editAddress();

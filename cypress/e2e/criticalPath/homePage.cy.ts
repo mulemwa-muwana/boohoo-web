@@ -241,7 +241,7 @@ describe('Home Page', function () {
     });
       
     describe('Verify Footer Payment providers and mobile App Banners', () => {
-      it('cyp-82 Verify that Payment and Delivery Providers are present as content slot.', () => {
+      it('CYP-82 Verify that Payment and Delivery Providers are present as content slot.', () => {
         GlobalFooter.assertions.assertPaymentOptionsArePresent();
       });
           

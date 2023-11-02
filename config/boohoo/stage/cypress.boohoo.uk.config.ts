@@ -1,4 +1,4 @@
-import { defineConfig  } from 'cypress';
+import { defineConfig } from 'cypress';
 import plugins from '../../../cypress/plugins';
 import { addXrayResultUpload, configureXrayPlugin } from 'cypress-xray-plugin';
 
@@ -68,7 +68,7 @@ export default defineConfig({
           }
         },
       });
-       await addXrayResultUpload(on);
+      await addXrayResultUpload(on);
     },
     excludeSpecPattern: [
       '**/backend*/**', // Skip backend tests

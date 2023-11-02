@@ -472,6 +472,20 @@ describe('Home Page', function () {
           this.skip();
         }
       });
+      it('CYP-248 Verify that Footer Navigation Component is present and Links are functional - Press & More', function () {
+        if (brand != 'misspap.com') {
+          this.skip();
+        } else {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.pressAndMore[language]);
+        }
+      });
+      it('CYP-249 Verify that Footer Navigation Component is present and Links are functional - Hire Street', function () {
+        if (brand == 'misspap.com' && locale == 'UK') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.hireStreet[language]);
+        } else {
+          this.skip();
+        }
+      });
       it.skip('CYP-105 Verify that Footer Navigation Component is present and Links are functional - Investor Relations', function () { // Will update in the future
         if (brand == 'boohoo.com' || brand == 'warehousefashion.com' || brand == 'boohooman.com' || brand == 'boohoomena.com' || brand == 'coastfashion.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.investor[language], { assertionUrl: 'www.boohooplc.com' });

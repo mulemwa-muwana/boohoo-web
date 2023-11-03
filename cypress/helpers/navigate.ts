@@ -43,11 +43,9 @@ class Navigate {
     if (userType === 'GuestUser') {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         if (!isSiteGenesisBrand || (brand == 'karenmillen.com' && locale == 'UK') || (brand == 'misspap.com' && locale == 'UK') || brand == 'warehousefashion.com') {
-          cy.wait(2000);
           CheckoutPage.actions.guestCheckoutEmail(credentials.guest);
           CheckoutPage.click.continueAsGuestBtn();
         } else {
-          cy.wait(2000);
           CheckoutPage.click.continueAsGuestBtn();
         }
       });
@@ -55,17 +53,14 @@ class Navigate {
     // REGISTERED USER //
     } else {
       cy.fixture('users').then((credentials: LoginCredentials) => {
-        cy.wait(2000);
         CheckoutPage.actions.userEmailField(credentials.username);
         if (isSiteGenesisBrand && brand != 'boohooman.com' && brand != 'boohoomena.com') {
           CheckoutPage.click.continueAsRegisteredUser();
         }
-        cy.wait(1000);
         CheckoutPage.actions.passwordField(credentials.password);
         CheckoutPage.click.continueAsRegisteredUser();
       });
     }
-    cy.wait(2000);
   }
 
   toBillingPage (userType: UserType) {
@@ -96,7 +91,6 @@ class Navigate {
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
           }
-          cy.wait(2000);
           shippingPage.click.proceedToBilling();
           shippingPage.click.proceedToBillingVerification();
         } else {
@@ -123,7 +117,6 @@ class Navigate {
       shippingPage.actions.lastNameField(primaryAddress.lastName);
       shippingPage.actions.selectCountry(primaryAddress.country);
       shippingPage.actions.phoneNumberField(primaryAddress.phone);
-      cy.wait(5000);
       shippingPage.click.addAddressManually();
       shippingPage.actions.adressLine1(primaryAddress.addressLine);
       if (brand == 'boohooman.com') {
@@ -137,10 +130,8 @@ class Navigate {
         shippingPage.actions.countyField(primaryAddress.county);
       }
       shippingPage.actions.postcodeField(primaryAddress.postcode);
-      cy.wait(2000);
       shippingPage.click.makeShippingAddressDefault;
       shippingPage.click.proceedToBilling();
-      cy.wait(3000);
       shippingPage.click.proceedToBillingVerification();
       BillingPage.actions.waitPageToLoad();
     }

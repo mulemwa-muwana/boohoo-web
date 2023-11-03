@@ -851,7 +851,6 @@ class BillingPage implements AbstractPage {
 
   actions = {
     waitPageToLoad () {
-      cy.wait(12000);
       cy.url().should('include', 'billing');
     },
     selectDate (day: string, month: string, year: string) {
@@ -876,20 +875,16 @@ class BillingPage implements AbstractPage {
       const paynowBtnCC = selectors[brand].paynowBtnCC;
       const clickAddNewCard = selectors[brand].clickAddNewCard;
       cy.get(paymentMethodCreditCard).click({ force: true });
-      cy.wait(4000);
-
       cy.get('body').then($body => { // (Updated) If there is saved Credit Card, click Add new Card button
         if ($body.find(clickAddNewCard).length > 0) {
           cy.get(clickAddNewCard).click();
         }
       });
-
       cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).type(cardNo, { force: true });
       cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(date, { force: true });
       cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(code, { force: true });
       cy.get(creditCardFieldsCardOwner).type(cardOwner, { force: true });
       cy.get(paynowBtnCC).click({ force: true });
-
     },
     selectCreditCardUS (cardNo: string, cardOwner: string, date: string, code: string) {
       const paymentMethodCreditCardUS = selectors[brand].paymentMethodCreditCardUS;
@@ -902,8 +897,6 @@ class BillingPage implements AbstractPage {
       const saveCards = "[class='b-button m-info m-width_full ']";
 
       cy.get(paymentMethodCreditCardUS).click({ force: true });
-      cy.wait(4000);
-
       cy.get('body').then($body => { // (Updated) If there is saved Credit Card, click Add new Card button
         if ($body.find(saveCards).length > 0) {
           cy.get(saveCards).click({ force: true });
@@ -978,7 +971,6 @@ class BillingPage implements AbstractPage {
       } else {
         cy.get(billingPostCode).clear().type(postcode);
       }
-
     },
     addBillingAddressRegisteredUser (localeAddress: AddressData) {
       const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
@@ -1004,7 +996,6 @@ class BillingPage implements AbstractPage {
       } else {
         cy.get(billingPostCode).clear().type(localeAddress.postcode);
       }
-
     },
     addPromoCode (promo: string) {
       const couponCode = selectors[brand].couponCode;
@@ -1299,7 +1290,7 @@ class BillingPage implements AbstractPage {
       cy.get(clearPayPasswordCTA, { timeout: 30000 }).click();
       cy.get(clearPaySummeryButton, { timeout: 30000 }).click();
     },
-    	
+
     selectiDEALBoohooNL () {
       const iDEALSelectionButton = selectors[brand].iDEALSelectionButton;
       const iDEALBankSelection = selectors[brand].iDEALBankSelection;
@@ -1326,7 +1317,7 @@ class BillingPage implements AbstractPage {
       cy.get(sofortPaymentOutcomeSelection).select('Authorised');
       cy.get(sofortContinueButton).click({ force : true });
     },
-    
+
   };
 
   assertions = {

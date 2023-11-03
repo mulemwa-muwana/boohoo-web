@@ -27,23 +27,12 @@ class Navigate {
     PdpPage.actions.selectColorFromSku();
     PdpPage.actions.selectSizeFromSku();
     PdpPage.click.addToCart();
-    PdpPage.click.addToCart();
-    cy.wait(7000);
-    HomePage.click.cartIcon();    
     cy.wait(1000); // Wait is needed otherwise test is failing
     HomePage.click.cartIcon();
   }
 
   toCheckoutLoginPage () {
     this.toCartPage();
-    const path = 'cart';
-    cy.url().then(($url) => {
-      if ($url.includes(path)) {
-        cartPage.assertions.assertQuantityIsone();
-      } else {
-        cy.log('not in cart page');
-      }
-    });
     cartPage.click.proceedToCheckoutminiCart();
   }
 

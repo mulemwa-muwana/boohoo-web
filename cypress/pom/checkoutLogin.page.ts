@@ -4,7 +4,7 @@ import homePage from './home.page';
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
     guestCheckoutEmail: '#dwfrm_login_guestEmail',
-    userEmailField: '[data-tau="login_email"]',
+    userEmailField: '#dwfrm_login_email',
     passwordField:'#dwfrm_login_password',
     continueAsGuestBt:'.b-form > .b-button',
     continueAsRegisteredUser: 'button[data-tau="login_submit"]',

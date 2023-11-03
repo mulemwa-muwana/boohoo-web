@@ -181,6 +181,17 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
+  it('CYP-250 KMEU: Verify that new shipping options display', function () {
+    if (brand == 'karenmillen.com' && locale == 'EU') {
+      const CountriesEU: Array<string> = ['Germany', 'Spain', 'France', 'Netherlands'];
+      for (let i = 0; i < CountriesEU.length; i++) {
+        shippingPage.actions.selectCountry(CountriesEU[i]);
+        shippingPage.assertions.assertDeliverySection(`${CountriesEU[i]} Standard`);
+      }
+    }
+  });
+
+
   it('CYP-184 Verify that user is able to select 2nd shipping method', function () {
     const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU');
     const isKMLocaleWithSelectState: boolean = (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE'));

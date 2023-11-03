@@ -121,15 +121,15 @@ describe('Order confirmation page for registered user', function () {
   });
 
   it('CYP-145 Verify that registered user can place order using PayPal', function () {
-    if (brand == 'boohoomena.com') {
-      this.skip(); // Only credit card as payment option for this brand
+    if (!isSiteGenesisBrand) {
+      Navigate.toBillingPage('RegisteredUser');
+      billingPage.actions.selectPayPal();
+      billingPage.assertions.assertOrderConfirmationPageIsDisplayed(); // Not working on Site Genesis
+      const paymentMethod: PaymentMethod = 'PayPal';
+      generateFrontendArtefact(brand, paymentMethod);
+    } else {
+      this.skip();
     }
-    Navigate.toBillingPage('RegisteredUser');
-    billingPage.actions.selectPayPal();
-    billingPage.assertions.assertOrderConfirmationPageIsDisplayed(); // Not working on Site Genesis
-
-    const paymentMethod: PaymentMethod = 'PayPal';
-    generateFrontendArtefact(brand, paymentMethod);
   });
 
   it('CYP-146 Verify that registered user can place order using Klarna', function () {

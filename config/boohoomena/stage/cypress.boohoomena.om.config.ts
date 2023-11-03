@@ -41,10 +41,11 @@ export default defineConfig({
       config.env.XRAY_CLIENT_ID = process.env.CYPRESS_XRAY_CLIENT_ID,
       config.env.XRAY_CLIENT_SECRET = process.env.CYPRESS_XRAY_CLIENT_SECRET;
 
+      const device = 'Desktop';
       const currentDateTime: Date = new Date();
       const brand: string = config.env.brand.split('.')[0];
       const locale = config.env.locale;
-      const executionName = brand + '/' + locale + ' ' + currentDateTime;
+      const executionName = brand.toUpperCase() + ' / ' + locale + ' / ' + device + ' ' + currentDateTime;
       await configureXrayPlugin(config, {
         jira: {
           projectKey: 'CYP',

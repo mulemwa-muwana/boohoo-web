@@ -23,7 +23,7 @@ describe('Customer Service Page', function () {
     customerServicePage.actions.checkReturnButtonByText(assertionText.customerServicePageReturnButton[language], 'returns');
   });
 
-  it('CYP-62 Verify that start a chat will open', function () {
+  it('CYP-62 Verify that start a chat is present and clickable', function () {
     if (brand != 'boohoo.com') {
       this.skip(); // Skipping other brands for now, these will be added in phase 2
     }

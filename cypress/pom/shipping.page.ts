@@ -825,13 +825,9 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
-<<<<<<< HEAD
-      cy.get(proceedToBilling,{timeout:1000}).trigger('click',{force:true});
-=======
       cy.wait(3000);
       cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
       cy.get('@proceedToBillingButton').dblclick({force: true});
->>>>>>> fd56670e (update proceedToBill method ,add new locators)
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {
@@ -1101,7 +1097,6 @@ class ShippingPage implements AbstractPage {
         cy.get('[data-option-id="shippingMethod-UKNextDayDelivery"]').trigger('click',{force:true});
       } else {
         cy.get(secondShippingMethodName).trigger('click',{force:true});
-
       }
 
     },

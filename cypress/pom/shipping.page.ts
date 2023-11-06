@@ -120,7 +120,6 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodName: '.b-shipping_method .b-option_switch-label_surface',
     shippingMethodsNameList: '.b-option_switch-name',
-    secondShippingMethodName: '[data-option-id="shippingMethod-NUKNextDayDelivery"]',
     shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     shippingStateUS:'#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
@@ -371,7 +370,6 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodName: '.js-shipping-method-list .form-label',
     shippingMethodsNameList: '.shipping-method-name',
-    secondShippingMethodName:'[id="shipping-method-is-express"]',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
     clickAndCollectTab:'.js-click-collect-tab',
@@ -404,7 +402,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    proceedToBilling: 'button[name="dwfrm_singleshipping_shippingAddress_save"]:eq(0) ',
+    proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
     proceedToBillingVerificationBtn: '.verification-address-button',
     addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     newAddedAddressBlock: '.checkout-address-form .address-summary',
@@ -425,7 +423,6 @@ const selectors: SelectorBrandMap = {
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
-    secondShippingMethodName:'[id="shipping-method-is-express"]',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
     shippingState :'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     confirmShippingAddress:"button[class^='verification-address-button']",
@@ -449,7 +446,6 @@ const selectors: SelectorBrandMap = {
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
-    shippingTab: '.js-delivery-tab',
     clickAndCollectTab:'.js-click-collect-tab',
     pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
     pudoSearchField:'.js-pudo-search-field',
@@ -463,7 +459,7 @@ const selectors: SelectorBrandMap = {
     successMark:'.field-wrapper-w3w-valid',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    checkoutMiniBagSummery: '.summary-inner',
+    checkoutMiniBagSummery: '[data-tau="minicart_start_checkout_bottom"]',
     helpAndInfoLink: '.checkout-help-link',
     deliverySection:  '.js-shipping-method-list.js-cmp-inited.js-cmp-ShippingMethodModals',
   },
@@ -708,7 +704,6 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodName: '.js-shipping-method-list .form-label',
     shippingMethodsNameList: '.shipping-method-name',
-    secondShippingMethodName:'[id="shipping-method-is-express"]',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -825,9 +820,7 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
-      cy.wait(3000);
-      cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
-      cy.get('@proceedToBillingButton').dblclick({force: true});
+      cy.get(proceedToBilling,{timeout:1000}).trigger('click',{force:true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {
@@ -1089,14 +1082,15 @@ class ShippingPage implements AbstractPage {
       cy.get(shippingTab,{timeout:1000}).click({ force: true });
     },
     selectSecondShippingMethod () {
-      const secondShippingMethodName = selectors[brand].secondShippingMethodName;
+      const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
       if (brand == 'nastygal.com' && locale == 'CA') {
-        cy.get(secondShippingMethodName).eq(0).trigger('click',{force:true});
+        cy.get(shippingMethodName).eq(0).trigger('click',{force:true});
       } else if (brand == 'boohoo.com') {
         cy.get('[data-option-id="shippingMethod-UKNextDayDelivery"]').trigger('click',{force:true});
       } else {
-        cy.get(secondShippingMethodName).trigger('click',{force:true});
+        cy.get(shippingMethodName).eq(1).trigger('click',{force:true});
+
       }
 
     },

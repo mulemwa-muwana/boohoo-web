@@ -63,6 +63,7 @@ describe('Shipping Page Guest user tests', function () {
     if (brandHasEnterManuallyButton) {
       shippingPage.click.addAddressManually();
     }
+    cy.wait(3000);
     shippingPage.click.proceedToBilling();
     if (brand == 'boohoo.com') {
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[language]);

@@ -50,6 +50,7 @@ describe('Boohoo order placement', () => {
     }
 
     const visa = Cards.visa;
+    cy.wait(5000)
     BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
     generateArtefact(brand, paymentMethod);
   });

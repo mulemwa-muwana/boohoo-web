@@ -10,7 +10,7 @@ describe('Checkout Page', function () {
     Navigate.toCheckoutLoginPageUsingSession();
   });
 
-  it('CYP-56 Verify is checkout login / guest displayed', () => {
+  it('Verify is checkout login / guest displayed', () => {
     if (isSiteGenesisBrand || brand == 'boohoo.com') {
       CheckoutPage.assertions.assertUserEmailField();
     } else {
@@ -20,7 +20,7 @@ describe('Checkout Page', function () {
     }
   });
 
-  it('CYP-57 Verify Premier is displayed and can be added to the cart', function () {
+  it('Verify Premier is displayed and can be added to the cart', function () {
     const arcadiaBrands: Array<GroupBrands> = ['dorothyperkins.com', 'burton.co.uk', 'wallis.co.uk'];
     if (isSiteGenesisBrand || arcadiaBrands.includes(brand)) {
       this.skip();
@@ -40,7 +40,7 @@ describe('Checkout Page', function () {
     }
   });
 
-  it('CYP-58 Verify that user is able to proceed as guest', function () {
+  it('Verify that user is able to proceed as guest', function () {
     if (brand == 'boohoomena.com') {
       this.skip(); // No guest users are allowed for this brand, only registered ones
     }
@@ -51,7 +51,7 @@ describe('Checkout Page', function () {
     });
   });
 
-  it('CYP-59 Verify that registered user is able to login', () => {
+  it('Verify that registered user is able to login', () => {
     Navigate.clearSessionCookies();
     Navigate.toCheckoutLoginPage();
 

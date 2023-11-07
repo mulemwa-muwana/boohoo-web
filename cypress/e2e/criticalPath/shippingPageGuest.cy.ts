@@ -25,14 +25,14 @@ describe('Shipping Page Guest user tests', function () {
     Navigate.toShippingPageUsingSession('GuestUser');
   });
 
-  it('CYP-177 Verify that order total and promo code are displayed', function () {
+  it('Verify that order total and promo code are displayed', function () {
     shippingPage.assertions.assertOrderTotalIsDisplayed();
     if (!isSiteGenesisBrand) {
       shippingPage.assertions.assertPromoCodeFieldIsDisplayed();
     }
   });
 
-  it('CYP-178 Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
+  it('Verify that in "DELIVERY INFORMATION"  first name, last name and telephone number are mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'secondaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.actions.selectCountry(localeAddress.country);
@@ -58,7 +58,7 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
-  it('CYP-222 Verify that in "DELIVERY INFORMATION" address is mandatory', function () {
+  it('Verify that in "DELIVERY INFORMATION" address is mandatory', function () {
     const brandHasEnterManuallyButton: boolean = (brand == 'boohoo.com' || brand == 'nastygal.com');
     if (brandHasEnterManuallyButton) {
       shippingPage.click.addAddressManually();
@@ -72,7 +72,7 @@ describe('Shipping Page Guest user tests', function () {
 
   });
 
-  it('CYP-179 Verify that in "DELIVERY INFORMATION" user can add first name, last name, select country from drop down list, add phone number', function () {
+  it('Verify that in "DELIVERY INFORMATION" user can add first name, last name, select country from drop down list, add phone number', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -88,7 +88,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertPhoneNumberFieldIsPopulated(localeAddress.phone);
   });
 
-  it('CYP-180 Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
+  it('Verify that ADDRESS LOOKUP field is dispayed and mandatory', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddress();
     if (locale == 'EU') {
@@ -99,7 +99,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertAddressLookupFieldIsVisible();
   });
 
-  it('CYP-181 Verify that "Enter manually" button allows guest to enter address details', function () {
+  it('Verify that "Enter manually" button allows guest to enter address details', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddress();
     if (locale == 'EU') {
@@ -111,7 +111,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertManualAddressFieldsAreDisplayed();
   });
 
-  it('CYP-182 Verify that user is able to add address details manually', function () {
+  it('Verify that user is able to add address details manually', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     if (!isSiteGenesisBrand) {
       shippingPage.click.addNewAddress();
@@ -145,7 +145,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
-  it('CYP-183 Verify that user is able to select standard shipping method', function () {
+  it('Verify that user is able to select standard shipping method', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddress();
@@ -181,7 +181,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
 
-  it('CYP-250 KMEU: Verify that new shipping options display', function () {
+  it('KMEU: Verify that new shipping options display', function () {
     if (brand == 'karenmillen.com' && locale == 'EU') {
       const CountriesEU: Array<string> = ['Germany', 'Spain', 'France', 'Netherlands'];
       for (let i = 0; i < CountriesEU.length; i++) {
@@ -191,8 +191,7 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
-
-  it('CYP-184 Verify that user is able to select 2nd shipping method', function () {
+  it('Verify that user is able to select 2nd shipping method', function () {
     const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU');
     const isKMLocaleWithSelectState: boolean = (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE'));
     const isMANLocaleWithSelectState: boolean = (brand == 'boohooman.com' && (locale == 'IE' || locale == 'US'));
@@ -245,12 +244,12 @@ describe('Shipping Page Guest user tests', function () {
     });
   });
 
-  it('CYP-185 Verify that guest user can Edit cart from shipping page', function () {
+  it('Verify that guest user can Edit cart from shipping page', function () {
     shippingPage.click.editCart();
     cartPage.assertions.assertTableWithProductIsVisible();
   });
 
-  it('CYP-186 Verify that user is able to proceed to billing page after adding fname, lname, country, phone number and select shipping method', function () {
+  it('Verify that user is able to proceed to billing page after adding fname, lname, country, phone number and select shipping method', function () {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     shippingPage.click.addNewAddress();
     shippingPage.actions.firstNameField(localeAddress.firstName);
@@ -281,13 +280,13 @@ describe('Shipping Page Guest user tests', function () {
   });
 
   //  TESTS FOR SITE GENESIS BRANDS:  //
-  it('CYP-187 SG: Verify that email field is filled with correct email address', function () {
+  it('SG: Verify that email field is filled with correct email address', function () {
     if (!isSiteGenesisBrand || brand == 'boohooman.com' || brand == 'karenmillen.com') { // Email field only for Site Genesis brands is on Shipping page.
       this.skip();
     }
     shippingPage.assertions.assertEmailIsCorrect(this.guestEmail);
   });
-  it('CYP-188 SG: Verify that date of birth form is present and that guest user can select date of birth', function () {
+  it('SG: Verify that date of birth form is present and that guest user can select date of birth', function () {
     if (!isSiteGenesisBrand) {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
@@ -295,7 +294,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
     shippingPage.assertions.assertDateIsSelected('23', '05', '2001');
   });
-  it('CYP-189 SG: Verify that guest user cannot proceed to billing page if email field is empty', function () {
+  it('SG: Verify that guest user cannot proceed to billing page if email field is empty', function () {
     if (!isSiteGenesisBrand || brand == 'boohooman.com') {
       this.skip(); // Email field only for Site Genesis brands is on Shipping page.
     }
@@ -303,7 +302,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyEmailFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });
-  it('CYP-190 SG: Verify that guest user cannot proceed to billing page if date of birth is not selected', function () {
+  it('SG: Verify that guest user cannot proceed to billing page if date of birth is not selected', function () {
     if (!isSiteGenesisBrand) {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
@@ -311,7 +310,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.proceedToBilling();
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });
-  it('CYP-191 Verify that user can enter valid credentials in w3w', function () {
+  it ('Verify that user can enter valid credentials in w3w', function () {
     if (isSiteGenesisBrand) {
       const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'UK');
       const excludedkarenmillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'US' || locale == 'EU');
@@ -336,7 +335,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
     shippingPage.assertions.assertW3WisSelected();
   });
-  it('CYP-192 Verify that user can select PUDO location', function () {
+  it('Verify that user can select PUDO location', function () {
     if (locale != 'UK' || brand == 'boohooman.com') {
       this.skip();
     }
@@ -351,7 +350,7 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.assertions.assertShopisSelected(resp);
     });
   });
-  it('CYP-193 SG: Verify that guest user can add Thrift to the order', function () {
+  it('SG: Verify that guest user can add Thrift to the order', function () {
     if (brand == 'karenmillen.com' && locale == 'UK') {
       shippingPage.assertions.assertThriftSectionIsVisible();
       shippingPage.click.addThriftToCart();
@@ -359,7 +358,7 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
-  it('CYP-194 Verify is correct validation added if code is invalid for guest user', function () {
+  it('Verify is correct validation added if code is invalid for guest user', function () {
     if (brand != 'boohoo.com') {
       this.skip();
     }
@@ -367,7 +366,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertInvalidPromoError();
   });
 
-  it('CYP-195 Verify is correct validation added if code is empty for guest user', function () {
+  it('Verify is correct validation added if code is empty for guest user', function () {
     if (brand != 'boohoo.com') {
       this.skip();
     }
@@ -375,7 +374,7 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.assertions.assertEmptyPromoError();
   });
 
-  it('CYP-196 Verify that "Help & info" link on header opens corresponding page', function () {
+  it('Verify that "Help & info" link on header opens corresponding page', function () {
     if (brand == 'boohoo.com' || brand == 'nastygal.com') {
       this.skip(); // No help and info link on these brands
     }

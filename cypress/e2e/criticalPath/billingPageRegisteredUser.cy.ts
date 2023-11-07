@@ -13,26 +13,26 @@ describe('Billing page functionality for registered user', function () {
     Navigate.toBillingPageUsingSession('RegisteredUser');
   });
 
-  it('CYP-31 Verify that shipping address block is filled with data', function () {
+  it('Verify that shipping address block is filled with data', function () {
     BillingPage.assertions.assertShippingAddressPresent();
   });
 
-  it('CYP-32 Verify that shipping method is displayed', function () {
+  it('Verify that shipping method is displayed', function () {
     const localeShippingMethod = shippingMethods.getShippingMethodByLocale(locale, 'shippingMethod1');
     if (locale == 'EU') {
       this.skip(); // EU has only Europe and International Delivery
     }
     BillingPage.assertions.assertShippingMethodPresent(localeShippingMethod.shippingMethodName);
   });
-  it('CYP-33 Verify that register user can change shipping address', function () {
+  it('Verify that register user can change shipping address', function () {
     BillingPage.click.changeShippingAddress();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('CYP-34 Verify that register user can change shipping method', function () {
+  it('Verify that register user can change shipping method', function () {
     BillingPage.click.changeShippingMethod();
     BillingPage.assertions.assertShippingPageIsOpened();
   });
-  it('CYP-35 Verify that email address is displayed and it cannot be changed', function () {
+  it('Verify that email address is displayed and it cannot be changed', function () {
     if (isSiteGenesisBrand) {
       this.skip(); // Email is not displayed on Billing page for Site Genesis brands
     }
@@ -41,19 +41,19 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.assertions.assertEmailFieldCantBeChanged();
     });
   });
-  it('CYP-36 Verify that billing address can be same as shipping address', function () {
+  it('Verify that billing address can be same as shipping address', function () {
     if (isSiteGenesisBrand) {
       BillingPage.click.changeShippingAddress();
     }
     BillingPage.assertions.assertSameAsShippingIsChecked();
   });
-  it('CYP-37 Verify that registered user can submit new billing address from address book', function () {
+  it('Verify that registered user can submit new billing address from address book', function () {
     if (!isSiteGenesisBrand) {
       BillingPage.click.uncheckShippingCheckbox();
     }
     BillingPage.actions.selectAddressFromBook();
   });
-  it('CYP-38 Verify that registered user can add  new billing address', function () {
+  it('Verify that registered user can add  new billing address', function () {
     if (brand == 'boohooman.com') {
       this.skip();
     }
@@ -71,7 +71,7 @@ describe('Billing page functionality for registered user', function () {
       BillingPage.actions.addBillingAddressRegisteredUser(localeAddress);
     }
   });
-  it('CYP-39 Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
+  it('Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     if (brand == 'boohoomena.com') {
       BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
       return; // Only credit card as payment option for this brand
@@ -93,7 +93,7 @@ describe('Billing page functionality for registered user', function () {
   });
 
   //  TESTS FOR SITE GENESIS BRANDS:  //
-  it('CYP-40 Verify that promo code field is displayed', function () {
+  it('Verify that promo code field is displayed', function () {
     if (isSiteGenesisBrand) {
       BillingPage.assertions.assertPromoCodeFieldIsDisplayed();
     } else {
@@ -101,7 +101,7 @@ describe('Billing page functionality for registered user', function () {
     }
   });
 
-  it('CYP-41 Verify that user is able to Add, Remove gift certificate at Billing Page', function () {
+  it('Verify that user is able to Add, Remove gift certificate at Billing Page', function () {
     billingPage.actions.addGiftCard(giftCertificate);
     billingPage.assertions.assertGiftCardAdded();
     cy.wait(1000);
@@ -113,16 +113,16 @@ describe('Billing page functionality for registered user', function () {
 
   });
 
-  it('CYP-42 Verify that user see error when try to add invalid giftCard', function () {
+  it('Verify that user see error when try to add invalid giftCard', function () {
     billingPage.actions.addGiftCard('WRONGGIFTCARDERR');
     billingPage.assertions.assertGiftCardError();
   });
-  it('CYP-43 Verify is correct validation added if code is empty for registered user', function () {
+  it('Verify is correct validation added if code is empty for registered user', function () {
     billingPage.actions.addGiftCard('{backspace}');
     billingPage.assertions.assertGiftCardEmptyError();
   });
 
-  it('CYP-44 Verify is correct validation added if code is invalid for registered user', function () {
+  it('Verify is correct validation added if code is invalid for registered user', function () {
     if (brand == 'boohoo.com') {
       billingPage.actions.addPromoCode('InvalidPromoCode');
       billingPage.assertions.assertInvalidPromoError();
@@ -132,7 +132,7 @@ describe('Billing page functionality for registered user', function () {
 
   });
 
-  it('CYP-45 Verify is correct validation added if code is empty for registered user', function () {
+  it('Verify is correct validation added if code is empty for registered user', function () {
     if (brand == 'boohoo.com') {
       billingPage.actions.addNoPromoCode();
       billingPage.assertions.assertEmptyPromoError();

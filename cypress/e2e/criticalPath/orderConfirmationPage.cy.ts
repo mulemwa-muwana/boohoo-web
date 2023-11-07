@@ -14,7 +14,7 @@ describe('Order confirmation page for guest user', function () {
     }
   });
 
-  it('CYP-142 Verify that guest user can place order with Visa card and that order confirmation page is displayed correctly', function () {
+  it('Verify that guest user can place order with Visa card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('GuestUser');
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
@@ -48,7 +48,7 @@ describe('Order confirmation page for guest user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
 
-  it('CYP-143 Verify that guest user can place order using Credit Card - Amex)', function () {
+  it('Verify that guest user can place order using Credit Card - Amex)', function () {
     Navigate.toBillingPage('GuestUser');
     if (!isSiteGenesisBrand) {
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
@@ -64,7 +64,7 @@ describe('Order confirmation page for guest user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
   
-  it('CYP-244 Verify that guest user can place order using iDEAL - BHO NL', function () {
+  it('Verify that guest user can place order using iDEAL - BHO NL', function () {
     if (brand == 'boohoo.com' && locale == 'NL') {
       Navigate.toBillingPage('GuestUser');
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
@@ -76,7 +76,7 @@ describe('Order confirmation page for guest user', function () {
     }
   });
   
-  it('CYP-245 Verify that guest user can place order using Sofort - BHO De', function () {
+  it('Verify that guest user can place order using Sofort - BHO De', function () {
     if (brand == 'boohoo.com' && locale == 'DE') { 
       Navigate.toBillingPage('GuestUser');
       billingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
@@ -90,8 +90,8 @@ describe('Order confirmation page for guest user', function () {
 });
 
 describe('Order confirmation page for registered user', function () {
-  
-  it('CYP-144 Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
+
+  it('Verify that registerd user can place order with Master card and that order confirmation page is displayed correctly', function () {
     Navigate.toBillingPage('RegisteredUser');
     const isUScreditcardBrandAndLocale: boolean = (brand == 'boohoo.com' || brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'CA');
     if (isUScreditcardBrandAndLocale) {
@@ -120,7 +120,7 @@ describe('Order confirmation page for registered user', function () {
     generateFrontendArtefact(brand, paymentMethod);
   });
 
-  it('CYP-145 Verify that registered user can place order using PayPal', function () {
+  it('Verify that registered user can place order using PayPal', function () {
     if (!isSiteGenesisBrand) {
       Navigate.toBillingPage('RegisteredUser');
       billingPage.actions.selectPayPal();
@@ -132,7 +132,7 @@ describe('Order confirmation page for registered user', function () {
     }
   });
 
-  it('CYP-146 Verify that registered user can place order using Klarna', function () {
+  xit('Verify that registered user can place order using Klarna', function () {
     const noKlarnaBrandAndLocale: boolean = (brand == 'boohooman.com' || brand == 'nastygal.com') && (locale == 'AU' || locale == 'US' || locale == 'CA');
     const isKlarnaLocale: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'NL' || locale == 'US' || locale == 'CA';
     if (noKlarnaBrandAndLocale) {

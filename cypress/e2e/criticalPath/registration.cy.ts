@@ -14,12 +14,12 @@ describe('Verify Registration feature', function () {
     LoginPage.click.loginIcon();
     HomePage.click.registrationButton();
   });
-  it('CYP-174 Verify that registration button is visible and it opens registration form', function () {
+  it('Verify that registration button is visible and it opens registration form', function () {
     const randomEmail = CommonActions.randomEmail();
     RegistrationPage.actions.startRegistration(randomEmail);
     RegistrationPage.assertions.assertRegistrationFormIsPresent();
   });
-  it('CYP-175 Verify that user can register new account using valid credentials', function () {
+  it('Verify that user can register new account using valid credentials', function () {
     cy.fixture('newuser').then((credentials) =>{
       const randomEmail = CommonActions.randomEmail();
       RegistrationPage.actions.startRegistration(randomEmail);
@@ -36,7 +36,7 @@ describe('Verify Registration feature', function () {
       MyAccountPage.assertions.assertNameGreetingMessage(credentials.firstname);
     });
   });
-  it('CYP-176 Verify that user can not register using email that already has account', function () {
+  it('Verify that user can not register using email that already has account', function () {
     cy.fixture('newuser').then((credentials) =>{
       RegistrationPage.actions.startRegistration(credentials.username);
       if (!isSiteGenesisBrand) {

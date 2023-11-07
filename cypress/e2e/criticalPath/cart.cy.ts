@@ -12,7 +12,7 @@ describe('Cart basic functionality for guest user', function () {
 
   });
 
-  it('Verify the presence of table with all products added to cart and that product name, image color/size/qty and price are visible', function () {
+  it('CYP-46 Verify the presence of table with all products added to cart and that product name, image color/size/qty and price are visible', function () {
     CartPage.assertions.assertTableWithProductIsVisible();
     CartPage.assertions.assertProductImageIsDisplayed();
     CartPage.assertions.assertProductTitleIsVisible();
@@ -20,7 +20,7 @@ describe('Cart basic functionality for guest user', function () {
     CartPage.assertions.assertPriceAndSubtotalAreVisible();
 
   });
-  it('Verify that user can update quantity of products', function () {
+  it('CYP-47 Verify that user can update quantity of products', function () {
     if (isSiteGenesisBrand) {
       CartPage.actions.editCartQuantitySiteGenesis('3');
       CartPage.assertions.assertQuantityIsDisplayed('3');
@@ -32,7 +32,7 @@ describe('Cart basic functionality for guest user', function () {
     }
   });
 
-  it('Verify that Get Premier slots are visible if Premier is not in the bag', function () {
+  it('CYP-48 Verify that Get Premier slots are visible if Premier is not in the bag', function () {
     if (locale == 'FR') {
       this.skip();
     }
@@ -50,11 +50,11 @@ describe('Cart basic functionality for guest user', function () {
     }
   });
 
-  it('Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
+  it('CYP-49 Verify that guest users are redirected to login page after clicking Checkout CTA', function () {
     CartPage.click.proceedToCheckoutCart();
     CheckoutPage.assertions.assertGuestCheckoutEmail();
   });
-  it('Verify that PayPal CTA is displayed and functional', function () {
+  it('CYP-50 Verify that PayPal CTA is displayed and functional', function () {
     if (brand == 'boohoomena.com') {
       this.skip();
     } else {
@@ -62,7 +62,7 @@ describe('Cart basic functionality for guest user', function () {
       CartPage.actions.openPayPalSandbox(); // 2 frames on SG
     }
   });
-  it('Verify that Klarna CTA is displayed and functional', function () {
+  it('CYP-51 Verify that Klarna CTA is displayed and functional', function () {
     const klarnaWithLocales: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'US';
     if (brand == 'boohooman.com' && locale == 'US') {
       this.skip();
@@ -73,11 +73,11 @@ describe('Cart basic functionality for guest user', function () {
       this.skip();
     }
   });
-  it('Verify that user can remove product from cart', function () {
+  it('CYP-52 Verify that user can remove product from cart', function () {
     CartPage.click.clearCart();
     CartPage.assertions.assertCartIsEmpty();
   });
-  it('Verify that user can add Thrift to the cart', function () {
+  it('CYP-53 Verify that user can add Thrift to the cart', function () {
     if (brand == 'karenmillen.com') {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
@@ -99,14 +99,14 @@ describe('Cart page for Registered user', function () {
 
     Navigate.toCartPage();
   });
-  it('Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
+  it('CYP-54 Verify that registered users are redirected to shipping page after clicking Checkout CTA', function () {
     if (['burton.co.uk', 'dorothyperkins.com', 'wallis.co.uk', 'nastygal.com', 'boohoo.com'].includes(brand) && !isMobileDeviceUsed) {
       cy.get('[class="b-button m-outline b-minicart-button"]').click({ force: true });
     }
     CartPage.click.proceedToCheckoutCart();
     CheckoutPage.assertions.assertUserProceededToShippingPage();
   });
-  it('Verify that user can add Thrift to the cart', function () {
+  it('CYP-55 Verify that user can add Thrift to the cart', function () {
     if (brand == 'karenmillen.com') {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();

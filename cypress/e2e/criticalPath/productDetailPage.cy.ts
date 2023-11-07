@@ -15,7 +15,7 @@ describe('Product Details Page tests', function () {
     HomePage.actions.findItemUsingSKU(sku);
   });
 
-  it('TC01 Verify that Product name, price and code is showing',function () {
+  it('CYP-147 Verify that Product name, price and code is showing',function () { 
     const SKU = sku.replace(/^#/g, '');
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
@@ -32,28 +32,28 @@ describe('Product Details Page tests', function () {
 
     // PdpPage.assertions.assertImageIsDisplayed('#product-image-3');  some products have only 3 images
   });
-
-  it('TC02 Verify that colour swatches are displayed',function () {
+  
+  it('CYP-148 Verify that colour swatches are displayed',function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
   });
-  it('TC03 Verify that it is possible to select a size when available', function () {
-    PdpPage.actions.selectFirstAvailableSize();
+  it('CYP-149 Verify that it is possible to select a size when available', function () {
+    PdpPage.actions.selectFirstAvailableSize();  
     PdpPage.click.addToCart();
   });
-  it('TC04 Verify if size is not selected user cannot add product to a bag', function () {
+  it('CYP-150 Verify if size is not selected user cannot add product to a bag', function () {
     if (brand == 'boohoo.com') {
       PdpPage.assertions.assertAddToCartBtnIsNotAvailable(assertionText.selectSize[language]);
     } else {
       PdpPage.assertions.assertAddToCartBtnDisabled();
     }
-  });
-  it('TC05 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
+  });   
+  it('CYP-151 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColorByIndex(0);
     PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToCart();
     PdpPage.assertions.assertMiniCartIsDisplayed();
-  });
-  it('TC06 Verify that save for later (heart icon) is functional when selected', function () {
+  }); 
+  it('CYP-152 Verify that save for later (heart icon) is functional when selected', function () {
     PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToWishList();
 
@@ -67,7 +67,7 @@ describe('Product Details Page tests', function () {
       PdpPage.assertions.assertProductIsAddedToWishlist(assertionText.WishlistItemsAddedArkadia[language]);
     }
   });
-  it('TC07 Verify that Style Notes, Shipping & Return Info are displayed when configured', function () {
+  it('CYP-153 Verify that Style Notes, Shipping & Return Info are displayed when configured', function () {
     PdpPage.assertions.assertProductDescriptionIsPresent();
     if (brand == 'boohoo.com' || brand == 'coastfashion.com' || brand == 'warehousefashion.com') {
       PdpPage.click.shippingInfoButton();
@@ -81,7 +81,7 @@ describe('Product Details Page tests', function () {
 
     // We need to instal plugin for continuing after failed assertation just in case
   });
-  it('TC08 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
+  it('CYP-154 Verify that recomendation are displayed in COMPLETE THE LOOK category', function () {
     if (brand == 'boohoo.com') {
       PdpPage.assertions.assertCompleteLookDisplayed(assertionText.completeTheLook[language]);
     } else {
@@ -89,7 +89,7 @@ describe('Product Details Page tests', function () {
     }
   });
 
-  it('Verify that PREMIER banner is visible and can be added to the basket', function () {
+  it('CYP-155 Verify that PREMIER banner is visible and can be added to the basket', function () {
     if ((brand == 'karenmillen.com'&& (locale == 'US' || locale == 'IE' || locale == 'EU')) || (brand == 'boohooman.com') && locale == 'UK') {
       if (brand == 'karenmillen.com') {
         PdpPage.click.deliveryInfo();
@@ -103,7 +103,7 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
-  it('Verify that PREMIER link is visible and can be opened from Delivery info accordian', function () {
+  it('CYP-156 Verify that PREMIER link is visible and can be opened from Delivery info accordian', function () {
     if (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE' || locale == 'EU')) {
       PdpPage.click.deliveryInfo();
       PdpPage.click.premierLink(assertionText.Premier[language]);
@@ -112,7 +112,7 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
-  it('Verify that "Here" link below shipping table is visible and can be opened from Delivery info accordia', function () {
+  it('CYP-157 Verify that "Here" link below shipping table is visible and can be opened from Delivery info accordia', function () {
     const BMANhereLinkFromDelivery: boolean = brand == 'boohooman.com' && (locale == 'UK' || locale == 'DE' || locale == 'EU' || locale == 'FR' || locale == 'IE' || locale == 'NL' || locale == 'US');
     const MPhereLinkFromDelivery: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'AU' || locale == 'IE');
     if (brand == 'karenmillen.com' || BMANhereLinkFromDelivery || MPhereLinkFromDelivery) {
@@ -122,7 +122,7 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
-  it('Verify that "Here" link below returns details is visible and can be opened from Returns info accordian', function () {
+  it('CYP-158 Verify that "Here" link below returns details is visible and can be opened from Returns info accordian', function () {
     const BMANhereLinkFromReturns: boolean = brand == 'boohooman.com' && (locale == 'UK' || locale == 'EU' || locale == 'IE' || locale == 'US');
     const MPhereLinkFromReturns: boolean = brand == 'misspap.com' && (locale == 'UK' || locale == 'AU' || locale == 'IE');
     if (brand == 'karenmillen.com' || BMANhereLinkFromReturns || MPhereLinkFromReturns) {
@@ -132,7 +132,7 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
-  it('Verify that link "More info" for PayPal below Add to Cart section opens corresponsing page', function () {
+  it('CYP-217 Verify that link "More info" for PayPal below Add to Cart section opens corresponsing page', function () {
     const includedBoohooWithLocales: boolean = brand == 'boohoo.com' && (locale == 'UK' || locale == 'DE' || locale == 'US' || locale == 'FR' || locale == 'AU' || locale == 'CA' || locale == 'IT' || locale == 'ES');
     const includedNastyGalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'US' || locale == 'UK' || locale == 'AU' || locale == 'FR');
     const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
@@ -145,7 +145,7 @@ describe('Product Details Page tests', function () {
     }
   });
 
-  it('Verify that link "More info" for Clearpay or Afterpay below Add to Cart section opens corresponsing page', function () {
+  it('CYP-218 Verify that link "More info" for Clearpay or Afterpay below Add to Cart section opens corresponsing page', function () {
     const includedBoohooWithLocales: boolean = brand == 'boohoo.com' && (locale == 'UK' || locale == 'US' || locale == 'AU' || locale == 'NZ' || locale == 'CA');
     const includedNastyGalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'US' || locale == 'UK' || locale == 'AU' || locale == 'CA');
     const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'AU');
@@ -164,7 +164,7 @@ describe('Product Details Page tests', function () {
     }
   });
 
-  it('Verify that link "More info" for Klarna below Add to Cart section opens corresponsing page', function () {
+  it('CYP-219 Verify that link "More info" for Klarna below Add to Cart section opens corresponsing page', function () {
     const includedBoohooWithLocales: boolean = brand == 'boohoo.com' && (locale == 'UK' || locale == 'DE' || locale == 'US' || locale == 'FR' || locale == 'AU' || locale == 'CA' || locale == 'IT' || locale == 'ES');
     const includedNastyGalWithLocales: boolean = brand == 'nastygal.com' && (locale == 'US' || locale == 'IE' || locale == 'UK' || locale == 'AU' || locale == 'FR');
     const includedKarenMillenWithLocales: boolean = brand == 'karenmillen.com' && (locale == 'UK' || locale == 'US' || locale == 'EU' || locale == 'IE' || locale == 'AU');

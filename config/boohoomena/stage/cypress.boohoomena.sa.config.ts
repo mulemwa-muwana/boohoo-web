@@ -7,8 +7,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stgmena.boohoo.com/en',
-    sku: 'AMM09927',
-    fullSku: 'AMM09927-115-63',
+    sku: 'AMM00817',
+    fullSku: 'AMM00817-105-37',
     brand: 'boohoomena.com',
     locale: 'SA',
     language: 'EN',
@@ -60,7 +60,7 @@ export default defineConfig({
         },
       });
       await addXrayResultUpload(on);
-    },   
+    },
     excludeSpecPattern: [
       '**/backend*/**', // Skip backend tests
       '**/additionalTests*/**'

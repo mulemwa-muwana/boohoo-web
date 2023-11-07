@@ -874,18 +874,12 @@ class BillingPage implements AbstractPage {
 
       const paynowBtnCC = selectors[brand].paynowBtnCC;
       const clickAddNewCard = selectors[brand].clickAddNewCard;
-      if(!isSiteGenesisBrand){
-        cy.wait(3000)
-      }
       cy.get(paymentMethodCreditCard).click({ force: true });
       cy.get('body').then($body => { // (Updated) If there is saved Credit Card, click Add new Card button
         if ($body.find(clickAddNewCard).length > 0) {
           cy.get(clickAddNewCard).click();
         }
       });
-      if(isSiteGenesisBrand){
-        cy.wait(3000)
-      }
       cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).type(cardNo, { force: true });
       cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(date, { force: true });
       cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(code, { force: true });

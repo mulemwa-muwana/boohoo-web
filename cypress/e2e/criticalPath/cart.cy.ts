@@ -82,7 +82,7 @@ describe('Cart basic functionality for guest user', function () {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
       CartPage.assertions.assertThriftBagIsAddedToTheCart();
-    } else {
+    } else { 
       this.skip();
     }
   });

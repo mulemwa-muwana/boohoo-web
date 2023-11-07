@@ -401,7 +401,7 @@ class CartPage implements AbstractPage {
         // If Desktop Device is used
       } else {
         cy.wait(1000);
-        if (brand == 'nastygal.com') {
+        if(brand == 'nastygal.com'){
           cy.get('[data-tau="start_checkout_bottom"]').eq(0).invoke('show').click({ force: true });
         } else {
           cy.get(proceedToCheckout).invoke('show').click({ force: true });

@@ -14,11 +14,13 @@ describe('Mini Cart is displayed, Mini Cart Contains correct information, Checko
       HomePage.goto(); // This is added because user is redirected to MyAccount page afters login
     });
   });
-  it('CYP-134 Verify that the Mini Cart is displayed', () => {
-    HomePage.click.searchIcon();
-    HomePage.actions.findItemUsingSKU(sku);
-    pdpPage.actions.selectFirstAvailableSize();
-    pdpPage.click.addToCart();
-    pdpPage.assertions.assertMiniCartIsDisplayed();
-  });
+  {
+    it('Verify that the Mini Cart is displayed', () => {
+      HomePage.click.searchIcon();
+      HomePage.actions.findItemUsingSKU(sku);
+      pdpPage.actions.selectFirstAvailableSize();
+      pdpPage.click.addToCart();
+      pdpPage.assertions.assertMiniCartIsDisplayed();
+    });
+  }
 });

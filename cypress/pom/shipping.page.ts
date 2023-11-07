@@ -1070,9 +1070,9 @@ class ShippingPage implements AbstractPage {
     selectShippingMethod (shippingMethod: string) {
       const shippingMethodName = selectors[brand].shippingMethodName;
       cy.wait(3000);
-      if (brand == 'boohoo.com' && locale == 'UK') {
+      if(brand == 'boohoo.com' && locale == 'UK'){
         cy.get('[data-option-id="shippingMethod-UKSuperSaver"]').trigger('click',{force:true});
-        cy.wait(1000);
+        cy.wait(1000)
       } else {
         cy.get(shippingMethodName).contains(shippingMethod).trigger('click',{force:true});
       }

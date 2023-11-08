@@ -9,6 +9,7 @@ export default defineConfig({
     sku: 'AGG75643-128',
     fullSku: 'AGG75643-128-35',
     brand: 'nastygal.com',
+    brandName:'nastygal',
     locale: 'UK',
     language: 'EN',
   },

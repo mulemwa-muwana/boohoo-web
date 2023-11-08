@@ -196,7 +196,7 @@ const selectors: SelectorBrandMap = {
     resetPasswordEmailField: '#dwfrm_requestpassword_email',
     resetPasswordBtn: '.reset-password-btn',
     loginForm: '#dwfrm_login',
-    wishlistLoginTitle: '.login-title',
+    wishlistLoginTitle: '.icon-wishlist',
     errorLoginMessage: '.error-form',
     resetPasswordEmailFieldMobile: '#dwfrm_requestpassword_email',
     headerUserInfo: '.header-customer-info'

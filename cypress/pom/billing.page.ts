@@ -852,7 +852,7 @@ class BillingPage implements AbstractPage {
   actions = {
     waitPageToLoad () {
       cy.wait(12000);
-      cy.url().should('include', 'billing');
+      cy.url().should('include', 'shipping');
     },
     selectDate (day: string, month: string, year: string) {
       const dobDate = selectors[brand].dobDate;

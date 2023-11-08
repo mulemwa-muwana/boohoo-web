@@ -64,9 +64,6 @@ export default defineConfig({
         },
         xray: {
           uploadResults: true,
-          status: {
-            skipped:'IGNORED'
-          }
         },
       });
       await addXrayResultUpload(on);

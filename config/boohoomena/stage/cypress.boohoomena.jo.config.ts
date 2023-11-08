@@ -65,7 +65,7 @@ export default defineConfig({
       '**/backend*/**', // Skip backend tests
       '**/additionalTests*/**'
     ],
-    numTestsKeptInMemory: 130,
+    numTestsKeptInMemory: 0,
     experimentalMemoryManagement: true,
     experimentalOriginDependencies: true,
     experimentalWebKitSupport: true,

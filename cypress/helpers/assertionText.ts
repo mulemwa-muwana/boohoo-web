@@ -141,7 +141,7 @@ class AssertionText {
   };
 
   WishlistLoginTitle: TranslationMap = {
-    EN: '\nWish List\nLog In\n',
+    EN: '',
     FR: '',
     NL: '',
     DE: '',

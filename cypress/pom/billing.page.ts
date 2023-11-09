@@ -852,8 +852,12 @@ class BillingPage implements AbstractPage {
   actions = {
     waitPageToLoad () {
       cy.wait(12000);
+      if (brand == 'boohoomena.com'  && locale == 'JO'){
+      cy.url().should('include', 'shipping');
+    } else {
       cy.url().should('include', 'billing');
-    },
+    }
+  },
     selectDate (day: string, month: string, year: string) {
       const dobDate = selectors[brand].dobDate;
       const dobMonth = selectors[brand].dobMonth;

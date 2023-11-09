@@ -7,8 +7,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@stgmena.boohoo.com/jo/en',
-    sku: 'AMM09927',
-    fullSku: 'AMM09927-115-56',
+    sku: 'GZZ42719',
+    fullSku: 'GZZ42719-135-18',
     brand: 'boohoomena.com',
     locale: 'JO',
     language: 'EN', 

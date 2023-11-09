@@ -192,7 +192,6 @@ describe('Shipping Page Guest user tests', function () {
     }
   });
 
-
   it('CYP-184 Verify that user is able to select 2nd shipping method', function () {
     const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU');
     const isKMLocaleWithSelectState: boolean = (brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE'));
@@ -382,9 +381,9 @@ describe('Shipping Page Guest user tests', function () {
     }
     if (isMobileDeviceUsed) {
       cy.scrollTo('bottom');
-    } 
+    }
     shippingPage.click.helpAndInfoLink();
     shippingPage.assertions.assertCustomerServicePageIsOpened();
-    
+
   });
 });

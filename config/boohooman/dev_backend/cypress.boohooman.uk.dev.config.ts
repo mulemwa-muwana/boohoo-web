@@ -9,6 +9,7 @@ export default defineConfig({
     sku: 'BMM00118-101',
     fullSku: 'BMM00118-101-34',
     brand: 'boohooman.com',
+    brandName:'boohooman',
     locale: 'UK',
     language: 'EN',
   },

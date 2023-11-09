@@ -73,7 +73,14 @@ const selectors: SelectorBrandMap = {
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
     successMark:"[class='what3words-autosuggest-state valid']",
-    standartShipping: '[data-option-id="shippingMethod-UKSuperSaver"]'
+    standartShipping: '[data-option-id="shippingMethod-UKSuperSaver"]',
+    asdaClickAndCollect: '[data-ref="clickAndCollectAddressContainer-pudo-asda"]',
+    asdaPudoShippingMethod: '[for="shippingMethod-pudo-asda"]',
+    asdaPudoSearchField: '.location-textbox',
+    asdaPudoFirstShop: '.location-places',
+    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
+    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]'
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -937,6 +944,14 @@ class ShippingPage implements AbstractPage {
         }
       });
     },
+    asdaClickAndCollectShipping () {
+      const clickAndCollectTab = selectors[brand].clickAndCollectTab;
+      const asdaPudoShippingMethod = selectors[brand].asdaPudoShippingMethod;
+      cy.wait(4000);
+      cy.get(clickAndCollectTab).click({ force: true });
+      cy.wait(3000);
+      cy.get(asdaPudoShippingMethod).click({ force: true });
+    },
     addThriftToCart () {
       const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
       cy.get(addThriftToCartBtn).click({ force: true });
@@ -1184,6 +1199,22 @@ class ShippingPage implements AbstractPage {
         });
       });
     },
+    selectAsdaCollectionShop (postCode: any): any {
+      const asdaPudoSearchField = selectors[brand].asdaPudoSearchField;
+      const asdaPudoFirstShop = selectors[brand].asdaPudoFirstShop;
+      const asdaPudoSearchTitle = selectors[brand].asdaPudoSearchTitle;
+      const asdaPudoSelectShop = selectors[brand].asdaPudoSelectShop;
+      cy.wait(2000);
+      cy.get(asdaPudoSearchField).clear().type(postCode + '{enter}');
+      cy.wait(6000);
+      cy.get(asdaPudoFirstShop, { timeout: 20000 }).should('be.visible');
+      cy.get(asdaPudoFirstShop).eq(0).click({ force: true });
+      return cy.get(asdaPudoSearchField).eq(0).invoke('text').then(text => {
+        cy.get(asdaPudoSelectShop).click({ force: true }).then(() => {
+          return text;
+        });
+      });
+    },
     selectW3WAddress (w3Words: string) {
       const w3Winput = selectors[brand].w3Winput;
       const w3WAddressSuggestion = selectors[brand].w3WAddressSuggestion;
@@ -1200,7 +1231,12 @@ class ShippingPage implements AbstractPage {
       const pudoSelectedShopAddress=selectors[brand].pudoSelectedShopAddress;
       cy.get(pudoSelectedShopAddress).should('contain', pudoAddressText);
     },
-    assertW3WisSelected () {
+    assertasdaShopisSelected (asdaPudoAddressText: string) {
+      const asdaSelectedShopAddress = selectors[brand].asdaSelectedShopAddress;
+      cy.get(asdaSelectedShopAddress).should('contain', asdaPudoAddressText);
+    },
+
+   assertW3WisSelected () {
       const successMark=selectors[brand].successMark;
       cy.get(successMark).should('be.visible');
     },

@@ -351,12 +351,10 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(resp => {
     shippingPage.assertions.assertShopisSelected(resp);
     })
-    if (brand == 'boohoo.com' && locale == 'UK') {
-      shippingPage.click.asdaClickAndCollectShipping();
-      shippingPage.actions.selectAsdaCollectionShop(localeAddress.postcode).then(resp => {
-        shippingPage.assertions.assertasdaShopisSelected(resp);
+    shippingPage.click.asdaClickAndCollectShipping();
+    shippingPage.actions.selectAsdaCollectionShop(localeAddress.postcode).then(resp => {
+    shippingPage.assertions.assertasdaShopisSelected(resp);
       })
-    }
   });
   
   it('CYP-193 SG: Verify that guest user can add Thrift to the order', function () {

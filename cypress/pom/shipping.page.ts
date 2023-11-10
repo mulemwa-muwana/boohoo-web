@@ -407,7 +407,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.section-header-note',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    proceedToBilling: 'button[name="dwfrm_singleshipping_shippingAddress_save"]:eq(0) ',
+    proceedToBilling: '.js-checkout-next-step-btn',
     proceedToBillingVerificationBtn: '.verification-address-button',
     addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     newAddedAddressBlock: '.checkout-address-form .address-summary',
@@ -831,8 +831,7 @@ class ShippingPage implements AbstractPage {
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
       cy.wait(3000);
-      cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
-      cy.get('@proceedToBillingButton').dblclick({force: true});
+      cy.get(proceedToBilling).trigger('click', { force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {

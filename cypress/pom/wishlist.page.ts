@@ -223,24 +223,34 @@ class WishListPage implements AbstractPage {
       const addToCart = selectors[variables.brand].addToCart;
       cy.get(addToCart).eq(0).click({ force: true });
     },
-    removeItemFromWishlist () {
+    removeWishlistItem (itemSelector: string, confirmSelector: string) {
+      cy.get(itemSelector).each(() => {
+        cy.get(itemSelector).eq(0).click({ force: true });
+        cy.wait(5000);
+        if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'nastygal.com') {
+          cy.get(confirmSelector).click({ force: true });
+        }
+      });
+    },   
+    removeAllItemsFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
-      if (isMobileDeviceUsed) {
-        this.removeItemFuncForWebAndMobile(removeItemFromWishListMobile);
-      } else {
-        this.removeItemFuncForWebAndMobile(removeItemFromWishlist);
-      }
-    },
-    removeItemFuncForWebAndMobile (deviceLocator: string) { // Function to remove item from wishlist for both Mobile and Web Resolution
-      const confirmRemoveWishlistItem=selectors[variables.brand].confirmRemoveWishlistItem;
-      cy.get(deviceLocator).each(item => {
-        cy.get(deviceLocator).eq(0).click({force:true});
-        if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'nastygal.com') {
-          cy.get(confirmRemoveWishlistItem).click({ force: true });
+      const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
+      const confirmRemoveWishlistItem = selectors[variables.brand].confirmRemoveWishlistItem;
+    
+      cy.get(wishListIsEmpty).then(($element) => {
+        if (!Cypress.dom.isVisible($element)) { // If the wishlist is not empty
+          if (isMobileDeviceUsed) {
+            this.removeWishlistItem(removeItemFromWishListMobile, confirmRemoveWishlistItem);
+          } else {
+            this.removeWishlistItem(removeItemFromWishlist, confirmRemoveWishlistItem);
+          }
+        } else {
+          cy.log('Wishlist is empty - no items to delete');
         }
       });
     },
+    
     wishlistLoginBtn () {
       const wishlistLoginBtn = selectors[variables.brand].wishlistLoginBtn;
       cy.get(wishlistLoginBtn).eq(0).click();
@@ -249,7 +259,6 @@ class WishListPage implements AbstractPage {
   };
 
   actions = {
-
   };
 
   assertions = {
@@ -261,6 +270,8 @@ class WishListPage implements AbstractPage {
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
+      cy.get(wishListIsEmpty)
+        .parent().invoke('attr', 'style', 'display: block');
       cy.get(wishListIsEmpty).contains(msg, { matchCase: false }).should('be.visible');
     },
     assertItemIsAddedtoWishlistAlertText (msg: string) {

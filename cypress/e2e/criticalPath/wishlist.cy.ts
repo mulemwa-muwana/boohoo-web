@@ -19,7 +19,12 @@ describe('Wishlist Page tests', function () {
     });
   });
 
-  it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', () => {
+  it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', function () {
+    if (brand != 'boohoo.com') { // Other brands to be included in phase 2
+      this.skip();
+    }
+    HomePage.click.wishListIcon();
+    WishListPage.click.removeAllItemsFromWishlist(); // Make sure wishlist is empty
     HomePage.actions.findItemUsingSKU(fullSku);
     pdpPage.actions.selectColorFromSku();
     cy.wait(1000);
@@ -38,7 +43,7 @@ describe('Wishlist Page tests', function () {
     pdpPage.assertions.assertMiniCartIsDisplayed();
 
     // Cleanup of Whishlist and Cart
-    WishListPage.click.removeItemFromWishlist();
+    WishListPage.click.removeAllItemsFromWishlist();
     if (isSiteGenesisBrand) {
       WishListPage.assertions.assertWishListIsEmpty(assertionText.WishListIsEmptySiteGenesis[language]);
     } else {

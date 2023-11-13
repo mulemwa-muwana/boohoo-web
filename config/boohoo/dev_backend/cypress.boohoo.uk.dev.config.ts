@@ -9,6 +9,7 @@ export default defineConfig({
     sku: '#PZZ74682-105',
     fullSku: 'PZZ74682-105-68',
     brand: 'boohoo.com',
+    brandName:'boohoo',
     locale: 'UK',
     language: 'EN'
   },

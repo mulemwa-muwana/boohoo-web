@@ -3,7 +3,8 @@ declare namespace Cypress {
         goOffline: () => Chainable<null>;
         createUser: (brand: GroupBrands) => Chainable<Subject>;
         prepareUser: (customer: NewCustomerCredentials, brand: GroupBrands, sku: string) => void;
-        createArtefact: (testArtefact: TestArtefact, folderPath: string, brand: string, paymentMethod: string) => Chainable<null>;
+        createArtefact: (testArtefact: TestArtefact, folderPath: string, brand: string, paymentMethod: string, orderType?: string) => Chainable<null>;
+        BOMSLogin: () => Chainable<null>;
     }
 }
 
@@ -55,6 +56,7 @@ declare type EnvironmentVariables = {
     sku: string;
     fullSku: string;
     brand: GroupBrands;
+    brandName: string;
     locale: Locale;
     language: 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
     shippingMethod: string;
@@ -143,7 +145,7 @@ declare type SKU = {
 }
     
 declare type Language = 'EN' | 'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES';
-declare type Locale = 'UK' | 'EU' | 'US' |'CA' | 'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE' | 'SA' | 'KW'|'BH' | 'OM';
+declare type Locale = 'UK' | 'EU' | 'US' |'CA' | 'AU' |'NZ' |'NL' | 'DE' | 'FR' | 'DK' | 'FI' | 'NO' | 'SE' | 'IL'| 'IT' | 'ES' | 'IE' | 'SA' | 'KW'|'BH' | 'OM'|'JO';
     
 declare type TranslationMap = { [key in Language]: string };
     

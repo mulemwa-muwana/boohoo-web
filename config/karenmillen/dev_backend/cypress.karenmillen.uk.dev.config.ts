@@ -9,6 +9,7 @@ export default defineConfig({
     sku: 'AKK97265-123',
     fullSku: 'AKK97265-123-14',
     brand: 'karenmillen.com',
+    brandName:'karenmillen',
     locale: 'UK',
     language: 'EN'
   },

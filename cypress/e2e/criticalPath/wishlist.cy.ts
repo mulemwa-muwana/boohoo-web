@@ -19,7 +19,7 @@ describe('Wishlist Page tests', function () {
     });
   });
 
-  it('Verify that item is saved to wishlist, can be added to cart and removed from wishlist', function () {
+  it('CYP-215 Verify that item is saved to wishlist, can be added to cart and removed from wishlist', function () {
     if (brand != 'boohoo.com') { // Other brands to be included in phase 2
       this.skip();
     }

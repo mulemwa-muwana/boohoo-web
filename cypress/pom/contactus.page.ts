@@ -94,7 +94,8 @@ const selectors: SelectorBrandMap = {
     message: 'a[href="https://twitter.com/boohoo"] > svg > path',
     twitterIcon: '.m-twitter-channel',
     facebookIcon:'[class="contact-channel facebook-channel"]',
-    emailIcon:'[class="contact-channel js-contact-channel-email"]'
+    emailIcon:'[class="contact-channel js-contact-channel-email"]',
+    emailOptions: '[class="js-contactus-form form-horizontal"]',
   }
 };
  

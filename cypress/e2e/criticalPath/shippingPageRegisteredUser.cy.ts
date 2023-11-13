@@ -12,6 +12,7 @@ describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
     Navigate.toShippingPageUsingSession('RegisteredUser');
+    cy.wait(5000);
   });
 
   /** [Test Steps]
@@ -53,7 +54,6 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.addressLine1Clear();
       shippingPage.actions.cityFieldClear();
     } else {
-      cy.wait(3000);
       shippingPage.click.addNewAddressButton();
     }
     shippingPage.click.proceedToBilling();
@@ -66,7 +66,6 @@ describe('Shipping Page Registered user tests', function () {
 
   it('CYP-199 Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'secondaryAddress');
-    cy.wait(4000);
     shippingPage.click.editAddress();
     shippingPage.actions.selectCountry(localeAddress.countryCode);
     cy.wait(5000);

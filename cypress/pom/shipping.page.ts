@@ -121,7 +121,7 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
     shippingMethodNameForCALocale: '[data-option-id="shippingMethod-CACadStandardDelivery"]',
     shippingMethodName: '[data-option-id="shippingMethod-NUKNextDayDelivery"]',
-    standardShippingMethod: '.b-shipping_method .b-option_switch-label_surface',
+    standardShippingMethod: '[data-option-id="shippingMethod-NUKSuperSaver"]',
     shippingMethodsNameList: '.b-option_switch-name',
     secondShippingMethodName: '[data-option-id="shippingMethod-NUKNextDayDelivery"]',
     shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
@@ -373,7 +373,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     shippingMethodName: '#shipping-method-is-express',
-    standardShippingMethod: '.b-shipping_method .b-option_switch-label_surface',
+    standardShippingMethod: '[for="shipping-method-MUKSuperSaver"]',
     shippingMethodsNameList: '.shipping-method-name',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -832,6 +832,7 @@ class ShippingPage implements AbstractPage {
       const proceedToBilling = selectors[brand].proceedToBilling;
       cy.wait(3000);
       cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
+      cy.wait(1000)
       cy.get('@proceedToBillingButton').dblclick({force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
@@ -1087,7 +1088,7 @@ class ShippingPage implements AbstractPage {
     selectShippingMethod (shippingMethod: string) {
       const standardShippingMethod = selectors[brand].standardShippingMethod;
       cy.wait(3000);
-      if (brand == 'boohoo.com' && locale == 'UK') {
+      if ((brand == 'boohoo.com'|| brand == 'nastygal.com' || brand == 'boohooman.com') && locale == 'UK') {
         cy.get(standardShippingMethod).trigger('click',{force:true});
         cy.wait(1000);
       } else {

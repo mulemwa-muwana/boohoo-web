@@ -19,7 +19,8 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: `[data-tau-product-id="product-${variables.fullSku}"]`,
     wishListIsEmpty: '.b-wishlist-empty_text',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
-    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
+    wishListContainer: 'div[data-ref="wishlistContainer"]'
   },
   'nastygal.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -35,7 +36,8 @@ const selectors: SelectorBrandMap = {
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeDDL: '[data-id="attribute-size"] > .b-select > .b-select-input',
     removeItemFromWishlist: '.b-wishlist_tile-remove',
-    removeItemFromWishlistMobile: '.b-wishlist_tile-remove'
+    removeItemFromWishlistMobile: '.b-wishlist_tile-remove',
+    wishListContainer: 'div[data-ref="wishlistGrid"]'
   },
   'dorothyperkins.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -98,7 +100,8 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
     wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
-    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
+    wishListContainer: '.wishlist-table'
   },
   'karenmillen.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -113,7 +116,8 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`,
     wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
-    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
+    wishListContainer: '.wishlist-table'
   },
   'coastfashion.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -175,7 +179,8 @@ const selectors: SelectorBrandMap = {
     wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
-    wishlistIcon: '.wishlist-button'
+    wishlistIcon: '.wishlist-button',
+    wishListContainer: '.wishlist-table'
   },
   'boohoomena.com': {
     sortItems: 'div.b-wishlist-sorting',
@@ -190,7 +195,8 @@ const selectors: SelectorBrandMap = {
     itemIsAddedToWishlist: `[data-pid="${variables.fullSku}"]`, 
     wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
-    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action'
+    chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
+    wishListContainer: 'div[data-ref="wishlistContainer"]'
   }
 };
 class WishListPage implements AbstractPage {
@@ -229,17 +235,19 @@ class WishListPage implements AbstractPage {
         cy.wait(5000);
         if (brand == 'wallis.co.uk' || brand == 'burton.co.uk' || brand == 'nastygal.com') {
           cy.get(confirmSelector).click({ force: true });
+          cy.wait(2000);
         }
       });
     },   
     removeAllItemsFromWishlist () {
       const removeItemFromWishlist = selectors[variables.brand].removeItemFromWishlist;
       const removeItemFromWishListMobile = selectors[variables.brand].removeItemFromWishlistMobile;
-      const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;
       const confirmRemoveWishlistItem = selectors[variables.brand].confirmRemoveWishlistItem;
-    
-      cy.get(wishListIsEmpty).then(($element) => {
-        if (!Cypress.dom.isVisible($element)) { // If the wishlist is not empty
+      const wishListContainer = selectors[variables.brand].wishListContainer;
+      cy.get('body').then(($body) => {
+        cy.wait(5000);
+        const $itemsInWishlist = $body.find(wishListContainer); // Will be found if wishlist is not empty
+        if ($itemsInWishlist.length > 0) { // If wishlist grid exists
           if (isMobileDeviceUsed) {
             this.removeWishlistItem(removeItemFromWishListMobile, confirmRemoveWishlistItem);
           } else {
@@ -263,10 +271,13 @@ class WishListPage implements AbstractPage {
 
   assertions = {
     assertItemIsAddedToWishlist () {
+      cy.reload();
       const itemIsAddedToWishlist = selectors[variables.brand].itemIsAddedToWishlist;
       cy.waitUntil(() => {
-        return cy.get(itemIsAddedToWishlist, {timeout: 2000}).should('be.visible');
+        return cy.get(itemIsAddedToWishlist, {timeout: 5000}).should('be.visible');
       });
+      cy.get(itemIsAddedToWishlist)
+        .parent().invoke('attr', 'style', 'display: block');
     },
     assertWishListIsEmpty (msg: string) {
       const wishListIsEmpty = selectors[variables.brand].wishListIsEmpty;

@@ -832,7 +832,7 @@ class ShippingPage implements AbstractPage {
       const proceedToBilling = selectors[brand].proceedToBilling;
       cy.wait(3000);
       cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
-      cy.wait(1000)
+      cy.wait(1000);
       cy.get('@proceedToBillingButton').dblclick({force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands

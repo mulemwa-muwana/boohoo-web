@@ -129,7 +129,7 @@ const selectors: SelectorBrandMap = {
     shippingAddressSection: 'section[class="b-checkout_card b-summary_group-item m-full-width"]',
     shippingCheckbox: '#dwfrm_billing_addressFields_useShipping',
     addNewBillingAddress: '.b-form_section > .b-address_selector-actions > .m-info',
-    enterManually: '[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > .b-button',
+    enterManually: '[data-ref="fieldset"] > [data-ref="autocompleteFields"] > .b-address_lookup > :nth-child(3) > .b-button',
     billingAddressFieldCity: '#dwfrm_billing_addressFields_city',
     billingAddressFieldsAddress1: '#dwfrm_billing_addressFields_address1',
     addGiftCertificate: '.b-gift_certificate-add',

@@ -689,7 +689,7 @@ const selectors: SelectorBrandMap = {
     editAddress: '.js-edit-address',
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
-    editCart: '.item-actions-copy edit-details-text',
+    editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
     editQuantity: '.input#Quantity',
     updateCart: '.add-to-cart-text',
     checkoutCart: '.button-fancy-large js-first-button-checkout',
@@ -874,7 +874,7 @@ class ShippingPage implements AbstractPage {
       const proceedToBilling = selectors[brand].proceedToBilling;
       cy.wait(3000);
       cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
-      cy.wait(1000)
+      cy.wait(1000);
       cy.get('@proceedToBillingButton').dblclick({force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands

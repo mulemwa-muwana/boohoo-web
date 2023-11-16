@@ -64,9 +64,9 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.click.addAddressManually();
     }
     cy.wait(3000);
-    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
       shippingPage.click.proceedToBillingMouseOver(); 
-    }else {
+    } else {
       shippingPage.click.proceedToBilling();
     }
     if (brand == 'boohoo.com') {
@@ -181,9 +181,9 @@ describe('Shipping Page Guest user tests', function () {
     if (brand != 'boohooman.com' && locale != 'EU') {
       shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     }
-    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
       shippingPage.click.proceedToBillingMouseOver(); 
-    }else {
+    } else {
       shippingPage.click.proceedToBilling();
     }
     shippingPage.click.proceedToBillingVerification();
@@ -241,9 +241,9 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectSecondShippingMethod();
     shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
       cy.log(secondShippingMethodName);
-      if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
         shippingPage.click.proceedToBillingMouseOver(); 
-      }else {
+      } else {
         shippingPage.click.proceedToBilling();
       }
       if ((brand == 'boohooman.com' && locale == 'US') || isMPLocaleWithProceedVrf || (brand == 'karenmillen.com' && locale == 'IE')) {
@@ -287,9 +287,9 @@ describe('Shipping Page Guest user tests', function () {
         shippingPage.actions.confirmEmailField(this.guestEmail);
       }
     }
-    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
       shippingPage.click.proceedToBillingMouseOver(); 
-    }else {
+    } else {
       shippingPage.click.proceedToBilling();
     }
     shippingPage.click.proceedToBillingVerification();
@@ -324,9 +324,9 @@ describe('Shipping Page Guest user tests', function () {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
     shippingPage.actions.notSelectedDate(); // Day, month, and year must be selected as default, and their notations differ in each language. Instead of creating a new array, used index numbers
-    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
       shippingPage.click.proceedToBillingMouseOver(); 
-    }else {
+    } else {
       shippingPage.click.proceedToBilling();
     }
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
@@ -356,7 +356,8 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
     shippingPage.assertions.assertW3WisSelected();
   });
-  it('CYP-192 Verify that user can select PUDO location', function () {
+
+  it('CYP-192 Verify that user can select All PUDO locations', function () {
     if (locale != 'UK' || brand == 'boohooman.com') {
       this.skip();
     }
@@ -370,7 +371,12 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(resp => {
       shippingPage.assertions.assertShopisSelected(resp);
     });
+    shippingPage.click.asdaClickAndCollectShipping();
+    shippingPage.actions.selectAsdaCollectionShop(localeAddress.postcode).then(resp => {
+      shippingPage.assertions.assertasdaShopisSelected(resp);
+    });
   });
+
   it('CYP-193 SG: Verify that guest user can add Thrift to the order', function () {
     if (brand == 'karenmillen.com' && locale == 'UK') {
       shippingPage.assertions.assertThriftSectionIsVisible();

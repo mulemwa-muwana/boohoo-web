@@ -389,7 +389,6 @@ class CartPage implements AbstractPage {
         cy.get(proceedToCheckout).invoke('show').click({ force: true });
       }
     },
-
     proceedToCheckoutCart () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
@@ -397,7 +396,7 @@ class CartPage implements AbstractPage {
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
-
+        
         // If Desktop Device is used
       } else {
         cy.wait(1000);

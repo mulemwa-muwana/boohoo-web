@@ -82,9 +82,8 @@ describe('Home Page', function () {
         homePage.assertions.assertLinkIsOpeningCorrectPage('promo');
       } else if (brand == 'nastygal.com') {
         homePage.assertions.assertLinkIsOpeningCorrectPage('womens');
-      }
-        else if (brand == 'boohoomena.com'&& locale == 'JO') {
-          homePage.assertions.assertLinkIsOpeningCorrectPage('newintoday');
+      } else if (brand == 'boohoomena.com'&& locale == 'JO') {
+        homePage.assertions.assertLinkIsOpeningCorrectPage('newintoday');
       
       } else {
         homePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[language]);

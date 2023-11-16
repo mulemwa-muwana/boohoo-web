@@ -140,7 +140,7 @@ const selectors: SelectorBrandMap = {
     loginIcon: 'span.user-account',
     registrationButton: '.user-links > a:nth-child(2)',
     registrationButtonMobiles: '.user-link-item[title="Register"]:eq(1)',
-    shopInstagramBtn: '.background-white.border-black.cta-button.cta-button-border.text-black > .text-white',
+    shopInstagramBtn: 'a[href="/instashop"]',
     wishListIcon: '.header-wishlist > .header-wishlist-link',
     wishListIconMobile: '.header-wishlist-link',
     searchField: '.js-header-search-input',

@@ -354,9 +354,9 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.click.asdaClickAndCollectShipping();
     shippingPage.actions.selectAsdaCollectionShop(localeAddress.postcode).then(resp => {
       shippingPage.assertions.assertasdaShopisSelected(resp);
-      });
+    });
   });
-  
+
   it('CYP-193 SG: Verify that guest user can add Thrift to the order', function () {
     if (brand == 'karenmillen.com' && locale == 'UK') {
       shippingPage.assertions.assertThriftSectionIsVisible();

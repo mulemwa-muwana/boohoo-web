@@ -1259,7 +1259,7 @@ class ShippingPage implements AbstractPage {
       cy.get(asdaSelectedShopAddress).should('contain', asdaPudoAddressText);
     },
 
-   assertW3WisSelected () {
+    assertW3WisSelected () {
       const successMark=selectors[brand].successMark;
       cy.get(successMark).should('be.visible');
     },

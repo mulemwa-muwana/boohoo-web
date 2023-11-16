@@ -12,6 +12,7 @@ describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
     Navigate.toShippingPageUsingSession('RegisteredUser');
+    cy.wait(5000);
   });
 
   /** [Test Steps]
@@ -53,7 +54,6 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.addressLine1Clear();
       shippingPage.actions.cityFieldClear();
     } else {
-      cy.wait(3000);
       shippingPage.click.addNewAddressButton();
     }
     shippingPage.click.proceedToBilling();
@@ -66,7 +66,6 @@ describe('Shipping Page Registered user tests', function () {
 
   it('CYP-199 Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'secondaryAddress');
-    cy.wait(4000);
     shippingPage.click.editAddress();
     shippingPage.actions.selectCountry(localeAddress.countryCode);
     cy.wait(5000);
@@ -81,13 +80,21 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.postcodeField(localeAddress.postcode);
     if (locale == 'US' || locale == 'AU' || locale == 'IE' || locale == 'CA') {
       shippingPage.actions.selectState(localeAddress.county);
+    };
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com') {
+      shippingPage.actions.firstNameField(localeAddress.firstName);
+      shippingPage.actions.lastNameField(localeAddress.lastName);
     }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if ((brand == 'oasis-stores.com' || brand == 'coastfashion.com') && isMobileDeviceUsed) {
       shippingPage.actions.addAddressNickname(localeAddress.addressNickname);
     }
     cy.wait(3000);
+    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+    shippingPage.click.proceedToBillingMouseOver(); 
+    }else {
     shippingPage.click.proceedToBilling();
+    }
     cy.wait(2000);
     shippingPage.click.proceedToBillingVerification();
     billingPage.actions.waitPageToLoad();
@@ -138,7 +145,11 @@ describe('Shipping Page Registered user tests', function () {
     cy.wait(3000);
     shippingPage.actions.addressLookupSelectFirstAddress(secondaryAddress.addressLine, secondaryAddress.city);
     shippingPage.assertions.assertNewAddedShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode);
-    shippingPage.click.proceedToBilling();
+    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver(); 
+    }else {
+      shippingPage.click.proceedToBilling();
+    }
     billingPage.assertions.assertNewShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode, secondaryAddress.country);
   });
 
@@ -260,7 +271,12 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.selectShippingTab();
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
-    shippingPage.click.proceedToBilling();
+    cy.wait(3000);
+    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver(); 
+    }else {
+      shippingPage.click.proceedToBilling();
+    }
     if (locale == 'IE' || locale == 'US' || locale == 'AU') {
       shippingPage.click.proceedToBillingVerification();
     }
@@ -310,7 +326,12 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectSecondShippingMethod();
     shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
       cy.log(secondShippingMethodName);
-      shippingPage.click.proceedToBilling();
+      cy.wait(3000);
+      if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+        shippingPage.click.proceedToBillingMouseOver(); 
+      }else {
+        shippingPage.click.proceedToBilling();
+      }
       if (locale == 'IE' || (brand == 'boohooman.com' && locale == 'US') || (brand == 'karenmillen.com' && locale == 'US') || (brand == 'misspap.com' && (locale == 'US' || locale == 'AU'))) {
         shippingPage.click.proceedToBillingVerification();
       } else if (locale == 'IL') {

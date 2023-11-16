@@ -64,7 +64,11 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.click.addAddressManually();
     }
     cy.wait(3000);
-    shippingPage.click.proceedToBilling();
+    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver(); 
+    }else {
+      shippingPage.click.proceedToBilling();
+    }
     if (brand == 'boohoo.com') {
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[language]);
     } else {
@@ -177,7 +181,11 @@ describe('Shipping Page Guest user tests', function () {
     if (brand != 'boohooman.com' && locale != 'EU') {
       shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     }
-    shippingPage.click.proceedToBilling();
+    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver(); 
+    }else {
+      shippingPage.click.proceedToBilling();
+    }
     shippingPage.click.proceedToBillingVerification();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
@@ -233,7 +241,11 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectSecondShippingMethod();
     shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
       cy.log(secondShippingMethodName);
-      shippingPage.click.proceedToBilling();
+      if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+        shippingPage.click.proceedToBillingMouseOver(); 
+      }else {
+        shippingPage.click.proceedToBilling();
+      }
       if ((brand == 'boohooman.com' && locale == 'US') || isMPLocaleWithProceedVrf || (brand == 'karenmillen.com' && locale == 'IE')) {
         shippingPage.click.proceedToBillingVerification();
       } else if (locale == 'IL') {
@@ -275,7 +287,11 @@ describe('Shipping Page Guest user tests', function () {
         shippingPage.actions.confirmEmailField(this.guestEmail);
       }
     }
-    shippingPage.click.proceedToBilling();
+    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver(); 
+    }else {
+      shippingPage.click.proceedToBilling();
+    }
     shippingPage.click.proceedToBillingVerification();
     shippingPage.assertions.assertUserProceededToBillingPage();
   });
@@ -308,7 +324,11 @@ describe('Shipping Page Guest user tests', function () {
       this.skip(); // Date of birth form only for Site Genesis brands is on Shipping page.
     }
     shippingPage.actions.notSelectedDate(); // Day, month, and year must be selected as default, and their notations differ in each language. Instead of creating a new array, used index numbers
-    shippingPage.click.proceedToBilling();
+    if(brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver(); 
+    }else {
+      shippingPage.click.proceedToBilling();
+    }
     shippingPage.assertions.assertEmptyDateFieldError(assertionText.ShippingMandatoryFieldError[language]);
   });
   it('CYP-191 Verify that user can enter valid credentials in w3w', function () {

@@ -66,6 +66,7 @@ class Navigate {
       });
     }
     cy.wait(2000);
+    shippingPage.click.assertQuantityIsoneOnCart(); 
   }
 
   toBillingPage (userType: UserType) {

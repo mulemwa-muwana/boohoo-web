@@ -143,7 +143,6 @@ describe('Shipping Page Registered user tests', function () {
 
   it('CYP-203 Verify that user is able to add address details manually', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
-
     shippingPage.click.addNewAddressButton();
     shippingPage.actions.firstNameField(localeAddress.firstName);
     shippingPage.actions.lastNameField(localeAddress.lastName);

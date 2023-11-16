@@ -349,12 +349,12 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     shippingPage.click.clickAndCollectShipping();
     shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(resp => {
-    shippingPage.assertions.assertShopisSelected(resp);
-    })
+      shippingPage.assertions.assertShopisSelected(resp);
+    });
     shippingPage.click.asdaClickAndCollectShipping();
     shippingPage.actions.selectAsdaCollectionShop(localeAddress.postcode).then(resp => {
-    shippingPage.assertions.assertasdaShopisSelected(resp);
-      })
+      shippingPage.assertions.assertasdaShopisSelected(resp);
+      });
   });
   
   it('CYP-193 SG: Verify that guest user can add Thrift to the order', function () {

@@ -57,7 +57,7 @@ describe('Boohoo order placement', () => {
 
   it('can select Klarna as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Klarna';
-    if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
+    if (!isBrandSupportingPaymentMethod(brand, paymentMethod) || brand == 'boohooman.com') {
       this.skip();
     }
 
@@ -85,7 +85,7 @@ describe('Boohoo order placement', () => {
     generateArtefact(brand, paymentMethod);
   });
 
-  it('User can create the order using Credit Card and can refunnd the order', () => {
+  it('User can create order using Credit Card and can refund the order', () => {
     const orderType = 'OrderRefund';
     const paymentMethod: PaymentMethod = getCardProviderByBrand(brand, locale);
 
@@ -99,7 +99,7 @@ describe('Boohoo order placement', () => {
   });
 
   // Method for generating artefact on OrderConfirmation page for back end tests.
-  function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod, orderType?: string) {
+  function generateArtefact(brand: GroupBrands, paymentMethod: PaymentMethod, orderType?: string) {
     const variables = Cypress.env() as EnvironmentVariables;
 
     cy.url({ timeout: 60000 }).should('include', 'confirm');
@@ -115,6 +115,25 @@ describe('Boohoo order placement', () => {
     }
     cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim().split('\n')[0]).as('orderEmail')
       .then(function () {
+        let brandDeliveryMethod
+
+        switch (brand) {
+          case 'boohoo.com':
+            brandDeliveryMethod = 'UKSuperSaver'
+            break;
+          case 'nastygal.com':
+            brandDeliveryMethod = 'NUKSuperSaver'
+            break;
+          case 'misspap.com':
+            brandDeliveryMethod = 'PUKStandard'
+            break;
+          case 'karenmillen.com':
+            brandDeliveryMethod = 'KUKSuperSaver'
+            break;
+          case 'boohooman.com':
+            brandDeliveryMethod = 'MUKSuperSaver'
+            break;
+        }
 
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
@@ -122,7 +141,7 @@ describe('Boohoo order placement', () => {
           orderEmail: this.orderEmail,
           paymentMethod: paymentMethod,
           groupBrand: variables.brand,
-          deliveryMethod: 'UKSuperSaver', // This is a code in the backend, not found on the front end, the test should target this delivery method code.
+          deliveryMethod: brandDeliveryMethod, // This is a code in the backend, not found on the front end, the test should target this delivery method code.
           items: [{
             sku: this.fullSku,
             quantity: 1

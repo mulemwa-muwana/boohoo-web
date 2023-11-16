@@ -6,8 +6,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@dwdev.boohooman.com/', 
-    sku: 'BMM00118-101',
-    fullSku: 'BMM00118-101-34',
+    sku: 'BMM00001-107',
+    fullSku: 'BMM00001-107-131',
     brand: 'boohooman.com',
     brandName:'boohooman',
     locale: 'UK',

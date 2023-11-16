@@ -99,7 +99,7 @@ describe('Boohoo order placement', () => {
   });
 
   // Method for generating artefact on OrderConfirmation page for back end tests.
-  function generateArtefact(brand: GroupBrands, paymentMethod: PaymentMethod, orderType?: string) {
+  function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod, orderType?: string) {
     const variables = Cypress.env() as EnvironmentVariables;
 
     cy.url({ timeout: 60000 }).should('include', 'confirm');
@@ -115,24 +115,24 @@ describe('Boohoo order placement', () => {
     }
     cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim().split('\n')[0]).as('orderEmail')
       .then(function () {
-        let brandDeliveryMethod
+        let brandDeliveryMethod;
 
         switch (brand) {
-          case 'boohoo.com':
-            brandDeliveryMethod = 'UKSuperSaver'
-            break;
-          case 'nastygal.com':
-            brandDeliveryMethod = 'NUKSuperSaver'
-            break;
-          case 'misspap.com':
-            brandDeliveryMethod = 'PUKStandard'
-            break;
-          case 'karenmillen.com':
-            brandDeliveryMethod = 'KUKSuperSaver'
-            break;
-          case 'boohooman.com':
-            brandDeliveryMethod = 'MUKSuperSaver'
-            break;
+        case 'boohoo.com':
+          brandDeliveryMethod = 'UKSuperSaver';
+          break;
+        case 'nastygal.com':
+          brandDeliveryMethod = 'NUKSuperSaver';
+          break;
+        case 'misspap.com':
+          brandDeliveryMethod = 'PUKStandard';
+          break;
+        case 'karenmillen.com':
+          brandDeliveryMethod = 'KUKSuperSaver';
+          break;
+        case 'boohooman.com':
+          brandDeliveryMethod = 'MUKSuperSaver';
+          break;
         }
 
         const testArtefactObject: TestArtefact = {

@@ -436,7 +436,7 @@ class PlpPage implements AbstractPage {
         cy.get('ul[id*="refinementAttributesList-shop-by-"]').contains(productVariation).click({ force: true });
       } else {
         cy.get('button[id*="-' + (assertionText.shopByFit[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.shopByFit[variables.language])).contains(productVariation).click({ force: true });
+        cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.shopByFit[variables.language])).contains(productVariation).click({ force: true });
       }
     },
 
@@ -449,7 +449,7 @@ class PlpPage implements AbstractPage {
         cy.get('#refinementAttributesList-' + (assertionText.color[variables.language])).contains(color).click({ force: true });
       } else {
         cy.get('button[id*="-' + (assertionText.colour[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.colour[variables.language])).contains(color).click({ force: true });
+        cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.colour[variables.language])).contains(color).click({ force: true });
       }
     },
 
@@ -459,7 +459,7 @@ class PlpPage implements AbstractPage {
         cy.get(selectRefinementVariantStyle).contains(style).click({ force: true });
       } else {
         cy.get('button[id*="-' + (assertionText.style[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.style[variables.language])).contains(style).click({ force: true });
+        cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.style[variables.language])).contains(style).click({ force: true });
       }
     },
 
@@ -514,7 +514,7 @@ class PlpPage implements AbstractPage {
         cy.get(selectRefinementVariantOccasion).contains('Casual').click({ force: true });
       } else {
         cy.get('button[id*="-' + (assertionText.occasion[variables.language] + '"]')).click({ force: true });
-        cy.get('#refinementAttributesList-' + (assertionText.occasion[variables.language])).contains('Casual').click({ force: true });
+        cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.occasion[variables.language])).contains('Casual').click({ force: true });
       }
     },
 
@@ -718,7 +718,7 @@ class PlpPage implements AbstractPage {
 
       isSiteGenesisBrand
         ? cy.get(selectedSizeCheckbox).invoke('attr', 'data-value').as('selectedSize')
-        : cy.get('#refinementAttributesList-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]')
+        : cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]')
           .invoke('attr', 'aria-label').as('selectedSize');
 
       cy.location('search', { timeout: 60000 })

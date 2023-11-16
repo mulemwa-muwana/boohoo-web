@@ -63,6 +63,7 @@ describe('Shipping Page Guest user tests', function () {
     if (brandHasEnterManuallyButton) {
       shippingPage.click.addAddressManually();
     }
+    cy.wait(3000);
     shippingPage.click.proceedToBilling();
     if (brand == 'boohoo.com') {
       shippingPage.assertions.assertAddressDetailsAreMandatory(assertionText.ShippingMandatoryFieldErrorBoohoo[language]);
@@ -190,7 +191,6 @@ describe('Shipping Page Guest user tests', function () {
       }
     }
   });
-
 
   it('CYP-184 Verify that user is able to select 2nd shipping method', function () {
     const isBoohooLocaleWithoutSecondShipping: boolean = (brand == 'boohoo.com' && (locale == 'NO' || locale == 'FI') || locale == 'EU');
@@ -381,9 +381,9 @@ describe('Shipping Page Guest user tests', function () {
     }
     if (isMobileDeviceUsed) {
       cy.scrollTo('bottom');
-    } 
+    }
     shippingPage.click.helpAndInfoLink();
     shippingPage.assertions.assertCustomerServicePageIsOpened();
-    
+
   });
 });

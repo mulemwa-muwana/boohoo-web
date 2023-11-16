@@ -130,7 +130,7 @@ const selectors: SelectorBrandMap = {
     loadMoreButton: '#lastOrderPanel > .b-card > .b-card-footer > .b-card-button',
     startReturnButton: '[href="/delivery-and-returns"]',
     accountDetailsLink: 'a[class="b-account_nav-item_link m-user"]',
-    addressEnterManualyBtn: '.b-address_lookup > .b-button',
+    addressEnterManualyBtn: '.b-form_section>button',
     orderHistoryLink: 'a[class="b-account_nav-item_link m-history"]',
     newestOrderHistory: '[data-tau="account_viewOrder"]',
     viewNewestOrderDetails: 'a[data-tau="orders_viewOrder"]',

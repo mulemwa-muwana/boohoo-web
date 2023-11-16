@@ -23,6 +23,20 @@ Cypress.Commands.add('goOffline', () => {
   });
 });
 
+//  Command to login on BOMS for generating order refund
+Cypress.Commands.add('BOMSLogin', ()=>{
+
+  cy.visit('https://uat-boms.boohoo.com/');
+
+  cy.wait(3000);
+  cy.reload(); // Wait and reload is just to refresh the csrf token to avoid 419 page expiration issue
+
+  cy.get('input[name="username"]', { log: false }).should('be.enabled');
+  cy.get('input[name="username"]', { log: false }).type('muneeb.akhtar', { log: false });
+  cy.get('input[name="password"]', { log: false }).type('Muneebrana123,./', { log: false });
+  cy.get('button[id*="submit"]', { log: false }).click({ log: false });
+});
+
 /**
  * Command that takes in a brand as a brand url, this will be a host url like boohoo.com, this will create an account for that url
  * and return you an object with
@@ -47,7 +61,7 @@ Cypress.Commands.add('prepareUser', (credentials: NewCustomerCredentials, brand:
  * Create an artefact file in Cypress, this file is used to fuel back end tests.
  * We need to store the test type so the test frameknown knows how to process it, it needs a folder name which will be the brand and it'll need a name.
  */
-Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, folderPath: string, brand: string, paymentMethod: string) => {
+Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, folderPath: string, brand: string, paymentMethod: string, orderType?: string) => {
 
   // Artefact path example: cypress/artefacts_frontend/orderCreation/boohoo/creditcard_visa-2023-06-13_10-38-26.json
   const dateFormat = require('dateformat');
@@ -55,7 +69,11 @@ Cypress.Commands.add('createArtefact', (testArtefact: TestArtefact, folderPath: 
 
   cy.log(`Writing artefact file: ${folderPath}${brand}/${paymentMethod}-${currentTime}.json`);
   cy.log(`Artefact Content: ${JSON.stringify(testArtefact, null, 4)}'`);
-  cy.writeFile(`${folderPath}${brand}/${paymentMethod}-${currentTime}.json`, JSON.stringify(testArtefact, null, 4));
+  if (orderType=='OrderRefund') {
+    cy.writeFile(`${folderPath}${brand}/${paymentMethod}-${orderType}.json`, JSON.stringify(testArtefact, null, 4));
+  } else {
+    cy.writeFile(`${folderPath}${brand}/${paymentMethod}-${currentTime}.json`, JSON.stringify(testArtefact, null, 4));
+  }
 });
 
 /**

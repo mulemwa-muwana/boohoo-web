@@ -55,7 +55,8 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
-    shippingMethodName: '[data-tau="shipping_name"]',
+    shippingMethodName: '[data-option-id="shippingMethod-UKNextDayDelivery"]',
+    standardShippingMethod: '[data-option-id="shippingMethod-UKSuperSaver"]',
     shippingMethodsNameList: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-name',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -126,8 +127,11 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '[id$=addressFields_postalCode][id*="shipping"], [id$=postalcodes_postal][id*="shipping"]',
-    shippingMethodName: '.b-shipping_method .b-option_switch-label_surface',
+    shippingMethodNameForCALocale: '[data-option-id="shippingMethod-CACadStandardDelivery"]',
+    shippingMethodName: '[data-option-id="shippingMethod-NUKNextDayDelivery"]',
+    standardShippingMethod: '[data-option-id="shippingMethod-NUKSuperSaver"]',
     shippingMethodsNameList: '.b-option_switch-name',
+    secondShippingMethodName: '[data-option-id="shippingMethod-NUKNextDayDelivery"]',
     shippingState :'select#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     shippingStateUS:'#dwfrm_shipping_shippingAddress_addressFields_states_stateCode',
     dobDay: '#dwfrm_profile_customer_dayofbirth',
@@ -384,7 +388,8 @@ const selectors: SelectorBrandMap = {
     postcodeDetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal-error',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodName: '.js-shipping-method-list .form-label',
+    shippingMethodName: '#shipping-method-is-express',
+    standardShippingMethod: '[for="shipping-method-MUKSuperSaver"]',
     shippingMethodsNameList: '.shipping-method-name',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -422,7 +427,7 @@ const selectors: SelectorBrandMap = {
     checkoutCart: '.button-fancy-large js-first-button-checkout',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
+    proceedToBilling: 'button[name="dwfrm_singleshipping_shippingAddress_save"]:eq(0) ',
     proceedToBillingVerificationBtn: '.verification-address-button',
     addNewAddress: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > [data-ref="orManualButton"] > .b-button',
     newAddedAddressBlock: '.checkout-address-form .address-summary',
@@ -443,6 +448,7 @@ const selectors: SelectorBrandMap = {
     shippingFname: '#dwfrm_singleshipping_shippingAddress_addressFields_firstName',
     shippingPhoneNumber: '#dwfrm_singleshipping_shippingAddress_addressFields_phone',
     shippingLname: '#dwfrm_singleshipping_shippingAddress_addressFields_lastName',
+    secondShippingMethodName:'[id="shipping-method-is-express"]',
     shippingCountry: '#dwfrm_singleshipping_shippingAddress_addressFields_country',
     shippingState :'select#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
     confirmShippingAddress:"button[class^='verification-address-button']",
@@ -461,11 +467,13 @@ const selectors: SelectorBrandMap = {
     allAddressDetailsValidation: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodName: '.js-shipping-method-list .form-label',
+    shippingMethodName: '#shipping-method-is-express',
+    standardShippingMethod: '.js-shipping-method-list .form-label',
     shippingMethodsNameList: '.shipping-method-name',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
+    shippingTab: '.js-delivery-tab',
     clickAndCollectTab:'.js-click-collect-tab',
     pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
     pudoSearchField:'.js-pudo-search-field',
@@ -479,7 +487,7 @@ const selectors: SelectorBrandMap = {
     successMark:'.field-wrapper-w3w-valid',
     thrift: '#js-thrift-plus-product',
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
-    checkoutMiniBagSummery: '[data-tau="minicart_start_checkout_bottom"]',
+    checkoutMiniBagSummery: '.summary-inner',
     helpAndInfoLink: '.checkout-help-link',
     deliverySection:  '.js-shipping-method-list.js-cmp-inited.js-cmp-ShippingMethodModals',
   },
@@ -726,8 +734,10 @@ const selectors: SelectorBrandMap = {
     address1DetailsAreMandatory: '#dwfrm_singleshipping_shippingAddress_addressFields_address1-error',
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
-    shippingMethodName: '.js-shipping-method-list .form-label',
+    shippingMethodName: '.js-shipping-method-list .form-row > label[for="shipping-method-is-express"]',
+    standardShippingMethod: '.js-shipping-method-list .form-label',
     shippingMethodsNameList: '.shipping-method-name',
+    secondShippingMethodName:'[id="shipping-method-is-express"]',
     dateOfBirthForm: '.form-birthday-rows-inner',
     emptyEmailFieldError: '#dwfrm_singleshipping_shippingAddress_email_emailAddress-error',
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
@@ -863,7 +873,9 @@ class ShippingPage implements AbstractPage {
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
       cy.wait(3000);
-      cy.get(proceedToBilling,{timeout:1000}).trigger('click',{force:true});
+      cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
+      cy.wait(1000)
+      cy.get('@proceedToBillingButton').dblclick({force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
       if (brand != 'boohoomena.com') {
@@ -977,7 +989,7 @@ class ShippingPage implements AbstractPage {
       cy.get(helpAndInfoLink).eq(0).invoke('removeAttr', 'target').click({force:true});
     },
     makeShippingAddressDefault () {
-      const standartShipping = selectors[brand].standartShipping;     
+      const standartShipping = selectors[brand].standartShipping;
       if ((brand == 'boohoo.com' && locale =='UK') || (brand == 'nastygal.com' && locale =='US' || locale =='CA')) { // To select standard shipping method for boohoo and ngal as default address
         cy.get(standartShipping).click({force:true});
       }
@@ -1062,9 +1074,9 @@ class ShippingPage implements AbstractPage {
         cy.get(shippingStateUS).select(state);
       } else if ((brand != 'karenmillen.com' && locale !='EU') && ( locale !='UK')) {
         cy.get(shippingState).select(state).invoke('show');
-      } 
+      }
     },
-        
+
     adressLine1 (address1: string) {
       const addressLine1Field = selectors[brand].addressLine1Field;
       cy.get(addressLine1Field).clear({ force: true }).type(address1);
@@ -1116,13 +1128,13 @@ class ShippingPage implements AbstractPage {
       cy.get(addressNicknameField).type(addressNickname);
     },
     selectShippingMethod (shippingMethod: string) {
-      const shippingMethodName = selectors[brand].shippingMethodName;
+      const standardShippingMethod = selectors[brand].standardShippingMethod;
       cy.wait(3000);
-      if (brand == 'boohoo.com' && locale == 'UK') {
-        cy.get('[data-option-id="shippingMethod-UKSuperSaver"]').trigger('click',{force:true});
+      if ((brand == 'boohoo.com'|| brand == 'nastygal.com' || brand == 'boohooman.com') && locale == 'UK') {
+        cy.get(standardShippingMethod).trigger('click',{force:true});
         cy.wait(1000);
       } else {
-        cy.get(shippingMethodName).contains(shippingMethod).trigger('click',{force:true});
+        cy.get(standardShippingMethod).contains(shippingMethod).trigger('click',{force:true});
       }
     },
     selectShippingTab () {
@@ -1131,16 +1143,17 @@ class ShippingPage implements AbstractPage {
     },
     selectSecondShippingMethod () {
       const shippingMethodName = selectors[brand].shippingMethodName;
+      const shippingMethodNameForCALocale = selectors[brand].shippingMethodNameForCALocale;
       cy.wait(3000);
       if (brand == 'nastygal.com' && locale == 'CA') {
-        cy.get(shippingMethodName).eq(0).trigger('click',{force:true});
-      } else if (brand == 'boohoo.com') {
-        cy.get('[data-option-id="shippingMethod-UKNextDayDelivery"]').trigger('click',{force:true});
+        cy.get(shippingMethodNameForCALocale).trigger('click',{force:true});
+      } else if (brand == 'boohoo.com'|| brand == 'nastygal.com') {
+        cy.get(shippingMethodName).trigger('click',{force:true});
       } else {
-        cy.get(shippingMethodName).eq(1).trigger('click',{force:true});
+        cy.get(shippingMethodName).click({force: true});
 
       }
-      
+
     },
     secondShippingMethodName (): Cypress.Chainable<string> {
       const shippingMethodsNameList = selectors[brand].shippingMethodsNameList;
@@ -1427,7 +1440,6 @@ class ShippingPage implements AbstractPage {
       const deliverySection = selectors[brand].deliverySection;
       cy.get (deliverySection).invoke('text').as('deliverySection');
       cy.get('@deliverySection').should('contain', text);
-      
     }
   };
 }

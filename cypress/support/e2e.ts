@@ -11,6 +11,7 @@ Cypress.on('uncaught:exception', () => {
 
 const variables = Cypress.env() as EnvironmentVariables;
 export const brand = variables.brand;
+export const brandName= variables.brandName;
 export const locale = variables.locale;
 export const language = variables.language;
 export const sku = variables.sku;

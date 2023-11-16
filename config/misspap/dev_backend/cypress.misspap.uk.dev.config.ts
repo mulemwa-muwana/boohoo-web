@@ -9,6 +9,7 @@ export default defineConfig({
     sku: 'MPP97674-293',
     fullSku: 'MPP97674-293-14',
     brand: 'misspap.com',
+    brandName:'misspap',
     locale: 'UK',
     language: 'EN'
   },

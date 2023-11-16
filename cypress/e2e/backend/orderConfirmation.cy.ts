@@ -5,7 +5,8 @@ import LoginPage from 'cypress/pom/login.page';
 import Cards from '../../helpers/cards';
 import ShippingPage from 'cypress/pom/shipping.page';
 import CartPage from 'cypress/pom/cart.page';
-import { brand, locale, fullSku } from 'cypress/support/e2e';
+import { brand, locale, fullSku, brandName } from 'cypress/support/e2e';
+import refundPage from 'cypress/pom/BOMS/refund.page';
 
 // Const variables = Cypress.env() as EnvironmentVariables;
 
@@ -26,10 +27,10 @@ describe('Boohoo order placement', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     ShippingPage.actions.firstNameField(localeAddress.firstName);
     ShippingPage.actions.lastNameField(localeAddress.lastName);
-      
+
     ShippingPage.actions.selectCountry(localeAddress.country);
     ShippingPage.actions.phoneNumberField(localeAddress.phone);
-    
+
     ShippingPage.click.addAddressManually();
     cy.wait(2000);
 
@@ -56,7 +57,7 @@ describe('Boohoo order placement', () => {
 
   it('can select Klarna as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Klarna';
-    if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
+    if (!isBrandSupportingPaymentMethod(brand, paymentMethod) || brand == 'boohooman.com') {
       this.skip();
     }
 
@@ -84,12 +85,25 @@ describe('Boohoo order placement', () => {
     generateArtefact(brand, paymentMethod);
   });
 
+  it('User can create order using Credit Card and can refund the order', () => {
+    const orderType = 'OrderRefund';
+    const paymentMethod: PaymentMethod = getCardProviderByBrand(brand, locale);
+
+    const visa = Cards.visa;
+    BillingPage.actions.selectCreditCard(visa.cardNo, visa.owner, visa.date, visa.code);
+    generateArtefact(brand, paymentMethod, orderType);
+
+    cy.BOMSLogin();
+    refundPage.refundCustomerORder(brandName);
+
+  });
+
   // Method for generating artefact on OrderConfirmation page for back end tests.
-  function generateArtefact (brand: GroupBrands, paymentMethod: PaymentMethod) {
+  function generateArtefact(brand: GroupBrands, paymentMethod: PaymentMethod, orderType?: string) {
     const variables = Cypress.env() as EnvironmentVariables;
 
-    cy.url({timeout: 60000}).should('include', 'confirm');
-    
+    cy.url({ timeout: 60000 }).should('include', 'confirm');
+
     if (isSiteGenesisBrand) {
       cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-information > div.orderdetails-content > div.orderdetails-header-number > span.value').invoke('text').then(text => text.trim()).as('orderNumber');
       cy.get('#main > div > div.order-confirmation-details > div > div.orderdetails-wrapper > div.orderdetails-column.order-payment-summary > div.orderdetails-content > div > div > table > tbody > tr.order-total > td.order-value').invoke('text').then(text => text.trim().substring(1)).as('orderValue');
@@ -101,6 +115,25 @@ describe('Boohoo order placement', () => {
     }
     cy.get('.b-confirmation_header-email, div.confirmation-message > div > div.confirmation-message-info > span').invoke('text').then(text => text.trim().split('\n')[0]).as('orderEmail')
       .then(function () {
+        let brandDeliveryMethod
+
+        switch (brand) {
+          case 'boohoo.com':
+            brandDeliveryMethod = 'UKSuperSaver'
+            break;
+          case 'nastygal.com':
+            brandDeliveryMethod = 'NUKSuperSaver'
+            break;
+          case 'misspap.com':
+            brandDeliveryMethod = 'PUKStandard'
+            break;
+          case 'karenmillen.com':
+            brandDeliveryMethod = 'KUKSuperSaver'
+            break;
+          case 'boohooman.com':
+            brandDeliveryMethod = 'MUKSuperSaver'
+            break;
+        }
 
         const testArtefactObject: TestArtefact = {
           orderNumber: this.orderNumber,
@@ -108,7 +141,7 @@ describe('Boohoo order placement', () => {
           orderEmail: this.orderEmail,
           paymentMethod: paymentMethod,
           groupBrand: variables.brand,
-          deliveryMethod: 'UKSuperSaver', // This is a code in the backend, not found on the front end, the test should target this delivery method code.
+          deliveryMethod: brandDeliveryMethod, // This is a code in the backend, not found on the front end, the test should target this delivery method code.
           items: [{
             sku: this.fullSku,
             quantity: 1
@@ -121,7 +154,7 @@ describe('Boohoo order placement', () => {
 
         const folder = 'cypress/artefacts/orderCreation/';
         const brandName = brand.split('.')[0]; // Get first part of a brand: boohoo.com => boohoo
-        cy.createArtefact(testArtefactObject, folder, brandName, paymentMethod.toLowerCase());
+        cy.createArtefact(testArtefactObject, folder, brandName, paymentMethod.toLowerCase(), orderType);
       });
   }
 

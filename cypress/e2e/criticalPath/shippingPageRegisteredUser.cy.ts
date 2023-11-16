@@ -12,6 +12,7 @@ describe('Shipping Page Registered user tests', function () {
 
   beforeEach(() => {
     Navigate.toShippingPageUsingSession('RegisteredUser');
+    cy.wait(5000);
   });
 
   /** [Test Steps]
@@ -65,7 +66,6 @@ describe('Shipping Page Registered user tests', function () {
 
   it('CYP-199 Verify that user can edit saved shipping address', () => {
     const localeAddress = Addresses.getAddressByLocale(locale, 'secondaryAddress');
-    cy.wait(4000);
     shippingPage.click.editAddress();
     shippingPage.actions.selectCountry(localeAddress.countryCode);
     cy.wait(5000);
@@ -302,12 +302,12 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
     cy.wait(5000);
+    if (brand == 'nastygal.com' || brand == 'karenmillen.com') {
+      shippingPage.actions.selectShippingTab();
+    }
     shippingPage.actions.selectSecondShippingMethod();
     shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
       cy.log(secondShippingMethodName);
-      if (brand == 'nastygal.com') {
-        shippingPage.actions.selectShippingTab();
-      }
       shippingPage.click.proceedToBilling();
       if (locale == 'IE' || (brand == 'boohooman.com' && locale == 'US') || (brand == 'karenmillen.com' && locale == 'US') || (brand == 'misspap.com' && (locale == 'US' || locale == 'AU'))) {
         shippingPage.click.proceedToBillingVerification();

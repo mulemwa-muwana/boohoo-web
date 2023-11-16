@@ -336,7 +336,8 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectW3WAddress(localeAddress.what3Words);
     shippingPage.assertions.assertW3WisSelected();
   });
-  it('CYP-192 Verify that user can select PUDO location', function () {
+
+  it('CYP-192 Verify that user can select All PUDO locations', function () {
     if (locale != 'UK' || brand == 'boohooman.com') {
       this.skip();
     }
@@ -350,7 +351,12 @@ describe('Shipping Page Guest user tests', function () {
     shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(resp => {
       shippingPage.assertions.assertShopisSelected(resp);
     });
+    shippingPage.click.asdaClickAndCollectShipping();
+    shippingPage.actions.selectAsdaCollectionShop(localeAddress.postcode).then(resp => {
+      shippingPage.assertions.assertasdaShopisSelected(resp);
+    });
   });
+
   it('CYP-193 SG: Verify that guest user can add Thrift to the order', function () {
     if (brand == 'karenmillen.com' && locale == 'UK') {
       shippingPage.assertions.assertThriftSectionIsVisible();

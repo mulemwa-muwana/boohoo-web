@@ -73,18 +73,18 @@ describe('Cart basic functionality for guest user', function () {
       this.skip();
     }
   });
-  it('CYP-52 Verify that user can remove product from cart', function () {
-    CartPage.click.clearCart();
-    CartPage.assertions.assertCartIsEmpty();
-  });
   it('CYP-53 Verify that user can add Thrift to the cart', function () {
     if (brand == 'karenmillen.com') {
       CartPage.assertions.assertThriftSectionIsVisible();
       CartPage.click.addThriftToCart();
       CartPage.assertions.assertThriftBagIsAddedToTheCart();
-    } else { 
+    } else {
       this.skip();
     }
+  });
+  it('CYP-52 Verify that user can remove product from cart', function () {
+    CartPage.click.clearCart();
+    CartPage.assertions.assertCartIsEmpty();
   });
 
 });

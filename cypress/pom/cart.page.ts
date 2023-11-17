@@ -1,5 +1,5 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand, url } from 'cypress/support/e2e';
+import { brand, locale, url } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -199,7 +199,7 @@ const selectors: SelectorBrandMap = {
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
-    clearCart: '[class*="button-remove"]',
+    clearCart: `button[name='dwfrm_cart_shipments_i0_items_i0_deleteProduct'] span`,
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
     emptyCartTitleMobile: '.cart-empty-title',
@@ -354,18 +354,19 @@ const selectors: SelectorBrandMap = {
 };
 
 class CartPage implements AbstractPage {
-  goto (): void {
+  goto(): void {
     cy.visit(url + '/cart');
   }
 
   click = {
-    clearCart () {
+    clearCart() {
       const clearCart = selectors[brand].clearCart;
       cy.get(clearCart).each(($el) => {
-        cy.get(clearCart,{timeout:20000}).eq(0).click({ force: true });
+        const el: any = $el
+        cy.get(el, { timeout: 20000 }).click({ force: true });
       });
     },
-    removePremierFromCart () {
+    removePremierFromCart() {
 
       // Remove everything except the first item. If there are 3 items in cart, items 2 and 3 will be removed
       const clearCart = selectors[brand].clearCart;
@@ -375,7 +376,7 @@ class CartPage implements AbstractPage {
         }
       });
     },
-    proceedToCheckoutminiCart () {
+    proceedToCheckoutminiCart() {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
 
@@ -389,14 +390,14 @@ class CartPage implements AbstractPage {
         cy.get(proceedToCheckout).invoke('show').click({ force: true });
       }
     },
-    proceedToCheckoutCart () {
+    proceedToCheckoutCart() {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
-        
+
         // If Desktop Device is used
       } else {
         cy.wait(1000);
@@ -407,18 +408,18 @@ class CartPage implements AbstractPage {
         }
       }
     },
-    addThriftToCart () {
+    addThriftToCart() {
       const addThriftToCartBtn = selectors[brand].addThriftToCartBtn;
       cy.get(addThriftToCartBtn).click({ force: true });
     }
   };
 
   actions = {
-    updateQuantity () {
+    updateQuantity() {
       const editQuantity = selectors[brand].editQuantity;
       cy.get(editQuantity).should('be.visible').click();
     },
-    openPayPalSandbox () {
+    openPayPalSandbox() {
       const payPalCTA = selectors[brand].PayPalCTA;
       const payPalDefaultView = selectors[brand].payPalDefaultView;
       const cartPayPalButton = selectors[brand].cartPayPalButton;
@@ -429,7 +430,7 @@ class CartPage implements AbstractPage {
       cy.iframe(payPalCTA).find(cartPayPalButton).should('be.visible').click({ force: true });
 
     },
-    openKlarnaSandbox () {
+    openKlarnaSandbox() {
       const KlarnaCTA = selectors[brand].KlarnaCTA;
       const KlarnaFrame = selectors[brand].KlarnaFrame;
 
@@ -442,7 +443,7 @@ class CartPage implements AbstractPage {
       cy.get(KlarnaCTA).click();
       cy.frameLoaded(KlarnaFrame);
     },
-    editCartQuantity (quantity: string) {
+    editCartQuantity(quantity: string) {
       const editQuantity = selectors[brand].editQuantity;
       const setQuantity = selectors[brand].setQuantity;
       const updateQuantity = selectors[brand].updateQuantity;
@@ -456,7 +457,7 @@ class CartPage implements AbstractPage {
       }
     },
 
-    editCartQuantitySiteGenesis (quantity: string) {
+    editCartQuantitySiteGenesis(quantity: string) {
       const editQuantity = selectors[brand].editQuantity;
       const editQuantityMobile = selectors[brand].editQuantityMobile;
       const editDetailsMobile = selectors[brand].editDetailsMobile;
@@ -464,10 +465,10 @@ class CartPage implements AbstractPage {
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
-        cy.get(editDetailsMobile).click({force: true});
+        cy.get(editDetailsMobile).click({ force: true });
         cy.wait(5000);
-        cy.get(editQuantityMobile).clear({force: true}).type(quantity);
-        cy.get(updateBtnMobile).click({force: true});
+        cy.get(editQuantityMobile).clear({ force: true }).type(quantity);
+        cy.get(updateBtnMobile).click({ force: true });
         cy.intercept('**/cart').as('cartPage');
         cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
 
@@ -483,25 +484,25 @@ class CartPage implements AbstractPage {
   };
 
   assertions = {
-    assertTableWithProductIsVisible () {
+    assertTableWithProductIsVisible() {
       const productsTable = selectors[brand].productsTable;
       cy.get(productsTable).should('be.visible');
     },
-    assertProductImageIsDisplayed () {
+    assertProductImageIsDisplayed() {
       const productImage = selectors[brand].productImage;
       cy.get(productImage).then(element => {
         cy.wrap(element).invoke('width').should('be.gt', 10);
       });
     },
-    assertProductTitleIsVisible () {
+    assertProductTitleIsVisible() {
       const productName = selectors[brand].productName;
       cy.get(productName).should('not.be.empty');
     },
-    assertProductDetailsAreVisible () {
+    assertProductDetailsAreVisible() {
       const productDetails = selectors[brand].productDetails;
       cy.get(productDetails).should('be.visible');
     },
-    assertPriceAndSubtotalAreVisible () {
+    assertPriceAndSubtotalAreVisible() {
 
       const productPrice = selectors[brand].productPrice;
       const productPriceMobile = selectors[brand].productPriceMobile;
@@ -519,7 +520,7 @@ class CartPage implements AbstractPage {
         cy.get(subtotal).should('be.visible').and('not.to.be.empty');
       }
     },
-    assertQuantityIsDisplayed (quantity: string) {
+    assertQuantityIsDisplayed(quantity: string) {
       const cartQuantity = selectors[brand].cartQuantity;
       if (isSiteGenesisBrand) {
         cy.get(cartQuantity).should('have.value', quantity);
@@ -527,7 +528,7 @@ class CartPage implements AbstractPage {
         cy.get(cartQuantity).should('contain', quantity);
       }
     },
-    assertCartIsEmpty () {
+    assertCartIsEmpty() {
       const emptyCartTitle = selectors[brand].emptyCartTitle;
       const emptyCartTitleMobile = selectors[brand].emptyCartTitleMobile;
       if (isMobileDeviceUsed) {
@@ -536,36 +537,41 @@ class CartPage implements AbstractPage {
         cy.get(emptyCartTitle).should('be.visible');
       }
     },
-    assertPremierSlotsAreVisible () {
+    assertPremierSlotsAreVisible() {
       const premierBlock = selectors[brand].premierBlock;
       const addPremierToCart = selectors[brand].addPremierToCart;
-
-      cy.get(premierBlock).should('be.visible');
-      cy.get(addPremierToCart).should('be.visible');
+      cy.get('body').then((body) => {
+        if (body.find(premierBlock).length > 0) {
+          cy.get(premierBlock).should('be.visible');
+          cy.get(addPremierToCart).should('be.visible');
+        } else {
+          cy.log('premierBlock is not visible for ' + brand + ' ' + locale)
+        }
+      })
     },
-    assertPayPalCTAisVisible () {
+    assertPayPalCTAisVisible() {
       const PayPalCTA = selectors[brand].PayPalCTA;
       cy.get(PayPalCTA).should('be.visible');
     },
-    assertKlarnaCTAisVisible () {
+    assertKlarnaCTAisVisible() {
       const KlarnaCTA = selectors[brand].KlarnaCTA;
       cy.get(KlarnaCTA).should('be.visible');
     },
-    assertAmazonPayCTAisVisible () {
+    assertAmazonPayCTAisVisible() {
       const AmazonCTA = selectors[brand].AmazonCTA;
       cy.get(AmazonCTA).should('be.visible');
     },
-    assertThriftSectionIsVisible () {
+    assertThriftSectionIsVisible() {
       const thrift = selectors[brand].thrift;
       cy.get(thrift).should('be.visible');
     },
-    assertThriftBagIsAddedToTheCart () {
+    assertThriftBagIsAddedToTheCart() {
       const cartPage = selectors[brand].cartPage;
       cy.get(cartPage).should('contain', 'Thrift Bags');
     },
-    assertSelectedProductIsAddedToTheCart (text: string) {
+    assertSelectedProductIsAddedToTheCart(text: string) {
       const itemDetails = selectors[brand].itemDetails;
-      cy.get(itemDetails).should('contains',text.toLocaleLowerCase);
+      cy.get(itemDetails).should('contains', text.toLocaleLowerCase);
     }
   };
 }

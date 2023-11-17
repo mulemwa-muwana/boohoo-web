@@ -59,7 +59,9 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
       }
-      HomePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[language].toLowerCase());
+      if(brand != 'boohooman.com') { //skipping due to black friday promotion the link has been changed
+        HomePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[language].toLowerCase());
+      }
     });
  
     it('CYP-66 Verify Mega Menu - NewIn link opens', () => {

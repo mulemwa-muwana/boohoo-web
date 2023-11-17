@@ -8,7 +8,7 @@ import assertionText from './assertionText';
 import Addresses from './addresses';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import cartPage from '../pom/cart.page';
-import pdpPage from '../pom/pdp.page';
+import plpPage from '../pom/plp.page';
 import { locale, brand, url, sku, language } from 'cypress/support/e2e';
 
 class Navigate {
@@ -17,11 +17,17 @@ class Navigate {
     HomePage.goto();
   }
 
+  toPLPPage () {
+    this.toHomePage();
+    HomePage.actions.closeNastygalPopup();
+    plpPage.click.selectMegamenuLink();
+  }
+
   toProductDetailsPage () {
     this.toHomePage();
     HomePage.actions.findItemUsingSKU(sku);
   }
-
+ 
   toCartPage () {
     this.toProductDetailsPage();
     PdpPage.actions.selectColorFromSku();

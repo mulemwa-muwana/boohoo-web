@@ -91,7 +91,7 @@ describe('Shipping Page Registered user tests', function () {
     }
     cy.wait(3000);
     if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
-      shippingPage.click.proceedToBillingMouseOver(); 
+      shippingPage.click.proceedToBillingMouseOver();
     } else {
       shippingPage.click.proceedToBilling();
     }
@@ -146,7 +146,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.addressLookupSelectFirstAddress(secondaryAddress.addressLine, secondaryAddress.city);
     shippingPage.assertions.assertNewAddedShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode);
     if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
-      shippingPage.click.proceedToBillingMouseOver(); 
+      shippingPage.click.proceedToBillingMouseOver();
     } else {
       shippingPage.click.proceedToBilling();
     }
@@ -189,7 +189,6 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.proceedToBillingVerification();
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
-    
   });
 
   it('CYP-204 Verify that PREMIER can be added to the cart', function () {
@@ -272,7 +271,8 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
     cy.wait(3000);
     if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
-      shippingPage.click.proceedToBillingMouseOver(); 
+      shippingPage.click.proceedToBillingMouseOver();
+      shippingPage.click.proceedToBillingVerification();
     } else {
       shippingPage.click.proceedToBilling();
     }
@@ -327,7 +327,8 @@ describe('Shipping Page Registered user tests', function () {
       cy.log(secondShippingMethodName);
       cy.wait(3000);
       if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
-        shippingPage.click.proceedToBillingMouseOver(); 
+        shippingPage.click.proceedToBillingMouseOver();
+        shippingPage.click.proceedToBillingVerification();
       } else {
         shippingPage.click.proceedToBilling();
       }

@@ -716,7 +716,7 @@ const selectors: SelectorBrandMap = {
     checkoutCart: '.button-fancy-large js-first-button-checkout',
     addAddressManually: '.add-new-address',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
-    proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
+    proceedToBilling: `button[name='dwfrm_singleshipping_shippingAddress_save'][type="submit"]`,
     proceedToBillingVerificationBtn: '.verification-address-button',
     addNewAddress: '.add-new-address',
     newAddedAddressBlock: '.checkout-address-form .address-summary',

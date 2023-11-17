@@ -4,33 +4,12 @@ import megaMenuLinksLanguages from '../../helpers/megaMenuLinksLanguages';
 import productVariations from '../../helpers/productVariations';
 import { brand, language, locale } from 'cypress/support/e2e';
 import { isSiteGenesisBrand } from 'cypress/helpers/common';
+import navigate from 'cypress/helpers/navigate';
 
 describe('Product Listing Page tests', function () {
 
   beforeEach(() => {
-    HomePage.goto();
-    HomePage.actions.closeNastygalPopup();
-    if (brand == 'nastygal.com') {
-      HomePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
-    } else if (brand == 'boohoo.com' || brand == 'boohooman.com') {
-      if ( locale == 'AU') {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[language]);
-      } else {
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[language]);
-        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
-      }
-    } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'wallis.co.uk') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
-    } else if (brand == 'karenmillen.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
-    } else if (brand == 'dorothyperkins.com') {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewInDP[language]);
-    } else {
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
-      HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
-    }
+    navigate.toPLPPage();
   });
 
   it('CYP-159 Verify that plp page opens', () => {

@@ -93,8 +93,8 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCartShipping: '.b-summary_order-header > .b-link',
-    editCart: '.b-summary_order-header > .b-link',
-    editQuantity: '.b-cart_product-edit b-button m-link',
+    editCart: 'button[title="Edit"]',
+    editQuantity: '[data-tau="cart_product_edit"]',
     updateCart: '.b-product_update-button_update b-button m-small',
     checkoutCart: '[data-tau="start_checkout_bottom"]',
     addAddressManually: 'button[class="b-button m-info m-width_full"]:eq(0)',
@@ -165,7 +165,7 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCartShipping: '.b-summary_order-header > .b-link',
-    editCart: '.b-cart_product-edit b-button m-link',
+    editCart: 'button[title="Edit"]',
     editQuantity: '[data-tau="cart_product_quantity"]',
     updateCart: '.b-product_update-button_update b-button m-small',
     checkoutCart: '[data-tau="start_checkout_bottom"]',
@@ -343,10 +343,10 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
-    editCart: '.item-actions-copy edit-details-text',
-    editQuantity: '.input#Quantity',
-    updateCart: '.button-fancy-large js-add-to-cart',
-    checkoutCart: '.button-fancy-large js-first-button-checkout',
+    editCart: '.cart-cell.hidden-on-mobile.item-details > .hidden-on-mobile.item-details-action > .item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
+    editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
+    updateCart: '.product-add-to-cart .add-to-cart-text',
+    checkoutCart: 'button[name="dwfrm_cart_checkoutCart"]',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.address-container button[name="dwfrm_singleshipping_shippingAddress_save"]',
@@ -421,8 +421,8 @@ const selectors: SelectorBrandMap = {
     editAddress: '.js-edit-address',
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
-    editCart: '.item-actions-copy edit-details-text',
-    editQuantity: '.input#Quantity',
+    editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
+    editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
     updateCart: '.button-fancy-large js-add-to-cart',
     checkoutCart: '.button-fancy-large js-first-button-checkout',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
@@ -690,9 +690,9 @@ const selectors: SelectorBrandMap = {
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
     editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
-    editQuantity: '.input#Quantity',
-    updateCart: '.add-to-cart-text',
-    checkoutCart: '.button-fancy-large js-first-button-checkout',
+    editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
+    updateCart: '.product-add-to-cart .add-to-cart-text',
+    checkoutCart: 'button[name="dwfrm_cart_checkoutCart"]',
     addAddressManually: '.add-new-address',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.form-row-button > .js-next-step-btn-wrapper > .next-step-btn',
@@ -764,9 +764,9 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .address-radios-label > .address-radios-inner > .address-radios-edit > .js-address-radios-edit',
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
-    editCart: '.item-actions-copy edit-details-text',
-    editQuantity: '.input#Quantity',
-    updateCart: '.button#add-to-cart',
+    editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
+    editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
+    updateCart: 'button#add-to-cart > .add-to-cart-text',
     checkoutCart: '.button-fancy-large js-first-button-checkout',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -837,9 +837,13 @@ class ShippingPage implements AbstractPage {
       cy.get(editCartShipping).click({ force: true })
         .wait(1000)
         .get(editCart).click({ force: true})
-        .wait(1000)
-        .get(editQuantity).select('1')
-        .get(updateCart).click()
+        .wait(1000);
+      if (brand == 'boohoo.com' || brand == 'nastygal.com') {
+        cy.get(editQuantity).select('1');
+      } else {
+        cy.get(editQuantity).type('1', {force:true});
+      }
+      cy.get(updateCart).click()
         .get(checkoutCart).click({ force: true });
     }, 
     addNewAddress () {

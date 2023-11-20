@@ -73,6 +73,7 @@ const selectors: SelectorBrandMap = {
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
     pudoSelectedShopAddress:"[data-ref='clickAndCollectAddressContainer-pudo-myhermes']",
+    pudoSearchListMobile:'[data-ref="seeList"]',
     changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
@@ -155,6 +156,7 @@ const selectors: SelectorBrandMap = {
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
     pudoSelectedShopAddress:"[data-ref='clickAndCollectAddressContainer-pudo-NUKmyhermes']",
+    pudoSearchListMobile:'[data-ref="seeList"]',
     changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
@@ -769,6 +771,7 @@ const selectors: SelectorBrandMap = {
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
+    pudoSearchListMobile:'[data-target="js-pudo-side"]',
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:'li:nth-of-type(1) > .w3w-description',
     successMark:'.field-wrapper-w3w-valid',
@@ -1259,7 +1262,7 @@ class ShippingPage implements AbstractPage {
       cy.wait(2000);
       cy.get(pudoSearchField).clear().type(postCode+'{enter}');
       cy.wait(6000);
-      if (brand == 'karenmillen.com' && isMobileDeviceUsed) {
+      if (isMobileDeviceUsed) {
         cy.get(pudoSearchListMobile).click({force:true});
       }
       cy.get(pudoFirstShop, {timeout:20000}).should('be.visible');

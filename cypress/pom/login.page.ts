@@ -27,7 +27,7 @@ const selectors: SelectorBrandMap = {
     loginButton:'button[data-tau="login_submit"]',
     forgotPassword: '#password-reset',
     forgotPasswordMessage: '.b-dialog-window',
-    resetPasswordEmailField: '#dwfrm_profile_resetPassword_email',
+    resetPasswordEmailField: `[name="dwfrm_profile_resetPassword_email"]`,
     resetPasswordBtn: '.b-dialog-footer > .b-button',
     loginForm: '.b-login_form',
     errorLoginMessage: '.b-message-copy',
@@ -259,9 +259,9 @@ class LoginPage implements AbstractPage {
     assertForgotPasswordMessageisDisplayed (email: string) {
       const forgotPasswordMessage = selectors[variables.brand].forgotPasswordMessage;
       if (isSiteGenesisBrand) {
-        cy.get(forgotPasswordMessage).should('be.visible');
+        cy.get(forgotPasswordMessage, {timeout: 2000}).should('be.visible');
       } else {
-        cy.get(forgotPasswordMessage).should('be.visible').and('contain', email);
+        cy.get(forgotPasswordMessage, {timeout: 2000}).should('be.visible').and('contain', email);
       }
     },
   };
@@ -305,9 +305,9 @@ class LoginPage implements AbstractPage {
       const resetPasswordEmailFieldMobile = selectors[variables.brand].resetPasswordEmailFieldMobile;
 
       if (isMobileDeviceUsed) {
-        cy.get(resetPasswordEmailFieldMobile).type(email);
+        cy.get(resetPasswordEmailFieldMobile).type(email,{timeout:2000})
       } else {
-        cy.get(resetPasswordEmailField).type(email);
+        cy.get(resetPasswordEmailField).type(email,{timeout:2000})
       }
     },
     loginPopUpMessage () {

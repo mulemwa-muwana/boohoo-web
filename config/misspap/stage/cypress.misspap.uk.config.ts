@@ -72,7 +72,7 @@ export default defineConfig({
     retries: {
       experimentalStrategy: 'detect-flake-and-pass-on-threshold',
       experimentalOptions: {
-        maxRetries: 3,
+        maxRetries: 2,
         passesRequired: 2,
       },
   

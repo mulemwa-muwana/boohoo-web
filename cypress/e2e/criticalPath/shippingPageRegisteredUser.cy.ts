@@ -81,12 +81,20 @@ describe('Shipping Page Registered user tests', function () {
     if (locale == 'US' || locale == 'AU' || locale == 'IE' || locale == 'CA') {
       shippingPage.actions.selectState(localeAddress.county);
     }
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com') {
+      shippingPage.actions.firstNameField(localeAddress.firstName);
+      shippingPage.actions.lastNameField(localeAddress.lastName);
+    }
     shippingPage.actions.phoneNumberField(localeAddress.phone);
     if ((brand == 'oasis-stores.com' || brand == 'coastfashion.com') && isMobileDeviceUsed) {
       shippingPage.actions.addAddressNickname(localeAddress.addressNickname);
     }
     cy.wait(3000);
-    shippingPage.click.proceedToBilling();
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver();
+    } else {
+      shippingPage.click.proceedToBilling();
+    }
     cy.wait(2000);
     shippingPage.click.proceedToBillingVerification();
     billingPage.actions.waitPageToLoad();
@@ -137,7 +145,11 @@ describe('Shipping Page Registered user tests', function () {
     cy.wait(3000);
     shippingPage.actions.addressLookupSelectFirstAddress(secondaryAddress.addressLine, secondaryAddress.city);
     shippingPage.assertions.assertNewAddedShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode);
-    shippingPage.click.proceedToBilling();
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver();
+    } else {
+      shippingPage.click.proceedToBilling();
+    }
     billingPage.assertions.assertNewShippingAddress(secondaryAddress.addressLine, secondaryAddress.city, secondaryAddress.postcode, secondaryAddress.country);
   });
 
@@ -177,7 +189,6 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.click.proceedToBillingVerification();
     billingPage.actions.waitPageToLoad();
     billingPage.assertions.assertNewShippingAddress(localeAddress.addressLine, localeAddress.city, localeAddress.postcode, localeAddress.country);
-    
   });
 
   it('CYP-204 Verify that PREMIER can be added to the cart', function () {
@@ -258,7 +269,13 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.selectShippingTab();
     }
     shippingPage.actions.selectShippingMethod(localeShippingMethod.shippingMethodName);
-    shippingPage.click.proceedToBilling();
+    cy.wait(3000);
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+      shippingPage.click.proceedToBillingMouseOver();
+      shippingPage.click.proceedToBillingVerification();
+    } else {
+      shippingPage.click.proceedToBilling();
+    }
     if (locale == 'IE' || locale == 'US' || locale == 'AU') {
       shippingPage.click.proceedToBillingVerification();
     }
@@ -308,7 +325,13 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.selectSecondShippingMethod();
     shippingPage.actions.secondShippingMethodName().then((secondShippingMethodName) => {
       cy.log(secondShippingMethodName);
-      shippingPage.click.proceedToBilling();
+      cy.wait(3000);
+      if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+        shippingPage.click.proceedToBillingMouseOver();
+        shippingPage.click.proceedToBillingVerification();
+      } else {
+        shippingPage.click.proceedToBilling();
+      }
       if (locale == 'IE' || (brand == 'boohooman.com' && locale == 'US') || (brand == 'karenmillen.com' && locale == 'US') || (brand == 'misspap.com' && (locale == 'US' || locale == 'AU'))) {
         shippingPage.click.proceedToBillingVerification();
       } else if (locale == 'IL') {

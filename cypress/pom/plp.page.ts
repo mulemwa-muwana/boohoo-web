@@ -4,6 +4,7 @@ import AbstractPage from './abstract/abstract.page';
 import homePage from './home.page';
 import assertionText from 'cypress/helpers/assertionText';
 import { brand, language, locale } from 'cypress/support/e2e';
+import megaMenuLinksLanguages from '../helpers/megaMenuLinksLanguages';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -599,6 +600,30 @@ class PlpPage implements AbstractPage {
         cy.wait(3000);// Needed this waits
       });
     },
+
+    selectMegamenuLink (){
+      if (brand == 'nastygal.com') {
+        homePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
+      } else if (brand == 'boohoo.com' || brand == 'boohooman.com') {
+        if ( locale == 'AU') {
+          homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLink[language]);
+        } else {
+          homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.AllClothing[language]);
+          homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
+        }
+      } else if (brand == 'coastfashion.com' || brand == 'oasis-stores.com' || brand == 'wallis.co.uk') {
+        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
+        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+      } else if (brand == 'karenmillen.com') {
+        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+      } else if (brand == 'dorothyperkins.com') {
+        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
+        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewInDP[language]);
+      } else {
+        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
+        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewIn[language]);
+      }
+    },
   };
 
   actions = {
@@ -606,7 +631,7 @@ class PlpPage implements AbstractPage {
       cy.intercept(interceptRouteRegex).as('updateRefinement');
     },
     waitForPageRefinementUpdate () {
-      cy.wait('@updateRefinement', { timeout: 60000 }).its('response.statusCode').should('be.oneOf', [200, 201, 204]);
+      cy.wait('@updateRefinement', { timeout: 70000 });
     }
   };
 

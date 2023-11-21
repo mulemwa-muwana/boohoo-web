@@ -552,7 +552,7 @@ class PdpPage implements AbstractPage {
     selectSizeFromSku () {
       const sizeVariations = selectors[brand].sizeVariations;
       const sizeFromSku = fullSku.split('-')[2]; // Get size part from fullSku FZZ80440-106-18 => 18
-
+      cy.wait(1000);
       if ((brand == 'boohoo.com') || (brand == 'nastygal.com')) {
         cy.get(sizeVariations + ` button[data-tau-size-id="${sizeFromSku}"]`).click({ force: true });
       } else {
@@ -561,7 +561,7 @@ class PdpPage implements AbstractPage {
             $element.trigger('click', { setTimeout: 1000 });
           } else {
             if ($element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
-              $element.trigger('click', { setTimeout: 1000 });
+              cy.log('already selected')
             }
           }
         });

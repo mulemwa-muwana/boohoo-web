@@ -450,11 +450,11 @@ const selectors: SelectorBrandMap = {
     payButtonLocatorAU: '[data-testid="confirm-and-pay"]>div>div>span',
     payButtonLocatorUS: '[data-testid="confirm-and-pay"]',
     shippingAddressSection: '.minicheckout-section',
-    billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
-    billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
+    billingAddressFieldCity: '.city .input-text',
+    billingAddressFieldsAddress1: '.address1 .input-text',
     addGiftCertificate: '#dwfrm_billing_giftCertCode',
     billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
-    billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
+    billingPostCode: '.postal .input-text',
     couponCode: '#dwfrm_coupon_couponCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
@@ -674,11 +674,11 @@ const selectors: SelectorBrandMap = {
     klarnaPayNowUS: '#billingSubmitButton',
     payButtonLocator: '[data-testid="confirm-and-pay"]',
     shippingAddressSection: '.minicheckout-section',
-    billingAddressFieldCity: '#dwfrm_billing_billingAddress_addressFields_city',
-    billingAddressFieldsAddress1: '#dwfrm_billing_billingAddress_addressFields_address1',
+    billingAddressFieldCity: `input#dwfrm_singleshipping_shippingAddress_addressFields_city`,
+    billingAddressFieldsAddress1: `input[name='dwfrm_singleshipping_shippingAddress_addressFields_address1']`,
     addGiftCertificate: '.b-gift_certificate-add',
     billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
-    billingPostCode: '#dwfrm_billing_billingAddress_addressFields_postalcodes_postal',
+    billingPostCode: 'input#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_billing_giftCertCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
     addGiftCert: '#add-giftcert',
@@ -852,12 +852,12 @@ class BillingPage implements AbstractPage {
   actions = {
     waitPageToLoad () {
       cy.wait(12000);
-      if (brand == 'boohoomena.com'  && locale == 'JO'){
-      cy.url().should('include', 'shipping');
-    } else {
-      cy.url().should('include', 'billing');
-    }
-  },
+      if (brand == 'boohoomena.com' && locale == 'JO') {
+        cy.url().should('include', 'shipping');
+      } else {
+        cy.url().should('include', 'billing');
+      }
+    },
     selectDate (day: string, month: string, year: string) {
       const dobDate = selectors[brand].dobDate;
       const dobMonth = selectors[brand].dobMonth;
@@ -960,29 +960,37 @@ class BillingPage implements AbstractPage {
       const confirmEmailField = selectors[brand].confirmEmailField;
       cy.get(confirmEmailField).clear().type(email);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, county: string, postcode: string) {
-      const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
-      const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
-      const billingPostCode = selectors[brand].billingPostCode;
+    addBillingAddressGuestUser(line1: string, city: string, state: string, county: string, postcode: string) {
       const billingAddressFieldsStateCode = selectors[brand].billingAddressFieldsStateCode;
-      const postCodeBoohooAU = '#dwfrm_billing_addressFields_postalCode';
-
       this.enterManuallyAddressDetails();
-      cy.get(billingAddressFieldsAddress1).clear().type(line1);
-      cy.get(billingAddressFieldCity).clear({ force: true }).type(city);
-      if (!isSiteGenesisBrand) {
-        if (locale == 'AU' || locale == 'IE' || locale == 'US' || locale == 'CA') {
-          cy.get(billingAddressFieldsStateCode).select(county);
+      if (brand == 'misspap.com') {
+        const billingAddressFieldsAddress1 = `[name="dwfrm_billing_billingAddress_addressFields_address1"]`;
+        const billingAddressFieldCity = `name="dwfrm_billing_billingAddress_addressFields_city"`;
+        const billingPostCode = `name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"`;
+        cy.get(billingAddressFieldsAddress1).clear().type(line1)
+          .get(billingAddressFieldCity).clear({ force: true }).type(city)
+          .get(billingAddressFieldsStateCode).clear().type(state)
+          .get(billingPostCode).clear().type(postcode);
+      } else {
+        const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
+        const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
+        const billingPostCode = selectors[brand].billingPostCode;
+        const postCodeBoohooAU = '#dwfrm_billing_addressFields_postalCode';
+        cy.get(billingAddressFieldsAddress1).clear().type(line1)
+          .get(billingAddressFieldCity).clear({ force: true }).type(city);
+        if (!isSiteGenesisBrand) {
+          if (locale == 'AU' || locale == 'IE' || locale == 'US' || locale == 'CA') {
+            cy.get(billingAddressFieldsStateCode).select(county);
+          } else {
+            cy.get(billingAddressFieldsStateCode).clear().type(state);
+          }
+        }
+        if (brand == 'boohoo.com' && locale == 'AU') {
+          cy.get(postCodeBoohooAU).clear().type(postcode);
         } else {
-          cy.get(billingAddressFieldsStateCode).clear().type(state);
+          cy.get(billingPostCode).clear().type(postcode);
         }
       }
-      if (brand == 'boohoo.com' && locale == 'AU') {
-        cy.get(postCodeBoohooAU).clear().type(postcode);
-      } else {
-        cy.get(billingPostCode).clear().type(postcode);
-      }
-
     },
     addBillingAddressRegisteredUser (localeAddress: AddressData) {
       const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;

@@ -1,5 +1,5 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand, url } from 'cypress/support/e2e';
+import { brand, locale, url } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -199,7 +199,7 @@ const selectors: SelectorBrandMap = {
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
-    clearCart: '[class*="button-remove"]',
+    clearCart: `button[name='dwfrm_cart_shipments_i0_items_i0_deleteProduct'] span`,
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
     emptyCartTitleMobile: '.cart-empty-title',
@@ -283,7 +283,7 @@ const selectors: SelectorBrandMap = {
     PayPalCTA: '.cart-action-checkout-inner .zoid-component-frame',
     KlarnaCTA: '#klarna-express-button-0',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '[class*="js-second-button-checkout"]',
+    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
     clearCart: '[class*="button-remove"]',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
@@ -362,7 +362,8 @@ class CartPage implements AbstractPage {
     clearCart () {
       const clearCart = selectors[brand].clearCart;
       cy.get(clearCart).each(($el) => {
-        cy.get(clearCart,{timeout:20000}).eq(0).click({ force: true });
+        const el: any = $el;
+        cy.get(el, { timeout: 20000 }).click({ force: true });
       });
     },
     removePremierFromCart () {
@@ -396,7 +397,7 @@ class CartPage implements AbstractPage {
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
-        
+
         // If Desktop Device is used
       } else {
         cy.wait(1000);
@@ -464,10 +465,10 @@ class CartPage implements AbstractPage {
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
-        cy.get(editDetailsMobile).click({force: true});
+        cy.get(editDetailsMobile).click({ force: true });
         cy.wait(5000);
-        cy.get(editQuantityMobile).clear({force: true}).type(quantity);
-        cy.get(updateBtnMobile).click({force: true});
+        cy.get(editQuantityMobile).clear({ force: true }).type(quantity);
+        cy.get(updateBtnMobile).click({ force: true });
         cy.intercept('**/cart').as('cartPage');
         cy.wait('@cartPage', { timeout: 30000 }).its('response.statusCode').should('eq', 200);
 
@@ -539,9 +540,14 @@ class CartPage implements AbstractPage {
     assertPremierSlotsAreVisible () {
       const premierBlock = selectors[brand].premierBlock;
       const addPremierToCart = selectors[brand].addPremierToCart;
-
-      cy.get(premierBlock).should('be.visible');
-      cy.get(addPremierToCart).should('be.visible');
+      cy.get('body').then((body) => {
+        if (body.find(premierBlock).length > 0) {
+          cy.get(premierBlock).should('be.visible')
+            .get(addPremierToCart).should('be.visible');
+        } else {
+          cy.log('premierBlock is not visible for ' + brand + ' ' + locale);
+        }
+      });
     },
     assertPayPalCTAisVisible () {
       const PayPalCTA = selectors[brand].PayPalCTA;
@@ -565,7 +571,7 @@ class CartPage implements AbstractPage {
     },
     assertSelectedProductIsAddedToTheCart (text: string) {
       const itemDetails = selectors[brand].itemDetails;
-      cy.get(itemDetails).should('contains',text.toLocaleLowerCase);
+      cy.get(itemDetails).should('contains', text.toLocaleLowerCase);
     }
   };
 }

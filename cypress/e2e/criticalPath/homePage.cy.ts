@@ -59,7 +59,9 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
       }
-      HomePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[language].toLowerCase());
+      if(brand != 'boohooman.com') { //skipping due to black friday promotion the link has been changed
+        HomePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[language].toLowerCase());
+      }
     });
  
     it('CYP-66 Verify Mega Menu - NewIn link opens', () => {
@@ -82,9 +84,8 @@ describe('Home Page', function () {
         homePage.assertions.assertLinkIsOpeningCorrectPage('promo');
       } else if (brand == 'nastygal.com') {
         homePage.assertions.assertLinkIsOpeningCorrectPage('womens');
-      }
-        else if (brand == 'boohoomena.com'&& locale == 'JO') {
-          homePage.assertions.assertLinkIsOpeningCorrectPage('newintoday');
+      } else if (brand == 'boohoomena.com'&& locale == 'JO') {
+        homePage.assertions.assertLinkIsOpeningCorrectPage('newintoday');
       
       } else {
         homePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationNewIn[language]);

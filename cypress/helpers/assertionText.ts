@@ -2085,6 +2085,21 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  errorMsgTextForMoreThanFiveDiscountedItems: TranslationMap = {
+    EN: 'Please enter a value less than or equal to 5.',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
 }
 
 export default new AssertionText();

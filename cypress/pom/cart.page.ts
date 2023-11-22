@@ -1,6 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand, locale, url } from 'cypress/support/e2e';
+import { brand, locale, url, language } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -176,6 +177,7 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     itemDetails: '.item-details',
+    addToCart: '#add-to-cart',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -572,7 +574,17 @@ class CartPage implements AbstractPage {
     assertSelectedProductIsAddedToTheCart (text: string) {
       const itemDetails = selectors[brand].itemDetails;
       cy.get(itemDetails).should('contains', text.toLocaleLowerCase);
-    }
+    },
+    assertErrorMsgForMoreThanFiveDiscountedItemsInCart () {
+      const addToCart = selectors[brand].addToCart;
+
+      cy.get('.item-actions-copy.edit-details-text').contains('Edit Details').click()
+        .get('#Quantity').clear().type('6')
+        .get(addToCart).click()
+        .get('#Quantity-error').should('be.visible')
+                               .should('have.text', assertionText.errorMsgTextForMoreThanFiveDiscountedItems[language])
+    },
+
   };
 }
 

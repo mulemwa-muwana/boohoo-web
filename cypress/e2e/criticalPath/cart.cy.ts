@@ -82,6 +82,11 @@ describe('Cart basic functionality for guest user', function () {
       this.skip();
     }
   });
+
+  it.only('CYP-   Verify that the user can not add more than 5 discounted products, validate the error message', function () {
+    CartPage.assertions.assertErrorMsgForMoreThanFiveDiscountedItemsInCart();
+  });
+
   it('CYP-52 Verify that user can remove product from cart', function () {
     CartPage.click.clearCart();
     CartPage.assertions.assertCartIsEmpty();

@@ -765,6 +765,7 @@ describe('Home Page', function () {
   describe('insta', ()=>{
 
     it('CYP-130 Verify that Instashop is present on Homepage and opens instashop',function () {
+      this.skip(); // Instashop is not present on Boohooman due to black friday promotion
       if (brand == 'boohooman.com' && locale == 'UK') {
         cy.wait(2000);
         HomePage.assertions.assertInstaShopPresent();

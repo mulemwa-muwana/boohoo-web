@@ -84,11 +84,11 @@ describe('Cart basic functionality for guest user', function () {
   });
 
   it('CYP-661 Verify that delivery options are displayed', function () {
-    const isDeliveryOptionsNotVisible_BrandAndLocales: boolean = ((brand == 'boohooman.com' && locale == 'NL' || locale == 'EU')
+    const isDeliveryOptionsNotVisible: boolean = ((brand == 'boohooman.com' && locale == 'NL' || locale == 'EU')
                                                                   || (brand == 'karenmillen.com' && locale == 'IE')
                                                                   || brand == 'boohoomena.com' || brand == 'boohoo.com' || brand == 'nastygal.com');
 
-    isDeliveryOptionsNotVisible_BrandAndLocales
+    isDeliveryOptionsNotVisible
       ? this.skip()
       : CartPage.assertions.assertDeliveryOptionsIsVisible()
   });

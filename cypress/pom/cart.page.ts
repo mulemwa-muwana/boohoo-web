@@ -176,6 +176,7 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     itemDetails: '.item-details',
+    deliveryOptions: '.cart-delivery-table',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -210,6 +211,7 @@ const selectors: SelectorBrandMap = {
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
     cartPage: '#wrapper',
     itemDetails: '.item-details',
+    deliveryOptions: '.cart-delivery-table',
   },
   'coastfashion.com': {
     productsTable: '#cart-table',
@@ -323,6 +325,7 @@ const selectors: SelectorBrandMap = {
     updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     itemDetails: '.item-details',
+    deliveryOptions: '.cart-delivery-table',
   },
   'boohoomena.com': {
     productsTable: '#cart-table',
@@ -350,6 +353,7 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
     itemDetails: '.item-details',
+    deliveryOptions: '.cart-delivery-table',
   },
 };
 
@@ -572,6 +576,10 @@ class CartPage implements AbstractPage {
     assertSelectedProductIsAddedToTheCart (text: string) {
       const itemDetails = selectors[brand].itemDetails;
       cy.get(itemDetails).should('contains', text.toLocaleLowerCase);
+    },
+    assertDeliveryOptionsIsVisible() {
+      const deliveryOptions = selectors[brand].deliveryOptions;
+      cy.get(deliveryOptions).should('be.visible')
     }
   };
 }

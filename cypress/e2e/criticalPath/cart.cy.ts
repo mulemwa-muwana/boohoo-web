@@ -90,7 +90,7 @@ describe('Cart basic functionality for guest user', function () {
 
     isDeliveryOptionsNotVisible
       ? this.skip()
-      : CartPage.assertions.assertDeliveryOptionsIsVisible()
+      : CartPage.assertions.assertDeliveryOptionsIsVisible();
   });
 
   it('CYP-52 Verify that user can remove product from cart', function () {

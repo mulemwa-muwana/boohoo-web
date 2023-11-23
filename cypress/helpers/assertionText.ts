@@ -2085,6 +2085,35 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
+  editCartDetailsText: TranslationMap = {
+    EN: 'Edit Details',
+    NL: 'Details bewerken',
+    DE: 'Details bearbeiten',
+    FR: 'Modifier les détails',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
+  errorMsgTextForMoreThanFiveDiscountedItems: TranslationMap = {
+    EN: 'Please enter a value less than or equal to 5.',
+    NL: 'Voer een waarde kleiner dan of gelijk aan 5 in.',
+    DE: 'Bitte einen Wert eingeben, der kleiner oder gleich 5 ist.',
+    FR: 'Veuillez saisir une valeur inférieure ou égale à 5.',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
 }
 
 export default new AssertionText();

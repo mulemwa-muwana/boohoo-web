@@ -1,6 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand, locale, url } from 'cypress/support/e2e';
+import { brand, locale, url, language } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -177,6 +178,10 @@ const selectors: SelectorBrandMap = {
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     itemDetails: '.item-details',
     deliveryOptions: '.cart-delivery-table',
+    updateCartCTA: '#add-to-cart',
+    editCartDetailsCTA: '.item-actions-copy.edit-details-text',
+    editQuantityBox: '#Quantity',
+    errorMsgForMoreThanFiveDiscountedItems: '#Quantity-error',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -580,7 +585,19 @@ class CartPage implements AbstractPage {
     assertDeliveryOptionsIsVisible () {
       const deliveryOptions = selectors[brand].deliveryOptions;
       cy.get(deliveryOptions).should('be.visible');
-    }
+    },
+    assertErrorMsgForMoreThanFiveDiscountedItemsInCart (text: string) {
+      const updateCartCTA = selectors[brand].updateCartCTA;
+      const editCartDetailsCTA = selectors[brand].editCartDetailsCTA;
+      const editQuantityBox = selectors[brand].editQuantityBox;
+      const errorMsgForMoreThanFiveDiscountedItems = selectors[brand].errorMsgForMoreThanFiveDiscountedItems;
+
+      cy.get(editCartDetailsCTA).contains(assertionText.editCartDetailsText[language]).click()
+        .get(editQuantityBox).clear().type(text)
+        .get(updateCartCTA).click()
+        .get(errorMsgForMoreThanFiveDiscountedItems).should('be.visible').should('have.text', assertionText.errorMsgTextForMoreThanFiveDiscountedItems[language]);
+    },
+
   };
 }
 

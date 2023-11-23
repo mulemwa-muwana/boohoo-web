@@ -15,7 +15,7 @@ describe('Product Details Page tests', function () {
     HomePage.actions.findItemUsingSKU(sku);
   });
 
-  it('CYP-147 Verify that Product name, price and code is showing',function () { 
+  it('CYP-147 Verify that Product name, price and code is showing',function () {
     const SKU = sku.replace(/^#/g, '');
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
@@ -32,12 +32,12 @@ describe('Product Details Page tests', function () {
 
     // PdpPage.assertions.assertImageIsDisplayed('#product-image-3');  some products have only 3 images
   });
-  
+
   it('CYP-148 Verify that colour swatches are displayed',function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
   });
   it('CYP-149 Verify that it is possible to select a size when available', function () {
-    PdpPage.actions.selectFirstAvailableSize();  
+    PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToCart();
   });
   it('CYP-150 Verify if size is not selected user cannot add product to a bag', function () {
@@ -46,13 +46,13 @@ describe('Product Details Page tests', function () {
     } else {
       PdpPage.assertions.assertAddToCartBtnDisabled();
     }
-  });   
+  });
   it('CYP-151 Verify when selecting product and click on CTA "Add to cart" the mini cart is displayed', function () {
     PdpPage.actions.selectColorByIndex(0);
     PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToCart();
     PdpPage.assertions.assertMiniCartIsDisplayed();
-  }); 
+  });
   it('CYP-152 Verify that save for later (heart icon) is functional when selected', function () {
     PdpPage.actions.selectFirstAvailableSize();
     PdpPage.click.addToWishList();
@@ -176,4 +176,9 @@ describe('Product Details Page tests', function () {
       this.skip();
     }
   });
+
+  it('CYP-    Verify that user can not add more than 5 discounted products, validate error message', function () {
+
+  });
+
 });

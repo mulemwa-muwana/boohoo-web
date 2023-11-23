@@ -72,9 +72,7 @@ class Navigate {
       });
     }
     cy.wait(2000);
-    if (brand == 'boohoo.com') {
-      shippingPage.click.assertQuantityIsoneOnCart();
-    }
+    shippingPage.click.assertQuantityIsoneOnCart();
   }
 
   toBillingPage (userType: UserType) {

@@ -714,7 +714,7 @@ const selectors: SelectorBrandMap = {
     editCartShipping: '.section-header-note',
     editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
     editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
-    updateCart: 'button#add-to-cart.button-fancy-large.js-add-to-cart', 
+    updateCart: '#add-to-cart', 
     checkoutCart: 'button[name="dwfrm_cart_checkoutCart"]',
     addAddressManually: '.add-new-address',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -874,7 +874,7 @@ class ShippingPage implements AbstractPage {
       } else {
         cy.get(editQuantity).type('1', {force:true});
       }
-      cy.get(updateCart).click()
+      cy.get(updateCart).click( { force: true })
         .get(checkoutCart).click({ force: true });
     }, 
     addNewAddress () {

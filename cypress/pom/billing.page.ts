@@ -677,7 +677,7 @@ const selectors: SelectorBrandMap = {
     billingAddressFieldCity: `input#dwfrm_singleshipping_shippingAddress_addressFields_city`,
     billingAddressFieldsAddress1: `input[name='dwfrm_singleshipping_shippingAddress_addressFields_address1']`,
     addGiftCertificate: '.b-gift_certificate-add',
-    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
+    billingAddressFieldsStateCode: `[name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"]`,
     billingPostCode: 'input#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_billing_giftCertCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
@@ -965,8 +965,8 @@ class BillingPage implements AbstractPage {
       this.enterManuallyAddressDetails();
       if (brand == 'misspap.com') {
         const billingAddressFieldsAddress1 = `[name="dwfrm_billing_billingAddress_addressFields_address1"]`;
-        const billingAddressFieldCity = `name="dwfrm_billing_billingAddress_addressFields_city"`;
-        const billingPostCode = `name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"`;
+        const billingAddressFieldCity = `[name="dwfrm_billing_billingAddress_addressFields_city"]`;
+        const billingPostCode = `[name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"]`;
         cy.get(billingAddressFieldsAddress1).clear().type(line1)
           .get(billingAddressFieldCity).clear({ force: true }).type(city)
           .get(billingAddressFieldsStateCode).clear().type(state)

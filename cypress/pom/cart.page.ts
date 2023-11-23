@@ -177,7 +177,10 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     itemDetails: '.item-details',
-    addToCart: '#add-to-cart',
+    updateCartCTA: '#add-to-cart',
+    editCartDetailsCTA: '.item-actions-copy.edit-details-text',
+    editQuantityBox: '#Quantity',
+    errorMsgForMoreThanFiveDiscountedItems: '#Quantity-error',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -575,14 +578,16 @@ class CartPage implements AbstractPage {
       const itemDetails = selectors[brand].itemDetails;
       cy.get(itemDetails).should('contains', text.toLocaleLowerCase);
     },
-    assertErrorMsgForMoreThanFiveDiscountedItemsInCart () {
-      const addToCart = selectors[brand].addToCart;
+    assertErrorMsgForMoreThanFiveDiscountedItemsInCart (text: string) {
+      const updateCartCTA = selectors[brand].updateCartCTA;
+      const editCartDetailsCTA = selectors[brand].editCartDetailsCTA;
+      const editQuantityBox = selectors[brand].editQuantityBox;
+      const errorMsgForMoreThanFiveDiscountedItems = selectors[brand].errorMsgForMoreThanFiveDiscountedItems;
 
-      cy.get('.item-actions-copy.edit-details-text').contains('Edit Details').click()
-        .get('#Quantity').clear().type('6')
-        .get(addToCart).click()
-        .get('#Quantity-error').should('be.visible')
-                               .should('have.text', assertionText.errorMsgTextForMoreThanFiveDiscountedItems[language])
+      cy.get(editCartDetailsCTA).contains(assertionText.editCartDetailsText[language]).click()
+        .get(editQuantityBox).clear().type(text)
+        .get(updateCartCTA).click()
+        .get(errorMsgForMoreThanFiveDiscountedItems).should('be.visible').should('have.text', assertionText.errorMsgTextForMoreThanFiveDiscountedItems[language]);
     },
 
   };

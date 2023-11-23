@@ -83,9 +83,11 @@ describe('Cart basic functionality for guest user', function () {
     }
   });
 
-  it.only('CYP-   Verify that the user can not add more than 5 discounted products, validate the error message', function () {
-    CartPage.assertions.assertErrorMsgForMoreThanFiveDiscountedItemsInCart();
-  });
+  if (brand == 'boohooman.com') {
+    it('CYP-678 Verify that the user can not add more than 5 discounted products, validate the error message', function () {
+      CartPage.assertions.assertErrorMsgForMoreThanFiveDiscountedItemsInCart('6');
+    });
+  }
 
   it('CYP-52 Verify that user can remove product from cart', function () {
     CartPage.click.clearCart();

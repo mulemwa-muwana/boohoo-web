@@ -10,12 +10,12 @@ import homePage from '../../pom/home.page';
 
 describe('Product Details Page tests', function () {
 
-  beforeEach (()=>{
+  beforeEach(() => {
     HomePage.goto();
     HomePage.actions.findItemUsingSKU(sku);
   });
 
-  it('CYP-147 Verify that Product name, price and code is showing',function () {
+  it('CYP-147 Verify that Product name, price and code is showing', function () {
     const SKU = sku.replace(/^#/g, '');
     PdpPage.assertions.assertProductNameIsDisplayed();
     PdpPage.assertions.assertProductPriceIsDisplayed();
@@ -33,7 +33,7 @@ describe('Product Details Page tests', function () {
     // PdpPage.assertions.assertImageIsDisplayed('#product-image-3');  some products have only 3 images
   });
 
-  it('CYP-148 Verify that colour swatches are displayed',function () {
+  it('CYP-148 Verify that colour swatches are displayed', function () {
     PdpPage.assertions.assertColorSwatchesAreVisible();
   });
   it('CYP-149 Verify that it is possible to select a size when available', function () {
@@ -73,7 +73,7 @@ describe('Product Details Page tests', function () {
       PdpPage.click.shippingInfoButton();
       PdpPage.assertions.assertDeliveryInfoIsDisplayed();
     }
-    if (brand == 'dorothyperkins.com' || brand == 'burton.co.uk' || brand == 'wallis.co.uk'||brand == 'oasis-stores.com') {
+    if (brand == 'dorothyperkins.com' || brand == 'burton.co.uk' || brand == 'wallis.co.uk' || brand == 'oasis-stores.com') {
       pdpPage.assertions.assertDeliveryOptionsAreDisplayed();
     } else {
       PdpPage.assertions.assertReturnInfoIsDisplayed();
@@ -90,7 +90,7 @@ describe('Product Details Page tests', function () {
   });
 
   it('CYP-155 Verify that PREMIER banner is visible and can be added to the basket', function () {
-    if ((brand == 'karenmillen.com'&& (locale == 'US' || locale == 'IE' || locale == 'EU')) || (brand == 'boohooman.com') && locale == 'UK') {
+    if ((brand == 'karenmillen.com' && (locale == 'US' || locale == 'IE' || locale == 'EU')) || (brand == 'boohooman.com') && locale == 'UK') {
       if (brand == 'karenmillen.com') {
         PdpPage.click.deliveryInfo();
         PdpPage.click.premierLink(assertionText.Premier[language]);
@@ -177,8 +177,11 @@ describe('Product Details Page tests', function () {
     }
   });
 
-  it('CYP-    Verify that user can not add more than 5 discounted products, validate error message', function () {
-
-  });
+  if (brand == 'boohooman.com') {
+    it('CYP-695 Verify that user can not add more than 5 discounted products, validate error message - PDP', function () {
+      PdpPage.actions.selectFirstAvailableSize();
+      pdpPage.assertions.assertErrorMsgForMoreThanFiveDiscountedItemsOnPDP('6');
+    });
+  }
 
 });

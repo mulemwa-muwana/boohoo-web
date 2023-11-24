@@ -211,6 +211,7 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
     productReturnsInfo: '#ui-id-6',
     premierBanner: '#pdp-premier',
+    addToCartPremierBanner: '[data-replace-link=".js-premier-box-link"]',
     moreInfoKlarna: '.js-calculation-content > .js-pdp-calculations-klarna > u',
     moreInfoPaypal: '.js-calculation-content > .js-pdp-calculations-paypal u',
     moreInfoClearPay: '[href="https://uk-dwstg.boohoo.com/page/clearpay.html?payment_calc"]',
@@ -470,9 +471,9 @@ class PdpPage implements AbstractPage {
     },
     addToCartPremier () {
       const premierBanner = selectors[brand].premierBanner;
-      const addToCart = selectors[brand].addToCart;
+      const addToCartPremierBanner = selectors[brand].addToCartPremierBanner;
       cy.get(premierBanner).then(($el) => {
-        cy.wrap($el).find(addToCart).click({ force: true });
+        cy.wrap($el).find(addToCartPremierBanner).click({ force: true });
       });
     },
     premierLink (text: string) {

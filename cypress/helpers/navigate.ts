@@ -70,9 +70,9 @@ class Navigate {
         CheckoutPage.actions.passwordField(credentials.password);
         CheckoutPage.click.continueAsRegisteredUser();
       });
+      shippingPage.click.assertQuantityIsoneOnCart();
     }
     cy.wait(2000);
-    shippingPage.click.assertQuantityIsoneOnCart();
   }
 
   toBillingPage (userType: UserType) {

@@ -46,7 +46,7 @@ const selectors: SelectorBrandMap = {
   'boohooman.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: '[id^="dwfrm_login_username"]',
-    passwordField:'[id^="dwfrm_login_password"]',
+    passwordField:'.input-text.password.required',
     continueAsGuestBt:'.login-box-create-account .login-page-button',
     continueAsRegisteredUser: '.login-page-form .login-page-button',
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
@@ -102,7 +102,7 @@ const selectors: SelectorBrandMap = {
     premierAddToCart:'button[class="b-ngvip-button b-button"]',
     premierIsDisplayed:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-title',
     premierSubtitle:'.l-checkout_login-bottom_slot > .b-ngvip > .b-ngvip-inner > .b-ngvip-common > .b-ngvip-details > .b-ngvip-description > .b-ngvip-subtitle',
-  }, 
+  },
   'boohoomena.com': {
     guestCheckoutEmail: '[id^="dwfrm_login_username"]',
     userEmailField: 'input[id^="dwfrm_login_username"]',
@@ -124,15 +124,15 @@ class CheckoutPage implements AbstractPage {
   }
 
   click = {
-    continueAsGuestBtn () {  
-      const continueAsGuestBt = selectors[variables.brand].continueAsGuestBt; 
+    continueAsGuestBtn () {
+      const continueAsGuestBt = selectors[variables.brand].continueAsGuestBt;
       cy.get(continueAsGuestBt).click({force:true});
     },
-    continueAsRegisteredUser () {  
-      const continueAsRegisteredUser = selectors[variables.brand].continueAsRegisteredUser; 
+    continueAsRegisteredUser () {
+      const continueAsRegisteredUser = selectors[variables.brand].continueAsRegisteredUser;
       cy.get(continueAsRegisteredUser).click({force:true});
     },
-    premierAddToCart () { 
+    premierAddToCart () {
       const premierAddToCart = selectors[variables.brand].premierAddToCart;
       cy.get(premierAddToCart).click();
     }
@@ -140,14 +140,14 @@ class CheckoutPage implements AbstractPage {
 
   actions = {
     guestCheckoutEmail (guestEmail: string) {
-      const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail; 
+      const guestCheckoutEmail = selectors[variables.brand].guestCheckoutEmail;
       cy.get(guestCheckoutEmail).click({force:true}).clear({force:true}).type(guestEmail, {force:true});
     },
-    userEmailField (username: string) {  
+    userEmailField (username: string) {
       const userEmailField = selectors[variables.brand].userEmailField;
       cy.get(userEmailField).click({force:true}).type(username + '{enter}', {force:true});
     },
-    passwordField (password: string) {  
+    passwordField (password: string) {
       const passwordField = selectors[variables.brand].passwordField;
       cy.get(passwordField).type(password, {force:true});
     }
@@ -163,9 +163,9 @@ class CheckoutPage implements AbstractPage {
         if ($body.find(userEmailField).length) {
           cy.get(userEmailField).should('be.visible');
         }
-      }   
+      }
       );
-      
+
     },
     assertPasswordFieldForRegisteredUserIsVisible () {
       const passwordField = selectors[variables.brand].passwordField;

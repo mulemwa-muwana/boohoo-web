@@ -216,6 +216,7 @@ const selectors: SelectorBrandMap = {
     moreInfoPaypal: '.js-calculation-content > .js-pdp-calculations-paypal u',
     moreInfoClearPay: '[href="https://uk-dwstg.boohoo.com/page/clearpay.html?payment_calc"]',
     moreInfoAfterPay: '.js-calculation-content > .js-pdp-calculations-afterpay > u',
+    editInventory: '.inventory',
     editQuantityBox: 'input#Quantity',
     errorMsgForMoreThanFiveDiscountedItems: '#Quantity-error',
   },
@@ -858,9 +859,10 @@ class PdpPage implements AbstractPage {
     },
     assertErrorMsgForMoreThanFiveDiscountedItemsOnPDP (text: string) {
       const addToCart = selectors[brand].addToCart;
+      const editInventory = selectors[brand].editInventory;
       const editQuantityBox = selectors[brand].editQuantityBox;
       const errorMsgForMoreThanFiveDiscountedItems = selectors[brand].errorMsgForMoreThanFiveDiscountedItems;
-      cy.get(editQuantityBox).click().clear().type(text)
+      cy.get(editInventory).find(editQuantityBox).last().click().clear().type(text)
         .get(addToCart).click()
         .get(errorMsgForMoreThanFiveDiscountedItems).should('be.visible').should('have.text', assertionText.errorMsgTextForMoreThanFiveDiscountedItems[language]);
     },

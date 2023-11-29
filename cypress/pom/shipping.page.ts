@@ -68,7 +68,7 @@ const selectors: SelectorBrandMap = {
     dobYear: '#dwfrm_profile_customer_yearOfBirth',
     clickAndCollectTab:"[data-id='button-clickCollectPanel']",
     pudoShippingMethod:"[for='shippingMethod-pudo-myhermes']",
-    pudoSearchField:'.b-pudo-search_field',
+    pudoSearchField:'.b-pudo-search_field.b-input',  
     pudoFirstShop:'.b-pudo_store',
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
@@ -83,9 +83,10 @@ const selectors: SelectorBrandMap = {
     asdaPudoShippingMethod: '[for="shippingMethod-pudo-asda"]',
     asdaPudoSearchField: '.location-textbox',
     asdaPudoFirstShop: '.location-places',
-    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSearchTitle: '[data-fid="0"] > :nth-child(2) > :nth-child(2)',
     asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
-    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]',
+    asdaSelectedShopAddress: '[data-ref="clickAndCollectAddressContainer-pudo-asda"] .b-locker-address1',
+
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -107,7 +108,7 @@ const selectors: SelectorBrandMap = {
     checkoutCart: '.b-summary_section  .b-button.b-cart_actions-button.m-width_full',
     addAddressManually: 'button[class="b-button m-info m-width_full"]:eq(0)',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: '[data-tau="add_new_address"]',
+    addNewAddress: '.b-address_selector-button',
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#LoqateAutocomplete',
@@ -151,7 +152,7 @@ const selectors: SelectorBrandMap = {
     shippingTab : '[data-id="button-deliveryPanel"]',
     clickAndCollectTab:"[data-id='button-clickCollectPanel']",
     pudoShippingMethod:"[for='shippingMethod-pudo-NUKmyhermes']",
-    pudoSearchField:'.b-pudo-search_field',
+    pudoSearchField:'.b-pudo-search_field.b-input',  
     pudoFirstShop:'.b-pudo_store',
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
@@ -166,9 +167,9 @@ const selectors: SelectorBrandMap = {
     asdaPudoShippingMethod: '[for="shippingMethod-pudo-asda"]',
     asdaPudoSearchField: '.location-textbox',
     asdaPudoFirstShop: '.location-places',
-    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSearchTitle: '[data-fid="0"] > :nth-child(2) > :nth-child(2)',
     asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
-    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]',
+    asdaSelectedShopAddress: '[data-ref="clickAndCollectAddressContainer-pudo-asda"] .b-locker-address1',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -411,7 +412,7 @@ const selectors: SelectorBrandMap = {
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
     clickAndCollectTab:'.js-click-collect-tab',
     pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
-    pudoSearchField:'.js-pudo-search-field',
+    pudoSearchField:'.b-pudo-search_field.b-input',  
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
@@ -492,7 +493,7 @@ const selectors: SelectorBrandMap = {
     shippingTab: '.js-delivery-tab',
     clickAndCollectTab:'.js-click-collect-tab',
     pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
-    pudoSearchField:'.js-pudo-search-field',
+    pudoSearchField:'.input-text.js-pudo-search-field', 
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSearchListMobile: '[data-target="js-pudo-side"]',
@@ -510,9 +511,9 @@ const selectors: SelectorBrandMap = {
     asdaPudoShippingMethod: '[for="shipping-method-pudo-asda"]',
     asdaPudoSearchField: '.location-textbox',
     asdaPudoFirstShop: '.location-places',
-    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSearchTitle: '[data-fid="0"] > :nth-child(2) > :nth-child(2)',
     asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
-    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]',
+    asdaSelectedShopAddress: '.pudo-asda > .form-label > .shipping-method-info > .pudo-wrapper > .pudo-address-wrapper > .js-pudo-second-address',
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -766,7 +767,7 @@ const selectors: SelectorBrandMap = {
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
     clickAndCollectTab:'.js-click-collect-tab',
     pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
-    pudoSearchField:'.js-pudo-search-field',
+    pudoSearchField:'.input-text.js-pudo-search-field', 
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
@@ -780,9 +781,9 @@ const selectors: SelectorBrandMap = {
     asdaPudoShippingMethod: '.pudo-asda > .form-label',
     asdaPudoSearchField: '.location-textbox',
     asdaPudoFirstShop: '.location-places',
-    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSearchTitle: '[data-fid="0"] > :nth-child(2) > :nth-child(2)',
     asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
-    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]',
+    asdaSelectedShopAddress: '.pudo-asda > .form-label > .shipping-method-info > .pudo-wrapper > .pudo-address-wrapper > .js-pudo-second-address',
   },
   'boohoomena.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -1287,7 +1288,7 @@ class ShippingPage implements AbstractPage {
       });
       cy.get(asdaPudoFirstShop, { timeout: 20000 }).should('be.visible');
       cy.get(asdaPudoFirstShop).eq(0).click({ force: true });
-      return cy.get(asdaPudoSearchField).eq(0).invoke('text').then(text => {
+      return cy.get(asdaPudoSearchTitle).eq(0).invoke('text').then(text => {
         cy.get(asdaPudoSelectShop).click({ force: true }).then(() => {
           return text;
         });

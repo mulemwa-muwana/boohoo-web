@@ -1177,7 +1177,7 @@ class AssertionText {
   };
 
   footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
-    EN: 'Get Exclusive Offers & Updates',
+    EN: 'Newsletter sign up',
     NL: 'Ontvang exclusieve aanbiedingen & updates',
     DE: 'Erhalte exklusive Angebote & Updates',
     FR: 'Profite D’offres Exclusives & Mises À Jour',

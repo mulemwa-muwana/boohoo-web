@@ -383,7 +383,7 @@ const selectors: SelectorBrandMap = {
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
     shippingCheckbox: '.useAsBillingAddress.form-row-checkbox',
-    paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodCreditCard: '[for*="CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarnaNl: '[for="is-Klarna"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',

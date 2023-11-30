@@ -867,16 +867,17 @@ class ShippingPage implements AbstractPage {
       const updateCart = selectors[brand].updateCart;
       const checkoutCart = selectors[brand].checkoutCart;
       cy.get(editCartShipping).click({ force: true })
-        .wait(1000)
-        .get(editCart).click({ force: true})
         .wait(1000);
       if (brand == 'boohoo.com' || brand == 'nastygal.com') {
-        cy.get(editQuantity).select('1');
+        cy.get(editCart).click({ force: true})
+          .wait(1000);
+        cy.get(editQuantity).select('3');
+        cy.get(updateCart).click( { force: true });
       } else {
-        cy.get(editQuantity).type('1', {force:true});
+        cy.get(editQuantity).clear().type('3', {force:true}).blur();
+        cy.wait(1000);      
       }
-      cy.get(updateCart).click( { force: true })
-        .get(checkoutCart).click({ force: true });
+      cy.get(checkoutCart).click({ force: true });
     }, 
     addNewAddress () {
       if (!isSiteGenesisBrand) {

@@ -1180,7 +1180,7 @@ class AssertionText {
     EN: 'Newsletter sign up',
     NL: 'Ontvang exclusieve aanbiedingen & updates',
     DE: 'Erhalte exklusive Angebote & Updates',
-    FR: 'Profite D’offres Exclusives & Mises À Jour',
+    FR: `Bénéficiez d'offres et d'infos exclusives`,
     DK: '',
     FI: '',
     NO: '',

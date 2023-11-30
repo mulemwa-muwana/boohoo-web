@@ -387,7 +387,7 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it.only('CYP-96 Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', function () {
+      it('CYP-96 Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', function () {
         const boohooAndLocales: boolean = brand == 'boohoo.com' && (locale != 'NL' && locale != 'FR' && locale != 'IT' && locale != 'ES' && locale != 'NO' && locale != 'NZ' && locale != 'FI' && locale != 'EU' && locale != 'DK' && locale != 'CA');
         const boohooManAndLocales: boolean = brand == 'boohooman.com' && (locale != 'NL' && locale != 'FR' && locale != 'DE');
         if ( brand == 'boohooman.com' && locale == 'NL') {

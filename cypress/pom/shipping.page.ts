@@ -871,10 +871,10 @@ class ShippingPage implements AbstractPage {
       if (brand == 'boohoo.com' || brand == 'nastygal.com') {
         cy.get(editCart).click({ force: true})
           .wait(1000);
-        cy.get(editQuantity).select('3');
+        cy.get(editQuantity).select('1');
         cy.get(updateCart).click( { force: true });
       } else {
-        cy.get(editQuantity).clear().type('3', {force:true}).blur();
+        cy.get(editQuantity).clear().type('1', {force:true}).blur();
         cy.wait(1000);      
       }
       cy.get(checkoutCart).click({ force: true });

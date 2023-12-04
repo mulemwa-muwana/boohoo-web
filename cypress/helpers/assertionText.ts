@@ -1204,6 +1204,20 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkGetExclusiveOffersAndUpdatesKM: TranslationMap = {
+    EN: 'Get Exclusive Offers & Updates',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   footerLinkGiftCard: TranslationMap = {
     EN: 'Gift Cards',
     NL: '',

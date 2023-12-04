@@ -196,7 +196,7 @@ const selectors: SelectorBrandMap = {
     wishListIsEmpty: '.wishlist-empty-message',
     itemIsAddedtoWishlistAlertText: '.b-global_alerts-item',
     chooseSizeBHO: '.b-wishlist_tile-actions > .b-wishlist_tile-action',
-    wishListContainer: 'div[data-ref="wishlistContainer"]'
+    wishListContainer: '.wishlist-table'
   }
 };
 class WishListPage implements AbstractPage {

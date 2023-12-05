@@ -392,10 +392,12 @@ describe('Home Page', function () {
         const boohooManAndLocales: boolean = brand == 'boohooman.com' && (locale != 'NL' && locale != 'FR' && locale != 'DE');
         if ( brand == 'boohooman.com' && locale == 'NL') {
           this.skip();
-        } else if (boohooAndLocales || boohooManAndLocales || brand == 'nastygal.com' || (isSiteGenesisBrand && brand != 'misspap.com')) {
+        } else if (boohooAndLocales ) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[language]);
         } else if (brand == 'misspap.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdatesMissPap[language]);
+        } else if (boohooManAndLocales || brand == 'karenmillen.com' || brand == 'nastygal.com' || brand == 'boohoomena.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdatesKM[language]);
         } else {
           this.skip();
         }

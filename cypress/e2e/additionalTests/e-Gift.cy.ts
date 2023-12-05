@@ -20,7 +20,7 @@ describe('Gift Cards Tests', () => {
       this.skip();
     }
   });
-  it.only('Verify that The user can select a card, fill in the required fields and the card will be added to the cart', function () {
+  it('Verify that The user can select a card, fill in the required fields and the card will be added to the cart', function () {
     if ((brand == 'boohooman.com' && locale == 'UK')) {
       cy.wait(2000);
       cy.visit('https://www.boohoomangiftcards.com/gb/en-gb/home/egift')

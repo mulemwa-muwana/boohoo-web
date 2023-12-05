@@ -54,7 +54,7 @@ const selectors: SelectorBrandMap = {
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '[href="https://us1-dwstg.nastygal.com/gb/checkout-login"]',
+    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button, [data-ref="lastFocusElement"]',
     clearCart: '.b-cart_product-remove',
     clearCartMobile: '.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',
@@ -395,7 +395,7 @@ class CartPage implements AbstractPage {
 
         // If Desktop Device is used
       } else {
-        cy.wait(1000);
+        cy.wait(3000);
         cy.get(proceedToCheckout).invoke('show').click({ force: true });
       }
     },

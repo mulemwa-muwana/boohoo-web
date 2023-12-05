@@ -42,7 +42,15 @@ const selectors: SelectorBrandMap = {
     myAccountTileSlideMenu: ':nth-child(1) > .b-account_nav-item_link > .b-account_nav-item_label',
     myaccountUserPanelGreetingMsg: '.b-user_greeting-message',
     logInSlideManuTitle: '.b-miniaccount-title',
-    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]'
+    promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]',
+    acceptBtn:'[value="YES, I ACCEPT"]',
+    selectBtn:'div#PanelList div > div > div:nth-child(1) > div > div > a',
+    chooseAmount: '#ctl22_ddlAmount_0',
+    recipientEmail: '#ctl22_tbEmail',
+    confirmRecipientEmail: '#ctl22_tbConfirmEmail',
+    addToBag: '#ctl22_lnkAddToBasketDetail',
+    removeBtn: '#MainContent_RepeaterShoppingCart_btnRemove_0',
+    addGiftCardBtn: '.continueShoppingLink'
   },
   'nastygal.com': {
     wishListIcon: '.l-header-inner > .l-header-right span.b-header_wishlist-icon',
@@ -161,7 +169,15 @@ const selectors: SelectorBrandMap = {
     promoLinkCurrentSlide: 'div[class="b-hero_carousel-item m-promotion m-current"]',
     mangamingSlot: '.home-container > div:nth-of-type(1) img',
     mangamingPage: '.boohooman-app-img.content-asset > .col-5.disc',
-    shopNowBtn: 'div[class="shop-button"]'
+    shopNowBtn: 'div[class="shop-button"]',
+    selectBtn:'div#ctl19_PanelList div:nth-child(1) > div > div > a',
+    acceptBtn:'[value="YES, I ACCEPT"]',
+    chooseAmount: '#ctl19_ddlAmount_0',
+    recipientEmail: '#ctl19_tbEmail',
+    confirmRecipientEmail: '#ctl19_tbConfirmEmail',
+    addToBag: '#ctl19_lnkAddToBasketDetail',
+    removeBtn: '#MainContent_RepeaterShoppingCart_btnRemove_0',
+    addGiftCardBtn: '.continueShoppingLink'
   },
   'karenmillen.com': {
     minicartIcon: '.mini-cart-link',
@@ -473,6 +489,19 @@ class HomePage implements AbstractPage {
     unidays (text: string) {
       cy.contains(text).click({ force : true });
     },
+    selectBtn () {
+      const selectBtn = selectors[brand].selectBtn;
+      cy.get(selectBtn).click({ force : true });
+    },
+    acceptBtn () {
+      const acceptBtn = selectors[brand].acceptBtn;
+      cy.get(acceptBtn).click({ force : true });
+    },
+    removeGiftCard(){
+      const removeBtn = selectors[brand].removeBtn;
+      cy.get(removeBtn).click({ force : true });
+
+    }
   };
 
   actions = {
@@ -557,7 +586,20 @@ class HomePage implements AbstractPage {
       } else {
         cy.get(countryList).contains('IE €').click({force: true});
       }
-    }
+    },
+    fillGiftCardForm(user: string) {
+      const chooseAmount = selectors[brand].chooseAmount;
+      const recipientEmail = selectors[brand].recipientEmail;
+      const confirmRecipientEmail = selectors[brand].confirmRecipientEmail;
+      const addToBag = selectors[brand].addToBag;
+      cy.get(chooseAmount).click({force: true});
+      cy.wait(2000);
+      cy.get(recipientEmail).type(user,{timeout:2000});
+      cy.wait(2000);
+      cy.get(confirmRecipientEmail).type(user,{timeout:2000});
+      cy.get(addToBag).click({force: true});     
+    
+    },  
   };
 
   assertions = {
@@ -739,6 +781,17 @@ class HomePage implements AbstractPage {
     assertUnidaysPageIsDisplayed () {
       cy.url({ timeout : 30000 }).should('include','unidays');
     },
+    assertGiftCardPageIsDisplayed () {
+      cy.url({ timeout : 30000 }).should('include','egift');
+    },
+    assertGiftCardIsAdded () {
+      cy.url({ timeout : 30000 }).should('include','checkout#basket');
+    },
+    assertGiftCardIsRemoved () {
+      const addGiftCardBtn = selectors[brand].addGiftCardBtn;
+      cy.get('.continueShoppingLink').should('be.visible');
+    },
+
   };
 
 }

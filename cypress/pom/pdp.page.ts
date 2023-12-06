@@ -211,10 +211,14 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
     productReturnsInfo: '#ui-id-6',
     premierBanner: '#pdp-premier',
+    addToCartPremierBanner: '[data-replace-link=".js-premier-box-link"]',
     moreInfoKlarna: '.js-calculation-content > .js-pdp-calculations-klarna > u',
     moreInfoPaypal: '.js-calculation-content > .js-pdp-calculations-paypal u',
     moreInfoClearPay: '[href="https://uk-dwstg.boohoo.com/page/clearpay.html?payment_calc"]',
     moreInfoAfterPay: '.js-calculation-content > .js-pdp-calculations-afterpay > u',
+    editInventory: '.inventory',
+    editQuantityBox: 'input#Quantity',
+    errorMsgForMoreThanFiveDiscountedItems: '#Quantity-error',
   },
   'karenmillen.com': {
     searchField: '#header-search-input',
@@ -357,7 +361,7 @@ const selectors: SelectorBrandMap = {
     selectColor: '.swatches.color',
     sizeVariations: '.swatches',
     productTitle: '#product-content > .product-name',
-    productTitleMobile:'.is-mobile > .product-name',
+    productTitleMobile: '.is-mobile > .product-name',
     productCode: '.product-number > [itemprop="sku"]',
     productPrice: '.product-price',
     colorSwatches: '.swatches.color',
@@ -368,7 +372,7 @@ const selectors: SelectorBrandMap = {
     productDescription: '.product-care-info',
     productDelivery: '.b-product_delivery',
     productReturnsDescription: '.product-returns-link > .product-info-link-text',
-    productReturnsDescriptionMobile:'#dialog-container',
+    productReturnsDescriptionMobile: '#dialog-container',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '.ui-dialog-content-wrapper',
     productReturnsInfoButton: '.product-returns-link > .product-info-link-text',
@@ -470,9 +474,9 @@ class PdpPage implements AbstractPage {
     },
     addToCartPremier () {
       const premierBanner = selectors[brand].premierBanner;
-      const addToCart = selectors[brand].addToCart;
+      const addToCartPremierBanner = selectors[brand].addToCartPremierBanner;
       cy.get(premierBanner).then(($el) => {
-        cy.wrap($el).find(addToCart).click({ force: true });
+        cy.wrap($el).find(addToCartPremierBanner).click({ force: true });
       });
     },
     premierLink (text: string) {
@@ -485,7 +489,7 @@ class PdpPage implements AbstractPage {
     },
     returnsInfo () {
       const productReturnsInfoButton = selectors[brand].productReturnsInfoButton;
-      cy.get(productReturnsInfoButton).click({force:true});
+      cy.get(productReturnsInfoButton).click({ force: true });
     },
     sizeGuidePdp () {
       const sizeGuidePdp = selectors[brand].sizeGuidePdp;
@@ -493,32 +497,32 @@ class PdpPage implements AbstractPage {
     },
     sizeGuidePdpCms () {
       const sizeGuidePdpCms = selectors[brand].sizeGuidePdpCms;
-      cy.get(sizeGuidePdpCms).click({force: true});
+      cy.get(sizeGuidePdpCms).click({ force: true });
     },
     howToMeasurePdp () {
       const howToMeasurePdp = selectors[brand].howToMeasurePdp;
-      cy.get(howToMeasurePdp).click({force: true});
+      cy.get(howToMeasurePdp).click({ force: true });
     },
     paypalMoreInfo () {
       const moreInfoPaypal = selectors[brand].moreInfoPaypal;
       const moreInfoPaypalAU = selectors[brand].moreInfoPaypalAU;
       if (brand == 'nastygal.com' && locale == 'AU') {
-        cy.get(moreInfoPaypalAU).invoke('removeAttr', 'target').click({ force : true });
+        cy.get(moreInfoPaypalAU).invoke('removeAttr', 'target').click({ force: true });
       } else {
-        cy.get(moreInfoPaypal).invoke('removeAttr', 'target').click({ force : true });
+        cy.get(moreInfoPaypal).invoke('removeAttr', 'target').click({ force: true });
       }
     },
     klarnaMoreInfo () {
       const moreInfoKlarna = selectors[brand].moreInfoKlarna;
-      cy.get(moreInfoKlarna).invoke('removeAttr', 'target').click({ force : true });
+      cy.get(moreInfoKlarna).invoke('removeAttr', 'target').click({ force: true });
     },
     clearPayMoreInfo () {
       const moreInfoClearPay = selectors[brand].moreInfoClearPay;
-      cy.get(moreInfoClearPay).invoke('removeAttr', 'target').click({ force : true });
+      cy.get(moreInfoClearPay).invoke('removeAttr', 'target').click({ force: true });
     },
     afterPayMoreInfo () {
       const moreInfoAfterPay = selectors[brand].moreInfoAfterPay;
-      cy.get(moreInfoAfterPay).invoke('removeAttr', 'target').click({ force : true });
+      cy.get(moreInfoAfterPay).invoke('removeAttr', 'target').click({ force: true });
     }
   };
 
@@ -561,7 +565,7 @@ class PdpPage implements AbstractPage {
             $element.trigger('click', { setTimeout: 1000 });
           } else {
             if ($element.parent().hasClass('selected')) { // If <li> doesn't have 'selected' class - it isn't already selected
-              cy.log('already selected')
+              cy.log('already selected');
             }
           }
         });
@@ -575,7 +579,7 @@ class PdpPage implements AbstractPage {
         cy.get(sizeVariations).find('li').each(($element) => {
           if ($element.hasClass('selectable')) { // If size is available(selectable)
             if (!$element.hasClass('selected')) { // If size not already selected
-              $element.find('span').trigger('click',{force:true});
+              $element.find('span').trigger('click', { force: true });
               return false;
             }
             return false;
@@ -791,7 +795,7 @@ class PdpPage implements AbstractPage {
         const hereLink = text.split(' ')[1];
         cy.wrap($el).contains(hereLink).click({ force: true });
       });
-      cy.url().should('include','returns');
+      cy.url().should('include', 'returns');
     },
     assertSizeGuidePdpIsDisplayed () {
       const sizeGuidePdpIsDisplayed = selectors[brand].sizeGuidePdpIsDisplayed;
@@ -842,17 +846,26 @@ class PdpPage implements AbstractPage {
       cy.get(frLocale).should('be.checked');
     },
     assertKlarnaRelatedPageIsDisplayed () {
-      cy.url({ timeout: 30000}).should('include', 'klarna');
+      cy.url({ timeout: 30000 }).should('include', 'klarna');
     },
     assertPaypalRelatedPageIsDisplayed () {
-      cy.url({ timeout: 30000}).should('include', 'paypal');
+      cy.url({ timeout: 30000 }).should('include', 'paypal');
     },
     assertClearPayRelatedPageIsDisplayed () {
-      cy.url({ timeout: 30000}).should('include', 'clearpay');
+      cy.url({ timeout: 30000 }).should('include', 'clearpay');
     },
     assertAfterPayRelatedPageIsDisplayed () {
-      cy.url({ timeout: 30000}).should('include', 'afterpay');
-    }
+      cy.url({ timeout: 30000 }).should('include', 'afterpay');
+    },
+    assertErrorMsgForMoreThanFiveDiscountedItemsOnPDP (text: string) {
+      const addToCart = selectors[brand].addToCart;
+      const editInventory = selectors[brand].editInventory;
+      const editQuantityBox = selectors[brand].editQuantityBox;
+      const errorMsgForMoreThanFiveDiscountedItems = selectors[brand].errorMsgForMoreThanFiveDiscountedItems;
+      cy.get(editInventory).find(editQuantityBox).last().click().clear().type(text)
+        .get(addToCart).click()
+        .get(errorMsgForMoreThanFiveDiscountedItems).should('be.visible').should('have.text', assertionText.errorMsgTextForMoreThanFiveDiscountedItems[language]);
+    },
 
   };
 

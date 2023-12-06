@@ -383,7 +383,7 @@ const selectors: SelectorBrandMap = {
     shippingMethodSelector: '.minicheckout-shipping-option',
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
     shippingCheckbox: '.useAsBillingAddress.form-row-checkbox',
-    paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
+    paymentMethodCreditCard: '[for*="CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarnaNl: '[for="is-Klarna"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
@@ -677,7 +677,7 @@ const selectors: SelectorBrandMap = {
     billingAddressFieldCity: `input#dwfrm_singleshipping_shippingAddress_addressFields_city`,
     billingAddressFieldsAddress1: `input[name='dwfrm_singleshipping_shippingAddress_addressFields_address1']`,
     addGiftCertificate: '.b-gift_certificate-add',
-    billingAddressFieldsStateCode: '#dwfrm_billing_billingAddress_addressFields_states_state',
+    billingAddressFieldsStateCode: `[name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"]`,
     billingPostCode: 'input#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_billing_giftCertCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
@@ -960,29 +960,37 @@ class BillingPage implements AbstractPage {
       const confirmEmailField = selectors[brand].confirmEmailField;
       cy.get(confirmEmailField).clear().type(email);
     },
-    addBillingAddressGuestUser (line1: string, city: string, state: string, county: string, postcode: string) {
-      const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
-      const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
-      const billingPostCode = selectors[brand].billingPostCode;
+    addBillingAddressGuestUser(line1: string, city: string, state: string, county: string, postcode: string) {
       const billingAddressFieldsStateCode = selectors[brand].billingAddressFieldsStateCode;
-      const postCodeBoohooAU = '#dwfrm_billing_addressFields_postalCode';
-
       this.enterManuallyAddressDetails();
-      cy.get(billingAddressFieldsAddress1).clear().type(line1);
-      cy.get(billingAddressFieldCity).clear({ force: true }).type(city);
-      if (!isSiteGenesisBrand) {
-        if (locale == 'AU' || locale == 'IE' || locale == 'US' || locale == 'CA') {
-          cy.get(billingAddressFieldsStateCode).select(county);
+      if (brand == 'misspap.com') {
+        const billingAddressFieldsAddress1 = `[name="dwfrm_billing_billingAddress_addressFields_address1"]`;
+        const billingAddressFieldCity = `[name="dwfrm_billing_billingAddress_addressFields_city"]`;
+        const billingPostCode = `[name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"]`;
+        cy.get(billingAddressFieldsAddress1).clear().type(line1)
+          .get(billingAddressFieldCity).clear({ force: true }).type(city)
+          .get(billingAddressFieldsStateCode).clear().type(state)
+          .get(billingPostCode).clear().type(postcode);
+      } else {
+        const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;
+        const billingAddressFieldCity = selectors[brand].billingAddressFieldCity;
+        const billingPostCode = selectors[brand].billingPostCode;
+        const postCodeBoohooAU = '#dwfrm_billing_addressFields_postalCode';
+        cy.get(billingAddressFieldsAddress1).clear().type(line1)
+          .get(billingAddressFieldCity).clear({ force: true }).type(city);
+        if (!isSiteGenesisBrand) {
+          if (locale == 'AU' || locale == 'IE' || locale == 'US' || locale == 'CA') {
+            cy.get(billingAddressFieldsStateCode).select(county);
+          } else {
+            cy.get(billingAddressFieldsStateCode).clear().type(state);
+          }
+        }
+        if (brand == 'boohoo.com' && locale == 'AU') {
+          cy.get(postCodeBoohooAU).clear().type(postcode);
         } else {
-          cy.get(billingAddressFieldsStateCode).clear().type(state);
+          cy.get(billingPostCode).clear().type(postcode);
         }
       }
-      if (brand == 'boohoo.com' && locale == 'AU') {
-        cy.get(postCodeBoohooAU).clear().type(postcode);
-      } else {
-        cy.get(billingPostCode).clear().type(postcode);
-      }
-
     },
     addBillingAddressRegisteredUser (localeAddress: AddressData) {
       const billingAddressFieldsAddress1 = selectors[brand].billingAddressFieldsAddress1;

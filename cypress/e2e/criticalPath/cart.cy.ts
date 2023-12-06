@@ -82,6 +82,22 @@ describe('Cart basic functionality for guest user', function () {
       this.skip();
     }
   });
+
+  if (brand == 'boohooman.com') {
+    it('CYP-678 Verify that the user can not add more than 5 discounted products, validate the error message', function () {
+      CartPage.assertions.assertErrorMsgForMoreThanFiveDiscountedItemsInCart('6');
+    });
+  }
+  it('CYP-661 Verify that delivery options are displayed', function () {
+    const isDeliveryOptionsNotVisible: boolean = ((brand == 'boohooman.com' && locale == 'NL' || locale == 'EU')
+                                                                  || (brand == 'karenmillen.com' && locale == 'IE')
+                                                                  || brand == 'boohoomena.com' || brand == 'boohoo.com' || brand == 'nastygal.com');
+
+    isDeliveryOptionsNotVisible
+      ? this.skip()
+      : CartPage.assertions.assertDeliveryOptionsIsVisible();
+  });
+
   it('CYP-52 Verify that user can remove product from cart', function () {
     CartPage.click.clearCart();
     CartPage.assertions.assertCartIsEmpty();

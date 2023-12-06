@@ -1,6 +1,7 @@
 import { isSiteGenesisBrand, isMobileDeviceUsed } from 'cypress/helpers/common';
-import { brand, locale, url } from 'cypress/support/e2e';
+import { brand, locale, url, language } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
+import assertionText from 'cypress/helpers/assertionText';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -53,7 +54,7 @@ const selectors: SelectorBrandMap = {
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '[data-tau="minicart_start_checkout_bottom"]',
+    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button, [data-ref="lastFocusElement"]',
     clearCart: '.b-cart_product-remove',
     clearCartMobile: '.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',
@@ -176,6 +177,11 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     itemDetails: '.item-details',
+    deliveryOptions: '.cart-delivery-table',
+    updateCartCTA: '#add-to-cart',
+    editCartDetailsCTA: '.item-actions-copy.edit-details-text',
+    editQuantityBox: '#Quantity',
+    errorMsgForMoreThanFiveDiscountedItems: '#Quantity-error',
   },
   'karenmillen.com': {
     productsTable: '#cart-table',
@@ -210,6 +216,7 @@ const selectors: SelectorBrandMap = {
     addThriftToCartBtn: '#js-thrift-plus-add-to-bag',
     cartPage: '#wrapper',
     itemDetails: '.item-details',
+    deliveryOptions: '.cart-delivery-table',
   },
   'coastfashion.com': {
     productsTable: '#cart-table',
@@ -323,6 +330,7 @@ const selectors: SelectorBrandMap = {
     updateQuantityDDL: '#quantity-4e1b2006e21c8bef56a9404a63',
     checkoutBtnForMobile: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     itemDetails: '.item-details',
+    deliveryOptions: '.cart-delivery-table',
   },
   'boohoomena.com': {
     productsTable: '#cart-table',
@@ -350,6 +358,7 @@ const selectors: SelectorBrandMap = {
     productName: '.name > a',
     checkoutBtnForMobile: '.b-proceed_checkout > .b-cart_actions > .b-cart_actions-button',
     itemDetails: '.item-details',
+    deliveryOptions: '.cart-delivery-table',
   },
 };
 
@@ -386,7 +395,7 @@ class CartPage implements AbstractPage {
 
         // If Desktop Device is used
       } else {
-        cy.wait(1000);
+        cy.wait(3000);
         cy.get(proceedToCheckout).invoke('show').click({ force: true });
       }
     },
@@ -572,7 +581,23 @@ class CartPage implements AbstractPage {
     assertSelectedProductIsAddedToTheCart (text: string) {
       const itemDetails = selectors[brand].itemDetails;
       cy.get(itemDetails).should('contains', text.toLocaleLowerCase);
-    }
+    },
+    assertDeliveryOptionsIsVisible () {
+      const deliveryOptions = selectors[brand].deliveryOptions;
+      cy.get(deliveryOptions).should('be.visible');
+    },
+    assertErrorMsgForMoreThanFiveDiscountedItemsInCart (text: string) {
+      const updateCartCTA = selectors[brand].updateCartCTA;
+      const editCartDetailsCTA = selectors[brand].editCartDetailsCTA;
+      const editQuantityBox = selectors[brand].editQuantityBox;
+      const errorMsgForMoreThanFiveDiscountedItems = selectors[brand].errorMsgForMoreThanFiveDiscountedItems;
+
+      cy.get(editCartDetailsCTA).contains(assertionText.editCartDetailsText[language]).click()
+        .get(editQuantityBox).clear().type(text)
+        .get(updateCartCTA).click()
+        .get(errorMsgForMoreThanFiveDiscountedItems).should('be.visible').should('have.text', assertionText.errorMsgTextForMoreThanFiveDiscountedItems[language]);
+    },
+
   };
 }
 

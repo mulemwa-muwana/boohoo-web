@@ -353,9 +353,16 @@ describe('Shipping Page Registered user tests', function () {
     if (locale != 'UK' || brand == 'boohooman.com') {
       this.skip();
     }
+    if (!isSiteGenesisBrand) {
+      shippingPage.click.addNewAddress();
+    }
     shippingPage.click.clickAndCollectShipping();
     shippingPage.actions.selectCollectionShop(localeAddress.postcode).then(pudoAddress=>{
       shippingPage.assertions.assertShopisSelected(pudoAddress);
+    });
+    shippingPage.click.asdaClickAndCollectShipping();
+    shippingPage.actions.selectAsdaCollectionShop(localeAddress.postcode).then(asdaPudoPostcode => {
+      shippingPage.assertions.assertasdaShopisSelected(asdaPudoPostcode);
     });
   });
 

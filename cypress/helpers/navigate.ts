@@ -70,11 +70,9 @@ class Navigate {
         CheckoutPage.actions.passwordField(credentials.password);
         CheckoutPage.click.continueAsRegisteredUser();
       });
-    }
-    cy.wait(2000);
-    if (brand == 'boohoo.com') {
       shippingPage.click.assertQuantityIsoneOnCart();
     }
+    cy.wait(2000);
   }
 
   toBillingPage (userType: UserType) {
@@ -212,6 +210,20 @@ class Navigate {
       cy.wait(1000);
     });
     cy.visit(url + '/myaccount');
+  }
+
+  // NAVIGATE TO PAGES USING SPLIT SHIPPING SKU
+  toShippingPageWithSplitShippingSku () {
+    cy.log('I am on shipping page with split shipping SKU');
+
+    // To be completed
+
+  }
+
+  toOrderConfirmationPageWithSplitShippingSku () {
+    cy.log('I am on order confirmation page with split shipping SKU');
+
+    // To be completed
   }
 
   clearSessionCookies () {

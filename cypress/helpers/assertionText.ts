@@ -1177,10 +1177,10 @@ class AssertionText {
   };
 
   footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
-    EN: 'Get Exclusive Offers & Updates',
+    EN: 'Newsletter sign up',
     NL: 'Ontvang exclusieve aanbiedingen & updates',
     DE: 'Erhalte exklusive Angebote & Updates',
-    FR: 'Profite D’offres Exclusives & Mises À Jour',
+    FR: `Bénéficiez d'offres et d'infos exclusives`,
     DK: '',
     FI: '',
     NO: '',
@@ -1192,6 +1192,20 @@ class AssertionText {
 
   footerLinkGetExclusiveOffersAndUpdatesMissPap: TranslationMap = {
     EN: 'Get Exclusive Offers and Updates',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkGetExclusiveOffersAndUpdatesKM: TranslationMap = {
+    EN: 'Get Exclusive Offers & Updates',
     NL: '',
     DE: '',
     FR: '',
@@ -2098,19 +2112,35 @@ class AssertionText {
     IT: '',
     ES: ''
   };
-  KeyWorkerForm: TranslationMap = {
-    EN: 'KEY WORKERS!',
-    NL: '',
-    DE: '',
-    FR: '',
+
+  editCartDetailsText: TranslationMap = {
+    EN: 'Edit Details',
+    NL: 'Details bewerken',
+    DE: 'Details bearbeiten',
+    FR: 'Modifier les détails',
     DK: '',
     FI: '',
     NO: '',
     SE: '',
     IL: '',
     IT: '',
-    ES: ''
+    ES: '',
   };
+
+  errorMsgTextForMoreThanFiveDiscountedItems: TranslationMap = {
+    EN: 'Please enter a value less than or equal to 5.',
+    NL: 'Voer een waarde kleiner dan of gelijk aan 5 in.',
+    DE: 'Bitte einen Wert eingeben, der kleiner oder gleich 5 ist.',
+    FR: 'Veuillez saisir une valeur inférieure ou égale à 5.',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
 }
 
 export default new AssertionText();

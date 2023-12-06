@@ -68,11 +68,12 @@ const selectors: SelectorBrandMap = {
     dobYear: '#dwfrm_profile_customer_yearOfBirth',
     clickAndCollectTab:"[data-id='button-clickCollectPanel']",
     pudoShippingMethod:"[for='shippingMethod-pudo-myhermes']",
-    pudoSearchField:'.b-pudo-search_field',
+    pudoSearchField:'.b-pudo-search_field.b-input',  
     pudoFirstShop:'.b-pudo_store',
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
     pudoSelectedShopAddress:"[data-ref='clickAndCollectAddressContainer-pudo-myhermes']",
+    pudoSearchListMobile:'[data-ref="seeList"]',
     changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
@@ -82,9 +83,10 @@ const selectors: SelectorBrandMap = {
     asdaPudoShippingMethod: '[for="shippingMethod-pudo-asda"]',
     asdaPudoSearchField: '.location-textbox',
     asdaPudoFirstShop: '.location-places',
-    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSearchTitle: '[data-fid="0"] > :nth-child(2) > :nth-child(2)',
     asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
-    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]',
+    asdaSelectedShopAddress: '[data-ref="clickAndCollectAddressContainer-pudo-asda"] .b-locker-address1',
+
   },
   'nastygal.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -100,13 +102,13 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCartShipping: '.b-summary_order-header > .b-link',
-    editCart: '.b-summary_order-header > .b-link',
-    editQuantity: '.b-cart_product-edit b-button m-link',
-    updateCart: '.b-product_update-button_update b-button m-small',
-    checkoutCart: '[data-tau="start_checkout_bottom"]',
+    editCart: 'button[title="Edit"]',
+    editQuantity: '[data-tau="cart_product_quantity"]',
+    updateCart: '.b-button.b-product_update-button_update.m-small',
+    checkoutCart: '.b-summary_section  .b-button.b-cart_actions-button.m-width_full',
     addAddressManually: 'button[class="b-button m-info m-width_full"]:eq(0)',
     proceedToBilling: '.b-checkout_step-controls > .b-button',
-    addNewAddress: '[data-tau="add_new_address"]',
+    addNewAddress: '.b-address_selector-button',
     newAddedAddressBlock: '#deliveryPanel [data-ref="summarizedAddressBlock"]',
     cancelAddingNewAddress: '.b-button m-link b-address_form-back',
     addressLookup: '#LoqateAutocomplete',
@@ -150,11 +152,12 @@ const selectors: SelectorBrandMap = {
     shippingTab : '[data-id="button-deliveryPanel"]',
     clickAndCollectTab:"[data-id='button-clickCollectPanel']",
     pudoShippingMethod:"[for='shippingMethod-pudo-NUKmyhermes']",
-    pudoSearchField:'.b-pudo-search_field',
+    pudoSearchField:'.b-pudo-search_field.b-input',  
     pudoFirstShop:'.b-pudo_store',
     pudoSearchTitle:'.b-pudo_store .b-pudo_store-title',
     pudoSelectShop:'.b-pudo-expanded_inner button',
     pudoSelectedShopAddress:"[data-ref='clickAndCollectAddressContainer-pudo-NUKmyhermes']",
+    pudoSearchListMobile:'[data-ref="seeList"]',
     changeCollectionAddressBtn:'[data-ref="inpostPopupLink"]',
     w3Winput:'#w3wInput',
     w3WAddressSuggestion:'[class="what3words-autosuggest-item match"]',
@@ -164,9 +167,9 @@ const selectors: SelectorBrandMap = {
     asdaPudoShippingMethod: '[for="shippingMethod-pudo-asda"]',
     asdaPudoSearchField: '.location-textbox',
     asdaPudoFirstShop: '.location-places',
-    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSearchTitle: '[data-fid="0"] > :nth-child(2) > :nth-child(2)',
     asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
-    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]',
+    asdaSelectedShopAddress: '[data-ref="clickAndCollectAddressContainer-pudo-asda"] .b-locker-address1',
   },
   'dorothyperkins.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -179,7 +182,7 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCartShipping: '.b-summary_order-header > .b-link',
-    editCart: '.b-cart_product-edit b-button m-link',
+    editCart: 'button[title="Edit"]',
     editQuantity: '[data-tau="cart_product_quantity"]',
     updateCart: '.b-product_update-button_update b-button m-small',
     checkoutCart: '[data-tau="start_checkout_bottom"]',
@@ -357,10 +360,10 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(2) > .address-radios-label .js-address-radios-edit',
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
-    editCart: '.item-actions-copy edit-details-text',
-    editQuantity: '.input#Quantity',
-    updateCart: '.button-fancy-large js-add-to-cart',
-    checkoutCart: '.button-fancy-large js-first-button-checkout',
+    editCart: '.cart-cell.hidden-on-mobile.item-details > .hidden-on-mobile.item-details-action > .item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
+    editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
+    updateCart: '.product-add-to-cart .add-to-cart-text',
+    checkoutCart: 'button[name="dwfrm_cart_checkoutCart"]',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.address-container button[name="dwfrm_singleshipping_shippingAddress_save"]',
@@ -409,7 +412,7 @@ const selectors: SelectorBrandMap = {
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
     clickAndCollectTab:'.js-click-collect-tab',
     pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
-    pudoSearchField:'.js-pudo-search-field',
+    pudoSearchField:'.b-pudo-search_field.b-input',  
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
@@ -435,10 +438,10 @@ const selectors: SelectorBrandMap = {
     editAddress: '.js-edit-address',
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
-    editCart: '.item-actions-copy edit-details-text',
-    editQuantity: '.input#Quantity',
-    updateCart: '.button-fancy-large js-add-to-cart',
-    checkoutCart: '.button-fancy-large js-first-button-checkout',
+    editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
+    editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
+    updateCart: '.product-add-to-cart .add-to-cart-text',
+    checkoutCart: 'button[name="dwfrm_cart_checkoutCart"]',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.js-checkout-next-step-btn',
@@ -490,7 +493,7 @@ const selectors: SelectorBrandMap = {
     shippingTab: '.js-delivery-tab',
     clickAndCollectTab:'.js-click-collect-tab',
     pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
-    pudoSearchField:'.js-pudo-search-field',
+    pudoSearchField:'.input-text.js-pudo-search-field', 
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSearchListMobile: '[data-target="js-pudo-side"]',
@@ -508,9 +511,9 @@ const selectors: SelectorBrandMap = {
     asdaPudoShippingMethod: '[for="shipping-method-pudo-asda"]',
     asdaPudoSearchField: '.location-textbox',
     asdaPudoFirstShop: '.location-places',
-    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSearchTitle: '[data-fid="0"] > :nth-child(2) > :nth-child(2)',
     asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
-    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]',
+    asdaSelectedShopAddress: '.pudo-asda > .form-label > .shipping-method-info > .pudo-wrapper > .pudo-address-wrapper > .js-pudo-second-address',
   },
   'coastfashion.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -711,9 +714,9 @@ const selectors: SelectorBrandMap = {
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
     editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
-    editQuantity: '.input#Quantity',
-    updateCart: '.add-to-cart-text',
-    checkoutCart: '.button-fancy-large js-first-button-checkout',
+    editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
+    updateCart: '#add-to-cart', 
+    checkoutCart: 'button[name="dwfrm_cart_checkoutCart"]',
     addAddressManually: '.add-new-address',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: `button[name='dwfrm_singleshipping_shippingAddress_save'][type="submit"]`,
@@ -764,11 +767,12 @@ const selectors: SelectorBrandMap = {
     emptyDateFieldError: '#dwfrm_profile_customer_yearofbirth-error',
     clickAndCollectTab:'.js-click-collect-tab',
     pudoShippingMethod:"[for='shipping-method-pudo-myhermes']",
-    pudoSearchField:'.js-pudo-search-field',
+    pudoSearchField:'.input-text.js-pudo-search-field', 
     pudoFirstShop:'.js-shop',
     pudoSearchTitle:'.js-shop .pudo-title',
     pudoSelectShop:'.shop-expanded-inner .js-pudo-select-shop',
     pudoSelectedShopAddress:"[for='shipping-method-pudo-myhermes'] .js-pudo-address",
+    pudoSearchListMobile:'[data-target="js-pudo-side"]',
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:'li:nth-of-type(1) > .w3w-description',
     successMark:'.field-wrapper-w3w-valid',
@@ -777,9 +781,9 @@ const selectors: SelectorBrandMap = {
     asdaPudoShippingMethod: '.pudo-asda > .form-label',
     asdaPudoSearchField: '.location-textbox',
     asdaPudoFirstShop: '.location-places',
-    asdaPudoSearchTitle: '.location-places-head > li',
+    asdaPudoSearchTitle: '[data-fid="0"] > :nth-child(2) > :nth-child(2)',
     asdaPudoSelectShop: '[data-fid="0"] > :nth-child(2) > .extended-info > ul > :nth-child(4) > .input-btn',
-    asdaSelectedShopAddress: '[class="input-btn location-select js-location-select"]',
+    asdaSelectedShopAddress: '.pudo-asda > .form-label > .shipping-method-info > .pudo-wrapper > .pudo-address-wrapper > .js-pudo-second-address',
   },
   'boohoomena.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -792,9 +796,9 @@ const selectors: SelectorBrandMap = {
     editAddress: ':nth-child(1) > .address-radios-label > .address-radios-inner > .address-radios-edit > .js-address-radios-edit',
     guestEditAddress: '.js-edit-address',
     editCartShipping: '.section-header-note',
-    editCart: '.item-actions-copy edit-details-text',
-    editQuantity: '.input#Quantity',
-    updateCart: '.button#add-to-cart',
+    editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
+    editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
+    updateCart: 'button#add-to-cart > .add-to-cart-text',
     checkoutCart: '.button-fancy-large js-first-button-checkout',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
@@ -863,12 +867,17 @@ class ShippingPage implements AbstractPage {
       const updateCart = selectors[brand].updateCart;
       const checkoutCart = selectors[brand].checkoutCart;
       cy.get(editCartShipping).click({ force: true })
-        .wait(1000)
-        .get(editCart).click({ force: true})
-        .wait(1000)
-        .get(editQuantity).select('1')
-        .get(updateCart).click()
-        .get(checkoutCart).click({ force: true });
+        .wait(1000);
+      if (brand == 'boohoo.com' || brand == 'nastygal.com') {
+        cy.get(editCart).click({ force: true})
+          .wait(1000);
+        cy.get(editQuantity).select('1');
+        cy.get(updateCart).click( { force: true });
+      } else {
+        cy.get(editQuantity).clear().type('1', {force:true}).blur();
+        cy.wait(1000);      
+      }
+      cy.get(checkoutCart).click({ force: true });
     }, 
     addNewAddress () {
       if (!isSiteGenesisBrand) {
@@ -1259,7 +1268,7 @@ class ShippingPage implements AbstractPage {
       cy.wait(2000);
       cy.get(pudoSearchField).clear().type(postCode+'{enter}');
       cy.wait(6000);
-      if (brand == 'karenmillen.com' && isMobileDeviceUsed) {
+      if (isMobileDeviceUsed) {
         cy.get(pudoSearchListMobile).click({force:true});
       }
       cy.get(pudoFirstShop, {timeout:20000}).should('be.visible');
@@ -1280,7 +1289,7 @@ class ShippingPage implements AbstractPage {
       });
       cy.get(asdaPudoFirstShop, { timeout: 20000 }).should('be.visible');
       cy.get(asdaPudoFirstShop).eq(0).click({ force: true });
-      return cy.get(asdaPudoSearchField).eq(0).invoke('text').then(text => {
+      return cy.get(asdaPudoSearchTitle).eq(0).invoke('text').then(text => {
         cy.get(asdaPudoSelectShop).click({ force: true }).then(() => {
           return text;
         });

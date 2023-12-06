@@ -20,9 +20,6 @@ describe('Wishlist Page tests', function () {
   });
 
   it('CYP-215 Verify that item is saved to wishlist, can be added to cart and removed from wishlist', function () {
-    if (brand == 'boohoomena.com'){
-      this.skip();
-    }
     HomePage.click.wishListIcon();
     WishListPage.click.removeAllItemsFromWishlist(); // Make sure wishlist is empty
     HomePage.actions.findItemUsingSKU(fullSku);

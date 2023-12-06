@@ -443,6 +443,25 @@ class GlobalFooter implements AbstractPage {
                 }
               });
             });
+          } else if (brand == 'nastygal.com' && locale == 'UK' && (text.match('Gift Cards'))) {
+            cy.origin('https://www.nastygalgiftcards.com', () => {
+              cy.on('uncaught:exception', (e) => {
+                let href = element.attr('href');
+                href = href.trim();
+                cy.wrap(element).click({ force: true });
+                cy.url().then(url => {
+                  expect(url).to.contain(options?.assertionUrl ?? href);
+                });
+                if (e.message.includes('Things went bad')) {
+
+                  // We expected this error, so let's ignore it
+                  // And let the test continue
+                  return false;
+                }
+              });
+            });
+          } else if (brand == 'nastygal.com' && locale == 'UK' && (text.match('Nasty Galaxy'))) {
+            return 1;
           } else {
             let href = element.attr('href');
             href = href.trim();

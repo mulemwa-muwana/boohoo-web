@@ -327,7 +327,7 @@ const selectors: SelectorBrandMap = {
 };
 class HomePage implements AbstractPage {
 
-  goto() {
+  goto () {
     if (brand == 'nastygal.com') {
 
       // Cy.intercept(/newsletter/i, []); // Stops nastygal newsletter popup
@@ -357,7 +357,7 @@ class HomePage implements AbstractPage {
   click = {
 
     // We may want to force this click as the hover over element that shows this link cannot be actioned in Cypress.
-    logInIcon() {
+    logInIcon () {
       const hamburgerMenu = selectors[brand].hamburgerMenu;
       const loginIconMobile = selectors[brand].loginIconMobile;
       const loginIcon = selectors[brand].loginIcon;
@@ -373,17 +373,17 @@ class HomePage implements AbstractPage {
       }
     },
 
-    shopInstagramButton() {
+    shopInstagramButton () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn).should('be.visible')
         .invoke('removeAttr', 'target').click();
     },
-    Mangamingslot() {
+    Mangamingslot () {
       const mangamingSlot = selectors[brand].mangamingSlot;
       cy.get(mangamingSlot).click();
     },
 
-    shopNowButton() {
+    shopNowButton () {
       cy.get('.instashop-tile.instashop-tile-one-product.js-insta-shop-tile').eq(0).as('hoverOverTile');
       cy.get('@hoverOverTile').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
         cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
@@ -393,11 +393,11 @@ class HomePage implements AbstractPage {
 
     },
 
-    forgotPasswordLink() {
+    forgotPasswordLink () {
       const resetPassword = selectors[brand].resetPassword;
       cy.get(resetPassword).click();
     },
-    registrationButton() {
+    registrationButton () {
       const registrationButton = selectors[brand].registrationButton;
       const registrationButtonMobiles = selectors[brand].registrationButtonMobiles;
 
@@ -409,7 +409,7 @@ class HomePage implements AbstractPage {
     },
 
     // Objects for search subsystem tests
-    searchIcon(opts = { force: true }) {
+    searchIcon (opts = { force: true }) {
       const searchIcon = selectors[brand].searchIcon;
       const searchIconMobile = selectors[brand].searchIconMobile;
       if (isMobileDeviceUsed) {
@@ -418,15 +418,15 @@ class HomePage implements AbstractPage {
         cy.get(searchIcon).click({ force: opts.force });
       }
     },
-    searchField() {
+    searchField () {
       const searchField = selectors[brand].searchField;
       cy.get(searchField).click({ force: true });
     },
-    wishListIcon() {
+    wishListIcon () {
       const wishListIcon = selectors[brand].wishListIcon;
       cy.get(wishListIcon).click({ force: true });
     },
-    cartIcon() {
+    cartIcon () {
       const minicartIcon = selectors[brand].minicartIcon;
       cy.waitUntil(() => {
         return cy.get(minicartIcon, { timeout: 7000 }).invoke('show').click({ force: true });
@@ -435,7 +435,7 @@ class HomePage implements AbstractPage {
 
     // MEGA MENU - MAIN NAV
 
-    selectLinkFromMegaMenu(text: string) {
+    selectLinkFromMegaMenu (text: string) {
       const hamburgerMenu = selectors[brand].hamburgerMenu;
       if (isMobileDeviceUsed) {
         cy.get(hamburgerMenu).click({ force: true });
@@ -443,33 +443,33 @@ class HomePage implements AbstractPage {
       cy.contains(text).click({ force: true });
     },
 
-    selectLinkFromMegaMenuSubNav(text: string) {
+    selectLinkFromMegaMenuSubNav (text: string) {
       cy.contains(text).click({ force: true });
     },
 
     // MEGA MENU - MAIN NAV DOROTHYPERKINS FOR DOUBLECLICK
 
-    selectLinkFromMegaMenuForDorothy(text: string) {
+    selectLinkFromMegaMenuForDorothy (text: string) {
       cy.contains(text).dblclick({ force: true });
     },
 
     //  SUB-LINKS FROM MEGA MENU
-    backInStockLink(opts = { force: true }) {
+    backInStockLink (opts = { force: true }) {
       const backInStockLink = selectors[brand].backInStockLink;
       cy.get(backInStockLink).click({ force: opts.force });
     },
-    allShoesLink(opts = { force: true }) {
+    allShoesLink (opts = { force: true }) {
       const allShoesLink = selectors[brand].allShoesLink;
       cy.get(allShoesLink).click({ force: opts.force });
     },
-    nastyBlogLink(text: string) {
+    nastyBlogLink (text: string) {
       cy.contains(text).click({ force: true });
     },
-    investorRelationsAcceptBtn() {
+    investorRelationsAcceptBtn () {
       const investorRelationsAcceptBtn = selectors[brand].investorRelationsAcceptBtn;
       cy.get(investorRelationsAcceptBtn).click();
     },
-    expandHamburgerMenu() {
+    expandHamburgerMenu () {
       const hamburgerMenu = selectors[brand].hamburgerMenu;
       cy.get('body').then($body => {
         if ($body.find(hamburgerMenu).length) {
@@ -478,7 +478,7 @@ class HomePage implements AbstractPage {
       }
       );
     },
-    countryDropdown() {
+    countryDropdown () {
       const countryBtn = selectors[brand].countryBtn;
       const hamburgerMenu = selectors[brand].hamburgerMenu;
       if (isSiteGenesisBrand && isMobileDeviceUsed) {
@@ -487,21 +487,21 @@ class HomePage implements AbstractPage {
         cy.get(countryBtn).click({ force: true });
       }
     },
-    recyclingOptions(text: string) {
+    recyclingOptions (text: string) {
       cy.contains(text).click({ force: true });
     },
-    unidays(text: string) {
+    unidays (text: string) {
       cy.contains(text).click({ force: true });
     },
-    selectBtn() {
+    selectBtn () {
       const selectBtn = selectors[brand].selectBtn;
       cy.get(selectBtn).click({ force: true });
     },
-    acceptBtn() {
+    acceptBtn () {
       const acceptBtn = selectors[brand].acceptBtn;
       cy.get(acceptBtn).click({ force: true });
     },
-    removeGiftCard() {
+    removeGiftCard () {
       const removeBtn = selectors[brand].removeBtn;
       cy.get(removeBtn).click({ force: true });
 
@@ -509,7 +509,7 @@ class HomePage implements AbstractPage {
   };
 
   actions = {
-    findItemUsingSKU(SKU: string) {
+    findItemUsingSKU (SKU: string) {
       if (brand != 'boohoo.com') {
         const searchIcon = selectors[brand].searchIcon;
         cy.get(searchIcon).click({ force: true });
@@ -519,7 +519,7 @@ class HomePage implements AbstractPage {
       cy.get(searchIcon).click({ force: true });
       cy.get(searchField).type(SKU + '{enter}', { force: true });
     },
-    forgotPassword(email: string) {
+    forgotPassword (email: string) {
       const forgetPasswordLink = selectors[brand].forgetPasswordLink;
       const forgetPasswordPopupWindow = selectors[brand].forgetPasswordPopupWindow;
       const resetPasswordEmailBox = selectors[brand].resetPasswordEmailBox;
@@ -530,7 +530,7 @@ class HomePage implements AbstractPage {
       cy.get(resetPasswordEmailBox).type(email);
       cy.get(resetPasswordButton, { timeout: 6000 }).click();
     },
-    closeNastygalPopup() {
+    closeNastygalPopup () {
       const dialogPopupNG = selectors[brand].dialogPopupNG;
 
       cy.get('body').then($body => {
@@ -540,7 +540,7 @@ class HomePage implements AbstractPage {
       });
 
     },
-    closeSearchFieldForMobiles() {
+    closeSearchFieldForMobiles () {
 
       // If Mobile Device is used
       const searchFieldCloseMobile = selectors[brand].searchFieldCloseMobile;
@@ -548,7 +548,7 @@ class HomePage implements AbstractPage {
         cy.get(searchFieldCloseMobile).click({ force: true });
       }
     },
-    toggleEnergySaver() {
+    toggleEnergySaver () {
       const energySlider = selectors[brand].energySlider;
       const energySaverActivated = selectors[brand].energySaverActivated;
       cy.get(energySlider).click();
@@ -558,7 +558,7 @@ class HomePage implements AbstractPage {
       cy.get(energySlider).click();
     },
 
-    selectDropdown() {
+    selectDropdown () {
       const selectGender = selectors[brand].selectGender;
       const selectCategory = selectors[brand].selectCategory;
       const selectFit = selectors[brand].selectFit;
@@ -576,7 +576,7 @@ class HomePage implements AbstractPage {
 
       }
     },
-    selectCountryFromDropdown() {
+    selectCountryFromDropdown () {
       const countryBtn = selectors[brand].countryBtn;
       const countryList = selectors[brand].countryList;
 
@@ -591,7 +591,7 @@ class HomePage implements AbstractPage {
         cy.get(countryList).contains('IE €').click({ force: true });
       }
     },
-    fillGiftCardForm(user: string) {
+    fillGiftCardForm (user: string) {
       const chooseAmount = selectors[brand].chooseAmount;
       const recipientEmail = selectors[brand].recipientEmail;
       const confirmRecipientEmail = selectors[brand].confirmRecipientEmail;
@@ -606,7 +606,7 @@ class HomePage implements AbstractPage {
   };
 
   assertions = {
-    assertUserPanelTitle(name: string) {
+    assertUserPanelTitle (name: string) {
       const loginIcon = selectors[brand].loginIcon;
       const myAccountTileSlideMenu = selectors[brand].myAccountTileSlideMenu;
       const myaccountUserPanelGreetingMsg = selectors[brand].myaccountGreetingMsg;
@@ -617,11 +617,11 @@ class HomePage implements AbstractPage {
     },
 
     // Insta shop assertions
-    assertInstaShopPresent() {
+    assertInstaShopPresent () {
       const shopInstagramBtn = selectors[brand].shopInstagramBtn;
       cy.get(shopInstagramBtn).should('be.visible');
     },
-    assertShopNowDisplayed() {
+    assertShopNowDisplayed () {
       cy.get('.instashop-tile.instashop-tile-one-product.js-insta-shop-tile').eq(0).as('hoverOverTile');
       cy.get('@hoverOverTile').scrollIntoView().trigger('mouseover', { force: true }).then(() => {
         cy.get('[class="shop-button"]').eq(0).invoke('css', 'display', 'inline').as('InstaShopNowButton');
@@ -629,18 +629,18 @@ class HomePage implements AbstractPage {
       });
     },
 
-    assertMangamingPresent() {
+    assertMangamingPresent () {
       const mangamingSlot = selectors[brand].mangamingSlot;
       cy.get(mangamingSlot).should('be.visible');
     },
-    assertMangamingOpen() {
+    assertMangamingOpen () {
       const mangamingPage = selectors[brand].mangamingPage;
       cy.get(mangamingPage).should('be.visible');
 
     },
 
     // Search assertions
-    assertSearchIconPresent() {
+    assertSearchIconPresent () {
       const searchIcon = selectors[brand].searchField;
       const searchIconMobile = selectors[brand].searchIconMobile;
       if (isMobileDeviceUsed && brand == 'warehousefashion.com') {
@@ -649,7 +649,7 @@ class HomePage implements AbstractPage {
         cy.get(searchIcon).invoke('show').should('be.visible');
       }
     },
-    assertSearchFieldPresent() {
+    assertSearchFieldPresent () {
       const searchField = selectors[brand].searchField;
       const searchFieldMobile = selectors[brand].searchFieldMobile;
       if (isMobileDeviceUsed) {
@@ -658,41 +658,41 @@ class HomePage implements AbstractPage {
         cy.get(searchField).should('be.visible');
       }
     },
-    assertSearchFieldContains(text: string) {
+    assertSearchFieldContains (text: string) {
       const searchField = selectors[brand].searchField;
       cy.get(searchField).contains(text);
     },
-    assertSearchResultPage(text: string) {
+    assertSearchResultPage (text: string) {
       const helper = text.split('-');
       const finalSku = helper[0].trim().replace('#', '');
       cy.url().should('include', finalSku);
     },
-    assertAutosearchSuggestionsDispayed() {
+    assertAutosearchSuggestionsDispayed () {
 
       // TODO.
     },
-    assertUserIsNotLoggedIn(msg: string) {
+    assertUserIsNotLoggedIn (msg: string) {
       const logInSlideManuTitle = selectors[brand].logInSlideManuTitle;
 
       cy.get(logInSlideManuTitle).should('contain.text', msg);
     },
 
     // SizeGuide asserstions
-    assertSizeGuideGenderPresent() {
+    assertSizeGuideGenderPresent () {
       const sizeGuideGender = selectors[brand].sizeGuideGender;
       cy.get(sizeGuideGender).should('be.visible');
     },
-    assertSizeGuideCategoryPresent() {
+    assertSizeGuideCategoryPresent () {
       const sizeGuideCategory = selectors[brand].sizeGuideCategory;
       cy.get(sizeGuideCategory).should('be.visible');
     },
-    assertSizeGuideFitPresent() {
+    assertSizeGuideFitPresent () {
       const sizeGuideFit = selectors[brand].sizeGuideFit;
       cy.get(sizeGuideFit).should('be.visible');
     },
 
     // Counter (header) assertion
-    assertPromotionPresent() {
+    assertPromotionPresent () {
       const promotion = selectors[brand].promotion;
       cy.get(promotion).invoke('show').then(element => {
         cy.wrap(element).invoke('show').should('be.visible');
@@ -700,12 +700,12 @@ class HomePage implements AbstractPage {
     },
 
     // Links assertions
-    assertLinkIsOpeningCorrectPage(text: string) {
+    assertLinkIsOpeningCorrectPage (text: string) {
       cy.url().should('include', text);
     },
 
     // Logo
-    assertLogoPresent() {
+    assertLogoPresent () {
       const logo = selectors[brand].logo;
       const logoMobile = selectors[brand].logoMobile;
       if (isMobileDeviceUsed) {
@@ -716,7 +716,7 @@ class HomePage implements AbstractPage {
     },
 
     // Header icons
-    assertWishListIconPresent() {
+    assertWishListIconPresent () {
 
       const wishListIconMobile = selectors[brand].wishListIconMobile;
 
@@ -731,11 +731,11 @@ class HomePage implements AbstractPage {
       }
 
     },
-    assertCartIconPresent() {
+    assertCartIconPresent () {
       const minicartIcon = selectors[brand].minicartIcon;
       cy.get(minicartIcon).should('be.visible');
     },
-    assertAccountIconPresent() {
+    assertAccountIconPresent () {
       const loginIcon = selectors[brand].loginIcon;
       const hamburgerMenu = selectors[brand].hamburgerMenu;
       const loginIconMobile = selectors[brand].loginIconMobile;
@@ -760,67 +760,67 @@ class HomePage implements AbstractPage {
       }
     },
 
-    assertCountryURL(country: string) {
+    assertCountryURL (country: string) {
       cy.url().should('include', country);
     },
-    assertPromoLinkHeaderIsVisible() {
+    assertPromoLinkHeaderIsVisible () {
       const promoLinkCurrentSlide = selectors[brand].promoLinkCurrentSlide;
 
       cy.get(promoLinkCurrentSlide).should('be.visible').click();
     },
-    assertEnergySaverVisible() {
+    assertEnergySaverVisible () {
       const energySaver = selectors[brand].energySaver;
       cy.get(energySaver).should('be.visible');
     },
-    assertSelectCountryFromDropdown() {
+    assertSelectCountryFromDropdown () {
       cy.url().should('include', '/ie');
     },
-    assertInstaURL() {
+    assertInstaURL () {
       cy.url().should('contain', 'instashop');
     },
-    assertRecyclingOptionsPageIsDisplayed() {
+    assertRecyclingOptionsPageIsDisplayed () {
       cy.url({ timeout: 30000 }).should('include', 'recycling');
     },
-    assertUnidaysPageIsDisplayed() {
+    assertUnidaysPageIsDisplayed () {
       cy.url({ timeout: 30000 }).should('include', 'unidays');
     },
-    assertGiftCardPageIsDisplayed() {
+    assertGiftCardPageIsDisplayed () {
       cy.url({ timeout: 30000 }).should('include', 'egift');
     },
-    assertGiftCardIsAdded() {
+    assertGiftCardIsAdded () {
       cy.url({ timeout: 30000 }).should('include', 'checkout#basket');
     },
-    assertGiftCardIsRemoved() {
+    assertGiftCardIsRemoved () {
       const addGiftCardBtn = selectors[brand].addGiftCardBtn;
       cy.get('.continueShoppingLink').should('be.visible');
     },
-    assertAllHeaderMegaNavLinksStatus() {
+    assertAllHeaderMegaNavLinksStatus () {
       const meganavLinks = selectors[brand].meganavLinks;
       const meganavSubLinks = selectors[brand].meganavSubLinks;
 
       cy.get(meganavLinks).get(meganavSubLinks).each(($el) => {
-        var href = $el.attr('href')
+        const href = $el.attr('href');
         if (href) {
-          cy.log('href :: about to Iterate ::', href)
-          cy.request(href).its('status').should('eql', 200)
+          cy.log('href :: about to Iterate ::', href);
+          cy.request(href).its('status').should('eql', 200);
         }
-      })
+      });
     },
-    assertAllFooterLinksStatus() {
+    assertAllFooterLinksStatus () {
       const pageFooterContent = selectors[brand].pageFooterContent;
       const pageFooterLinks = selectors[brand].pageFooterLinks;
 
       cy.scrollTo('bottom')
         .get(pageFooterContent).get(pageFooterLinks).each(($el) => {
-          var href = $el.attr('href')
+          const href = $el.attr('href');
           if (href) {
-            cy.log('href :: about to Iterate ::', href)
-            cy.request(href).its('status').should('eql', 200)
+            cy.log('href :: about to Iterate ::', href);
+            cy.request(href).its('status').should('eql', 200);
           }
-        })
+        });
     }
 
-  }
+  };
 
 }
 

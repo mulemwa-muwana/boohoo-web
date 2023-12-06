@@ -1232,6 +1232,19 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkKeyWorker: TranslationMap = {
+    EN: 'Key Worker Discount',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  }
   sustainability: TranslationMap = {
     EN: 'Sustainability',
     NL: 'Duurzaamheid',
@@ -2074,6 +2087,19 @@ class AssertionText {
 
   hireStreet: TranslationMap = {
     EN: 'Hire Street',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+  KeyWorkerForm: TranslationMap = {
+    EN: 'KEY WORKERS!',
     NL: '',
     DE: '',
     FR: '',

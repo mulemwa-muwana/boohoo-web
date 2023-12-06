@@ -62,10 +62,10 @@ export default defineConfig({
       });
       await addXrayResultUpload(on);
     },
-    excludeSpecPattern: [
-      '**/backend*/**', // Skip backend tests
-      '**/additionalTests*/**'
-    ],
+   // excludeSpecPattern: [
+    //  '**/backend*/**', // Skip backend tests
+    //  '**/additionalTests*/**'
+   // ],
     numTestsKeptInMemory: 0,
     experimentalMemoryManagement: true,
     experimentalOriginDependencies: true,

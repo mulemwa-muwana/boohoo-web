@@ -10,11 +10,11 @@ describe('Home Page', function () {
   // Iterate the Links
   if (brand == 'boohooman.com') {
     describe('Strategic Homepage Links Tests', () => {
-      it('Iterate thorugh sifu-header meganav links on homepage and validate Page status is OK', () => {
+      it('CYP-864 Iterate thorugh sifu-header meganav links on homepage and validate Page status is OK', () => {
         HomePage.assertions.assertAllHeaderMegaNavLinksStatus();
       });
 
-      it('Iterate thorugh sifu-footer links on homepage and validate Page status is OK', () => {
+      it('CYP-865 Iterate thorugh sifu-footer links on homepage and validate Page status is OK', () => {
         HomePage.assertions.assertAllFooterLinksStatus();
       });
 

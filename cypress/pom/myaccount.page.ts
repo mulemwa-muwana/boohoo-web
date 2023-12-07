@@ -916,6 +916,10 @@ class MyAccountPage implements AbstractPage {
           cy.wait(3000);
           cy.get(verificationAddressBtn).click({ force: true });
         }
+      },
+      addNewAddress () {
+        const addAddressBtn = selectors[variables.brand].addAddressBtn;
+        cy.get(addAddressBtn).click( { force: true});
       }
     };
 
@@ -1173,6 +1177,14 @@ class MyAccountPage implements AbstractPage {
       assertFacebookLinkPresent () {
         const facebookLink = selectors[variables.brand].facebookLink;
         cy.get(facebookLink).should('be.visible');
+      },
+      assertBMANUsLocaleIncludeListOfCountries(UScountires: string[]) {
+        const countryField = selectors[variables.brand].countryField;
+        cy.get(countryField).invoke('text').then((countryList) => {
+          UScountires.forEach((country) => {
+            expect(countryList).to.include(country);
+          })
+        });
       }
     };
 }

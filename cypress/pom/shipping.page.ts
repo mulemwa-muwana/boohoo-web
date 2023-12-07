@@ -1513,6 +1513,14 @@ class ShippingPage implements AbstractPage {
       const deliverySection = selectors[brand].deliverySection;
       cy.get (deliverySection).invoke('text').as('deliverySection');
       cy.get('@deliverySection').should('contain', text);
+    },
+    assertBMANUsLocaleIncludeListOfCountries(UScountires: string[]) {
+      const shippingCountry = selectors[brand].shippingCountry;
+      cy.get(shippingCountry).invoke('text').then((countryList) => {
+        UScountires.forEach((country) => {
+          expect(countryList).to.include(country);
+        })
+      });
     }
   };
 }

@@ -27,7 +27,7 @@ const selectors: SelectorBrandMap = {
     loginButton:'button[data-tau="login_submit"]',
     forgotPassword: '#password-reset',
     forgotPasswordMessage: '.b-dialog-window',
-    resetPasswordEmailField: `[name="dwfrm_profile_resetPassword_email"]`,
+    resetPasswordEmailField: '[name="dwfrm_profile_resetPassword_email"]',
     resetPasswordBtn: '.b-dialog-footer > .b-button',
     loginForm: '.b-login_form',
     errorLoginMessage: '.b-message-copy',
@@ -305,9 +305,9 @@ class LoginPage implements AbstractPage {
       const resetPasswordEmailFieldMobile = selectors[variables.brand].resetPasswordEmailFieldMobile;
 
       if (isMobileDeviceUsed) {
-        cy.get(resetPasswordEmailFieldMobile).type(email,{timeout:2000})
+        cy.get(resetPasswordEmailFieldMobile).type(email,{timeout:2000});
       } else {
-        cy.get(resetPasswordEmailField).type(email,{timeout:2000})
+        cy.get(resetPasswordEmailField).type(email,{timeout:2000});
       }
     },
     loginPopUpMessage () {

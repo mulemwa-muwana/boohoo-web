@@ -76,15 +76,12 @@ export default defineConfig({
         maxRetries: 2,
         passesRequired: 2,
       },
-<<<<<<< HEAD
 
       // you must also explicitly set openMode and runMode to
       // either true or false when using experimental retries
-=======
   
       // You must also explicitly set openMode and runMode to
       // Either true or false when using experimental retries
->>>>>>> master
       openMode: true,
       runMode: true,
     },

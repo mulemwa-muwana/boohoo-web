@@ -59,7 +59,7 @@ describe('Home Page', function () {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
       }
-      if(brand != 'boohooman.com') { //skipping due to black friday promotion the link has been changed
+      if (brand != 'boohooman.com') { // Skipping due to black friday promotion the link has been changed
         HomePage.assertions.assertLinkIsOpeningCorrectPage(megaMenuLinksLanguages.urlValidationSale[language].toLowerCase());
       }
     });

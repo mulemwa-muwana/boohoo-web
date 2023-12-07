@@ -81,9 +81,9 @@ const selectors: SelectorBrandMap = {
 
     assertions = {
 
-      assertKeyWorkerFormIsPresent () {
+      assertKeyWorkerFormIsPresent (text:string) {
         const KeyWorkerForm = selectors[brand].KeyWorkerForm;
-        cy.get(KeyWorkerForm).should('be.visible').and('include.text', assertionText.KeyWorkerForm[language]);;
+        cy.get(KeyWorkerForm).should('be.visible').and('include.text', text);;
       },
     };
   }

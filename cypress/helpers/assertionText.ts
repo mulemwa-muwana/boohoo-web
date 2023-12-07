@@ -1329,8 +1329,8 @@ class AssertionText {
     ES: ''
   };
 
-  keyWorkerDiscount: TranslationMap = {
-    EN: 'Key Worker Discount',
+  KeyWorkerForm: TranslationMap = {
+    EN: 'KEY WORKERS!',
     NL: '',
     DE: '',
     FR: '',
@@ -1342,7 +1342,6 @@ class AssertionText {
     IT: '',
     ES: ''
   };
-
   boohooMANACTIVE: TranslationMap = {
     EN: 'boohooMAN ACTIVE',
     NL: 'boohooMAN ACTIVE',

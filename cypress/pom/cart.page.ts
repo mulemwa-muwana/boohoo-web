@@ -205,7 +205,7 @@ const selectors: SelectorBrandMap = {
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '[class*="js-second-button-checkout"]',
-    clearCart: `button[name='dwfrm_cart_shipments_i0_items_i0_deleteProduct'] span`,
+    clearCart: 'button[name=\'dwfrm_cart_shipments_i0_items_i0_deleteProduct\'] span',
     clearCartMobile: '[class*="button-remove"]',
     emptyCartTitle: '.cart-empty-title',
     emptyCartTitleMobile: '.cart-empty-title',

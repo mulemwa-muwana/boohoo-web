@@ -674,10 +674,10 @@ const selectors: SelectorBrandMap = {
     klarnaPayNowUS: '#billingSubmitButton',
     payButtonLocator: '[data-testid="confirm-and-pay"]',
     shippingAddressSection: '.minicheckout-section',
-    billingAddressFieldCity: `input#dwfrm_singleshipping_shippingAddress_addressFields_city`,
-    billingAddressFieldsAddress1: `input[name='dwfrm_singleshipping_shippingAddress_addressFields_address1']`,
+    billingAddressFieldCity: 'input#dwfrm_singleshipping_shippingAddress_addressFields_city',
+    billingAddressFieldsAddress1: 'input[name=\'dwfrm_singleshipping_shippingAddress_addressFields_address1\']',
     addGiftCertificate: '.b-gift_certificate-add',
-    billingAddressFieldsStateCode: `[name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"]`,
+    billingAddressFieldsStateCode: '[name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"]',
     billingPostCode: 'input#dwfrm_singleshipping_shippingAddress_addressFields_postalcodes_postal',
     couponCode: '#dwfrm_billing_giftCertCode',
     giftCertCode: '#dwfrm_billing_giftCertCode',
@@ -960,13 +960,13 @@ class BillingPage implements AbstractPage {
       const confirmEmailField = selectors[brand].confirmEmailField;
       cy.get(confirmEmailField).clear().type(email);
     },
-    addBillingAddressGuestUser(line1: string, city: string, state: string, county: string, postcode: string) {
+    addBillingAddressGuestUser (line1: string, city: string, state: string, county: string, postcode: string) {
       const billingAddressFieldsStateCode = selectors[brand].billingAddressFieldsStateCode;
       this.enterManuallyAddressDetails();
       if (brand == 'misspap.com') {
-        const billingAddressFieldsAddress1 = `[name="dwfrm_billing_billingAddress_addressFields_address1"]`;
-        const billingAddressFieldCity = `[name="dwfrm_billing_billingAddress_addressFields_city"]`;
-        const billingPostCode = `[name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"]`;
+        const billingAddressFieldsAddress1 = '[name="dwfrm_billing_billingAddress_addressFields_address1"]';
+        const billingAddressFieldCity = '[name="dwfrm_billing_billingAddress_addressFields_city"]';
+        const billingPostCode = '[name="dwfrm_billing_billingAddress_addressFields_postalcodes_postal"]';
         cy.get(billingAddressFieldsAddress1).clear().type(line1)
           .get(billingAddressFieldCity).clear({ force: true }).type(city)
           .get(billingAddressFieldsStateCode).clear().type(state)

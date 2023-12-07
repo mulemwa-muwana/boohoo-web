@@ -601,7 +601,7 @@ class PlpPage implements AbstractPage {
       });
     },
 
-    selectMegamenuLink (){
+    selectMegamenuLink () {
       if (brand == 'nastygal.com') {
         homePage.click.selectLinkFromMegaMenuSubNav(megaMenuLinksLanguages.subnavClothingArkadiaNewIn[language]);
       } else if (brand == 'boohoo.com' || brand == 'boohooman.com') {

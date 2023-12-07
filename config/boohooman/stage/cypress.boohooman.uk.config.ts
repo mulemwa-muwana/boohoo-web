@@ -77,8 +77,8 @@ export default defineConfig({
         passesRequired: 2,
       },
   
-      // you must also explicitly set openMode and runMode to
-      // either true or false when using experimental retries
+      // You must also explicitly set openMode and runMode to
+      // Either true or false when using experimental retries
       openMode: true,
       runMode: true,
     },

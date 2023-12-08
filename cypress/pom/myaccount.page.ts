@@ -71,7 +71,6 @@ const selectors: SelectorBrandMap = {
     footerQuickLinks: '.l-footer-quick',
     mainAccountsection: '.l-account-main',
     countryField: '#dwfrm_profile_address_country',
-    countryFieldDevCanada: '#dwfrm_address_country',
     addCardNumberIFrameBox: '.adyen-checkout__field--cardNumber .js-iframe',
     addCardExpDateIFrameBox: '.adyen-checkout__field--expiryDate .js-iframe',
     addCardCVCIFrameBox: '.adyen-checkout__card__cvc__input .js-iframe',
@@ -1181,20 +1180,11 @@ class MyAccountPage implements AbstractPage {
       },
       assertBMANUsLocaleIncludeListOfCountries (UScountires: Array<string>) {
         const countryField = selectors[brand].countryField;
-        const countryFieldDevCanada = selectors[brand].countryFieldDevCanada;
-        if (brand == 'boohoo.com' && locale == 'CA') {
-          cy.get(countryFieldDevCanada).invoke('text').then((countryList) => {
-            UScountires.forEach((country) => {
-              expect(countryList).to.include(country);
-            });
+        cy.get(countryField).invoke('text').then((countryList) => {
+          UScountires.forEach((country) => {
+            expect(countryList).to.include(country);
           });
-        } else {
-          cy.get(countryField).invoke('text').then((countryList) => {
-            UScountires.forEach((country) => {
-              expect(countryList).to.include(country);
-            });
-          });
-        }
+        });
       }
     };
 }

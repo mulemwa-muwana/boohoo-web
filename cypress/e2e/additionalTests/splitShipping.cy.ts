@@ -8,6 +8,8 @@ import shippingPage from 'cypress/pom/shipping.page';
 import { brand, locale } from 'cypress/support/e2e';
 
 const includedSplitShippingBrandsAndLocales: boolean = (brand == 'boohoo.com' && locale == 'CA') || (brand == 'boohooman.com' && locale == 'US');
+const UKSKU = 'BMM01020-100-35';
+const USSKU = 'BMM01040-100-35';
 
 describe('My account area for registered user', function () {
   it('Verify that for US locale, the list of countries on My Account area is restricted to specific countries and the list of US states is correct', function () {
@@ -34,11 +36,11 @@ describe('Shipping Page', function () {
   });
   beforeEach(() => {
     homePage.goto();
-    homePage.actions.findItemUsingSKU('BMM01020-100-35');
+    homePage.actions.findItemUsingSKU(UKSKU);
     cy.wait(2000);
     pdpPage.click.addToCart();
     cy.wait(2000);
-    homePage.actions.findItemUsingSKU('BMM01040-100-35');
+    homePage.actions.findItemUsingSKU(USSKU);
     cy.wait(2000);
     pdpPage.click.addToCart();
     cy.wait(2000);

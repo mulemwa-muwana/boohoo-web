@@ -8,8 +8,10 @@ import shippingPage from 'cypress/pom/shipping.page';
 import { brand, locale } from 'cypress/support/e2e';
 
 const includedSplitShippingBrandsAndLocales: boolean = (brand == 'boohoo.com' && locale == 'CA') || (brand == 'boohooman.com' && locale == 'US');
-const UKSKU = 'BMM01020-100-35';
-const USSKU = 'BMM01040-100-35';
+const UKSKUBMAN = "BMM01020-100-35";
+const USSKUBMAN = "BMM01040-100-35";
+const USSKUBHO = "GZZ07614-163-";
+const UKSKUBHO = "GZZ08666-105-18";
 
 describe('My account area for registered user', function () {
   it('Verify that for US locale, the list of countries on My Account area is restricted to specific countries and the list of US states is correct', function () {
@@ -30,25 +32,40 @@ describe('My account area for registered user', function () {
 describe('Shipping Page', function () {
   before(() => {
     cy.getAllCookies();
-    cy.fixture('users').then((credentials: LoginCredentials) => {
-      cy.wrap(credentials.guest).as('guestEmail');
-    });
+
   });
   beforeEach(() => {
+
     homePage.goto();
-    homePage.actions.findItemUsingSKU(UKSKU);
-    cy.wait(2000);
-    pdpPage.click.addToCart();
-    cy.wait(2000);
-    homePage.actions.findItemUsingSKU(USSKU);
-    cy.wait(2000);
+    if(brand == 'boohoo.com' && locale == 'CA') {
+      homePage.actions.findItemUsingSKU(USSKUBHO);
+      pdpPage.actions.selectColorFromSku();
+      pdpPage.actions.selectSizeFromSku();
+      cy.wait(2000);
+      pdpPage.click.addToCart();
+      cy.wait(2000);
+      homePage.actions.findItemUsingSKU(UKSKUBHO);
+      pdpPage.actions.selectColorByIndex(1);
+      pdpPage.actions.selectSizeFromSku();
+      cy.wait(2000);
+    } else {
+      homePage.actions.findItemUsingSKU(UKSKUBMAN);
+      cy.wait(2000);
+      pdpPage.click.addToCart();
+      cy.wait(2000);
+      homePage.actions.findItemUsingSKU(USSKUBMAN);
+      cy.wait(2000);
+    }
     pdpPage.click.addToCart();
     cy.wait(2000);
     cartPage.goto();
     cartPage.click.proceedToCheckoutminiCart();
     cy.wait(2000);
     cy.fixture('users').then((credentials: LoginCredentials) => {
-      cy.wait(2000);
+      cy.wrap(credentials.guest).as('guestEmail');
+      if(brand == 'boohoo.com' && locale == 'CA') {
+        checkoutLoginPage.actions.guestCheckoutEmail(credentials.guest);
+      }
       checkoutLoginPage.click.continueAsGuestBtn();
     });
     cy.wait(3000);

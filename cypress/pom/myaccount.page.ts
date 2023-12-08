@@ -1178,12 +1178,12 @@ class MyAccountPage implements AbstractPage {
         const facebookLink = selectors[variables.brand].facebookLink;
         cy.get(facebookLink).should('be.visible');
       },
-      assertBMANUsLocaleIncludeListOfCountries(UScountires: string[]) {
+      assertBMANUsLocaleIncludeListOfCountries (UScountires: Array<string>) {
         const countryField = selectors[variables.brand].countryField;
         cy.get(countryField).invoke('text').then((countryList) => {
           UScountires.forEach((country) => {
             expect(countryList).to.include(country);
-          })
+          });
         });
       }
     };

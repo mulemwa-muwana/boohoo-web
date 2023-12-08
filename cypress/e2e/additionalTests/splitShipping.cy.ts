@@ -1,9 +1,7 @@
 import Navigate from 'cypress/helpers/navigate';
-import shippingMethods from 'cypress/helpers/shippingMethods';
 import cartPage from 'cypress/pom/cart.page';
 import checkoutLoginPage from 'cypress/pom/checkoutLogin.page';
 import homePage from 'cypress/pom/home.page';
-import loginPage from 'cypress/pom/login.page';
 import myaccountPage from 'cypress/pom/myaccount.page';
 import pdpPage from 'cypress/pom/pdp.page';
 import shippingPage from 'cypress/pom/shipping.page';
@@ -33,7 +31,7 @@ describe('Shipping Page', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {
       cy.wrap(credentials.guest).as('guestEmail');
     });
-  })
+  });
   beforeEach(() => {
     homePage.goto();
     homePage.actions.findItemUsingSKU('BMM01020-100-35');
@@ -48,14 +46,11 @@ describe('Shipping Page', function () {
     cartPage.click.proceedToCheckoutminiCart();
     cy.wait(2000);
     cy.fixture('users').then((credentials: LoginCredentials) => {
-        cy.wait(2000);
-        checkoutLoginPage.click.continueAsGuestBtn();
+      cy.wait(2000);
+      checkoutLoginPage.click.continueAsGuestBtn();
     });
     cy.wait(3000);
   });
-  afterEach(() => {
-
-  })
 
   it('If you add UK item and US item in cart, on checkout, shipping methods shall be represented as 2 blocks', function () {
         
@@ -65,7 +60,6 @@ describe('Shipping Page', function () {
 
     shippingPage.assertions.assertShippingMethodIsSelected('UK Split');
     shippingPage.assertions.assertShippingMethodIsSelected('US Split');
-
 
   });
     

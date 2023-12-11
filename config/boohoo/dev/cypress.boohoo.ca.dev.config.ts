@@ -5,7 +5,7 @@ export default defineConfig({
   projectId: 'i6d3n8',
 
   env: {
-    url: 'https://storefront:Oreo2022@cs-dwdev.boohoo.com/',
+    url: 'https://storefront:Oreo2022@ca-dwdev.boohoo.com/',
     sku: '#DZZ01081',
     fullSku: 'DZZ01081-105-16',
     brand: 'boohoo.com',

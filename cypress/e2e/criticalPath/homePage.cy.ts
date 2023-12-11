@@ -790,10 +790,6 @@ if (brand == 'boohooman.com' && locale == 'UK') {
     beforeEach(() => {
       navigate.keyWorkerPage();
     });
-    it('CYP-896 Verify that key worker link opens', function () {
-
-      keyWorkerPage.assertions.assertKeyWorkerFormIsPresent(assertionText.KeyWorkerForm[language])
-    })
 
     it('CYP-897 Verify that key worker link opens & user can start a subscription', function () {
       keyWorkerPage.assertions.assertKeyWorkerFormIsPresent(assertionText.KeyWorkerForm[language]);

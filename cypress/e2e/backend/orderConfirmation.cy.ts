@@ -7,6 +7,7 @@ import ShippingPage from 'cypress/pom/shipping.page';
 import CartPage from 'cypress/pom/cart.page';
 import { brand, locale, fullSku, brandName } from 'cypress/support/e2e';
 import refundPage from 'cypress/pom/BOMS/refund.page';
+import shippingPage from 'cypress/pom/shipping.page';
 
 // Const variables = Cypress.env() as EnvironmentVariables;
 
@@ -41,6 +42,7 @@ describe('Boohoo order placement', () => {
       ShippingPage.actions.countyField(localeAddress.county);
     }
     ShippingPage.click.proceedToBilling();
+    shippingPage.click.proceedToBillingVerification()
     BillingPage.actions.waitPageToLoad();
   });
 
@@ -57,7 +59,7 @@ describe('Boohoo order placement', () => {
 
   it('can select Klarna as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Klarna';
-    if (!isBrandSupportingPaymentMethod(brand, paymentMethod) || brand == 'boohooman.com') {
+    if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
       this.skip();
     }
 

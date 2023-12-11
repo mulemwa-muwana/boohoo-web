@@ -12,6 +12,8 @@ import contactusPage from 'cypress/pom/contactus.page';
 import faqPage from 'cypress/pom/faq.page';
 import TrackOrderPage from '../../pom/ordertrack.page';
 import { sku, brand, language, locale } from 'cypress/support/e2e';
+import keyWorkerPage from 'cypress/pom/keyWorker.page';
+import navigate from 'cypress/helpers/navigate';
 
 describe('Home Page', function () {
 
@@ -779,7 +781,44 @@ describe('Home Page', function () {
       }
     });
   });
+// Key Worker test cases
+if (brand == 'boohooman.com' && locale == 'UK') {
 
+  describe('KeyWorkerDiscount Tests', () => {
+
+    // This will execute before every single test, we're just going to the baseURL.
+    beforeEach(() => {
+      navigate.keyWorkerPage();
+    });
+    it('CYP-896 Verify that key worker link opens', function () {
+
+      keyWorkerPage.assertions.assertKeyWorkerFormIsPresent(assertionText.KeyWorkerForm[language])
+    })
+
+    it('CYP-897 Verify that key worker link opens & user can start a subscription', function () {
+      keyWorkerPage.assertions.assertKeyWorkerFormIsPresent(assertionText.KeyWorkerForm[language]);
+      cy.fixture('newuser').then((credentials) => {
+        keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
+        keyWorkerPage.actions.EnterEmail(credentials.username);
+        keyWorkerPage.actions.chooseDate('24', assertionText.DOBmonth[language], '2000');
+        keyWorkerPage.click.signupButton();
+
+      }
+      )
+
+    })
+
+    it('CYP-898 Verify that key worker link opens & user can not Subscribe with empty data ', function () {
+      cy.fixture('newuser').then((credentials) => {
+        keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
+        keyWorkerPage.actions.chooseDate('19', assertionText.DOBmonth[language], '2000');
+        keyWorkerPage.click.signupButton();
+      }
+      )
+
+    })
+  })
+};
   describe('MANGAMING Slot', ()=> {
     it('CYP-220 Verify that Mangaming slot is present and clicking on it displays related content', function () {
       if (brand == 'boohooman.com' && locale != 'UK') {

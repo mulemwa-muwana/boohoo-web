@@ -1246,6 +1246,19 @@ class AssertionText {
     ES: ''
   };
 
+  footerLinkKeyWorker: TranslationMap = {
+    EN: 'Key Worker Discount',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  }
   sustainability: TranslationMap = {
     EN: 'Sustainability',
     NL: 'Duurzaamheid',
@@ -1316,6 +1329,20 @@ class AssertionText {
     ES: ''
   };
 
+  KeyWorkerForm: TranslationMap = {
+    EN: 'KEY WORKERS!',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   keyWorkerDiscount: TranslationMap = {
     EN: 'Key Worker Discount',
     NL: '',
@@ -1329,7 +1356,19 @@ class AssertionText {
     IT: '',
     ES: ''
   };
-
+  EmailAddressError: TranslationMap = {
+    EN: 'This field is required.',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
   boohooMANACTIVE: TranslationMap = {
     EN: 'boohooMAN ACTIVE',
     NL: 'boohooMAN ACTIVE',

@@ -10,25 +10,27 @@ import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import cartPage from '../pom/cart.page';
 import plpPage from '../pom/plp.page';
 import { locale, brand, url, sku, language } from 'cypress/support/e2e';
+import keyWorkerPage from 'cypress/pom/keyWorker.page';
+
 
 class Navigate {
 
-  toHomePage () {
+  toHomePage() {
     HomePage.goto();
   }
 
-  toPLPPage () {
+  toPLPPage() {
     this.toHomePage();
     HomePage.actions.closeNastygalPopup();
     plpPage.click.selectMegamenuLink();
   }
 
-  toProductDetailsPage () {
+  toProductDetailsPage() {
     this.toHomePage();
     HomePage.actions.findItemUsingSKU(sku);
   }
- 
-  toCartPage () {
+
+  toCartPage() {
     this.toProductDetailsPage();
     PdpPage.actions.selectColorFromSku();
     PdpPage.actions.selectSizeFromSku();
@@ -37,12 +39,12 @@ class Navigate {
     HomePage.click.cartIcon();
   }
 
-  toCheckoutLoginPage () {
+  toCheckoutLoginPage() {
     this.toCartPage();
     cartPage.click.proceedToCheckoutminiCart();
   }
 
-  toShippingPage (userType: UserType) {
+  toShippingPage(userType: UserType) {
     this.toCheckoutLoginPage();
 
     // GUEST USER //
@@ -58,7 +60,7 @@ class Navigate {
         }
       });
 
-    // REGISTERED USER //
+      // REGISTERED USER //
     } else {
       cy.fixture('users').then((credentials: LoginCredentials) => {
         cy.wait(2000);
@@ -75,7 +77,7 @@ class Navigate {
     cy.wait(2000);
   }
 
-  toBillingPage (userType: UserType) {
+  toBillingPage(userType: UserType) {
     this.toShippingPage(userType);
 
     // GUEST USER //
@@ -88,7 +90,7 @@ class Navigate {
         shippingPage.click.addAddressManually();
         shippingPage.actions.adressLine1(primaryAddress.addressLine);
         shippingPage.actions.cityField(primaryAddress.city);
-        if (locale == 'US' || locale == 'AU'|| locale == 'IE' || locale == 'CA') {
+        if (locale == 'US' || locale == 'AU' || locale == 'IE' || locale == 'CA') {
           shippingPage.actions.selectState(primaryAddress.county);
         }
         shippingPage.actions.postcodeField(primaryAddress.postcode);
@@ -98,7 +100,7 @@ class Navigate {
           shippingPage.actions.selectDate('23', assertionText.DOBmonth[language], '2001');
           if (brand != 'boohooman.com') {
             shippingPage.actions.confirmEmailField(credentials.guest);
-          } if ((brand == 'karenmillen.com' || brand == 'misspap.com'|| brand == 'warehousefashion.com' ) && (locale == 'EU'||locale == 'IE'||locale == 'AU'||locale == 'US')) {
+          } if ((brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'warehousefashion.com') && (locale == 'EU' || locale == 'IE' || locale == 'AU' || locale == 'US')) {
             shippingPage.actions.emptyEmailField();
             shippingPage.actions.emailField(credentials.guest);
             shippingPage.actions.confirmEmailField(credentials.guest);
@@ -109,8 +111,8 @@ class Navigate {
         } else {
           shippingPage.click.proceedToBilling();
         }
-        if (brand == 'nastygal.com' && locale =='US') {// To select standard shipping method for ngal/us as default address
-          cy.get('[for="shippingMethod-USUsdStandardDelivery"]').click({force:true});
+        if (brand == 'nastygal.com' && locale == 'US') {// To select standard shipping method for ngal/us as default address
+          cy.get('[for="shippingMethod-USUsdStandardDelivery"]').click({ force: true });
         }
 
         if (brand == 'boohooman.com') {
@@ -120,7 +122,7 @@ class Navigate {
         BillingPage.actions.waitPageToLoad();
       });
 
-    // REGISTERED USER //
+      // REGISTERED USER //
     } else {
       const primaryAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
       if (brand != 'boohooman.com') {
@@ -137,7 +139,7 @@ class Navigate {
         shippingPage.actions.addressLine2Clear();
       }
       shippingPage.actions.cityField(primaryAddress.city);
-      if (locale == 'US' || locale == 'AU'|| locale == 'IE' || locale == 'CA') {
+      if (locale == 'US' || locale == 'AU' || locale == 'IE' || locale == 'CA') {
         shippingPage.actions.selectState(primaryAddress.county);
       }
       if (brand == 'boohoomena.com' || (brand == 'misspap.com' && locale == 'IE')) {
@@ -153,7 +155,7 @@ class Navigate {
     }
   }
 
-  toMyAccountPage () {
+  toMyAccountPage() {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, credentials.password);
@@ -161,15 +163,22 @@ class Navigate {
   }
 
   // NAVIGATE TO PAGES USING SESSIONS
-  toCartPageUsingSession () {
+  toCartPageUsingSession() {
     cy.session('cart-page-session', () => {
       this.toCartPage();
     });
 
     cy.visit(url + '/cart');
   }
+ //navigate to key worker
+ keyWorkerPage() {
+  cy.session('key-worker-session', () => {
+    this.toHomePage();
+  });
+  cy.visit(url + '/key-workers.html');
+}
 
-  toCheckoutLoginPageUsingSession () {
+  toCheckoutLoginPageUsingSession() {
     cy.session('checkout-login-page-session', () => {
       this.toCheckoutLoginPage();
     });
@@ -180,7 +189,7 @@ class Navigate {
     }
   }
 
-  toShippingPageUsingSession (userType: UserType) {
+  toShippingPageUsingSession(userType: UserType) {
     cy.session('shipping-page-session', () => {
       this.toShippingPage(userType);
     });
@@ -192,7 +201,7 @@ class Navigate {
     }
   }
 
-  toBillingPageUsingSession (userType: UserType) {
+  toBillingPageUsingSession(userType: UserType) {
     cy.session('billing-page-session', () => {
       this.toBillingPage(userType);
     });
@@ -204,7 +213,7 @@ class Navigate {
     }
   }
 
-  toMyAccountPageUsingSession () {
+  toMyAccountPageUsingSession() {
     cy.session('myaccount-page-session', () => {
       this.toMyAccountPage();
       cy.wait(1000);
@@ -213,20 +222,20 @@ class Navigate {
   }
 
   // NAVIGATE TO PAGES USING SPLIT SHIPPING SKU
-  toShippingPageWithSplitShippingSku () {
+  toShippingPageWithSplitShippingSku() {
     cy.log('I am on shipping page with split shipping SKU');
 
     // To be completed
 
   }
 
-  toOrderConfirmationPageWithSplitShippingSku () {
+  toOrderConfirmationPageWithSplitShippingSku() {
     cy.log('I am on order confirmation page with split shipping SKU');
 
     // To be completed
   }
 
-  clearSessionCookies () {
+  clearSessionCookies() {
     cy.clearCookies();
   }
 

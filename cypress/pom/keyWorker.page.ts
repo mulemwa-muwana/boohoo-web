@@ -13,7 +13,8 @@ const selectors: SelectorBrandMap = {
         monthOfBirth:'select#month',
         yearOfBirth:'select#year',
         emailForKeyWorker:'input#email_address',
-        KeyWorkerForm:'.form_title.tk-nimbus-sans-extended'
+        KeyWorkerForm:'.form_title.tk-nimbus-sans-extended',
+        EmailAddressError: '#email_address-error'
 
     },
     'nastygal.com': { 
@@ -83,8 +84,14 @@ const selectors: SelectorBrandMap = {
 
       assertKeyWorkerFormIsPresent (text:string) {
         const KeyWorkerForm = selectors[brand].KeyWorkerForm;
-        cy.get(KeyWorkerForm).should('be.visible').and('include.text', text);;
+        cy.get(KeyWorkerForm).should('be.visible').and('include.text', text);
       },
+
+      assertKeyWorkeErrorMessagePresent (text:string) {
+        const EmailAddressError = selectors[brand].EmailAddressError;
+        cy.get(EmailAddressError).should('be.visible').and('include.text', text);
+
+      }
     };
   }
   export default new KeyWorkerPage();

@@ -813,6 +813,7 @@ if (brand == 'boohooman.com' && locale == 'UK') {
         keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
         keyWorkerPage.actions.chooseDate('19', assertionText.DOBmonth[language], '2000');
         keyWorkerPage.click.signupButton();
+        keyWorkerPage.assertions.assertKeyWorkeErrorMessagePresent(assertionText.EmailAddressError[language])
       }
       )
 

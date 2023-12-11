@@ -1356,6 +1356,19 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+  EmailAddressError: TranslationMap = {
+    EN: 'This field is required.',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
   boohooMANACTIVE: TranslationMap = {
     EN: 'boohooMAN ACTIVE',
     NL: 'boohooMAN ACTIVE',

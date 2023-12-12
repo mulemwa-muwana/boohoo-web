@@ -384,6 +384,7 @@ const selectors: SelectorBrandMap = {
     changeShippingMethod: '.minicheckout-shipping-wrapper a[class*="js-edit-shipping"]',
     shippingCheckbox: '.useAsBillingAddress.form-row-checkbox',
     paymentMethodCreditCard: '[for*="CREDIT_CARD"]',
+    paymentMethodCreditCardUS: '[for="is-CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodKlarnaNl: '[for="is-Klarna"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
@@ -432,12 +433,17 @@ const selectors: SelectorBrandMap = {
     // Credit card section
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
     creditCardFieldsCardNumber: '[id^="adyen-checkout-encryptedCardNumber"]',
+    creditCardFieldsCardNumberUS: '#cc_cardNumber',
     creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: '[id^="adyen-checkout-encryptedExpiryDate"]',
+    creditCardFieldsExpirationDateUS: '#cc_expDate',
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: '[id^="adyen-checkout-encryptedSecurityCode"]',
+    creditCardFieldsSecurityCodeUS: '[name*=dwfrm_billing_paymentMethods_creditCard_cvn]',
     creditCardFieldsCardOwner: '.adyen-checkout__card__holderName .adyen-checkout__input, input.adyen-checkout__input',
+    creditCardFieldsCardOwnerUS: '#dwfrm_billing_paymentMethods_creditCard_owner',
     paynowBtnCC: '#billingSubmitButton',
+    paynowBtnCCUS: '#billingSubmitButton',
     clickAddNewCard: "[class='b-button m-info m-width_full ']",
   },
   'karenmillen.com': {
@@ -915,7 +921,7 @@ class BillingPage implements AbstractPage {
       });
       cy.get(creditCardFieldsCardNumberUS).type(cardNo);
       cy.get(creditCardFieldsCardOwnerUS).type(cardOwner);
-      if ((brand == 'karenmillen.com' || brand == 'misspap.com') && locale == 'US') {
+      if ((brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'boohooman.com') && locale == 'US') {
         cy.get(creditCardFieldsExpirationDateUS).type(date, { force: true });
       } else {
         cy.get(creditCardFieldsExpirationMonthUS).select('12');

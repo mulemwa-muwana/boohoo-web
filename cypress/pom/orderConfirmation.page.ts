@@ -93,7 +93,9 @@ const selectors: SelectorBrandMap = {
     orderTotalIsVisible:'.order-value',
     thatPasswordFieldForGuestUserIsDisplayed:'[id^="dwfrm_profile_login_password"]:not([class*="passwordconfirm"]',
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'[id^="dwfrm_profile_login_passwordconfirm"]',
-    closePopUP: '[id^=WLbanner] > a'
+    closePopUP: '[id^=WLbanner] > a',
+    splitShippingMethodDetail: '.order-shipping-method > .orderdetails-content',
+    orderItemsSplitShippingDetails: '.orderdetails-shipments'
   },
   'karenmillen.com': {
     emailIsDisplayed:'.confirmation-message-info',
@@ -259,7 +261,26 @@ class OrderConfirmation implements AbstractPage {
     assertThatConfirmPasswordFieldForGuestUserIsDisplayed () {
       const thatConfirmPasswordFieldForGuestUserIsDisplayed = selectors[variables.brand].thatConfirmPasswordFieldForGuestUserIsDisplayed;
       cy.get(thatConfirmPasswordFieldForGuestUserIsDisplayed).should('be.visible');
-    }
+    },
+    assertUkOnlyShippingMethod (ukSplitShippingMethod: string ) {
+      const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;
+      cy.log('To be completed: under splitShippingMethodDetail, UK split shipping method should be present, but functionality is currently disabled');
+    },
+    assertUkOnlyShippingFrom ( ) {
+      const orderItemsSplitShippingDetails = selectors[brand].orderItemsSplitShippingDetails;
+      cy.log('To be completed: under orderItemsSplitShippingDetails, shipping from UK should be present, but functionality is currently disabled');
+    },
+
+    assertUSAndUkShippingMethod () {
+      const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;
+      cy.log('To be completed: under splitShippingMethodDetail, UK and US split shipping methods should be present, but functionality is currently disabled');
+    },
+
+    assertUSAndUkShippingFrom ( ) {
+      const orderItemsSplitShippingDetails = selectors[brand].orderItemsSplitShippingDetails;
+      cy.log('To be completed: under orderItemsSplitShippingDetails, shipping from UK and US should be present, but functionality is currently disabled');
+    },
+
   };
 
 }

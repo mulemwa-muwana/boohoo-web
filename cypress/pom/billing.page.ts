@@ -107,7 +107,7 @@ const selectors: SelectorBrandMap = {
   },
   'nastygal.com': {
     dateError: '#dwfrm_profile_customer_yearOfBirth-error',
-    payButtonLocator: '[id$="by_card-purchase-review-continue-button"]',
+    payButtonLocator: '[id="buy_button__text"]',
     klarnaPayNowAU: '#payment-details-KlarnaAU > div > div.b-payment_accordion-submit > div > div > button',
     klarnaPayNowIE: '#payment-details-KlarnaIE > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     klarnaPayNow: '#payment-details-KlarnaUK button',

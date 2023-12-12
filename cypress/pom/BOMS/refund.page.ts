@@ -7,7 +7,7 @@ class RefundOrder {
     cy.get('#showActivities___BV_modal_content_', { log: false }).should('not.exist');
     cy.readFile(`cypress/artefacts/orderCreation/${brandName}/adyen-OrderRefund.json`).then(data => {
       cy.log(data.orderNumber);
-      cy.wait(100000);
+      cy.wait(120000);
       cy.get('input[dusk="sidebar-search-input"]', { log: true }).type(data.orderNumber + '{enter}', { log: false });
     });
     cy.get('[class="row kt-widget4__item"]:eq(1)').click();

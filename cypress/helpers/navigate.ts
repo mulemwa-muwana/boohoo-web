@@ -10,6 +10,9 @@ import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import cartPage from '../pom/cart.page';
 import plpPage from '../pom/plp.page';
 import { locale, brand, url, sku, language } from 'cypress/support/e2e';
+import checkoutLoginPage from '../pom/checkoutLogin.page';
+import billingPage from '../pom/billing.page';
+import cards from './cards';
 import keyWorkerPage from 'cypress/pom/keyWorker.page';
 
 
@@ -229,10 +232,28 @@ class Navigate {
 
   }
 
-  toOrderConfirmationPageWithSplitShippingSku() {
-    cy.log('I am on order confirmation page with split shipping SKU');
-
-    // To be completed
+  toOrderConfirmationPageWithSplitShippingSku (sku1: string, sku2?: string) { // The second sku is optional as some test cases require 1 and others 2
+    HomePage.actions.findItemUsingSKU(sku1);
+    PdpPage.click.addToCart();
+    cy.wait(2000);
+    if (sku2) {
+      HomePage.goto();
+      HomePage.actions.findItemUsingSKU(sku2);
+      PdpPage.click.addToCart();
+      cy.wait(2000);
+    }
+    cartPage.goto();
+    cartPage.click.proceedToCheckoutCart();
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      checkoutLoginPage.actions.userEmailField(credentials.username);
+      checkoutLoginPage.actions.passwordField(credentials.password);
+    });
+    checkoutLoginPage.click.continueAsRegisteredUser();
+    cy.wait(2000);
+    shippingPage.click.proceedToBilling();
+    cy.wait(2000);
+    billingPage.actions.selectCreditCardUS(cards.masterUS.cardNo, cards.masterUS.owner, cards.masterUS.date, cards.masterUS.code);
+    cy.url({ timeout: 12000 }).should('include', 'order-confirmation');
   }
 
   clearSessionCookies() {

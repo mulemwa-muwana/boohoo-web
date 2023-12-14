@@ -6,7 +6,8 @@ import homePage from 'cypress/pom/home.page';
 import myaccountPage from 'cypress/pom/myaccount.page';
 import pdpPage from 'cypress/pom/pdp.page';
 import shippingPage from 'cypress/pom/shipping.page';
-import { brand, language, locale } from 'cypress/support/e2e';
+import { brand, locale, language } from 'cypress/support/e2e';
+import orderConfirmationPage from 'cypress/pom/orderConfirmation.page';
 
 const includedSplitShippingBrandsAndLocales: boolean = brand == 'boohooman.com' && locale == 'US';
 const UKSKU = 'BMM01020-100-35';
@@ -86,43 +87,32 @@ describe('Shipping Page', function () {
 });
 
 describe('Order Confirmation Page - Shipping Section', function () {
+  beforeEach(function () {
+    if (!includedSplitShippingBrandsAndLocales) {
+      this.skip();
+    }
+    homePage.goto();
+  });
   it('If only US items are ordered, US shipping method shuld be displayed with correct price (static)', function () {
         
     // Above ordered items message: ''Shipping from the US - <estimated delivery>' is displayed
         
-    if (!includedSplitShippingBrandsAndLocales) {
-      this.skip();
-    }
-    Navigate.toOrderConfirmationPageWithSplitShippingSku();
+    Navigate.toOrderConfirmationPageWithSplitShippingSku(USSKU);
         
     // To be completed by Tejaswi...
 
   });
 
   it('If only UK items are ordered, UK shipping method shuld be displayed with correct price (static)', function () {
-        
-    // Above ordered items message: ''Shipping from the UK- <estimated delivery>' is displayed
-
-    if (!includedSplitShippingBrandsAndLocales) {
-      this.skip();
-    }
-    Navigate.toOrderConfirmationPageWithSplitShippingSku();
-        
-    // To be completed by Muli
-
+    Navigate.toOrderConfirmationPageWithSplitShippingSku(UKSKU);
+    orderConfirmationPage.assertions.assertUkOnlyShippingMethod(assertionText.assertUkOnlySplitShippingMethod[language]);
+    orderConfirmationPage.assertions.assertUkOnlyShippingFrom();
   });
 
   it('If UK and US items are ordered, US and then UK shipping method should be displayed with correct price (static)', function () {
-        
-    /* Above ordered items message:
-        ''Shipping from the US- <estimated delivery>' is displayed, below ''Shipping from the UK- <estimated delivery>' message.
-        */
-    if (!includedSplitShippingBrandsAndLocales) {
-      this.skip();
-    }
-    Navigate.toOrderConfirmationPageWithSplitShippingSku();
-        
-    // To be completed by anyone
+    Navigate.toOrderConfirmationPageWithSplitShippingSku(UKSKU, USSKU);
+    orderConfirmationPage.assertions.assertUSAndUkShippingMethod();
+    orderConfirmationPage.assertions.assertUSAndUkShippingFrom();
   });
 
 });

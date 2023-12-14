@@ -2181,6 +2181,21 @@ class AssertionText {
     ES: '',
   };
 
+  assertUSOnlySplitShippingMethod: TranslationMap = {
+    EN: '',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+  
+
 }
 
 export default new AssertionText();

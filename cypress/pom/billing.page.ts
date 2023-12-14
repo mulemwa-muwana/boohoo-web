@@ -919,7 +919,9 @@ class BillingPage implements AbstractPage {
           cy.get(saveCards).click({ force: true });
         }
       });
+      cy.wait(1000);
       cy.get(creditCardFieldsCardNumberUS).type(cardNo);
+      cy.wait(1000);
       cy.get(creditCardFieldsCardOwnerUS).type(cardOwner);
       if ((brand == 'karenmillen.com' || brand == 'misspap.com' || brand == 'boohooman.com') && locale == 'US') {
         cy.get(creditCardFieldsExpirationDateUS).type(date, { force: true });

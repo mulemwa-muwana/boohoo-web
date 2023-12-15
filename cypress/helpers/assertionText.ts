@@ -2181,6 +2181,34 @@ class AssertionText {
     ES: '',
   };
 
+  assertBmanInPostNotAvailable: TranslationMap = {
+    EN: 'Locker Collection',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
+  assertBmanAsdaPudoNotAvailable: TranslationMap = {
+    EN: 'Asda Next Day',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
 }
 
 export default new AssertionText();

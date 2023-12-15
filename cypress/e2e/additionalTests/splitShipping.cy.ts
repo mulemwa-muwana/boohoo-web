@@ -1,3 +1,4 @@
+import assertionText from 'cypress/helpers/assertionText';
 import Navigate from 'cypress/helpers/navigate';
 import cartPage from 'cypress/pom/cart.page';
 import checkoutLoginPage from 'cypress/pom/checkoutLogin.page';
@@ -7,7 +8,6 @@ import pdpPage from 'cypress/pom/pdp.page';
 import shippingPage from 'cypress/pom/shipping.page';
 import { brand, locale, language } from 'cypress/support/e2e';
 import orderConfirmationPage from 'cypress/pom/orderConfirmation.page';
-import assertionText from 'cypress/helpers/assertionText';
 
 const includedSplitShippingBrandsAndLocales: boolean = brand == 'boohooman.com' && locale == 'US';
 const UKSKU = 'BMM01020-100-35';
@@ -80,10 +80,9 @@ describe('Shipping Page', function () {
         
     if (!includedSplitShippingBrandsAndLocales) {
       this.skip();
-    }
-        
-    // To be completed by Muli
-
+    }  
+    shippingPage.assertions.assertBmanInPostNotAvailable(assertionText.assertBmanInPostNotAvailable[language]);
+    shippingPage.assertions.assertBmanAsdaPudoNotAvailable(assertionText.assertBmanAsdaPudoNotAvailable[language]);
   });
 });
 

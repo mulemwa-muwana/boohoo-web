@@ -648,6 +648,8 @@ describe('Home Page', function () {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
           } else if (brand == 'nastygal.com' && (locale == 'IE' || locale=='EU' || locale=='CA')) {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
+          } else if (brand== 'misspap.com'&& locale=='UK') {
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyDecember2023[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
           }
@@ -781,41 +783,42 @@ describe('Home Page', function () {
       }
     });
   });
-// Key Worker test cases
-if (brand == 'boohooman.com' && locale == 'UK') {
 
-  describe('KeyWorkerDiscount Tests', () => {
+  // Key Worker test cases
+  if (brand == 'boohooman.com' && locale == 'UK') {
 
-    // This will execute before every single test, we're just going to the baseURL.
-    beforeEach(() => {
-      navigate.keyWorkerPage();
+    describe('KeyWorkerDiscount Tests', () => {
+
+      // This will execute before every single test, we're just going to the baseURL.
+      beforeEach(() => {
+        navigate.keyWorkerPage();
+      });
+
+      it('CYP-897 Verify that key worker link opens & user can start a subscription', function () {
+        keyWorkerPage.assertions.assertKeyWorkerFormIsPresent(assertionText.KeyWorkerForm[language]);
+        cy.fixture('newuser').then((credentials) => {
+          keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
+          keyWorkerPage.actions.EnterEmail(credentials.username);
+          keyWorkerPage.actions.chooseDate('24', assertionText.DOBmonth[language], '2000');
+          keyWorkerPage.click.signupButton();
+
+        }
+        );
+
+      });
+
+      it('CYP-898 Verify that key worker link opens & user can not Subscribe with empty data ', function () {
+        cy.fixture('newuser').then((credentials) => {
+          keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
+          keyWorkerPage.actions.chooseDate('19', assertionText.DOBmonth[language], '2000');
+          keyWorkerPage.click.signupButton();
+          keyWorkerPage.assertions.assertKeyWorkeErrorMessagePresent(assertionText.EmailAddressError[language]);
+        }
+        );
+
+      });
     });
-
-    it('CYP-897 Verify that key worker link opens & user can start a subscription', function () {
-      keyWorkerPage.assertions.assertKeyWorkerFormIsPresent(assertionText.KeyWorkerForm[language]);
-      cy.fixture('newuser').then((credentials) => {
-        keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
-        keyWorkerPage.actions.EnterEmail(credentials.username);
-        keyWorkerPage.actions.chooseDate('24', assertionText.DOBmonth[language], '2000');
-        keyWorkerPage.click.signupButton();
-
-      }
-      )
-
-    })
-
-    it('CYP-898 Verify that key worker link opens & user can not Subscribe with empty data ', function () {
-      cy.fixture('newuser').then((credentials) => {
-        keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
-        keyWorkerPage.actions.chooseDate('19', assertionText.DOBmonth[language], '2000');
-        keyWorkerPage.click.signupButton();
-        keyWorkerPage.assertions.assertKeyWorkeErrorMessagePresent(assertionText.EmailAddressError[language])
-      }
-      )
-
-    })
-  })
-};
+  }
   describe('MANGAMING Slot', ()=> {
     it('CYP-220 Verify that Mangaming slot is present and clicking on it displays related content', function () {
       if (brand == 'boohooman.com' && locale != 'UK') {

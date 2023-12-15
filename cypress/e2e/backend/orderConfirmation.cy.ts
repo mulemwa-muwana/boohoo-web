@@ -42,7 +42,7 @@ describe('Boohoo order placement', () => {
       ShippingPage.actions.countyField(localeAddress.county);
     }
     ShippingPage.click.proceedToBilling();
-    shippingPage.click.proceedToBillingVerification()
+    shippingPage.click.proceedToBillingVerification();
     BillingPage.actions.waitPageToLoad();
   });
 

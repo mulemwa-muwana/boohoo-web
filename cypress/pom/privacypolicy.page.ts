@@ -34,7 +34,7 @@ const selectors: SelectorBrandMap = {
     privacyNoticyPageTitle: 'h1 > strong'
   },
   'misspap.com': {
-    privacyNoticyPageTitle: 'h1 > strong'
+    privacyNoticyPageTitle: '.content-page-wrapper > :nth-child(1)'
   },
   'boohoomena.com': {
     privacyNoticyPageTitle: 'h1 > strong'

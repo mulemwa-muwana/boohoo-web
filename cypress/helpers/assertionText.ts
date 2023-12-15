@@ -295,7 +295,7 @@ class AssertionText {
   };
 
   PrivacyNoticeMisspap: TranslationMap = {
-    EN: 'Privacy & Security',
+    EN: 'Privacy Notice',
     FR: 'Avis de confidentialité',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
@@ -1258,7 +1258,8 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: ''
-  }
+  };
+
   sustainability: TranslationMap = {
     EN: 'Sustainability',
     NL: 'Duurzaamheid',
@@ -1356,6 +1357,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
   EmailAddressError: TranslationMap = {
     EN: 'This field is required.',
     NL: '',
@@ -1369,6 +1371,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
   boohooMANACTIVE: TranslationMap = {
     EN: 'boohooMAN ACTIVE',
     NL: 'boohooMAN ACTIVE',
@@ -1497,6 +1500,20 @@ class AssertionText {
 
   privacyPolicyAugust2022: TranslationMap = {
     EN: 'Privacy Notice - Updated August 2022',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  privacyPolicyDecember2023: TranslationMap = {
+    EN: 'Privacy Notice - Updated December 2023',
     NL: '',
     DE: '',
     FR: '',

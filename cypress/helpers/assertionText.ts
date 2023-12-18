@@ -307,6 +307,19 @@ class AssertionText {
     IT: 'Informativa sulla Privacy',
     ES: 'Aviso de Privacidad'
   };
+  PrivacyNoticeMisspapAUIE: TranslationMap = {
+    EN: 'Privacy & Security',
+    FR: 'Avis de confidentialité',
+    NL: 'Privacyverklaring',
+    DE: 'Datenschutzrichtlinien',
+    DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
+    FI: 'Tietosuojailmoitus',
+    NO: 'Personvernerklæring',
+    SE: '\n                Integritetspolicy\n            ',
+    IL: 'הודעת פרטיות',
+    IT: 'Informativa sulla Privacy',
+    ES: 'Aviso de Privacidad'
+  };
 
   PrivacyPolicyH1Arcadia: TranslationMap = {
     EN: 'Privacy',

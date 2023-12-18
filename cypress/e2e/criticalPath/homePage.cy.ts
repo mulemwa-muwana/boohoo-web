@@ -149,9 +149,12 @@ describe('Home Page', function () {
         if (brand == 'boohooman.com') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1BHM[language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyArcadiaURL[language]
-        } else if (brand == 'misspap.com') {
+        } else if (brand == 'misspap.com' && locale == 'UK') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyNoticeMisspap[language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[language]
+        } else if (brand == 'misspap.com' && (locale == 'IE' || locale == 'AU')) {
+          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyNoticeMisspapAUIE[language]);
+          PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[language] 
         } else if (brand == 'boohoo.com' || brand == 'nastygal.com' || isSiteGenesisBrand) {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[language]
@@ -644,11 +647,11 @@ describe('Home Page', function () {
         if (brand=='karenmillen.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated July 2023');
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
-          if ((brand == 'misspap.com' || brand == 'nastygal.com') && locale == 'US') {
+          if ( brand == 'nastygal.com' && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
           } else if (brand == 'nastygal.com' && (locale == 'IE' || locale=='EU' || locale=='CA')) {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
-          } else if (brand== 'misspap.com'&& locale=='UK') {
+          } else if (brand== 'misspap.com'&& (locale =='UK' || locale == 'US')) {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyDecember2023[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);

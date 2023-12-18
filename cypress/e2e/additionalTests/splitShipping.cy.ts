@@ -1,3 +1,4 @@
+import assertionText from 'cypress/helpers/assertionText';
 import Navigate from 'cypress/helpers/navigate';
 import cartPage from 'cypress/pom/cart.page';
 import checkoutLoginPage from 'cypress/pom/checkoutLogin.page';
@@ -7,7 +8,6 @@ import pdpPage from 'cypress/pom/pdp.page';
 import shippingPage from 'cypress/pom/shipping.page';
 import { brand, locale, language } from 'cypress/support/e2e';
 import orderConfirmationPage from 'cypress/pom/orderConfirmation.page';
-import assertionText from 'cypress/helpers/assertionText';
 
 const includedSplitShippingBrandsAndLocales: boolean = brand == 'boohooman.com' && locale == 'US';
 const UKSKU = 'BMM01020-100-35';
@@ -80,10 +80,9 @@ describe('Shipping Page', function () {
         
     if (!includedSplitShippingBrandsAndLocales) {
       this.skip();
-    }
-        
-    // To be completed by Muli
-
+    }  
+    shippingPage.assertions.assertBmanInPostNotAvailable(assertionText.assertBmanInPostNotAvailable[language]);
+    shippingPage.assertions.assertBmanAsdaPudoNotAvailable(assertionText.assertBmanAsdaPudoNotAvailable[language]);
   });
 });
 
@@ -98,7 +97,7 @@ describe('Order Confirmation Page - Shipping Section', function () {
   it('If only US items are ordered, US shipping method shuld be displayed with correct price (static)', function () {
     Navigate.toOrderConfirmationPageWithSplitShippingSku(USSKU);
     orderConfirmationPage.assertions.assertUSOnlyShippingMethod(assertionText.assertUSOnlySplitShippingMethod[language]);
-    orderConfirmationPage.assertions.assertUSOnlyShippingFrom();
+    orderConfirmationPage.assertions.assertUSOnlyShippingFrom(assertionText.assertUSOnlyShippingFrom[language]);
  });
 
   it('If only UK items are ordered, UK shipping method shuld be displayed with correct price (static)', function () {

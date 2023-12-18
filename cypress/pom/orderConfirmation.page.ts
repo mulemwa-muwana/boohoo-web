@@ -266,17 +266,17 @@ class OrderConfirmation implements AbstractPage {
       const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;
       cy.log('To be completed: under splitShippingMethodDetail, UK split shipping method should be present, but functionality is currently disabled');
     },
-    assertUSOnlyShippingMethod (usSplitShippingMethod: string ) {
-      const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;
-      cy.log('To be completed: under splitShippingMethodDetail, US split shipping method should be present, but functionality is currently disabled');
+    assertUSOnlyShippingMethod (text: string ) {
+      const splitShippingMethodDetail = selectors[brand].splitShippingMethodDetail;
+      cy.get(splitShippingMethodDetail).should('contain.text',text);
     },
     assertUkOnlyShippingFrom ( ) {
       const orderItemsSplitShippingDetails = selectors[brand].orderItemsSplitShippingDetails;
       cy.log('To be completed: under orderItemsSplitShippingDetails, shipping from UK should be present, but functionality is currently disabled');
     },
-    assertUSOnlyShippingFrom ( ) {
+    assertUSOnlyShippingFrom (text: string) {
       const orderItemsSplitShippingDetails = selectors[brand].orderItemsSplitShippingDetails;
-      cy.log('shipping from the US should be present');
+      cy.get(orderItemsSplitShippingDetails).should('contain.text',text);
     },
     assertUSAndUkShippingMethod () {
       const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;

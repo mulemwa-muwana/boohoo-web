@@ -420,7 +420,8 @@ const selectors: SelectorBrandMap = {
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
     successMark:'.field-wrapper-w3w-valid',
-    helpAndInfoLink: '.checkout-help-link'
+    helpAndInfoLink: '.checkout-help-link',
+    shippingMethodsList: '.js-shipping-method-list'
   },
   'karenmillen.com': {
     promoCodeBtn: 'button[data-tau="coupon_submit"]',
@@ -1521,7 +1522,15 @@ class ShippingPage implements AbstractPage {
           expect(countryList).to.include(country);
         });
       });
-    }
+    },
+    assertBmanInPostNotAvailable (assertionText: string) {
+      const shippingMethodsList = selectors[brand].shippingMethodsList;
+      cy.get(shippingMethodsList).should('not.contain.text', assertionText);
+    },
+    assertBmanAsdaPudoNotAvailable (assertionText: string) {
+      const shippingMethodsList = selectors[brand].shippingMethodsList;
+      cy.get(shippingMethodsList).should('not.contain.text', assertionText);
+    },
   };
 }
 

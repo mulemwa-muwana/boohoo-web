@@ -2181,8 +2181,8 @@ class AssertionText {
     ES: '',
   };
 
-  assertUSOnlySplitShippingMethod: TranslationMap = {
-    EN: '',
+  assertBmanInPostNotAvailable: TranslationMap = {
+    EN: 'Locker Collection',
     NL: '',
     DE: '',
     FR: '',
@@ -2194,8 +2194,48 @@ class AssertionText {
     IT: '',
     ES: '',
   };
-  
 
+  assertBmanAsdaPudoNotAvailable: TranslationMap = {
+    EN: 'Asda Next Day',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
+  assertUSOnlySplitShippingMethod: TranslationMap = {
+    EN: '\n\nUS\nStandard Delivery\n\n\n',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
+  assertUSOnlyShippingFrom: TranslationMap = {
+    EN: 'Shipping from the US',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
 }
 
 export default new AssertionText();

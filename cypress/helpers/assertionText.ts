@@ -2224,7 +2224,7 @@ class AssertionText {
   };
 
   assertUSOnlyShippingFrom: TranslationMap = {
-    EN: '\n\n\nShipping from the US\n\n— Up to 4 business',
+    EN: '\nShipping from the US\n\n— Up to 4 business days\n\n',
     NL: '',
     DE: '',
     FR: '',

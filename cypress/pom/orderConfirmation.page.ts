@@ -95,7 +95,9 @@ const selectors: SelectorBrandMap = {
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'[id^="dwfrm_profile_login_passwordconfirm"]',
     closePopUP: '[id^=WLbanner] > a',
     splitShippingMethodDetail: '.order-shipping-method > .orderdetails-content',
-    orderItemsSplitShippingDetails: '.orderdetails-shipments'
+    orderItemsSplitShippingDetails: '.orderdetails-shipments',
+    usOrderItemSplitShippingDeatils: '.checkout-minicart-split-title'
+
   },
   'karenmillen.com': {
     emailIsDisplayed:'.confirmation-message-info',
@@ -275,8 +277,8 @@ class OrderConfirmation implements AbstractPage {
       cy.log('To be completed: under orderItemsSplitShippingDetails, shipping from UK should be present, but functionality is currently disabled');
     },
     assertUSOnlyShippingFrom (text: string) {
-      const orderItemsSplitShippingDetails = selectors[brand].orderItemsSplitShippingDetails;
-      cy.get(orderItemsSplitShippingDetails).should('contain.text',text);
+      const usOrderItemSplitShippingDeatils = selectors[brand].usOrderItemSplitShippingDeatils;
+      cy.get(usOrderItemSplitShippingDeatils).should('contain.text',text);
     },
     assertUSAndUkShippingMethod () {
       const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;

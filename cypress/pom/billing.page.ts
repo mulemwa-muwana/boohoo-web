@@ -60,7 +60,7 @@ const selectors: SelectorBrandMap = {
     billingAddressCountry: '',
     billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
     email: '#dwfrm_billing_contactInfoFields_email',
-    paymentMethodAfterPay: '[for="is-AFTERPAY"]',
+    paymentMethodAfterPay: '#payment-button-AFTERPAY',
     billingAddressFromBookAU: 'button[class="b-button m-link m-width_full"]',
     klarnaContinueCTA: 'button[style*="geometricprecision"]',
     klarnaIFrame: '#klarna-apf-iframe',
@@ -155,7 +155,7 @@ const selectors: SelectorBrandMap = {
     dobForm: 'div[class="b-form_section m-required m-wrapper"]',
     billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
     email: '#dwfrm_billing_contactInfoFields_email',
-    paymentMethodAfterPay: '[for="is-AFTERPAY"]',
+    paymentMethodAfterPay: '#payment-button-AFTERPAY',
     klarnaContinueCTA: 'button[style*="geometricprecision"]',
     klarnaIFrame: '#klarna-apf-iframe',
     klarnaIFrameContinueCTA: '#onContinue',
@@ -1487,11 +1487,7 @@ class BillingPage implements AbstractPage {
 
     assertPaymentMethodClearPayIsDisplayed () {
       const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
-      if (locale == 'UK') {
-        cy.get(paymentMethodClearPay).should('be.visible');
-      } else {
-        this.skip();
-      }
+      cy.get(paymentMethodClearPay).should('be.visible');
     },
 
     assertPaymentMethodAfterPayIsDisplayed () {

@@ -32,14 +32,14 @@ export default defineConfig({
   },
 
   e2e: {
-    async setupNodeEvents(on, config) {
+    async setupNodeEvents (on, config) {
       plugins(on);
       (await import('dotenv')).config({ path: '../../../.env' });
 
       config.env.JIRA_USERNAME = process.env.CYPRESS_JIRA_USERNAME,
-        config.env.JIRA_API_TOKEN = process.env.CYPRESS_JIRA_API_TOKEN,
-        config.env.XRAY_CLIENT_ID = process.env.CYPRESS_XRAY_CLIENT_ID,
-        config.env.XRAY_CLIENT_SECRET = process.env.CYPRESS_XRAY_CLIENT_SECRET;
+      config.env.JIRA_API_TOKEN = process.env.CYPRESS_JIRA_API_TOKEN,
+      config.env.XRAY_CLIENT_ID = process.env.CYPRESS_XRAY_CLIENT_ID,
+      config.env.XRAY_CLIENT_SECRET = process.env.CYPRESS_XRAY_CLIENT_SECRET;
 
       const device = 'Desktop';
       const currentDateTime: Date = new Date();
@@ -77,8 +77,8 @@ export default defineConfig({
         passesRequired: 2,
       },
 
-      // you must also explicitly set openMode and runMode to
-      // either true or false when using experimental retries
+      // You must also explicitly set openMode and runMode to
+      // Either true or false when using experimental retries
   
       // You must also explicitly set openMode and runMode to
       // Either true or false when using experimental retries

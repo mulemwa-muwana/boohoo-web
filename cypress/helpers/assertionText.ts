@@ -295,6 +295,19 @@ class AssertionText {
   };
 
   PrivacyNoticeMisspap: TranslationMap = {
+    EN: 'Privacy Notice',
+    FR: 'Avis de confidentialité',
+    NL: 'Privacyverklaring',
+    DE: 'Datenschutzrichtlinien',
+    DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
+    FI: 'Tietosuojailmoitus',
+    NO: 'Personvernerklæring',
+    SE: '\n                Integritetspolicy\n            ',
+    IL: 'הודעת פרטיות',
+    IT: 'Informativa sulla Privacy',
+    ES: 'Aviso de Privacidad'
+  };
+  PrivacyNoticeMisspapAUIE: TranslationMap = {
     EN: 'Privacy & Security',
     FR: 'Avis de confidentialité',
     NL: 'Privacyverklaring',
@@ -1258,7 +1271,8 @@ class AssertionText {
     IL: '',
     IT: '',
     ES: ''
-  }
+  };
+
   sustainability: TranslationMap = {
     EN: 'Sustainability',
     NL: 'Duurzaamheid',
@@ -1356,6 +1370,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
   EmailAddressError: TranslationMap = {
     EN: 'This field is required.',
     NL: '',
@@ -1369,6 +1384,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
   boohooMANACTIVE: TranslationMap = {
     EN: 'boohooMAN ACTIVE',
     NL: 'boohooMAN ACTIVE',
@@ -1497,6 +1513,20 @@ class AssertionText {
 
   privacyPolicyAugust2022: TranslationMap = {
     EN: 'Privacy Notice - Updated August 2022',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  privacyPolicyDecember2023: TranslationMap = {
+    EN: 'Privacy Notice - Updated December 2023',
     NL: '',
     DE: '',
     FR: '',
@@ -2209,6 +2239,33 @@ class AssertionText {
     ES: '',
   };
 
+  assertUSOnlySplitShippingMethod: TranslationMap = {
+    EN: '\n\nUS\nStandard Delivery\n\n\n',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
+
+  assertUSOnlyShippingFrom: TranslationMap = {
+    EN: '\nShipping from the US\n\n',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: '',
+  };
 }
 
 export default new AssertionText();

@@ -497,7 +497,7 @@ class HomePage implements AbstractPage {
       const acceptBtn = selectors[brand].acceptBtn;
       cy.get(acceptBtn).click({ force : true });
     },
-    removeGiftCard(){
+    removeGiftCard () {
       const removeBtn = selectors[brand].removeBtn;
       cy.get(removeBtn).click({ force : true });
 
@@ -587,7 +587,7 @@ class HomePage implements AbstractPage {
         cy.get(countryList).contains('IE €').click({force: true});
       }
     },
-    fillGiftCardForm(user: string) {
+    fillGiftCardForm (user: string) {
       const chooseAmount = selectors[brand].chooseAmount;
       const recipientEmail = selectors[brand].recipientEmail;
       const confirmRecipientEmail = selectors[brand].confirmRecipientEmail;

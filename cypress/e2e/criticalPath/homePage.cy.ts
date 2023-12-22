@@ -149,9 +149,12 @@ describe('Home Page', function () {
         if (brand == 'boohooman.com') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1BHM[language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyArcadiaURL[language]
-        } else if (brand == 'misspap.com') {
+        } else if (brand == 'misspap.com' && locale == 'UK') {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyNoticeMisspap[language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[language]
+        } else if (brand == 'misspap.com' && (locale == 'IE' || locale == 'AU')) {
+          PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyNoticeMisspapAUIE[language]);
+          PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[language] 
         } else if (brand == 'boohoo.com' || brand == 'nastygal.com' || isSiteGenesisBrand) {
           PrivacyPolicyPage.assertions.assertPrivacyNoticyPageOpens(assertionText.PrivacyPolicyH1[language]);
           PrivacyPolicyPage.assertions.assertOnPage('privacy-notice'); //  AssertionText.PrivacyPolicyURL[language]
@@ -644,10 +647,12 @@ describe('Home Page', function () {
         if (brand=='karenmillen.com') {
           GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - updated July 2023');
         } else if ((brand == 'boohoo.com' && !australianLocales) || julyPrivacyPolicyBrands.includes(brand)) {
-          if ((brand == 'misspap.com' || brand == 'nastygal.com') && locale == 'US') {
+          if ( brand == 'nastygal.com' && locale == 'US') {
             GlobalFooter.actions.checkFooterLinkByText('Privacy Notice - Updated January 2023');
           } else if (brand == 'nastygal.com' && (locale == 'IE' || locale=='EU' || locale=='CA')) {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
+          } else if (brand== 'misspap.com'&& (locale =='UK' || locale == 'US')) {
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyDecember2023[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
           }
@@ -781,41 +786,42 @@ describe('Home Page', function () {
       }
     });
   });
-// Key Worker test cases
-if (brand == 'boohooman.com' && locale == 'UK') {
 
-  describe('KeyWorkerDiscount Tests', () => {
+  // Key Worker test cases
+  if (brand == 'boohooman.com' && locale == 'UK') {
 
-    // This will execute before every single test, we're just going to the baseURL.
-    beforeEach(() => {
-      navigate.keyWorkerPage();
+    describe('KeyWorkerDiscount Tests', () => {
+
+      // This will execute before every single test, we're just going to the baseURL.
+      beforeEach(() => {
+        navigate.keyWorkerPage();
+      });
+
+      it('CYP-897 Verify that key worker link opens & user can start a subscription', function () {
+        keyWorkerPage.assertions.assertKeyWorkerFormIsPresent(assertionText.KeyWorkerForm[language]);
+        cy.fixture('newuser').then((credentials) => {
+          keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
+          keyWorkerPage.actions.EnterEmail(credentials.username);
+          keyWorkerPage.actions.chooseDate('24', assertionText.DOBmonth[language], '2000');
+          keyWorkerPage.click.signupButton();
+
+        }
+        );
+
+      });
+
+      it('CYP-898 Verify that key worker link opens & user can not Subscribe with empty data ', function () {
+        cy.fixture('newuser').then((credentials) => {
+          keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
+          keyWorkerPage.actions.chooseDate('19', assertionText.DOBmonth[language], '2000');
+          keyWorkerPage.click.signupButton();
+          keyWorkerPage.assertions.assertKeyWorkeErrorMessagePresent(assertionText.EmailAddressError[language]);
+        }
+        );
+
+      });
     });
-
-    it('CYP-897 Verify that key worker link opens & user can start a subscription', function () {
-      keyWorkerPage.assertions.assertKeyWorkerFormIsPresent(assertionText.KeyWorkerForm[language]);
-      cy.fixture('newuser').then((credentials) => {
-        keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
-        keyWorkerPage.actions.EnterEmail(credentials.username);
-        keyWorkerPage.actions.chooseDate('24', assertionText.DOBmonth[language], '2000');
-        keyWorkerPage.click.signupButton();
-
-      }
-      )
-
-    })
-
-    it('CYP-898 Verify that key worker link opens & user can not Subscribe with empty data ', function () {
-      cy.fixture('newuser').then((credentials) => {
-        keyWorkerPage.actions.EnterData(credentials.firstname, credentials.lastname);
-        keyWorkerPage.actions.chooseDate('19', assertionText.DOBmonth[language], '2000');
-        keyWorkerPage.click.signupButton();
-        keyWorkerPage.assertions.assertKeyWorkeErrorMessagePresent(assertionText.EmailAddressError[language])
-      }
-      )
-
-    })
-  })
-};
+  }
   describe('MANGAMING Slot', ()=> {
     it('CYP-220 Verify that Mangaming slot is present and clicking on it displays related content', function () {
       if (brand == 'boohooman.com' && locale != 'UK') {

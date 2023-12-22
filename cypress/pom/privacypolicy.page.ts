@@ -34,7 +34,8 @@ const selectors: SelectorBrandMap = {
     privacyNoticyPageTitle: 'h1 > strong'
   },
   'misspap.com': {
-    privacyNoticyPageTitle: 'h1 > strong'
+    privacyNoticyPageTitleAUIE: 'h1 > strong',
+    privacyNoticyPageTitle: '.content-page-wrapper > :nth-child(1)'
   },
   'boohoomena.com': {
     privacyNoticyPageTitle: 'h1 > strong'
@@ -62,8 +63,12 @@ class PrivacyPolicyPage implements AbstractPage {
     assertPrivacyNoticyPageOpens (text: string) {
       const privacyNoticyPageTitle = selectors[variables.brand].privacyNoticyPageTitle;
       const privacyNoticyPageTitleUS = selectors[variables.brand].privacyNoticyPageTitleUS;
+      const privacyNoticyPageTitleAUIE = selectors[variables.brand].privacyNoticyPageTitleAUIE;
+
       if (brand == 'karenmillen.com' && locale == 'US') {
         cy.get(privacyNoticyPageTitleUS).should('contains.text', text, { matchCase: false });
+      } else if (brand == 'misspap.com' && locale == 'IE' || locale == 'AU'){
+        cy.get(privacyNoticyPageTitleAUIE).should('contains.text', text, { matchCase: false });
       } else {
         cy.get(privacyNoticyPageTitle).should('contains.text', text, { matchCase: false });
       }

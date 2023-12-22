@@ -15,25 +15,24 @@ import billingPage from '../pom/billing.page';
 import cards from './cards';
 import keyWorkerPage from 'cypress/pom/keyWorker.page';
 
-
 class Navigate {
 
-  toHomePage() {
+  toHomePage () {
     HomePage.goto();
   }
 
-  toPLPPage() {
+  toPLPPage () {
     this.toHomePage();
     HomePage.actions.closeNastygalPopup();
     plpPage.click.selectMegamenuLink();
   }
 
-  toProductDetailsPage() {
+  toProductDetailsPage () {
     this.toHomePage();
     HomePage.actions.findItemUsingSKU(sku);
   }
 
-  toCartPage() {
+  toCartPage () {
     this.toProductDetailsPage();
     PdpPage.actions.selectColorFromSku();
     PdpPage.actions.selectSizeFromSku();
@@ -42,12 +41,12 @@ class Navigate {
     HomePage.click.cartIcon();
   }
 
-  toCheckoutLoginPage() {
+  toCheckoutLoginPage () {
     this.toCartPage();
     cartPage.click.proceedToCheckoutminiCart();
   }
 
-  toShippingPage(userType: UserType) {
+  toShippingPage (userType: UserType) {
     this.toCheckoutLoginPage();
 
     // GUEST USER //
@@ -80,7 +79,7 @@ class Navigate {
     cy.wait(2000);
   }
 
-  toBillingPage(userType: UserType) {
+  toBillingPage (userType: UserType) {
     this.toShippingPage(userType);
 
     // GUEST USER //
@@ -158,7 +157,7 @@ class Navigate {
     }
   }
 
-  toMyAccountPage() {
+  toMyAccountPage () {
     HomePage.goto();
     cy.fixture('users').then((credentials: LoginCredentials) => {
       LoginPage.actions.login(credentials.username, credentials.password);
@@ -166,22 +165,23 @@ class Navigate {
   }
 
   // NAVIGATE TO PAGES USING SESSIONS
-  toCartPageUsingSession() {
+  toCartPageUsingSession () {
     cy.session('cart-page-session', () => {
       this.toCartPage();
     });
 
     cy.visit(url + '/cart');
   }
- //navigate to key worker
- keyWorkerPage() {
-  cy.session('key-worker-session', () => {
-    this.toHomePage();
-  });
-  cy.visit(url + '/key-workers.html');
-}
 
-  toCheckoutLoginPageUsingSession() {
+  // Navigate to key worker
+  keyWorkerPage () {
+    cy.session('key-worker-session', () => {
+      this.toHomePage();
+    });
+    cy.visit(url + '/key-workers.html');
+  }
+
+  toCheckoutLoginPageUsingSession () {
     cy.session('checkout-login-page-session', () => {
       this.toCheckoutLoginPage();
     });
@@ -192,7 +192,7 @@ class Navigate {
     }
   }
 
-  toShippingPageUsingSession(userType: UserType) {
+  toShippingPageUsingSession (userType: UserType) {
     cy.session('shipping-page-session', () => {
       this.toShippingPage(userType);
     });
@@ -204,7 +204,7 @@ class Navigate {
     }
   }
 
-  toBillingPageUsingSession(userType: UserType) {
+  toBillingPageUsingSession (userType: UserType) {
     cy.session('billing-page-session', () => {
       this.toBillingPage(userType);
     });
@@ -216,7 +216,7 @@ class Navigate {
     }
   }
 
-  toMyAccountPageUsingSession() {
+  toMyAccountPageUsingSession () {
     cy.session('myaccount-page-session', () => {
       this.toMyAccountPage();
       cy.wait(1000);
@@ -225,7 +225,7 @@ class Navigate {
   }
 
   // NAVIGATE TO PAGES USING SPLIT SHIPPING SKU
-  toShippingPageWithSplitShippingSku() {
+  toShippingPageWithSplitShippingSku () {
     cy.log('I am on shipping page with split shipping SKU');
 
     // To be completed
@@ -256,7 +256,7 @@ class Navigate {
     cy.url({ timeout: 12000 }).should('include', 'order-confirmation');
   }
 
-  clearSessionCookies() {
+  clearSessionCookies () {
     cy.clearCookies();
   }
 

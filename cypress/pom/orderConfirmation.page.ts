@@ -95,7 +95,9 @@ const selectors: SelectorBrandMap = {
     thatConfirmPasswordFieldForGuestUserIsDisplayed:'[id^="dwfrm_profile_login_passwordconfirm"]',
     closePopUP: '[id^=WLbanner] > a',
     splitShippingMethodDetail: '.order-shipping-method > .orderdetails-content',
-    orderItemsSplitShippingDetails: '.orderdetails-shipments'
+    orderItemsSplitShippingDetails: '.orderdetails-shipments',
+    usOrderItemSplitShippingDeatils: '.checkout-minicart-split-title',
+    businessDayDetails:'.checkout-minicart-split-delivery'
   },
   'karenmillen.com': {
     emailIsDisplayed:'.confirmation-message-info',
@@ -266,11 +268,25 @@ class OrderConfirmation implements AbstractPage {
       const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;
       cy.log('To be completed: under splitShippingMethodDetail, UK split shipping method should be present, but functionality is currently disabled');
     },
+    assertUSOnlyShippingMethod (text: string ) {
+      const splitShippingMethodDetail = selectors[brand].splitShippingMethodDetail;
+      cy.get(splitShippingMethodDetail).should('contain.text',text);
+    },
     assertUkOnlyShippingFrom ( ) {
       const orderItemsSplitShippingDetails = selectors[brand].orderItemsSplitShippingDetails;
       cy.log('To be completed: under orderItemsSplitShippingDetails, shipping from UK should be present, but functionality is currently disabled');
     },
-
+    assertUSOnlyShippingFrom (text: string) {
+      const usOrderItemSplitShippingDeatils = selectors[brand].usOrderItemSplitShippingDeatils;
+      cy.get(usOrderItemSplitShippingDeatils).should('contain.text',text);
+    },
+    assertBusinessDay() {
+      const businessDayDetails = selectors[brand].businessDayDetails;
+      cy.get(businessDayDetails).invoke('text').then((text) => {
+        const businessDay = parseInt(text.split(' ')[3])
+        cy.wrap(businessDay).should('be.gte', 4).and('be.lte', 10)
+      })
+    },
     assertUSAndUkShippingMethod () {
       const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;
       cy.log('To be completed: under splitShippingMethodDetail, UK and US split shipping methods should be present, but functionality is currently disabled');

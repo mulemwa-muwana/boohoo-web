@@ -93,15 +93,13 @@ describe('Order Confirmation Page - Shipping Section', function () {
     }
     homePage.goto();
   });
-  it('If only US items are ordered, US shipping method shuld be displayed with correct price (static)', function () {
-        
-    // Above ordered items message: ''Shipping from the US - <estimated delivery>' is displayed
-        
-    Navigate.toOrderConfirmationPageWithSplitShippingSku(USSKU);
-        
-    // To be completed by Tejaswi...
 
-  });
+  it('If only US items are ordered, US shipping method shuld be displayed with correct price (static)', function () {
+    Navigate.toOrderConfirmationPageWithSplitShippingSku(USSKU);
+    orderConfirmationPage.assertions.assertUSOnlyShippingMethod(assertionText.assertUSOnlySplitShippingMethod[language]);
+    orderConfirmationPage.assertions.assertUSOnlyShippingFrom(assertionText.assertUSOnlyShippingFrom[language]);
+    orderConfirmationPage.assertions.assertBusinessDay();
+ });
 
   it('If only UK items are ordered, UK shipping method shuld be displayed with correct price (static)', function () {
     Navigate.toOrderConfirmationPageWithSplitShippingSku(UKSKU);

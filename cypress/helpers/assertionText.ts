@@ -882,9 +882,9 @@ class AssertionText {
   };
 
   orderNotFoundSG: TranslationMap = {
-    EN: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
-    NL: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
-    DE: "\n\n\n\n\n\n\nSorry we don't recognise that order number, please check your order confirmation and try again.\n\n\n\n",
+    EN: "Sorry we don't recognise that order number, please check your order confirmation and try again.",
+    NL: "Sorry we don't recognise that order number, please check your order confirmation and try again.",
+    DE: "Sorry we don't recognise that order number, please check your order confirmation and try again.",
     FR: 'Désolé, ce numéro de commande ne correspond',
     DK: 'Sorry, this order number does not match',
     FI: 'Sorry, this order number does not match',

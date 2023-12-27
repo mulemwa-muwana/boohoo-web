@@ -246,7 +246,7 @@ describe('Shipping Page Guest user tests', function () {
       } else {
         shippingPage.click.proceedToBilling();
       }
-      if ((brand == 'boohooman.com' && locale == 'US') || isMPLocaleWithProceedVrf || (brand == 'karenmillen.com' && locale == 'IE')) {
+      if ((brand == 'boohooman.com' && locale == 'US') || isMPLocaleWithProceedVrf || (brand == 'karenmillen.com' && (locale == 'IE' || locale == 'UK'))) {
         shippingPage.click.proceedToBillingVerification();
       } else if (locale == 'IL') {
         cy.wait(2000); // Clicking the first time confirms the address, while clicking it a second time will navigate you to the billing page

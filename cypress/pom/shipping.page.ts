@@ -103,7 +103,7 @@ const selectors: SelectorBrandMap = {
     guestEditAddress: '.b-option_switch-label_surface > .b-button',
     editCartShipping: '.b-summary_order-header > .b-link',
     editCart: 'button[title="Edit"]',
-    editQuantity: '[data-tau="cart_product_quantity"]',
+    editQuantity: 'select[id^="quantity"]',
     updateCart: '.b-button.b-product_update-button_update.m-small',
     checkoutCart: '.b-summary_section  .b-button.b-cart_actions-button.m-width_full',
     addAddressManually: 'button[class="b-button m-info m-width_full"]:eq(0)',
@@ -870,10 +870,10 @@ class ShippingPage implements AbstractPage {
       cy.get(editCartShipping).click({ force: true })
         .wait(1000);
       if (brand == 'boohoo.com' || brand == 'nastygal.com') {
-        cy.get(editCart).click({ force: true})
+        cy.get(editCart).eq(0).click({ force: true})
           .wait(1000);
-        cy.get(editQuantity).select('1');
-        cy.get(updateCart).click( { force: true });
+        cy.get(editQuantity).eq(0).select('1');
+        cy.get(updateCart).eq(0).click( { force: true });
       } else {
         cy.get(editQuantity).clear().type('1', {force:true}).blur();
         cy.wait(1000);      

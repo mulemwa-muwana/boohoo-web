@@ -57,6 +57,9 @@ describe('Home Page', function () {
       } else if (brand == 'boohooman.com') {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkBHM[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSaleBHM[language]);
+      } else if (brand == 'karenmillen.com') {
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
+        HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSaleKM[language]);
       } else {
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
         HomePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);

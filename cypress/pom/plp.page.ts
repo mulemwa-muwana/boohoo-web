@@ -615,7 +615,7 @@ class PlpPage implements AbstractPage {
         homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.saleLinkArkadia[language]);
         homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
       } else if (brand == 'karenmillen.com') {
-        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSale[language]);
+        homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavAllSaleKM[language]);
       } else if (brand == 'dorothyperkins.com') {
         homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.linkArkadiaNewIn[language]);
         homePage.click.selectLinkFromMegaMenu(megaMenuLinksLanguages.subnavClothingNewInDP[language]);

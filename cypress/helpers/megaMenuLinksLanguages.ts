@@ -196,6 +196,20 @@ class megaMenuLinksLanguages {
     ES: 'Todas las rebajas'
   };
 
+  subnavAllSaleKM: TranslationMap = {
+    EN: 'New To Sale',
+    FR: '',
+    NL: '',
+    DE: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
   urlValidationSale: TranslationMap = {
     EN: 'sale',
     FR: 'promo',

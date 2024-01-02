@@ -743,7 +743,7 @@ class PlpPage implements AbstractPage {
 
       isSiteGenesisBrand
         ? cy.get(selectedSizeCheckbox).invoke('attr', 'data-value').as('selectedSize')
-        : cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.size[variables.language]) + ' li div[aria-checked="true"]')
+        : cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.size[variables.language]) + ' li div[aria-checked="false"]')
           .invoke('attr', 'aria-label').as('selectedSize');
 
       cy.location('search', { timeout: 60000 })

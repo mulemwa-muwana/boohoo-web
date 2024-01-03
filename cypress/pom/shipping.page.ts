@@ -800,7 +800,7 @@ const selectors: SelectorBrandMap = {
     editCart: '.hidden-on-mobile.item-edit.item-edit-details > a > .edit-details-text.item-actions-copy',
     editQuantity: 'input[name="dwfrm_cart_shipments_i0_items_i0_quantity"]',
     updateCart: 'button#add-to-cart > .add-to-cart-text',
-    checkoutCart: '.button-fancy-large js-first-button-checkout',
+    checkoutCart: '.cart-action-checkout-inner > .cart-action-checkout-wrapper > .button-fancy-large',
     addAddressManually: '#deliveryPanel > div > div:nth-child(1) > div > div:nth-child(2) > button',
     editSavedAddress: ':nth-child(1) > .b-option_switch-inner > .b-option_switch-label > .b-option_switch-label_surface > .b-button',
     proceedToBilling: '.js-checkout-next-step-btn',

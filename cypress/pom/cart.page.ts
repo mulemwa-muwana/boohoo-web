@@ -26,6 +26,7 @@ const selectors: SelectorBrandMap = {
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
     proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
+    proceedToCheckoutNL: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
     clearCart: '.b-cart_product-remove',
     clearCartMobile: 'button.b-cart_product-remove[title="Remove"]',
     emptyCartTitle: '.b-cart_empty-title',
@@ -402,6 +403,7 @@ class CartPage implements AbstractPage {
     proceedToCheckoutCart () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
+      const proceedToCheckoutNL = selectors[brand].proceedToCheckoutNL;
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
@@ -412,6 +414,8 @@ class CartPage implements AbstractPage {
         cy.wait(1000);
         if (brand == 'nastygal.com') {
           cy.get('[data-tau="start_checkout_bottom"]').eq(0).invoke('show').click({ force: true });
+        } else if(brand=='boohoo.com' && locale == 'NL'){
+          cy.get(proceedToCheckoutNL).invoke('show').click({ force: true });
         } else {
           cy.get(proceedToCheckout).invoke('show').click({ force: true });
         }

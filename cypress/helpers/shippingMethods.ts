@@ -35,7 +35,7 @@ class ShippingMethod {
     },
     NL: {
       shippingMethod1: {
-        shippingMethodName: 'Nederland Standaardlevering'
+        shippingMethodName: 'Standaardlevering Nederland'
       }
     },
     DE: {

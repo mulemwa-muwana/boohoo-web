@@ -8,6 +8,10 @@ import Navigate from 'cypress/helpers/navigate';
 import cards from 'cypress/helpers/cards';
 import { brand, locale, language } from 'cypress/support/e2e';
 
+const guestDayOfBirth = '23';
+const guestMonthOfBirth = '4';
+const guestYearOfBirth = '2001';
+
 describe('Billing page functionality for guest user', function () {
 
   before(() => {
@@ -52,15 +56,15 @@ describe('Billing page functionality for guest user', function () {
       this.skip(); // Date of birth form for Site Genesis brands is on Shipping page.
     }
     BillingPage.assertions.assertDateFormIsPresent();
-    BillingPage.actions.selectDate('23', '4', '2001');
-    BillingPage.assertions.assertDateIsSelected('23', '4', '2001');
+    BillingPage.actions.selectDate(guestDayOfBirth, guestMonthOfBirth, guestYearOfBirth);
+    BillingPage.assertions.assertDateIsSelected(guestDayOfBirth, guestMonthOfBirth, guestYearOfBirth);
   });
   it('CYP-22 Verify that guest user cannot place order if email field is empty', function () {
     if (isSiteGenesisBrand || brand != 'boohoo.com') {
       this.skip(); // Email field for Site Genesis brands is on Shipping page and logic for other brands to be included later
     }
     BillingPage.actions.emptyEmailField();
-    BillingPage.actions.selectDate('23', '4', '2001');
+    BillingPage.actions.selectDate(guestDayOfBirth, guestMonthOfBirth, guestYearOfBirth);
     BillingPage.click.chooseCC();
 
     BillingPage.assertions.assertEmptyEmailFieldError(assertionText.emptyEmailFieldErrorBillingPage[language]);
@@ -109,9 +113,13 @@ describe('Billing page functionality for guest user', function () {
   it('CYP-26 Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    if (locale == 'UK' || locale == 'IE' || locale == 'AU') {
+    if (locale == 'UK' || locale == 'IE') {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
+    }
+    if (locale == 'AU' || locale == 'US') {
+      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
+      BillingPage.assertions.assertPaymentMethodAfterPayIsDisplayed ();
     }
 
   });

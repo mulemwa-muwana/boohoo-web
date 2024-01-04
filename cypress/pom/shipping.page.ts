@@ -911,14 +911,14 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
-      cy.wait(5000);
-      cy.get(proceedToBilling,{timeout:7000}).trigger('click', { force: true});
+      cy.wait(3000);
+      cy.get(proceedToBilling,{timeout:1000}).trigger('click', { force: true});
     },
     proceedToBillingMouseOver () {
       const proceedToBilling = selectors[brand].proceedToBilling;
-      cy.wait(4000);
+      cy.wait(3000);
       cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
-      cy.wait(2000);
+      cy.wait(1000);
       cy.get('@proceedToBillingButton').dblclick({force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands

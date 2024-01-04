@@ -846,7 +846,8 @@ const selectors: SelectorBrandMap = {
     w3Winput:'#dwfrm_singleshipping_shippingAddress_addressFields_w3w',
     w3WAddressSuggestion:':nth-child(8) > .w3w-list > :nth-child(1)',
     successMark:'.field-wrapper-w3w-valid',
-    helpAndInfoLink: '.checkout-help-link'
+    helpAndInfoLink: '.checkout-help-link',
+    shippingState:'#dwfrm_singleshipping_shippingAddress_addressFields_states_state',
   }
 };
 
@@ -910,14 +911,14 @@ class ShippingPage implements AbstractPage {
     },
     proceedToBilling () {
       const proceedToBilling = selectors[brand].proceedToBilling;
-      cy.wait(3000);
-      cy.get(proceedToBilling,{timeout:1000}).trigger('click', { force: true});
+      cy.wait(5000);
+      cy.get(proceedToBilling,{timeout:7000}).trigger('click', { force: true});
     },
     proceedToBillingMouseOver () {
       const proceedToBilling = selectors[brand].proceedToBilling;
-      cy.wait(3000);
+      cy.wait(4000);
       cy.get(proceedToBilling,{timeout:1000}).trigger('mouseover',{force: true}).as('proceedToBillingButton');
-      cy.wait(1000);
+      cy.wait(2000);
       cy.get('@proceedToBillingButton').dblclick({force: true});
     },
     proceedToBillingVerification () { // Only for SiteGenesis brands
@@ -1176,6 +1177,15 @@ class ShippingPage implements AbstractPage {
       cy.wait(1000);
       cy.get(shippingPostcode).click({force:true});
     },
+
+    removePostCodeFeild(){
+      cy.wait(2000);
+      const shippingPostcode = selectors[brand].shippingPostcode;
+      cy.get(shippingPostcode).clear({ force: true });
+      cy.wait(1000);
+      cy.get(shippingPostcode).click({force:true});
+    },
+
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;
       cy.get(addressNicknameField).type(addressNickname);

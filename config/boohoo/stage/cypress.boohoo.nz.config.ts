@@ -7,8 +7,8 @@ export default defineConfig({
 
   env: {
     url: 'https://storefront:Oreo2022@nz-dwstg.boohoo.com/',
-    sku: '#FZZ80440',
-    fullSku: 'FZZ80440-157-18',
+    sku: '#FZZ19185',
+    fullSku: 'FZZ80440-105-20',
     brand: 'boohoo.com',
     locale: 'NZ',
     language: 'EN',

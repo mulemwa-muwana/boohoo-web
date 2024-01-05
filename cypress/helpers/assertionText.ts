@@ -283,7 +283,7 @@ class AssertionText {
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
     FR: 'Avis de confidentialité ',
-    NL: 'privacyverklaring',
+    NL: '\n                Privacyverklaring\n            ',
     DE: 'Datenschutzerklärung ',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
     FI: 'Tietosuojailmoitus',
@@ -813,7 +813,7 @@ class AssertionText {
 
   alreadySubscribed: TranslationMap = {
     EN: 'already signed up',
-    NL: 'Het lijkt erop dat je al een account bij ons aan hebt gemaakt! Log in om je voorkeuren aan te passen.',
+    NL: 'Dit adres staat al op de mailinglist',
     DE: 'bereits angemeldet',
     FR: 'déjà inscrit',
     DK: 'allerede tilmeldt',
@@ -855,7 +855,7 @@ class AssertionText {
 
   orderNotFoundBHO: TranslationMap = {
     EN: "Sorry we don't recognize that order number",
-    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    NL: "Sorry we don't recognize that order number, please check your order confirmation and try again.",
     DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
     FR: 'Désolé, ce numéro de commande ne correspond',
     DK: 'Sorry, this order number does not match',
@@ -1037,7 +1037,7 @@ class AssertionText {
 
   faqLinkSizeGuide: TranslationMap = {
     EN: 'Size Guide',
-    NL: 'Maatgids',
+    NL: 'Maatwijzer',
     DE: 'Größentabelle',
     FR: 'Guide des tailles',
     DK: 'Size Guide',
@@ -1051,7 +1051,7 @@ class AssertionText {
 
   footerAccordionHelp: TranslationMap = {
     EN: 'Help',
-    NL: '',
+    NL: 'Klantenservice',
     DE: '',
     FR: '',
     DK: 'Help',
@@ -1149,7 +1149,7 @@ class AssertionText {
 
   footerLinkReturns: TranslationMap = {
     EN: 'Return',
-    NL: 'RETOURZENDINGEN',
+    NL: 'Retourneringen',
     DE: 'Rücksendungen',
     FR: 'Retours',
     DK: '',

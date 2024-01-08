@@ -56,7 +56,7 @@ const selectors: SelectorBrandMap = {
     coupon: '#dwfrm_coupon_couponCode',
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingMethodName: '[data-option-id="shippingMethod-UKNextDayDelivery"]',
-    shippingMethodNameForNLLocale: '[data-option-id="shippingMethod-EUnetherlandsexpress"]',
+    shippingMethodNameForNLLocale: '[data-option-id="shippingMethod-IntCarriageInc"]',
     shippingMethodNameForSELocale: '[data-tau-shipping-id="SEswedenexpress"]',
     standardShippingMethod: '[data-option-id="shippingMethod-UKSuperSaver"]',
     standardShippingMethodNL: '[data-option-id="shippingMethod-IntCarriageInc"]',

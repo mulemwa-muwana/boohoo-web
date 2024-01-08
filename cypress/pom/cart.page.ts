@@ -396,7 +396,7 @@ class CartPage implements AbstractPage {
         cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
 
         // If Desktop Device is used
-       } else if(brand =='boohoo.com' && locale == 'SE'){
+       } else if(brand =='boohoo.com' && locale == 'SE' || locale == 'NL'){
          cy.get(proceedToCheckoutNL).invoke('show').click({ force: true });
 
       } else {

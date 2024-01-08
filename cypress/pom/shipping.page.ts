@@ -57,8 +57,10 @@ const selectors: SelectorBrandMap = {
     shippingPostcode: '#dwfrm_shipping_shippingAddress_addressFields_postalCode',
     shippingMethodName: '[data-option-id="shippingMethod-UKNextDayDelivery"]',
     shippingMethodNameForNLLocale: '[data-option-id="shippingMethod-EUnetherlandsexpress"]',
+    shippingMethodNameForSELocale: '[data-tau-shipping-id="SEswedenexpress"]',
     standardShippingMethod: '[data-option-id="shippingMethod-UKSuperSaver"]',
     standardShippingMethodNL: '[data-option-id="shippingMethod-IntCarriageInc"]',
+    standardShippingMethodSE:'[data-option-id="shippingMethod-SEswestandard"]',
     shippingMethodsNameList: '.b-form_list[data-id="shippingMethodList"] .b-option_switch-name',
     allAddressDetailsAreMandatory: '[data-ref="addressFormFields"] > [data-ref="autocompleteFields"] > .b-address_lookup > .m-required > .b-form_section-message',
     cityDetailsAreMandatory: '#dwfrm_shipping_shippingAddress_addressFields_city-error',
@@ -1176,7 +1178,7 @@ class ShippingPage implements AbstractPage {
       const shippingPostcode = selectors[brand].shippingPostcode;
       cy.get(shippingPostcode).clear({ force: true }).type(postcode,{force: true});
       cy.wait(1000);
-      cy.get(shippingPostcode).click({force:true});
+      cy.get(shippingPostcode).click({force:true}).blur({force: true});
     },
     addAddressNickname (addressNickname: string) {
       const addressNicknameField = selectors[brand].addressNicknameField;
@@ -1185,13 +1187,16 @@ class ShippingPage implements AbstractPage {
     selectShippingMethod (shippingMethod: string) {
       const standardShippingMethod = selectors[brand].standardShippingMethod;
       const standardShippingMethodNL = selectors[brand].standardShippingMethodNL;
+      const standardShippingMethodSE = selectors[brand].standardShippingMethodSE;
       cy.wait(3000);
       if ((brand == 'boohoo.com'|| brand == 'nastygal.com' || brand == 'boohooman.com') && locale == 'UK') {
         cy.get(standardShippingMethod).trigger('click',{force:true});
         cy.wait(1000);
       } else if (brand == 'boohoo.com' && locale == 'NL'){
         cy.get(standardShippingMethodNL).trigger('click',{force:true});
-      } else {
+      } else if (brand == 'boohoo.com' && locale == 'SE'){
+        cy.get(standardShippingMethodSE).trigger('click',{force:true});
+      }else {
         cy.get(standardShippingMethod).contains(shippingMethod).trigger('click',{force:true});
       }
     },
@@ -1203,11 +1208,14 @@ class ShippingPage implements AbstractPage {
       const shippingMethodName = selectors[brand].shippingMethodName;
       const shippingMethodNameForCALocale = selectors[brand].shippingMethodNameForCALocale;
       const shippingMethodNameForNLLocale = selectors[brand].shippingMethodNameForNLLocale;
+      const shippingMethodNameForSELocale = selectors[brand].shippingMethodNameForSELocale;
       cy.wait(3000);
       if (brand == 'nastygal.com' && locale == 'CA') {
         cy.get(shippingMethodNameForCALocale).trigger('click',{force:true});
       } else if (brand == 'boohoo.com'&& locale == 'NL') {
         cy.get(shippingMethodNameForNLLocale).click({force: true});
+      } else if (brand == 'boohoo.com'&& locale == 'SE' ) {
+        cy.get(shippingMethodNameForSELocale).click({force: true});
       } else if (brand == 'boohoo.com'|| brand == 'nastygal.com') {
         cy.get(shippingMethodName).trigger('click',{force:true});
       } else {

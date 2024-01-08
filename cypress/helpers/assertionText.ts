@@ -1043,7 +1043,7 @@ class AssertionText {
     DK: 'Size Guide',
     FI: 'Size Guide',
     NO: 'Size Guide',
-    SE: 'Storleksguide',
+    SE: 'Spåra min beställning',
     IL: '',
     IT: 'Guida taglie boohoo',
     ES: 'Guía de tallas'
@@ -1057,7 +1057,7 @@ class AssertionText {
     DK: 'Help',
     FI: 'Help',
     NO: 'Help',
-    SE: '',
+    SE: 'Spåra min beställning',
     IL: '',
     IT: '',
     ES: ''

@@ -110,16 +110,24 @@ describe('Billing page functionality for guest user', function () {
       BillingPage.actions.addBillingAddressGuestUser(localeAddress.addressLine, localeAddress.city, localeAddress.country, localeAddress.county,localeAddress.postcode);
     }
   });
-  it('CYP-26 Verify that corect payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
+  it('CYP-26 Verify that correct payment methods are displayed (Credit card, paypal, klarna, amazon pay, clearpay, laybuy, zip)', function () {
     BillingPage.assertions.assertPaymentMethodCreditCardIsDisplayed();
     BillingPage.assertions.assertPaymentMethodPayPalIsDisplayed();
-    if (locale == 'UK' || locale == 'IE') {
+    
+    const localesWithKlarnaAndClearPay: boolean = (locale == 'UK');
+    const localesWithKlarnaAndAfterPay: boolean = (locale == 'AU' || locale == 'US');
+    const boohooLocalesWithKlarnaAndSofort: boolean = (brand == 'boohoo.com' && locale == 'DE');
+    if (localesWithKlarnaAndClearPay) {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodClearPayIsDisplayed();
     }
-    if (locale == 'AU' || locale == 'US') {
+    if (localesWithKlarnaAndAfterPay) {
       BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
       BillingPage.assertions.assertPaymentMethodAfterPayIsDisplayed ();
+    }
+    if (boohooLocalesWithKlarnaAndSofort) {
+      BillingPage.assertions.assertPaymentMethodKlarnaIsDisplayed();
+      BillingPage.assertions.assertPaymentMethodSofortIsDisplayed ();
     }
 
   });

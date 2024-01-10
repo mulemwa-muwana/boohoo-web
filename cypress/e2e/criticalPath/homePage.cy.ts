@@ -338,7 +338,7 @@ describe('Home Page', function () {
       });
 
       it('CYP-91 Verify that user can choose gender, category, fit - Size Guide', function () {
-        if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE') ) {
+        if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE'||locale == 'NL') ) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerAccordionHelp[language]);
           faqPage.click.sizeGuide();
           homePage.assertions.assertSizeGuideGenderPresent();

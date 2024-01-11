@@ -1178,14 +1178,19 @@ class BillingPage implements AbstractPage {
             cy.wait(5000);
           }
         });
-
-        body().then($body => {
-          const continueButtonLocator = (brand == 'nastygal.com') ? '[data-cid="btn-primary"]' : 'button[data-testid="pick-plan"]';
-          if ($body.find(continueButtonLocator).length) { // If Continue button on test plan page exists
-            body().find(continueButtonLocator).click({ force: true });
-            cy.wait(5000);
+        cy.iframe(klarnaIFrame).then(($iframe) => {
+          if ($iframe.find(klarnaIFrameSelectPaymentCatCTA).length > 0) {
+            $iframe.find(klarnaIFrameSelectPaymentCatCTA).click();
           }
+          cy.wait(5000);
+        })
+        cy.iframe(klarnaIFrame).then(($iframe) => {
+          if ($iframe.find(klarnaIFramePickupPlanPopup).length > 0) {
+            $iframe.find(klarnaIFramePickupPlanPopup).click();
+          }
+          cy.wait(5000);
         });
+          
         body().then($body => {
           if ($body.find(klarnaIFrameTermandConditionCheckBox).length) { // If terms&condition checkbox exists
             body().find(klarnaIFrameTermandConditionCheckBox).click({ force: true });
@@ -1200,24 +1205,21 @@ class BillingPage implements AbstractPage {
           }
         });
 
-        body().then($body => {
-          if ($body.find(klarnaIFramePickupPlanPopup).length) { // If 'Pick plan' popup exists
-            $body.find(klarnaIFramePickupPlanPopup).click();
-            cy.wait(5000);
-          }
-        });
 
         const payButtonLocator = selectors[brand].payButtonLocator;
         const payButtonLocatorIE = selectors[brand].payButtonLocatorIE;
 
         if (brand == 'nastygal.com' && locale == 'IE') {
-          body().find(payButtonLocatorIE).click({ force: true });
+          cy.iframe(klarnaIFrame).then(($iframe) => {
+            $iframe.find(payButtonLocatorIE).click();
+            cy.wait(5000);
+          })
         } else {
-          body().find(payButtonLocator).click({ force: true });
-          cy.wait(5000);
-
+          cy.iframe(klarnaIFrame).then(($iframe) => {
+            $iframe.find(payButtonLocator).click();
+            cy.wait(5000);
+          })
         }
-
         body().then($body => {
           if ($body.find(klarnaIFrameSkipAndContinueCTA).length) { // If 'Skip and continue' button exists
             $body.find(klarnaIFrameSkipAndContinueCTA).click();

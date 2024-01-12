@@ -330,10 +330,11 @@ describe('Home Page', function () {
         }
       });
       it('CYP-90 Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
-        if (brand == 'boohooman.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.faqLinkSizeGuide[language]);
+        const brandsAndLocalesWithTwoSizeGuides: boolean = (brand == 'boohoo.com' && locale == 'UK');
+        if (brandsAndLocalesWithTwoSizeGuides) {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.womanSizeGuideText[language]);
         } else {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerAccordionHelp[language]);
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.sizeGuide[language]);
         }
       });
 

@@ -389,12 +389,16 @@ class CartPage implements AbstractPage {
     proceedToCheckoutminiCart () {
       const proceedToCheckout = selectors[brand].proceedToCheckout;
       const checkoutBtnForMobile = selectors[brand].checkoutBtnForMobile;
+      const proceedToCheckoutNL = selectors[brand].proceedToCheckoutNL;
 
       // If Mobile Device is used
       if (isMobileDeviceUsed) {
         cy.get(checkoutBtnForMobile).invoke('show').click({ force: true });
 
         // If Desktop Device is used
+       } else if(brand =='boohoo.com' && locale == 'SE' || locale == 'NL'){
+         cy.get(proceedToCheckoutNL).invoke('show').click({ force: true });
+
       } else {
         cy.wait(3000);
         cy.get(proceedToCheckout).invoke('show').click({ force: true });
@@ -414,7 +418,7 @@ class CartPage implements AbstractPage {
         cy.wait(1000);
         if (brand == 'nastygal.com') {
           cy.get('[data-tau="start_checkout_bottom"]').eq(0).invoke('show').click({ force: true });
-        } else if(brand=='boohoo.com' && locale == 'NL'){
+        } else if(brand=='boohoo.com' && (locale == 'NL' || locale == 'SE')){
           cy.get(proceedToCheckoutNL).invoke('show').click({ force: true });
         } else {
           cy.get(proceedToCheckout).invoke('show').click({ force: true });

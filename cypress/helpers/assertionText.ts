@@ -821,7 +821,7 @@ class AssertionText {
     NO: 'Wacht! Er gaat iets mis.',
     SE: 'Du prenumererar redan!',
     IL: 'נראה שאתם כבר רשומים',
-    IT: 'già iscritto',
+    IT: 'Sembra che tu sia già registrato!',
     ES: 'ya registrado'
   };
 

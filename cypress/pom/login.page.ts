@@ -237,6 +237,9 @@ class LoginPage implements AbstractPage {
     resetPasswordButon () {
       const resetPasswordBtn = selectors[variables.brand].resetPasswordBtn;
       cy.get(resetPasswordBtn).click();
+    },
+    backBrowserButton () {
+      cy.go('back');
     }
   };
 

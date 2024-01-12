@@ -764,9 +764,9 @@ class AssertionText {
     FI: 'Kestä! Se ei vaikuta oikealta.',
     NO: 'Vent! Det virker ikke riktig.',
     SE: 'Vänta! Något gick fel.',
-    IL: 'המתן! זה לא נראה נכון.',
-    IT: 'Sostenere! Non sembra giusto.',
-    ES: '¡Sostener! Eso no parece correcto.'
+    IL: 'רגע! משהו לא נראה תקין.',
+    IT: 'Un attimo solo! C’è qualcosa che non quadra.',
+    ES: '¡Un momento! Parece que ha habido un error.'
   };
 
   unsuccessfulSubscriptionNG: TranslationMap = {
@@ -815,12 +815,12 @@ class AssertionText {
     EN: 'already signed up',
     NL: 'Dit adres staat al op de mailinglist',
     DE: 'bereits angemeldet',
-    FR: 'déjà inscrit',
+    FR: 'Il semblerait que vous soyez déjà abonné',
     DK: 'allerede tilmeldt',
     FI: 'jo ilmoittautunut',
     NO: 'Wacht! Er gaat iets mis.',
     SE: 'Du prenumererar redan!',
-    IL: 'כבר נרשמת',
+    IL: 'נראה שאתם כבר רשומים',
     IT: 'già iscritto',
     ES: 'ya registrado'
   };
@@ -834,7 +834,7 @@ class AssertionText {
     FI: 'Track My Order',
     NO: 'Track My Order',
     SE: 'Spåra min beställning',
-    IL: '',
+    IL: 'מעקב אחר ההזמנה שלי',
     IT: 'Segui Il Mio Ordine',
     ES: 'Seguir el estado de mi pedido'
   };
@@ -905,8 +905,8 @@ class AssertionText {
     NO: '',
     SE: 'Kundtjänst',
     IL: 'שירות לקוחות',
-    IT: '',
-    ES: ''
+    IT: 'Servizio Clienti',
+    ES: 'Servicio de atención al cliente'
   };
 
   footerCustomerService: TranslationMap = {
@@ -946,7 +946,7 @@ class AssertionText {
     FI: 'Shipping Info',
     NO: 'Shipping Info',
     SE: 'Leveranser',
-    IL: '',
+    IL: 'פרטי המשלוח',
     IT: 'Informazioni sulla consegna',
     ES: 'Información de envío'
   };
@@ -1016,7 +1016,7 @@ class AssertionText {
     FI: 'About boohoo',
     NO: 'About boohoo',
     SE: 'Om boohoo',
-    IL: '',
+    IL: 'אודות boohoo',
     IT: 'A proposito di boohoo',
     ES: 'Sobre boohoo'
   };
@@ -1156,9 +1156,9 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'Returer',
-    IL: '',
-    IT: '',
-    ES: ''
+    IL: 'החזרות',
+    IT: 'Resi',
+    ES: 'Devoluciones'
   };
 
   footerLinkDiscountPromo: TranslationMap = {

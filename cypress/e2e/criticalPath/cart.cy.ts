@@ -63,7 +63,7 @@ describe('Cart basic functionality for guest user', function () {
     }
   });
   it('CYP-51 Verify that Klarna CTA is displayed and functional', function () {
-    const klarnaWithLocales: boolean = locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'US';
+    const klarnaWithLocales: boolean = (locale == 'UK' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE' || locale == 'DK' || locale == 'FR');
     if (brand == 'boohooman.com' && locale == 'US') {
       this.skip();
     } else if (klarnaWithLocales) {
@@ -82,12 +82,13 @@ describe('Cart basic functionality for guest user', function () {
       this.skip();
     }
   });
-
+  
   if (brand == 'boohooman.com') {
     it('CYP-678 Verify that the user can not add more than 5 discounted products, validate the error message', function () {
       CartPage.assertions.assertErrorMsgForMoreThanFiveDiscountedItemsInCart('6');
     });
   }
+
   it('CYP-661 Verify that delivery options are displayed', function () {
     const isDeliveryOptionsNotVisible: boolean = ((brand == 'boohooman.com' && locale == 'NL' || locale == 'EU')
                                                                   || (brand == 'karenmillen.com' && locale == 'IE')

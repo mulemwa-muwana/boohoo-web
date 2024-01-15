@@ -445,6 +445,9 @@ class PlpPage implements AbstractPage {
       if (isSiteGenesisBrand) {
         const selectRefinementVariantColor = selectors[variables.brand].selectRefinementVariantColor;
         cy.get(selectRefinementVariantColor).contains(color).click({ force: true });
+      } else if (brand == 'boohoo.com' && locale == 'US') {
+        cy.get('button[id*="-' + (assertionText.color[variables.language] + '"]')).click({ force: true });
+        cy.get('#searchRefineBarAccordionItemInner-' + (assertionText.color[variables.language])).contains(color).click({ force: true });
       } else if ((brand == 'boohoo.com' || brand == 'nastygal.com') && (locale == 'US' || locale == 'CA')) {
         cy.get('button[id*="-' + (assertionText.color[variables.language] + '"]')).click({ force: true });
         cy.get('#refinementAttributesList-' + (assertionText.color[variables.language])).contains(color).click({ force: true });
@@ -472,6 +475,14 @@ class PlpPage implements AbstractPage {
             $element.find('span').trigger('click');
             return false;
           }
+        });
+       } else if(brand == 'boohoo.com' && locale == 'US'){
+           cy.get('button[id*="-' + (assertionText.size[variables.language] + '"]')).click({ force: true });
+         cy.get('#searchRefineBarAccordionItemInner-us-' + (assertionText.size[variables.language])).find('li').each(($element) => {
+            if ($element.attr('data-tau')) {
+               $element.find('span').trigger('click');
+               return false
+             }
         });
       } else {
         cy.get('button[id*="-' + (assertionText.size[variables.language] + '"]')).click({ force: true });
@@ -568,6 +579,20 @@ class PlpPage implements AbstractPage {
     selectProductsView (pagePlp: any) {
       let mobileViewMode = 1;
       let webviewMode = 5;
+      cy.get('.b-view_mode button:visible').each((ele, index) => {
+        cy.wrap(ele).click({ force: true });
+        if (isMobileDeviceUsed) {
+          pagePlp.assertions.assertItemCountInView(mobileViewMode.toString());
+          mobileViewMode++;
+        } else {
+          pagePlp.assertions.assertItemCountInView(webviewMode.toString());
+          webviewMode--;
+        }
+      });
+    },
+    selectProductsViewUS (pagePlp: any) {
+      let mobileViewMode = 1;
+      let webviewMode = 4;
       cy.get('.b-view_mode button:visible').each((ele, index) => {
         cy.wrap(ele).click({ force: true });
         if (isMobileDeviceUsed) {
@@ -743,6 +768,8 @@ class PlpPage implements AbstractPage {
 
       isSiteGenesisBrand
         ? cy.get(selectedSizeCheckbox).invoke('attr', 'data-value').as('selectedSize')
+        :(brand == 'boohoo.com'&& locale == 'US')? cy.get('#searchRefineBarAccordionItemInner-us-' + (assertionText.size[variables.language]) + ' li div[aria-checked="false"]')
+        .invoke('attr', 'aria-label').as('selectedSize')
         : cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.size[variables.language]) + ' li div[aria-checked="false"]')
           .invoke('attr', 'aria-label').as('selectedSize');
 

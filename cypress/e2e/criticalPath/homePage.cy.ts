@@ -656,6 +656,8 @@ describe('Home Page', function () {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
           } else if (brand== 'misspap.com'&& (locale =='UK' || locale == 'US')) {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyDecember2023[language]);
+          } else if (brand== 'boohoo.com'&& locale == 'US') {
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJanuary2023[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
           }

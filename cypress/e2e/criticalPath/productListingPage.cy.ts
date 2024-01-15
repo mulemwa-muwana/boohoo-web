@@ -143,6 +143,11 @@ describe('Product Listing Page tests', function () {
     if (isSiteGenesisBrand) {
       this.skip();
     }
-    plpPage.click.selectProductsView(plpPage);
+    else if(brand == 'boohoo.com' && locale == 'US'){
+      plpPage.click.selectProductsViewUS(plpPage);
+    } else { 
+      plpPage.click.selectProductsView(plpPage);
+    }
+   
   });
 });

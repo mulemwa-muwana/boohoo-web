@@ -1538,6 +1538,19 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+  privacyPolicyJanuary2023: TranslationMap = {
+    EN: 'Privacy Notice - Updated January 2023',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
 
   privacyPolicyArcadia: TranslationMap = {
     EN: 'Privacy Policy',

@@ -59,11 +59,12 @@ describe('Boohoo order placement', () => {
 
   it('can select Klarna as payment method and generate an artefact', function () {
     const paymentMethod: PaymentMethod = 'Klarna';
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     if (!isBrandSupportingPaymentMethod(brand, paymentMethod)) {
       this.skip();
     }
 
-    BillingPage.actions.selectKlarna();
+    BillingPage.actions.selectKlarna(localeAddress.phone);
     generateArtefact(brand, paymentMethod);
   });
 

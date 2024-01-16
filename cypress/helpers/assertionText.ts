@@ -1036,7 +1036,7 @@ class AssertionText {
     ES: ''
   };
 
-  faqLinkSizeGuide: TranslationMap = {
+  sizeGuide: TranslationMap = {
     EN: 'Size Guide',
     NL: 'Maatwijzer',
     DE: 'Größentabelle',
@@ -1045,7 +1045,7 @@ class AssertionText {
     FI: 'Size Guide',
     NO: 'Size Guide',
     SE: 'Spåra min beställning',
-    IL: '',
+    IL: 'מדריך מידות',
     IT: 'Guida taglie boohoo',
     ES: 'Guía de tallas'
   };

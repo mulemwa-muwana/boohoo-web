@@ -19,6 +19,17 @@ describe('Login Functionality tests', function () {
       LoginPage.assertions.assertLoginFormIsPresent();
     });
   });
+
+  it('Verify that when the user logs out, they cannot log back in by pressing the back button of the browser', function () {
+    cy.fixture('users').then((credentials: LoginCredentials) => {
+      LoginPage.actions.login(credentials.username, credentials.password);
+      MyAccountPage.assertions.assertNameGreetingMessage(credentials.name);
+      MyAccountPage.click.logOutLink();
+      LoginPage.assertions.assertLoginFormIsPresent();
+      LoginPage.click.backBrowserButton();
+      LoginPage.assertions.assertLoginFormIsPresent();
+    });
+  });
   
   it('CYP-132 Verify that user can not login with invalid credentials', function () {
     cy.fixture('users').then((credentials: LoginCredentials) => {    

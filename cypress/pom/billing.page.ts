@@ -510,6 +510,7 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
+    klarnaIFramePhone: '[data-testid="kaf-field"]',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -1516,6 +1517,8 @@ class BillingPage implements AbstractPage {
         cy.url({ timeout: 30000 }).should('include', 'orderconfirmation');
       } else if (isCheckoutConfirmationBrandAndLocale) {
         cy.url({ timeout: 30000 }).should('include', 'checkout-confirmation');
+      } else if (brand == 'boohoo.com' && locale == 'IE') {
+        cy.url({ timeout: 30000 }).should('include', 'Order-Confirm'); 
       } else if (isOrderConfirmationBrandAndLocale) {
         cy.url({ timeout: 30000 }).should('include', 'order-confirmation');
       }

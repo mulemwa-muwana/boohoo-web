@@ -150,7 +150,12 @@ class Navigate {
       shippingPage.actions.postcodeField(primaryAddress.postcode);
       cy.wait(2000);
       shippingPage.click.makeShippingAddressDefault;
-      shippingPage.click.proceedToBilling();
+      if (brand == 'boohooman.com' && locale == 'IE') {
+        shippingPage.click.proceedToBillingMouseOver();
+      } else {
+        shippingPage.click.proceedToBilling();
+      }
+      
       cy.wait(3000);
       shippingPage.click.proceedToBillingVerification();
       BillingPage.actions.waitPageToLoad();

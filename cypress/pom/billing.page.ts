@@ -42,6 +42,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '#payment-button-PayPal',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
+    paymentMethodKlarna: '[id^="payment-button-Klarna"]',
     emptyEmailField: '#dwfrm_billing_contactInfoFields_email',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -62,6 +63,7 @@ const selectors: SelectorBrandMap = {
     billingCountryCode: '#dwfrm_billing_addressFields_states_stateCode',
     email: '#dwfrm_billing_contactInfoFields_email',
     paymentMethodAfterPay: '#payment-button-AFTERPAY',
+    paymentMethodSofort: '#payment-button-SOFORT-SSL',
     billingAddressFromBookAU: 'button[class="b-button m-link m-width_full"]',
     klarnaContinueCTA: 'button[style*="geometricprecision"]',
     klarnaIFrame: '#klarna-apf-iframe',
@@ -121,6 +123,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '#payment-button-PayPal',
     paymentMethodClearPay: '#payment-button-CLEARPAY',
     paymentMethodAmazonPay: '#payment-button-AMAZON_PAYMENTS',
+    paymentMethodKlarna: '[id^="payment-button-Klarna"]',
     shippingMethodSelector: 'p.b-summary_shipping-method > span',
     changeShippingAddress: 'h3.b-summary_group-subtitle button[aria-label="Change Shipping"][data-edit="address"]',
     changeShippingMethod: '.m-bordered > .b-summary_group-subtitle > .b-button',
@@ -389,6 +392,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodCreditCard: '[for*="CREDIT_CARD"]',
     paymentMethodCreditCardUS: '[for="is-CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
+    paymentMethodKlarna: '[for*="is-Klarna"]',
     paymentMethodKlarnaNl: '[for="is-Klarna"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     emailField: '#dwfrm_billing_billingAddress_email_emailAddress',
@@ -482,6 +486,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
     paymentMethodAfterPay: '[for="is-AFTERPAY"]',
+    paymentMethodKlarna: '[for*="is-Klarna"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -707,6 +712,7 @@ const selectors: SelectorBrandMap = {
     paymentMethodCreditCard: '[for="is-ADYEN_CREDIT_CARD"]',
     paymentMethodPayPal: '[for="is-PayPal"]',
     paymentMethodClearPay: '[for="is-CLEARPAY"]',
+    paymentMethodKlarna: '[for*="is-Klarna"]',
     emptyEmailField: '#dwfrm_singleshipping_shippingAddress_email_emailAddress',
     addNewAddressBtn: ':nth-child(1) > .b-summary_group-subtitle > .b-button',
     addNewAddressField: '.b-form_section > .b-address_selector-actions > .b-button',
@@ -1488,13 +1494,9 @@ class BillingPage implements AbstractPage {
     },
 
     assertPaymentMethodKlarnaIsDisplayed () {
-      if (isSiteGenesisBrand) {
-        cy.get(`label[for="is-Klarna${locale}"]`).should('be.visible');
-      } else {
-        cy.get(`#payment-button-Klarna${locale}`).should('be.visible');
-      }
+      const paymentMethodKlarna = selectors[brand].paymentMethodKlarna;
+      cy.get(paymentMethodKlarna).should('be.visible');
     },
-
     assertPaymentMethodClearPayIsDisplayed () {
       const paymentMethodClearPay = selectors[brand].paymentMethodClearPay;
       cy.get(paymentMethodClearPay).should('be.visible');
@@ -1503,6 +1505,11 @@ class BillingPage implements AbstractPage {
     assertPaymentMethodAfterPayIsDisplayed () {
       const paymentMethodAfterPay = selectors[brand].paymentMethodAfterPay;
       cy.get(paymentMethodAfterPay).should('be.visible');
+    },
+
+    assertPaymentMethodSofortIsDisplayed () {
+      const paymentMethodSofort = selectors[brand].paymentMethodSofort;
+      cy.get(paymentMethodSofort).should('be.visible');
     },
 
     assertShippingPageIsOpened () {

@@ -430,7 +430,7 @@ class HomePage implements AbstractPage {
     cartIcon () {
       const minicartIcon = selectors[brand].minicartIcon;
       cy.waitUntil(() => {
-        return cy.get(minicartIcon, {timeout: 9000}).invoke('show').click({ force: true });
+        return cy.get(minicartIcon, {timeout: 7000}).invoke('show').click({ force: true });
       });
     },
 

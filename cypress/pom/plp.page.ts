@@ -476,13 +476,13 @@ class PlpPage implements AbstractPage {
             return false;
           }
         });
-       } else if(brand == 'boohoo.com' && locale == 'US'){
-           cy.get('button[id*="-' + (assertionText.size[variables.language] + '"]')).click({ force: true });
-         cy.get('#searchRefineBarAccordionItemInner-us-' + (assertionText.size[variables.language])).find('li').each(($element) => {
-            if ($element.attr('data-tau')) {
-               $element.find('span').trigger('click');
-               return false
-             }
+      } else if (brand == 'boohoo.com' && locale == 'US') {
+        cy.get('button[id*="-' + (assertionText.size[variables.language] + '"]')).click({ force: true });
+        cy.get('#searchRefineBarAccordionItemInner-us-' + (assertionText.size[variables.language])).find('li').each(($element) => {
+          if ($element.attr('data-tau')) {
+            $element.find('span').trigger('click');
+            return false;
+          }
         });
       } else {
         cy.get('button[id*="-' + (assertionText.size[variables.language] + '"]')).click({ force: true });
@@ -769,9 +769,9 @@ class PlpPage implements AbstractPage {
       isSiteGenesisBrand
         ? cy.get(selectedSizeCheckbox).invoke('attr', 'data-value').as('selectedSize')
         :(brand == 'boohoo.com'&& locale == 'US')? cy.get('#searchRefineBarAccordionItemInner-us-' + (assertionText.size[variables.language]) + ' li div[aria-checked="false"]')
-        .invoke('attr', 'aria-label').as('selectedSize')
-        : cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.size[variables.language]) + ' li div[aria-checked="false"]')
-          .invoke('attr', 'aria-label').as('selectedSize');
+          .invoke('attr', 'aria-label').as('selectedSize')
+          : cy.get('#searchRefineBarAccordionItemPanel-' + (assertionText.size[variables.language]) + ' li div[aria-checked="false"]')
+            .invoke('attr', 'aria-label').as('selectedSize');
 
       cy.location('search', { timeout: 60000 })
         .should('contains', '?prefn1=sizeRefinement&prefv1=')

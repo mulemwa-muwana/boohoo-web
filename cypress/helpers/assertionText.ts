@@ -307,6 +307,7 @@ class AssertionText {
     IT: 'Informativa sulla Privacy',
     ES: 'Aviso de Privacidad'
   };
+
   PrivacyNoticeMisspapAUIE: TranslationMap = {
     EN: 'Privacy & Security',
     FR: 'Avis de confidentialité',
@@ -1538,6 +1539,7 @@ class AssertionText {
     IT: '',
     ES: ''
   };
+
   privacyPolicyJanuary2023: TranslationMap = {
     EN: 'Privacy Notice - Updated January 2023',
     NL: '',

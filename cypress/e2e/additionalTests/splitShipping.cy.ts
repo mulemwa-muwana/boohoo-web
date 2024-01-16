@@ -99,7 +99,7 @@ describe('Order Confirmation Page - Shipping Section', function () {
     orderConfirmationPage.assertions.assertUSOnlyShippingMethod(assertionText.assertUSOnlySplitShippingMethod[language]);
     orderConfirmationPage.assertions.assertUSOnlyShippingFrom(assertionText.assertUSOnlyShippingFrom[language]);
     orderConfirmationPage.assertions.assertBusinessDay();
- });
+  });
 
   it('If only UK items are ordered, UK shipping method shuld be displayed with correct price (static)', function () {
     Navigate.toOrderConfirmationPageWithSplitShippingSku(UKSKU);

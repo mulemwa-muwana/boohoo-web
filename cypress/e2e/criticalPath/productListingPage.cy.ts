@@ -142,8 +142,7 @@ describe('Product Listing Page tests', function () {
   it('CYP-173 Verify that user can choose 5,4,3 as view mode', function () {
     if (isSiteGenesisBrand) {
       this.skip();
-    }
-    else if(brand == 'boohoo.com' && locale == 'US'){
+    } else if (brand == 'boohoo.com' && locale == 'US') {
       plpPage.click.selectProductsViewUS(plpPage);
     } else { 
       plpPage.click.selectProductsView(plpPage);

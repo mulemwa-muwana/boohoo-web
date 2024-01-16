@@ -64,10 +64,10 @@ describe('Shipping Page Guest user tests', function () {
       shippingPage.click.addAddressManually();
 
       const primaryAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
-        shippingPage.actions.firstNameField(primaryAddress.firstName);
-        shippingPage.actions.lastNameField(primaryAddress.lastName);
-        shippingPage.actions.phoneNumberField(primaryAddress.phone);
-      }
+      shippingPage.actions.firstNameField(primaryAddress.firstName);
+      shippingPage.actions.lastNameField(primaryAddress.lastName);
+      shippingPage.actions.phoneNumberField(primaryAddress.phone);
+    }
     cy.wait(3000);
     if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
       shippingPage.click.proceedToBillingMouseOver(); 

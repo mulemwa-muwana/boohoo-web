@@ -79,7 +79,7 @@ describe('Shipping Page Registered user tests', function () {
     shippingPage.actions.cityField(localeAddress.city);
     if (brand =='boohoomena.com') { 
       shippingPage.actions.removePostCodeFeild();
-    }else{
+    } else {
       shippingPage.actions.postcodeField(localeAddress.postcode);
     }
   

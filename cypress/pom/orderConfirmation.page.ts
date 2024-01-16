@@ -280,12 +280,12 @@ class OrderConfirmation implements AbstractPage {
       const usOrderItemSplitShippingDeatils = selectors[brand].usOrderItemSplitShippingDeatils;
       cy.get(usOrderItemSplitShippingDeatils).should('contain.text',text);
     },
-    assertBusinessDay() {
+    assertBusinessDay () {
       const businessDayDetails = selectors[brand].businessDayDetails;
       cy.get(businessDayDetails).invoke('text').then((text) => {
-        const businessDay = parseInt(text.split(' ')[3])
-        cy.wrap(businessDay).should('be.gte', 4).and('be.lte', 10)
-      })
+        const businessDay = parseInt(text.split(' ')[3]);
+        cy.wrap(businessDay).should('be.gte', 4).and('be.lte', 10);
+      });
     },
     assertUSAndUkShippingMethod () {
       const splitShippingMethodDetail = selectors[brand].shippingMethodIsDisplayed;

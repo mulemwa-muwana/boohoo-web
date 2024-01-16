@@ -1053,15 +1053,57 @@ class AssertionText {
   footerAccordionHelp: TranslationMap = {
     EN: 'Help',
     NL: 'Klantenservice',
-    DE: '',
-    FR: '',
+    DE: 'Kundenservice',
+    FR: 'Service client',
     DK: 'Help',
     FI: 'Help',
     NO: 'Help',
-    SE: 'Spåra min beställning',
-    IL: '',
-    IT: '',
-    ES: ''
+    SE: 'Kundtjänst',
+    IL: 'שירות לקוחות',
+    IT: 'Servizio Clienti',
+    ES: 'Servicio de atención al cliente'
+  };
+
+  sizeGuideGender: TranslationMap = {
+    EN: 'Gender',
+    NL: 'Geslacht',
+    DE: 'Geschlecht',
+    FR: 'Genre',
+    DK: 'Gender',
+    FI: 'Gender',
+    NO: 'Gender',
+    SE: 'KÖN',
+    IL: 'מגדר',
+    IT: 'Genere',
+    ES: 'Género'
+  };
+
+  sizeGuideCategory: TranslationMap = {
+    EN: 'Category',
+    NL: 'Categorie',
+    DE: 'Kategorie',
+    FR: 'Catégorie',
+    DK: 'Category',
+    FI: 'Category',
+    NO: 'Category',
+    SE: 'KATEGORI',
+    IL: 'קטגוריה',
+    IT: 'Categoria',
+    ES: 'Categoría'
+  };
+
+  sizeGuideFit: TranslationMap = {
+    EN: 'Fit',
+    NL: 'Pasvorm',
+    DE: 'Schnitt',
+    FR: 'Coupe',
+    DK: 'Fit',
+    FI: 'Fit',
+    NO: 'Fit',
+    SE: 'PASSFORM',
+    IL: 'גזרה',
+    IT: 'Vestibilità',
+    ES: 'Silueta'
   };
 
   footerAccordionTrackMyOrder: TranslationMap = {

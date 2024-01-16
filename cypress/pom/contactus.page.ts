@@ -142,10 +142,10 @@ class ContactUsPage implements AbstractPage {
     assertEmailOptionsPresent () {
       const emailOptions = selectors[variables.brand].emailOptions;
       const emailOptionsNL =selectors[variables.brand].emailOptionsNL;
-      if( brand == 'boohoo.com' && (locale == 'NL' || locale == 'SE')){
+      if ( brand == 'boohoo.com' && (locale == 'NL' || locale == 'SE'|| locale == 'US')) {
         cy.get(emailOptionsNL).should('be.visible');
       } else {
-      cy.get(emailOptions).should('be.visible');
+        cy.get(emailOptions).should('be.visible');
       }
     }
   };

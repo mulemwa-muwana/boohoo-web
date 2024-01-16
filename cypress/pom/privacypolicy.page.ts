@@ -67,7 +67,7 @@ class PrivacyPolicyPage implements AbstractPage {
 
       if (brand == 'karenmillen.com' && locale == 'US') {
         cy.get(privacyNoticyPageTitleUS).should('contains.text', text, { matchCase: false });
-      } else if (brand == 'misspap.com' && locale == 'IE' || locale == 'AU'){
+      } else if (brand == 'misspap.com' && locale == 'IE' || locale == 'AU') {
         cy.get(privacyNoticyPageTitleAUIE).should('contains.text', text, { matchCase: false });
       } else {
         cy.get(privacyNoticyPageTitle).should('contains.text', text, { matchCase: false });

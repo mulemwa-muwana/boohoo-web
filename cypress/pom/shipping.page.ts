@@ -1182,7 +1182,7 @@ class ShippingPage implements AbstractPage {
       cy.get(shippingPostcode).click({force:true}).blur({force: true});
     },
 
-    removePostCodeFeild(){
+    removePostCodeFeild () {
       cy.wait(2000);
       const shippingPostcode = selectors[brand].shippingPostcode;
       cy.get(shippingPostcode).clear({ force: true });
@@ -1202,11 +1202,11 @@ class ShippingPage implements AbstractPage {
       if ((brand == 'boohoo.com'|| brand == 'nastygal.com' || brand == 'boohooman.com') && locale == 'UK') {
         cy.get(standardShippingMethod).trigger('click',{force:true});
         cy.wait(1000);
-      } else if (brand == 'boohoo.com' && locale == 'NL'){
+      } else if (brand == 'boohoo.com' && locale == 'NL') {
         cy.get(standardShippingMethodNL).trigger('click',{force:true});
-      } else if (brand == 'boohoo.com' && locale == 'SE'){
+      } else if (brand == 'boohoo.com' && locale == 'SE') {
         cy.get(standardShippingMethodSE).trigger('click',{force:true});
-      }else {
+      } else {
         cy.get(standardShippingMethod).contains(shippingMethod).trigger('click',{force:true});
       }
     },

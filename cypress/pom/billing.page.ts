@@ -116,7 +116,6 @@ const selectors: SelectorBrandMap = {
     klarnaPayNowIE: '#payment-details-KlarnaIE > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     klarnaPayNow: '#payment-details-KlarnaUK button',
     klarnaPayNowUS: '[data-id="payButton-KlarnaUS"]>div>button',
-    payButtonLocatorIE: '[data-testid="confirm-and-pay"]',
     paymentMethodCreditCard: '#payment-button-scheme',
     paymentMethodCreditCardUS: '#payment-button-CREDIT_CARD',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
@@ -1175,7 +1174,6 @@ class BillingPage implements AbstractPage {
         body().find(klarnaIFrameContinueCTA).click({ force: true });
         cy.wait(2000); 
         body().find(klarnaIFramePhone).type(phone);
-        body().find(klarnaIFrameContinueCTA).click({ force: true }); 
         body().find(klarnaIFrameOtpField).type('123456', { force: true }); 
         cy.wait(12000);
 
@@ -1220,20 +1218,12 @@ class BillingPage implements AbstractPage {
         });
 
 
-        const payButtonLocator = selectors[brand].payButtonLocator;
-        const payButtonLocatorIE = selectors[brand].payButtonLocatorIE;
-
-        if (brand == 'nastygal.com' && locale == 'IE') {
-          cy.iframe(klarnaIFrame).then(($iframe) => {
-            $iframe.find(payButtonLocatorIE).click();
-            cy.wait(5000);
-          })
-        } else {
+        const payButtonLocator = selectors[brand].payButtonLocator; 
+        
           cy.iframe(klarnaIFrame).then(($iframe) => {
             $iframe.find(payButtonLocator).click();
             cy.wait(5000);
           })
-        }
         body().then($body => {
           if ($body.find(klarnaIFrameSkipAndContinueCTA).length) { // If 'Skip and continue' button exists
             $body.find(klarnaIFrameSkipAndContinueCTA).click();

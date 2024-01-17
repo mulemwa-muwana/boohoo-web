@@ -197,7 +197,10 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('CYP-204 Verify that PREMIER can be added to the cart', function () {
-    if ((brand == 'boohoomena.com' || brand == 'boohooman.com') || ((brand == 'nastygal.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier/VIP for this brand/locale
+    if (brand == 'nastygal.com') { //  Premier/VIP is hidden on locale UK and IE 
+      this.skip();
+    }
+    if ((brand == 'boohoomena.com' || brand == 'boohooman.com')) { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];
@@ -224,7 +227,9 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('CYP-205 Verify that "Find out more" link for Premier section expands and displays correct details', function () {
-    if ((brand == 'boohoomena.com' || brand == 'misspap.com') || ((brand == 'nastygal.com' || brand == 'boohooman.com') && (locale != 'UK' && locale != 'IE'))) { // No Premier and no find out more link for MissPap
+    if (brand == 'nastygal.com' && locale != 'IE'){
+      this.skip();
+    } if ((brand == 'boohoomena.com' || brand == 'misspap.com') || ( brand == 'boohooman.com') && (locale != 'UK' && locale != 'IE')) { // No Premier and no find out more link for MissPap
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'IE', 'FR'];

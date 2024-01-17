@@ -197,10 +197,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('CYP-204 Verify that PREMIER can be added to the cart', function () {
-    if (brand == 'nastygal.com') { //  Premier/VIP is hidden on locale UK and IE 
-      this.skip();
-    }
-    if ((brand == 'boohoomena.com' || brand == 'boohooman.com')) { // No Premier/VIP for this brand/locale
+    if ((brand == 'boohoomena.com' || brand == 'boohooman.com' ||brand == 'nastygal.com')) { // No Premier/VIP for this brand/locale
       this.skip();
     }
     const includedLocales: Array<Locale> = ['UK', 'EU', 'IE', 'FR'];

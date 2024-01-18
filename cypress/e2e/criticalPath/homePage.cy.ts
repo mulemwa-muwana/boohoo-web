@@ -412,7 +412,7 @@ describe('Home Page', function () {
         }
       });
 
-      it.only('CYP-97 Verify that Footer Navigation Component is present and Links are functional - Gift Cards', function () {
+      it('CYP-97 Verify that Footer Navigation Component is present and Links are functional - Gift Cards', function () {
         if ((brand == 'boohoo.com' && (locale == 'UK')) || (brand == 'nastygal.com' && (locale == 'US'))) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGiftCard[language]);
         } else if (brand == 'nastygal.com' && locale != 'UK') {

@@ -1,3 +1,4 @@
+import { brand, locale } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 
 const selectors: SelectorBrandMap = {
@@ -8,6 +9,7 @@ const selectors: SelectorBrandMap = {
     facebookIcon: '.m-facebook-channel',
     emailIcon: '.m-email-channel',
     emailOptions: '[class="b-accordion-content"]',
+    emailOptionsNL: '[data-ref="questionSelector"]',
   },
   'nastygal.com': {
     facebook: 'a[href="https://www.facebook.com/boohoo.com"] > svg',
@@ -139,7 +141,12 @@ class ContactUsPage implements AbstractPage {
     },
     assertEmailOptionsPresent () {
       const emailOptions = selectors[variables.brand].emailOptions;
-      cy.get(emailOptions).should('be.visible');
+      const emailOptionsNL =selectors[variables.brand].emailOptionsNL;
+      if ( brand == 'boohoo.com' && (locale == 'NL' || locale == 'SE'|| locale == 'US')) {
+        cy.get(emailOptionsNL).should('be.visible');
+      } else {
+        cy.get(emailOptions).should('be.visible');
+      }
     }
   };
 

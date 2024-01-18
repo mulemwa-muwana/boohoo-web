@@ -283,7 +283,7 @@ class AssertionText {
   PrivacyPolicyH1: TranslationMap = {
     EN: 'Privacy Notice',
     FR: 'Avis de confidentialité ',
-    NL: 'privacyverklaring',
+    NL: '\n                Privacyverklaring\n            ',
     DE: 'Datenschutzerklärung ',
     DK: 'Bekendtgørelse om beskyttelse af personlige oplysninger',
     FI: 'Tietosuojailmoitus',
@@ -307,6 +307,7 @@ class AssertionText {
     IT: 'Informativa sulla Privacy',
     ES: 'Aviso de Privacidad'
   };
+
   PrivacyNoticeMisspapAUIE: TranslationMap = {
     EN: 'Privacy & Security',
     FR: 'Avis de confidentialité',
@@ -764,9 +765,9 @@ class AssertionText {
     FI: 'Kestä! Se ei vaikuta oikealta.',
     NO: 'Vent! Det virker ikke riktig.',
     SE: 'Vänta! Något gick fel.',
-    IL: 'המתן! זה לא נראה נכון.',
-    IT: 'Sostenere! Non sembra giusto.',
-    ES: '¡Sostener! Eso no parece correcto.'
+    IL: 'רגע! משהו לא נראה תקין.',
+    IT: 'Un attimo solo! C’è qualcosa che non quadra.',
+    ES: '¡Un momento! Parece que ha habido un error.'
   };
 
   unsuccessfulSubscriptionNG: TranslationMap = {
@@ -813,15 +814,15 @@ class AssertionText {
 
   alreadySubscribed: TranslationMap = {
     EN: 'already signed up',
-    NL: 'Het lijkt erop dat je al een account bij ons aan hebt gemaakt! Log in om je voorkeuren aan te passen.',
+    NL: 'Dit adres staat al op de mailinglist',
     DE: 'bereits angemeldet',
-    FR: 'déjà inscrit',
+    FR: 'Il semblerait que vous soyez déjà abonné',
     DK: 'allerede tilmeldt',
     FI: 'jo ilmoittautunut',
     NO: 'Wacht! Er gaat iets mis.',
     SE: 'Du prenumererar redan!',
-    IL: 'כבר נרשמת',
-    IT: 'già iscritto',
+    IL: 'נראה שאתם כבר רשומים',
+    IT: 'Sembra che tu sia già registrato!',
     ES: 'ya registrado'
   };
 
@@ -834,7 +835,7 @@ class AssertionText {
     FI: 'Track My Order',
     NO: 'Track My Order',
     SE: 'Spåra min beställning',
-    IL: '',
+    IL: 'מעקב אחר ההזמנה שלי',
     IT: 'Segui Il Mio Ordine',
     ES: 'Seguir el estado de mi pedido'
   };
@@ -855,7 +856,7 @@ class AssertionText {
 
   orderNotFoundBHO: TranslationMap = {
     EN: "Sorry we don't recognize that order number",
-    NL: 'Sorry, dit bestellingsnummer komt niet overeen',
+    NL: "Sorry we don't recognize that order number, please check your order confirmation and try again.",
     DE: 'Diese Bestellnummer stimmt leider nicht mit unseren',
     FR: 'Désolé, ce numéro de commande ne correspond',
     DK: 'Sorry, this order number does not match',
@@ -905,8 +906,8 @@ class AssertionText {
     NO: '',
     SE: 'Kundtjänst',
     IL: 'שירות לקוחות',
-    IT: '',
-    ES: ''
+    IT: 'Servizio Clienti',
+    ES: 'Servicio de atención al cliente'
   };
 
   footerCustomerService: TranslationMap = {
@@ -946,7 +947,7 @@ class AssertionText {
     FI: 'Shipping Info',
     NO: 'Shipping Info',
     SE: 'Leveranser',
-    IL: '',
+    IL: 'פרטי המשלוח',
     IT: 'Informazioni sulla consegna',
     ES: 'Información de envío'
   };
@@ -1016,7 +1017,7 @@ class AssertionText {
     FI: 'About boohoo',
     NO: 'About boohoo',
     SE: 'Om boohoo',
-    IL: '',
+    IL: 'אודות boohoo',
     IT: 'A proposito di boohoo',
     ES: 'Sobre boohoo'
   };
@@ -1035,32 +1036,74 @@ class AssertionText {
     ES: ''
   };
 
-  faqLinkSizeGuide: TranslationMap = {
+  sizeGuide: TranslationMap = {
     EN: 'Size Guide',
-    NL: 'Maatgids',
+    NL: 'Maatwijzer',
     DE: 'Größentabelle',
     FR: 'Guide des tailles',
     DK: 'Size Guide',
     FI: 'Size Guide',
     NO: 'Size Guide',
-    SE: 'Storleksguide',
-    IL: '',
+    SE: 'Spåra min beställning',
+    IL: 'מדריך מידות',
     IT: 'Guida taglie boohoo',
     ES: 'Guía de tallas'
   };
 
   footerAccordionHelp: TranslationMap = {
     EN: 'Help',
-    NL: '',
-    DE: '',
-    FR: '',
+    NL: 'Klantenservice',
+    DE: 'Kundenservice',
+    FR: 'Service client',
     DK: 'Help',
     FI: 'Help',
     NO: 'Help',
-    SE: '',
-    IL: '',
-    IT: '',
-    ES: ''
+    SE: 'Kundtjänst',
+    IL: 'שירות לקוחות',
+    IT: 'Servizio Clienti',
+    ES: 'Servicio de atención al cliente'
+  };
+
+  sizeGuideGender: TranslationMap = {
+    EN: 'Gender',
+    NL: 'Geslacht',
+    DE: 'Geschlecht',
+    FR: 'Genre',
+    DK: 'Gender',
+    FI: 'Gender',
+    NO: 'Gender',
+    SE: 'KÖN',
+    IL: 'מגדר',
+    IT: 'Genere',
+    ES: 'Género'
+  };
+
+  sizeGuideCategory: TranslationMap = {
+    EN: 'Category',
+    NL: 'Categorie',
+    DE: 'Kategorie',
+    FR: 'Catégorie',
+    DK: 'Category',
+    FI: 'Category',
+    NO: 'Category',
+    SE: 'KATEGORI',
+    IL: 'קטגוריה',
+    IT: 'Categoria',
+    ES: 'Categoría'
+  };
+
+  sizeGuideFit: TranslationMap = {
+    EN: 'Fit',
+    NL: 'Pasvorm',
+    DE: 'Schnitt',
+    FR: 'Coupe',
+    DK: 'Fit',
+    FI: 'Fit',
+    NO: 'Fit',
+    SE: 'PASSFORM',
+    IL: 'גזרה',
+    IT: 'Vestibilità',
+    ES: 'Silueta'
   };
 
   footerAccordionTrackMyOrder: TranslationMap = {
@@ -1149,16 +1192,16 @@ class AssertionText {
 
   footerLinkReturns: TranslationMap = {
     EN: 'Return',
-    NL: 'RETOURZENDINGEN',
+    NL: 'Retourneringen',
     DE: 'Rücksendungen',
     FR: 'Retours',
     DK: '',
     FI: '',
     NO: '',
     SE: 'Returer',
-    IL: '',
-    IT: '',
-    ES: ''
+    IL: 'החזרות',
+    IT: 'Resi',
+    ES: 'Devoluciones'
   };
 
   footerLinkDiscountPromo: TranslationMap = {
@@ -1527,6 +1570,20 @@ class AssertionText {
 
   privacyPolicyDecember2023: TranslationMap = {
     EN: 'Privacy Notice - Updated December 2023',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  privacyPolicyJanuary2023: TranslationMap = {
+    EN: 'Privacy Notice - Updated January 2023',
     NL: '',
     DE: '',
     FR: '',

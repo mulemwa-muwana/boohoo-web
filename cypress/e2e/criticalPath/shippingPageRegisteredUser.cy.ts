@@ -77,8 +77,13 @@ describe('Shipping Page Registered user tests', function () {
     }
     cy.wait(2000);
     shippingPage.actions.cityField(localeAddress.city);
-    shippingPage.actions.postcodeField(localeAddress.postcode);
-    if (locale == 'US' || locale == 'AU' || locale == 'IE' || locale == 'CA') {
+    if (brand =='boohoomena.com') { 
+      shippingPage.actions.removePostCodeFeild();
+    } else {
+      shippingPage.actions.postcodeField(localeAddress.postcode);
+    }
+  
+    if (locale == 'US' || locale == 'AU' || locale == 'IE' || locale == 'CA'||brand =='boohoomena.com') {
       shippingPage.actions.selectState(localeAddress.county);
     }
     if (brand == 'karenmillen.com'|| brand == 'boohooman.com') {
@@ -90,7 +95,7 @@ describe('Shipping Page Registered user tests', function () {
       shippingPage.actions.addAddressNickname(localeAddress.addressNickname);
     }
     cy.wait(3000);
-    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com') {
+    if (brand == 'karenmillen.com'|| brand == 'boohooman.com' || brand == 'misspap.com'||brand =='boohoomena.com') {
       shippingPage.click.proceedToBillingMouseOver();
     } else {
       shippingPage.click.proceedToBilling();
@@ -367,7 +372,7 @@ describe('Shipping Page Registered user tests', function () {
   });
 
   it('CYP-210 Verify that user can enter valid credentials in w3w', function () {
-    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com' || brand == 'karenmillen.com') && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'EU' || locale == 'CA')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
+    const excludedmisspapWithLocales: boolean = ((brand == 'misspap.com' || brand == 'nastygal.com'|| brand == 'boohoo.com' || brand == 'karenmillen.com') && (locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'EU' || locale == 'CA'|| locale == 'NL' || locale == 'SE')) || (brand == 'boohooman.com' || brand == 'boohoomena.com' );
     if (excludedmisspapWithLocales) {
       this.skip();
     }

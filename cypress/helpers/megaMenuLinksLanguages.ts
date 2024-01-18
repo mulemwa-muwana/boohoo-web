@@ -213,7 +213,7 @@ class megaMenuLinksLanguages {
   urlValidationSale: TranslationMap = {
     EN: 'sale',
     FR: 'promo',
-    NL: 'nieuw',
+    NL: 'sale',
     DE: 'sale',
     DK: 'sale',
     FI: 'sale',

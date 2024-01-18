@@ -330,20 +330,21 @@ describe('Home Page', function () {
         }
       });
       it('CYP-90 Verify that Footer Navigation Component is present and Links are functional - Size Guide', () => {
-        if (brand == 'boohooman.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.faqLinkSizeGuide[language]);
+        const brandsAndLocalesWithTwoSizeGuides: boolean = (brand == 'boohoo.com' && locale == 'UK');
+        if (brandsAndLocalesWithTwoSizeGuides) {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.womanSizeGuideText[language]);
         } else {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerAccordionHelp[language]);
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.sizeGuide[language]);
         }
       });
 
       it('CYP-91 Verify that user can choose gender, category, fit - Size Guide', function () {
-        if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE') ) {
+        if (brand == 'boohoo.com' ) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerAccordionHelp[language]);
           faqPage.click.sizeGuide();
-          homePage.assertions.assertSizeGuideGenderPresent();
-          homePage.assertions.assertSizeGuideCategoryPresent();
-          homePage.assertions.assertSizeGuideFitPresent();
+          homePage.assertions.assertSizeGuideGenderPresent(assertionText.sizeGuideGender[language]);
+          homePage.assertions.assertSizeGuideCategoryPresent(assertionText.sizeGuideCategory[language]);
+          homePage.assertions.assertSizeGuideFitPresent(assertionText.sizeGuideFit[language]);
           homePage.actions.selectDropdown();
         } else {
           this.skip();
@@ -656,6 +657,8 @@ describe('Home Page', function () {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyAugust2022[language]);
           } else if (brand== 'misspap.com'&& (locale =='UK' || locale == 'US')) {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyDecember2023[language]);
+          } else if (brand== 'boohoo.com'&& locale == 'US') {
+            GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJanuary2023[language]);
           } else {
             GlobalFooter.actions.checkFooterLinkByText(assertionText.privacyPolicyJuly2022[language]);
           }

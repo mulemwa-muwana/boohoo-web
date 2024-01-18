@@ -348,7 +348,7 @@ class HomePage implements AbstractPage {
     }
 
     cy.visit(url);
-    if (brand=='boohoomena.com'){
+    if (brand=='boohoomena.com') {
       cy.wait(7000);
       cy.getAllCookies();
     }
@@ -430,7 +430,7 @@ class HomePage implements AbstractPage {
     cartIcon () {
       const minicartIcon = selectors[brand].minicartIcon;
       cy.waitUntil(() => {
-        return cy.get(minicartIcon, {timeout: 9000}).invoke('show').click({ force: true });
+        return cy.get(minicartIcon, {timeout: 7000}).invoke('show').click({ force: true });
       });
     },
 
@@ -679,18 +679,18 @@ class HomePage implements AbstractPage {
       cy.get(logInSlideManuTitle).should('contain.text', msg);
     },
 
-    // SizeGuide asserstions
-    assertSizeGuideGenderPresent () {
+    // SizeGuide assertions
+    assertSizeGuideGenderPresent (gender: string) {
       const sizeGuideGender = selectors[brand].sizeGuideGender;
-      cy.get(sizeGuideGender).should('be.visible');
+      cy.get(sizeGuideGender).should('be.visible').and('have.text', gender);
     },
-    assertSizeGuideCategoryPresent () {
+    assertSizeGuideCategoryPresent (category: string) {
       const sizeGuideCategory = selectors[brand].sizeGuideCategory;
-      cy.get(sizeGuideCategory).should('be.visible');
+      cy.get(sizeGuideCategory).should('be.visible').and('have.text', category);
     },
-    assertSizeGuideFitPresent () {
+    assertSizeGuideFitPresent (fit: string) {
       const sizeGuideFit = selectors[brand].sizeGuideFit;
-      cy.get(sizeGuideFit).should('be.visible');
+      cy.get(sizeGuideFit).should('be.visible').and('have.text', fit);
     },
 
     // Counter (header) assertion

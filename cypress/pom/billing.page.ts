@@ -2,6 +2,7 @@ import { isSiteGenesisBrand } from 'cypress/helpers/common';
 import { locale, brand, language } from 'cypress/support/e2e';
 import AbstractPage from './abstract/abstract.page';
 import assertionText from 'cypress/helpers/assertionText';
+import addresses from 'cypress/helpers/addresses';
 
 const selectors: SelectorBrandMap = {
   'boohoo.com': {
@@ -76,6 +77,7 @@ const selectors: SelectorBrandMap = {
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
+    klarnaIFramePhone: '[data-testid="kaf-field"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
     clearPayIdCTA: '[data-testid="login-identity-button"]',
@@ -114,7 +116,6 @@ const selectors: SelectorBrandMap = {
     klarnaPayNowIE: '#payment-details-KlarnaIE > .b-payment_accordion-content_inner > .b-payment_accordion-submit > .b-checkout_step-controls > div > .b-button',
     klarnaPayNow: '#payment-details-KlarnaUK button',
     klarnaPayNowUS: '[data-id="payButton-KlarnaUS"]>div>button',
-    payButtonLocatorIE: '[data-testid="confirm-and-pay"]',
     paymentMethodCreditCard: '#payment-button-scheme',
     paymentMethodCreditCardUS: '#payment-button-CREDIT_CARD',
     paymentMethodGooglePay: '#payment-button-PAYWITHGOOGLE-SSL',
@@ -170,6 +171,7 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
+    klarnaIFramePhone: '[data-testid="kaf-field"]',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -427,6 +429,7 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '',
+    klarnaIFramePhone: '[data-testid="kaf-field"]',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -511,6 +514,7 @@ const selectors: SelectorBrandMap = {
     klarnaIFramePickupPlanPopup: '[data-testid="pick-plan"]',
     klarnaIFrameSkipAndContinueCTA: '#dialog [data-testid="PushFavoritePayment:skip-favorite-selection"]',
     klarnaIFrameFasterCheckoutPopup: '[data-testid="SmoothCheckoutPopUp\\:skip"]',
+    klarnaIFramePhone: '[data-testid="kaf-field"]',
     billingInfoEmailBox: 'input[id="dwfrm_billing_contactInfoFields_email"]',
     clearPaySummeryButton: '[data-testid="summary-button"]',
     clearPayIdInput: '[data-testid="login-identity-input"]',
@@ -1117,7 +1121,7 @@ class BillingPage implements AbstractPage {
       });
     },
 
-    selectKlarna () {
+    selectKlarna (phone:string) {
       const klarnaPayNow = selectors[brand].klarnaPayNow;
       const klarnaPayNowAU = selectors[brand].klarnaPayNowAU;
       const klarnaPayNowUS = selectors[brand].klarnaPayNowUS;
@@ -1131,8 +1135,9 @@ class BillingPage implements AbstractPage {
       const klarnaIFrameSelectPaymentCatCTA = selectors[brand].klarnaIFrameSelectPaymentCatCTA;
       const klarnaIFrameTermandConditionCheckBox = selectors[brand].klarnaIFrameTermandConditionCheckBox;
       const klarnaIFramePickupPlanPopup = selectors[brand].klarnaIFramePickupPlanPopup;
-      const klarnaIFrameSkipAndContinueCTA = selectors[brand].klarnaIFrameSkipAndContinueCTA;
+      const klarnaIFrameSkipAndContinueCTA = selectors[brand].klarnaIFrameSkipAndContinueCTA; 
       const klarnaIFrameFasterCheckoutPopup = selectors[brand].klarnaIFrameFasterCheckoutPopup;
+      const klarnaIFramePhone = selectors[brand].klarnaIFramePhone;
 
       isSiteGenesisBrand
         ? cy.get(`label[for="is-Klarna${locale}"]`).click({ force: true })
@@ -1167,8 +1172,9 @@ class BillingPage implements AbstractPage {
       // Complete the Klarna iframe journey.
       cy.enter(klarnaIFrame, { timeout: 20000 }).then(body => {
         body().find(klarnaIFrameContinueCTA).click({ force: true });
-        cy.wait(2000);
-        body().find(klarnaIFrameOtpField).type('123456', { force: true });
+        cy.wait(2000); 
+        body().find(klarnaIFramePhone).type(phone);
+        body().find(klarnaIFrameOtpField).type('123456', { force: true }); 
         cy.wait(12000);
 
         body().then($body => {
@@ -1184,14 +1190,19 @@ class BillingPage implements AbstractPage {
             cy.wait(5000);
           }
         });
-
-        body().then($body => {
-          const continueButtonLocator = (brand == 'nastygal.com') ? '[data-cid="btn-primary"]' : 'button[data-testid="pick-plan"]';
-          if ($body.find(continueButtonLocator).length) { // If Continue button on test plan page exists
-            body().find(continueButtonLocator).click({ force: true });
-            cy.wait(5000);
+        cy.iframe(klarnaIFrame).then(($iframe) => {
+          if ($iframe.find(klarnaIFrameSelectPaymentCatCTA).length > 0) {
+            $iframe.find(klarnaIFrameSelectPaymentCatCTA).click();
           }
+          cy.wait(5000);
+        })
+        cy.iframe(klarnaIFrame).then(($iframe) => {
+          if ($iframe.find(klarnaIFramePickupPlanPopup).length > 0) {
+            $iframe.find(klarnaIFramePickupPlanPopup).click();
+          }
+          cy.wait(5000);
         });
+          
         body().then($body => {
           if ($body.find(klarnaIFrameTermandConditionCheckBox).length) { // If terms&condition checkbox exists
             body().find(klarnaIFrameTermandConditionCheckBox).click({ force: true });
@@ -1206,24 +1217,13 @@ class BillingPage implements AbstractPage {
           }
         });
 
-        body().then($body => {
-          if ($body.find(klarnaIFramePickupPlanPopup).length) { // If 'Pick plan' popup exists
-            $body.find(klarnaIFramePickupPlanPopup).click();
+
+        const payButtonLocator = selectors[brand].payButtonLocator; 
+        
+          cy.iframe(klarnaIFrame).then(($iframe) => {
+            $iframe.find(payButtonLocator).click();
             cy.wait(5000);
-          }
-        });
-
-        const payButtonLocator = selectors[brand].payButtonLocator;
-        const payButtonLocatorIE = selectors[brand].payButtonLocatorIE;
-
-        if (brand == 'nastygal.com' && locale == 'IE') {
-          body().find(payButtonLocatorIE).click({ force: true });
-        } else {
-          body().find(payButtonLocator).click({ force: true });
-          cy.wait(5000);
-
-        }
-
+          })
         body().then($body => {
           if ($body.find(klarnaIFrameSkipAndContinueCTA).length) { // If 'Skip and continue' button exists
             $body.find(klarnaIFrameSkipAndContinueCTA).click();
@@ -1514,6 +1514,8 @@ class BillingPage implements AbstractPage {
         cy.url({ timeout: 30000 }).should('include', 'orderconfirmation');
       } else if (isCheckoutConfirmationBrandAndLocale) {
         cy.url({ timeout: 30000 }).should('include', 'checkout-confirmation');
+      } else if (brand == 'boohoo.com' && locale == 'IE') {
+        cy.url({ timeout: 30000 }).should('include', 'Order-Confirm'); 
       } else if (isOrderConfirmationBrandAndLocale) {
         cy.url({ timeout: 30000 }).should('include', 'order-confirmation');
       }

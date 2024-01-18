@@ -32,6 +32,7 @@ describe('Additional payment methods for guest user', function () {
   });
 
   it('Verify that guest user can place order with Klarna', function () {
+    const localeAddress = Addresses.getAddressByLocale(locale, 'primaryAddress');
     if (brand == 'boohooman.com' && (locale == 'AU'||locale == 'US')) {
       this.skip();
     }
@@ -43,7 +44,7 @@ describe('Additional payment methods for guest user', function () {
       if ((brand == 'boohoo.com' || brand == 'boohooman.com') && locale =='NL') {
         billingPage.actions.selectKlarnaBoohooNl();
       } else {
-        billingPage.actions.selectKlarna();
+        billingPage.actions.selectKlarna(localeAddress.phone);
       }
 
       billingPage.assertions.assertOrderConfirmationPageIsDisplayed();

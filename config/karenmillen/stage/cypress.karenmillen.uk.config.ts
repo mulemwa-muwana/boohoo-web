@@ -9,7 +9,7 @@ export default defineConfig({
   env: {
     url: 'https://storefront:Oreo2022@stg.karenmillen.com', 
     sku: 'BKK09726-1',
-    fullSku: 'BKK09726-105-18',
+    fullSku: 'BKK09726-105-16',
     brand: 'karenmillen.com',
     locale: 'UK',
     language: 'EN',

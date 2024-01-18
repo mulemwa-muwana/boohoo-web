@@ -351,12 +351,14 @@ describe('Home Page', function () {
         }
       });
 
-      it('CYP-92 Verify that Footer Navigation Component is present and Links are functional - The boohoo/nastygal App', function () {
-        if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'FR' || locale == 'IE' || locale == 'AU' || locale == 'US' || locale == 'DE')) {
+      it('CYP-92 Verify that Footer Navigation Component is present and Links are functional - The boohoo / nastygal / boohooman App', function () {
+        const isBoohooBrandAndLocaleWithAppLink = (brand == 'boohoo.com' && ['UK', 'FR', 'IE' , 'AU', 'US', 'DE', 'IL', 'NL', 'SE'].includes(locale));
+        const nastygalBrandAndLocaleWithAppLink = (brand == 'nastygal.com' && ['UK', 'AU', 'FR', 'IE', 'US'].includes(locale));
+        if (brand == 'boohooman.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppBHM[language]);
+        } else if (isBoohooBrandAndLocaleWithAppLink) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppBHO[language]);
-        } else if (brand == 'nastygal.com' && locale == 'CA') {
-          this.skip();
-        } else if (brand == 'nastygal.com' && locale != 'EU') {
+        } else if (nastygalBrandAndLocaleWithAppLink) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkTrackAppNG[language]);
         } else {
           this.skip();

@@ -835,11 +835,7 @@ class PdpPage implements AbstractPage {
 
     assertSizeGuidePdpCms () {
       const sizeGuidePdpTable = selectors[brand].sizeGuidePdpTable;
-      if (brand == 'boohoo.com') {
-        cy.get(sizeGuidePdpTable).should('contain', '79');
-      } else if (brand == 'karenmillen.com') {
-        cy.get(sizeGuidePdpTable).should('be.visible');
-      }
+      cy.get(sizeGuidePdpTable).should('be.visible');
     },
     assertSizeGuidePdpInches () {
       const sizeGuidePdpInches = selectors[brand].sizeGuidePdpInches;

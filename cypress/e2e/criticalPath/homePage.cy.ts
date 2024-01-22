@@ -373,12 +373,14 @@ describe('Home Page', function () {
         const excludedMisspapWithLocales: boolean = brand == 'misspap.com' && (locale == 'IE' || locale == 'AU' || locale == 'US');
         const excludedBurtonLocales: boolean = brand == 'burton.co.uk' && locale != 'UK';
         const excludedOasisLocales: boolean = brand == 'oasis-stores.com' && locale == 'IE';
-        if (brand == 'boohoomena.com' || excludedMisspapWithLocales || excludedBurtonLocales || excludedOasisLocales) {
+        const excludedBoohooLocales: boolean = (brand == 'boohoo.com' && locale == 'IL'); // No student discount link for this locale
+        const excludedBoohoomanLocales: boolean = (brand == 'boohooman.com' && locale == 'EU'); // No student discount link for this locale
+        const excludedKarenMillenLocales: boolean = (brand == 'karenmillen.com' && locale == 'AU'); // No student discount link for this locale
+        const excludedNastyGalLocales: boolean = (brand == 'nastygal.com' && locale == 'EU'); // No student discount link for this locale
+        if (brand == 'boohoomena.com' || excludedMisspapWithLocales || excludedBurtonLocales || excludedOasisLocales || excludedBoohooLocales || excludedBoohoomanLocales || excludedKarenMillenLocales || excludedNastyGalLocales) {
           this.skip();
         }
-        if (brand == 'nastygal.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromoNG[language]);
-        } else if (brand == 'karenmillen.com' && locale == 'US') {
+        if (brand == 'karenmillen.com' && locale == 'US') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentBean[language]);
         } else {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkStudentDiscount[language]);

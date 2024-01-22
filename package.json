@@ -5,7 +5,6 @@
       "cy:open:nastygal": "cypress open --config-file ./config/nastygal/stage/cypress.nastygal.uk.config.ts",
       "cy:open:misspap": "cypress open --config-file ./config/misspap/stage/cypress.misspap.uk.config.ts",
       "cy:open:boohooman": "cypress open --config-file ./config/boohooman/stage/cypress.boohooman.uk.config.ts",
-      "cy:open:boohoomanUs": "cypress open --config-file ./config/boohooman/stage/cypress.boohooman.us.config.ts",
       "cy:open:karenmillen": "cypress open --config-file ./config/karenmillen/stage/cypress.karenmillen.uk.config.ts",
       "cy:open:boohoomena": "cypress open --config-file ./config/boohoomena/stage/cypress.boohoomena.sa.config.ts",
     "//": "CYPRESS RUN STAGE",

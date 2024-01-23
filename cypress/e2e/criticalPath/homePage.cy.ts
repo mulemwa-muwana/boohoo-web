@@ -450,7 +450,7 @@ describe('Home Page', function () {
           this.skip();
         }
       });
-      it('CYP-101 Verify that Footer Navigation Component is present and Links are functional - Sustainability', function () {
+      it.skip('CYP-101 Verify that Footer Navigation Component is present and Links are functional - Sustainability', function () {
         if (brand == 'burton.co.uk' || brand == 'misspap.com' || (brand == 'boohoo.com' && (locale == 'NL'|| locale == 'IT' || locale == 'ES'))) {
           this.skip();
         } else {

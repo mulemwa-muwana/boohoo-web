@@ -1206,9 +1206,9 @@ class AssertionText {
 
   footerLinkDiscountPromo: TranslationMap = {
     EN: 'Discount & Promo',
-    NL: '',
-    DE: 'boohoo Rabattcodes',
-    FR: '',
+    NL: 'Korting',
+    DE: 'Rabattcodes',
+    FR: 'Codes promo',
     DK: '',
     FI: '',
     NO: '',

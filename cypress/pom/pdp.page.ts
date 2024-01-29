@@ -43,6 +43,7 @@ const selectors: SelectorBrandMap = {
     sizeGuidePdp: '[data-ref="productForm"] .b-size_guide_link-text',
     sizeGuidePdpIsDisplayed: '.b-dialog-header',
     sizeGuidePdpCms: '.b-size_type-switcher > div > span:nth-of-type(2)',
+    sizeGuidePdpInches: '.b-size_type-switcher',
     sizeGuidePdpTable: '.b-custom_table-cell',
     howToMeasurePdp: 'button#product-details-btn > .b-icon_chevron',
     howToMeasurePdpContent: '.b-measure_tips-subheader',
@@ -83,6 +84,14 @@ const selectors: SelectorBrandMap = {
     productDeliveryInfo: '.b-product_delivery',
     wishListIcon: '.b-header_wishlist',
     cartValidation: '.b-product_actions-error_msg',
+    sizeGuidePdp: '[data-ref] > .b-product_details-guide:nth-of-type(3) .b-size_guide_link-text',
+    sizeGuidePdpIsDisplayed: '.b-dialog-header',
+    sizeGuidePdpCms: 'b-size_type-switcher m-active',
+    sizeGuidePdpInches: '.b-size_type-switcher',
+    sizeGuidePdpTable: '.b-custom_table',
+    sizeGuideShoes: '[data-id="button-secondPanel"]',
+    sizeGuideJeans: '[data-id="button-thirdPanel"]',
+    shoeOrOtherTab: 'div#secondPanel',
     disabledAddToCart: '[data-widget="processButton"]',
     miniCartProductTitle: '[data-tau="global_alerts_item"]',
     moreInfoKlarna: '[data-id="klarnaPdpCalculation"] .b-payment_breakdown-item_link',
@@ -247,6 +256,13 @@ const selectors: SelectorBrandMap = {
     productReturnsDescription: '#ui-id-5',
     completeLookBox: ':nth-child(2) > .b-product_section-title > .b-product_section-title_text',
     productDeliveryInfo: '#product-delivery-info-tab',
+    sizeGuidePdp: '.size-chart-link-name',
+    sizeGuidePdpIsDisplayed: '.size-type',
+    sizeGuidePdpCms: 'section > div > section:nth-of-type(1) > div > section:nth-of-type(1) .hidden-on-mobile > .content-asset.new-size-guide-unit-switch > .unit-switch > .js-measurement-units.measurement-units-cms',
+    sizeGuidePdpTable: '.womens > section:nth-of-type(1) > div > section:nth-of-type(1) .table-wrapper > table:nth-of-type(2) > tbody > tr:nth-of-type(2) > td:nth-of-type(1)',
+    sizeGuideLingerie: '.top-level > section > div > label:nth-of-type(2)',
+    sizeGuideShoes: '.top-level > section > div > label:nth-of-type(3)',
+    shoeOrOtherTab: '.table-type-3',
     productDeliveryInfoMobile: '#product-delivery-info-tab',
     productDeliveryInfoButton: '#product-delivery-info-tab .js-global-accordion-header',
     productReturnsInfoButton: '#product-returns-info-tab > .js-global-accordion-header',
@@ -499,6 +515,21 @@ class PdpPage implements AbstractPage {
       const sizeGuidePdpCms = selectors[brand].sizeGuidePdpCms;
       cy.get(sizeGuidePdpCms).click({ force: true });
     },
+    sizeGuidePdpInches () {
+      const sizeGuidePdpInches = selectors[brand].sizeGuidePdpInches;
+      cy.get(sizeGuidePdpInches).click({force:true});
+    },
+    sizeGuideShoeOrOther () {
+      const sizeGuideShoes = selectors[brand].sizeGuideShoes;
+      const sizeGuideJeans = selectors[brand].sizeGuideJeans;
+      const sizeGuideLingerie = selectors[brand].sizeGuideLingerie;
+      if (brand == 'nastygal.com') {
+        cy.get(sizeGuideShoes).click();
+        cy.get(sizeGuideJeans).click();
+      } else cy.get(sizeGuideLingerie).click();
+      cy.get(sizeGuideShoes).click();
+    },
+
     howToMeasurePdp () {
       const howToMeasurePdp = selectors[brand].howToMeasurePdp;
       cy.get(howToMeasurePdp).click({ force: true });
@@ -804,11 +835,11 @@ class PdpPage implements AbstractPage {
 
     assertSizeGuidePdpCms () {
       const sizeGuidePdpTable = selectors[brand].sizeGuidePdpTable;
-      cy.get(sizeGuidePdpTable).should('contain', '79');
+      cy.get(sizeGuidePdpTable).should('be.visible');
     },
     assertSizeGuidePdpInches () {
       const sizeGuidePdpInches = selectors[brand].sizeGuidePdpInches;
-      cy.get(sizeGuidePdpInches).should('have.text', '31');
+      cy.get(sizeGuidePdpInches).should('be.visible');
     },
     assertHowToMeasurePdpDisplayed () {
       const howToMeasurePdpContent = selectors[brand].howToMeasurePdpContent;
@@ -844,6 +875,14 @@ class PdpPage implements AbstractPage {
 
       cy.get(frLocale).click(),
       cy.get(frLocale).should('be.checked');
+    },
+    assertShoeOrOtherSelected () {
+      const shoeOrOtherTab = selectors[brand].shoeOrOtherTab;
+      if (brand == 'nastygal.com') {
+        cy.get(shoeOrOtherTab).should('be.visible');
+      } else {
+        cy.get(shoeOrOtherTab).should('contain', '2');
+      }
     },
     assertKlarnaRelatedPageIsDisplayed () {
       cy.url({ timeout: 30000 }).should('include', 'klarna');

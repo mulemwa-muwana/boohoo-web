@@ -25,7 +25,7 @@ const selectors: SelectorBrandMap = {
     KlarnaCTA: '#klarna-express-button-0',
     KlarnaFrame: '#klarna-express-button-fullscreen',
     AmazonCTA: '#OffAmazonPaymentsWidgets0',
-    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button',
+    proceedToCheckout: '.b-summary_section > :nth-child(1) > .b-cart_actions-button, [data-ref="lastFocusElement"]',
     proceedToCheckoutNL: '[data-tau="minicart_start_checkout_bottom"]',
     clearCart: '.b-cart_product-remove',
     clearCartMobile: 'button.b-cart_product-remove[title="Remove"]',

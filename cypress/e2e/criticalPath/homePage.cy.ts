@@ -397,16 +397,19 @@ describe('Home Page', function () {
         }
       });
       it('CYP-96 Verify that Footer Navigation Component is present and Links are functional - Get Exclusive Offers & Updates', function () {
-        const boohooAndLocales: boolean = brand == 'boohoo.com' && (locale != 'IT' && locale != 'ES' && locale != 'NO' && locale != 'NZ' && locale != 'FI' && locale != 'EU' && locale != 'DK' && locale != 'CA');
-        const boohooManAndLocales: boolean = brand == 'boohooman.com' && (locale != 'NL' && locale != 'FR' && locale != 'DE');
-        if ( brand == 'boohooman.com' && locale == 'NL') {
-          this.skip();
-        } else if (boohooAndLocales ) {
+        const isBoohooLocaleWithNewsletterText = (brand == 'boohoo.com' && ['UK', 'US', 'AU', 'DE', 'ES', 'FR', 'IE', 'IL', 'IT', 'NL', 'SE'].includes(locale));
+        const isBoohooLocaleWithGetExclusiveText = (brand == 'boohoo.com' && ['CA', 'DK', 'EU', 'FI', 'NO', 'NZ'].includes(locale));
+        const isIncludedBoohoomanLocale = (brand == 'boohooman.com' && ['UK', 'DE', 'EU', 'FR', 'IE', 'US'].includes(locale));
+        if (isBoohooLocaleWithGetExclusiveText || brand == 'karenmillen.com' || brand == 'boohoomena.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdates[language]);
+        } else if (isBoohooLocaleWithNewsletterText ) {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkNewsLetter[language]);
+        } else if (isIncludedBoohoomanLocale) {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdatesBHM[language]);
+        } else if (brand == 'nastygal.com') {
+          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdatesNG[language]);
         } else if (brand == 'misspap.com') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdatesMissPap[language]);
-        } else if (boohooManAndLocales || brand == 'karenmillen.com' || brand == 'nastygal.com' || brand == 'boohoomena.com') {
-          GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkGetExclusiveOffersAndUpdatesKM[language]);
         } else {
           this.skip();
         }

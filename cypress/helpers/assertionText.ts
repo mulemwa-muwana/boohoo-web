@@ -1232,7 +1232,7 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
+  footerLinkNewsLetter: TranslationMap = {
     EN: 'Newsletter sign up',
     NL: 'Ontvang exclusieve aanbiedingen & updates',
     DE: 'Erhalte exklusive Angebote & Updates',
@@ -1241,6 +1241,20 @@ class AssertionText {
     FI: '',
     NO: '',
     SE: 'Få exklusiva erbjudanden & nyheter',
+    IL: 'קבלו הצעות ועדכונים בלעדיים',
+    IT: 'Newsletter',
+    ES: 'Newsletter'
+  };
+  
+  footerLinkGetExclusiveOffersAndUpdates: TranslationMap = {
+    EN: 'Get Exclusive Offers & Updates',
+    NL: '',
+    DE: '',
+    FR: '',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
     IL: '',
     IT: '',
     ES: ''
@@ -1260,11 +1274,25 @@ class AssertionText {
     ES: ''
   };
 
-  footerLinkGetExclusiveOffersAndUpdatesKM: TranslationMap = {
+  footerLinkGetExclusiveOffersAndUpdatesNG: TranslationMap = {
     EN: 'Get Exclusive Offers & Updates',
     NL: '',
     DE: '',
-    FR: '',
+    FR: 'Profite d’offres exclusives & mises à jour',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkGetExclusiveOffersAndUpdatesBHM: TranslationMap = {
+    EN: 'Get Exclusive Offers & Updates',
+    NL: '',
+    DE: 'Erhalte exklusive Angebote & Updates',
+    FR: 'Abonnez-vous',
     DK: '',
     FI: '',
     NO: '',

@@ -1122,14 +1122,14 @@ class AssertionText {
 
   footerLinkTrackAppBHO: TranslationMap = {
     EN: 'The boohoo App', // The boohoo App
-    NL: '',
+    NL: 'De Boohoo App',
     DE: 'boohoo App', // To be consider for multiple brends
     FR: 'Appli boohoo',
     DK: '',
     FI: '',
     NO: '',
     SE: 'boohoo-appen',
-    IL: '',
+    IL: 'boohoo App',
     IT: '',
     ES: ''
   };
@@ -1139,6 +1139,20 @@ class AssertionText {
     NL: '',
     DE: '', // To be consider for multiple brends
     FR: 'Appli Nasty Gal',
+    DK: '',
+    FI: '',
+    NO: '',
+    SE: '',
+    IL: '',
+    IT: '',
+    ES: ''
+  };
+
+  footerLinkTrackAppBHM: TranslationMap = {
+    EN: 'boohooMAN App',
+    NL: 'boohooMAN App',
+    DE: 'boohooMAN App',
+    FR: 'boohooMAN App',
     DK: '',
     FI: '',
     NO: '',

@@ -392,9 +392,10 @@ describe('Home Page', function () {
         }
       });
       it('CYP-95 Verify that Footer Navigation Component is present and Links are functional - Discount & Promo Codes', function () {
-        if (brand == 'boohoo.com' && (locale == 'UK' || locale == 'AU' || locale == 'IE')) {
+        const isboohooLocaleWithDiscountLink = (brand == 'boohoo.com' && ['UK' , 'AU' , 'IE' , 'DE','FR'].includes(locale));
+        if (isboohooLocaleWithDiscountLink || brand == 'boohooman.com' || brand == 'karenmillen.com' ) {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromo[language]);
-        } else if (brand == 'nastygal.com' && (locale == 'UK' || locale == 'AU' || locale == 'IE')) {
+        } else if (brand == 'nastygal.com' && locale != 'EU') {
           GlobalFooter.actions.checkFooterLinkByText(assertionText.footerLinkDiscountPromoNG[language]);
         } else {
           this.skip();

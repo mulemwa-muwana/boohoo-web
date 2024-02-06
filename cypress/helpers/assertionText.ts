@@ -309,7 +309,7 @@ class AssertionText {
   };
 
   PrivacyNoticeMisspapAUIE: TranslationMap = {
-    EN: 'Privacy & Security',
+    EN: 'Privacy Notice',
     FR: 'Avis de confidentialité',
     NL: 'Privacyverklaring',
     DE: 'Datenschutzrichtlinien',
